@@ -78,17 +78,18 @@ ggplot2::qplot(duration$duration, binwidth = 0.5) + ggplot2::scale_x_continuous(
 
 ```{r scales,results='asis'}
 vars = names(results)
+knit_scales = listenv::listenv()
 for (i in seq_along(vars)) {
 	var = vars[i]
-	cat(var,"\n", file = "~/Downloads/var.log", append = T)
 	scale = results[[ var ]]
 	scale_info = attributes(scale)
 		if ( !is.null(scale_info)) {
-		if (exists("scale", scale_info)) {
-		cat(codebook_component_scale( scale, results, indent ))
-		}
+		  if (exists("scale", scale_info)) {
+		    knit_scales[[ var ]] = future::value(future::future( codebook_component_scale( scale, results, indent ) ))
+		  }
 	}
 }
+Reduce(paste.knit_asis, knit_scales)
 ```
 
 `r indent`# Single items
@@ -96,7 +97,6 @@ for (i in seq_along(vars)) {
 ```{r items,results='asis'}
 for (i in seq_along(vars)) {
 	var = vars[i]
-	cat(var,"\n", file = "~/Downloads/var.log", append = TRUE)
 	item = results[[ var ]]
 	item_info = attributes(item)
 	if ( !is.null(item_info)) {
