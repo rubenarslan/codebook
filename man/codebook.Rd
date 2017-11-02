@@ -15,5 +15,5 @@ codebook(results, indent = "#")
 If you pass the object resulting from a call to formr_results to this function, it will generate a markdown codebook for this object.
 }
 \examples{
-
+# see vignette
 }
