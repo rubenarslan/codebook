@@ -1,0 +1,158 @@
+```{r setup,eval=TRUE,echo=FALSE}
+if (!exists("indent")) {
+	indent = '#' # ugly hack so _regression_summary can be "spun" (variables included via `r ` have to be available)
+}
+if (exists("testing")) {
+	results = data.frame()
+}
+
+users = dplyr::n_distinct(results$session)
+finished_users = dplyr::n_distinct(results[!is.na(results$ended),]$session)
+rows_per_user = nrow(results)/users
+
+repeated_survey = rows_per_user > 1
+rows_by_user = dplyr::count(dplyr::filter(results, !is.na(ended)), session)$n
+survey_repetition = ifelse( rows_per_user <= 1, 
+	"single",
+	ifelse(rows_by_user %in% 1:2, 
+				 "repeated_once",
+				 "repeated_many"))
+
+duration = results %>% filter(!is.na(ended)) %>% 
+	dplyr::mutate(duration = as.double(ended - created, unit = "mins"))
+
+started = sum(!is.na(results$modified))
+only_viewed = sum(is.na(results$ended) & is.na(results$modified))
+```
+
+`r indent`# Survey overview
+
+`r ended(results)` completed rows, `r started` who entered any information, `r only_viewed` only viewed the first page. There are `r expired(results)` expired rows (people who did not finish filling out in the requested time frame). In total, there are `r nrow(results)` rows including unfinished and expired rows. 
+
+
+There were `r users` unique participants, of which `r finished_users` finished filling out at least one survey.
+
+`r ifelse(survey_repetition == 'single', "This survey was not repeated.", ifelse(survey_repetition == 'repeated_once', paste0("This survey was repeated once by ", sum(rows_by_user == 2), " out of ", sum(rows_by_user <= 2), " users."), paste0("This survey was repeated many times, on average ", round(rows_per_user,2), " times per user.")))`
+
+`r ifelse(repeated_survey && round(rows_per_user) == 1, "Oddly there seem to be almost no users with several rows. Maybe something went wrong and a few rows are duplicated by accident?", "")`
+
+
+```{r repeated}
+if (repeated_survey) {
+	overview = results %>% dplyr::group_by(session) %>% 
+		dplyr::summarise(
+			n = sum(!is.na(session)),
+			expired = sum(!is.na(expired)),
+			ended = sum(!is.na(ended))
+		) %>% 
+		tidyr::gather(key, value, -session)
+	if (length(unique(dplyr::filter(overview, key == "expired")$value)) == 1) {
+		overview = dplyr::filter(overview, key != "expired")
+	}
+	print(
+		ggplot2::ggplot(overview, ggplot2::aes(value, ..count..)) + ggplot2::geom_bar() + ggplot2::facet_wrap(~ key, nrow = 1)
+	)
+}
+```
+
+The first session started on `r min(results$created)`, the last session on `r max(results$created)`. 
+
+
+```{r}
+ggplot2::qplot(results$created) + ggplot2::scale_x_datetime("Date/time when survey was started")
+```
+
+People took on average `r round(mean(duration$duration),2)` minutes (median `r round(median(duration$duration),2)`) to answer the survey.
+
+```{r duration}
+high_vals = sum(median(duration$duration) + 4*mad(duration$duration) < duration$duration)
+ggplot2::qplot(duration$duration, binwidth = 0.5) + ggplot2::scale_x_continuous(paste("Duration (in minutes), excluding", high_vals, "values above median + 4*MAD"), limits = c(NA, median(duration$duration) + 4*mad(duration$duration)))
+```
+
+```{r}
+```
+
+
+
+`r indent`# Scales
+
+```{r scales,results='asis'}
+vars = names(results)
+for (i in seq_along(vars)) {
+	var = vars[i]
+	cat(var,"\n", file = "~/Downloads/var.log", append = T)
+	scale = results[[ var ]]
+	scale_info = attributes(scale)
+		if ( !is.null(scale_info)) {
+		if (exists("scale", scale_info)) {
+		cat(codebook_component_scale( scale, results, indent ))
+		}
+	}
+}
+```
+
+`r indent`# Single items
+
+```{r items,results='asis'}
+for (i in seq_along(vars)) {
+	var = vars[i]
+	cat(var,"\n", file = "~/Downloads/var.log", append = TRUE)
+	item = results[[ var ]]
+	item_info = attributes(item)
+	if ( !is.null(item_info)) {
+		if (exists("part_of_scale", item_info) || exists("scale", item_info) || var %in% c("created", "modified", "expired", "ended")) {
+			next
+		} else if (exists("item", item_info)) {
+			cat(codebook_component_single_item( item, results, indent ))
+		} else {
+			cat(codebook_component_fallback( item, results, var, indent))
+		}
+	}
+}
+```
+
+
+`r indent`# Missingness report {.tabset .tabset-sticky}
+
+There were `r ended(results)` rows completed, `r started` who entered any information, `r only_viewed` only viewed the first page. There are `r expired(results)` expired rows (people who did not finish filling out in the requested time frame). 
+
+### Missingness finishers
+
+among those who finished the survey
+
+```{r missingness_all_setup}
+missingness = missingness_patterns(
+	dplyr::select(dplyr::filter(results, !is.na(ended)), -expired, -ended) )
+```
+```{r missingness_all}
+pander::pander(missingness)
+```
+
+
+
+### Missingness starters
+
+among those who started the survey
+
+```{r missingness_starters_setup,results='markup'}
+missingness = missingness_patterns(
+	dplyr::filter(results, !is.na(modified)) )
+```
+```{r missingness_starters}
+pander::pander(missingness)
+```
+
+
+## Items
+```{r}
+
+item_index = dplyr::select(as.data.frame(items(results)), -choice_list, -index)
+item_index = dplyr::mutate(item_index, name = paste0('<a href="#', name, '">', name, '</a>'))
+DT::datatable(item_index, rownames = FALSE, filter = "top", extensions = 'Buttons', 
+escape = setdiff(names(item_index), 'name'),
+options = list(
+    dom = 'Bfrtip',
+    buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
+    pageLength = 200
+  ))
+```

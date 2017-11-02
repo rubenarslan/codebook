@@ -1,0 +1,99 @@
+```{r setup,eval=TRUE,echo=FALSE}
+if (!exists("indent")) {
+	indent = '#'
+}
+if (exists("testing")) {
+	scale = 1:10
+}
+
+scale_info = attributes(scale)
+scale_name = scale_info$scale
+users = dplyr::n_distinct(results$session)
+rows_per_user = nrow(results)/users
+repeated_survey = rows_per_user > 1
+rows_by_user = dplyr::count(results, session)$n
+survey_repetition = ifelse( rows_per_user <= 1, 
+	"single",
+	ifelse(rows_by_user %in% 1:2, 
+				 "repeated_once",
+				 "repeated_many"))
+```
+
+`r indent`## `r scale_info$scale` {#`r scale_name` .tabset}
+
+`r indent`### Reliability {#`r scale_name`_reliability}
+```{r reliability}
+scale_item_names = scale_info$scale_item_names
+if (survey_repetition == 'single') {
+	psych::print.psych(psych::alpha(results[, scale_item_names], title = scale_info$scale, check.keys = FALSE))
+} else if (survey_repetition == 'repeated_once') {
+	psych::print.psych( psych::alpha(results[!duplicated(results$session), scale_item_names], title = paste( scale_info$scale, "Time 1"), check.keys = FALSE) )
+	psych::print.psych( psych::alpha(results[duplicated(results$session), scale_item_names], title = paste( scale_info$scale, "Time 2"), check.keys = FALSE) )
+	wide = tidyr::spread(
+		dplyr::select(
+		dplyr::mutate(
+		dplyr::group_by(
+		results, session),
+		Time = row_number(created)), session, Time, !!dplyr::quo(scale_info$scale) ),
+	key = Time, value = !!dplyr::quo(scale_info$scale), sep="_")
+	print(stats::cor.test(wide$Time_1, wide$Time_2))
+} else if (survey_repetition == 'repeated_many') {
+	long_rel =  tidyr::gather(dplyr::select(dplyr::mutate(
+		dplyr::group_by(
+		results, session),
+		day_number = as.numeric(created - min(created), unit = 'days')), session, day_number, !!!dplyr::quos(scale_item_names) ),
+  variable, value, -session, -day_number)
+	
+	psych::print.psych( psych::multilevel.reliability(long_rel, "session", "day_number", lme = TRUE, lmer = TRUE, items = "variable", values = "value", long = TRUE, aov = FALSE) )
+}
+```
+
+`r indent`### Likert plot {#`r scale_name`_likert}
+
+```{r likert_setup}
+old_height = knitr::opts_chunk$get("fig.height")
+new_height = length(scale_info$scale_item_names)
+new_height = ifelse(new_height > 20, 20, new_height)
+new_height = ifelse(new_height < 1, 1, new_height)
+knitr::opts_chunk$set(fig.height = new_height)
+```
+```{r likert}
+graphics::plot(formr_likert(scale_info$item, results))
+knitr::opts_chunk$set(fig.height = old_height)
+```
+
+
+`r indent`### Distribution {#`r scale_name`_distribution}
+```{r setup_distribution}
+binwidth = mean(diff(sort(unique(scale))))
+choices = scale_info$item[[1]]$choices
+
+wrap_at = knitr::opts_chunk$get("fig.width") * 10
+```
+```{r distribution}
+breaks = as.numeric(names(choices))
+dist_plot = ggplot2::ggplot() +
+	ggplot2::geom_bar(ggplot2::aes(x = scale)) +
+	ggplot2::stat_bin(binwidth = binwidth) + 
+	ggplot2::ggtitle(scale_name, subtitle = stringr::str_wrap(paste("aggregated over", length(scale_info$item), "items"), wrap_at)) + 
+	ggplot2::xlab("Choices") + 
+	ggplot2::scale_x_continuous("Choices", breaks = breaks, labels = stringr::str_wrap(unlist(choices), 15), limits = range(breaks))
+
+dist_plot
+```
+
+`r indent`### Summary statistics {#`r scale_name`_summary}
+```{r summary}
+pander::pander(skimr::skim_v(scale))
+```
+
+`r indent`### Items {#`r scale_name`_items}
+
+```{r items,results='asis'}
+pander::pander(dplyr::bind_rows(
+	lapply(scale_info$item, function(x) { 
+		x$label_parsed = x$choices = x$choice_list = x$study_id = x$id = NULL
+		as.data.frame(t(x)) })
+))
+```
+

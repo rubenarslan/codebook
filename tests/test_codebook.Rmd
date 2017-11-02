@@ -1,0 +1,45 @@
+---
+title: "Codebook example diary"
+output:
+  html_document:
+  toc: true
+toc_depth: 4
+toc_float: true
+code_folding: 'hide'
+self_contained: false
+---
+
+  ```{r}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+pander::panderOptions("table.split.table", Inf)
+```
+
+
+## Load
+```{r echo=FALSE}
+source("/Volumes/jet/Beziehungsdynamiken/.password.R")
+```
+```{r}
+library(codebook)
+library(dplyr)
+```
+```{r cache=TRUE, warning = FALSE, message=F}
+formr::formr_connect(email = credentials$user, password = credentials$password, host = credentials$host)
+formr::formr_results("Taeglicher_Fragebogen_1", host = credentials$host, quiet = T) -> results
+formr::formr_items("Taeglicher_Fragebogen_1", host = credentials$host) -> diary_items
+# diary = diary %>% select(session, session_id, modified, created, ended, special_events, desirability_partner, NARQ_admiration_1, NARQ_admiration_2, NARQ_admiration_3, NARQ_rivalry_1, NARQ_rivalry_2, NARQ_rivalry_3, NARQ_admiration, NARQ_rivalry)
+results$expired = NA
+
+results = results %>% filter(!duplicated(cbind(session, created)))
+rm(credentials)
+
+knitr::opts_chunk$set(echo = FALSE)
+library(ggplot2)
+theme_set(theme_bw())
+knitr::opts_chunk$set(error = TRUE)
+```
+
+```{r}
+codebook(results)
+```
+

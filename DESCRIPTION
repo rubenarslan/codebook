@@ -1,0 +1,39 @@
+Package: codebook
+Title: Cook codebooks from survey metadata encoded in attributes in R
+Version: 0.0.1
+Authors@R: person("Ruben", "Arslan", email = "ruben.arslan@gmail.com", role = c("aut", "cre"))
+Description: The codebook package generates markdown components (partials) describing data frames.
+Depends: R (>= 3.3.2)
+License: BSD_2_clause + file LICENSE
+Imports:
+		stats,
+		graphics,
+		utils,
+		methods,
+    ggplot2,
+    scales,
+    stringr,
+    lubridate,
+    httr,
+    jsonlite,
+    psych,
+    rmarkdown,
+    likert,
+    knitr,
+    curl,
+    reshape2,
+    dplyr,
+    commonmark,
+    pryr,
+    tidyr,
+    haven,
+    pander,
+    packrat,
+    skimr,
+    DT
+Suggests:
+  future
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.0
+Roxygen: list(markdown = TRUE) 
