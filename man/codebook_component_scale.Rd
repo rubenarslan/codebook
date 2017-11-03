@@ -4,13 +4,15 @@
 \alias{codebook_component_scale}
 \title{codebook component for scales}
 \usage{
-codebook_component_scale(scale, results, indent = "###",
+codebook_component_scale(scale, results, reliabilities, indent = "###",
   survey_repetition = "single")
 }
 \arguments{
 \item{scale}{a scale with attributes set}
 
 \item{results}{a formr results table with attributes set on items and scales}
+
+\item{reliabilities}{a list with one or several results from calls to psych package functions for computing reliability}
 
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 

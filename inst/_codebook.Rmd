@@ -4,25 +4,8 @@ if (!exists("indent")) {
 }
 if (exists("testing")) {
 	results = data.frame()
+	reliabilities = list()
 }
-
-users = dplyr::n_distinct(results$session)
-finished_users = dplyr::n_distinct(results[!is.na(results$ended),]$session)
-rows_per_user = nrow(results)/users
-
-repeated_survey = rows_per_user > 1
-rows_by_user = dplyr::count(dplyr::filter(results, !is.na(ended)), session)$n
-survey_repetition = ifelse( rows_per_user <= 1, 
-	"single",
-	ifelse(rows_by_user %in% 1:2, 
-				 "repeated_once",
-				 "repeated_many"))
-
-duration = results %>% filter(!is.na(ended)) %>% 
-	dplyr::mutate(duration = as.double(ended - created, unit = "mins"))
-
-started = sum(!is.na(results$modified))
-only_viewed = sum(is.na(results$ended) & is.na(results$modified))
 ```
 
 `r indent`# Survey overview
@@ -78,14 +61,14 @@ ggplot2::qplot(duration$duration, binwidth = 0.5) + ggplot2::scale_x_continuous(
 
 ```{r scales,results='asis'}
 vars = names(results)
-knit_scales = new.env()
+knit_scales = list()
 for (i in seq_along(vars)) {
 	var = vars[i]
 	scale = results[[ var ]]
 	scale_info = attributes(scale)
 		if ( !is.null(scale_info)) {
 		  if (exists("scale", scale_info)) {
-		    future::`%<-%`(knit_scales[[ var ]], codebook_component_scale( scale, dplyr::select(results, session, dplyr::starts_with(scale_info$scale)), indent, survey_repetition) )
+		    knit_scales[[ var ]] = codebook_component_scale( scale, dplyr::select(results, .data$session, dplyr::starts_with(scale_info$scale)), reliabilities[[var]], indent)
 		  }
 	}
 }

@@ -8,7 +8,7 @@ if (exists("testing")) {
 item_info = attributes(item)$item
 item_name = item_info$name
 item_label = ifelse(is.null(item_info$label), "", item_info$label)
-choices = item_info$choices
+choices = attributes(item)$labels
 ```
 
 `r indent`## `r item_name` {#`r item_name` .tabset}
@@ -40,12 +40,11 @@ if (is.numeric(item) || dplyr::n_distinct(item) < 20) {
 
 	if (!is.null(choices) &&
 			dplyr::n_distinct(item) < 13 && 
-			is.numeric(type.convert(as.character(names(choices)), as.is = T)) && 
+			is.numeric(choices) && 
 			any(names(choices) != unlist(choices))) {
-		breaks = as.numeric(names(choices))
-		dist_plot = dist_plot + ggplot2::scale_x_discrete("Choices", labels = stringr::str_wrap(unlist(choices), 15), limits = breaks)
+		dist_plot = dist_plot + ggplot2::scale_x_discrete("Choices", labels = stringr::str_wrap(names(choices), 15), limits = choices)
 	} else if (!is.null(choices)) {
-		dist_plot = dist_plot + ggplot2::scale_x_discrete("Choices", limits = names(choices), labels = stringr::str_wrap(names(choices), 20))
+		dist_plot = dist_plot + ggplot2::scale_x_discrete("Choices", limits = choices, labels = stringr::str_wrap(as.character(choices), 20))
 	}
 
 	if ( !is.numeric(item) ) {
@@ -74,7 +73,7 @@ pander::pander(as.data.frame(t(item_info)))
 
 
 
-`r indent`#### Choices {#`r item_name`_choices}
+`r indent`#### Labels {#`r item_name`_labels}
 ```{r choices}
 if (!is.null(choices) && length(choices) < 20) {
 	pander::pander(choices)

@@ -1,5 +1,4 @@
-utils::globalVariables(c("session", "created"))
-
+.data = rlang::.data
 #' Generate rmarkdown codebook
 #'
 #' If you pass the object resulting from a call to formr_results to this function, it will generate a markdown codebook for this object.
@@ -11,13 +10,51 @@ utils::globalVariables(c("session", "created"))
 #' @examples
 #' # see vignette
 codebook = function(results, indent = '#') {
+  # todo: factor out the time stuff
+  # todo: factor out the repetition detection stuff
+
   stopifnot(exists("session", results))
   stopifnot(exists("created", results))
   stopifnot(exists("modified", results))
   stopifnot(exists("expired", results))
   stopifnot(exists("ended", results))
-  if (sum(duplicated(dplyr::select(results, session, created))) > 0) {
+
+  if (sum(duplicated(dplyr::select(results, .data$session, .data$created))) > 0) {
     stop("There seem to be duplicated rows in this survey (duplicate session-created variables)")
+  }
+
+
+  users = dplyr::n_distinct(results$session)
+  finished_users = dplyr::n_distinct(results[!is.na(results$ended),]$session)
+  rows_per_user = nrow(results)/users
+
+  repeated_survey = rows_per_user > 1
+  rows_by_user = dplyr::count(dplyr::filter(results, !is.na(.data$ended)), .data$session)$n
+  survey_repetition = ifelse( rows_per_user <= 1,
+                              "single",
+                              ifelse(rows_by_user %in% 1:2,
+                                     "repeated_once",
+                                     "repeated_many"))
+
+  duration = dplyr::mutate(dplyr::filter(results, !is.na(ended)),
+    duration = as.double(.data$ended - .data$created, unit = "mins"))
+
+  started = sum(!is.na(results$modified))
+  only_viewed = sum(is.na(results$ended) & is.na(results$modified))
+
+  reliabilities_futures = new.env()
+  vars = names(results)
+  for (i in seq_along(vars)) {
+    scale_info = attributes(results[[vars]])
+    reliabilities_futures[[ vars ]] = future::future(
+        compute_appropriate_reliability(results[[vars]], scale_info, dplyr::select(results, .data$session, dplyr::starts_with(scale_info$scale)), survey_repetition)
+    )
+  }
+  reliabilities = list()
+  scale_names = names(reliabilities_futures)
+  for (i in seq_along(reliabilities_futures)) {
+    scale = scale_names[i]
+    reliabilities[[scale]] = future::value(reliabilities_futures[[scale]])
   }
 
   old_opt = options('knitr.duplicate.label')$knitr.duplicate.label
@@ -37,11 +74,12 @@ codebook = function(results, indent = '#') {
 #'
 #' @param scale a scale with attributes set
 #' @param results a formr results table with attributes set on items and scales
+#' @param reliabilities a list with one or several results from calls to psych package functions for computing reliability
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #' @param survey_repetition defaults to single (other values: repeated_once, repeated_many). controls whether internal consistency, retest reliability or multilevel reliability is computed
 #'
 #' @export
-codebook_component_scale = function(scale, results, indent = '###', survey_repetition = "single") {
+codebook_component_scale = function(scale, results, reliabilities, indent = '###', survey_repetition = "single") {
   stopifnot( exists("item", attributes(scale)))
   stopifnot( exists("scale", attributes(scale)))
   stopifnot( exists("scale_item_names", attributes(scale)))
@@ -147,4 +185,40 @@ expired = function(survey, variable = "expired") {
 #' modified(survey = survey)
 modified = function(survey, variable = "modified") {
   ended(survey, variable)
+}
+
+compute_appropriate_reliability = function(scale, scale_info, results, survey_repetition) {
+  scale_item_names = scale_info$scale_item_names
+  if (survey_repetition == 'single') {
+    list(
+      internal_consistency =
+        psych::alpha(results[, scale_item_names], title = scale_info$scale, check.keys = FALSE)
+    )
+  } else if (survey_repetition == 'repeated_once') {
+    wide = tidyr::spread(
+      dplyr::select(
+        dplyr::mutate(
+          dplyr::group_by(
+            results, .data$session),
+          Time = dplyr::row_number(.data$created)), .data$session, .data$Time, !!dplyr::quo(scale_info$scale) ),
+      key = .data$Time, value = !!dplyr::quo(scale_info$scale), sep="_")
+    list(
+      internal_consistency_T1 =
+        psych::alpha(results[!duplicated(results$session), scale_item_names], title = paste( scale_info$scale, "Time 1"), check.keys = FALSE),
+      internal_consistency_T2 =
+        psych::alpha(results[duplicated(results$session), scale_item_names], title = paste( scale_info$scale, "Time 2"), check.keys = FALSE),
+      retest_reliability = stats::cor.test(wide$Time_1, wide$Time_2)
+    )
+  } else if (survey_repetition == 'repeated_many') {
+    long_rel =  tidyr::gather(dplyr::select(dplyr::mutate(
+      dplyr::group_by(
+        results, .data$session),
+      day_number = as.numeric(.data$created - min(.data$created), unit = 'days')), .data$session, .data$day_number, !!!dplyr::quos(scale_item_names) ),
+      "variable", "value", -.data$session, -.data$day_number)
+
+    list(
+      multilevel_reliability =
+      psych::multilevel.reliability(long_rel, "session", "day_number", lme = FALSE, lmer = TRUE, items = "variable", values = "value", long = TRUE, aov = FALSE)
+    )
+  }
 }
