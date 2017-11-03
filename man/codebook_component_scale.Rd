@@ -4,7 +4,8 @@
 \alias{codebook_component_scale}
 \title{codebook component for scales}
 \usage{
-codebook_component_scale(scale, results, indent = "###")
+codebook_component_scale(scale, results, indent = "###",
+  survey_repetition = "single")
 }
 \arguments{
 \item{scale}{a scale with attributes set}
@@ -12,6 +13,8 @@ codebook_component_scale(scale, results, indent = "###")
 \item{results}{a formr results table with attributes set on items and scales}
 
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
+
+\item{survey_repetition}{defaults to single (other values: repeated_once, repeated_many). controls whether internal consistency, retest reliability or multilevel reliability is computed}
 }
 \description{
 codebook component for scales

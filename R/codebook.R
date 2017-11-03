@@ -38,9 +38,10 @@ codebook = function(results, indent = '#') {
 #' @param scale a scale with attributes set
 #' @param results a formr results table with attributes set on items and scales
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
+#' @param survey_repetition defaults to single (other values: repeated_once, repeated_many). controls whether internal consistency, retest reliability or multilevel reliability is computed
 #'
 #' @export
-codebook_component_scale = function(scale, results, indent = '###') {
+codebook_component_scale = function(scale, results, indent = '###', survey_repetition = "single") {
   stopifnot( exists("item", attributes(scale)))
   stopifnot( exists("scale", attributes(scale)))
   stopifnot( exists("scale_item_names", attributes(scale)))

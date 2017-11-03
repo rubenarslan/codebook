@@ -1,0 +1,11 @@
+{
+	"title": "Cook codebooks from survey metadata encoded in attributes in R",
+	"upload_type": "software",
+	"creators": [
+		{
+			"affiliation": "Center for Adaptive Rationality, Max Planck Institute for Human Development",
+			"name": "Ruben C. Arslan"
+		}
+		],
+	"access_right": "open"
+}
