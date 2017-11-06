@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^docs
 .zenodo.json
+^plans

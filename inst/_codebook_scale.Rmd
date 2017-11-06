@@ -16,7 +16,12 @@ scale_name = scale_info$scale
 `r indent`### Reliability {#`r scale_name`_reliability}
 ```{r reliability}
 for (i in seq_along(reliabilities)) {
-  psych::print.psych(reliabilities[[i]])
+  rel = reliabilities[[i]]
+  if (is(reliabilities[[i]], "alpha")) {
+    print.psych_markdown(rel, paste0(indent, "###"))
+  } else {
+    psych::print.psych(rel)
+  }
   cat("\n\n\n")
 }
 ```
