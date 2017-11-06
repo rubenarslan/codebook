@@ -29,17 +29,17 @@ pander::pander(x$total)
 `r indent`  Reliability if an item is dropped:
 
 ```{r}
-pander::pander(x$alpha.drop, row.names = FALSE)
+pander::pander(x$alpha.drop, row.names = TRUE)
 ```
 
 `r indent` Item statistics
 
 ```{r}
-pander::pander(x$item.stats, row.names = FALSE)
+pander::pander(x$item.stats, row.names = TRUE)
 ```
 
 `r indent` Non missing response frequency for each item
 
 ```{r}
-pander::pander(x$response.freq, row.names = FALSE)
+pander::pander(x$response.freq, row.names = TRUE)
 ```
