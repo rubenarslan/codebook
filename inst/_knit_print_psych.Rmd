@@ -1,45 +1,45 @@
 ```{r setup,eval=TRUE,echo=FALSE}
 if (!exists("indent")) {
-	indent = '##'
+	indent = ''
 }
 if (exists("testing")) {
 	example("alpha", "psych")
-  obj = a4
+  x = a4
 }
 ```
 
 
 
-##`r indent` Reliability
+`r indent` Reliability
 
-##`r indent` 95% Confidence Interval
+`r indent` 95% Confidence Interval
 ```{r}
-if (!is.null(obj$total$ase)) {
-  pander::pander(data.frame(lower = obj$total$raw_alpha - 1.96 * obj$total$ase, 
-             estimate = obj$total$raw_alpha, 
-             upper = obj$total$raw_alpha + 1.96 * 
-  obj$total$ase))
+if (!is.null(x$total$ase)) {
+  pander::pander(data.frame(lower = x$total$raw_alpha - 1.96 * x$total$ase, 
+             estimate = x$total$raw_alpha, 
+             upper = x$total$raw_alpha + 1.96 * 
+  x$total$ase))
 }
 ```
 
 ```{r}
-pander::pander(obj$total)
+pander::pander(x$total)
 ```
 
-##`r indent`  Reliability if an item is dropped:
+`r indent`  Reliability if an item is dropped:
 
 ```{r}
-pander::pander(obj$alpha.drop, row.names = FALSE)
+pander::pander(x$alpha.drop, row.names = FALSE)
 ```
 
-##`r indent` Item statistics
+`r indent` Item statistics
 
 ```{r}
-pander::pander(obj$item.stats, row.names = FALSE)
+pander::pander(x$item.stats, row.names = FALSE)
 ```
 
-##`r indent` Non missing response frequency for each item
+`r indent` Non missing response frequency for each item
 
 ```{r}
-pander::pander(obj$response.freq, row.names = FALSE)
+pander::pander(x$response.freq, row.names = FALSE)
 ```

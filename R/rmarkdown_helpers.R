@@ -18,6 +18,7 @@
 #' @param quiet passed to [knitr::knit_child()]
 #' @param options defaults to NULL.
 #' @param envir passed to [knitr::knit_child()]
+#' @param use_strings whether to read in the child file as a character string (solves working directory problems but harder to debug)
 #'
 #' @export
 #' @examples
@@ -32,18 +33,19 @@
 #'    asis_knit_child("_regression_summary.Rmd", options = options)
 #' }
 #' }
-asis_knit_child = function(input = NULL, text = NULL, ..., quiet = TRUE, options = NULL, envir = parent.frame()) {
+asis_knit_child = function(input = NULL, text = NULL, ..., quiet = TRUE, options = NULL, envir = parent.frame(), use_strings = TRUE) {
   stopifnot( xor(is.null(text), is.null(input)))
-  if (!is.null(input)) {
+  if (!is.null(input) && use_strings) {
     text = paste0(readLines(input), collapse = "\n")
+    input = NULL
   }
-  if (interactive()) {
+  if (!knitr::opts_knit$get("child")) {
     if (!is.null(options)) {
-      warning("options ignored in interactive mode")
+      warning("options ignored in non-child mode")
     }
-    output = knitr::knit(text = text, ..., quiet = quiet, envir = envir)
+    output = knitr::knit(input = input, text = text, ..., quiet = quiet, envir = envir)
   } else {
-    output = knitr::knit_child(text = text, ..., quiet = quiet, options = options, envir = envir)
+    output = knitr::knit_child(input = input, text = text, ..., quiet = quiet, options = options, envir = envir)
   }
   knitr::asis_output(output)
 }

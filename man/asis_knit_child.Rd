@@ -5,7 +5,7 @@
 \title{knit_child as is}
 \usage{
 asis_knit_child(input = NULL, text = NULL, ..., quiet = TRUE,
-  options = NULL, envir = parent.frame())
+  options = NULL, envir = parent.frame(), use_strings = TRUE)
 }
 \arguments{
 \item{input}{if you specify a file path here, it will be read in before being passed to knitr (to avoid a working directory mess)}
@@ -19,6 +19,8 @@ asis_knit_child(input = NULL, text = NULL, ..., quiet = TRUE,
 \item{options}{defaults to NULL.}
 
 \item{envir}{passed to \code{\link[knitr:knit_child]{knitr::knit_child()}}}
+
+\item{use_strings}{whether to read in the child file as a character string (solves working directory problems but harder to debug)}
 }
 \description{
 This slightly modifies the \code{\link[knitr:knit_child]{knitr::knit_child()}} function to have different defaults.

@@ -14,15 +14,16 @@ scale_name = scale_info$scale
 `r indent`## `r scale_info$scale` {#`r scale_name` .tabset}
 
 `r indent`### Reliability {#`r scale_name`_reliability}
-```{r reliability}
+```{r reliability, results='asis'}
 for (i in seq_along(reliabilities)) {
   rel = reliabilities[[i]]
-  if (is(reliabilities[[i]], "alpha")) {
-    print.psych_markdown(rel, paste0(indent, "###"))
+  if (methods::is(rel, "alpha")) {
+    cat(knit_print.alpha(rel, paste0(indent, "####")))
   } else {
+    cat("\n\n\n```")
     psych::print.psych(rel)
+    cat("```\n\n\n")
   }
-  cat("\n\n\n")
 }
 ```
 

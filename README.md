@@ -11,4 +11,6 @@ The result are markdown _partials_, that can be integrated in a larger markdown 
 
 
   install.packages("devtools")
+  devtools::install_github("hadley/pillar")
+  devtools::install_github("ropensci/skimr")
   devtools::install_github("rubenarslan/codebook")

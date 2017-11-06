@@ -47,9 +47,11 @@ codebook = function(results, indent = '#') {
   for (i in seq_along(vars)) {
     var = vars[i]
     scale_info = attributes(results[[var]])
-    reliabilities_futures[[ var ]] = future::future(
+    if (!is.null(scale_info) && exists("scale", scale_info)) {
+      reliabilities_futures[[ var ]] = future::future(
         compute_appropriate_reliability(results[[var]], scale_info, dplyr::select(results, .data$session, dplyr::starts_with(scale_info$scale)), survey_repetition)
-    )
+      )
+    }
   }
   reliabilities = list()
   scale_names = names(reliabilities_futures)
