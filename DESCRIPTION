@@ -1,6 +1,6 @@
 Package: codebook
 Title: Cook codebooks from survey metadata encoded in attributes in R
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: person("Ruben", "Arslan", email = "ruben.arslan@gmail.com", role = c("aut", "cre"))
 Description: The codebook package generates markdown components (partials) describing data frames.
 Depends: R (>= 3.3.2)
@@ -14,6 +14,7 @@ Imports:
     psych,
     likert,
     knitr,
+    rlang,
     dplyr,
     tidyr,
     pander,

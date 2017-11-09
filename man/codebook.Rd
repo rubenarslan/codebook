@@ -4,10 +4,12 @@
 \alias{codebook}
 \title{Generate rmarkdown codebook}
 \usage{
-codebook(results, indent = "#")
+codebook(results, reliabilities = NULL, indent = "#")
 }
 \arguments{
 \item{results}{a formr results table with attributes set on items and scales}
+
+\item{reliabilities}{a named list with one entry per scale and one or several printable reliability computations for this scale. if NULL, computed on-the-fly using compute_reliabilities}
 
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 }

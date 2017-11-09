@@ -4,12 +4,13 @@
 #' If you pass the object resulting from a call to formr_results to this function, it will generate a markdown codebook for this object.
 #'
 #' @param results a formr results table with attributes set on items and scales
+#' @param reliabilities a named list with one entry per scale and one or several printable reliability computations for this scale. if NULL, computed on-the-fly using compute_reliabilities
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
 #' @examples
 #' # see vignette
-codebook = function(results, indent = '#') {
+codebook = function(results, reliabilities = NULL, indent = '#') {
   # todo: factor out the time stuff
   # todo: factor out the repetition detection stuff
 
@@ -42,22 +43,8 @@ codebook = function(results, indent = '#') {
   started = sum(!is.na(results$modified))
   only_viewed = sum(is.na(results$ended) & is.na(results$modified))
 
-  reliabilities_futures = new.env()
-  vars = names(results)
-  for (i in seq_along(vars)) {
-    var = vars[i]
-    scale_info = attributes(results[[var]])
-    if (!is.null(scale_info) && exists("scale", scale_info)) {
-      reliabilities_futures[[ var ]] = future::future(
-        compute_appropriate_reliability(results[[var]], scale_info, dplyr::select(results, .data$session, dplyr::starts_with(scale_info$scale)), survey_repetition)
-      )
-    }
-  }
-  reliabilities = list()
-  scale_names = names(reliabilities_futures)
-  for (i in seq_along(reliabilities_futures)) {
-    scale = scale_names[i]
-    reliabilities[[scale]] = future::value(reliabilities_futures[[scale]])
+  if (is.null(reliabilities)) {
+    compute_reliabilites(results, survey_repetition)
   }
 
   old_opt = options('knitr.duplicate.label')$knitr.duplicate.label
@@ -190,6 +177,14 @@ modified = function(survey, variable = "modified") {
   ended(survey, variable)
 }
 
+#' @examples
+#' example("formr_post_process_results", package = 'formr')
+#' results = jsonlite::fromJSON(txt =
+#' 	system.file('extdata/gods_example_results.json', package = 'formr', mustWork = TRUE))
+#' items = formr_items(path =
+#' 	system.file('extdata/gods_example_items.json', package = 'formr', mustWork = TRUE))
+#' results = formr_post_process_results(items, results,
+#' compute_alphas = FALSE, plot_likert = FALSE)
 compute_appropriate_reliability = function(scale, scale_info, results, survey_repetition) {
   scale_item_names = scale_info$scale_item_names
   if (survey_repetition == 'single') {
@@ -224,4 +219,36 @@ compute_appropriate_reliability = function(scale, scale_info, results, survey_re
       psych::multilevel.reliability(long_rel, "session", "day_number", lme = FALSE, lmer = TRUE, items = "variable", values = "value", long = TRUE, aov = FALSE)
     )
   }
+}
+
+#' Compute reliabilities
+#'
+#' If you pass the object resulting from a call to formr_results to this function, it will compute reliabilities for each scale.
+#' Internally, each reliability computation is passed to a future. If you are calculating multilevel reliabilities, it may be worthwhile to parallelise this operation using future::plan
+#'
+#' @param results a formr results table with attributes set on items and scales
+#' @param survey_repetition defaults to "single". Can also be "repeated_once" or "repeated_many"
+#'
+#' @export
+#' @examples
+#' # see vignette
+compute_reliabilites = function(results, survey_repetition = "single") {
+  reliabilities_futures = new.env()
+  vars = names(results)
+  for (i in seq_along(vars)) {
+    var = vars[i]
+    scale_info = attributes(results[[var]])
+    if (!is.null(scale_info) && exists("scale", scale_info)) {
+      reliabilities_futures[[ var ]] = future::future(
+        compute_appropriate_reliability(results[[var]], scale_info, dplyr::select(results, .data$session, rlang::UQS(rlang::quos(scale_info$scale_item_names))), survey_repetition)
+      )
+    }
+  }
+  reliabilities = list()
+  scale_names = names(reliabilities_futures)
+  for (i in seq_along(reliabilities_futures)) {
+    scale = scale_names[i]
+    reliabilities[[scale]] = future::value(reliabilities_futures[[scale]])
+  }
+  reliabilities
 }
