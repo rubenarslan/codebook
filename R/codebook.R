@@ -240,7 +240,7 @@ compute_reliabilites = function(results, survey_repetition = "single") {
     scale_info = attributes(results[[var]])
     if (!is.null(scale_info) && exists("scale", scale_info)) {
       reliabilities_futures[[ var ]] = future::future(
-        compute_appropriate_reliability(results[[var]], scale_info, dplyr::select(results, .data$session, rlang::UQS(rlang::quos(scale_info$scale_item_names))), survey_repetition)
+        compute_appropriate_reliability(results[[var]], scale_info, dplyr::select(results, .data$session, .data$created, rlang::UQS(rlang::quos(scale_info$scale_item_names))), survey_repetition)
       )
     }
   }
