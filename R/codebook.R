@@ -177,14 +177,7 @@ modified = function(survey, variable = "modified") {
   ended(survey, variable)
 }
 
-#' @examples
-#' example("formr_post_process_results", package = 'formr')
-#' results = jsonlite::fromJSON(txt =
-#' 	system.file('extdata/gods_example_results.json', package = 'formr', mustWork = TRUE))
-#' items = formr_items(path =
-#' 	system.file('extdata/gods_example_items.json', package = 'formr', mustWork = TRUE))
-#' results = formr_post_process_results(items, results,
-#' compute_alphas = FALSE, plot_likert = FALSE)
+
 compute_appropriate_reliability = function(scale, scale_info, results, survey_repetition) {
   scale_item_names = scale_info$scale_item_names
   if (survey_repetition == 'single') {
@@ -231,8 +224,15 @@ compute_appropriate_reliability = function(scale, scale_info, results, survey_re
 #'
 #' @export
 #' @examples
-#' # see vignette
-compute_reliabilites = function(results, survey_repetition = "single") {
+#' example("formr_post_process_results", package = 'formr')
+#' results = jsonlite::fromJSON(txt =
+#' 	system.file('extdata/gods_example_results.json', package = 'formr', mustWork = TRUE))
+#' items = formr_items(path =
+#' 	system.file('extdata/gods_example_items.json', package = 'formr', mustWork = TRUE))
+#' results = formr_post_process_results(items, results,
+#' compute_alphas = FALSE, plot_likert = FALSE)
+#' reliabilities = compute_reliabilities(results)
+compute_reliabilities = function(results, survey_repetition = "single") {
   reliabilities_futures = new.env()
   vars = names(results)
   for (i in seq_along(vars)) {
