@@ -9,7 +9,6 @@ if (exists("testing")) {
 ```
 
 
-
 `r indent` Reliability
 
 `r indent` 95% Confidence Interval

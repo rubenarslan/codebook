@@ -5,12 +5,13 @@
 #'
 #' @param results a formr results table with attributes set on items and scales
 #' @param reliabilities a named list with one entry per scale and one or several printable reliability computations for this scale. if NULL, computed on-the-fly using compute_reliabilities
+#' @param survey_repetition defaults to "auto" which is to try to determine the level of repetition from the "session" and "created" variables. Other values are: single, repeated_once, repeated_many
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
 #' @examples
 #' # see vignette
-codebook = function(results, reliabilities = NULL, indent = '#') {
+codebook = function(results, reliabilities = NULL, survey_repetition = 'auto', indent = '#') {
   # todo: factor out the time stuff
   # todo: factor out the repetition detection stuff
 
@@ -20,22 +21,23 @@ codebook = function(results, reliabilities = NULL, indent = '#') {
   stopifnot(exists("expired", results))
   stopifnot(exists("ended", results))
 
-  if (sum(duplicated(dplyr::select(results, .data$session, .data$created))) > 0) {
-    stop("There seem to be duplicated rows in this survey (duplicate session-created variables)")
+
+  if (survey_repetition == "auto") {
+    users = dplyr::n_distinct(results$session)
+    finished_users = dplyr::n_distinct(results[!is.na(results$ended),]$session)
+    rows_per_user = nrow(results)/users
+
+    if (sum(duplicated(dplyr::select(results, .data$session, .data$created))) > 0) {
+      stop("There seem to be duplicated rows in this survey (duplicate session-created variables)")
+    }
+    rows_by_user = dplyr::count(dplyr::filter(results, !is.na(.data$ended)), .data$session)$n
+    survey_repetition = ifelse( rows_per_user <= 1,
+                                "single",
+                                ifelse(rows_by_user %in% 1:2,
+                                       "repeated_once",
+                                       "repeated_many"))
   }
-
-
-  users = dplyr::n_distinct(results$session)
-  finished_users = dplyr::n_distinct(results[!is.na(results$ended),]$session)
-  rows_per_user = nrow(results)/users
-
-  repeated_survey = rows_per_user > 1
-  rows_by_user = dplyr::count(dplyr::filter(results, !is.na(.data$ended)), .data$session)$n
-  survey_repetition = ifelse( rows_per_user <= 1,
-                              "single",
-                              ifelse(rows_by_user %in% 1:2,
-                                     "repeated_once",
-                                     "repeated_many"))
+  repeated_survey = survey_repetition != "single"
 
   duration = dplyr::mutate(dplyr::filter(results, !is.na(ended)),
     duration = as.double(.data$ended - .data$created, unit = "mins"))
@@ -44,7 +46,7 @@ codebook = function(results, reliabilities = NULL, indent = '#') {
   only_viewed = sum(is.na(results$ended) & is.na(results$modified))
 
   if (is.null(reliabilities)) {
-    compute_reliabilites(results, survey_repetition)
+    compute_reliabilities(results, survey_repetition)
   }
 
   old_opt = options('knitr.duplicate.label')$knitr.duplicate.label
@@ -224,14 +226,10 @@ compute_appropriate_reliability = function(scale, scale_info, results, survey_re
 #'
 #' @export
 #' @examples
-#' example("formr_post_process_results", package = 'formr')
-#' results = jsonlite::fromJSON(txt =
-#' 	system.file('extdata/gods_example_results.json', package = 'formr', mustWork = TRUE))
-#' items = formr_items(path =
-#' 	system.file('extdata/gods_example_items.json', package = 'formr', mustWork = TRUE))
-#' results = formr_post_process_results(items, results,
-#' compute_alphas = FALSE, plot_likert = FALSE)
-#' reliabilities = compute_reliabilities(results)
+#' if (requireNamespace("formr", quietly = TRUE)) {
+#'    example("formr_post_process_results", package = 'formr')
+#'    reliabilities = compute_reliabilities(results)
+#' }
 compute_reliabilities = function(results, survey_repetition = "single") {
   reliabilities_futures = new.env()
   vars = names(results)
@@ -251,4 +249,21 @@ compute_reliabilities = function(results, survey_repetition = "single") {
     reliabilities[[scale]] = future::value(reliabilities_futures[[scale]])
   }
   reliabilities
+}
+
+
+likert_from_items = function(items) {
+  if (!methods::is(items, "data.frame")) {
+    stop("The items argument has to be a data frame of the items of this subscale.")
+  }
+  for (i in seq_along(1:ncol(items))) {
+    labels = names(attributes(items[[i]])$labels)
+    names(attributes(items[[i]])$labels) = stringr::str_wrap(labels, width = 15)
+  }
+
+  items = dplyr::mutate_all(items, haven::as_factor)
+
+  names(items) = stringr::str_wrap(paste0(sapply(items, function(x) { attributes(x)$label } ),
+                         " [", names(items), "]"), width = 50)
+  likert::likert(data.frame(items, check.names = F))
 }

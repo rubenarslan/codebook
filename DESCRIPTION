@@ -1,12 +1,17 @@
 Package: codebook
 Title: Cook codebooks from survey metadata encoded in attributes in R
+Description: This package allows you to easily automate the following tasks to describe data frames: 
+  computing reliabilities (internal consistencies, retest, multilevel) for psychological scales, 
+  summarise the distributions of scales and items graphically and using descriptive statistics,
+  combine this information with metadata such as item labels and labelled values that is derived from R attributes.
+  To do so, the package relies on rmarkdown partials. To mark up the metadata you need to use haven semantics.
 Version: 0.2.1
 Authors@R: person("Ruben", "Arslan", email = "ruben.arslan@gmail.com", role = c("aut", "cre"))
-Description: The codebook package generates markdown components (partials) describing data frames.
-Depends: R (>= 3.3.2)
+Depends: R (>= 3.0.1)
 License: BSD_2_clause + file LICENSE
 Imports:
 		stats,
+		methods,
 		graphics,
 		utils,
     ggplot2,
@@ -20,7 +25,10 @@ Imports:
     pander,
     skimr,
     DT,
-    future
+    future,
+    haven
+Suggests:
+  formr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1

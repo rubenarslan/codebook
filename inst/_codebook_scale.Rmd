@@ -5,6 +5,7 @@ if (!exists("indent")) {
 if (exists("testing")) {
 	scale = 1:10
 	reliabilities = list()
+	results = list()
 }
 
 scale_info = attributes(scale)
@@ -20,9 +21,9 @@ for (i in seq_along(reliabilities)) {
   if (methods::is(rel, "alpha")) {
     cat(knit_print.alpha(rel, paste0(indent, "####")))
   } else {
-    cat("\n\n\n```")
+    cat("\n\n\n```\n")
     psych::print.psych(rel)
-    cat("```\n\n\n")
+    cat("\n```\n\n\n")
   }
 }
 ```
@@ -34,10 +35,14 @@ old_height = knitr::opts_chunk$get("fig.height")
 new_height = length(scale_info$scale_item_names)
 new_height = ifelse(new_height > 20, 20, new_height)
 new_height = ifelse(new_height < 1, 1, new_height)
+new_height = ifelse(is.na(new_height) | is.nan(new_height), old_height, new_height)
 knitr::opts_chunk$set(fig.height = new_height)
 ```
 ```{r likert}
-graphics::plot(formr_likert(scale_info$item, results))
+likert_plot = likert_from_items(dplyr::select(results, rlang::UQS(rlang::quos(scale_info$scale_item_names))))
+if (!is.null(likert_plot)) {
+  graphics::plot(likert_plot)
+}
 knitr::opts_chunk$set(fig.height = old_height)
 ```
 

@@ -4,12 +4,15 @@
 \alias{codebook}
 \title{Generate rmarkdown codebook}
 \usage{
-codebook(results, reliabilities = NULL, indent = "#")
+codebook(results, reliabilities = NULL, survey_repetition = "auto",
+  indent = "#")
 }
 \arguments{
 \item{results}{a formr results table with attributes set on items and scales}
 
 \item{reliabilities}{a named list with one entry per scale and one or several printable reliability computations for this scale. if NULL, computed on-the-fly using compute_reliabilities}
+
+\item{survey_repetition}{defaults to "auto" which is to try to determine the level of repetition from the "session" and "created" variables. Other values are: single, repeated_once, repeated_many}
 
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 }
