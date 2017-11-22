@@ -6,23 +6,26 @@
 #' @param results a formr results table with attributes set on items and scales
 #' @param reliabilities a named list with one entry per scale and one or several printable reliability computations for this scale. if NULL, computed on-the-fly using compute_reliabilities
 #' @param survey_repetition defaults to "auto" which is to try to determine the level of repetition from the "session" and "created" variables. Other values are: single, repeated_once, repeated_many
+#' @param missingness_report whether to print a missingness report. Turn off if this gets too complicated and you need a custom solution (e.g. in case of random missings).
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
 #' @examples
 #' # see vignette
-codebook = function(results, reliabilities = NULL, survey_repetition = 'auto', indent = '#') {
+codebook = function(results, reliabilities = NULL, survey_repetition = 'auto', missingness_report = TRUE, indent = '#') {
   # todo: factor out the time stuff
   # todo: factor out the repetition detection stuff
 
-  stopifnot(exists("session", results))
-  stopifnot(exists("created", results))
   stopifnot(exists("modified", results))
   stopifnot(exists("expired", results))
-  stopifnot(exists("ended", results))
-
 
   if (survey_repetition == "auto") {
+    if(! (exists("session", results) &&
+    exists("created", results) &&
+    exists("ended", results))) {
+      stop("The variables session, created, ended have to be defined for automatic survey repetition to work.")
+    }
+
     users = dplyr::n_distinct(results$session)
     finished_users = dplyr::n_distinct(results[!is.na(results$ended),]$session)
     rows_per_user = nrow(results)/users
@@ -60,6 +63,27 @@ codebook = function(results, reliabilities = NULL, survey_repetition = 'auto', i
   res
 }
 
+
+#' codebook survey overview
+#'
+#'
+#' @param results a formr results table which has the following columns: session, created, modified, expired, ended
+#' @param survey_repetition defaults to single (other values: repeated_once, repeated_many). controls whether internal consistency, retest reliability or multilevel reliability is computed
+#'
+#' @export
+codebook_survey_overview = function(results, survey_repetition = "single") {
+  stopifnot(exists("session", results))
+  stopifnot(exists("created", results))
+  stopifnot(exists("modified", results))
+  stopifnot(exists("expired", results))
+  stopifnot(exists("ended", results))
+
+  options = list(
+    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
+    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "overview_")
+  )
+  asis_knit_child(system.file("_codebook_survey_overview.Rmd", package = 'codebook', mustWork = TRUE), options = options)
+}
 
 #' codebook component for scales
 #'
