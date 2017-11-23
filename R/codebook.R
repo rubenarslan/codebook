@@ -1,4 +1,43 @@
 .data = rlang::.data
+
+#' Compute reliabilities
+#'
+#' If you pass the object resulting from a call to formr_results to this function, it will compute reliabilities for each scale.
+#' Internally, each reliability computation is passed to a future. If you are calculating multilevel reliabilities, it may be worthwhile to parallelise this operation using future::plan
+#' If you don't plan on any complicated parallelisation, you probably do not need to call this function directly, but can rely on it being automatically called during codebook generation.
+#' If you do plan to do that, you can pass the results of this operation to the codebook function.
+#'
+#' @param results a formr results table with attributes set on items and scales
+#' @param survey_repetition defaults to "single". Can also be "repeated_once" or "repeated_many"
+#'
+#' @export
+#' @examples
+#' if (requireNamespace("formr", quietly = TRUE)) {
+#'    example("formr_post_process_results", package = 'formr')
+#'    reliabilities = compute_reliabilities(results)
+#' }
+compute_reliabilities = function(results, survey_repetition = "single") {
+  reliabilities_futures = new.env()
+  vars = names(results)
+  for (i in seq_along(vars)) {
+    var = vars[i]
+    scale_info = attributes(results[[var]])
+    if (!is.null(scale_info) && exists("scale", scale_info)) {
+      reliabilities_futures[[ var ]] = future::future(
+        compute_appropriate_reliability(results[[var]], scale_info, dplyr::select(results, .data$session, .data$created, rlang::UQS(rlang::quos(scale_info$scale_item_names))), survey_repetition)
+      )
+    }
+  }
+  reliabilities = list()
+  scale_names = names(reliabilities_futures)
+  for (i in seq_along(reliabilities_futures)) {
+    scale = scale_names[i]
+    reliabilities[[scale]] = future::value(reliabilities_futures[[scale]])
+  }
+  reliabilities
+}
+
+
 #' Generate rmarkdown codebook
 #'
 #' If you pass the object resulting from a call to formr_results to this function, it will generate a markdown codebook for this object.
@@ -21,13 +60,12 @@ codebook = function(results, reliabilities = NULL, survey_repetition = 'auto', m
 
   if (survey_repetition == "auto") {
     if(! (exists("session", results) &&
-    exists("created", results) &&
-    exists("ended", results))) {
+      exists("created", results) &&
+      exists("ended", results))) {
       stop("The variables session, created, ended have to be defined for automatic survey repetition to work.")
     }
 
     users = dplyr::n_distinct(results$session)
-    finished_users = dplyr::n_distinct(results[!is.na(results$ended),]$session)
     rows_per_user = nrow(results)/users
 
     if (sum(duplicated(dplyr::select(results, .data$session, .data$created))) > 0) {
@@ -40,27 +78,20 @@ codebook = function(results, reliabilities = NULL, survey_repetition = 'auto', m
                                        "repeated_once",
                                        "repeated_many"))
   }
-  repeated_survey = survey_repetition != "single"
-
-  duration = dplyr::mutate(dplyr::filter(results, !is.na(ended)),
-    duration = as.double(.data$ended - .data$created, unit = "mins"))
-
-  started = sum(!is.na(results$modified))
-  only_viewed = sum(is.na(results$ended) & is.na(results$modified))
 
   if (is.null(reliabilities)) {
     compute_reliabilities(results, survey_repetition)
   }
 
+  df_name = deparse(substitute(results))
   old_opt = options('knitr.duplicate.label')$knitr.duplicate.label
   options(knitr.duplicate.label = 'allow')
+  on.exit(options(knitr.duplicate.label = old_opt))
   options = list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "cb_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "cb_")
+    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "cb_", df_name, "_"),
+    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "cb_", df_name, "_")
   )
-  res = asis_knit_child(system.file("_codebook.Rmd", package = 'codebook', mustWork = TRUE), options = options)
-  options(knitr.duplicate.label = old_opt)
-  res
+  asis_knit_child(system.file("_codebook.Rmd", package = 'codebook', mustWork = TRUE), options = options)
 }
 
 
@@ -77,6 +108,25 @@ codebook_survey_overview = function(results, survey_repetition = "single") {
   stopifnot(exists("modified", results))
   stopifnot(exists("expired", results))
   stopifnot(exists("ended", results))
+
+  users = dplyr::n_distinct(results$session)
+  finished_users = dplyr::n_distinct(results[!is.na(results$ended),]$session)
+  rows_per_user = nrow(results)/users
+  rows_by_user = dplyr::count(dplyr::filter(results, !is.na(.data$ended)), .data$session)$n
+
+  duration = dplyr::mutate(dplyr::filter(results, !is.na(ended)),
+                           duration = as.double(.data$ended - .data$created, unit = "mins"))
+  upper_limit = stats::median(duration$duration) + 4*stats::mad(duration$duration)
+  high_vals = sum(upper_limit < duration$duration)
+  if (high_vals == 0) upper_limit = max(duration$duration)
+  lower_limit = min(duration$duration)
+  low_vals = sum(lower_limit < 0)
+  if (low_vals == 0) {
+    lower_limit = 0
+  }
+
+  started = sum(!is.na(results$modified))
+  only_viewed = sum(is.na(results$ended) & is.na(results$modified))
 
   options = list(
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
@@ -240,54 +290,24 @@ compute_appropriate_reliability = function(scale, scale_info, results, survey_re
   }
 }
 
-#' Compute reliabilities
-#'
-#' If you pass the object resulting from a call to formr_results to this function, it will compute reliabilities for each scale.
-#' Internally, each reliability computation is passed to a future. If you are calculating multilevel reliabilities, it may be worthwhile to parallelise this operation using future::plan
-#'
-#' @param results a formr results table with attributes set on items and scales
-#' @param survey_repetition defaults to "single". Can also be "repeated_once" or "repeated_many"
-#'
-#' @export
-#' @examples
-#' if (requireNamespace("formr", quietly = TRUE)) {
-#'    example("formr_post_process_results", package = 'formr')
-#'    reliabilities = compute_reliabilities(results)
-#' }
-compute_reliabilities = function(results, survey_repetition = "single") {
-  reliabilities_futures = new.env()
-  vars = names(results)
-  for (i in seq_along(vars)) {
-    var = vars[i]
-    scale_info = attributes(results[[var]])
-    if (!is.null(scale_info) && exists("scale", scale_info)) {
-      reliabilities_futures[[ var ]] = future::future(
-        compute_appropriate_reliability(results[[var]], scale_info, dplyr::select(results, .data$session, .data$created, rlang::UQS(rlang::quos(scale_info$scale_item_names))), survey_repetition)
-      )
-    }
-  }
-  reliabilities = list()
-  scale_names = names(reliabilities_futures)
-  for (i in seq_along(reliabilities_futures)) {
-    scale = scale_names[i]
-    reliabilities[[scale]] = future::value(reliabilities_futures[[scale]])
-  }
-  reliabilities
-}
-
-
 likert_from_items = function(items) {
-  if (!methods::is(items, "data.frame")) {
+  if (!methods::is(items, "data.frame") || ncol(items) < 1) {
     stop("The items argument has to be a data frame of the items of this subscale.")
   }
   for (i in seq_along(1:ncol(items))) {
-    labels = names(attributes(items[[i]])$labels)
-    names(attributes(items[[i]])$labels) = stringr::str_wrap(labels, width = 15)
+    if ( !is.null(attributes(items[[i]])$labels)) {
+      labels = names(attributes(items[[i]])$labels)
+      names(attributes(items[[i]])$labels) = stringr::str_wrap(labels, width = 15)
+      items[[i]] = haven::as_factor(items[[i]])
+    } else {
+      items[[i]] = as.factor(items[[i]])
+    }
+    if (!is.null(attributes(items[[i]])$label)) {
+      item_names = names(items)
+      item_names[i] = stringr::str_wrap(paste0(attributes(items[[i]])$label, " [", names(items)[i], "]"), width = 50)
+      names(items) = item_names
+    }
   }
 
-  items = dplyr::mutate_all(items, haven::as_factor)
-
-  names(items) = stringr::str_wrap(paste0(sapply(items, function(x) { attributes(x)$label } ),
-                         " [", names(items), "]"), width = 50)
   likert::likert(data.frame(items, check.names = F))
 }

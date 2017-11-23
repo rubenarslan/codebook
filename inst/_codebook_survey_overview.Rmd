@@ -2,7 +2,7 @@
 if (exists("testing")) {
 	indent = '#' # ugly hack so _regression_summary can be "spun" (variables included via `r ` have to be available)
 	results = data.frame()
-	repeated_survey = 'single'
+	survey_repetition = 'single'
 	reliabilities = list()
 }
 ```
@@ -14,11 +14,11 @@ There were `r users` unique participants, of which `r finished_users` finished f
 
 `r ifelse(survey_repetition == 'single', "This survey was not repeated.", ifelse(survey_repetition == 'repeated_once', paste0("This survey was repeated once by ", sum(rows_by_user == 2), " out of ", sum(rows_by_user <= 2), " users."), paste0("This survey was repeated many times, on average ", round(rows_per_user,2), " times per user.")))`
 
-`r ifelse(repeated_survey && round(rows_per_user) == 1, "Oddly there seem to be almost no users with several rows. Maybe something went wrong and a few rows are duplicated by accident?", "")`
+`r ifelse(survey_repetition != "single" && round(rows_per_user) == 1, "Oddly there seem to be almost no users with several rows. Maybe something went wrong and a few rows are duplicated by accident?", "")`
 
 
 ```{r repeated}
-if (repeated_survey) {
+if (survey_repetition != "single") {
 	overview = results %>% dplyr::group_by(session) %>% 
 		dplyr::summarise(
 			n = sum(!is.na(session)),
@@ -38,14 +38,16 @@ if (repeated_survey) {
 The first session started on `r min(results$created)`, the last session on `r max(results$created)`. 
 
 
-```{r}
+```{r starting_time}
 ggplot2::qplot(results$created) + ggplot2::scale_x_datetime("Date/time when survey was started")
 ```
 
 People took on average `r round(mean(duration$duration),2)` minutes (median `r round(median(duration$duration),2)`) to answer the survey.
 
 ```{r duration}
-high_vals = sum(median(duration$duration) + 4*mad(duration$duration) < duration$duration)
-ggplot2::qplot(duration$duration, binwidth = 0.5) + ggplot2::scale_x_continuous(paste("Duration (in minutes), excluding", high_vals, "values above median + 4*MAD"), limits = c(NA, median(duration$duration) + 4*mad(duration$duration)))
+if (low_vals == 0) {
+  warning("Durations below 0 detected.")
+}
+ggplot2::qplot(duration$duration, binwidth = 0.5) + ggplot2::scale_x_continuous(paste("Duration (in minutes), excluding", high_vals, "values above median + 4*MAD"), limits = c(lower_limit, upper_limit))
 ```
 

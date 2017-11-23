@@ -18,13 +18,7 @@ scale_name = scale_info$scale
 ```{r reliability, results='asis'}
 for (i in seq_along(reliabilities)) {
   rel = reliabilities[[i]]
-  if (methods::is(rel, "alpha")) {
-    cat(knit_print.alpha(rel, paste0(indent, "####")))
-  } else {
-    cat("\n\n\n```\n")
-    psych::print.psych(rel)
-    cat("\n```\n\n\n")
-  }
+  cat(knit_print(rel, indent = paste0(indent, "####")))
 }
 ```
 
@@ -68,6 +62,9 @@ dist_plot
 
 `r indent`### Summary statistics {#`r scale_name`_summary}
 ```{r summary}
+if (haven::is.labelled(scale)) {
+  scale = haven::as_factor(scale, levels = 'both')
+}
 pander::pander(skimr::skim_v(scale))
 ```
 

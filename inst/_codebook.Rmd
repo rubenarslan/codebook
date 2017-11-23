@@ -1,10 +1,10 @@
 ```{r setup,eval=TRUE,echo=FALSE}
 if (!exists("indent")) {
-	indent = '#' # ugly hack so _regression_summary can be "spun" (variables included via `r ` have to be available)
+	indent = '#' # ugly hack
 }
 if (exists("testing")) {
 	results = data.frame()
-	repeated_survey = 'single'
+	survey_repetition = 'single'
 	reliabilities = list()
 	missingness_report = TRUE
 }
@@ -13,7 +13,15 @@ if (exists("testing")) {
 `r indent`# Survey overview
 
 ```{r}
-codebook_survey_overview(results, repeated_survey)
+if(! (exists("session", results) &&
+    exists("created", results) &&
+    exists("ended", results) &&
+    exists("expired", results) &&
+    exists("modified", results))) {
+    warning("The variables session, created, ended, expired, modified have to be defined for automatic survey repetition to work.")
+} else {
+  codebook_survey_overview(results, survey_repetition)
+}
 ```
 
 
@@ -27,8 +35,8 @@ for (i in seq_along(vars)) {
 	scale = results[[ var ]]
 	scale_info = attributes(scale)
 	if ( !is.null(scale_info) && exists("scale", scale_info)) {
-	    cat(codebook_component_scale( scale, dplyr::select(results, .data$session, dplyr::starts_with(scale_info$scale)), reliabilities[[var]], indent))
-	  }
+	  cat(codebook_component_scale( scale, dplyr::select(results, .data$session, dplyr::starts_with(scale_info$scale)), reliabilities[[var]], indent))
+	}
 }
 ```
 
@@ -54,25 +62,29 @@ for (i in seq_along(vars)) {
 
 `r indent`# Missingness report {.tabset .tabset-sticky}
 
-There were `r ended(results)` rows completed, `r started` who entered any information, `r only_viewed` only viewed the first page. There are `r expired(results)` expired rows (people who did not finish filling out in the requested time frame). 
-
 ### Missingness finishers
 
 among those who finished the survey
 
 ```{r missingness_all_setup}
-missingness = missingness_patterns(
-	dplyr::select(dplyr::filter(results, !is.na(ended)), -expired, -ended) )
+if (missingness_report) {
+  missingness = missingness_patterns(
+	  dplyr::select(dplyr::filter(results, !is.na(ended)), -expired, -ended) )
+}
 ```
 ```{r missingness_all}
-pander::pander(missingness)
+if (missingness_report) {
+  pander::pander(dplyr::filter(missingness, Freq > 9))
+} else {
+  cat("No missingness report requested.")
+}
 ```
 
 
 
 ### Missingness starters
 
-among those who started the survey
+among those who started the survey. Only patterns occuring at least 10 times are shown.
 
 ```{r missingness_starters_setup,results='markup'}
 if (missingness_report) {
@@ -84,7 +96,7 @@ if (missingness_report) {
 ```
 ```{r missingness_starters}
 if (missingness_report) {
-  pander::pander(missingness)
+  pander::pander(dplyr::filter(missingness, Freq > 9))
 } else {
   cat("No missingness report requested.")
 }
@@ -93,7 +105,6 @@ if (missingness_report) {
 
 ### Item table
 ```{r}
-
 item_index = dplyr::select(as.data.frame(items(results)), -choice_list, -index)
 item_index = dplyr::mutate(item_index, name = paste0('<a href="#', name, '">', name, '</a>'))
 DT::datatable(item_index, rownames = FALSE, filter = "top", extensions = 'Buttons', 

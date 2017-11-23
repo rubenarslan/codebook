@@ -33,21 +33,36 @@
 #'    asis_knit_child("_regression_summary.Rmd", options = options)
 #' }
 #' }
-asis_knit_child = function(input = NULL, text = NULL, ..., quiet = TRUE, options = NULL, envir = parent.frame(), use_strings = TRUE) {
+asis_knit_child = function(input = NULL, text = NULL, ..., quiet = TRUE, options = NULL, envir = parent.frame(), use_strings = T) {
   stopifnot( xor(is.null(text), is.null(input)))
   if (!is.null(input) && use_strings) {
     text = paste0(readLines(input), collapse = "\n")
     input = NULL
   }
-  if (!knitr::opts_knit$get("child")) {
-    if (!is.null(options)) {
-      warning("options ignored in non-child mode")
-    }
-    output = knitr::knit(input = input, text = text, ..., quiet = quiet, envir = envir)
-  } else {
-    output = knitr::knit_child(input = input, text = text, ..., quiet = quiet, options = options, envir = envir)
+  if (knitr::opts_knit$get("child")) {
+    child = knitr::opts_knit$get("child")
+    knitr::opts_knit$set(child = TRUE)
+    on.exit(knitr::opts_knit$set(child = child))
   }
-  knitr::asis_output(output)
+  if (is.list(options)) {
+    options$label = options$child = NULL
+    if (length(options)) {
+      optc = knitr::opts_chunk$get(names(options), drop = FALSE)
+      knitr::opts_chunk$set(options)
+      on.exit({
+        for (i in names(options)) if (identical(options[[i]],
+                                                knitr::opts_chunk$get(i))) knitr::opts_chunk$set(optc[i])
+      }, add = TRUE)
+    }
+  }
+
+  encode = knitr::opts_knit$get("encoding")
+  if (is.null(encode)) {
+    encode = getOption("encoding")
+  }
+  res = knitr::knit(input = input, text = text, ..., quiet = quiet, tangle = knitr::opts_knit$get("tangle"), envir = envir,
+             encoding = encode)
+  knitr::asis_output(paste(c("", res), collapse = "\n"))
 }
 
 
