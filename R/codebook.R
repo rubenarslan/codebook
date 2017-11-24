@@ -80,7 +80,7 @@ codebook = function(results, reliabilities = NULL, survey_repetition = 'auto', m
   }
 
   if (is.null(reliabilities)) {
-    compute_reliabilities(results, survey_repetition)
+    reliabilities = compute_reliabilities(results, survey_repetition)
   }
 
   df_name = deparse(substitute(results))
