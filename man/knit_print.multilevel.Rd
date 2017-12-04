@@ -18,6 +18,6 @@ Just prints the normal output.
 }
 \examples{
 example("mlr", "psych")
-knitr::knit_print(m4)
+knitr::knit_print(mg)
 
 }

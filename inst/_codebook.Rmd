@@ -18,7 +18,7 @@ if(! (exists("session", results) &&
     exists("ended", results) &&
     exists("expired", results) &&
     exists("modified", results))) {
-    warning("The variables session, created, ended, expired, modified have to be defined for automatic survey repetition to work.")
+    warning("The variables session, created, ended, expired, modified have to be defined for automatic survey duration calculations to work.")
 } else {
   codebook_survey_overview(results, survey_repetition)
 }
@@ -68,13 +68,19 @@ among those who finished the survey
 
 ```{r missingness_all_setup}
 if (missingness_report) {
-  missingness = missingness_patterns(
-	  dplyr::select(dplyr::filter(results, !is.na(ended)), -expired, -ended) )
+  if (  exists("ended", results) &&
+    exists("expired", results)) {
+    finisher_results = dplyr::select(dplyr::filter(results, !is.na(ended)), -.data$expired, -.data$ended) 
+  } else {
+    finisher_results = results
+    warning("Could not figure out who finished the surveys, because the variables expired and ended were missing.")
+  }
+  missingness = formr::missingness_patterns(finisher_results)
 }
 ```
 ```{r missingness_all}
 if (missingness_report) {
-  pander::pander(dplyr::filter(missingness, Freq > 9))
+  pander::pander(dplyr::filter(missingness, .data$Freq > 9))
 } else {
   cat("No missingness report requested.")
 }
@@ -87,16 +93,20 @@ if (missingness_report) {
 among those who started the survey. Only patterns occuring at least 10 times are shown.
 
 ```{r missingness_starters_setup,results='markup'}
-if (missingness_report) {
-  missingness = missingness_patterns(
+if (exists("modified", results) && missingness_report) {
+  missingness = formr::missingness_patterns(
   	dplyr::filter(results, !is.na(modified)) )
+} else if (!exists("modified", results)) {
+  cat("Did not track who started the survey.")
 } else {
   cat("No missingness report requested.")
 }
 ```
 ```{r missingness_starters}
-if (missingness_report) {
-  pander::pander(dplyr::filter(missingness, Freq > 9))
+if (exists("modified", results) && missingness_report) {
+  pander::pander(dplyr::filter(missingness, .data$Freq > 9))
+} else if (!exists("modified", results)) {
+  cat("Did not track who started the survey.")
 } else {
   cat("No missingness report requested.")
 }
@@ -105,13 +115,18 @@ if (missingness_report) {
 
 ### Item table
 ```{r}
-item_index = dplyr::select(as.data.frame(items(results)), -choice_list, -index)
-item_index = dplyr::mutate(item_index, name = paste0('<a href="#', name, '">', name, '</a>'))
-DT::datatable(item_index, rownames = FALSE, filter = "top", extensions = 'Buttons', 
-escape = setdiff(names(item_index), 'name'),
-options = list(
-    dom = 'Bfrtip',
-    buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
-    pageLength = 200
-  ))
+items = formr::items(results)
+if (length(items)) {
+  item_index = dplyr::select(as.data.frame(items), -.data$choice_list, -.data$index)
+  item_index = dplyr::mutate(item_index, name = paste0('<a href="#', .data$name, '">', .data$name, '</a>'))
+  DT::datatable(item_index, rownames = FALSE, filter = "top", extensions = 'Buttons', 
+  escape = setdiff(names(item_index), 'name'),
+  options = list(
+      dom = 'Bfrtip',
+      buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
+      pageLength = 200
+    ))
+} else {
+  cat("No items encoded in metadata.")
+}
 ```

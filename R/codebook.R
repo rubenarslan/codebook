@@ -51,13 +51,10 @@ compute_reliabilities = function(results, survey_repetition = "single") {
 #' @export
 #' @examples
 #' # see vignette
-codebook = function(results, reliabilities = NULL, survey_repetition = 'auto', missingness_report = TRUE, indent = '#') {
+codebook = function(results, reliabilities = NULL, survey_repetition = c('auto', 'single', 'repeated_once', 'repeated_many'), missingness_report = TRUE, indent = '#') {
   # todo: factor out the time stuff
   # todo: factor out the repetition detection stuff
-
-  stopifnot(exists("modified", results))
-  stopifnot(exists("expired", results))
-
+  survey_repetition = match.arg(survey_repetition)
   if (survey_repetition == "auto") {
     if(! (exists("session", results) &&
       exists("created", results) &&

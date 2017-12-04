@@ -26,7 +26,7 @@ knit_print.alpha = function(x, indent = '#####', ...) {
 #' @export
 #' @examples
 #' example("mlr", "psych")
-#' knitr::knit_print(m4)
+#' knitr::knit_print(mg)
 #'
 knit_print.multilevel = function(x, indent = '#####', ...) {
   knitr::asis_output(paste0("\n\n\n```\n",
@@ -65,5 +65,20 @@ knit_print.htest = function(x, indent = '#####', ...) {
 #' summary(x)
 #'
 summary.labelled = function(object, ...) {
+  summary(haven::as_factor(object, levels = "both"), ...)
+}
+
+#' summary.labelled_spss
+#'
+#'
+#' @param object a labelled_spss vector
+#' @param ... passed to summary.factor
+#'
+#' @export
+#' @examples
+#' example("labelled", "haven")
+#' summary(x)
+#'
+summary.labelled_spss = function(object, ...) {
   summary(haven::as_factor(object, levels = "both"), ...)
 }

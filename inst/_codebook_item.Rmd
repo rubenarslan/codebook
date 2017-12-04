@@ -32,6 +32,9 @@ wrap_at = knitr::opts_chunk$get("fig.width") * 10
 ```{r}
 # numeric items are plotted horizontally (because that's what usually expected)
 # categorical items are plotted vertically because we can use the screen real estate better this way
+# todo: if there are free-text choices mingled in with the pre-defined ones, don't show
+# todo: show rare items if they are pre-defined
+# todo: bin rare responses into "other category"
 if (is.numeric(item) || dplyr::n_distinct(item) < 20) {
 	dist_plot = ggplot2::ggplot() +
 		ggplot2::geom_bar(ggplot2::aes(x = item)) +

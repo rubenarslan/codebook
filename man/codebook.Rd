@@ -4,8 +4,9 @@
 \alias{codebook}
 \title{Generate rmarkdown codebook}
 \usage{
-codebook(results, reliabilities = NULL, survey_repetition = "auto",
-  missingness_report = TRUE, indent = "#")
+codebook(results, reliabilities = NULL, survey_repetition = c("auto",
+  "single", "repeated_once", "repeated_many"), missingness_report = TRUE,
+  indent = "#")
 }
 \arguments{
 \item{results}{a formr results table with attributes set on items and scales}
