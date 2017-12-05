@@ -4,12 +4,10 @@
 \alias{codebook_component_single_item}
 \title{codebook component for single items}
 \usage{
-codebook_component_single_item(item, results, indent = "###")
+codebook_component_single_item(item, indent = "###")
 }
 \arguments{
 \item{item}{an item with attributes set}
-
-\item{results}{a formr results table with attributes set on items and scales}
 
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 }

@@ -5,20 +5,19 @@ if (!exists("indent")) {
 if (exists("testing")) {
 	scale = 1:10
 	reliabilities = list()
-	results = list()
+	items = list()
 }
 
 scale_info = attributes(scale)
-scale_name = scale_info$scale
 ```
 
-`r indent`## `r scale_info$scale` {#`r scale_name` .tabset}
+`r indent`## `r scale_name` {#`r scale_name` .tabset}
 
 `r indent`### Reliability {#`r scale_name`_reliability}
 ```{r reliability, results='asis'}
 for (i in seq_along(reliabilities)) {
   rel = reliabilities[[i]]
-  cat(knit_print(rel, indent = paste0(indent, "####")))
+  cat(knitr::knit_print(rel, indent = paste0(indent, "####")))
 }
 ```
 
@@ -33,7 +32,7 @@ new_height = ifelse(is.na(new_height) | is.nan(new_height), old_height, new_heig
 knitr::opts_chunk$set(fig.height = new_height)
 ```
 ```{r likert}
-likert_plot = likert_from_items(dplyr::select(results, rlang::UQS(rlang::quos(scale_info$scale_item_names))))
+likert_plot = likert_from_items(items)
 if (!is.null(likert_plot)) {
   graphics::plot(likert_plot)
 }
@@ -44,7 +43,7 @@ knitr::opts_chunk$set(fig.height = old_height)
 `r indent`### Distribution {#`r scale_name`_distribution}
 ```{r setup_distribution}
 binwidth = mean(diff(sort(unique(scale))))
-choices = scale_info$item[[1]]$choices
+choices = attributes(items[[1]])$item$choices
 
 wrap_at = knitr::opts_chunk$get("fig.width") * 10
 ```
@@ -53,7 +52,7 @@ breaks = as.numeric(names(choices))
 dist_plot = ggplot2::ggplot() +
 	ggplot2::geom_bar(ggplot2::aes(x = scale)) +
 	ggplot2::stat_bin(binwidth = binwidth) + 
-	ggplot2::ggtitle(scale_name, subtitle = stringr::str_wrap(paste("aggregated over", length(scale_info$item), "items"), wrap_at)) + 
+	ggplot2::ggtitle(scale_name, subtitle = stringr::str_wrap(paste("aggregated over", length(scale_info$scale_item_names), "items"), wrap_at)) + 
 	ggplot2::xlab("Choices") + 
 	ggplot2::scale_x_continuous("Choices", breaks = breaks, labels = stringr::str_wrap(unlist(choices), 15), limits = range(breaks))
 
@@ -72,7 +71,8 @@ pander::pander(skimr::skim_v(scale))
 
 ```{r items,results='asis'}
 pander::pander(dplyr::bind_rows(
-	lapply(scale_info$item, function(x) { 
+	lapply(items, function(item) { 
+	  x = attributes(item)$item
 		x$label_parsed = x$choices = x$choice_list = x$study_id = x$id = NULL
 		as.data.frame(t(x)) })
 ))

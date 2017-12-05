@@ -4,12 +4,10 @@
 \alias{codebook_component_fallback}
 \title{codebook component for scales}
 \usage{
-codebook_component_fallback(item, results, item_name, indent = "###")
+codebook_component_fallback(item, item_name, indent = "###")
 }
 \arguments{
 \item{item}{an item without attributes set}
-
-\item{results}{a formr results table with attributes set on items and scales}
 
 \item{item_name}{the item name}
 

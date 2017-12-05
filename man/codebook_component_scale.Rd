@@ -4,19 +4,19 @@
 \alias{codebook_component_scale}
 \title{codebook component for scales}
 \usage{
-codebook_component_scale(scale, results, reliabilities, indent = "###",
-  survey_repetition = "single")
+codebook_component_scale(scale, scale_name, items, reliabilities,
+  indent = "###")
 }
 \arguments{
 \item{scale}{a scale with attributes set}
 
-\item{results}{a formr results table with attributes set on items and scales}
+\item{scale_name}{the variable name of this scale}
+
+\item{items}{a data.frame with the items constituting the scale}
 
 \item{reliabilities}{a list with one or several results from calls to psych package functions for computing reliability}
 
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
-
-\item{survey_repetition}{defaults to single (other values: repeated_once, repeated_many). controls whether internal consistency, retest reliability or multilevel reliability is computed}
 }
 \description{
 codebook component for scales

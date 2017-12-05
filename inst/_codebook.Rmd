@@ -30,12 +30,14 @@ if(! (exists("session", results) &&
 
 ```{r scales,results='asis'}
 vars = names(results)
+items_contained_in_scales = c()
 for (i in seq_along(vars)) {
 	var = vars[i]
 	scale = results[[ var ]]
 	scale_info = attributes(scale)
-	if ( !is.null(scale_info) && exists("scale", scale_info)) {
-	  cat(codebook_component_scale( scale, dplyr::select(results, .data$session, dplyr::starts_with(scale_info$scale)), reliabilities[[var]], indent))
+	items_contained_in_scales = c(items_contained_in_scales, scale_info$scale_item_names)
+	if ( !is.null(scale_info) && exists("scale_item_names", scale_info)) {
+	  cat(codebook_component_scale( scale = scale, scale_name = var, items = dplyr::select(results, rlang::UQS(rlang::quos(scale_info$scale_item_names))), reliabilities = reliabilities[[var]], indent = indent))
 	}
 }
 ```
@@ -48,12 +50,12 @@ for (i in seq_along(vars)) {
 	item = results[[ var ]]
 	item_info = attributes(item)
 	if ( !is.null(item_info)) {
-		if (exists("part_of_scale", item_info) || exists("scale", item_info) || var %in% c("created", "modified", "expired", "ended")) {
+		if (var %in% items_contained_in_scales || exists("scale_item_names", item_info) || var %in% c("created", "modified", "expired", "ended")) {
 			next
 		} else if (exists("item", item_info)) {
-			cat(codebook_component_single_item( item, results, indent ))
+			cat(codebook_component_single_item( item, indent ))
 		} else {
-			cat(codebook_component_fallback( item, results, var, indent))
+			cat(codebook_component_fallback( item, var, indent))
 		}
 	}
 }

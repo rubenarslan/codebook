@@ -10,7 +10,9 @@ For items and scales, the distributions are summarised graphically and numerical
 The result are markdown _partials_, that can be integrated in a larger markdown document and then translated to HTML or PDF format.
 
 
-  install.packages("devtools")
-  devtools::install_github("hadley/pillar")
-  devtools::install_github("ropensci/skimr")
-  devtools::install_github("rubenarslan/codebook")
+```r
+install.packages("devtools")
+devtools::install_github("hadley/pillar")
+devtools::install_github("ropensci/skimr")
+devtools::install_github("rubenarslan/codebook")
+```

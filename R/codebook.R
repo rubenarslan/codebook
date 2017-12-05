@@ -22,9 +22,11 @@ compute_reliabilities = function(results, survey_repetition = "single") {
   for (i in seq_along(vars)) {
     var = vars[i]
     scale_info = attributes(results[[var]])
-    if (!is.null(scale_info) && exists("scale", scale_info)) {
+    if (!is.null(scale_info) && exists("scale_item_names", scale_info)) {
       reliabilities_futures[[ var ]] = future::future(
-        compute_appropriate_reliability(results[[var]], scale_info, dplyr::select(results, .data$session, .data$created, rlang::UQS(rlang::quos(scale_info$scale_item_names))), survey_repetition)
+        compute_appropriate_reliability(var, scale_info,
+                                        dplyr::select(results, .data$session, .data$created, rlang::UQ(rlang::quo(var)), rlang::UQS(rlang::quos(scale_info$scale_item_names))),
+                                        survey_repetition)
       )
     }
   }
@@ -136,19 +138,19 @@ codebook_survey_overview = function(results, survey_repetition = "single") {
 #'
 #'
 #' @param scale a scale with attributes set
-#' @param results a formr results table with attributes set on items and scales
+#' @param scale_name the variable name of this scale
+#' @param items a data.frame with the items constituting the scale
 #' @param reliabilities a list with one or several results from calls to psych package functions for computing reliability
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
-#' @param survey_repetition defaults to single (other values: repeated_once, repeated_many). controls whether internal consistency, retest reliability or multilevel reliability is computed
 #'
 #' @export
-codebook_component_scale = function(scale, results, reliabilities, indent = '###', survey_repetition = "single") {
-  stopifnot( exists("item", attributes(scale)))
-  stopifnot( exists("scale", attributes(scale)))
+codebook_component_scale = function(scale, scale_name, items, reliabilities, indent = '###') {
   stopifnot( exists("scale_item_names", attributes(scale)))
+  stopifnot( attributes(scale)$scale_item_names %in% names(items) )
+
   options = list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), attributes(scale)$scale, "_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), attributes(scale)$scale, "_")
+    fig.path = paste0(knitr::opts_chunk$get("fig.path"), scale_name, "_"),
+    cache.path = paste0(knitr::opts_chunk$get("cache.path"), scale_name, "_")
   )
   asis_knit_child(system.file("_codebook_scale.Rmd", package = 'codebook', mustWork = TRUE), options = options)
 }
@@ -157,11 +159,10 @@ codebook_component_scale = function(scale, results, reliabilities, indent = '###
 #'
 #'
 #' @param item an item with attributes set
-#' @param results a formr results table with attributes set on items and scales
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
-codebook_component_single_item = function(item, results, indent = '###') {
+codebook_component_single_item = function(item, indent = '###') {
   stopifnot( exists("item", attributes(item)))
   options = list(
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), attributes(item)$item$name, "_"),
@@ -174,12 +175,11 @@ codebook_component_single_item = function(item, results, indent = '###') {
 #'
 #'
 #' @param item an item without attributes set
-#' @param results a formr results table with attributes set on items and scales
 #' @param item_name the item name
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
-codebook_component_fallback = function(item, results, item_name, indent = '###') {
+codebook_component_fallback = function(item, item_name, indent = '###') {
   options = list(
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), item_name, "_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), item_name, "_")
@@ -251,12 +251,12 @@ modified = function(survey, variable = "modified") {
 }
 
 
-compute_appropriate_reliability = function(scale, scale_info, results, survey_repetition) {
+compute_appropriate_reliability = function(scale_name, scale_info, results, survey_repetition) {
   scale_item_names = scale_info$scale_item_names
   if (survey_repetition == 'single') {
     list(
       internal_consistency =
-        psych::alpha(results[, scale_item_names], title = scale_info$scale, check.keys = FALSE)
+        psych::alpha(results[, scale_item_names], title = scale_name, check.keys = FALSE)
     )
   } else if (survey_repetition == 'repeated_once') {
     wide = tidyr::spread(
@@ -264,20 +264,20 @@ compute_appropriate_reliability = function(scale, scale_info, results, survey_re
         dplyr::mutate(
           dplyr::group_by(
             results, .data$session),
-          Time = dplyr::row_number(.data$created)), .data$session, .data$Time, !!dplyr::quo(scale_info$scale) ),
-      key = .data$Time, value = !!dplyr::quo(scale_info$scale), sep="_")
+          Time = dplyr::row_number(.data$created)), .data$session, .data$Time, rlang::UQ(rlang::quo(scale_name)) ),
+      key = .data$Time, value = !!dplyr::quo(scale_name), sep="_")
     list(
       internal_consistency_T1 =
-        psych::alpha(results[!duplicated(results$session), scale_item_names], title = paste( scale_info$scale, "Time 1"), check.keys = FALSE),
+        psych::alpha(results[!duplicated(results$session), scale_item_names], title = paste( scale_name, "Time 1"), check.keys = FALSE),
       internal_consistency_T2 =
-        psych::alpha(results[duplicated(results$session), scale_item_names], title = paste( scale_info$scale, "Time 2"), check.keys = FALSE),
+        psych::alpha(results[duplicated(results$session), scale_item_names], title = paste( scale_name, "Time 2"), check.keys = FALSE),
       retest_reliability = stats::cor.test(wide$Time_1, wide$Time_2)
     )
   } else if (survey_repetition == 'repeated_many') {
     long_rel =  tidyr::gather(dplyr::select(dplyr::mutate(
       dplyr::group_by(
         results, .data$session),
-      day_number = as.numeric(.data$created - min(.data$created), unit = 'days')), .data$session, .data$day_number, !!!dplyr::quos(scale_item_names) ),
+      day_number = as.numeric(.data$created - min(.data$created), unit = 'days')), .data$session, .data$day_number, rlang::UQS(rlang::quos(scale_item_names)) ),
       "variable", "value", -.data$session, -.data$day_number)
 
     list(
