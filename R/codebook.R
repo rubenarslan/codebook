@@ -24,9 +24,11 @@ compute_reliabilities = function(results, survey_repetition = "single") {
     scale_info = attributes(results[[var]])
     if (!is.null(scale_info) && exists("scale_item_names", scale_info)) {
       reliabilities_futures[[ var ]] = future::future(
+        tryCatch({
         compute_appropriate_reliability(var, scale_info,
                                         dplyr::select(results, .data$session, .data$created, rlang::UQ(rlang::quo(var)), rlang::UQS(rlang::quos(scale_info$scale_item_names))),
                                         survey_repetition)
+        }, error = function(e) warning(e))
       )
     }
   }
@@ -159,10 +161,11 @@ codebook_component_scale = function(scale, scale_name, items, reliabilities, ind
 #'
 #'
 #' @param item an item with attributes set
+#' @param item_name the item name
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
-codebook_component_single_item = function(item, indent = '###') {
+codebook_component_single_item = function(item, item_name, indent = '###') {
   stopifnot( exists("item", attributes(item)))
   options = list(
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), attributes(item)$item$name, "_"),
@@ -256,7 +259,7 @@ compute_appropriate_reliability = function(scale_name, scale_info, results, surv
   if (survey_repetition == 'single') {
     list(
       internal_consistency =
-        psych::alpha(results[, scale_item_names], title = scale_name, check.keys = FALSE)
+        psych::alpha(data.frame(results[, scale_item_names]), title = scale_name, check.keys = FALSE)
     )
   } else if (survey_repetition == 'repeated_once') {
     wide = tidyr::spread(
@@ -265,12 +268,12 @@ compute_appropriate_reliability = function(scale_name, scale_info, results, surv
           dplyr::group_by(
             results, .data$session),
           Time = dplyr::row_number(.data$created)), .data$session, .data$Time, rlang::UQ(rlang::quo(scale_name)) ),
-      key = .data$Time, value = !!dplyr::quo(scale_name), sep="_")
+      key = .data$Time, value = !!dplyr::quo(scale_name), sep = "_")
     list(
       internal_consistency_T1 =
-        psych::alpha(results[!duplicated(results$session), scale_item_names], title = paste( scale_name, "Time 1"), check.keys = FALSE),
+        psych::alpha(data.frame(results[!duplicated(results$session), scale_item_names]), title = paste( scale_name, "Time 1"), check.keys = FALSE),
       internal_consistency_T2 =
-        psych::alpha(results[duplicated(results$session), scale_item_names], title = paste( scale_name, "Time 2"), check.keys = FALSE),
+        psych::alpha(data.frame(results[duplicated(results$session), scale_item_names]), title = paste( scale_name, "Time 2"), check.keys = FALSE),
       retest_reliability = stats::cor.test(wide$Time_1, wide$Time_2)
     )
   } else if (survey_repetition == 'repeated_many') {

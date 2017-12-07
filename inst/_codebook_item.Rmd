@@ -6,12 +6,13 @@ if (exists("testing")) {
 	item = 1:10
 }
 item_info = attributes(item)$item
-item_name = item_info$name
 item_label = ifelse(is.null(item_info$label), "", item_info$label)
 choices = attributes(item)$labels
 ```
 
 `r indent`## `r item_name` {#`r item_name` .tabset}
+
+Label: `r item_label`
 
 `r indent`### Distribution {#`r item_name`_distribution}
 ```{r distribution}

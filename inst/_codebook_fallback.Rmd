@@ -32,6 +32,8 @@ pander::pander(skimr::skim_v(item))
 
 `r indent`### Attributes {#`r item_name`_attributes}
 ```{r attributes}
-pander::pander(item_info)
+if (!is.null(item_info)) {
+  pander::pander(item_info)
+}
 ```
 

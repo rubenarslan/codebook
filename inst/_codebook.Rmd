@@ -13,7 +13,7 @@ if (exists("testing")) {
 `r indent`# Survey overview
 
 ```{r}
-if(! (exists("session", results) &&
+if (!(exists("session", results) &&
     exists("created", results) &&
     exists("ended", results) &&
     exists("expired", results) &&
@@ -35,8 +35,8 @@ for (i in seq_along(vars)) {
 	var = vars[i]
 	scale = results[[ var ]]
 	scale_info = attributes(scale)
-	items_contained_in_scales = c(items_contained_in_scales, scale_info$scale_item_names)
 	if ( !is.null(scale_info) && exists("scale_item_names", scale_info)) {
+  	items_contained_in_scales = c(items_contained_in_scales, scale_info$scale_item_names)
 	  cat(codebook_component_scale( scale = scale, scale_name = var, items = dplyr::select(results, rlang::UQS(rlang::quos(scale_info$scale_item_names))), reliabilities = reliabilities[[var]], indent = indent))
 	}
 }
@@ -45,19 +45,18 @@ for (i in seq_along(vars)) {
 `r indent`# Single items
 
 ```{r items,results='asis'}
+dont_show_these = c(items_contained_in_scales, c("session", "created", "modified", "expired", "ended"))
 for (i in seq_along(vars)) {
 	var = vars[i]
 	item = results[[ var ]]
 	item_info = attributes(item)
-	if ( !is.null(item_info)) {
-		if (var %in% items_contained_in_scales || exists("scale_item_names", item_info) || var %in% c("created", "modified", "expired", "ended")) {
-			next
-		} else if (exists("item", item_info)) {
-			cat(codebook_component_single_item( item, indent ))
-		} else {
-			cat(codebook_component_fallback( item, var, indent))
-		}
-	}
+	if (var %in% dont_show_these || (!is.null(item_info) && exists("scale_item_names", item_info))) {
+		next # don't do scales again
+	} else if (!is.null(item_info) && exists("item", item_info)) {
+		cat(codebook_component_single_item( item = item, item_name = var, indent = indent ))
+	} else {
+    cat(codebook_component_fallback(item =  item, item_name = var, indent = indent))
+  }
 }
 ```
 
