@@ -24,10 +24,10 @@ dist_plot
 
 `r indent`### Summary statistics {#`r item_name`_summary}
 ```{r summary}
-if (haven::is.labelled(scale)) {
+if (haven::is.labelled(item)) {
   item = haven::as_factor(item, levels = 'both')
 }
-pander::pander(skimr::skim_v(item))
+pander::pander(skimr:::skim_v(item))
 ```
 
 `r indent`### Attributes {#`r item_name`_attributes}

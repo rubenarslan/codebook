@@ -64,7 +64,7 @@ dist_plot
 if (haven::is.labelled(scale)) {
   scale = haven::as_factor(scale, levels = 'both')
 }
-pander::pander(skimr::skim_v(scale))
+pander::pander(skimr:::skim_v(scale))
 ```
 
 `r indent`### Items {#`r scale_name`_items}
