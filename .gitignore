@@ -3,3 +3,5 @@
 .RData
 *_cache/
 plans/
+tests/test_codebook_*
+tests/test_codebook.html

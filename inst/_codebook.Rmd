@@ -10,14 +10,8 @@ if (exists("testing")) {
 }
 ```
 
-`r indent`# Survey overview
-
 ```{r}
-if (!(exists("session", results) &&
-    exists("created", results) &&
-    exists("ended", results) &&
-    exists("expired", results) &&
-    exists("modified", results))) {
+if (show_survey_overview) {
     warning("The variables session, created, ended, expired, modified have to be defined for automatic survey duration calculations to work.")
 } else {
   codebook_survey_overview(results, survey_repetition)
@@ -25,8 +19,7 @@ if (!(exists("session", results) &&
 ```
 
 
-
-`r indent`# Scales
+`r indent`# Items
 
 ```{r scales,results='asis'}
 vars = names(results)
@@ -41,8 +34,6 @@ for (i in seq_along(vars)) {
 	}
 }
 ```
-
-`r indent`# Single items
 
 ```{r items,results='asis'}
 dont_show_these = c(items_contained_in_scales, c("session", "created", "modified", "expired", "ended"))
@@ -97,19 +88,19 @@ among those who started the survey. Only patterns occuring at least 10 times are
 if (exists("modified", results) && missingness_report) {
   missingness = formr::missingness_patterns(
   	dplyr::filter(results, !is.na(modified)) )
-} else if (!exists("modified", results)) {
-  cat("Did not track who started the survey.")
-} else {
+} else if (!missingness_report) {
   cat("No missingness report requested.")
+} else {
+  cat("Did not track who started the survey.")
 }
 ```
 ```{r missingness_starters}
 if (exists("modified", results) && missingness_report) {
   pander::pander(dplyr::filter(missingness, .data$Freq > 9))
-} else if (!exists("modified", results)) {
-  cat("Did not track who started the survey.")
-} else {
+} else if (!missingness_report) {
   cat("No missingness report requested.")
+} else {
+  cat("Did not track who started the survey.")
 }
 ```
 

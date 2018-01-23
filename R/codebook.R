@@ -84,6 +84,12 @@ codebook = function(results, reliabilities = NULL, survey_repetition = c('auto',
     reliabilities = compute_reliabilities(results, survey_repetition)
   }
 
+  show_survey_overview = !(exists("session", results) &&
+                             exists("created", results) &&
+                             exists("ended", results) &&
+                             exists("expired", results) &&
+                             exists("modified", results))
+
   df_name = deparse(substitute(results))
   old_opt = options('knitr.duplicate.label')$knitr.duplicate.label
   options(knitr.duplicate.label = 'allow')
