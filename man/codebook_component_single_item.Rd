@@ -4,7 +4,7 @@
 \alias{codebook_component_single_item}
 \title{codebook component for single items}
 \usage{
-codebook_component_single_item(item, item_name, indent = "###")
+codebook_component_single_item(item, item_name, indent = "##")
 }
 \arguments{
 \item{item}{an item with attributes set}

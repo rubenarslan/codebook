@@ -3,3 +3,5 @@
 ^docs
 .zenodo.json
 ^plans
+tests
+figure

@@ -1,0 +1,28 @@
+```{r setup,eval=TRUE,echo=FALSE}
+if (exists("testing")) {
+	indent = '#' # ugly hack so _regression_summary can be "spun" (variables included via `r ` have to be available)
+	results = data.frame()
+	survey_repetition = 'single'
+	reliabilities = list()
+}
+```
+
+
+`r indent`# Missingness report
+
+among those who finished the survey
+
+```{r missingness_all_setup}
+if (  exists("ended", results) &&
+  exists("expired", results)) {
+  finisher_results = dplyr::filter(results, !is.na(.data$ended))
+} else {
+  finisher_results = results
+  warning("Could not figure out who finished the surveys, because the variables expired and ended were missing.")
+}
+missingness = formr::missingness_patterns(finisher_results)
+```
+```{r missingness_all}
+pander::pander(dplyr::filter(missingness, .data$Freq > 9))
+```
+

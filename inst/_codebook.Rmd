@@ -7,105 +7,27 @@ if (exists("testing")) {
 	survey_repetition = 'single'
 	reliabilities = list()
 	missingness_report = TRUE
+	scales_items = c()
 }
 ```
 
 ```{r}
-if (show_survey_overview) {
-    warning("The variables session, created, ended, expired, modified have to be defined for automatic survey duration calculations to work.")
-} else {
-  codebook_survey_overview(results, survey_repetition)
-}
+survey_overview
 ```
 
 
 `r indent`# Items
 
 ```{r scales,results='asis'}
-vars = names(results)
-items_contained_in_scales = c()
-for (i in seq_along(vars)) {
-	var = vars[i]
-	scale = results[[ var ]]
-	scale_info = attributes(scale)
-	if ( !is.null(scale_info) && exists("scale_item_names", scale_info)) {
-  	items_contained_in_scales = c(items_contained_in_scales, scale_info$scale_item_names)
-	  cat(codebook_component_scale( scale = scale, scale_name = var, items = dplyr::select(results, rlang::UQS(rlang::quos(scale_info$scale_item_names))), reliabilities = reliabilities[[var]], indent = indent))
-	}
-}
+knitr::asis_output(paste0(scales_items, sep = "\n\n\n", collapse = "\n\n\n"))
 ```
 
-```{r items,results='asis'}
-dont_show_these = c(items_contained_in_scales, c("session", "created", "modified", "expired", "ended"))
-for (i in seq_along(vars)) {
-	var = vars[i]
-	item = results[[ var ]]
-	item_info = attributes(item)
-	if (var %in% dont_show_these || (!is.null(item_info) && exists("scale_item_names", item_info))) {
-		next # don't do scales again
-	} else if (!is.null(item_info) && exists("item", item_info)) {
-		cat(codebook_component_single_item( item = item, item_name = var, indent = indent ))
-	} else {
-    cat(codebook_component_fallback(item =  item, item_name = var, indent = indent))
-  }
-}
+```{r}
+missingness_report
 ```
 
 
-`r indent`# Missingness report {.tabset .tabset-sticky}
-
-### Missingness finishers
-
-among those who finished the survey
-
-```{r missingness_all_setup}
-if (missingness_report) {
-  if (  exists("ended", results) &&
-    exists("expired", results)) {
-    finisher_results = dplyr::select(dplyr::filter(results, !is.na(ended)), -.data$expired, -.data$ended) 
-  } else {
-    finisher_results = results
-    warning("Could not figure out who finished the surveys, because the variables expired and ended were missing.")
-  }
-  missingness = formr::missingness_patterns(finisher_results)
-}
-```
-```{r missingness_all}
-if (missingness_report) {
-  pander::pander(dplyr::filter(missingness, .data$Freq > 9))
-} else {
-  cat("No missingness report requested.")
-}
-```
-
-
-
-### Missingness starters
-
-among those who started the survey. Only patterns occuring at least 10 times are shown.
-
-```{r missingness_starters_setup,results='markup'}
-if (exists("modified", results) && missingness_report) {
-  missingness = formr::missingness_patterns(
-  	dplyr::filter(results, !is.na(modified)) )
-} else if (!missingness_report) {
-  cat("No missingness report requested.")
-} else {
-  cat("Did not track who started the survey.")
-}
-```
-```{r missingness_starters}
-if (exists("modified", results) && missingness_report) {
-  pander::pander(dplyr::filter(missingness, .data$Freq > 9))
-} else if (!missingness_report) {
-  cat("No missingness report requested.")
-} else {
-  cat("Did not track who started the survey.")
-}
-```
-
-
-### Item table
+`r indent`# Item table
 ```{r}
 items = formr::items(results)
 if (length(items)) {

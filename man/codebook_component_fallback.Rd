@@ -4,7 +4,7 @@
 \alias{codebook_component_fallback}
 \title{codebook component for scales}
 \usage{
-codebook_component_fallback(item, item_name, indent = "###")
+codebook_component_fallback(item, item_name, indent = "##")
 }
 \arguments{
 \item{item}{an item without attributes set}

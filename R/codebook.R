@@ -60,10 +60,10 @@ codebook = function(results, reliabilities = NULL, survey_repetition = c('auto',
   # todo: factor out the repetition detection stuff
   survey_repetition = match.arg(survey_repetition)
   if (survey_repetition == "auto") {
-    if(! (exists("session", results) &&
+    if (!(exists("session", results) &&
       exists("created", results) &&
       exists("ended", results))) {
-      stop("The variables session, created, ended have to be defined for automatic survey repetition to work.")
+      stop("The variables session, created, ended have to be defined for automatic survey repetition detection to work.")
     }
 
     users = dplyr::n_distinct(results$session)
@@ -84,12 +84,6 @@ codebook = function(results, reliabilities = NULL, survey_repetition = c('auto',
     reliabilities = compute_reliabilities(results, survey_repetition)
   }
 
-  show_survey_overview = !(exists("session", results) &&
-                             exists("created", results) &&
-                             exists("ended", results) &&
-                             exists("expired", results) &&
-                             exists("modified", results))
-
   df_name = deparse(substitute(results))
   old_opt = options('knitr.duplicate.label')$knitr.duplicate.label
   options(knitr.duplicate.label = 'allow')
@@ -98,6 +92,51 @@ codebook = function(results, reliabilities = NULL, survey_repetition = c('auto',
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), "cb_", df_name, "_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), "cb_", df_name, "_")
   )
+
+  survey_overview = ''
+  if (!(exists("session", results) &&
+        exists("created", results) &&
+        exists("ended", results) &&
+        exists("expired", results) &&
+        exists("modified", results))) {
+    warning("The variables session, created, ended, expired, modified have to be defined for automatic survey duration calculations to work.")
+  } else {
+    survey_overview = codebook_survey_overview(results, survey_repetition)
+  }
+
+  scales_items = c()
+  vars = names(results)
+  items_contained_in_scales = c()
+  for (i in seq_along(vars)) {
+    var = vars[i]
+    scale = results[[ var ]]
+    scale_info = attributes(scale)
+    if ( !is.null(scale_info) && exists("scale_item_names", scale_info)) {
+      items_contained_in_scales = c(items_contained_in_scales, scale_info$scale_item_names, var)
+      scales_items[var] = codebook_component_scale( scale = scale, scale_name = var, items = dplyr::select(results, rlang::UQS(rlang::quos(scale_info$scale_item_names))), reliabilities = reliabilities[[var]], indent = indent)
+    }
+  }
+
+  dont_show_these = c(items_contained_in_scales, c("session", "created", "modified", "expired", "ended"))
+  for (i in seq_along(vars)) {
+    var = vars[i]
+    item = results[[ var ]]
+    item_info = attributes(item)
+    if (var %in% dont_show_these) {
+      next # don't do scales again
+    } else if (!is.null(item_info) && exists("item", item_info)) {
+      scales_items[var] = codebook_component_single_item( item = item, item_name = var, indent = indent )
+    } else {
+      scales_items[var] = codebook_component_fallback(item =  item, item_name = var, indent = indent)
+    }
+  }
+
+  if (missingness_report) {
+    missingness_report = codebook_missingness(results, indent = indent)
+  } else {
+    missingness_report = ''
+  }
+
   asis_knit_child(system.file("_codebook.Rmd", package = 'codebook', mustWork = TRUE), options = options)
 }
 
@@ -107,9 +146,10 @@ codebook = function(results, reliabilities = NULL, survey_repetition = c('auto',
 #'
 #' @param results a formr results table which has the following columns: session, created, modified, expired, ended
 #' @param survey_repetition defaults to single (other values: repeated_once, repeated_many). controls whether internal consistency, retest reliability or multilevel reliability is computed
+#' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
-codebook_survey_overview = function(results, survey_repetition = "single") {
+codebook_survey_overview = function(results, survey_repetition = "single", indent = "##") {
   stopifnot(exists("session", results))
   stopifnot(exists("created", results))
   stopifnot(exists("modified", results))
@@ -142,6 +182,22 @@ codebook_survey_overview = function(results, survey_repetition = "single") {
   asis_knit_child(system.file("_codebook_survey_overview.Rmd", package = 'codebook', mustWork = TRUE), options = options)
 }
 
+
+#' codebook survey overview
+#'
+#'
+#' @param results a formr results table which has the following columns: session, created, modified, expired, ended
+#' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
+#'
+#' @export
+codebook_missingness = function(results, indent = "##") {
+  options = list(
+    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
+    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "overview_")
+  )
+  asis_knit_child(system.file("_codebook_missingness.Rmd", package = 'codebook', mustWork = TRUE), options = options)
+}
+
 #' codebook component for scales
 #'
 #'
@@ -152,7 +208,7 @@ codebook_survey_overview = function(results, survey_repetition = "single") {
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
-codebook_component_scale = function(scale, scale_name, items, reliabilities, indent = '###') {
+codebook_component_scale = function(scale, scale_name, items, reliabilities, indent = '##') {
   stopifnot( exists("scale_item_names", attributes(scale)))
   stopifnot( attributes(scale)$scale_item_names %in% names(items) )
 
@@ -171,7 +227,7 @@ codebook_component_scale = function(scale, scale_name, items, reliabilities, ind
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
-codebook_component_single_item = function(item, item_name, indent = '###') {
+codebook_component_single_item = function(item, item_name, indent = '##') {
   stopifnot( exists("item", attributes(item)))
   options = list(
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), attributes(item)$item$name, "_"),
@@ -188,7 +244,7 @@ codebook_component_single_item = function(item, item_name, indent = '###') {
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
-codebook_component_fallback = function(item, item_name, indent = '###') {
+codebook_component_fallback = function(item, item_name, indent = '##') {
   options = list(
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), item_name, "_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), item_name, "_")

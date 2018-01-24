@@ -17,19 +17,19 @@ pander::panderOptions("table.split.table", Inf)
 
 ## Load
 ```{r echo=FALSE}
-source("~/research/.passwords.R")
+source("~/research/routine_and_sex/.passwords.R")
 ```
 ```{r}
 library(codebook)
 library(dplyr)
 ```
-```{r cache=TRUE, warning = FALSE, message=F}
+```{r cache=T, warning = FALSE, message=F}
 library(formr)
-formr::formr_connect(email = credentialslua$email, password = credentialslua$password)
+formr::formr_connect(email = credentials$email, password = credentials$password)
 results = formr::formr_results("s2_initial", compute_alphas = F, plot_likert = F, quiet = T)
 
-# results = results %>% filter(!duplicated(cbind(session, created))) #%>% filter(1:5000) %>% select(1:100)
-rm(credentials, credentialslua)
+results = results %>% filter(!duplicated(session)) # %>% filter(row_number() < 200) %>% select(1:50)
+rm(credentials)
 
 knitr::opts_chunk$set(echo = FALSE)
 library(ggplot2)

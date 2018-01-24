@@ -6,12 +6,14 @@ if (exists("testing")) {
 	scale = 1:10
 	reliabilities = list()
 	items = list()
+	scale_info = list(scale_item_names = c("item1", "item2", "item3R"))
 }
 
 scale_info = attributes(scale)
 ```
 
 `r indent`## Scale: `r scale_name` {#`r scale_name` .tabset}
+`r paste0('<a name="', scale_info$scale_item_names, '"></a>', collapse = '', sep = '')`
 
 `r indent`### Reliability {#`r scale_name`_reliability}
 ```{r reliability, results='asis'}
@@ -74,7 +76,6 @@ pander::pander(dplyr::bind_rows(
 	lapply(items, function(item) { 
 	  x = attributes(item)$item
 		x$label_parsed = x$choices = x$choice_list = x$study_id = x$id = NULL
-		x$name = paste0('<a name="', x$name, '"></a>', x$name, '')
 		as.data.frame(t(x)) })
 ))
 ```
