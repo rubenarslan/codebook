@@ -38,7 +38,14 @@ plot_labelled = function(item, item_name = deparse(substitute(item)), wrap_at = 
   if (!is.null(choices) &&
       !any(is.na(choices)) &&
       any(names(choices) != unlist(choices))) {
-    x_axis = ggplot2::scale_x_discrete("Choices", labels = stringr::str_wrap(paste0("[", choices, "] ", names(choices)), 20), limits = choices)
+
+    preceding_number = paste0("[", choices, "] ")
+    if (all(substr(names(choices), 1, 3) == substr(preceding_number, 1, 3))) {
+      labels = names(choices)
+    } else {
+      labels = paste0("[", choices, "] ", names(choices))
+    }
+    x_axis = ggplot2::scale_x_discrete("Choices", labels = stringr::str_wrap(labels, 20), limits = choices)
   } else if (!is.null(choices)) {
     x_axis = ggplot2::scale_x_discrete("Choices", labels = stringr::str_wrap(as.character(choices), 15), limits = choices)
   } else {

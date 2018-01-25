@@ -18,29 +18,7 @@ choices = item_attributes$labels
 `r item_label`
 
 `r indent`### Distribution {#`r item_name`_distribution}
-```{r distribution}
-old_height = knitr::opts_chunk$get("fig.height")
-many_labels = length(choices) > 10
-go_vertical = !is.numeric(item) || many_labels
-if ( go_vertical ) {
-	if (is.null(choices) || dplyr::n_distinct(na.omit(item)) > length(choices)) {
-		choices = unique(item)
-		names(choices) = choices
-	}
-	new_height = 1 * length(choices)
-	new_height = ifelse(new_height > 20, 20, new_height)
-	new_height = ifelse(new_height < 1, 1, new_height)
-	knitr::opts_chunk$set(fig.height = new_height)
-}
-
-wrap_at = knitr::opts_chunk$get("fig.width") * 10
-```
-```{r distribution}
-# numeric items are plotted horizontally (because that's what usually expected)
-# categorical items are plotted vertically because we can use the screen real estate better this way
-# todo: if there are free-text choices mingled in with the pre-defined ones, don't show
-# todo: show rare items if they are pre-defined
-# todo: bin rare responses into "other category"
+```{r setup_missings}
 show_missings = FALSE
 if (haven::is.labelled(item)) {
   missings = item[is.na(haven::zap_missing(item))]
@@ -50,6 +28,30 @@ if (haven::is.labelled(item)) {
     item = haven::zap_labels(item)
   }
 }
+old_height = knitr::opts_chunk$get("fig.height")
+non_missing_choices = attributes(item)[["labels"]]
+many_labels = length(non_missing_choices) > 7
+go_vertical = !is.numeric(item) || many_labels
+if ( go_vertical ) {
+  # numeric items are plotted horizontally (because that's what usually expected)
+  # categorical items are plotted vertically because we can use the screen real estate better this way
+
+	if (is.null(choices) || dplyr::n_distinct(na.omit(item)) > length(non_missing_choices)) {
+		choices = unique(item)
+		names(choices) = choices
+	}
+	new_height = 1 * length(non_missing_choices)
+	new_height = ifelse(new_height > 20, 20, new_height)
+	new_height = ifelse(new_height < 1, 1, new_height)
+	knitr::opts_chunk$set(fig.height = new_height)
+}
+
+wrap_at = knitr::opts_chunk$get("fig.width") * 10
+```
+```{r distribution}
+# todo: if there are free-text choices mingled in with the pre-defined ones, don't show
+# todo: show rare items if they are pre-defined
+# todo: bin rare responses into "other category"
 
 if (is.numeric(item) || dplyr::n_distinct(item) < 20) {
   plot_labelled(na.omit(item), item_name, wrap_at, go_vertical)
