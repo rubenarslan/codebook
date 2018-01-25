@@ -10,7 +10,7 @@ if (exists("testing")) {
 
 `r indent`# Missingness report
 
-among those who finished the survey
+Among those who finished the survey. Only patterns more common than 1% of the number of rows are shown.
 
 ```{r missingness_all_setup}
 if (  exists("ended", results) &&
@@ -20,9 +20,11 @@ if (  exists("ended", results) &&
   finisher_results = results
   warning("Could not figure out who finished the surveys, because the variables expired and ended were missing.")
 }
-missingness = formr::missingness_patterns(finisher_results)
+missingness = formr::missingness_patterns(finisher_results, min_freq = ceiling(0.01*nrow(results)))
 ```
 ```{r missingness_all}
-pander::pander(dplyr::filter(missingness, .data$Freq > 9))
+if (length(missingness) > 0) {
+  pander::pander(missingness)
+}
 ```
 
