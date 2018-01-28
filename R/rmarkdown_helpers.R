@@ -92,3 +92,50 @@ paste.knit_asis = function(..., sep = "\n\n\n", collapse = "\n\n\n") {
 print.knit_asis = function(x, ...) {
   cat(x, sep = '\n')
 }
+
+
+
+#' render text for formr
+#'
+#'
+#' Render text
+#'
+#' @param file file to make codebook from (sav, rds, dta, etc.)
+#' @param text codebook template
+#' @param treat_values_as_missing whether to set some common values (negative, 99, 999) to missing
+#' @param ... all other arguments passed to [rmarkdown::render()]
+#'
+#' @export
+
+render = function(file, text, treat_values_as_missing = T, ...) {
+  codebook_data = switch(tools::file_ext(file),
+       "rds" = readRDS(file),
+       "sav" = haven::read_sav(file),
+       "dta" = haven::read_dta(file),
+       "por" = haven::read_por(file),
+       "xpt" = haven::read_xpt(file),
+       "csv" = readr::read_csv(file),
+       "csv2" = readr::read_csv2(file),
+       "tsv" = readr::read_tsv(file)
+  )
+  if (treat_values_as_missing) {
+    codebook_data = treat_values_as_missing(codebook_data)
+  }
+
+  fileName = rmarkdown::render(input = write_to_file(text,
+      name = "codebook", ext = ".Rmd"), clean = T, quiet = T, ...,)
+  fileName
+}
+
+
+
+write_to_file <- function(..., name = NULL, ext = ".Rmd") {
+  if (is.null(name)) {
+    filename <- paste0(tempfile(), ext)
+  } else {
+    filename = paste0(name, ext)
+  }
+  mytext <- eval(...)
+  write(mytext, filename)
+  return(filename)
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Codebook generator</title>
+
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="underscore-min.js"></script>
+<script src="opencpu/jquery-1.10.2.min.js"></script>
+<script src="opencpu/opencpu-0.4.js"></script>
+<script src="ace/ace.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+$(function(){
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/monokai");
+  editor.getSession().setMode("ace/mode/r");
+  editor.setFontSize("14px");
+
+  //This app requires OpenCPU 1.0.1 or higher!
+  ocpu.seturl("https://opencpu2.psych.bio.uni-goettingen.de/ocpu/library/codebook/R");
+  function make_codebook(e){
+    $("#make_codebook").attr("disabled", "disabled");
+
+    var req = ocpu.call("render", {
+      file: $("#file")[0].files[0],
+      text : editor.getSession().getValue()
+    }, function(session){
+      $("iframe").attr('src', session.getFileURL("codebook.html"));
+    }).fail(function(text){
+      alert("Error: " + req.responseText);
+    }).always(function(){
+      $("#make_codebook").removeAttr("disabled");
+    });
+
+  }
+
+  //init on start
+  $("make_codebook").click(make_codebook);
+});
+</script>
+
+<style type="text/css" media="screen">
+body {
+  background-color: #EEE;
+}
+#editor {
+  position: absolute;
+  top: 5%;
+  left: 0px;
+  width: 50%;
+  height: 95%;
+}
+
+iframe {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 50%;
+  height: 100%;
+  border: 0;
+  margin: 0;
+  z-index: 999999;
+  background-color: #222;
+}
+
+</style>
+</head>
+<body>
+
+<div class="row" style='width:50%'>
+  <div class="col-sm-3">
+    <label>SPSS/Stata/RDS File: <input type="file" id="file"></label>
+  </div>
+  <div class="col-sm-3">
+    <button id="make_codebook" type="button" class="btn">Make codebook!</button>
+  </div>
+</div>
+<div id="editor">---
+title: "Codebook"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    code_folding: 'hide'
+    self_contained: false
+---
+
+```{r}
+knitr::opts_chunk$set(warning = T, message = T, error = TRUE)
+pander::panderOptions("table.split.table", Inf)
+```
+
+
+## Load
+
+```{r}
+# dont cache this chunk
+ggplot2::theme_set(ggplot2::theme_bw())
+pander::panderOptions("table.split.table", Inf)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(error = TRUE)
+```
+
+```{r cb}
+codebook(codebook_data)
+```
+</div>
+
+<iframe src="about:blank"></iframe>
+
+</body>
+</html>
