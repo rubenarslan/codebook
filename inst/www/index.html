@@ -12,7 +12,9 @@
 <script>
 function make_codebook(e){
   $("#make_codebook").prop("disabled", true);
+
   console.log( $("#make_codebook"));
+  console.log($("#file")[0].files[0]);
   var req = ocpu.call("render", {
     file: $("#file")[0].files[0],
     text: editor.getSession().getValue()
