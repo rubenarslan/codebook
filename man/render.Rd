@@ -4,16 +4,16 @@
 \alias{render}
 \title{render text for formr}
 \usage{
-render(file, text, treat_values_as_missing = T, ...)
+render(file, text, ...)
 }
 \arguments{
 \item{file}{file to make codebook from (sav, rds, dta, etc.)}
 
 \item{text}{codebook template}
 
-\item{treat_values_as_missing}{whether to set some common values (negative, 99, 999) to missing}
-
 \item{...}{all other arguments passed to \code{\link[rmarkdown:render]{rmarkdown::render()}}}
+
+\item{treat_values_as_missing}{whether to set some common values (negative, 99, 999) to missing}
 }
 \description{
 Render text

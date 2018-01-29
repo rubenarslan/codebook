@@ -107,23 +107,24 @@ print.knit_asis = function(x, ...) {
 #'
 #' @export
 
-render = function(file, text, treat_values_as_missing = T, ...) {
+render = function(file, text, ...) {
   codebook_data = switch(tools::file_ext(file),
        "rds" = readRDS(file),
+       "rdata" = load(file),
+       "rda" = load(file),
        "sav" = haven::read_sav(file),
        "dta" = haven::read_dta(file),
        "por" = haven::read_por(file),
        "xpt" = haven::read_xpt(file),
        "csv" = readr::read_csv(file),
        "csv2" = readr::read_csv2(file),
-       "tsv" = readr::read_tsv(file)
+       "tsv" = readr::read_tsv(file),
+       NULL
   )
-  if (treat_values_as_missing) {
-    codebook_data = treat_values_as_missing(codebook_data)
-  }
-
+  stopifnot(!is.null(codebook_data))
+  file.remove(file)
   fileName = rmarkdown::render(input = write_to_file(text,
-      name = "codebook", ext = ".Rmd"), clean = T, quiet = T, ...,)
+      name = "codebook", ext = ".Rmd"), ...)
   fileName
 }
 

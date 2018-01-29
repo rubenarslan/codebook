@@ -32,15 +32,15 @@ A simple markdown document resulting in a codebook might look like this:
       self_contained: no
   ---
   
-  ```{r}
+  \```{r}
   results = readRDS("results.rds")
   knitr::opts_chunk$set(error = TRUE, echo = FALSE)
-  ```
+  \```
   
-  ```{r}
+  \```{r}
   library(codebook)
   codebook(results)
-  ```
+  \```
   
 The resulting codebook will be an HTML file, but you can also choose to generate PDFs or Word files in RStudio.
 
