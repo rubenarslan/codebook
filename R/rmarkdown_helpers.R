@@ -95,19 +95,18 @@ print.knit_asis = function(x, ...) {
 
 
 
-#' render text for formr
+#' render codebook based on file
 #'
 #'
 #' Render text
 #'
 #' @param file file to make codebook from (sav, rds, dta, etc.)
 #' @param text codebook template
-#' @param treat_values_as_missing whether to set some common values (negative, 99, 999) to missing
 #' @param ... all other arguments passed to [rmarkdown::render()]
 #'
 #' @export
 
-render = function(file, text, ...) {
+load_data_and_render_codebook = function(file, text, ...) {
   codebook_data = switch(tools::file_ext(file),
        "rds" = readRDS(file),
        "rdata" = load(file),

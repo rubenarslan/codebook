@@ -36,7 +36,7 @@ $(function(){
   function make_codebook(e){
     $("#make_codebook").prop("disabled", true);
     $("#working").removeClass("invisible");
-    var req = ocpu.call("render", {
+    var req = ocpu.call("load_data_and_render_codebook", {
       file: $("#file")[0].files[0],
       text: editor.getSession().getValue()
     }, function(session){
@@ -164,7 +164,7 @@ output:
     latex_engine: xelatex
 ---
 
-```{r}
+```{r setup}
 knitr::opts_chunk$set(
   warning = TRUE, # show warnings during codebook generation
   message = TRUE, # show messages during codebook generation
@@ -175,10 +175,15 @@ ggplot2::theme_set(ggplot2::theme_bw())
 pander::panderOptions("table.split.table", Inf)
 ```
 
+We collected the following data.
 
-```{r cb}
+```{r codebook}
 # the following line sets values like 99/999 and negative values to missing
 codebook_data = treat_values_as_missing(codebook_data)
+# the following line finds aggregates of multiple items, if their naming follows this pattern:
+# scale = scale_1 + scale_2R + scale_3R
+# identifying these aggregates will allow the codebook function to automatically compute reliabilities
+codebook_data = detect_scales(codebook_data)
 codebook(codebook_data)
 ```
 </div>

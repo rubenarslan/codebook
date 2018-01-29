@@ -5,7 +5,7 @@ Description: This package allows you to easily automate the following tasks to d
   summarise the distributions of scales and items graphically and using descriptive statistics,
   combine this information with metadata such as item labels and labelled values that is derived from R attributes.
   To do so, the package relies on rmarkdown partials. To mark up the metadata you need to use haven semantics.
-Version: 0.4.0
+Version: 0.4.1
 Authors@R: person("Ruben", "Arslan", email = "ruben.arslan@gmail.com", role = c("aut", "cre"))
 Depends: R (>= 3.0.1)
 License: BSD_2_clause + file LICENSE
@@ -14,6 +14,7 @@ Imports:
 		methods,
 		graphics,
 		utils,
+		rmarkdown,
     ggplot2,
     stringr,
     psych,
@@ -26,7 +27,8 @@ Imports:
     skimr,
     DT,
     future,
-    haven
+    haven,
+    readr
 Suggests:
   formr
 Encoding: UTF-8
