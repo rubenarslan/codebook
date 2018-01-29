@@ -10,24 +10,6 @@
 <script src="ace/ace.js" type="text/javascript" charset="utf-8"></script>
 
 <script>
-function make_codebook(e){
-  $("#make_codebook").prop("disabled", true);
-
-  console.log( $("#make_codebook"));
-  console.log($("#file")[0].files[0]);
-  var req = ocpu.call("render", {
-    file: $("#file")[0].files[0],
-    text: editor.getSession().getValue()
-  }, function(session){
-    console.log(session);
-    $("iframe").attr('src', session.getFileURL("codebook.html"));
-  }).fail(function(text){
-    alert("Error: " + req.responseText);
-  }).always(function(){
-      $("#make_codebook").prop("disabled", false);
-  });
-
-}
 $(function(){
   var editor = ace.edit("editor");
   editor.setTheme("ace/theme/monokai");
@@ -37,8 +19,26 @@ $(function(){
   //This app requires OpenCPU 1.0.1 or higher!
   ocpu.seturl("../R")
 
+  function make_codebook(e){
+    $("#make_codebook").prop("disabled", true);
+
+    var req = ocpu.call("render", {
+      file: $("#file")[0].files[0],
+      text: editor.getSession().getValue()
+    }, function(session){
+      $("iframe").attr('src', session.getFileURL("codebook.html"));
+      $("#download_codebook").attr('href', session.getFileURL("codebook.html")).show();
+      $("#download_codebook_pdf").attr('href', session.getFileURL("codebook.pdf")).show();
+
+    }).fail(function(text){
+      alert("Error: " + req.responseText);
+    }).always(function(){
+        $("#make_codebook").prop("disabled", false);
+    });
+  }
+
   //init on start
-  $("make_codebook").click(make_codebook);
+  $("#make_codebook").click(make_codebook);
 });
 </script>
 
@@ -46,39 +46,55 @@ $(function(){
 body {
   background-color: #EEE;
 }
+.all {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+
+}
+.header {
+  flex: 0 1 auto;
+}
+
+.rest_of_screen {
+  flex: 1 1 auto;
+}
+
 #editor {
-  position: absolute;
-  top: 5%;
-  left: 0px;
-  width: 50%;
-  height: 95%;
+  min-height: 70vh;
 }
 
 iframe {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  width: 50%;
-  height: 100%;
   border: 0;
   margin: 0;
-  z-index: 999999;
   background-color: #222;
+}
+
+#download_codebook, #download_codebook_pdf {
+  display: none;
 }
 
 </style>
 </head>
 <body>
-
-<div class="row" style='width:50%'>
+<div class="container-fluid all">
+<div class="row header">
+  <div class="col-sm-2">
+    <h3>Codebook generator</h3>
+  </div>
   <div class="col-sm-3">
     <label>SPSS/Stata/RDS File: <input type="file" id="file"></label>
   </div>
   <div class="col-sm-3">
     <button id="make_codebook" type="button" class="btn">Make codebook!</button>
   </div>
+  <div class="col-sm-3">
+    <a href="#" id="download_codebook">Download codebook HTML</a>
+    <a href="#" id="download_codebook_pdf">PDF</a>
+  </div>
 </div>
-<div id="editor">---
+<div class="row rest_of_screen">
+  <div id="editor" class="col-md-6">---
 title: "Codebook"
 output:
   html_document:
@@ -86,11 +102,19 @@ output:
     toc_depth: 4
     toc_float: true
     code_folding: 'hide'
-    self_contained: false
+    self_contained: true
+  pdf_document:
+    toc: yes
+    toc_depth: 4
 ---
 
 ```{r}
-knitr::opts_chunk$set(warning = T, message = T, error = TRUE, echo = FALSE)
+knitr::opts_chunk$set(
+  warning = TRUE, # show warnings during codebook generation
+  message = TRUE, # show messages during codebook generation
+  error = TRUE, # do not interrupt codebook generation in case of errors
+  echo = TRUE  # show R code
+)
 ggplot2::theme_set(ggplot2::theme_bw())
 pander::panderOptions("table.split.table", Inf)
 ```
@@ -100,8 +124,8 @@ pander::panderOptions("table.split.table", Inf)
 codebook(codebook_data)
 ```
 </div>
-
-<iframe src="about:blank"></iframe>
-
+<iframe src="about:blank" class="col-md-6"></iframe>
+</div>
+</div>
 </body>
 </html>
