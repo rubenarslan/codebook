@@ -19,7 +19,7 @@ devtools::install_github("rubenarslan/codebook")
 ```
 
 ## How to use
-A simple markdown document resulting in a codebook might look like this:
+A simple markdown document resulting in a codebook might look like this.
 
 ```yaml
 ---
@@ -37,12 +37,12 @@ output:
 ```{r}
 results = readRDS("results.rds")
 knitr::opts_chunk$set(error = TRUE, echo = FALSE)
-``\`
+```
 
 ```{r}
 library(codebook)
 codebook(results)
-``\`
+```
 ```
 
 The resulting codebook will be an HTML file, but you can also choose to generate PDFs or Word files in RStudio.
