@@ -33,7 +33,7 @@
 #'    asis_knit_child("_regression_summary.Rmd", options = options)
 #' }
 #' }
-asis_knit_child = function(input = NULL, text = NULL, ..., quiet = TRUE, options = NULL, envir = parent.frame(), use_strings = T) {
+asis_knit_child = function(input = NULL, text = NULL, ..., quiet = TRUE, options = NULL, envir = parent.frame(), use_strings = TRUE) {
   stopifnot( xor(is.null(text), is.null(input)))
   if (!is.null(input) && use_strings) {
     text = paste0(readLines(input), collapse = "\n")

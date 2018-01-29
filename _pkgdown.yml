@@ -1,0 +1,38 @@
+navbar:
+  title: codebook
+  type: default
+  left:
+  - icon: fa-home fa-lg
+    href: index.html
+  - text: Reference
+    href: reference/index.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/rubenarslan/codebook
+
+reference:
+- title: All functions
+  desc: ~
+  contents:
+  - '`asis_knit_child`'
+  - '`codebook_component_scale`'
+  - '`codebook_component_single_item`'
+  - '`codebook_missingness`'
+  - '`codebook`'
+  - '`codebook_survey_overview`'
+  - '`compute_reliabilities`'
+  - '`detect_scales`'
+  - '`ended`'
+  - '`expired`'
+  - '`knit_print.alpha`'
+  - '`knit_print.htest`'
+  - '`knit_print.multilevel`'
+  - '`load_data_and_render_codebook`'
+  - '`modified`'
+  - '`paste.knit_asis`'
+  - '`print.knit_asis`'
+  - '`rescue_attributes`'
+  - '`summary.labelled`'
+  - '`summary.labelled_spss`'
+  - '`treat_values_as_missing`'
+

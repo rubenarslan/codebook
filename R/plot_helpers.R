@@ -2,7 +2,7 @@ likert_from_items = function(items) {
   if (!methods::is(items, "data.frame") || ncol(items) < 1) {
     stop("The items argument has to be a data frame of the items of this subscale.")
   }
-  for (i in seq_along(1:ncol(items))) {
+  for (i in seq_len(ncol(items))) {
     if ( !is.null(attributes(items[[i]])$labels)) {
       labels = names(attributes(items[[i]])$labels)
       names(attributes(items[[i]])$labels) = stringr::str_wrap(labels, width = 15)
@@ -17,7 +17,7 @@ likert_from_items = function(items) {
     }
   }
 
-  likert::likert(data.frame(items, check.names = F))
+  likert::likert(data.frame(items, check.names = FALSE))
 }
 
 
