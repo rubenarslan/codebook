@@ -21,27 +21,29 @@ devtools::install_github("rubenarslan/codebook")
 ## How to use
 A simple markdown document resulting in a codebook might look like this:
 
-  ---
-  title: "Codebook"
-  output:
-    html_document:
-      toc: yes
-      toc_depth: 4
-      toc_float: yes
-      code_folding: 'hide'
-      self_contained: no
-  ---
-  
-  \```{r}
-  results = readRDS("results.rds")
-  knitr::opts_chunk$set(error = TRUE, echo = FALSE)
-  \```
-  
-  \```{r}
-  library(codebook)
-  codebook(results)
-  \```
-  
+```
+\---
+title: "Codebook"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 4
+    toc_float: yes
+    code_folding: 'hide'
+    self_contained: no
+\---
+
+\```{r}
+results = readRDS("results.rds")
+knitr::opts_chunk$set(error = TRUE, echo = FALSE)
+\```
+
+\```{r}
+library(codebook)
+codebook(results)
+\```
+```
+
 The resulting codebook will be an HTML file, but you can also choose to generate PDFs or Word files in RStudio.
 
 To generate a results file in the necessary format using the formr package, you can run something like this.
