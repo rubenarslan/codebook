@@ -11,8 +11,8 @@
 #' example("alpha", "psych")
 #' knitr::knit_print(a4)
 #'
-knit_print.alpha = function(x, indent = '#####', ...) {
-  asis_knit_child(system.file("_knit_print_psych.Rmd", package = 'codebook', mustWork = TRUE))
+knit_print.alpha <- function(x, indent = '#####', ...) {
+  asis_knit_child(require_file("_knit_print_psych.Rmd"))
 }
 
 #' Print a psych::multilevel.reliability object for knitr
@@ -28,7 +28,7 @@ knit_print.alpha = function(x, indent = '#####', ...) {
 #' example("mlr", "psych")
 #' knitr::knit_print(mg)
 #'
-knit_print.multilevel = function(x, indent = '#####', ...) {
+knit_print.multilevel <- function(x, indent = '#####', ...) {
   knitr::asis_output(paste0("\n\n\n```\n",
       paste0(utils::capture.output(psych::print.psych(x)), collapse = "\n"),
       "\n```\n\n\n"))
@@ -47,10 +47,10 @@ knit_print.multilevel = function(x, indent = '#####', ...) {
 #' @examples
 #' knitr::knit_print(cor.test(rnorm(100), rnorm(100)))
 #'
-knit_print.htest = function(x, indent = '#####', ...) {
+knit_print.htest <- function(x, indent = '#####', ...) {
   knitr::asis_output(paste0("\n\n\n```\n",
-                            paste0(utils::capture.output(print(x)), collapse = "\n"),
-                            "\n```\n\n\n"))
+    paste0(utils::capture.output(print(x)), collapse = "\n"),
+    "\n```\n\n\n"))
 }
 
 #' summary.labelled
@@ -64,7 +64,7 @@ knit_print.htest = function(x, indent = '#####', ...) {
 #' example("labelled", "haven")
 #' summary(x)
 #'
-summary.labelled = function(object, ...) {
+summary.labelled <- function(object, ...) {
   summary(haven::as_factor(object, levels = "both"), ...)
 }
 
@@ -79,6 +79,6 @@ summary.labelled = function(object, ...) {
 #' example("labelled", "haven")
 #' summary(x)
 #'
-summary.labelled_spss = function(object, ...) {
+summary.labelled_spss <- function(object, ...) {
   summary(haven::as_factor(object, levels = "both"), ...)
 }

@@ -5,7 +5,7 @@
 \title{knit_child as is}
 \usage{
 asis_knit_child(input = NULL, text = NULL, ..., quiet = TRUE,
-  options = NULL, envir = parent.frame(), use_strings = T)
+  options = NULL, envir = parent.frame(), use_strings = TRUE)
 }
 \arguments{
 \item{input}{if you specify a file path here, it will be read in before being passed to knitr (to avoid a working directory mess)}
@@ -43,11 +43,11 @@ Some caveats:
 \dontrun{
 # an example of a wrapper function that calls asis_knit_child with an argument
 # ensures distinct paths for cache and figures, so that these calls can be looped in parallel
-regression_summary = function(model) {
-   child_hash = digest::digest(model)
-   options = list(
-       fig.path = paste0(knitr::opts_chunk$get("fig.path"), child_hash, "-"),
-       cache.path = paste0(knitr::opts_chunk$get("cache.path"), child_hash, "-"))
+regression_summary <- function(model) {
+   hash <- digest::digest(model)
+   options <- list(
+       fig.path = paste0(knitr::opts_chunk$get("fig.path"), hash, "-"),
+       cache.path = paste0(knitr::opts_chunk$get("cache.path"), hash, "-"))
    asis_knit_child("_regression_summary.Rmd", options = options)
 }
 }

@@ -63,10 +63,9 @@ dist_plot
 
 `r indent`### Summary statistics {#`r scale_name`_summary}
 ```{r summary}
-if (haven::is.labelled(scale)) {
-  scale = haven::as_factor(scale, levels = 'both')
-}
-pander::pander(skimr:::skim_v(scale))
+scale_df <- data.frame(haven::zap_labels(scale))
+colnames(scale_df) = scale_name
+skimr::skim(scale_df)
 ```
 
 `r indent`### Items {#`r scale_name`_items}

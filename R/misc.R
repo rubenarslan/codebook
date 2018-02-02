@@ -22,9 +22,9 @@ require_package <- function(package) {
 #' @param variable which variable should be filled out, defaults to "ended"
 #' @export
 #' @examples
-#' survey = data.frame(ended = c("2016-05-28 10:11:00", NA, "2016-05-30 11:18:28"))
+#' survey <- data.frame(ended = c("2016-05-28 10:11:00", NA, "2016-05-30 11:18:28"))
 #' ended(survey = survey)
-ended = function(survey, variable = "ended") {
+ended <- function(survey, variable = "ended") {
   if (length(survey) > 0) {
     if (length(survey[, variable]) > 0) {
       sum(!is.na(survey[, variable]))
@@ -45,9 +45,9 @@ ended = function(survey, variable = "ended") {
 #' @param variable which variable should be filled out, defaults to "expired"
 #' @export
 #' @examples
-#' survey = data.frame(expired = c(NA, "2016-05-29 10:11:00", NA))
+#' survey <- data.frame(expired = c(NA, "2016-05-29 10:11:00", NA))
 #' expired(survey = survey)
-expired = function(survey, variable = "expired") {
+expired <- function(survey, variable = "expired") {
   ended(survey, variable)
 }
 
@@ -60,8 +60,8 @@ expired = function(survey, variable = "expired") {
 #' @param variable which variable should be filled out, defaults to "modified"
 #' @export
 #' @examples
-#' survey = data.frame(modified = c(NA, "2016-05-29 10:11:00", NA))
+#' survey <- data.frame(modified = c(NA, "2016-05-29 10:11:00", NA))
 #' modified(survey = survey)
-modified = function(survey, variable = "modified") {
+modified <- function(survey, variable = "modified") {
   ended(survey, variable)
 }

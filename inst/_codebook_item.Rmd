@@ -22,8 +22,10 @@ choices = item_attributes$labels
 show_missings = FALSE
 if (haven::is.labelled(item)) {
   missings = item[is.na(haven::zap_missing(item))]
-  show_missings = length(unique(haven::na_tag(missings))) > 1
-  item = haven::zap_missing(item)
+  if (is.numeric(item)) {
+    show_missings = length(unique(haven::na_tag(missings))) > 1
+    item = haven::zap_missing(item)
+  }
   if (length(attributes(item)$labels) == 0 && is.numeric(item)) {
     item = haven::zap_labels(item)
   }
@@ -40,7 +42,7 @@ if ( go_vertical ) {
 		choices = unique(item)
 		names(choices) = choices
 	}
-	new_height = 1 * length(non_missing_choices)
+	new_height = 2 + 1 * length(non_missing_choices)
 	new_height = ifelse(new_height > 20, 20, new_height)
 	new_height = ifelse(new_height < 1, 1, new_height)
 	knitr::opts_chunk$set(fig.height = new_height)
@@ -65,7 +67,9 @@ knitr::opts_chunk$set(fig.height = old_height)
 
 `r indent`### Summary statistics {#`r item_name`_summary}
 ```{r summary}
-pander::pander(skimr:::skim_v(item))
+item_df <- data.frame(haven::zap_labels(item))
+colnames(item_df) = item_name
+skimr::skim(item_df)
 ```
 
 `r ifelse(show_missings, paste0(indent, '### Missing value types {#', item_name, '_missings}'), '')`

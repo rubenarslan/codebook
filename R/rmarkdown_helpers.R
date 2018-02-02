@@ -25,43 +25,46 @@
 #' \dontrun{
 #' # an example of a wrapper function that calls asis_knit_child with an argument
 #' # ensures distinct paths for cache and figures, so that these calls can be looped in parallel
-#' regression_summary = function(model) {
-#'    child_hash = digest::digest(model)
-#'    options = list(
-#'        fig.path = paste0(knitr::opts_chunk$get("fig.path"), child_hash, "-"),
-#'        cache.path = paste0(knitr::opts_chunk$get("cache.path"), child_hash, "-"))
+#' regression_summary <- function(model) {
+#'    hash <- digest::digest(model)
+#'    options <- list(
+#'        fig.path = paste0(knitr::opts_chunk$get("fig.path"), hash, "-"),
+#'        cache.path = paste0(knitr::opts_chunk$get("cache.path"), hash, "-"))
 #'    asis_knit_child("_regression_summary.Rmd", options = options)
 #' }
 #' }
-asis_knit_child = function(input = NULL, text = NULL, ..., quiet = TRUE, options = NULL, envir = parent.frame(), use_strings = TRUE) {
+asis_knit_child <- function(input = NULL, text = NULL, ...,
+                            quiet = TRUE, options = NULL,
+                            envir = parent.frame(), use_strings = TRUE) {
   stopifnot( xor(is.null(text), is.null(input)))
   if (!is.null(input) && use_strings) {
-    text = paste0(readLines(input), collapse = "\n")
-    input = NULL
+    text <- paste0(readLines(input), collapse = "\n")
+    input <- NULL
   }
   if (knitr::opts_knit$get("child")) {
-    child = knitr::opts_knit$get("child")
+    child <- knitr::opts_knit$get("child")
     knitr::opts_knit$set(child = TRUE)
     on.exit(knitr::opts_knit$set(child = child))
   }
   if (is.list(options)) {
-    options$label = options$child = NULL
+    options$label <- options$child <- NULL
     if (length(options)) {
-      optc = knitr::opts_chunk$get(names(options), drop = FALSE)
+      optc <- knitr::opts_chunk$get(names(options), drop = FALSE)
       knitr::opts_chunk$set(options)
       on.exit({
         for (i in names(options)) if (identical(options[[i]],
-                                                knitr::opts_chunk$get(i))) knitr::opts_chunk$set(optc[i])
+           knitr::opts_chunk$get(i))) knitr::opts_chunk$set(optc[i])
       }, add = TRUE)
     }
   }
 
-  encode = knitr::opts_knit$get("encoding")
+  encode <- knitr::opts_knit$get("encoding")
   if (is.null(encode)) {
-    encode = getOption("encoding")
+    encode <- getOption("encoding")
   }
-  res = knitr::knit(input = input, text = text, ..., quiet = quiet, tangle = knitr::opts_knit$get("tangle"), envir = envir,
-             encoding = encode)
+  res <- knitr::knit(input = input, text = text, ...,
+            quiet = quiet, tangle = knitr::opts_knit$get("tangle"),
+            envir = envir, encoding = encode)
   knitr::asis_output(paste(c("", res), collapse = "\n"))
 }
 
@@ -79,7 +82,7 @@ asis_knit_child = function(input = NULL, text = NULL, ..., quiet = TRUE, options
 #' @export
 #' @examples
 #' paste.knit_asis("# Headline 1", "## Headline 2")
-paste.knit_asis = function(..., sep = "\n\n\n", collapse = "\n\n\n") {
+paste.knit_asis <- function(..., sep = "\n\n\n", collapse = "\n\n\n") {
   knitr::asis_output(paste(..., sep = sep, collapse = collapse))
 }
 
@@ -89,7 +92,7 @@ paste.knit_asis = function(..., sep = "\n\n\n", collapse = "\n\n\n") {
 #' @param ... ignored
 #'
 #' @export
-print.knit_asis = function(x, ...) {
+print.knit_asis <- function(x, ...) {
   cat(x, sep = '\n')
 }
 
@@ -106,8 +109,8 @@ print.knit_asis = function(x, ...) {
 #'
 #' @export
 
-load_data_and_render_codebook = function(file, text, ...) {
-  codebook_data = switch(tools::file_ext(file),
+load_data_and_render_codebook <- function(file, text, ...) {
+  codebook_data <- switch(tools::file_ext(file),
        "rds" = readRDS(file),
        "rdata" = load(file),
        "rda" = load(file),
@@ -122,7 +125,7 @@ load_data_and_render_codebook = function(file, text, ...) {
   )
   stopifnot(!is.null(codebook_data))
   file.remove(file)
-  fileName = rmarkdown::render(input = write_to_file(text,
+  fileName <- rmarkdown::render(input = write_to_file(text,
       name = "codebook", ext = ".Rmd"), ...)
   fileName
 }
@@ -133,9 +136,14 @@ write_to_file <- function(..., name = NULL, ext = ".Rmd") {
   if (is.null(name)) {
     filename <- paste0(tempfile(), ext)
   } else {
-    filename = paste0(name, ext)
+    filename <- paste0(name, ext)
   }
   mytext <- eval(...)
   write(mytext, filename)
   return(filename)
+}
+
+
+require_file <- function(file) {
+  system.file(file, package = 'codebook', mustWork = TRUE)
 }

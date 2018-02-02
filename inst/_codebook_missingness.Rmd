@@ -1,16 +1,19 @@
 ```{r setup,eval=TRUE,echo=FALSE}
+if (!exists("indent")) {
+	indent = '#' # ugly hack
+}
 if (exists("testing")) {
-	indent = '#' # ugly hack so _regression_summary can be "spun" (variables included via `r ` have to be available)
 	results = data.frame()
 	survey_repetition = 'single'
 	reliabilities = list()
+	md_pattern = data.frame()
 }
 ```
 
 
 `r indent`# Missingness report
 
-Among those who finished the survey. Only patterns more common than 1% of the number of rows are shown.
+Among those who finished the survey. Only variables that have missings are shown.
 
 ```{r missingness_all_setup}
 if (  exists("ended", results) &&
@@ -20,11 +23,5 @@ if (  exists("ended", results) &&
   finisher_results = results
   warning("Could not figure out who finished the surveys, because the variables expired and ended were missing.")
 }
-missingness = formr::missingness_patterns(finisher_results, min_freq = ceiling(0.01*nrow(results)))
+pander::pander(md_pattern)
 ```
-```{r missingness_all}
-if (length(missingness) > 0) {
-  pander::pander(missingness)
-}
-```
-

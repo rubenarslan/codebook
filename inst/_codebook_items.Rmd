@@ -1,0 +1,29 @@
+```{r setup,eval=TRUE,echo=FALSE}
+if (!exists("indent")) {
+	indent = '#' # ugly hack
+}
+if (exists("testing")) {
+	results = data.frame()
+}
+```
+
+```{r items, message=TRUE}
+if (requireNamespace("formr", quietly = TRUE)) {
+  items = formr::items(results)
+  if (length(items)) {
+    item_index = dplyr::select(as.data.frame(items), -.data$choice_list, -.data$index)
+    item_index = dplyr::mutate(item_index, name = paste0('<a href="#', .data$name, '">', .data$name, '</a>'))
+    DT::datatable(item_index, rownames = FALSE, filter = "top", extensions = 'Buttons', 
+    escape = setdiff(names(item_index), 'name'),
+    options = list(
+        dom = 'Bfrtip',
+        buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
+        pageLength = 200
+      ))
+  } else {
+    message("No items encoded in metadata.")
+  }
+} else {
+    message("formr package not installed.")
+}
+```

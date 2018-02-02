@@ -20,6 +20,6 @@ If you do plan to do that, you can pass the results of this operation to the cod
 \examples{
 if (requireNamespace("formr", quietly = TRUE)) {
    example("formr_post_process_results", package = 'formr')
-   reliabilities = compute_reliabilities(results)
+   reliabilities <-compute_reliabilities(results)
 }
 }

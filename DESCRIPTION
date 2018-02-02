@@ -30,7 +30,8 @@ Imports:
     DT,
     future,
     haven,
-    readr
+    readr,
+    mice
 Suggests:
   formr
 Encoding: UTF-8
