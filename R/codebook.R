@@ -160,7 +160,7 @@ codebook_missingness <- function(results, indent = "##") {
   )
   md_pattern <- mice::md.pattern(results)
   # only show vars that have missings at all
-  md_pattern <- md_pattern[, md_pattern[nrow(md_pattern), ] != 0]
+  md_pattern <- md_pattern[md_pattern[, ncol(md_pattern) > nrow(results)/100], md_pattern[nrow(md_pattern), ] != 0]
   asis_knit_child(system.file("_codebook_missingness.Rmd", package = 'codebook', mustWork = TRUE), options = options)
 }
 
