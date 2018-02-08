@@ -158,9 +158,7 @@ codebook_missingness <- function(results, indent = "##") {
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), "overview_")
   )
-  md_pattern <- mice::md.pattern(results)
-  # only show vars that have missings at all
-  md_pattern <- md_pattern[md_pattern[, ncol(md_pattern) > nrow(results)/100], md_pattern[nrow(md_pattern), ] != 0]
+  md_pattern = md_pattern(results)
   asis_knit_child(system.file("_codebook_missingness.Rmd", package = 'codebook', mustWork = TRUE), options = options)
 }
 

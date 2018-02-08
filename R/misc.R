@@ -12,6 +12,49 @@ require_package <- function(package) {
 }
 
 
+#' Missingness pattern
+#'
+#' Generate missingness patterns using mice, with options to reduce
+#' the complexity of the output.
+#'
+#' @param data the dataset
+#' @param only_vars_with_missings defaults to TRUE, omitting variables that have no missings
+#' @param min_freq mininum number of rows to have this missingness pattern
+#' @export
+#' @examples
+#' data("nhanes", package = "mice")
+#' md_pattern(nhanes)
+#' md_pattern(nhanes, only_vars_with_missings = FALSE, min_freq = 0.2)
+md_pattern <- function(data, only_vars_with_missings = TRUE, min_freq = 0.01) {
+  md_pattern <- mice::md.pattern(data)
+  n_miss = rownames(md_pattern)
+  colnames(md_pattern)[ncol(md_pattern)] = "var_miss"
+  rownames(md_pattern) = NULL
+  if (only_vars_with_missings) {
+    missing_by_var = md_pattern[nrow(md_pattern), ]
+    md_pattern = md_pattern[, missing_by_var > 0]
+  }
+  md_pattern = tibble::as.tibble(md_pattern)
+  md_pattern$n_miss = as.numeric(n_miss)
+  md_pattern$n_miss[nrow(md_pattern)] = md_pattern$var_miss[nrow(md_pattern)]
+  stopifnot(!exists("description", md_pattern))
+  md_pattern$description = paste0("Missings in ", md_pattern$var_miss, " variables")
+  md_pattern$description[nrow(md_pattern)] = "Missings per variable"
+  md_pattern = md_pattern[, c(ncol(md_pattern), 1:(ncol(md_pattern) - 1))]
+
+  other = md_pattern[ md_pattern$n_miss / nrow(data) <= min_freq, -1]
+  other_sums = dplyr::summarise_all(other, dplyr::funs(sum))
+  md_pattern = md_pattern[ md_pattern$n_miss / nrow(data) > min_freq, ]
+  md_pattern = md_pattern[order(md_pattern$n_miss, decreasing = TRUE), ]
+  if (other_sums$n_miss > 0) {
+    other_sums$description = paste0(nrow(other), " other, less frequent patterns")
+    md_pattern = dplyr::bind_rows(md_pattern, other_sums)
+  }
+
+  md_pattern
+}
+
+
 
 #' How many surveys were ended?
 #'
