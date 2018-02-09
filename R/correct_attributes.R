@@ -1,11 +1,13 @@
 #' treat values as missing
 #'
 #' SPSS users frequently label their missing values, but don't set them as missing.
-#' This function will do that for negative values and for the values 99 and 999 (only if they're 5*MAD away from the median).
-#'
+#' This function will rectify that for negative values and for the values 99 and 999 (only if they're 5*MAD away from the median).
+#' Using different settings, you can also easily tag other missings.
 #'
 #' @param data the data frame with labelled missings
 #' @param only_labelled_missings don't set values to missing if there's no label for them
+#' @param negative_values_are_missing by default we label negative values as missing
+#' @param ninety_nine_problems SPSS users often store values as 99/999, should we do this for values with 5*MAD of the median
 #' @param missing also set these values to missing (or enforce for 99/999 within 5*MAD)
 #' @param non_missing don't set these values to missing
 #' @param vars only edit these variables
@@ -14,6 +16,8 @@
 #' @export
 #'
 treat_values_as_missing <- function(data, only_labelled_missings = TRUE,
+                                    negative_values_are_missing = TRUE,
+                                    ninety_nine_problems = TRUE,
                                     missing = c(), non_missing = c(),
                                     vars = names(data),
                                     use_labelled_spss = FALSE) {
@@ -21,17 +25,29 @@ treat_values_as_missing <- function(data, only_labelled_missings = TRUE,
     var <- vars[i]
     if (is.numeric(data[[ var ]])) {
 
-      potential_missings <- unique(data[[var]][data[[var]] < 0]) # negative values
-      if ((stats::median(data[[var]], na.rm = TRUE) +
-           stats::mad(data[[var]], na.rm = TRUE) * 5) < 99) {
-        potential_missings <- c(potential_missings, 99)
+      # negative values
+      potential_missings <- c()
+      if (negative_values_are_missing) {
+        potential_missings <- unique(data[[var]][data[[var]] < 0])
       }
-      if ((stats::median(data[[var]], na.rm = TRUE) +
-           stats::mad(data[[var]], na.rm = TRUE) * 5) < 999) {
-        potential_missings <- c(potential_missings, 999)
+
+      # classic SPSS missings only if far out of real data range
+      # can be turned off using non_missing or ninety_nine_problems
+      if (ninety_nine_problems) {
+        if ((stats::median(data[[var]], na.rm = TRUE) +
+             stats::mad(data[[var]], na.rm = TRUE) * 5) < 99) {
+          potential_missings <- c(potential_missings, 99)
+        }
+        if ((stats::median(data[[var]], na.rm = TRUE) +
+             stats::mad(data[[var]], na.rm = TRUE) * 5) < 999) {
+          potential_missings <- c(potential_missings, 999)
+        }
       }
-      potential_missings <- union(setdiff(potential_missings, non_missing), missing)
-      if (haven::is.labelled(data[[var]]) && length(potential_missings) > 0) {
+      potential_missings <- union(
+        setdiff(potential_missings, non_missing),
+        missing)
+      if ((!only_labelled_missings || haven::is.labelled(data[[var]])) &&
+          length(potential_missings) > 0) {
         if (only_labelled_missings) {
           potential_missings <- potential_missings[
             potential_missings %in% attributes(data[[var]])$labels]
@@ -43,15 +59,24 @@ treat_values_as_missing <- function(data, only_labelled_missings = TRUE,
         if (!use_labelled_spss) {
           with_tagged_na <- data[[var]]
           labels <- attributes(data[[var]])$labels
+          free_na_tags <- setdiff( letters, haven::na_tag(with_tagged_na))
+
           for (i in seq_along(potential_missings)) {
             miss <- potential_missings[i]
 
-            if (!all(potential_missings %in% letters)) new_miss <- letters[i]
-            else new_miss <- potential_missings[i]
+            if (!all(potential_missings %in% free_na_tags)) {
+              new_miss <- free_na_tags[i]
+            } else {
+              new_miss <- potential_missings[i]
+            }
             with_tagged_na[with_tagged_na == miss] <- haven::tagged_na(new_miss)
             labels[labels == miss] <- haven::tagged_na(new_miss)
           }
-          data[[var]] <- haven::labelled(with_tagged_na, labels = labels)
+          if (haven::is.labelled(data[[var]])) {
+            data[[var]] <- haven::labelled(with_tagged_na, labels = labels)
+          } else {
+            data[[var]] <- with_tagged_na
+          }
         } else {
           data[[var]] <- haven::labelled_spss(data[[var]],
             attributes(data[[var]])$labels, na_values = potential_missings)
@@ -106,6 +131,7 @@ rescue_attributes <- function(df_no_attributes, df_with_attributes) {
 #'
 #'
 #' @param data the data frame
+#' @param quiet defaults to false. Suppresses messages about found items.
 #'
 #' @export
 #'
@@ -115,7 +141,7 @@ rescue_attributes <- function(df_no_attributes, df_with_attributes) {
 #' bfi$bfi_e <- rowMeans(bfi[, c("bfi_e1", "bfi_e2R", "bfi_e3")])
 #' bfi <- detect_scales(bfi)
 #' bfi$bfi_e
-detect_scales <- function(data) {
+detect_scales <- function(data, quiet = FALSE) {
   item_names <- names(data)
   # fit the pattern
   scale_stubs <- stringr::str_match(item_names, "(?i)^([a-z0-9_]+?)_?[0-9]+R?$")
@@ -135,10 +161,58 @@ detect_scales <- function(data) {
       attributes(data[[ scale ]])$scale_item_names <- items
       attributes(data[[ scale ]])$label <- paste("aggregate of",
                                                  length(items), scale, "items")
-      message(paste(length(items), scale, "items found and connected to scale"))
+      if (!quiet) {
+        message(paste(length(items), scale, "items connected to scale"))
+      }
     } else {
       warning(scale, " items found, but no aggregate")
     }
   }
   data
 }
+
+
+#' zap attributes
+#'
+#' Modelled on havens zap_labels, but more flexible.
+#' Can be used to zap all attributes for all variables in a
+#' data frame, or for some variables, or some attributes.
+#'
+#'
+#' @param x the data frame or variable
+#' @param attributes defaults to NULL. If character, only those attributes are zapped
+#'
+#' @export
+#'
+#' @examples
+#' bfi <- data.frame(matrix(data = rnorm(300), ncol = 3))
+#' names(bfi) <- c("bfi_e1", "bfi_e2R", "bfi_e3")
+#' attributes(bfi$bfi_e1)$label <- "I am outgoing."
+#' attributes(bfi$bfi_e2R)$label <- "I prefer books to people."
+#' attributes(bfi$bfi_e3)$label <- "I love to party."
+#' bfi$bfi_e <- rowMeans(bfi[, c("bfi_e1", "bfi_e2R", "bfi_e3")])
+#' bfi <- detect_scales(bfi, quiet = TRUE) # create attributes
+#' str(zap_attributes(bfi, "label"))
+#' zap_attributes(bfi$bfi_e)
+zap_attributes <- function(x, attributes = NULL) {
+  stopifnot(xor(is.null(attributes), is.character(attributes)))
+  UseMethod("zap_attributes")
+}
+
+
+zap_attributes.default <- function(x, attributes = NULL) {
+  if (is.null(attributes)) {
+    attributes(x) <- NULL
+  } else {
+    for (i in seq_along(attributes)) {
+      attributes(x)[ attributes[i] ] <- NULL
+    }
+  }
+  x
+}
+
+zap_attributes.data.frame <- function(x, attributes = NULL) {
+  x[] <- lapply(x, zap_attributes, attributes)
+  x
+}
+

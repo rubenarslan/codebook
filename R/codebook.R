@@ -13,7 +13,9 @@
 #' @export
 #' @examples
 #' # see vignette
-codebook <- function(results, reliabilities = NULL, survey_repetition = c('auto', 'single', 'repeated_once', 'repeated_many'), missingness_report = TRUE, indent = '#') {
+codebook <- function(results, reliabilities = NULL,
+    survey_repetition = c('auto', 'single', 'repeated_once', 'repeated_many'),
+    missingness_report = TRUE, indent = '#') {
   # todo: factor out the time stuff
   # todo: factor out the repetition detection stuff
   survey_repetition <- match.arg(survey_repetition)
@@ -22,15 +24,21 @@ codebook <- function(results, reliabilities = NULL, survey_repetition = c('auto'
       exists("created", results) &&
       exists("ended", results))) {
       survey_repetition <- 'single'
-      warning("The variables session, created, ended have to be defined for automatic survey repetition detection to work. Set to no repetition by default.")
+      warning("The variables session, created, ended have to be defined for ",
+              "automatic survey repetition detection to work. Set to no ",
+              "repetition by default.")
     } else {
       users <- dplyr::n_distinct(results$session)
       rows_per_user <- nrow(results)/users
 
-      if (sum(duplicated(dplyr::select(results, .data$session, .data$created))) > 0) {
-        stop("There seem to be duplicated rows in this survey (duplicate session-created variables)")
+      dupes = sum(duplicated(
+        dplyr::select(results, .data$session, .data$created)))
+      if (dupes > 0) {
+        stop("There seem to be ", dupes, " duplicated rows in this survey ",
+             "(duplicate session-created combinations)")
       }
-      rows_by_user <- dplyr::count(dplyr::filter(results, !is.na(.data$ended)), .data$session)$n
+      rows_by_user <- dplyr::count(dplyr::filter(results, !is.na(.data$ended)),
+                                   .data$session)$n
       survey_repetition <- ifelse( rows_per_user <= 1,
                                   "single",
                                   ifelse(rows_by_user %in% 1:2,
@@ -48,8 +56,10 @@ codebook <- function(results, reliabilities = NULL, survey_repetition = c('auto'
   options(knitr.duplicate.label = 'allow')
   on.exit(options(knitr.duplicate.label = old_opt))
   options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "cb_", df_name, "_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "cb_", df_name, "_")
+    fig.path =
+      paste0(knitr::opts_chunk$get("fig.path"), "cb_", df_name, "_"),
+    cache.path =
+      paste0(knitr::opts_chunk$get("cache.path"), "cb_", df_name, "_")
   )
 
   survey_overview <- ''
@@ -58,7 +68,8 @@ codebook <- function(results, reliabilities = NULL, survey_repetition = c('auto'
         exists("ended", results) &&
         exists("expired", results) &&
         exists("modified", results))) {
-    warning("The variables session, created, ended, expired, modified have to be defined for automatic survey duration calculations to work.")
+    warning("The variables session, created, ended, expired, modified have to ",
+            "be defined for automatic survey duration calculations to work.")
   } else {
     survey_overview <- codebook_survey_overview(results, survey_repetition)
   }
@@ -71,22 +82,27 @@ codebook <- function(results, reliabilities = NULL, survey_repetition = c('auto'
     scale <- results[[ var ]]
     scale_info <- attributes(scale)
     if ( !is.null(scale_info) && exists("scale_item_names", scale_info)) {
-      items_contained_in_scales <- c(items_contained_in_scales, scale_info$scale_item_names, var)
+      items_contained_in_scales <- c(items_contained_in_scales,
+                                     scale_info$scale_item_names, var)
+      items = dplyr::select(results,
+                  rlang::UQS(rlang::quos(scale_info$scale_item_names)))
       scales_items[var] <- codebook_component_scale(
         scale = scale, scale_name = var,
-        items = dplyr::select(results, rlang::UQS(rlang::quos(scale_info$scale_item_names))),
+        items = items,
         reliabilities = reliabilities[[var]], indent = indent)
     }
   }
 
-  dont_show_these <- c(items_contained_in_scales, c("session", "created", "modified", "expired", "ended"))
+  dont_show_these <- c(items_contained_in_scales,
+                       c("session", "created", "modified", "expired", "ended"))
   for (i in seq_along(vars)) {
     var <- vars[i]
     item <- results[[ var ]]
     if (var %in% dont_show_these) {
       next # don't do scales again
     } else {
-      scales_items[var] <- codebook_component_single_item( item = item, item_name = var, indent = indent )
+      scales_items[var] <- codebook_component_single_item( item = item,
+                              item_name = var, indent = indent )
     }
   }
 
@@ -98,7 +114,7 @@ codebook <- function(results, reliabilities = NULL, survey_repetition = c('auto'
 
   items <- codebook_items(results, indent = indent)
 
-  asis_knit_child(system.file("_codebook.Rmd", package = 'codebook', mustWork = TRUE), options = options)
+  asis_knit_child(require_file("_codebook.Rmd"), options = options)
 }
 
 
@@ -110,7 +126,8 @@ codebook <- function(results, reliabilities = NULL, survey_repetition = c('auto'
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
-codebook_survey_overview <- function(results, survey_repetition = "single", indent = "##") {
+codebook_survey_overview <- function(results, survey_repetition = "single",
+                                     indent = "##") {
   stopifnot(exists("session", results))
   stopifnot(exists("created", results))
   stopifnot(exists("modified", results))
@@ -120,11 +137,13 @@ codebook_survey_overview <- function(results, survey_repetition = "single", inde
   users <- dplyr::n_distinct(results$session)
   finished_users <- dplyr::n_distinct(results[!is.na(results$ended),]$session)
   rows_per_user <- nrow(results)/users
-  rows_by_user <- dplyr::count(dplyr::filter(results, !is.na(.data$ended)), .data$session)$n
+  rows_by_user <- dplyr::count(dplyr::filter(results, !is.na(.data$ended)),
+                               .data$session)$n
 
   duration <- dplyr::mutate(dplyr::filter(results, !is.na(ended)),
-                           duration = as.double(.data$ended - .data$created, unit = "mins"))
-  upper_limit <- stats::median(duration$duration) + 4*stats::mad(duration$duration)
+              duration = as.double(.data$ended - .data$created, unit = "mins"))
+  upper_limit <- stats::median(duration$duration) +
+                          4*stats::mad(duration$duration)
   high_vals <- sum(upper_limit < duration$duration)
   if (high_vals == 0) {
     upper_limit <- max(duration$duration)
@@ -142,7 +161,8 @@ codebook_survey_overview <- function(results, survey_repetition = "single", inde
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), "overview_")
   )
-  asis_knit_child(system.file("_codebook_survey_overview.Rmd", package = 'codebook', mustWork = TRUE), options = options)
+  asis_knit_child(require_file("_codebook_survey_overview.Rmd"),
+                  options = options)
 }
 
 
@@ -158,8 +178,8 @@ codebook_missingness <- function(results, indent = "##") {
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), "overview_")
   )
-  md_pattern = md_pattern(results)
-  asis_knit_child(system.file("_codebook_missingness.Rmd", package = 'codebook', mustWork = TRUE), options = options)
+  md_pattern <- md_pattern(results)
+  asis_knit_child(require_file("_codebook_missingness.Rmd"), options = options)
 }
 
 
@@ -177,7 +197,7 @@ codebook_items <- function(results, indent = "##") {
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), "overview_")
   )
-  asis_knit_child(system.file("_codebook_items.Rmd", package = 'codebook', mustWork = TRUE), options = options)
+  asis_knit_child(require_file("_codebook_items.Rmd"), options = options)
 }
 
 #' codebook component for scales
@@ -190,7 +210,8 @@ codebook_items <- function(results, indent = "##") {
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
-codebook_component_scale <- function(scale, scale_name, items, reliabilities, indent = '##') {
+codebook_component_scale <- function(scale, scale_name, items, reliabilities,
+                                     indent = '##') {
   stopifnot( exists("scale_item_names", attributes(scale)))
   stopifnot( attributes(scale)$scale_item_names %in% names(items) )
 
@@ -198,7 +219,7 @@ codebook_component_scale <- function(scale, scale_name, items, reliabilities, in
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), scale_name, "_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), scale_name, "_")
   )
-  asis_knit_child(system.file("_codebook_scale.Rmd", package = 'codebook', mustWork = TRUE), options = options)
+  asis_knit_child(require_file("_codebook_scale.Rmd"), options = options)
 }
 
 #' codebook component for single items
@@ -214,7 +235,7 @@ codebook_component_single_item <- function(item, item_name, indent = '##') {
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), item_name, "_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), item_name, "_")
   )
-  asis_knit_child(system.file("_codebook_item.Rmd", package = 'codebook', mustWork = TRUE), options = options)
+  asis_knit_child(require_file("_codebook_item.Rmd"), options = options)
 }
 
 

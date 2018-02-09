@@ -4,13 +4,19 @@
 \alias{treat_values_as_missing}
 \title{treat values as missing}
 \usage{
-treat_values_as_missing(data, only_labelled_missings = TRUE, missing = c(),
-  non_missing = c(), vars = names(data), use_labelled_spss = FALSE)
+treat_values_as_missing(data, only_labelled_missings = TRUE,
+  negative_values_are_missing = TRUE, ninety_nine_problems = TRUE,
+  missing = c(), non_missing = c(), vars = names(data),
+  use_labelled_spss = FALSE)
 }
 \arguments{
 \item{data}{the data frame with labelled missings}
 
 \item{only_labelled_missings}{don't set values to missing if there's no label for them}
+
+\item{negative_values_are_missing}{by default we label negative values as missing}
+
+\item{ninety_nine_problems}{SPSS users often store values as 99/999, should we do this for values with 5*MAD of the median}
 
 \item{missing}{also set these values to missing (or enforce for 99/999 within 5*MAD)}
 
@@ -22,5 +28,6 @@ treat_values_as_missing(data, only_labelled_missings = TRUE, missing = c(),
 }
 \description{
 SPSS users frequently label their missing values, but don't set them as missing.
-This function will do that for negative values and for the values 99 and 999 (only if they're 5*MAD away from the median).
+This function will rectify that for negative values and for the values 99 and 999 (only if they're 5*MAD away from the median).
+Using different settings, you can also easily tag other missings.
 }

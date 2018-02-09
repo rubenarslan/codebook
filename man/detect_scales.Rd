@@ -4,10 +4,12 @@
 \alias{detect_scales}
 \title{detect_scales}
 \usage{
-detect_scales(data)
+detect_scales(data, quiet = FALSE)
 }
 \arguments{
 \item{data}{the data frame}
+
+\item{quiet}{defaults to false. Suppresses messages about found items.}
 }
 \description{
 Did you create aggregates of items like this

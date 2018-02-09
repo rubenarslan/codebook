@@ -23,7 +23,7 @@ compute_reliabilities <-function(results, survey_repetition = "single") {
     if (!is.null(scale_info) && exists("scale_item_names", scale_info)) {
       reliabilities_futures[[ var ]] <- future::future(
         tryCatch({
-          items = dplyr::select(results, .data$session, .data$created,
+          items <- dplyr::select(results, .data$session, .data$created,
               rlang::UQ(rlang::quo(var)),
               rlang::UQS(rlang::quos(scale_info$scale_item_names)))
           compute_appropriate_reliability(var, scale_info,
