@@ -199,7 +199,7 @@ zap_attributes <- function(x, attributes = NULL) {
   UseMethod("zap_attributes")
 }
 
-
+#' @export
 zap_attributes.default <- function(x, attributes = NULL) {
   if (is.null(attributes)) {
     attributes(x) <- NULL
@@ -211,6 +211,7 @@ zap_attributes.default <- function(x, attributes = NULL) {
   x
 }
 
+#' @export
 zap_attributes.data.frame <- function(x, attributes = NULL) {
   x[] <- lapply(x, zap_attributes, attributes)
   x

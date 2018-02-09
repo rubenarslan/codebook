@@ -7,3 +7,4 @@ tests
 figure
 ^docs$
 ^_pkgdown\.yml$
+.travis.yml

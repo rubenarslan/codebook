@@ -3,6 +3,8 @@
 S3method(print,knit_asis)
 S3method(summary,labelled)
 S3method(summary,labelled_spss)
+S3method(zap_attributes,data.frame)
+S3method(zap_attributes,default)
 export(asis_knit_child)
 export(codebook)
 export(codebook_component_scale)
