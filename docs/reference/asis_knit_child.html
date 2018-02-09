@@ -92,7 +92,7 @@
     
 
     <pre class="usage"><span class='fu'>asis_knit_child</span>(<span class='kw'>input</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>text</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>use_strings</span> <span class='kw'>=</span> <span class='no'>T</span>)</pre>
+  <span class='kw'>options</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>envir</span> <span class='kw'>=</span> <span class='fu'>parent.frame</span>(), <span class='kw'>use_strings</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -140,11 +140,11 @@ However, you may also want to use knit_children inside functions to e.g. summari
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='co'># an example of a wrapper function that calls asis_knit_child with an argument</span>
 <span class='co'># ensures distinct paths for cache and figures, so that these calls can be looped in parallel</span>
-<span class='no'>regression_summary</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>model</span>) {
-   <span class='no'>child_hash</span> <span class='kw'>=</span> <span class='kw pkg'>digest</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/digest/topics/digest'>digest</a></span>(<span class='no'>model</span>)
-   <span class='no'>options</span> <span class='kw'>=</span> <span class='fu'>list</span>(
-       <span class='kw'>fig.path</span> <span class='kw'>=</span> <span class='fu'>paste0</span>(<span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/knitr/topics/opts_chunk'>opts_chunk</a></span>$<span class='fu'>get</span>(<span class='st'>"fig.path"</span>), <span class='no'>child_hash</span>, <span class='st'>"-"</span>),
-       <span class='kw'>cache.path</span> <span class='kw'>=</span> <span class='fu'>paste0</span>(<span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/knitr/topics/opts_chunk'>opts_chunk</a></span>$<span class='fu'>get</span>(<span class='st'>"cache.path"</span>), <span class='no'>child_hash</span>, <span class='st'>"-"</span>))
+<span class='no'>regression_summary</span> <span class='kw'>&lt;-</span> <span class='kw'>function</span>(<span class='no'>model</span>) {
+   <span class='no'>hash</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>digest</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/digest/topics/digest'>digest</a></span>(<span class='no'>model</span>)
+   <span class='no'>options</span> <span class='kw'>&lt;-</span> <span class='fu'>list</span>(
+       <span class='kw'>fig.path</span> <span class='kw'>=</span> <span class='fu'>paste0</span>(<span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/knitr/topics/opts_chunk'>opts_chunk</a></span>$<span class='fu'>get</span>(<span class='st'>"fig.path"</span>), <span class='no'>hash</span>, <span class='st'>"-"</span>),
+       <span class='kw'>cache.path</span> <span class='kw'>=</span> <span class='fu'>paste0</span>(<span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/knitr/topics/opts_chunk'>opts_chunk</a></span>$<span class='fu'>get</span>(<span class='st'>"cache.path"</span>), <span class='no'>hash</span>, <span class='st'>"-"</span>))
    <span class='fu'>asis_knit_child</span>(<span class='st'>"_regression_summary.Rmd"</span>, <span class='kw'>options</span> <span class='kw'>=</span> <span class='no'>options</span>)
 }
 <span class='co'># }</span></pre>

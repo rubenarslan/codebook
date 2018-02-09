@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>treat values as missing — treat_values_as_missing • codebook</title>
+<title>Missingness pattern — md_pattern • codebook</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,64 +80,59 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>treat values as missing</h1>
+    <h1>Missingness pattern</h1>
     </div>
 
     
-    <p>SPSS users frequently label their missing values, but don't set them as missing.
-This function will rectify that for negative values and for the values 99 and 999 (only if they're 5*MAD away from the median).
-Using different settings, you can also easily tag other missings.</p>
+    <p>Generate missingness patterns using mice, with options to reduce
+the complexity of the output.</p>
     
 
-    <pre class="usage"><span class='fu'>treat_values_as_missing</span>(<span class='no'>data</span>, <span class='kw'>only_labelled_missings</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>negative_values_are_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ninety_nine_problems</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>missing</span> <span class='kw'>=</span> <span class='fu'>c</span>(), <span class='kw'>non_missing</span> <span class='kw'>=</span> <span class='fu'>c</span>(), <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'>names</span>(<span class='no'>data</span>),
-  <span class='kw'>use_labelled_spss</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>md_pattern</span>(<span class='no'>data</span>, <span class='kw'>only_vars_with_missings</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>min_freq</span> <span class='kw'>=</span> <span class='fl'>0.01</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>data</th>
-      <td><p>the data frame with labelled missings</p></td>
+      <td><p>the dataset</p></td>
     </tr>
     <tr>
-      <th>only_labelled_missings</th>
-      <td><p>don't set values to missing if there's no label for them</p></td>
+      <th>only_vars_with_missings</th>
+      <td><p>defaults to TRUE, omitting variables that have no missings</p></td>
     </tr>
     <tr>
-      <th>negative_values_are_missing</th>
-      <td><p>by default we label negative values as missing</p></td>
-    </tr>
-    <tr>
-      <th>ninety_nine_problems</th>
-      <td><p>SPSS users often store values as 99/999, should we do this for values with 5*MAD of the median</p></td>
-    </tr>
-    <tr>
-      <th>missing</th>
-      <td><p>also set these values to missing (or enforce for 99/999 within 5*MAD)</p></td>
-    </tr>
-    <tr>
-      <th>non_missing</th>
-      <td><p>don't set these values to missing</p></td>
-    </tr>
-    <tr>
-      <th>vars</th>
-      <td><p>only edit these variables</p></td>
-    </tr>
-    <tr>
-      <th>use_labelled_spss</th>
-      <td><p>the labelled_spss class has a few drawbacks. Since R can't store missings like -1 and 99, we're replacing them with letters unless this option is enabled. If you prefer to keep your -1 etc, turn this on.</p></td>
+      <th>min_freq</th>
+      <td><p>mininum number of rows to have this missingness pattern</p></td>
     </tr>
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='st'>"nhanes"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"mice"</span>)
+<span class='fu'>md_pattern</span>(<span class='no'>nhanes</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 6
+#&gt;   description               hyp   bmi   chl var_miss n_miss
+#&gt;   &lt;chr&gt;                   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;  &lt;dbl&gt;
+#&gt; 1 Missings per variable       8     9    10       27    27.
+#&gt; 2 Missings in 0 variables     1     1     1        0    13.
+#&gt; 3 Missings in 3 variables     0     0     0        3     7.
+#&gt; 4 Missings in 1 variables     1     1     0        1     3.
+#&gt; 5 Missings in 1 variables     1     0     1        1     1.
+#&gt; 6 Missings in 2 variables     0     0     1        2     1.</div><div class='input'><span class='fu'>md_pattern</span>(<span class='no'>nhanes</span>, <span class='kw'>only_vars_with_missings</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>min_freq</span> <span class='kw'>=</span> <span class='fl'>0.2</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 7
+#&gt;   description                       age   hyp   bmi   chl var_miss n_miss
+#&gt;   &lt;chr&gt;                           &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;  &lt;dbl&gt;
+#&gt; 1 Missings per variable               0     8     9    10       27    27.
+#&gt; 2 Missings in 0 variables             1     1     1     1        0    13.
+#&gt; 3 Missings in 3 variables             1     0     0     0        3     7.
+#&gt; 4 3 other, less frequent patterns     3     2     1     2        4     5.</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

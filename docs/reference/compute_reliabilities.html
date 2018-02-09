@@ -109,70 +109,177 @@ If you do plan to do that, you can pass the results of this operation to the cod
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'>requireNamespace</span>(<span class='st'>"formr"</span>, <span class='kw'>quietly</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)) {
    <span class='fu'>example</span>(<span class='st'>"formr_post_process_results"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'formr'</span>)
-   <span class='no'>reliabilities</span> <span class='kw'>=</span> <span class='fu'>compute_reliabilities</span>(<span class='no'>results</span>)
-}</div><div class='output co'>#&gt; 
+   <span class='no'>reliabilities</span> <span class='kw'>&lt;-</span><span class='fu'>compute_reliabilities</span>(<span class='no'>results</span>)
+}</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘formr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:codebook’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    asis_knit_child, expired, paste.knit_asis</span></div><div class='output co'>#&gt; 
 #&gt; frm___&gt; results = jsonlite::fromJSON(txt = 
-#&gt; frm___+ 	system.file('extdata/gods_example_results.json', package = 'formr', mustWork = TRUE))
+#&gt; frm___+ 	system.file('extdata/BFI_post.json', package = 'formr', mustWork = TRUE))
 #&gt; 
 #&gt; frm___&gt; items = formr_items(path = 
-#&gt; frm___+ 	system.file('extdata/gods_example_items.json', package = 'formr', mustWork = TRUE))
+#&gt; frm___+ 	system.file('extdata/BFI_post_items.json', package = 'formr', mustWork = TRUE))
 #&gt; 
-#&gt; frm___&gt; results = formr_post_process_results(items, results, 
-#&gt; frm___+ compute_alphas = TRUE, plot_likert = TRUE)</div><div class='img'><img src='compute_reliabilities-3.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; 
-#&gt; Reliability analysis  religiousness  
+#&gt; frm___&gt; item_displays = jsonlite::fromJSON(
+#&gt; frm___+ 	system.file('extdata/BFI_post_itemdisplay.json', package = 'formr', mustWork = TRUE))
+#&gt; 
+#&gt; frm___&gt; results = formr_post_process_results(items, results, item_displays = item_displays,
+#&gt; frm___+ compute_alphas = TRUE, plot_likert = TRUE)</div><div class='output co'>#&gt; <span class='warning'>Warning: There were 2 rows with missings in BFIK_agree</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Some items were negatively correlated with the total scale and probably </span>
+#&gt; <span class='warning'>should be reversed.  </span>
+#&gt; <span class='warning'>To do this, run the function again with the 'check.keys=TRUE' option</span></div><div class='img'><img src='compute_reliabilities-1.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; Some items ( BFIK_agree_4 ) were negatively correlated with the total scale and 
+#&gt; probably should be reversed.  
+#&gt; To do this, run the function again with the 'check.keys=TRUE' option
+#&gt; Reliability analysis  BFIK_agree  
+#&gt; Call: psych::alpha(x = results[, scale_item_names], title = save_scale, 
+#&gt;     check.keys = FALSE)
+#&gt; 
+#&gt;   raw_alpha std.alpha G6(smc) average_r   S/N  ase mean   sd
+#&gt;       -0.3      -0.3    0.39    -0.061 -0.23 0.31  3.2 0.53
+#&gt; 
+#&gt;  lower alpha upper     95% confidence boundaries
+#&gt; -0.91 -0.3 0.32 
+#&gt; 
+#&gt;  Reliability if an item is dropped:
+#&gt;               raw_alpha std.alpha G6(smc) average_r   S/N alpha se
+#&gt; BFIK_agree_4       0.70      0.71    0.63      0.44  2.40    0.089
+#&gt; BFIK_agree_1R     -0.78     -0.91    0.21     -0.19 -0.48    0.508
+#&gt; BFIK_agree_3R     -1.00     -1.00   -0.17     -0.20 -0.50    0.607
+#&gt; BFIK_agree_2      -2.64     -2.21   -0.18     -0.30 -0.69    1.037
+#&gt; 
+#&gt;  Item statistics 
+#&gt;                n raw.r std.r r.cor r.drop mean   sd
+#&gt; BFIK_agree_4  28 -0.37 -0.39 -0.92  -0.71  3.1 1.18
+#&gt; BFIK_agree_1R 28  0.59  0.66  0.51   0.18  3.0 0.94
+#&gt; BFIK_agree_3R 28  0.71  0.68  0.79   0.14  3.0 1.29
+#&gt; BFIK_agree_2  28  0.87  0.85  0.75   0.50  3.5 1.26
+#&gt; 
+#&gt; Non missing response frequency for each item
+#&gt;                  1    2    3    4    5 miss
+#&gt; BFIK_agree_4  0.11 0.25 0.18 0.39 0.07 0.07
+#&gt; BFIK_agree_1R 0.00 0.39 0.25 0.32 0.04 0.07
+#&gt; BFIK_agree_3R 0.11 0.32 0.14 0.29 0.14 0.07
+#&gt; BFIK_agree_2  0.07 0.18 0.18 0.32 0.25 0.07</div><div class='output co'>#&gt; <span class='warning'>Warning: There were 2 rows with missings in BFIK_open</span></div><div class='img'><img src='compute_reliabilities-2.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; 
+#&gt; Reliability analysis  BFIK_open  
+#&gt; Call: psych::alpha(x = results[, scale_item_names], title = save_scale, 
+#&gt;     check.keys = FALSE)
+#&gt; 
+#&gt;   raw_alpha std.alpha G6(smc) average_r S/N  ase mean   sd
+#&gt;       0.53      0.51    0.54      0.21 1.1 0.14  4.3 0.56
+#&gt; 
+#&gt;  lower alpha upper     95% confidence boundaries
+#&gt; 0.26 0.53 0.8 
+#&gt; 
+#&gt;  Reliability if an item is dropped:
+#&gt;             raw_alpha std.alpha G6(smc) average_r  S/N alpha se
+#&gt; BFIK_open_2      0.52      0.50    0.53     0.251 1.01     0.15
+#&gt; BFIK_open_1      0.58      0.56    0.51     0.297 1.27     0.13
+#&gt; BFIK_open_4      0.41      0.41    0.32     0.188 0.70     0.18
+#&gt; BFIK_open_3      0.22      0.24    0.20     0.097 0.32     0.25
+#&gt; 
+#&gt;  Item statistics 
+#&gt;              n raw.r std.r r.cor r.drop mean   sd
+#&gt; BFIK_open_2 28  0.53  0.59  0.30   0.23  4.2 0.74
+#&gt; BFIK_open_1 28  0.51  0.53  0.28   0.16  4.4 0.83
+#&gt; BFIK_open_4 28  0.70  0.66  0.57   0.36  4.2 0.96
+#&gt; BFIK_open_3 28  0.80  0.77  0.73   0.54  4.2 0.96
+#&gt; 
+#&gt; Non missing response frequency for each item
+#&gt;                1    2    3    4    5 miss
+#&gt; BFIK_open_2 0.00 0.04 0.07 0.54 0.36 0.07
+#&gt; BFIK_open_1 0.00 0.04 0.11 0.29 0.57 0.07
+#&gt; BFIK_open_4 0.04 0.00 0.14 0.36 0.46 0.07
+#&gt; BFIK_open_3 0.00 0.07 0.14 0.29 0.50 0.07</div><div class='output co'>#&gt; <span class='warning'>Warning: There were 2 rows with missings in BFIK_consc</span></div><div class='img'><img src='compute_reliabilities-3.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; 
+#&gt; Reliability analysis  BFIK_consc  
+#&gt; Call: psych::alpha(x = results[, scale_item_names], title = save_scale, 
+#&gt;     check.keys = FALSE)
+#&gt; 
+#&gt;   raw_alpha std.alpha G6(smc) average_r S/N  ase mean   sd
+#&gt;       0.78      0.79    0.78      0.48 3.7 0.06  3.7 0.79
+#&gt; 
+#&gt;  lower alpha upper     95% confidence boundaries
+#&gt; 0.66 0.78 0.9 
+#&gt; 
+#&gt;  Reliability if an item is dropped:
+#&gt;               raw_alpha std.alpha G6(smc) average_r S/N alpha se
+#&gt; BFIK_consc_3       0.60      0.61    0.52      0.34 1.6    0.114
+#&gt; BFIK_consc_4       0.76      0.77    0.72      0.53 3.4    0.071
+#&gt; BFIK_consc_2R      0.73      0.73    0.71      0.47 2.7    0.082
+#&gt; BFIK_consc_1       0.78      0.80    0.77      0.58 4.1    0.064
+#&gt; 
+#&gt;  Item statistics 
+#&gt;                n raw.r std.r r.cor r.drop mean   sd
+#&gt; BFIK_consc_3  28  0.91  0.91  0.92   0.81  3.5 1.04
+#&gt; BFIK_consc_4  28  0.69  0.74  0.63   0.53  3.9 0.76
+#&gt; BFIK_consc_2R 28  0.84  0.79  0.70   0.62  3.2 1.31
+#&gt; BFIK_consc_1  28  0.67  0.69  0.52   0.47  4.1 0.90
+#&gt; 
+#&gt; Non missing response frequency for each item
+#&gt;                  1    2    3    4    5 miss
+#&gt; BFIK_consc_3  0.04 0.14 0.25 0.43 0.14 0.07
+#&gt; BFIK_consc_4  0.00 0.04 0.25 0.54 0.18 0.07
+#&gt; BFIK_consc_2R 0.18 0.11 0.18 0.43 0.11 0.07
+#&gt; BFIK_consc_1  0.00 0.07 0.14 0.43 0.36 0.07</div><div class='output co'>#&gt; <span class='warning'>Warning: There were 2 rows with missings in BFIK_extra</span></div><div class='img'><img src='compute_reliabilities-4.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; 
+#&gt; Reliability analysis  BFIK_extra  
+#&gt; Call: psych::alpha(x = results[, scale_item_names], title = save_scale, 
+#&gt;     check.keys = FALSE)
+#&gt; 
+#&gt;   raw_alpha std.alpha G6(smc) average_r S/N   ase mean sd
+#&gt;        0.9       0.9    0.91      0.69 8.9 0.031  3.8  1
+#&gt; 
+#&gt;  lower alpha upper     95% confidence boundaries
+#&gt; 0.84 0.9 0.96 
+#&gt; 
+#&gt;  Reliability if an item is dropped:
+#&gt;               raw_alpha std.alpha G6(smc) average_r S/N alpha se
+#&gt; BFIK_extra_2       0.90      0.90    0.88      0.76 9.5    0.030
+#&gt; BFIK_extra_3R      0.87      0.87    0.85      0.68 6.5    0.044
+#&gt; BFIK_extra_4       0.85      0.85    0.82      0.65 5.7    0.047
+#&gt; BFIK_extra_1R      0.85      0.85    0.80      0.66 5.9    0.047
+#&gt; 
+#&gt;  Item statistics 
+#&gt;                n raw.r std.r r.cor r.drop mean  sd
+#&gt; BFIK_extra_2  28  0.81  0.82  0.73   0.67  4.2 1.1
+#&gt; BFIK_extra_3R 28  0.89  0.88  0.84   0.79  3.8 1.2
+#&gt; BFIK_extra_4  28  0.90  0.91  0.88   0.82  3.9 1.1
+#&gt; BFIK_extra_1R 28  0.91  0.90  0.89   0.82  3.6 1.2
+#&gt; 
+#&gt; Non missing response frequency for each item
+#&gt;                  1    2    3    4    5 miss
+#&gt; BFIK_extra_2  0.07 0.00 0.07 0.39 0.46 0.07
+#&gt; BFIK_extra_3R 0.07 0.07 0.21 0.32 0.32 0.07
+#&gt; BFIK_extra_4  0.04 0.11 0.14 0.39 0.32 0.07
+#&gt; BFIK_extra_1R 0.04 0.18 0.21 0.29 0.29 0.07</div><div class='output co'>#&gt; <span class='warning'>Warning: There were 2 rows with missings in BFIK_neuro</span></div><div class='output co'>#&gt; 
+#&gt; Reliability analysis  BFIK_neuro  
 #&gt; Call: psych::alpha(x = results[, scale_item_names], title = save_scale, 
 #&gt;     check.keys = FALSE)
 #&gt; 
 #&gt;   raw_alpha std.alpha G6(smc) average_r S/N   ase mean   sd
-#&gt;       0.78      0.79    0.77      0.48 3.7 0.093  2.4 0.91
+#&gt;       0.75      0.75    0.71       0.5   3 0.072  2.9 0.93
 #&gt; 
 #&gt;  lower alpha upper     95% confidence boundaries
-#&gt; 0.6 0.78 0.96 
+#&gt; 0.61 0.75 0.89 
 #&gt; 
 #&gt;  Reliability if an item is dropped:
-#&gt;                  raw_alpha std.alpha G6(smc) average_r S/N alpha se
-#&gt; religiousness_1       0.81      0.83    0.77      0.62 4.9    0.084
-#&gt; religiousness_2R      0.68      0.70    0.67      0.43 2.3    0.151
-#&gt; religiousness_3       0.68      0.67    0.62      0.41 2.1    0.140
-#&gt; religiousness_4       0.70      0.72    0.65      0.46 2.6    0.129
+#&gt;               raw_alpha std.alpha G6(smc) average_r  S/N alpha se
+#&gt; BFIK_neuro_2R      0.84      0.84    0.73      0.73 5.28    0.058
+#&gt; BFIK_neuro_3       0.59      0.61    0.44      0.44 1.57    0.141
+#&gt; BFIK_neuro_4       0.47      0.49    0.32      0.32 0.96    0.181
 #&gt; 
 #&gt;  Item statistics 
-#&gt;                   n raw.r std.r r.cor r.drop mean   sd
-#&gt; religiousness_1  14  0.63  0.65  0.45   0.39  2.3 1.07
-#&gt; religiousness_2R 14  0.86  0.83  0.74   0.67  2.7 1.44
-#&gt; religiousness_3  14  0.83  0.85  0.81   0.72  2.3 0.91
-#&gt; religiousness_4  14  0.80  0.80  0.74   0.62  2.3 1.20
+#&gt;                n raw.r std.r r.cor r.drop mean   sd
+#&gt; BFIK_neuro_2R 28  0.65  0.72  0.46   0.41  3.1 0.88
+#&gt; BFIK_neuro_3  28  0.88  0.84  0.76   0.65  3.1 1.27
+#&gt; BFIK_neuro_4  28  0.90  0.89  0.84   0.74  2.5 1.20
 #&gt; 
 #&gt; Non missing response frequency for each item
-#&gt;                     1    2    3    4    5 miss
-#&gt; religiousness_1  0.29 0.29 0.29 0.14 0.00    0
-#&gt; religiousness_2R 0.29 0.14 0.29 0.14 0.14    0
-#&gt; religiousness_3  0.21 0.36 0.36 0.07 0.00    0
-#&gt; religiousness_4  0.36 0.21 0.21 0.21 0.00    0</div><div class='img'><img src='compute_reliabilities-4.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; 
-#&gt; Reliability analysis  prefer  
-#&gt; Call: psych::alpha(x = results[, scale_item_names], title = save_scale, 
-#&gt;     check.keys = FALSE)
-#&gt; 
-#&gt;   raw_alpha std.alpha G6(smc) average_r S/N  ase mean  sd
-#&gt;       0.76      0.76    0.62      0.62 3.2 0.13  2.8 1.3
-#&gt; 
-#&gt;  lower alpha upper     95% confidence boundaries
-#&gt; 0.51 0.76 1.01 
-#&gt; 
-#&gt;  Reliability if an item is dropped:
-#&gt;          raw_alpha std.alpha G6(smc) average_r S/N alpha se
-#&gt; prefer_1      0.62      0.62    0.38      0.62  NA       NA
-#&gt; prefer_2      0.62      0.62    0.38      0.62  NA       NA
-#&gt; 
-#&gt;  Item statistics 
-#&gt;           n raw.r std.r r.cor r.drop mean  sd
-#&gt; prefer_1 14  0.91   0.9  0.71   0.62  3.0 1.5
-#&gt; prefer_2 14  0.89   0.9  0.71   0.62  2.6 1.4
-#&gt; 
-#&gt; Non missing response frequency for each item
-#&gt;             1    2    3    4    5 miss
-#&gt; prefer_1 0.29 0.07 0.14 0.36 0.14    0
-#&gt; prefer_2 0.29 0.21 0.14 0.29 0.07    0</div></pre>
+#&gt;                  1    2    3    4    5 miss
+#&gt; BFIK_neuro_2R 0.00 0.29 0.36 0.32 0.04 0.07
+#&gt; BFIK_neuro_3  0.11 0.25 0.29 0.18 0.18 0.07
+#&gt; BFIK_neuro_4  0.25 0.32 0.11 0.32 0.00 0.07</div><div class='output co'>#&gt; <span class='warning'>Warning: Some items were negatively correlated with the total scale and probably </span>
+#&gt; <span class='warning'>should be reversed.  </span>
+#&gt; <span class='warning'>To do this, run the function again with the 'check.keys=TRUE' option</span></div><div class='img'><img src='compute_reliabilities-5.png' alt='' width='700' height='432.632880098887' /></div><div class='output co'>#&gt; Some items ( BFIK_agree_4 ) were negatively correlated with the total scale and 
+#&gt; probably should be reversed.  
+#&gt; To do this, run the function again with the 'check.keys=TRUE' option</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

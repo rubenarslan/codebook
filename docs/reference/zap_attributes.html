@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>detect_scales — detect_scales • codebook</title>
+<title>zap attributes — zap_attributes • codebook</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,54 +80,56 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>detect_scales</h1>
+    <h1>zap attributes</h1>
     </div>
 
     
-    <p>Did you create aggregates of items like this
-scale &lt;- scale_1 + scale_2R + scale_3R
-?
-If you run this function on a dataset, it will detect these
-relationships and set the appropriate attributes. Once they are set,
-the codebook package can perform reliability computations for you.</p>
+    <p>Modelled on havens zap_labels, but more flexible.
+Can be used to zap all attributes for all variables in a
+data frame, or for some variables, or some attributes.</p>
     
 
-    <pre class="usage"><span class='fu'>detect_scales</span>(<span class='no'>data</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>zap_attributes</span>(<span class='no'>x</span>, <span class='kw'>attributes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>the data frame</p></td>
+      <th>x</th>
+      <td><p>the data frame or variable</p></td>
     </tr>
     <tr>
-      <th>quiet</th>
-      <td><p>defaults to false. Suppresses messages about found items.</p></td>
+      <th>attributes</th>
+      <td><p>defaults to NULL. If character, only those attributes are zapped</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='fu'>matrix</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>500</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>5</span>))
-<span class='fu'>names</span>(<span class='no'>bfi</span>) <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>, <span class='st'>"bfi_n1"</span>, <span class='st'>"bfi_n2"</span>)
+    <pre class="examples"><div class='input'><span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='fu'>matrix</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>300</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>3</span>))
+<span class='fu'>names</span>(<span class='no'>bfi</span>) <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>)
+<span class='fu'>attributes</span>(<span class='no'>bfi</span>$<span class='no'>bfi_e1</span>)$<span class='no'>label</span> <span class='kw'>&lt;-</span> <span class='st'>"I am outgoing."</span>
+<span class='fu'>attributes</span>(<span class='no'>bfi</span>$<span class='no'>bfi_e2R</span>)$<span class='no'>label</span> <span class='kw'>&lt;-</span> <span class='st'>"I prefer books to people."</span>
+<span class='fu'>attributes</span>(<span class='no'>bfi</span>$<span class='no'>bfi_e3</span>)$<span class='no'>label</span> <span class='kw'>&lt;-</span> <span class='st'>"I love to party."</span>
 <span class='no'>bfi</span>$<span class='no'>bfi_e</span> <span class='kw'>&lt;-</span> <span class='fu'>rowMeans</span>(<span class='no'>bfi</span>[, <span class='fu'>c</span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>)])
-<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>detect_scales</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; <span class='message'>3 bfi_e items connected to scale</span></div><div class='output co'>#&gt; <span class='warning'>Warning: bfi_n items found, but no aggregate</span></div><div class='input'><span class='no'>bfi</span>$<span class='no'>bfi_e</span></div><div class='output co'>#&gt;   [1] -0.7389  0.2768 -1.1883 -0.3578 -1.1938  0.1745 -1.1596 -0.4724 -0.6936
-#&gt;  [10]  1.1149 -0.6387 -0.3704  1.0366 -1.1144  0.5411  0.1130  0.1538 -0.4405
-#&gt;  [19] -0.2200  0.3667  0.7229  0.2456  0.0425  0.4295  0.3326  0.3861  0.0027
-#&gt;  [28] -0.2504 -0.2154 -0.9497  0.0089 -0.0967  0.3575 -0.4147 -0.2539 -0.1064
-#&gt;  [37] -1.2035  0.0364  0.5783 -0.1840 -0.3318 -0.0496  0.9756  0.5729 -0.0022
-#&gt;  [46]  1.8200 -0.3567  0.3381 -0.3165 -0.0834  0.1537 -0.2082 -0.8459 -0.4302
-#&gt;  [55]  0.8460  0.1330 -0.6486  0.6154 -0.0611  0.8260 -0.2253 -0.3875  0.2649
-#&gt;  [64] -0.0650 -1.2915 -1.2888  0.6085 -0.1576  0.0334 -0.3139 -0.5042 -0.9558
-#&gt;  [73]  0.8300  0.4366  0.6983  1.1459  0.7639 -0.2252  0.2112  0.6044  0.6316
-#&gt;  [82] -0.2557 -0.1211  0.8015  0.1242  1.4112 -1.2360  0.8755  0.9704  0.1257
-#&gt;  [91]  0.4580  0.1481 -0.2614 -0.0454  1.2848  0.0970 -0.4646  0.9873  1.0607
-#&gt; [100]  0.8092
-#&gt; attr(,"scale_item_names")
-#&gt; [1] "bfi_e1"  "bfi_e2R" "bfi_e3" 
-#&gt; attr(,"label")
-#&gt; [1] "aggregate of 3 bfi_e items"</div></pre>
+<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='detect_scales.html'>detect_scales</a></span>(<span class='no'>bfi</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># create attributes</span>
+<span class='fu'>str</span>(<span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>, <span class='st'>"label"</span>))</div><div class='output co'>#&gt; 'data.frame':	100 obs. of  4 variables:
+#&gt;  $ bfi_e1 : num  0.2154 0.1924 -0.0188 1.0782 1.7582 ...
+#&gt;  $ bfi_e2R: num  -0.5637 -1.4025 -2.3491 0.0793 1.2248 ...
+#&gt;  $ bfi_e3 : num  0.449 -0.258 -0.717 -0.225 0.26 ...
+#&gt;  $ bfi_e  : atomic  0.0335 -0.4892 -1.0282 0.3108 1.081 ...
+#&gt;   ..- attr(*, "scale_item_names")= chr  "bfi_e1" "bfi_e2R" "bfi_e3"</div><div class='input'><span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>$<span class='no'>bfi_e</span>)</div><div class='output co'>#&gt;   [1]  0.0335 -0.4892 -1.0282  0.3108  1.0810  0.1867 -0.0041  1.0195 -1.1515
+#&gt;  [10] -0.0098  0.1986  0.6845 -0.0813 -0.0069 -0.2705 -0.1273 -0.4507 -0.2552
+#&gt;  [19]  0.1116 -0.3513 -0.4777 -0.5857 -0.7270 -0.0965 -0.3057 -0.5618  0.8572
+#&gt;  [28]  0.1950 -0.0671  0.1301 -0.2134 -0.0920  0.5613 -0.1113 -0.3610 -0.2424
+#&gt;  [37]  1.2748 -0.1279 -0.2639 -0.2740 -0.9279  1.0178 -0.8863 -0.1622  0.5874
+#&gt;  [46] -0.7541  0.5661 -0.2209  1.0286 -0.5828  0.1653  0.2286 -0.6294 -0.8324
+#&gt;  [55] -0.2359  0.6060  0.8046 -0.1938  0.0659 -0.4575 -0.1381  0.9892  0.1335
+#&gt;  [64]  0.1550  0.4096 -0.1624  0.5745  0.1642 -0.8876  0.5416  0.4920 -0.1557
+#&gt;  [73]  0.5948  1.1550  1.8328 -0.5183 -1.3576  0.6590  0.2187  0.2924  0.8631
+#&gt;  [82]  0.3457 -0.2499  0.3276 -0.5914  0.2770  0.5769  0.7891 -0.3022  0.1943
+#&gt;  [91]  0.2125 -0.5819 -0.0587  1.1788  0.8855  0.2975 -0.7602  0.5149 -0.2545
+#&gt; [100]  0.1458</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

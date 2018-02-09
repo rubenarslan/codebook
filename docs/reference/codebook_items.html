@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>treat values as missing — treat_values_as_missing • codebook</title>
+<title>codebook items — codebook_items • codebook</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,54 +80,25 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>treat values as missing</h1>
+    <h1>codebook items</h1>
     </div>
 
     
-    <p>SPSS users frequently label their missing values, but don't set them as missing.
-This function will rectify that for negative values and for the values 99 and 999 (only if they're 5*MAD away from the median).
-Using different settings, you can also easily tag other missings.</p>
+    <p>you need the formr package to use this function, and the item data has to be encoded in the item attribute</p>
     
 
-    <pre class="usage"><span class='fu'>treat_values_as_missing</span>(<span class='no'>data</span>, <span class='kw'>only_labelled_missings</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>negative_values_are_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ninety_nine_problems</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>missing</span> <span class='kw'>=</span> <span class='fu'>c</span>(), <span class='kw'>non_missing</span> <span class='kw'>=</span> <span class='fu'>c</span>(), <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'>names</span>(<span class='no'>data</span>),
-  <span class='kw'>use_labelled_spss</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>codebook_items</span>(<span class='no'>results</span>, <span class='kw'>indent</span> <span class='kw'>=</span> <span class='st'>"##"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>the data frame with labelled missings</p></td>
+      <th>results</th>
+      <td><p>a formr results table which has the following columns: session, created, modified, expired, ended</p></td>
     </tr>
     <tr>
-      <th>only_labelled_missings</th>
-      <td><p>don't set values to missing if there's no label for them</p></td>
-    </tr>
-    <tr>
-      <th>negative_values_are_missing</th>
-      <td><p>by default we label negative values as missing</p></td>
-    </tr>
-    <tr>
-      <th>ninety_nine_problems</th>
-      <td><p>SPSS users often store values as 99/999, should we do this for values with 5*MAD of the median</p></td>
-    </tr>
-    <tr>
-      <th>missing</th>
-      <td><p>also set these values to missing (or enforce for 99/999 within 5*MAD)</p></td>
-    </tr>
-    <tr>
-      <th>non_missing</th>
-      <td><p>don't set these values to missing</p></td>
-    </tr>
-    <tr>
-      <th>vars</th>
-      <td><p>only edit these variables</p></td>
-    </tr>
-    <tr>
-      <th>use_labelled_spss</th>
-      <td><p>the labelled_spss class has a few drawbacks. Since R can't store missings like -1 and 99, we're replacing them with letters unless this option is enabled. If you prefer to keep your -1 etc, turn this on.</p></td>
+      <th>indent</th>
+      <td><p>add # to this to make the headings in the components lower-level. defaults to beginning at h2</p></td>
     </tr>
     </table>
     
