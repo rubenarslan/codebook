@@ -18,8 +18,6 @@ If you don't plan on any complicated parallelisation, you probably do not need t
 If you do plan to do that, you can pass the results of this operation to the codebook function.
 }
 \examples{
-if (requireNamespace("formr", quietly = TRUE)) {
-   example("formr_post_process_results", package = 'formr')
-   reliabilities <-compute_reliabilities(results)
-}
+data("bfi", package = "codebook")
+reliabilities <- compute_reliabilities(bfi)
 }

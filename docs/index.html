@@ -59,10 +59,11 @@
     <div id="codebook-cookbook" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#codebook-cookbook" class="anchor"></a>Codebook Cookbook</h1></div>
+
 <div id="generate-markdown-codebooks-from-the-attributes-of-the-variables-in-your-data-frame" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generate-markdown-codebooks-from-the-attributes-of-the-variables-in-your-data-frame" class="anchor"></a>Generate markdown codebooks from the attributes of the variables in your data frame</h2>
-
+<p>Integrates with formr (<a href="https://formr.org">formr.org</a>), an online survey framework and especially the data frames produced and marked up by the <a href="https://github.com/rubenarslan/formr">formr R package</a> and those based on SPSS or Stata files imported via <a href="https://github.com/hadley/haven">haven</a>. However, it should work with un-annotated datasets too, and you can also manually add the required attributes to make it fancier.</p>
 <p>The codebook processes single items, but also “scales”, i.e. psychological questionnaires that are aggregated to extract a construct. For scales, the appropriate reliability coefficients (internal consistencies for single measurements, retest reliabilities for repeated measurements, multilevel reliability for multilevel data) are computed.</p>
 <p>For items and scales, the distributions are summarised graphically and numerically.</p>
 <p>The result are markdown <em>partials</em>, that can be integrated in a larger markdown document and then translated to HTML or PDF format.</p>
@@ -116,9 +117,7 @@ codebook(results)
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://formr.org">formr.org</a></li>
-<li><a href="https://github.com/rubenarslan/formr">formr R package</a></li>
-<li><a href="https://github.com/hadley/haven">haven</a></li>
+<li><a href="https://travis-ci.org/rubenarslan/codebook"><img src="https://travis-ci.org/rubenarslan/codebook.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 </ul>
 </div>
 </div>

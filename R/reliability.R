@@ -10,11 +10,10 @@
 #'
 #' @export
 #' @examples
-#' if (requireNamespace("formr", quietly = TRUE)) {
-#'    example("formr_post_process_results", package = 'formr')
-#'    reliabilities <-compute_reliabilities(results)
-#' }
-compute_reliabilities <-function(results, survey_repetition = "single") {
+#' data("bfi", package = "codebook")
+#' reliabilities <- compute_reliabilities(bfi)
+
+compute_reliabilities <- function(results, survey_repetition = "single") {
   reliabilities_futures <- new.env()
   vars <- names(results)
   for (i in seq_along(vars)) {

@@ -1,4 +1,6 @@
 # Codebook Cookbook
+[![Travis-CI Build Status](https://travis-ci.org/rubenarslan/codebook.svg?branch=master)](https://travis-ci.org/rubenarslan/codebook)
+
 ## Generate markdown codebooks from the attributes of the variables in your data frame
 
 Integrates with formr ([formr.org](https://formr.org)), an online survey framework and especially the data frames produced and marked up by the [formr R package](https://github.com/rubenarslan/formr) and those based on SPSS or Stata files imported via [haven](https://github.com/hadley/haven). However, it should work with un-annotated datasets too, and you can also manually add the required attributes to make it fancier.

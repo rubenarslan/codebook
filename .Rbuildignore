@@ -8,3 +8,5 @@ figure
 ^docs$
 ^_pkgdown\.yml$
 .travis.yml
+^\.travis\.yml$
+^data-raw$

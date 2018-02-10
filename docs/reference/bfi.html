@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Compute reliabilities — compute_reliabilities • codebook</title>
+<title>mock BFI data — bfi • codebook</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,43 +80,32 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Compute reliabilities</h1>
+    <h1>mock BFI data</h1>
     </div>
 
     
-    <p>If you pass the object resulting from a call to formr_results to this function, it will compute reliabilities for each scale.
-Internally, each reliability computation is passed to a future. If you are calculating multilevel reliabilities, it may be worthwhile to parallelise this operation using future::plan
-If you don't plan on any complicated parallelisation, you probably do not need to call this function directly, but can rely on it being automatically called during codebook generation.
-If you do plan to do that, you can pass the results of this operation to the codebook function.</p>
+    <p>a small mock BFI dataset with realistic values, exported from formr.
+The dataset is self-documenting via attributes.</p>
     
 
-    <pre class="usage"><span class='fu'>compute_reliabilities</span>(<span class='no'>results</span>, <span class='kw'>survey_repetition</span> <span class='kw'>=</span> <span class='st'>"single"</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>results</th>
-      <td><p>a formr results table with attributes set on items and scales</p></td>
-    </tr>
-    <tr>
-      <th>survey_repetition</th>
-      <td><p>defaults to "single". Can also be "repeated_once" or "repeated_many"</p></td>
-    </tr>
-    </table>
+    <pre class="usage"><span class='no'>bfi</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A data frame with 28 rows and 29 variables:</p><dl class='dl-horizontal'>
+<dt>session</dt><dd><p>formr user code</p></dd>
+<dt>created</dt><dd><p>Created date time</p></dd>
+<dt>BFIK_agree_4R</dt><dd><p>An agreeableness item</p></dd>
+</dl>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='st'>"bfi"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"codebook"</span>)
-<span class='no'>reliabilities</span> <span class='kw'>&lt;-</span> <span class='fu'>compute_reliabilities</span>(<span class='no'>bfi</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+      
+      <li><a href="#format">Format</a></li>
+          </ul>
 
   </div>
 </div>
