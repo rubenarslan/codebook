@@ -10,3 +10,4 @@ figure
 .travis.yml
 ^\.travis\.yml$
 ^data-raw$
+vignettes

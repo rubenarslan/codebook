@@ -1,0 +1,14 @@
+citHeader("To cite codebook in publications use:")
+
+citEntry(entry = "Unpublished",
+         title        = "Automatic codebook generation with {codebook}",
+         author       = personList(as.person("Ruben C. Arslan")),
+         year         = "2018",
+         url          = "https://github.com/rubenarslan/codebook",
+         note         = "Software package",
+
+         textVersion  =
+           paste("Arslan, R. C. (2018).",
+                 "Automatic codebook generation with {codebook} (2018).",
+                 "URL https://github.com/rubenarslan/codebook")
+)

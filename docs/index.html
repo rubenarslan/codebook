@@ -94,13 +94,17 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
     <span class="fu">code_folding:</span><span class="at"> </span><span class="st">'hide'</span>
     <span class="fu">self_contained:</span><span class="at"> no</span>
 <span class="ot">---</span></code></pre></div>
-<p><code>r</code>{r} results = readRDS(“results.rds”) knitr::opts_chunk$set(error = TRUE, echo = FALSE) `<code></code></p>
+<p><code>r</code>{r} results = readRDS(“results.rds”) knitr::opts_chunk$set(error = TRUE, echo = FALSE) `` `</p>
 <pre class="{r}"><code>library(codebook)
 codebook(results)
-```</code></pre>
+`` `</code></pre>
 <p>The resulting codebook will be an HTML file, but you can also choose to generate PDFs or Word files in RStudio.</p>
 <p>To generate a results file in the necessary format using the formr package, you can run something like this.</p>
-<p>library(formr) source(“.passwords.R”) formr_connect(email = credentials$email, password = credentials$password) results = formr_results(“s3_daily”) saveRDS(results, ‘results.rds’)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(formr)
+<span class="kw">source</span>(<span class="st">".passwords.R"</span>)
+<span class="kw"><a href="http://www.rdocumentation.org/packages/formr/topics/formr_connect">formr_connect</a></span>(<span class="dt">email =</span> credentials<span class="op">$</span>email, <span class="dt">password =</span> credentials<span class="op">$</span>password)
+results =<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/formr/topics/formr_results">formr_results</a></span>(<span class="st">"s3_daily"</span>)
+<span class="kw">saveRDS</span>(results, <span class="st">'results.rds'</span>)</code></pre></div>
 <p>To get a file in this format from SPSS, run e.g. <code>results = haven::read_sav("path/to/file.sav")</code></p>
 </div>
 </div>
