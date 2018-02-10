@@ -1,4 +1,4 @@
-#' treat values as missing
+#' detect missing values
 #'
 #' SPSS users frequently label their missing values, but don't set them as missing.
 #' This function will rectify that for negative values and for the values 99 and 999 (only if they're 5*MAD away from the median).
@@ -15,7 +15,7 @@
 #'
 #' @export
 #'
-treat_values_as_missing <- function(data, only_labelled_missings = TRUE,
+detect_missings <- function(data, only_labelled_missings = TRUE,
                                     negative_values_are_missing = TRUE,
                                     ninety_nine_problems = TRUE,
                                     missing = c(), non_missing = c(),
@@ -31,7 +31,7 @@ treat_values_as_missing <- function(data, only_labelled_missings = TRUE,
         potential_missings <- unique(data[[var]][data[[var]] < 0])
       }
 
-      # classic SPSS missings only if far out of real data range
+      # classic SPSS missings only if they are far out of real data range
       # can be turned off using non_missing or ninety_nine_problems
       if (ninety_nine_problems) {
         if ((stats::median(data[[var]], na.rm = TRUE) +
@@ -56,30 +56,44 @@ treat_values_as_missing <- function(data, only_labelled_missings = TRUE,
             setdiff(attributes(data[[var]])$labels, data[[var]]))
         }
         potential_missings <- sort(potential_missings)
-        if (!use_labelled_spss) {
-          with_tagged_na <- data[[var]]
-          labels <- attributes(data[[var]])$labels
-          free_na_tags <- setdiff( letters, haven::na_tag(with_tagged_na))
+        with_tagged_na <- data[[var]]
+        labels <- attributes(data[[var]])$labels
+        free_na_tags <- setdiff( letters, haven::na_tag(with_tagged_na))
 
-          for (i in seq_along(potential_missings)) {
-            miss <- potential_missings[i]
+        for (i in seq_along(potential_missings)) {
+          miss <- potential_missings[i]
 
-            if (!all(potential_missings %in% free_na_tags)) {
-              new_miss <- free_na_tags[i]
-            } else {
-              new_miss <- potential_missings[i]
-            }
-            with_tagged_na[with_tagged_na == miss] <- haven::tagged_na(new_miss)
-            labels[labels == miss] <- haven::tagged_na(new_miss)
-          }
-          if (haven::is.labelled(data[[var]])) {
-            data[[var]] <- haven::labelled(with_tagged_na, labels = labels)
+          if (!use_labelled_spss &&
+              !all(potential_missings %in% free_na_tags)) {
+            new_miss <- free_na_tags[i]
           } else {
-            data[[var]] <- with_tagged_na
+            new_miss <- potential_missings[i]
           }
-        } else {
+          that_label = which(labels == miss)
+          if (!use_labelled_spss) {
+              with_tagged_na[
+                which(with_tagged_na == miss)] <- haven::tagged_na(new_miss)
+          }
+          if (length(that_label) && !use_labelled_spss) {
+            labels[that_label] <- haven::tagged_na(new_miss)
+            names(labels)[that_label] = paste0("[", potential_missings[i],
+                                      "] ", names(labels)[that_label])
+          }
+        }
+        if (use_labelled_spss) {
+          labels = attributes(data[[var]])$labels
+          if (is.null(labels)) {
+            labels = potential_missings
+            names(labels) = "autodetected unlabelled missing"
+          }
           data[[var]] <- haven::labelled_spss(data[[var]],
-            attributes(data[[var]])$labels, na_values = potential_missings)
+                                 labels = labels,
+                                 na_values = potential_missings,
+                                 na_range = attributes(data[[var]])$na_range)
+        } else if (haven::is.labelled(data[[var]])) {
+            data[[var]] <- haven::labelled(with_tagged_na, labels = labels)
+        } else {
+            data[[var]] <- with_tagged_na
         }
       }
     }

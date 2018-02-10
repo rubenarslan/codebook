@@ -102,10 +102,10 @@ iframe {
 <body>
 <div class="container-fluid all">
 <div class="row header">
-  <div class="col-md-2">
+  <div class="col-md-3">
     <h3>Codebook generator</h3>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-4">
     <label>SPSS/Stata/RDS File: <input type="file" id="file"></label>
   </div>
   <div class="col-md-3">
@@ -113,9 +113,9 @@ iframe {
     <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#moreInfo" aria-expanded="false" aria-controls="moreInfo">
       More Information
     </button>
-    <a href="#" id="download_codebook" download="codebook" class="btn btn-success">Download codebook</a>
   </div>
   <div class="col-sm-2">
+   <a href="#" id="download_codebook" download="codebook" class="btn btn-success">Download codebook</a>
    <div class="progress invisible" id="working">
       <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
   </div>
@@ -131,10 +131,10 @@ iframe {
   <div class="col-md-12">
     <div class="card card-body">
       <p>
-        The codebook generated here will be stored for 24 hours. Unless you share the link, others cannot discover it. The data you upload is not stored, but if you do not want to upload the data, you can also install the <a href="https://github.com/rubenarslan/codebook" target="_blank">codebook R package</a> on your computer. This will also make it easier to document multiple data files in the same document, should you want to.
+        The codebook generated here will be stored for 24 hours. Unless you share the link, others cannot easily discover it. The data you upload is not stored, but if you do not want to upload the data, you can also install the <a href="https://github.com/rubenarslan/codebook" target="_blank">codebook R package</a> on your computer. This will also make it easier to document multiple data files in the same document, should you want to.
       </p>
       <p>
-        The following <strong>file formats</strong> are supported: .sav (SPSS), .dta (Stata), .rds (R), .por, .xpt, .csv, .tsv, .csv2. RDS files are read using base R, all others using haven or readr.
+        The following <strong>file formats</strong> are supported: .sav (SPSS), .dta (Stata), .rds (R), .rdata (R), .por, .xpt, .csv, .tsv, .csv2. RDS/Rdata files are read using base R, all others using haven or readr.
       </p>
       <p>
         The codebook package uses variable and value labels, as well as labelled missings to make sense of the data. You can upload files without such metadata, but the resulting codebook will be less useful. You'll get the most mileage out of this package by using data collected with <a href="https://formr.org">formr.org</a> and imported using the <a href="https://github.com/rubenarslan/formr">formr R package</a>.
@@ -171,7 +171,8 @@ output:
 knitr::opts_chunk$set(
   warning = TRUE, # show warnings during codebook generation
   message = TRUE, # show messages during codebook generation
-  error = TRUE, # do not interrupt codebook generation in case of errors
+  error = TRUE, # do not interrupt codebook generation in case of errors,
+                # usually better for debugging
   echo = TRUE  # show R code
 )
 ggplot2::theme_set(ggplot2::theme_bw())
@@ -181,11 +182,21 @@ pander::panderOptions("table.split.table", Inf)
 We collected the following data.
 
 ```{r codebook}
-# the following line sets values like 99/999 and negative values to missing
-codebook_data = treat_values_as_missing(codebook_data)
-# the following line finds aggregates of multiple items, if their naming follows this pattern:
+# omit the following lines, if your missing values are already properly labelled
+codebook_data = treat_values_as_missing(codebook_data,
+    only_labelled_missings = TRUE, # only labelled values are autodetected as
+                                   # missing
+    negative_values_are_missing = FALSE, # negative values are missing values
+    ninety_nine_problems = TRUE,   # 99/999 are missing values, if they
+                                   # are more than 5 MAD from the median
+    )
+
+# If you are not using formr, the codebook package needs to guess which items
+# form a scale. The following line finds item aggregates with names like this:
 # scale = scale_1 + scale_2R + scale_3R
-# identifying these aggregates will allow the codebook function to automatically compute reliabilities
+# identifying these aggregates allows the codebook function to
+# automatically compute reliabilities.
+# However, it will not reverse items automatically.
 codebook_data = detect_scales(codebook_data)
 codebook(codebook_data)
 ```

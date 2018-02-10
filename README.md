@@ -1,5 +1,5 @@
 # Codebook Cookbook
-[![Travis-CI Build Status](https://travis-ci.org/rubenarslan/codebook.svg?branch=master)](https://travis-ci.org/rubenarslan/codebook)
+[![Travis-CI Build Status](https://travis-ci.org/rubenarslan/codebook.svg?branch=master)](https://travis-ci.org/rubenarslan/codebook) [![codecov](https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg)](https://codecov.io/gh/rubenarslan/codebook)
 
 ## Generate markdown codebooks from the attributes of the variables in your data frame
 
@@ -10,6 +10,11 @@ The codebook processes single items, but also "scales", i.e. psychological quest
 For items and scales, the distributions are summarised graphically and numerically.
 
 The result are markdown _partials_, that can be integrated in a larger markdown document and then translated to HTML or PDF format.
+
+## Use as a webapp
+
+If you don't want to install the codebook package, you can just upload an annotated dataset
+in a variety of formats here: https://rubenarslan.ocpu.io/codebook/
 
 ## Install
 
