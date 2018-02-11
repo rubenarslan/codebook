@@ -39,8 +39,8 @@ test_that("user-defined missing values read as normal missing by default", {
   expect_equal(num[5, 2][[1]][[1]], NA_real_)
 
   attributes(num[, 3][[1]])$na_values <- NULL
-  attributes(num[, 3][[1]])$label = ""
-  attributes(num[, 4][[1]])$label = ""
+  attributes(num[, 3][[1]])$label <- ""
+  attributes(num[, 4][[1]])$label <- ""
 
   expect_identical(num[, 3][[1]], num[, 4][[1]])
 })
@@ -48,8 +48,8 @@ test_that("user-defined missing values read as normal missing by default", {
 test_that("labelled_spss can be transformed into more useful tagged na", {
   num <- haven::read_spss(test_path("different-missings.sav"), user_na = TRUE)
   attributes(num[, 3][[1]])$na_values <- NULL
-  attributes(num[, 3][[1]])$label = ""
-  attributes(num[, 4][[1]])$label = ""
+  attributes(num[, 3][[1]])$label <- ""
+  attributes(num[, 4][[1]])$label <- ""
 
   expect_failure(expect_identical(num[, 3][[1]], num[, 4][[1]]))
 
@@ -76,7 +76,7 @@ test_that("labelled_spss can be transformed into more useful tagged na", {
   expect_identical(haven::na_tag(num[, 1][[1]]), haven::na_tag(num[, 3][[1]]) )
   expect_identical(haven::na_tag(num[, 1][[1]]), haven::na_tag(num[, 4][[1]]) )
 
-  num = detect_missings(num, negative_values_are_missing = TRUE,
+  num <- detect_missings(num, negative_values_are_missing = TRUE,
                                 only_labelled_missings = FALSE)
   expect_equal(sum(num$val1, na.rm = TRUE), 19)
   expect_equal(sum(num$val2, na.rm = TRUE), 19)
@@ -93,12 +93,12 @@ test_that("labelled_spss can be transformed into more useful tagged na", {
 test_that("we can also keep labelled_spss", {
   num <- haven::read_spss(test_path("different-missings.sav"), user_na = TRUE)
   attributes(num[, 3][[1]])$na_values <- NULL
-  attributes(num[, 3][[1]])$label = ""
-  attributes(num[, 4][[1]])$label = ""
+  attributes(num[, 3][[1]])$label <- ""
+  attributes(num[, 4][[1]])$label <- ""
 
   expect_failure(expect_identical(num[, 3][[1]], num[, 4][[1]]))
 
-  num = detect_missings(num, negative_values_are_missing = FALSE,
+  num <- detect_missings(num, negative_values_are_missing = FALSE,
                                 only_labelled_missings = FALSE,
                                 use_labelled_spss = TRUE)
   expect_failure(expect_equal(sum(num$val1, na.rm = TRUE), 18))
@@ -118,7 +118,7 @@ test_that("we can also keep labelled_spss", {
   expect_equal(num[3, 2][[1]][[1]], NA_real_)
   expect_equal(num[5, 2][[1]][[1]], 999)
 
-  num = detect_missings(num, negative_values_are_missing = TRUE,
+  num <- detect_missings(num, negative_values_are_missing = TRUE,
                                 only_labelled_missings = FALSE)
   expect_failure(expect_equal(base::sum(num$val1, na.rm = TRUE), 18))
 
@@ -182,6 +182,6 @@ test_that("attributes can be rescued", {
   bfi_no_labels <- zap_attributes(bfi, "label")
   expect_equivalent(bfi_no_labels, bfi)
   expect_failure(expect_identical(bfi_no_labels, bfi))
-  bfi_with_labels = rescue_attributes(bfi_no_labels, bfi)
+  bfi_with_labels <- rescue_attributes(bfi_no_labels, bfi)
   expect_identical(bfi_with_labels, bfi)
 })

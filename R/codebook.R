@@ -31,7 +31,7 @@ codebook <- function(results, reliabilities = NULL,
       users <- dplyr::n_distinct(results$session)
       rows_per_user <- nrow(results)/users
 
-      dupes = sum(duplicated(
+      dupes <- sum(duplicated(
         dplyr::select(results, .data$session, .data$created)))
       if (dupes > 0) {
         stop("There seem to be ", dupes, " duplicated rows in this survey ",
@@ -84,7 +84,7 @@ codebook <- function(results, reliabilities = NULL,
     if ( !is.null(scale_info) && exists("scale_item_names", scale_info)) {
       items_contained_in_scales <- c(items_contained_in_scales,
                                      scale_info$scale_item_names, var)
-      items = dplyr::select(results,
+      items <- dplyr::select(results,
                   rlang::UQS(rlang::quos(scale_info$scale_item_names)))
       scales_items[var] <- codebook_component_scale(
         scale = scale, scale_name = var,
@@ -237,11 +237,3 @@ codebook_component_single_item <- function(item, item_name, indent = '##') {
   )
   asis_knit_child(require_file("_codebook_item.Rmd"), options = options)
 }
-
-
-# todo:
-# differentiate automagically between structural missings (didn't do this part because of showif), unfinished missings (didn't get this far), missings were people did not reply to optional items, and (later) missings where people said 'do not want to respond'
-# visdat, vismiss
-# skimr?
-# scale/item sources, refs, with DOIs/links?
-

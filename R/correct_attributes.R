@@ -69,22 +69,22 @@ detect_missings <- function(data, only_labelled_missings = TRUE,
           } else {
             new_miss <- potential_missings[i]
           }
-          that_label = which(labels == miss)
+          that_label <- which(labels == miss)
           if (!use_labelled_spss) {
               with_tagged_na[
                 which(with_tagged_na == miss)] <- haven::tagged_na(new_miss)
           }
           if (length(that_label) && !use_labelled_spss) {
             labels[that_label] <- haven::tagged_na(new_miss)
-            names(labels)[that_label] = paste0("[", potential_missings[i],
+            names(labels)[that_label] <- paste0("[", potential_missings[i],
                                       "] ", names(labels)[that_label])
           }
         }
         if (use_labelled_spss) {
-          labels = attributes(data[[var]])$labels
+          labels <- attributes(data[[var]])$labels
           if (is.null(labels)) {
-            labels = potential_missings
-            names(labels) = "autodetected unlabelled missing"
+            labels <- potential_missings
+            names(labels) <- "autodetected unlabelled missing"
           }
           data[[var]] <- haven::labelled_spss(data[[var]],
                                  labels = labels,
