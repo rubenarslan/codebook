@@ -105,11 +105,13 @@ print.knit_asis <- function(x, ...) {
 #'
 #' @param file file to make codebook from (sav, rds, dta, etc.)
 #' @param text codebook template
+#' @param remove_file whether to remove file after rendering
 #' @param ... all other arguments passed to [rmarkdown::render()]
 #'
 #' @export
 
-load_data_and_render_codebook <- function(file, text, ...) {
+load_data_and_render_codebook <- function(file, text,
+                                          remove_file = FALSE, ...) {
   codebook_data <- switch(tools::file_ext(file),
        "rds" = readRDS(file),
        "rdata" = load(file),
@@ -124,7 +126,9 @@ load_data_and_render_codebook <- function(file, text, ...) {
        NULL
   )
   stopifnot(!is.null(codebook_data))
-  file.remove(file)
+  if (remove_file) {
+    file.remove(file)
+  }
   fileName <- rmarkdown::render(input = write_to_file(text,
       name = "codebook", ext = ".Rmd"), ...)
   fileName

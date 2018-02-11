@@ -4,12 +4,14 @@
 \alias{load_data_and_render_codebook}
 \title{render codebook based on file}
 \usage{
-load_data_and_render_codebook(file, text, ...)
+load_data_and_render_codebook(file, text, remove_file = FALSE, ...)
 }
 \arguments{
 \item{file}{file to make codebook from (sav, rds, dta, etc.)}
 
 \item{text}{codebook template}
+
+\item{remove_file}{whether to remove file after rendering}
 
 \item{...}{all other arguments passed to \code{\link[rmarkdown:render]{rmarkdown::render()}}}
 }
