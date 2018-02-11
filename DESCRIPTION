@@ -37,7 +37,6 @@ Suggests:
   testthat,
   lme4,
   roxygen2,
-  pkgdown,
   knitr
 Encoding: UTF-8
 LazyData: true
