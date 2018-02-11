@@ -10,3 +10,6 @@ figure
 .travis.yml
 ^\.travis\.yml$
 ^data-raw$
+^CONDUCT\.md$
+^README\.Rmd$
+^README-.*\.png$

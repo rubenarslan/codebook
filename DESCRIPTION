@@ -1,5 +1,5 @@
 Package: codebook
-Title: Cook codebooks from survey metadata encoded in attributes in R
+Title: Cook Codebooks from Survey Metadata Encoded in Attributes in R
 Description: This package allows you to easily automate the following tasks to describe data frames: 
   computing reliabilities (internal consistencies, retest, multilevel) for psychological scales, 
   summarise the distributions of scales and items graphically and using descriptive statistics,
@@ -35,7 +35,10 @@ Imports:
     tibble
 Suggests:
   testthat,
-  lme4
+  lme4,
+  roxygen2,
+  pkgdown,
+  knitr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
