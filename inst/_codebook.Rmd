@@ -1,14 +1,14 @@
 ```{r setup,eval=TRUE,echo=FALSE}
 if (!exists("indent")) {
-	indent = '#' # ugly hack
+	indent <- '#' # ugly hack
 }
 if (exists("testing")) {
-	results = data.frame()
-	survey_repetition = 'single'
-	reliabilities = list()
-	missingness_report = ''
-	survey_overview = '' 
-	scales_items = c()
+	results <- data.frame()
+	survey_repetition <- 'single'
+	reliabilities <- list()
+	missingness_report <- ''
+	survey_overview <- '' 
+	scales_items <- c()
 }
 ```
 

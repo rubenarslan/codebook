@@ -63,10 +63,10 @@
 <div id="generate-markdown-codebooks-from-the-attributes-of-the-variables-in-your-data-frame" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generate-markdown-codebooks-from-the-attributes-of-the-variables-in-your-data-frame" class="anchor"></a>Generate markdown codebooks from the attributes of the variables in your data frame</h2>
-<p>Integrates with formr (<a href="https://formr.org">formr.org</a>), an online survey framework and especially the data frames produced and marked up by the <a href="https://github.com/rubenarslan/formr">formr R package</a> and those based on SPSS or Stata files imported via <a href="https://github.com/hadley/haven">haven</a>. However, it should work with un-annotated datasets too, and you can also manually add the required attributes to make it fancier.</p>
-<p>The codebook processes single items, but also “scales”, i.e. psychological questionnaires that are aggregated to extract a construct. For scales, the appropriate reliability coefficients (internal consistencies for single measurements, retest reliabilities for repeated measurements, multilevel reliability for multilevel data) are computed.</p>
-<p>For items and scales, the distributions are summarised graphically and numerically.</p>
-<p>The result are markdown <em>partials</em>, that can be integrated in a larger markdown document and then translated to HTML or PDF format.</p>
+<p>RStudio and a few of the tidyverse package already usefully display the information contained in the attributes of the variables in your data frame. The <a href="https://github.com/hadley/haven">haven</a> package also manages to grab variable documentation from SPSS or Stata files.</p>
+<p>The codebook package takes those attributes, the data and tries to produce a good-looking codebook, i.e. a place to get an overview of the variables in a dataset. The codebook processes single items, but also “scales”, i.e. psychological questionnaires that are aggregated to extract a construct. For scales, the appropriate reliability coefficients (internal consistencies for single measurements, retest reliabilities for repeated measurements, multilevel reliability for multilevel data) are computed. For items and scales, the distributions are summarised graphically and numerically.</p>
+<p>This package integrates tightly with formr (<a href="https://formr.org">formr.org</a>), an online survey framework and especially the data frames produced and marked up by the <a href="https://github.com/rubenarslan/formr">formr R package</a>.</p>
+<p>To do this, this package uses rmarkdown <em>partials</em>, that can be integrated in a larger rmarkdown document and then translated to HTML or PDF format.</p>
 </div>
 <div id="use-as-a-webapp" class="section level2">
 <h2 class="hasAnchor">
@@ -83,21 +83,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <div id="how-to-use" class="section level2">
 <h2 class="hasAnchor">
 <a href="#how-to-use" class="anchor"></a>How to use</h2>
-<p>A simple markdown document resulting in a codebook might look like this.</p>
-<div class="sourceCode"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span class="ot">---</span>
-<span class="fu">title:</span><span class="at"> </span><span class="st">"Codebook"</span>
-<span class="fu">output:</span>
-  <span class="fu">html_document:</span>
-    <span class="fu">toc:</span><span class="at"> yes</span>
-    <span class="fu">toc_depth:</span><span class="at"> 4</span>
-    <span class="fu">toc_float:</span><span class="at"> yes</span>
-    <span class="fu">code_folding:</span><span class="at"> </span><span class="st">'hide'</span>
-    <span class="fu">self_contained:</span><span class="at"> no</span>
-<span class="ot">---</span></code></pre></div>
-<p><code>r</code>{r} results = readRDS(“results.rds”) knitr::opts_chunk$set(error = TRUE, echo = FALSE) `` `</p>
-<pre class="{r}"><code>library(codebook)
-codebook(results)
-`` `</code></pre>
+<p>To see a simple markdown document that you could use to generate a codebook, see the <a href="https://rubenarslan.ocpu.io/codebook/">webapp</a>.</p>
 <p>The resulting codebook will be an HTML file, but you can also choose to generate PDFs or Word files in RStudio.</p>
 <p>To generate a results file in the necessary format using the formr package, you can run something like this.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(formr)
@@ -120,6 +106,10 @@ results =<span class="st"> </span><span class="kw"><a href="http://www.rdocument
 </ul>
 <h2>License</h2>
 <p><a href="https://opensource.org/licenses/BSD-2-Clause">BSD_2_clause</a> + file <a href="LICENSE.html">LICENSE</a></p>
+<h2>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html">Citing codebook</a></li>
+</ul>
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Ruben Arslan <br><small class="roles"> Author, maintainer </small> </li>

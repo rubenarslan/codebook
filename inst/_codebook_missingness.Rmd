@@ -1,12 +1,12 @@
 ```{r setup,eval=TRUE,echo=FALSE}
 if (!exists("indent")) {
-	indent = '#' # ugly hack
+	indent <- '#' # ugly hack
 }
 if (exists("testing")) {
-	results = data.frame()
-	survey_repetition = 'single'
-	reliabilities = list()
-	md_pattern = data.frame()
+	results <- data.frame()
+	survey_repetition <- 'single'
+	reliabilities <- list()
+	md_pattern <- data.frame()
 }
 ```
 
@@ -18,9 +18,9 @@ Among those who finished the survey. Only variables that have missings are shown
 ```{r missingness_all_setup}
 if (  exists("ended", results) &&
   exists("expired", results)) {
-  finisher_results = dplyr::filter(results, !is.na(.data$ended))
+  finisher_results <- dplyr::filter(results, !is.na(.data$ended))
 } else {
-  finisher_results = results
+  finisher_results <- results
   warning("Could not figure out who finished the surveys, because the variables expired and ended were missing.")
 }
 pander::pander(md_pattern)
