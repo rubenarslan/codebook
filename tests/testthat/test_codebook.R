@@ -19,6 +19,23 @@ test_that("codebook generation", {
 })
 
 
+test_that("codebook generation via helper fun", {
+  data("bfi", package = 'codebook')
+  bfi$age <- 1:nrow(bfi)
+  wd <- getwd()
+  dir <- tempdir()
+  setwd(dir)
+  on.exit(setwd(wd))
+  saveRDS(bfi, "bfi.rds")
+  expect_message(md <- load_data_and_render_codebook("bfi.rds",
+"
+```{r}
+codebook(codebook_data)
+```
+"))
+})
+
+
 test_that("codebook generation without formr", {
   data("bfi", package = 'codebook')
   bfi$age <- 1:nrow(bfi)
