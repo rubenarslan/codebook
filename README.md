@@ -57,5 +57,5 @@ Generating a codebook is as simple as calling codebook from a chunk in an rmarkd
 codebook(results)
 ```
 
-[Code of conduct for contributing](CONDUCT.MD)
+[Code of conduct for contributing](CONDUCT.md)
 ----------------------------------------------

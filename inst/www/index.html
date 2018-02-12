@@ -97,7 +97,7 @@ We collected the following data.
 
 ```{r codebook}
 # omit the following lines, if your missing values are already properly labelled
-codebook_data = treat_values_as_missing(codebook_data,
+codebook_data = detect_missings(codebook_data,
     only_labelled_missings = TRUE, # only labelled values are autodetected as
                                    # missing
     negative_values_are_missing = FALSE, # negative values are missing values

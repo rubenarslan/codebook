@@ -21,7 +21,10 @@ if (  exists("ended", results) &&
   finisher_results <- dplyr::filter(results, !is.na(.data$ended))
 } else {
   finisher_results <- results
-  warning("Could not figure out who finished the surveys, because the variables expired and ended were missing.")
+  warning("Could not figure out who finished the surveys, because the ",
+          "variables expired and ended were missing.")
 }
-pander::pander(md_pattern)
+if (length(md_pattern)) {
+  pander::pander(md_pattern)
+}
 ```

@@ -65,4 +65,4 @@ rmarkdown document.
 codebook(results)
 ```
 
-## [Code of conduct for contributing](CONDUCT.MD)
+## [Code of conduct for contributing](CONDUCT.md)

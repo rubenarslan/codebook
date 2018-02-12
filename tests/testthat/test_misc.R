@@ -10,23 +10,18 @@ test_that("Missings are computed properly", {
   expect_equal(mdp$n_miss[1], 27)
   expect_equal(mdp$n_miss[4], 5)
   expect_equal(nrow(mdp), 4)
-  expect_error(mdp <- md_pattern(data.frame()))
-  expect_silent(mdp <- md_pattern(data.frame(x = 1, y = 1)))
-  expect_equal(nrow(mdp), 2)
-  expect_equal(ncol(mdp), 0)
-  expect_silent(mdp <- md_pattern(data.frame(x = 1, y = 1),
+  expect_message(mdp <- md_pattern(data.frame()), "No missings")
+  expect_message(mdp <- md_pattern(data.frame(x = 1, y = 1)), "No missings")
+  expect_null(mdp)
+  expect_message(mdp <- md_pattern(data.frame(x = 1, y = 1),
                                  only_vars_with_missings = FALSE,
-                                 min_freq = 0))
-  expect_equal(nrow(mdp), 2)
-  expect_equal(sum(mdp$n_miss), 0)
-  expect_equal(ncol(mdp), 5)
+                                 min_freq = 0), "No missings")
+  expect_null(mdp)
 
-  expect_silent(mdp <- md_pattern(data.frame(x = "a", y = "b"),
+  expect_message(mdp <- md_pattern(data.frame(x = "a", y = "b"),
                                   only_vars_with_missings = FALSE,
-                                  min_freq = 0))
-  expect_equal(nrow(mdp), 2)
-  expect_equal(sum(mdp$n_miss), 0)
-  expect_equal(ncol(mdp), 5)
+                                  min_freq = 0), "No missings")
+  expect_null(mdp)
 
   expect_silent(mdp <- md_pattern(data.frame(x = NA, y = NA),
                                   only_vars_with_missings = FALSE,

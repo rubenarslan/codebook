@@ -2,6 +2,10 @@ context("Test codebook")
 
 test_that("codebook generation", {
   data("bfi", package = 'codebook')
+  library(dplyr)
+  bfi <- bfi %>% select(-starts_with("BFIK_extra"),
+                       -starts_with("BFIK_agree"),
+                       -starts_with("BFIK_open"))
   bfi$age <- 1:nrow(bfi)
   wd <- getwd()
   dir <- tempdir()
@@ -9,9 +13,9 @@ test_that("codebook generation", {
   on.exit(setwd(wd))
   expect_silent(md <- codebook(bfi))
   figs <- list.files(paste0(dir, "/figure"))
-  expect_equal(length(figs), 14)
+  expect_equal(length(figs), 8)
   expect_match(md, "Scale: BFIK_neuro")
-  expect_match(md, "Scale: BFIK_extra")
+  expect_match(md, "Scale: BFIK_consc")
   expect_match(md, "Missings per variable")
   expect_match(md, "28 completed rows")
 
@@ -21,6 +25,10 @@ test_that("codebook generation", {
 
 test_that("codebook generation via helper fun", {
   data("bfi", package = 'codebook')
+  library(dplyr)
+  bfi <- bfi %>% select(-starts_with("BFIK_extra"),
+                       -starts_with("BFIK_agree"),
+                       -starts_with("BFIK_open"))
   bfi$age <- 1:nrow(bfi)
   wd <- getwd()
   dir <- tempdir()
@@ -38,6 +46,10 @@ codebook(codebook_data)
 
 test_that("codebook generation without formr", {
   data("bfi", package = 'codebook')
+  library(dplyr)
+  bfi <- bfi %>% select(-starts_with("BFIK_extra"),
+                       -starts_with("BFIK_agree"),
+                       -starts_with("BFIK_open"))
   bfi$age <- 1:nrow(bfi)
   bfi <- zap_attributes(bfi)
   wd <- getwd()
@@ -46,7 +58,7 @@ test_that("codebook generation without formr", {
   on.exit(setwd(wd))
   expect_silent(md <- codebook(bfi))
   figs <- list.files(paste0(dir, "/figure"))
-  expect_equal(length(figs), 27)
+  expect_equal(length(figs), 12)
   expect_failure(expect_match(md, "Scale: BFIK_neuro"))
   expect_match(md, "Missings per variable")
   expect_match(md, "28 completed rows")
@@ -58,6 +70,9 @@ test_that("codebook generation without formr", {
 test_that("Codebook with retest reliabilities can be computed", {
   data("bfi", package = "codebook")
   library(dplyr)
+  bfi <- bfi %>% select(-starts_with("BFIK_extra"),
+                       -starts_with("BFIK_agree"),
+                       -starts_with("BFIK_open"))
   expect_warning(bfi2 <- bind_rows(bfi, bfi %>%
                          mutate(created = created + lubridate::years(1))))
 
@@ -72,9 +87,9 @@ test_that("Codebook with retest reliabilities can be computed", {
   on.exit(setwd(wd))
   expect_silent(md <- codebook(bfi2))
   figs <- list.files(paste0(dir, "/figure"))
-  expect_equal(length(figs), 14)
+  expect_equal(length(figs), 8)
   expect_match(md, "Scale: BFIK_neuro")
-  expect_match(md, "Scale: BFIK_extra")
+  expect_match(md, "Scale: BFIK_consc")
   expect_match(md, "Missings per variable")
   expect_match(md, "56 completed rows")
 
@@ -86,6 +101,10 @@ test_that("Codebook with retest reliabilities can be computed", {
 test_that("Codebook with multilevel reliability", {
   data("bfi", package = "codebook")
   library(dplyr)
+  bfi <- bfi %>% select(-starts_with("BFIK_extra"),
+                       -starts_with("BFIK_agree"),
+                       -starts_with("BFIK_open"),
+                       -starts_with("BFIK_consc"))
   bfi$age <- 1:nrow(bfi)
   fuzz <- function(x) { x + rnorm(length(x)) }
   expect_warning(bfi3 <- bind_rows(bfi,
@@ -103,9 +122,8 @@ test_that("Codebook with multilevel reliability", {
   on.exit(setwd(wd))
   expect_warning(md <- codebook(bfi3))
   figs <- list.files(paste0(dir, "/figure"))
-  expect_equal(length(figs), 15)
+  expect_equal(length(figs), 8)
   expect_match(md, "Scale: BFIK_neuro")
-  expect_match(md, "Scale: BFIK_extra")
   expect_match(md, "Missings per variable")
   expect_match(md, "168 completed rows")
 
