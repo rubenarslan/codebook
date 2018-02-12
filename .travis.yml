@@ -13,4 +13,4 @@ r_github_packages:
   - rubenarslan/formr
 
 after_success:
-  - travis_wait 20 Rscript -e 'library(covr); codecov()'
+  - Rscript -e 'library(covr); codecov()'
