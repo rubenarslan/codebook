@@ -28,19 +28,23 @@ test_that("codebook generation without formr", {
   library(dplyr)
   bfi <- bfi %>% select(-starts_with("BFIK_extra"),
                        -starts_with("BFIK_agree"),
-                       -starts_with("BFIK_open"))
+                       -starts_with("BFIK_open"),
+                       -created,
+                       -modified,
+                       -ended,
+                       -expired)
   bfi$age <- 1:nrow(bfi)
-  bfi <- zap_attributes(bfi)
   wd <- getwd()
   dir <- tempdir()
   setwd(dir)
   on.exit(setwd(wd))
-  expect_silent(md <- codebook(bfi))
+  expect_warning(md <- codebook(bfi, survey_repetition = "single"),
+                 "defined for automatic survey duration calculations")
   figs <- list.files(paste0(dir, "/figure"))
-  expect_equal(length(figs), 12)
-  expect_failure(expect_match(md, "Scale: BFIK_neuro"))
-  expect_match(md, "Missings per variable")
-  expect_match(md, "28 completed rows")
+  expect_equal(length(figs), 6)
+  expect_match(md, "Scale: BFIK_neuro")
+  expect_match(md, "Scale: BFIK_consc")
+  expect_match(md, " Could not figure out who finished the surveys")
 
   unlink(paste0(dir, "/figure"), recursive = TRUE)
 })
@@ -135,4 +139,23 @@ test_that("codebook generation via helper fun", {
 codebook(codebook_data)
 ```
 "))
+})
+
+
+test_that("codebook table generation", {
+  data("bfi", package = 'codebook')
+  library(dplyr)
+  bfi <- bfi %>% select(-starts_with("BFIK_extra"),
+                        -starts_with("BFIK_agree"),
+                        -starts_with("BFIK_open"))
+  bfi$age <- 1:nrow(bfi)
+  expect_silent(cb <- codebook_table(bfi))
+  expect_identical(names(cb),
+    c("name", "label", "type", "type_options", "data_type", "ordered",
+      "value_labels", "optional", "scale_item_names", "item_order",
+      "missing", "complete", "n",  "empty", "n_unique",
+      "top_counts", "count", "median", "min", "max", "mean", "sd",
+      "p0", "p25", "p50", "p75", "p100", "hist"))
+  expect_equal(nrow(cb), ncol(bfi))
+  expect_equivalent(cb$name, names(bfi))
 })

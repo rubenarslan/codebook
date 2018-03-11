@@ -9,7 +9,7 @@ likert_from_items <- function(items) {
                                                                 width = 15)
       items[[i]] <- haven::as_factor(items[[i]])
     } else {
-      items[[i]] <- as.factor(items[[i]])
+      items[[i]] <- factor(items[[i]], levels = unique(unlist(items)))
     }
     if (!is.null(attributes(items[[i]])$label)) {
       item_names <- names(items)

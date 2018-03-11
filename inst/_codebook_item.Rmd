@@ -69,9 +69,7 @@ knitr::opts_chunk$set(fig.height = old_height)
 
 `r indent`### Summary statistics {#`r item_name`_summary}
 ```{r summary}
-item_df <- data.frame(haven::zap_labels(item))
-colnames(item_df) <- item_name
-skimr::skim(item_df)
+pander::pander(skimr::skim_to_wide(item))
 ```
 
 `r ifelse(show_missings, paste0(indent, '### Missing value types {#', item_name, '_missings}'), '')`

@@ -46,6 +46,10 @@ codebook <- function(results, reliabilities = NULL,
                                          "repeated_many"))
     }
   }
+  suppressMessages(
+    skimr::skim_with(labelled = skimr::get_skimmers()$factor)
+  )
+  on.exit(skimr::skim_with_defaults())
 
   if (is.null(reliabilities)) {
     reliabilities <- compute_reliabilities(results, survey_repetition)
@@ -197,6 +201,8 @@ codebook_items <- function(results, indent = "##") {
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), "overview_")
   )
+  metadata_table = codebook_table(results)
+
   asis_knit_child(require_file("_codebook_items.Rmd"), options = options)
 }
 
@@ -237,3 +243,81 @@ codebook_component_single_item <- function(item, item_name, indent = '##') {
   )
   asis_knit_child(require_file("_codebook_item.Rmd"), options = options)
 }
+
+#' codebook metadata table
+#'
+#' will generate a table combining metadata from variable attributes
+#' with data summaries generated using skimr
+#'
+#' @param results a data frame
+#'
+#' @export
+codebook_table <- function(results) {
+  skimmed = skimr::skim_to_wide(results)
+
+  metadata <- dplyr::bind_rows(
+    # var = results$session
+  lapply(results, function(var) {
+    x <- attributes(var)
+    if (is.null(x)) {
+      data.frame(label = NA)
+    } else {
+      if (exists("class", x)) {
+        x$class <- NULL
+      }
+      if (exists("tzone", x)) {
+        x$tzone <- NULL
+      }
+      if (exists("label", x)) {
+        if (exists("item", x)) {
+          if (exists("label", x$item)) {
+            x$item$label <- NULL
+          }
+          if (exists("label_parsed", x$item)) {
+            x$item$label_parsed <- NULL
+          }
+        }
+      }
+      if (exists("labels", x)) {
+        if (!is.null(names(x$labels))) {
+          x$value_labels <- paste(paste0(names(x$labels),
+                                         "=", x$labels), collapse = ",")
+        } else {
+          x$value_labels <- paste(x$labels, collapse = ",")
+        }
+        x$labels <- NULL
+        if (exists("item", x) && exists("choices", x$item)) {
+          x$item$choices <- NULL
+        }
+      }
+
+      if (exists("item", x) && exists("name", x$item)) {
+        x$item$name <- NULL
+      }
+      if (exists("scale_item_names", x)) {
+        x$scale_item_names <- paste(x$scale_item_names, collapse = ", ")
+      }
+      as.data.frame(t(purrr::flatten(x)))
+    }
+  }), .id = "name")
+
+  metadata <- dplyr::left_join(metadata,
+                               dplyr::rename(skimmed, data_type = .data$type),
+                               by = c("name" = "variable"))
+  order <- c("name", "label", "type", "type_options", "data_type", "ordered",
+            "value_labels",  "optional", "showif",
+            "scale_item_names",
+            "value", "item_order", "block_order", "class",
+            "missing", "complete", "n",  "empty", "n_unique",
+            "top_counts", "count", "median", "min", "max",
+            "mean", "sd", "p0", "p25", "p50", "p75", "p100", "hist")
+  not_all_na <- function(x) { !all(is.na(x)) && !is.null(unlist(x)) }
+  cols <- setdiff(union(
+               intersect(order, names(metadata)), # order
+              setdiff(names(metadata), order)), # include other cols
+               c("choice_list"))
+
+  metadata <- dplyr::select(metadata,  rlang::UQS(rlang::quos(cols)))
+  dplyr::select_if(metadata, not_all_na )
+}
+

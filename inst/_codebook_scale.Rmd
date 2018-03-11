@@ -67,9 +67,7 @@ dist_plot
 
 `r indent`### Summary statistics {#`r scale_name`_summary}
 ```{r summary}
-scale_df <- data.frame(haven::zap_labels(scale))
-colnames(scale_df) <- scale_name
-skimr::skim(scale_df)
+pander::pander(skimr::skim_to_wide(items))
 ```
 
 `r indent`### Items {#`r scale_name`_items}

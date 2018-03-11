@@ -22,7 +22,10 @@ compute_reliabilities <- function(results, survey_repetition = "single") {
     if (!is.null(scale_info) && exists("scale_item_names", scale_info)) {
       reliabilities_futures[[ var ]] <- future::future(
         tryCatch({
-          items <- dplyr::select(results, .data$session, .data$created,
+          id_vars <- c("session", "created")
+          id_vars <- intersect(id_vars, vars)
+          items <- dplyr::select(results,
+              rlang::UQS(rlang::quos(id_vars)),
               rlang::UQ(rlang::quo(var)),
               rlang::UQS(rlang::quos(scale_info$scale_item_names)))
           compute_appropriate_reliability(var, scale_info,
@@ -52,6 +55,12 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
           title = scale_name, check.keys = FALSE)
     )
   } else if (survey_repetition == 'repeated_once') {
+    id_vars <- c("session", "created")
+    if ( !id_vars %in% names(results)) {
+      stop("For now, the variables session and created have to be defined for ",
+           "multilevel reliability computation to work.")
+    }
+
     wide <- tidyr::spread(
       dplyr::select(
         dplyr::mutate(
@@ -71,6 +80,11 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
       retest_reliability = stats::cor.test(wide$Time_1, wide$Time_2)
     )
   } else if (survey_repetition == 'repeated_many') {
+    id_vars <- c("session", "created")
+    if ( !id_vars %in% names(results)) {
+      stop("For now, the variables session and created have to be defined for ",
+           "multilevel reliability computation to work.")
+    }
     long_rel <- tidyr::gather(dplyr::select(dplyr::mutate(
       dplyr::group_by(results, .data$session),
       day_number = as.numeric(.data$created - min(.data$created), unit = 'days')
