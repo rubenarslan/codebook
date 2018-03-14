@@ -13,11 +13,5 @@ if (exists("testing")) {
 ```{r items, message=TRUE}
 metadata_table <- dplyr::mutate(metadata_table, 
                 name = paste0('<a href="#', .data$name, '">', .data$name, '</a>'))
-DT::datatable(metadata_table, rownames = FALSE, filter = "top", extensions = 'Buttons', 
-escape = setdiff(names(metadata_table), 'name'),
-options = list(
-    dom = 'Bfrtip',
-    buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
-    pageLength = 200
-  ))
+export_table(metadata_table)
 ```

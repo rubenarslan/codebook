@@ -13,11 +13,12 @@ test_that("codebook generation", {
   on.exit(setwd(wd))
   expect_silent(md <- codebook(bfi))
   figs <- list.files(paste0(dir, "/figure"))
-  expect_equal(length(figs), 7)
+  expect_equal(length(figs), 8)
   expect_match(md, "Scale: BFIK_neuro")
   expect_match(md, "Scale: BFIK_consc")
   expect_match(md, "Missings per variable")
   expect_match(md, "28 completed rows")
+  expect_match(md, "application/ld\\+json")
 
   unlink(paste0(dir, "/figure"), recursive = TRUE)
 })
@@ -38,13 +39,13 @@ test_that("codebook generation without formr", {
   dir <- tempdir()
   setwd(dir)
   on.exit(setwd(wd))
-  expect_warning(md <- codebook(bfi, survey_repetition = "single"),
-                 "defined for automatic survey duration calculations")
+  expect_warning(md <- codebook(bfi),
+                "automatic survey repetition detection to work")
   figs <- list.files(paste0(dir, "/figure"))
   expect_equal(length(figs), 6)
   expect_match(md, "Scale: BFIK_neuro")
   expect_match(md, "Scale: BFIK_consc")
-  expect_match(md, " Could not figure out who finished the surveys")
+  expect_match(md, "application/ld\\+json")
 
   unlink(paste0(dir, "/figure"), recursive = TRUE)
 })
@@ -70,7 +71,7 @@ test_that("Codebook with retest reliabilities can be computed", {
   dir <- tempdir()
   setwd(dir)
   on.exit(setwd(wd))
-  expect_silent(md <- codebook(bfi2))
+  expect_silent(md <- codebook(bfi2, metadata_table = FALSE))
   figs <- list.files(paste0(dir, "/figure"))
   expect_equal(length(figs), 5)
   expect_match(md, "Scale: BFIK_neuro")
@@ -79,6 +80,23 @@ test_that("Codebook with retest reliabilities can be computed", {
 
   unlink(paste0(dir, "/figure"), recursive = TRUE)
 
+})
+
+
+
+test_that("Dupes are noticed", {
+  data("bfi", package = "codebook")
+  library(dplyr)
+  bfi <- bfi %>% select(-starts_with("BFIK_extra"),
+                        -starts_with("BFIK_agree"),
+                        -starts_with("BFIK_open"),
+                        -starts_with("BFIK_consc"))
+  expect_warning(bfi2 <- bind_rows(bfi, bfi %>% filter(row_number() < 5)))
+
+
+
+  bfi$age <- 1:nrow(bfi)
+  expect_error(md <- codebook(bfi2, metadata_table = FALSE), "duplicated rows")
 })
 
 
@@ -109,7 +127,7 @@ test_that("Codebook with multilevel reliability", {
   dir <- tempdir()
   setwd(dir)
   on.exit(setwd(wd))
-  expect_warning(md <- codebook(bfi3))
+  expect_warning(md <- codebook(bfi3, metadata_table = FALSE))
   figs <- list.files(paste0(dir, "/figure"))
   expect_equal(length(figs), 6)
   expect_match(md, "Scale: BFIK_neuro")
@@ -157,5 +175,23 @@ test_that("codebook table generation", {
       "top_counts", "count", "median", "min", "max", "mean", "sd",
       "p0", "p25", "p50", "p75", "p100", "hist"))
   expect_equal(nrow(cb), ncol(bfi))
-  expect_equivalent(cb$name, names(bfi))
+  expect_identical(cb$name, names(bfi))
+})
+
+test_that("codebook table generation", {
+  data("bfi", package = 'codebook')
+  library(dplyr)
+  bfi <- bfi %>% select(-starts_with("BFIK_extra"),
+                        -starts_with("BFIK_agree"),
+                        -starts_with("BFIK_open"))
+  bfi <- head(bfi) # drops attributes
+  bfi$age <- 1:nrow(bfi)
+  expect_silent(cb <- codebook_table(bfi))
+  expect_identical(names(cb),
+                   c("name", "data_type", "ordered", "value_labels",
+                     "missing", "complete", "n",  "empty", "n_unique",
+                     "top_counts", "count", "median", "min", "max", "mean", "sd",
+                     "p0", "p25", "p50", "p75", "p100", "hist"))
+  expect_equal(nrow(cb), ncol(bfi))
+  expect_identical(cb$name, names(bfi))
 })

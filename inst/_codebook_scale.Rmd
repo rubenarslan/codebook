@@ -46,39 +46,26 @@ knitr::opts_chunk$set(fig.height = old_height)
 `r indent`### Distribution {#`r scale_name`_distribution}
 ```{r setup_distribution}
 binwidth <- mean(diff(sort(unique(scale))))
-choices <- attributes(items[[1]])$item$choices
 
 wrap_at <- knitr::opts_chunk$get("fig.width") * 10
 ```
 ```{r distribution}
+dist_plot <- plot_labelled(scale, scale_name, wrap_at)
+
+choices <- attributes(items[[1]])$item$choices
 breaks <- as.numeric(names(choices))
-dist_plot <- ggplot2::ggplot() +
-	ggplot2::geom_bar(ggplot2::aes(x = scale)) +
-	ggplot2::stat_bin(binwidth = binwidth) + 
-	ggplot2::ggtitle(scale_name, subtitle = stringr::str_wrap(paste("aggregated over", length(scale_info$scale_item_names), "items"), wrap_at)) + 
-	ggplot2::xlab("Choices") + 
-	ggplot2::scale_x_continuous("Choices", 
+if (length(breaks)) {
+  dist_plot <- dist_plot +
+    	ggplot2::scale_x_continuous("Choices", 
 	                            breaks = breaks, 
 	                            labels = stringr::str_wrap(unlist(choices), 15), 
 	                            limits = range(breaks))
+}
 
 dist_plot
 ```
 
 `r indent`### Summary statistics {#`r scale_name`_summary}
 ```{r summary}
-pander::pander(skimr::skim_to_wide(items))
+pander::pander(codebook_table(items))
 ```
-
-`r indent`### Items {#`r scale_name`_items}
-
-```{r items,results='asis'}
-pander::pander(dplyr::bind_rows(
-	lapply(items, function(item) { 
-	  x <- attributes(item)$item
-		x$label_parsed <- x$choices <- x$choice_list <- 
-		  x$study_id <- x$id <- NULL
-		as.data.frame(t(x)) })
-))
-```
-

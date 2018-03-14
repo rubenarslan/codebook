@@ -56,7 +56,7 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
     )
   } else if (survey_repetition == 'repeated_once') {
     id_vars <- c("session", "created")
-    if ( !id_vars %in% names(results)) {
+    if ( !all(id_vars %in% names(results))) {
       stop("For now, the variables session and created have to be defined for ",
            "multilevel reliability computation to work.")
     }
@@ -81,7 +81,7 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
     )
   } else if (survey_repetition == 'repeated_many') {
     id_vars <- c("session", "created")
-    if ( !id_vars %in% names(results)) {
+    if ( !all(id_vars %in% names(results))) {
       stop("For now, the variables session and created have to be defined for ",
            "multilevel reliability computation to work.")
     }

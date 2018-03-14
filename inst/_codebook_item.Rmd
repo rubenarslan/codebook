@@ -41,10 +41,12 @@ if ( go_vertical ) {
 
 	if (is.null(choices) || 
 	    dplyr::n_distinct(na.omit(item)) > length(non_missing_choices)) {
-		choices <- unique(item)
+		choices <- unique(na.omit(item))
 		names(choices) <- choices
+		non_missing_choices <- choices
 	}
-	new_height <- 2 + 1 * length(non_missing_choices)
+  choice_multiplier <- old_height/6.5
+	new_height <- 2 + choice_multiplier * length(non_missing_choices)
 	new_height <- ifelse(new_height > 20, 20, new_height)
 	new_height <- ifelse(new_height < 1, 1, new_height)
 	knitr::opts_chunk$set(fig.height = new_height)
@@ -69,7 +71,9 @@ knitr::opts_chunk$set(fig.height = old_height)
 
 `r indent`### Summary statistics {#`r item_name`_summary}
 ```{r summary}
-pander::pander(skimr::skim_to_wide(item))
+df = data.frame(item)
+names(df) = item_name
+pander::pander(codebook_table(df))
 ```
 
 `r ifelse(show_missings, paste0(indent, '### Missing value types {#', item_name, '_missings}'), '')`
@@ -94,17 +98,6 @@ if (!is.null(item_info)) {
 ```{r choices}
 if (!is.null(choices) && length(choices) < 30) {
 	pander::pander(as.list(choices))
-}
-```
-
-
-`r indent`### Attributes {#`r item_name`_attributes}
-```{r attributes}
-if (!is.null(item_attributes)) {
-  item_attributes$item <- NULL
-  item_attributes$labels <- NULL
-  item_attributes$label <- NULL
-  pander::pander(item_attributes)
 }
 ```
 

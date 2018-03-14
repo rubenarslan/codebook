@@ -8,6 +8,8 @@
 #' @param reliabilities a named list with one entry per scale and one or several printable reliability computations for this scale. if NULL, computed on-the-fly using compute_reliabilities
 #' @param survey_repetition defaults to "auto" which is to try to determine the level of repetition from the "session" and "created" variables. Other values are: single, repeated_once, repeated_many
 #' @param missingness_report whether to print a missingness report. Turn off if this gets too complicated and you need a custom solution (e.g. in case of random missings).
+#' @param metadata_table whether to print a metadata table/tabular codebook.
+#' @param metadata_json whether to include machine-readable metadata as JSON-LD (not visible)
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
@@ -15,7 +17,8 @@
 #' # see vignette
 codebook <- function(results, reliabilities = NULL,
     survey_repetition = c('auto', 'single', 'repeated_once', 'repeated_many'),
-    missingness_report = TRUE, indent = '#') {
+    missingness_report = TRUE, metadata_table = TRUE,
+    metadata_json = TRUE, indent = '#') {
   # todo: factor out the time stuff
   # todo: factor out the repetition detection stuff
   survey_repetition <- match.arg(survey_repetition)
@@ -116,7 +119,16 @@ codebook <- function(results, reliabilities = NULL,
     missingness_report <- ''
   }
 
-  items <- codebook_items(results, indent = indent)
+  if (metadata_table) {
+    items <- codebook_items(results, indent = indent)
+  } else {
+    items <- ''
+  }
+  if (metadata_json) {
+    jsonld <- codebook_jsonld(results)
+  } else {
+    jsonld <- ''
+  }
 
   asis_knit_child(require_file("_codebook.Rmd"), options = options)
 }
@@ -187,6 +199,23 @@ codebook_missingness <- function(results, indent = "##") {
 }
 
 
+
+#' codebook missingness
+#'
+#'
+#' @param results a formr results table which has the following columns: session, created, modified, expired, ended
+#'
+#' @export
+codebook_jsonld <- function(results) {
+  options <- list(
+    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "metadata_"),
+    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "metadata_")
+  )
+  metadata <- metadata_list(results)
+  asis_knit_child(require_file("_codebook_jsonld.Rmd"), options = options)
+}
+
+
 #' codebook items
 #'
 #' you need the formr package to use this function, and the item data has to be encoded in the item attribute
@@ -201,7 +230,7 @@ codebook_items <- function(results, indent = "##") {
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), "overview_")
   )
-  metadata_table = codebook_table(results)
+  metadata_table <- codebook_table(results)
 
   asis_knit_child(require_file("_codebook_items.Rmd"), options = options)
 }
@@ -253,7 +282,7 @@ codebook_component_single_item <- function(item, item_name, indent = '##') {
 #'
 #' @export
 codebook_table <- function(results) {
-  skimmed = skimr::skim_to_wide(results)
+  skimmed <- skimr::skim_to_wide(results)
 
   metadata <- dplyr::bind_rows(
     # var = results$session
@@ -321,3 +350,88 @@ codebook_table <- function(results) {
   dplyr::select_if(metadata, not_all_na )
 }
 
+
+
+#' metadata from dataframe
+#'
+#'
+#' @param results a data frame
+#'
+#' @export
+metadata_list <- function(results) {
+  name <- deparse(substitute(results))
+  metadata <- attributes(results)
+  metadata$names <- NULL
+  metadata$row.names <- NULL
+  metadata$class <- NULL
+
+  if (!exists("name", metadata)) {
+    metadata$name <- name
+  }
+
+  if (!exists("keywords", metadata)) {
+    metadata$keywords <- names(results)
+  }
+
+  metadata$variableMeasured <- lapply(names(results), function(var) {
+      x <- attributes(results[[var]])
+      x$name <- var
+
+      if (is.null(x)) {
+        x <- list()
+      } else {
+        if (exists("class", x)) {
+          x$class <- NULL
+        }
+        if (exists("tzone", x)) {
+          x$tzone <- NULL
+        }
+        if (exists("label", x)) {
+          x$description <- x$label
+          x$label <- NULL
+        }
+        if (exists("labels", x)) {
+          x$value <- as.list(x$labels)
+          # x$value[["@type"]] = "StructuredValue"
+          x$maxValue <- max(x$labels, na.rm = TRUE)
+          x$minValue <- min(x$labels, na.rm = TRUE)
+          x$labels <- NULL
+        }
+        if (exists("item", x)) {
+          if (exists("type", x$item)) {
+            x$item$item_type <- x$item$type
+            x$item$type <- NULL
+          }
+          if (exists("choices", x$item)) {
+            x$item$choices[["@type"]] <- "http://formr.org/codebook/ItemChoices"
+          }
+          x$measurementTechnique <- "self-report"
+          x$item[["@type"]] <- "http://formr.org/codebook/Item"
+        }
+
+      }
+      x$data_summary <- skimr::skim_to_wide(results[[var]])
+      x$data_summary$variable <- NULL
+      if (exists("type", x$data_summary)) {
+        if (!exists("value", x)) {
+          x$value <- switch(x$data_summary$type,
+              character = "text",
+              integer = "Number",
+              numeric = "Number",
+              factor = "StructuredValue",
+              labelled = "StructuredValue"
+          )
+        }
+        x$data_summary$type <- NULL
+      }
+      x$data_summary[["@type"]] <- "http://formr.org/codebook/SummaryStatistics"
+      x[["@context"]] <- list("@vocab" = "http://pending.schema.org/")
+      x[["@type"]] <- "propertyValue"
+      x
+    })
+
+  metadata[["@context"]] <- "http://schema.org/"
+  metadata[["@type"]] <- "Dataset"
+
+  metadata
+}

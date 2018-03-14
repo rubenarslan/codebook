@@ -1,0 +1,10 @@
+```{r setup,eval=TRUE,echo=FALSE}
+if (exists("testing")) {
+	indent = '#' # ugly hack so _regression_summary can be "spun" (variables included via `r ` have to be available)
+	results = data.frame()
+}
+```
+
+<script type="application/ld+json">
+`r jsonlite::toJSON(metadata, pretty = TRUE, auto_unbox = TRUE)`
+</script>

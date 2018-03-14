@@ -33,12 +33,8 @@ plot_labelled <- function(item, item_name = deparse(substitute(item)),
     choices <- unique(item)
     names(choices) <- choices
   }
-  dist_plot <- ggplot2::ggplot() +
-    ggplot2::geom_bar(ggplot2::aes(x = item)) +
-    ggplot2::stat_bin() +
-    ggplot2::ggtitle(item_name,
-      subtitle = stringr::str_wrap(item_label, width = wrap_at)) +
-    ggplot2::scale_y_continuous()
+
+  x_axis <- ggplot2::xlab("Values")
 
   if (!is.null(choices) &&
       !any(is.na(choices)) &&
@@ -54,10 +50,18 @@ plot_labelled <- function(item, item_name = deparse(substitute(item)),
         labels = stringr::str_wrap(labels, 20), limits = choices)
   } else if (!is.null(choices)) {
     x_axis <- ggplot2::scale_x_discrete("Choices",
-        labels = stringr::str_wrap(as.character(choices), 15), limits = choices)
-  } else {
-    x_axis <- ggplot2::xlab("Values")
+        labels <- stringr::str_wrap(as.character(choices), 15),
+                                   limits = choices)
+  } else if (is.character(item)) {
+    item <- stringr::str_wrap(as.character(item), 15)
   }
+  dist_plot <- ggplot2::ggplot() +
+    ggplot2::geom_bar(ggplot2::aes(x = item)) +
+    ggplot2::stat_bin() +
+    ggplot2::ggtitle(item_name,
+              subtitle = stringr::str_wrap(item_label, width = wrap_at)) +
+    ggplot2::scale_y_continuous()
+
   dist_plot <- dist_plot + x_axis
 
   if ( go_vertical ) {

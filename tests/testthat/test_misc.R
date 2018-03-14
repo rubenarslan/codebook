@@ -1,7 +1,19 @@
 context("Miscellaneous functions")
 
+test_that("Can print codebook table", {
+  data("nhanes", package = "mice")
+  expect_silent(codebook:::export_table(codebook_table(nhanes)))
+  expect_output(pander::pander(codebook_table(nhanes)), "data_type")
+})
+
+test_that("Can print codebook table", {
+  data("nhanes", package = "mice")
+  expect_silent(codebook:::export_table(codebook_table(nhanes)))
+})
+
 test_that("Missings are computed properly", {
   data("nhanes", package = "mice")
+
   expect_silent(mdp <- md_pattern(nhanes))
   expect_equal(mdp$n_miss[1], 27)
   expect_equal(nrow(mdp), 6)
