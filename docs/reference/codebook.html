@@ -58,7 +58,13 @@
   </a>
 </li>
 <li>
+  <a href="../articles/codebook.html">Get Started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       
@@ -89,7 +95,7 @@
 
     <pre class="usage"><span class='fu'>codebook</span>(<span class='no'>results</span>, <span class='kw'>reliabilities</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>survey_repetition</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"auto"</span>,
   <span class='st'>"single"</span>, <span class='st'>"repeated_once"</span>, <span class='st'>"repeated_many"</span>), <span class='kw'>missingness_report</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>indent</span> <span class='kw'>=</span> <span class='st'>"#"</span>)</pre>
+  <span class='kw'>metadata_table</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metadata_json</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>indent</span> <span class='kw'>=</span> <span class='st'>"#"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -109,6 +115,14 @@
     <tr>
       <th>missingness_report</th>
       <td><p>whether to print a missingness report. Turn off if this gets too complicated and you need a custom solution (e.g. in case of random missings).</p></td>
+    </tr>
+    <tr>
+      <th>metadata_table</th>
+      <td><p>whether to print a metadata table/tabular codebook.</p></td>
+    </tr>
+    <tr>
+      <th>metadata_json</th>
+      <td><p>whether to include machine-readable metadata as JSON-LD (not visible)</p></td>
     </tr>
     <tr>
       <th>indent</th>

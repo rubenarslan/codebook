@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cook codebooks from survey metadata encoded in attributes in R • codebook</title>
+<title>Cook Codebooks from Survey Metadata Encoded in Attributes in R • codebook</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
@@ -15,7 +15,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-home">
+    <div class="container template-vignette">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -35,7 +35,13 @@
   </a>
 </li>
 <li>
+  <a href="articles/codebook.html">Get Started</a>
+</li>
+<li>
   <a href="reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="news/index.html">News</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
@@ -55,8 +61,14 @@
 
       
       </header><div class="row">
-  <div class="contents col-md-9">
-    <div id="codebook-cookbook" class="section level1">
+  <div class="col-md-9">
+    
+
+    
+    
+<div class="contents">
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+<div id="codebook-cookbook" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#codebook-cookbook" class="anchor"></a>Codebook Cookbook</h1></div>
 
@@ -64,27 +76,35 @@
 <h2 class="hasAnchor">
 <a href="#generate-markdown-codebooks-from-the-attributes-of-the-variables-in-your-data-frame" class="anchor"></a>Generate markdown codebooks from the attributes of the variables in your data frame</h2>
 <p>RStudio and a few of the tidyverse package already usefully display the information contained in the attributes of the variables in your data frame. The <a href="https://github.com/hadley/haven">haven</a> package also manages to grab variable documentation from SPSS or Stata files.</p>
-<p>The codebook package takes those attributes, the data and tries to produce a good-looking codebook, i.e. a place to get an overview of the variables in a dataset. The codebook processes single items, but also “scales”, i.e. psychological questionnaires that are aggregated to extract a construct. For scales, the appropriate reliability coefficients (internal consistencies for single measurements, retest reliabilities for repeated measurements, multilevel reliability for multilevel data) are computed. For items and scales, the distributions are summarised graphically and numerically.</p>
-<p>This package integrates tightly with formr (<a href="https://formr.org">formr.org</a>), an online survey framework and especially the data frames produced and marked up by the <a href="https://github.com/rubenarslan/formr">formr R package</a>.</p>
+<p>The codebook package takes those attributes and the data and tries to produce a good-looking codebook, i.e. a place to get an overview of the variables in a dataset. The codebook processes single items, but also “scales”, i.e. psychological questionnaires that are aggregated to extract a construct. For scales, the appropriate reliability coefficients (internal consistencies for single measurements, retest reliabilities for repeated measurements, multilevel reliability for multilevel data) are computed. For items and scales, the distributions are summarised graphically and numerically.</p>
+<p>This package integrates tightly with formr (<a href="https://formr.org">formr.org</a>), an online survey framework and especially the data frames produced and marked up by the <a href="https://github.com/rubenarslan/formr">formr R package</a>, but is completely independent of it.</p>
 <p>To do this, this package uses rmarkdown <em>partials</em>, that can be integrated in a larger rmarkdown document and then translated to HTML or PDF format.</p>
+</div>
+<div id="documentation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#documentation" class="anchor"></a>Documentation</h2>
+<p>Confer the help or: <a href="https://rubenarslan.github.io/codebook" class="uri">https://rubenarslan.github.io/codebook</a></p>
 </div>
 <div id="use-as-a-webapp" class="section level2">
 <h2 class="hasAnchor">
 <a href="#use-as-a-webapp" class="anchor"></a>Use as a webapp</h2>
 <p>If you don’t want to install the codebook package, you can just upload an annotated dataset in a variety of formats here: <a href="https://rubenarslan.ocpu.io/codebook/" class="uri">https://rubenarslan.ocpu.io/codebook/</a></p>
 </div>
-<div id="install" class="section level2">
+<div id="use-locally" class="section level2">
 <h2 class="hasAnchor">
-<a href="#install" class="anchor"></a>Install</h2>
+<a href="#use-locally" class="anchor"></a>Use locally</h2>
+<div id="install" class="section level3">
+<h3 class="hasAnchor">
+<a href="#install" class="anchor"></a>Install</h3>
 <p>Just run these two commands in R:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
 devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"rubenarslan/codebook"</span>)</code></pre></div>
 </div>
-<div id="how-to-use" class="section level2">
-<h2 class="hasAnchor">
-<a href="#how-to-use" class="anchor"></a>How to use</h2>
+<div id="how-to-use" class="section level3">
+<h3 class="hasAnchor">
+<a href="#how-to-use" class="anchor"></a>How to use</h3>
 <p>To see a simple markdown document that you could use to generate a codebook, see the <a href="https://rubenarslan.ocpu.io/codebook/">webapp</a>.</p>
-<p>The resulting codebook will be an HTML file, but you can also choose to generate PDFs or Word files in RStudio.</p>
+<p>The resulting codebook will be an HTML file, but you can also choose to generate PDFs or Word files.</p>
 <p>To generate a results file in the necessary format using the formr package, you can run something like this.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(formr)
 <span class="kw">source</span>(<span class="st">".passwords.R"</span>)
@@ -92,12 +112,22 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 results =<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/formr/topics/formr_results">formr_results</a></span>(<span class="st">"s3_daily"</span>)
 <span class="kw">saveRDS</span>(results, <span class="st">'results.rds'</span>)</code></pre></div>
 <p>To get a file in this format from SPSS, run e.g. <code>results = haven::read_sav("path/to/file.sav")</code></p>
+<p>Generating a codebook is as simple as calling codebook from a chunk in an rmarkdown document.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/codebook.html">codebook</a></span>(results)</code></pre></div>
+</div>
+</div>
+<div id="code-of-conduct-for-contributing" class="section level2">
+<h2 class="hasAnchor">
+<a href="#code-of-conduct-for-contributing" class="anchor"></a><a href="CONDUCT.md">Code of conduct for contributing</a>
+</h2>
+</div>
 </div>
 </div>
   </div>
 
-  <div class="col-md-3" id="sidebar">
-    <h2>Links</h2>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2 class="hasAnchor">
+<a href="#sidebar" class="anchor"></a>Links</h2>
 <ul class="list-unstyled">
 <li>Browse source code at <br><a href="https://github.com/rubenarslan/codebook">https://​github.com/​rubenarslan/​codebook</a>
 </li>
@@ -120,6 +150,7 @@ results =<span class="st"> </span><span class="kw"><a href="http://www.rdocument
 <li><a href="https://codecov.io/gh/rubenarslan/codebook"><img src="https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg" alt="codecov"></a></li>
 </ul>
 </div>
+
 </div>
 
 

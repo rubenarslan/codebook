@@ -10,11 +10,16 @@ Generate markdown codebooks from the attributes of the variables in your data fr
 
 RStudio and a few of the tidyverse package already usefully display the information contained in the attributes of the variables in your data frame. The [haven](https://github.com/hadley/haven) package also manages to grab variable documentation from SPSS or Stata files.
 
-The codebook package takes those attributes, the data and tries to produce a good-looking codebook, i.e. a place to get an overview of the variables in a dataset. The codebook processes single items, but also "scales", i.e. psychological questionnaires that are aggregated to extract a construct. For scales, the appropriate reliability coefficients (internal consistencies for single measurements, retest reliabilities for repeated measurements, multilevel reliability for multilevel data) are computed. For items and scales, the distributions are summarised graphically and numerically.
+The codebook package takes those attributes and the data and tries to produce a good-looking codebook, i.e. a place to get an overview of the variables in a dataset. The codebook processes single items, but also "scales", i.e. psychological questionnaires that are aggregated to extract a construct. For scales, the appropriate reliability coefficients (internal consistencies for single measurements, retest reliabilities for repeated measurements, multilevel reliability for multilevel data) are computed. For items and scales, the distributions are summarised graphically and numerically.
 
-This package integrates tightly with formr ([formr.org](https://formr.org)), an online survey framework and especially the data frames produced and marked up by the [formr R package](https://github.com/rubenarslan/formr).
+This package integrates tightly with formr ([formr.org](https://formr.org)), an online survey framework and especially the data frames produced and marked up by the [formr R package](https://github.com/rubenarslan/formr), but is completely independent of it.
 
 To do this, this package uses rmarkdown *partials*, that can be integrated in a larger rmarkdown document and then translated to HTML or PDF format.
+
+Documentation
+-------------
+
+Confer the help or: <https://rubenarslan.github.io/codebook>
 
 Use as a webapp
 ---------------

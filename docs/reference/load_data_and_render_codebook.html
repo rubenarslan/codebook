@@ -58,7 +58,13 @@
   </a>
 </li>
 <li>
+  <a href="../articles/codebook.html">Get Started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       
@@ -87,7 +93,7 @@
     <p>Render text</p>
     
 
-    <pre class="usage"><span class='fu'>load_data_and_render_codebook</span>(<span class='no'>file</span>, <span class='no'>text</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>load_data_and_render_codebook</span>(<span class='no'>file</span>, <span class='no'>text</span>, <span class='kw'>remove_file</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -99,6 +105,10 @@
     <tr>
       <th>text</th>
       <td><p>codebook template</p></td>
+    </tr>
+    <tr>
+      <th>remove_file</th>
+      <td><p>whether to remove file after rendering</p></td>
     </tr>
     <tr>
       <th>...</th>

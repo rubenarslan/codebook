@@ -1,0 +1,48 @@
+---
+title: "Codebook example formr"
+author: "Ruben Arslan"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    code_folding: 'hide'
+    self_contained: true
+vignette: >
+  %\VignetteIndexEntry{Codebook example formr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+In this vignette, you can see what a codebook generated from a dataset with rich
+metadata looks like. This dataset includes mock data for a short German Big Five 
+personality inventory and an age variable. The dataset follows the format created
+when importing data from [formr.org](https://formr.org). However, data imported
+using the `haven` package uses similar metadata. You can also add such metadata
+yourself, or use the codebook package for unannotated datasets.
+
+As you can see below, the `codebook` package automatically computes reliabilities
+for multi-item inventories, generates nicely labelled plots and outputs summary statistics.
+The same information is also stored in a table, which you can export to various formats.
+Additionally, `codebook` can show you different kinds of (labelled) missing values, and show you common 
+missingness patterns.
+As _you_ cannot see, but _search engines_ one day might, the `codebook` package also
+generates [JSON-LD](https://json-ld.org/) metadata for the [dataset](https://developers.google.com/search/docs/data-types/dataset). If you share
+your codebook as an HTML file online, this metadata should make it easier for others
+to find your data.
+
+```{r}
+knitr::opts_chunk$set(warning = TRUE, message = TRUE, error = TRUE, echo = FALSE)
+pander::panderOptions("table.split.table", Inf)
+library(codebook)
+data("bfi", package = 'codebook')
+bfi$age <- rpois(nrow(bfi), 30)
+ggplot2::theme_set(ggplot2::theme_bw())
+pander::panderOptions("table.split.table", Inf)
+```
+
+```{r cb}
+codebook(bfi)
+```
