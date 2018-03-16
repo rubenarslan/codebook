@@ -90,12 +90,14 @@
     </div>
 
     
-    <p>Modelled on havens zap_labels, but more flexible.
-Can be used to zap all attributes for all variables in a
-data frame, or for some variables, or some attributes.</p>
+    <p>Modelled on havens zap_labels, but more encompassing. By default removes
+the following attributes:
+format.spss, format.sas, format.stata, label, labels, na_values, na_range,
+display_width</p>
     
 
-    <pre class="usage"><span class='fu'>zap_attributes</span>(<span class='no'>x</span>, <span class='kw'>attributes</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>zap_attributes</span>(<span class='no'>x</span>, <span class='kw'>attributes</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"format.spss"</span>, <span class='st'>"format.sas"</span>, <span class='st'>"format.stata"</span>,
+  <span class='st'>"label"</span>, <span class='st'>"labels"</span>, <span class='st'>"na_values"</span>, <span class='st'>"na_range"</span>, <span class='st'>"display_width"</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -106,7 +108,8 @@ data frame, or for some variables, or some attributes.</p>
     </tr>
     <tr>
       <th>attributes</th>
-      <td><p>defaults to NULL. If character, only those attributes are zapped</p></td>
+      <td><p>character vector of attributes to zap. NULL if everything
+(including factor levels etc) should be zapped</p></td>
     </tr>
     </table>
     

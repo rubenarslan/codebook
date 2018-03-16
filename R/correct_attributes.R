@@ -8,6 +8,7 @@
 #' @param only_labelled_missings don't set values to missing if there's no label for them
 #' @param negative_values_are_missing by default we label negative values as missing
 #' @param ninety_nine_problems SPSS users often store values as 99/999, should we do this for values with 5*MAD of the median
+#' @param learn_from_labels if there are labels for missings of the form \preformatted{[-1]} no answer, set -1 in the data to the corresponding tagged missing
 #' @param missing also set these values to missing (or enforce for 99/999 within 5*MAD)
 #' @param non_missing don't set these values to missing
 #' @param vars only edit these variables
@@ -18,6 +19,7 @@
 detect_missings <- function(data, only_labelled_missings = TRUE,
                                     negative_values_are_missing = TRUE,
                                     ninety_nine_problems = TRUE,
+                                    learn_from_labels = TRUE,
                                     missing = c(), non_missing = c(),
                                     vars = names(data),
                                     use_labelled_spss = FALSE) {
@@ -30,7 +32,25 @@ detect_missings <- function(data, only_labelled_missings = TRUE,
       if (negative_values_are_missing) {
         potential_missings <- unique(data[[var]][data[[var]] < 0])
       }
+      labels <- attributes(data[[var]])$labels
 
+      if (learn_from_labels && length(labels)) {
+        numeric_representations <- as.numeric(
+          stringr::str_match(names(labels), "\\[([0-9-]+)\\]")[, 2])
+        potentially_untagged <- numeric_representations[is.na(labels)]
+        potential_tags <- labels[is.na(labels)]
+        if (!all(is.na(haven::na_tag(data[[var]]))) &&
+            length(intersect(potentially_untagged, data[[var]]))) {
+          warning("There were already tagged missings in ", var, ". Although",
+                  "there were further potential missings as indicated by",
+                  "missing labels, this was not changed.")
+        } else {
+          for (e in seq_along(potentially_untagged)) {
+            pot <- potentially_untagged[e]
+            data[[var]][data[[var]] == pot] <- potential_tags[e]
+          }
+        }
+      }
       # classic SPSS missings only if they are far out of real data range
       # can be turned off using non_missing or ninety_nine_problems
       if (ninety_nine_problems) {
@@ -50,14 +70,13 @@ detect_missings <- function(data, only_labelled_missings = TRUE,
           length(potential_missings) > 0) {
         if (only_labelled_missings) {
           potential_missings <- potential_missings[
-            potential_missings %in% attributes(data[[var]])$labels]
+            potential_missings %in% labels]
           # add labelled missings that don't exist for completeness
           potential_missings <- union(potential_missings,
-            setdiff(attributes(data[[var]])$labels, data[[var]]))
+            setdiff(labels, data[[var]]))
         }
         potential_missings <- sort(potential_missings)
         with_tagged_na <- data[[var]]
-        labels <- attributes(data[[var]])$labels
         free_na_tags <- setdiff( letters, haven::na_tag(with_tagged_na))
 
         for (i in seq_along(potential_missings)) {
@@ -188,13 +207,15 @@ detect_scales <- function(data, quiet = FALSE) {
 
 #' zap attributes
 #'
-#' Modelled on havens zap_labels, but more flexible.
-#' Can be used to zap all attributes for all variables in a
-#' data frame, or for some variables, or some attributes.
+#' Modelled on havens zap_labels, but more encompassing. By default removes
+#' the following attributes:
+#' format.spss, format.sas, format.stata, label, labels, na_values, na_range,
+#' display_width
 #'
 #'
 #' @param x the data frame or variable
-#' @param attributes defaults to NULL. If character, only those attributes are zapped
+#' @param attributes character vector of attributes to zap. NULL if everything
+#' (including factor levels etc) should be zapped
 #'
 #' @export
 #'
@@ -208,7 +229,10 @@ detect_scales <- function(data, quiet = FALSE) {
 #' bfi <- detect_scales(bfi, quiet = TRUE) # create attributes
 #' str(zap_attributes(bfi, "label"))
 #' zap_attributes(bfi$bfi_e)
-zap_attributes <- function(x, attributes = NULL) {
+zap_attributes <- function(x,
+       attributes = c("format.spss", "format.sas", "format.stata",
+                      "label", "labels", "na_values", "na_range",
+                      "display_width")) {
   stopifnot(xor(is.null(attributes), is.character(attributes)))
   UseMethod("zap_attributes")
 }
@@ -231,3 +255,21 @@ zap_attributes.data.frame <- function(x, attributes = NULL) {
   x
 }
 
+
+#' zap attributes
+#'
+#' Modelled on havens zap_labels, zaps variable labels.
+#'
+#' @param x the data frame or variable
+#' @export
+zap_label <- function(x) {
+  UseMethod("zap_label")
+}
+zap_label.data.frame <- function(x) {
+  x[] <- lapply(x, zap_label)
+  x
+}
+zap_label.default <- function(x) {
+  attributes(x)$label <- NULL
+  x
+}

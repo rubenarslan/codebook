@@ -97,8 +97,8 @@ Using different settings, you can also easily tag other missings.</p>
 
     <pre class="usage"><span class='fu'>detect_missings</span>(<span class='no'>data</span>, <span class='kw'>only_labelled_missings</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>negative_values_are_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ninety_nine_problems</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>missing</span> <span class='kw'>=</span> <span class='fu'>c</span>(), <span class='kw'>non_missing</span> <span class='kw'>=</span> <span class='fu'>c</span>(), <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'>names</span>(<span class='no'>data</span>),
-  <span class='kw'>use_labelled_spss</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>learn_from_labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>missing</span> <span class='kw'>=</span> <span class='fu'>c</span>(), <span class='kw'>non_missing</span> <span class='kw'>=</span> <span class='fu'>c</span>(),
+  <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'>names</span>(<span class='no'>data</span>), <span class='kw'>use_labelled_spss</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -118,6 +118,10 @@ Using different settings, you can also easily tag other missings.</p>
     <tr>
       <th>ninety_nine_problems</th>
       <td><p>SPSS users often store values as 99/999, should we do this for values with 5*MAD of the median</p></td>
+    </tr>
+    <tr>
+      <th>learn_from_labels</th>
+      <td><p>if there are labels for missings of the form</p><pre>[-1]</pre><p>no answer, set -1 in the data to the corresponding tagged missing</p></td>
     </tr>
     <tr>
       <th>missing</th>

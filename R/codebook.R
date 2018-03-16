@@ -125,7 +125,7 @@ codebook <- function(results, reliabilities = NULL,
     items <- ''
   }
   if (metadata_json) {
-    jsonld <- codebook_jsonld(results)
+    jsonld <- metadata_jsonld(results)
   } else {
     jsonld <- ''
   }
@@ -200,19 +200,19 @@ codebook_missingness <- function(results, indent = "##") {
 
 
 
-#' codebook missingness
+#'metadata as jsonld
 #'
 #'
 #' @param results a formr results table which has the following columns: session, created, modified, expired, ended
 #'
 #' @export
-codebook_jsonld <- function(results) {
+metadata_jsonld <- function(results) {
   options <- list(
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), "metadata_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), "metadata_")
   )
   metadata <- metadata_list(results)
-  asis_knit_child(require_file("_codebook_jsonld.Rmd"), options = options)
+  asis_knit_child(require_file("_metadata_jsonld.Rmd"), options = options)
 }
 
 

@@ -4,17 +4,20 @@
 \alias{zap_attributes}
 \title{zap attributes}
 \usage{
-zap_attributes(x, attributes = NULL)
+zap_attributes(x, attributes = c("format.spss", "format.sas", "format.stata",
+  "label", "labels", "na_values", "na_range", "display_width"))
 }
 \arguments{
 \item{x}{the data frame or variable}
 
-\item{attributes}{defaults to NULL. If character, only those attributes are zapped}
+\item{attributes}{character vector of attributes to zap. NULL if everything
+(including factor levels etc) should be zapped}
 }
 \description{
-Modelled on havens zap_labels, but more flexible.
-Can be used to zap all attributes for all variables in a
-data frame, or for some variables, or some attributes.
+Modelled on havens zap_labels, but more encompassing. By default removes
+the following attributes:
+format.spss, format.sas, format.stata, label, labels, na_values, na_range,
+display_width
 }
 \examples{
 bfi <- data.frame(matrix(data = rnorm(300), ncol = 3))
