@@ -12,7 +12,7 @@ require_package <- function(package) {
 }
 
 
-#' Missingness pattern
+#' Missing data patterns
 #'
 #' Generate missingness patterns using mice, with options to reduce
 #' the complexity of the output.

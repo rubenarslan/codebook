@@ -2,7 +2,7 @@
 % Please edit documentation in R/codebook.R
 \name{codebook_table}
 \alias{codebook_table}
-\title{codebook metadata table}
+\title{Codebook metadata table}
 \usage{
 codebook_table(results)
 }

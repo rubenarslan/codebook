@@ -2,7 +2,7 @@
 % Please edit documentation in R/codebook.R
 \name{metadata_jsonld}
 \alias{metadata_jsonld}
-\title{metadata as jsonld}
+\title{Metadata as JSON-LD}
 \usage{
 metadata_jsonld(results)
 }
@@ -10,5 +10,5 @@ metadata_jsonld(results)
 \item{results}{a formr results table which has the following columns: session, created, modified, expired, ended}
 }
 \description{
-metadata as jsonld
+Metadata as JSON-LD
 }

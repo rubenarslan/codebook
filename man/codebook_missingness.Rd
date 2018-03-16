@@ -2,7 +2,7 @@
 % Please edit documentation in R/codebook.R
 \name{codebook_missingness}
 \alias{codebook_missingness}
-\title{codebook missingness}
+\title{Codebook missingness}
 \usage{
 codebook_missingness(results, indent = "##")
 }
@@ -12,5 +12,5 @@ codebook_missingness(results, indent = "##")
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 }
 \description{
-codebook missingness
+Codebook missingness
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/codebook.R
 \name{codebook_items}
 \alias{codebook_items}
-\title{codebook items}
+\title{Tabular codebook}
 \usage{
 codebook_items(results, indent = "##")
 }
@@ -12,5 +12,5 @@ codebook_items(results, indent = "##")
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 }
 \description{
-you need the formr package to use this function, and the item data has to be encoded in the item attribute
+Renders a tabular codebook including attributes and data summaries.
 }

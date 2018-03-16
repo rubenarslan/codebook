@@ -2,7 +2,7 @@
 % Please edit documentation in R/correct_attributes.R
 \name{detect_missings}
 \alias{detect_missings}
-\title{detect missing values}
+\title{Detect missing values}
 \usage{
 detect_missings(data, only_labelled_missings = TRUE,
   negative_values_are_missing = TRUE, ninety_nine_problems = TRUE,

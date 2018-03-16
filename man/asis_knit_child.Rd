@@ -2,7 +2,7 @@
 % Please edit documentation in R/rmarkdown_helpers.R
 \name{asis_knit_child}
 \alias{asis_knit_child}
-\title{knit_child as is}
+\title{Knit a child document and output as is (render markup)}
 \usage{
 asis_knit_child(input = NULL, text = NULL, ..., quiet = TRUE,
   options = NULL, envir = parent.frame(), use_strings = TRUE)

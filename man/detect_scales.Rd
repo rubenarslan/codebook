@@ -2,7 +2,7 @@
 % Please edit documentation in R/correct_attributes.R
 \name{detect_scales}
 \alias{detect_scales}
-\title{detect_scales}
+\title{Detect item scales}
 \usage{
 detect_scales(data, quiet = FALSE)
 }

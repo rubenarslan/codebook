@@ -2,7 +2,7 @@
 % Please edit documentation in R/correct_attributes.R
 \name{zap_label}
 \alias{zap_label}
-\title{zap attributes}
+\title{Zap variable label}
 \usage{
 zap_label(x)
 }

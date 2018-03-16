@@ -2,7 +2,7 @@
 % Please edit documentation in R/codebook.R
 \name{codebook_survey_overview}
 \alias{codebook_survey_overview}
-\title{codebook survey overview}
+\title{Codebook survey overview}
 \usage{
 codebook_survey_overview(results, survey_repetition = "single",
   indent = "##")
@@ -15,5 +15,5 @@ codebook_survey_overview(results, survey_repetition = "single",
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 }
 \description{
-codebook survey overview
+Codebook survey overview
 }

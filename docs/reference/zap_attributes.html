@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>zap attributes — zap_attributes • codebook</title>
+<title>Zap attributes — zap_attributes • codebook</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -86,7 +86,7 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>zap attributes</h1>
+    <h1>Zap attributes</h1>
     </div>
 
     
@@ -123,22 +123,23 @@ display_width</p>
 <span class='no'>bfi</span>$<span class='no'>bfi_e</span> <span class='kw'>&lt;-</span> <span class='fu'>rowMeans</span>(<span class='no'>bfi</span>[, <span class='fu'>c</span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>)])
 <span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='detect_scales.html'>detect_scales</a></span>(<span class='no'>bfi</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># create attributes</span>
 <span class='fu'>str</span>(<span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>, <span class='st'>"label"</span>))</div><div class='output co'>#&gt; 'data.frame':	100 obs. of  4 variables:
-#&gt;  $ bfi_e1 : num  0.2154 0.1924 -0.0188 1.0782 1.7582 ...
-#&gt;  $ bfi_e2R: num  -0.5637 -1.4025 -2.3491 0.0793 1.2248 ...
-#&gt;  $ bfi_e3 : num  0.449 -0.258 -0.717 -0.225 0.26 ...
-#&gt;  $ bfi_e  : atomic  0.0335 -0.4892 -1.0282 0.3108 1.081 ...
-#&gt;   ..- attr(*, "scale_item_names")= chr  "bfi_e1" "bfi_e2R" "bfi_e3"</div><div class='input'><span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>$<span class='no'>bfi_e</span>)</div><div class='output co'>#&gt;   [1]  0.0335 -0.4892 -1.0282  0.3108  1.0810  0.1867 -0.0041  1.0195 -1.1515
-#&gt;  [10] -0.0098  0.1986  0.6845 -0.0813 -0.0069 -0.2705 -0.1273 -0.4507 -0.2552
-#&gt;  [19]  0.1116 -0.3513 -0.4777 -0.5857 -0.7270 -0.0965 -0.3057 -0.5618  0.8572
-#&gt;  [28]  0.1950 -0.0671  0.1301 -0.2134 -0.0920  0.5613 -0.1113 -0.3610 -0.2424
-#&gt;  [37]  1.2748 -0.1279 -0.2639 -0.2740 -0.9279  1.0178 -0.8863 -0.1622  0.5874
-#&gt;  [46] -0.7541  0.5661 -0.2209  1.0286 -0.5828  0.1653  0.2286 -0.6294 -0.8324
-#&gt;  [55] -0.2359  0.6060  0.8046 -0.1938  0.0659 -0.4575 -0.1381  0.9892  0.1335
-#&gt;  [64]  0.1550  0.4096 -0.1624  0.5745  0.1642 -0.8876  0.5416  0.4920 -0.1557
-#&gt;  [73]  0.5948  1.1550  1.8328 -0.5183 -1.3576  0.6590  0.2187  0.2924  0.8631
-#&gt;  [82]  0.3457 -0.2499  0.3276 -0.5914  0.2770  0.5769  0.7891 -0.3022  0.1943
-#&gt;  [91]  0.2125 -0.5819 -0.0587  1.1788  0.8855  0.2975 -0.7602  0.5149 -0.2545
-#&gt; [100]  0.1458</div></pre>
+#&gt;  $ bfi_e1 : num  -0.456 1.866 -1.5 -0.973 0.264 ...
+#&gt;  $ bfi_e2R: num  0.31 -0.875 1.931 -0.891 1.612 ...
+#&gt;  $ bfi_e3 : num  0.902 -0.379 -2.096 0.83 -0.276 ...
+#&gt;  $ bfi_e  : atomic  0.252 0.204 -0.555 -0.345 0.533 ...
+#&gt;   ..- attr(*, "scale_item_names")= chr  "bfi_e1" "bfi_e2R" "bfi_e3"</div><div class='input'><span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>$<span class='no'>bfi_e</span>)</div><div class='output co'>#&gt;   [1]  0.25198  0.20419 -0.55479 -0.34476  0.53338  0.23636  0.66341 -0.03862
+#&gt;   [9] -0.12725 -0.06796  0.79708  0.94757  0.44348 -0.37293 -1.02049  0.14574
+#&gt;  [17]  0.20439  0.41717  0.72578 -0.47811  0.73093  0.10612 -1.06144  0.01585
+#&gt;  [25] -0.29614 -0.58274 -0.56092 -0.16693 -0.27836 -0.14096  0.58016  0.79129
+#&gt;  [33] -0.58070 -0.51493 -0.34813  0.53425  0.64781  0.12890 -0.80208  0.47600
+#&gt;  [41]  0.28524 -0.31289  0.09143 -0.13120  0.88465 -0.63977 -0.41727 -0.05091
+#&gt;  [49] -0.30595 -0.33460  0.11582 -0.02115  0.38517  1.41808 -0.61404  0.67389
+#&gt;  [57] -0.74296 -0.91469 -0.48316  0.17967 -0.08718  0.98952  0.63014  1.08098
+#&gt;  [65] -0.06178  0.86616  0.09421 -0.75433 -0.65851 -0.37390 -0.23534 -0.32401
+#&gt;  [73] -0.19802  0.00017 -0.24439 -0.33830 -0.20423  0.78428 -0.01721  0.50189
+#&gt;  [81]  0.39683 -0.66168 -0.60463  0.58987  0.52245 -1.03735 -0.20698  0.72603
+#&gt;  [89] -0.89287  1.25810 -0.05883 -0.16271 -1.01674  0.73138  0.64602  0.45378
+#&gt;  [97] -0.78952  0.10165  0.35893 -1.09950</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

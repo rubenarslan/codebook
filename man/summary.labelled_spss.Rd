@@ -2,7 +2,7 @@
 % Please edit documentation in R/psych_print.R
 \name{summary.labelled_spss}
 \alias{summary.labelled_spss}
-\title{summary.labelled_spss}
+\title{Summary function for labelled_spss vector}
 \usage{
 \method{summary}{labelled_spss}(object, ...)
 }
@@ -12,7 +12,7 @@
 \item{...}{passed to summary.factor}
 }
 \description{
-summary.labelled_spss
+Summary function for labelled_spss vector
 }
 \examples{
 example("labelled", "haven")

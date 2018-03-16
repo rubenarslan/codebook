@@ -1,4 +1,4 @@
-#' mock BFI data
+#' Mock BFI data
 #'
 #' a small mock BFI dataset with realistic values, exported from formr.
 #' The dataset is self-documenting via its attributes.

@@ -53,7 +53,7 @@ knit_print.htest <- function(x, indent = '#####', ...) {
     "\n```\n\n\n"))
 }
 
-#' summary.labelled
+#' Summary function for labelled vector
 #'
 #'
 #' @param object a labelled vector
@@ -68,7 +68,7 @@ summary.labelled <- function(object, ...) {
   summary(haven::as_factor(object, levels = "both"), ...)
 }
 
-#' summary.labelled_spss
+#' Summary function for labelled_spss vector
 #'
 #'
 #' @param object a labelled_spss vector

@@ -2,7 +2,7 @@
 % Please edit documentation in R/correct_attributes.R
 \name{zap_attributes}
 \alias{zap_attributes}
-\title{zap attributes}
+\title{Zap attributes}
 \usage{
 zap_attributes(x, attributes = c("format.spss", "format.sas", "format.stata",
   "label", "labels", "na_values", "na_range", "display_width"))

@@ -54,30 +54,26 @@ likert_from_items <- function(items) {
 plot_labelled <- function(item, item_name = deparse(substitute(item)),
                           wrap_at = 50, go_vertical = FALSE) {
   choices <- attributes(item)[["labels"]]
+  item_label <- attributes(item)[["label"]]
+
+  label_how <- "both"
+
   if (length(choices)) {
     names(attributes(item)[["labels"]]) <-
       stringr::str_wrap(names(choices), 20)
     choices <- attributes(item)[["labels"]]
-  }
-  item_label <- attributes(item)[["label"]]
-  if (any(is.na(item))) {
-    label_how <- "both"
+
     if (all(stringr::str_match(
-            names(stats::na.omit(choices)), "\\[([0-9-]+)\\]")[, 2] ==
-             stats::na.omit(choices))) {
+      names(stats::na.omit(choices)), "\\[?([0-9-]+)(\\]|:)")[, 2] ==
+      stats::na.omit(choices), na.rm = TRUE)) {
       label_how = "default"
     }
 
-    item <- haven::as_factor(item, levels = label_how)
-    choices <- unique(item)
-    names(choices) <- choices
-  } else {
-    if (length(choices)) {
-      choices <- choices[!is.na(choices)]
-    }
   }
 
-  x_axis <- ggplot2::xlab("Values")
+  if (haven::is.labelled(item)) {
+    item <- haven::as_factor(item, levels = label_how)
+  }
 
   if (is.character(item)) {
     item <- stringr::str_wrap(as.character(item), 15)
@@ -87,9 +83,8 @@ plot_labelled <- function(item, item_name = deparse(substitute(item)),
     ggplot2::stat_bin() +
     ggplot2::ggtitle(item_name,
               subtitle = stringr::str_wrap(item_label, width = wrap_at)) +
-    ggplot2::scale_y_continuous()
-
-  dist_plot <- dist_plot + x_axis
+    ggplot2::scale_y_continuous() +
+    ggplot2::xlab("Values")
 
   if ( go_vertical ) {
     dist_plot <- dist_plot + ggplot2::coord_flip()

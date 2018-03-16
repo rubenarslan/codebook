@@ -2,7 +2,7 @@
 % Please edit documentation in R/misc.R
 \name{md_pattern}
 \alias{md_pattern}
-\title{Missingness pattern}
+\title{Missing data patterns}
 \usage{
 md_pattern(data, only_vars_with_missings = TRUE, min_freq = 0.01)
 }

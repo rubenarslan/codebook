@@ -60,7 +60,10 @@ wrap_at <- knitr::opts_chunk$get("fig.width") * 10
 # todo: bin rare responses into "other category"
 
 if (is.numeric(item) || dplyr::n_distinct(item) < 20) {
-  plot_labelled(na.omit(item), item_name, wrap_at, go_vertical)
+  attribs <- attributes(item)
+  item <- item[!is.na(item)]
+  attributes(item) <- attribs
+  plot_labelled(item, item_name, wrap_at, go_vertical)
 } else {
 	cat(dplyr::n_distinct(item), " unique, categorical values, so not shown.")
 }

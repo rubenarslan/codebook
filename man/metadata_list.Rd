@@ -2,7 +2,7 @@
 % Please edit documentation in R/codebook.R
 \name{metadata_list}
 \alias{metadata_list}
-\title{metadata from dataframe}
+\title{Metadata from dataframe}
 \usage{
 metadata_list(results)
 }
@@ -10,5 +10,5 @@ metadata_list(results)
 \item{results}{a data frame}
 }
 \description{
-metadata from dataframe
+Returns a list containing variable metadata (attributes) and data summaries.
 }

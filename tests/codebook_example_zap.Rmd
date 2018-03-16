@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 
 
 ```{r}
-knitr::opts_chunk$set(warning = TRUE, message = TRUE, error = TRUE, echo = FALSE)
+knitr::opts_chunk$set(warning = TRUE, message = TRUE, echo = FALSE)
 pander::panderOptions("table.split.table", Inf)
 library(codebook)
 data("bfi", package = 'codebook')

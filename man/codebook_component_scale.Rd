@@ -2,7 +2,7 @@
 % Please edit documentation in R/codebook.R
 \name{codebook_component_scale}
 \alias{codebook_component_scale}
-\title{codebook component for scales}
+\title{Codebook component for scales}
 \usage{
 codebook_component_scale(scale, scale_name, items, reliabilities,
   indent = "##")
@@ -19,5 +19,5 @@ codebook_component_scale(scale, scale_name, items, reliabilities,
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 }
 \description{
-codebook component for scales
+Codebook component for scales
 }

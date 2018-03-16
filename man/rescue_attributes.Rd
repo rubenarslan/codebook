@@ -2,7 +2,7 @@
 % Please edit documentation in R/correct_attributes.R
 \name{rescue_attributes}
 \alias{rescue_attributes}
-\title{rescue_attributes}
+\title{Rescue lost attributes}
 \usage{
 rescue_attributes(df_no_attributes, df_with_attributes)
 }

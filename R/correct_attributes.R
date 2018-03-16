@@ -1,4 +1,4 @@
-#' detect missing values
+#' Detect missing values
 #'
 #' SPSS users frequently label their missing values, but don't set them as missing.
 #' This function will rectify that for negative values and for the values 99 and 999 (only if they're 5*MAD away from the median).
@@ -120,7 +120,7 @@ detect_missings <- function(data, only_labelled_missings = TRUE,
   data
 }
 
-#' rescue_attributes
+#' Rescue lost attributes
 #'
 #' You can use this function if some of your items have lost their attributes during wrangling
 #' Variables have to have the same name (Duh) and no attributes should be overwritten.
@@ -153,7 +153,7 @@ rescue_attributes <- function(df_no_attributes, df_with_attributes) {
 }
 
 
-#' detect_scales
+#' Detect item scales
 #'
 #' Did you create aggregates of items like this
 #' scale <- scale_1 + scale_2R + scale_3R
@@ -205,7 +205,7 @@ detect_scales <- function(data, quiet = FALSE) {
 }
 
 
-#' zap attributes
+#' Zap attributes
 #'
 #' Modelled on havens zap_labels, but more encompassing. By default removes
 #' the following attributes:
@@ -256,7 +256,7 @@ zap_attributes.data.frame <- function(x, attributes = NULL) {
 }
 
 
-#' zap attributes
+#' Zap variable label
 #'
 #' Modelled on havens zap_labels, zaps variable labels.
 #'

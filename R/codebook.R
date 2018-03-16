@@ -134,7 +134,7 @@ codebook <- function(results, reliabilities = NULL,
 }
 
 
-#' codebook survey overview
+#' Codebook survey overview
 #'
 #'
 #' @param results a formr results table which has the following columns: session, created, modified, expired, ended
@@ -182,7 +182,7 @@ codebook_survey_overview <- function(results, survey_repetition = "single",
 }
 
 
-#' codebook missingness
+#' Codebook missingness
 #'
 #'
 #' @param results a formr results table which has the following columns: session, created, modified, expired, ended
@@ -200,7 +200,7 @@ codebook_missingness <- function(results, indent = "##") {
 
 
 
-#'metadata as jsonld
+#' Metadata as JSON-LD
 #'
 #'
 #' @param results a formr results table which has the following columns: session, created, modified, expired, ended
@@ -216,9 +216,9 @@ metadata_jsonld <- function(results) {
 }
 
 
-#' codebook items
+#' Tabular codebook
 #'
-#' you need the formr package to use this function, and the item data has to be encoded in the item attribute
+#' Renders a tabular codebook including attributes and data summaries.
 #'
 #'
 #' @param results a formr results table which has the following columns: session, created, modified, expired, ended
@@ -235,7 +235,7 @@ codebook_items <- function(results, indent = "##") {
   asis_knit_child(require_file("_codebook_items.Rmd"), options = options)
 }
 
-#' codebook component for scales
+#' Codebook component for scales
 #'
 #'
 #' @param scale a scale with attributes set
@@ -257,7 +257,7 @@ codebook_component_scale <- function(scale, scale_name, items, reliabilities,
   asis_knit_child(require_file("_codebook_scale.Rmd"), options = options)
 }
 
-#' codebook component for single items
+#' Codebook component for single items
 #'
 #'
 #' @param item an item with attributes set
@@ -273,7 +273,7 @@ codebook_component_single_item <- function(item, item_name, indent = '##') {
   asis_knit_child(require_file("_codebook_item.Rmd"), options = options)
 }
 
-#' codebook metadata table
+#' Codebook metadata table
 #'
 #' will generate a table combining metadata from variable attributes
 #' with data summaries generated using skimr
@@ -352,8 +352,9 @@ codebook_table <- function(results) {
 
 
 
-#' metadata from dataframe
+#' Metadata from dataframe
 #'
+#' Returns a list containing variable metadata (attributes) and data summaries.
 #'
 #' @param results a data frame
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/rmarkdown_helpers.R
 \name{load_data_and_render_codebook}
 \alias{load_data_and_render_codebook}
-\title{render codebook based on file}
+\title{Render codebook based on file}
 \usage{
 load_data_and_render_codebook(file, text, remove_file = FALSE, ...)
 }

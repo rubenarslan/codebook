@@ -1,4 +1,4 @@
-#' knit_child as is
+#' Knit a child document and output as is (render markup)
 #'
 #' This slightly modifies the [knitr::knit_child()] function to have different defaults.
 #' - the environment defaults to the calling environment.
@@ -69,7 +69,7 @@ asis_knit_child <- function(input = NULL, text = NULL, ...,
 }
 
 
-#' paste.knit_asis
+#' Paste and output as is (render markup)
 #'
 #' Helper function for knit_asis objects, useful when e.g. [asis_knit_child()] was used in a loop.
 #'
@@ -98,7 +98,7 @@ print.knit_asis <- function(x, ...) {
 
 
 
-#' render codebook based on file
+#' Render codebook based on file
 #'
 #'
 #' Render text

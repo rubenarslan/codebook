@@ -2,7 +2,7 @@
 % Please edit documentation in R/codebook.R
 \name{codebook_component_single_item}
 \alias{codebook_component_single_item}
-\title{codebook component for single items}
+\title{Codebook component for single items}
 \usage{
 codebook_component_single_item(item, item_name, indent = "##")
 }
@@ -14,5 +14,5 @@ codebook_component_single_item(item, item_name, indent = "##")
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 }
 \description{
-codebook component for single items
+Codebook component for single items
 }

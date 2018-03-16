@@ -2,7 +2,7 @@
 % Please edit documentation in R/rmarkdown_helpers.R
 \name{paste.knit_asis}
 \alias{paste.knit_asis}
-\title{paste.knit_asis}
+\title{Paste and output as is (render markup)}
 \usage{
 paste.knit_asis(..., sep = "\\n\\n\\n", collapse = "\\n\\n\\n")
 }
