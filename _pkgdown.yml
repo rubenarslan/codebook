@@ -1,0 +1,49 @@
+reference:
+- title: Codebook generators
+  desc: Functions to generate (parts of) the codebook
+  contents:
+  - '`codebook`'
+  - '`codebook_table`'
+  - '`codebook_items`'
+  - '`codebook_missingness`'
+  - '`md_pattern`'
+  - '`codebook_survey_overview`'
+  - '`codebook_component_scale`'
+  - '`codebook_component_single_item`'
+  - '`metadata_jsonld`'
+  - '`metadata_list`'
+  - '`load_data_and_render_codebook`'
+- title: Prepare data for codebook
+  desc: Functions to annotate data to be more interpretable by the codebook functions
+  contents:
+  - '`detect_missings`'
+  - '`detect_scales`'
+  - '`compute_reliabilities`'
+  - '`rescue_attributes`'
+- title: Prepare data for non-codebook stuff
+  desc: Functions to remove attributes that might confuse other packages
+  contents:
+  - '`zap_attributes`'
+  - '`zap_label`'
+- title: Functions for rmarkdown partials
+  desc: Make rmarkdown partials whether in interactive mode or not
+  contents:
+  - '`asis_knit_child`'
+  - '`paste.knit_asis`'
+  - '`print.knit_asis`'
+- title: Methods
+  desc: Various methods to print and plot objects
+  contents:
+  - '`summary.labelled`'
+  - '`summary.labelled_spss`'
+  - '`knit_print.alpha`'
+  - '`knit_print.htest`'
+  - '`knit_print.multilevel`'
+  - '`likert_from_items`'
+  - '`plot_labelled`'
+- title: formr-data specific helpers
+  desc: ~
+  contents:
+  - '`ended`'
+  - '`expired`'
+  - '`modified`'

@@ -18,13 +18,14 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Function reference" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -64,7 +65,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -88,7 +89,7 @@
     <div class="page-header">
       <h1>
         Reference
-        <small>version&nbsp;0.5.3</small>
+        <small>version&nbsp;0.5.5</small>
       </h1>
     </div>
 
@@ -103,196 +104,230 @@
       <tbody>
         <tr>
           <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
+            <h2 id="section-codebook-generators" class="hasAnchor"><a href="#section-codebook-generators" class="anchor"></a>Codebook generators</h2>
+            <p class="section-desc"><p>Functions to generate (parts of) the codebook</p></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="codebook.html">codebook()</a></code> </p>
+          </td>
+          <td><p>Generate rmarkdown codebook</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="codebook_table.html">codebook_table()</a></code> </p>
+          </td>
+          <td><p>Codebook metadata table</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="codebook_items.html">codebook_items()</a></code> </p>
+          </td>
+          <td><p>Tabular codebook</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="codebook_missingness.html">codebook_missingness()</a></code> </p>
+          </td>
+          <td><p>Codebook missingness</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="md_pattern.html">md_pattern()</a></code> </p>
+          </td>
+          <td><p>Missing data patterns</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="codebook_survey_overview.html">codebook_survey_overview()</a></code> </p>
+          </td>
+          <td><p>Codebook survey overview</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="codebook_component_scale.html">codebook_component_scale()</a></code> </p>
+          </td>
+          <td><p>Codebook component for scales</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="codebook_component_single_item.html">codebook_component_single_item()</a></code> </p>
+          </td>
+          <td><p>Codebook component for single items</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="metadata_jsonld.html">metadata_jsonld()</a></code> </p>
+          </td>
+          <td><p>Metadata as JSON-LD</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="metadata_list.html">metadata_list()</a></code> </p>
+          </td>
+          <td><p>Metadata from dataframe</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="load_data_and_render_codebook.html">load_data_and_render_codebook()</a></code> </p>
+          </td>
+          <td><p>Render codebook based on file</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-prepare-data-for-codebook" class="hasAnchor"><a href="#section-prepare-data-for-codebook" class="anchor"></a>Prepare data for codebook</h2>
+            <p class="section-desc"><p>Functions to annotate data to be more interpretable by the codebook functions</p></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="detect_missings.html">detect_missings()</a></code> </p>
+          </td>
+          <td><p>Detect missing values</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="detect_scales.html">detect_scales()</a></code> </p>
+          </td>
+          <td><p>Detect item scales</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="compute_reliabilities.html">compute_reliabilities()</a></code> </p>
+          </td>
+          <td><p>Compute reliabilities</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="rescue_attributes.html">rescue_attributes()</a></code> </p>
+          </td>
+          <td><p>Rescue lost attributes</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-prepare-data-for-non-codebook-stuff" class="hasAnchor"><a href="#section-prepare-data-for-non-codebook-stuff" class="anchor"></a>Prepare data for non-codebook stuff</h2>
+            <p class="section-desc"><p>Functions to remove attributes that might confuse other packages</p></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="zap_attributes.html">zap_attributes()</a></code> </p>
+          </td>
+          <td><p>Zap attributes</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="zap_label.html">zap_label()</a></code> </p>
+          </td>
+          <td><p>Zap variable label</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-functions-for-rmarkdown-partials" class="hasAnchor"><a href="#section-functions-for-rmarkdown-partials" class="anchor"></a>Functions for rmarkdown partials</h2>
+            <p class="section-desc"><p>Make rmarkdown partials whether in interactive mode or not</p></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="asis_knit_child.html">asis_knit_child()</a></code> </p>
+          </td>
+          <td><p>Knit a child document and output as is (render markup)</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="paste.knit_asis.html">paste.knit_asis()</a></code> </p>
+          </td>
+          <td><p>Paste and output as is (render markup)</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="print.knit_asis.html">print(<i>&lt;knit_asis&gt;</i>)</a></code> </p>
+          </td>
+          <td><p>Print new lines in knit_asis outputs</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-methods" class="hasAnchor"><a href="#section-methods" class="anchor"></a>Methods</h2>
+            <p class="section-desc"><p>Various methods to print and plot objects</p></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="summary.labelled.html">summary(<i>&lt;labelled&gt;</i>)</a></code> </p>
+          </td>
+          <td><p>Summary function for labelled vector</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="summary.labelled_spss.html">summary(<i>&lt;labelled_spss&gt;</i>)</a></code> </p>
+          </td>
+          <td><p>Summary function for labelled_spss vector</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="knit_print.alpha.html">knit_print.alpha()</a></code> </p>
+          </td>
+          <td><p>Pretty-print a psych::alpha object</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="knit_print.htest.html">knit_print.htest()</a></code> </p>
+          </td>
+          <td><p>Print a stats::cor.test object for knitr</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="knit_print.multilevel.html">knit_print.multilevel()</a></code> </p>
+          </td>
+          <td><p>Print a psych::multilevel.reliability object for knitr</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="likert_from_items.html">likert_from_items()</a></code> </p>
+          </td>
+          <td><p>Derive a likert object from items</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="plot_labelled.html">plot_labelled()</a></code> </p>
+          </td>
+          <td><p>Plot labelled vector</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-formr-data-specific-helpers" class="hasAnchor"><a href="#section-formr-data-specific-helpers" class="anchor"></a>formr-data specific helpers</h2>
             <p class="section-desc"></p>
           </th>
         </tr>
         <tr>
           <!--  -->
           <td>
-            <p><code><a href="asis_knit_child.html">asis_knit_child</a></code> </p>
-          </td>
-          <td><p>Knit a child document and output as is (render markup)</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="bfi.html">bfi</a></code> </p>
-          </td>
-          <td><p>Mock BFI data</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="codebook_component_scale.html">codebook_component_scale</a></code> </p>
-          </td>
-          <td><p>Codebook component for scales</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="codebook_component_single_item.html">codebook_component_single_item</a></code> </p>
-          </td>
-          <td><p>Codebook component for single items</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="codebook_items.html">codebook_items</a></code> </p>
-          </td>
-          <td><p>Tabular codebook</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="codebook_missingness.html">codebook_missingness</a></code> </p>
-          </td>
-          <td><p>Codebook missingness</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="codebook_survey_overview.html">codebook_survey_overview</a></code> </p>
-          </td>
-          <td><p>Codebook survey overview</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="codebook_table.html">codebook_table</a></code> </p>
-          </td>
-          <td><p>Codebook metadata table</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="codebook.html">codebook</a></code> </p>
-          </td>
-          <td><p>Generate rmarkdown codebook</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="compute_reliabilities.html">compute_reliabilities</a></code> </p>
-          </td>
-          <td><p>Compute reliabilities</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="detect_missings.html">detect_missings</a></code> </p>
-          </td>
-          <td><p>Detect missing values</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="detect_scales.html">detect_scales</a></code> </p>
-          </td>
-          <td><p>Detect item scales</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ended.html">ended</a></code> </p>
+            <p><code><a href="ended.html">ended()</a></code> </p>
           </td>
           <td><p>How many surveys were ended?</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="expired.html">expired</a></code> </p>
+            <p><code><a href="expired.html">expired()</a></code> </p>
           </td>
           <td><p>How many surveys were expired?</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="knit_print.alpha.html">knit_print.alpha</a></code> </p>
-          </td>
-          <td><p>Pretty-print a psych::alpha object</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="knit_print.htest.html">knit_print.htest</a></code> </p>
-          </td>
-          <td><p>Print a stats::cor.test object for knitr</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="knit_print.multilevel.html">knit_print.multilevel</a></code> </p>
-          </td>
-          <td><p>Print a psych::multilevel.reliability object for knitr</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="likert_from_items.html">likert_from_items</a></code> </p>
-          </td>
-          <td><p>Derive a likert object from items</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="load_data_and_render_codebook.html">load_data_and_render_codebook</a></code> </p>
-          </td>
-          <td><p>Render codebook based on file</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="md_pattern.html">md_pattern</a></code> </p>
-          </td>
-          <td><p>Missing data patterns</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="metadata_jsonld.html">metadata_jsonld</a></code> </p>
-          </td>
-          <td><p>Metadata as JSON-LD</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="metadata_list.html">metadata_list</a></code> </p>
-          </td>
-          <td><p>Metadata from dataframe</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="modified.html">modified</a></code> </p>
+            <p><code><a href="modified.html">modified()</a></code> </p>
           </td>
           <td><p>How many surveys were modified?</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="paste.knit_asis.html">paste.knit_asis</a></code> </p>
-          </td>
-          <td><p>Paste and output as is (render markup)</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="plot_labelled.html">plot_labelled</a></code> </p>
-          </td>
-          <td><p>Plot labelled vector</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="print.knit_asis.html">print</a></code> </p>
-          </td>
-          <td><p>Print new lines in knit_asis outputs</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="rescue_attributes.html">rescue_attributes</a></code> </p>
-          </td>
-          <td><p>Rescue lost attributes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="summary.labelled_spss.html">summary</a></code> </p>
-          </td>
-          <td><p>Summary function for labelled_spss vector</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="summary.labelled.html">summary</a></code> </p>
-          </td>
-          <td><p>Summary function for labelled vector</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="zap_attributes.html">zap_attributes</a></code> </p>
-          </td>
-          <td><p>Zap attributes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="zap_label.html">zap_label</a></code> </p>
-          </td>
-          <td><p>Zap variable label</p></td>
         </tr>
       </tbody>
       </table>
@@ -302,7 +337,12 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#section-codebook-generators">Codebook generators</a></li>
+      <li><a href="#section-prepare-data-for-codebook">Prepare data for codebook</a></li>
+      <li><a href="#section-prepare-data-for-non-codebook-stuff">Prepare data for non-codebook stuff</a></li>
+      <li><a href="#section-functions-for-rmarkdown-partials">Functions for rmarkdown partials</a></li>
+      <li><a href="#section-methods">Methods</a></li>
+      <li><a href="#section-formr-data-specific-helpers">formr-data specific helpers</a></li>
     </ul>
   </div>
 </div>
@@ -321,3 +361,4 @@
 
   </body>
 </html>
+

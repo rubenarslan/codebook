@@ -18,13 +18,17 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Print a stats::cor.test object for knitr — knit_print.htest" />
+
+<meta property="og:description" content="Just prints the normal output." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -64,7 +68,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -87,6 +91,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Print a stats::cor.test object for knitr</h1>
+    <small>Source: <a href='https:/github.com/rubenarslan/codebook/blob/master/R/psych_print.R'><code>R/psych_print.R</code></a></small>
     </div>
 
     
@@ -122,13 +127,13 @@
 #&gt; 	Pearson's product-moment correlation
 #&gt; 
 #&gt; data:  rnorm(100) and rnorm(100)
-#&gt; t = -0.8, df = 100, p-value = 0.4
+#&gt; t = -1, df = 100, p-value = 0.2
 #&gt; alternative hypothesis: true correlation is not equal to 0
 #&gt; 95 percent confidence interval:
-#&gt;  -0.27  0.12
+#&gt;  -0.32  0.07
 #&gt; sample estimates:
-#&gt;    cor 
-#&gt; -0.079 
+#&gt;   cor 
+#&gt; -0.13 
 #&gt; 
 #&gt; ```
 #&gt; 
@@ -161,3 +166,4 @@
 
   </body>
 </html>
+
