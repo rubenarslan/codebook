@@ -1,3 +1,8 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* changed the LICENSE to MIT and used the appropriate file template (before I had BSD_2_clause and didn't know I had to use a specific file template)
+
 ## Test environments
 * local OS X install, R 3.4.3
 * ubuntu 14.04 (on travis-ci), R 3.4.3
