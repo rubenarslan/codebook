@@ -1,16 +1,16 @@
 Package: codebook
 Title: Cook Codebooks from Survey Metadata Encoded in Attributes in R
-Description: This package allows you to easily automate the following tasks to describe data frames: 
+Description: Easily automate the following tasks to describe data frames: 
   computing reliabilities (internal consistencies, retest, multilevel) for psychological scales, 
   summarise the distributions of scales and items graphically and using descriptive statistics,
   combine this information with metadata such as item labels and labelled values that is derived from R attributes.
   To do so, the package relies on rmarkdown partials. To mark up the metadata you need to use haven semantics.
-Version: 0.5.5
+Version: 0.5.6
 Authors@R: person("Ruben", "Arslan", email = "ruben.arslan@gmail.com", role = c("aut", "cre"))
 Depends: R (>= 3.0.1)
 URL: https://github.com/rubenarslan/codebook
 BugReports: https://github.com/rubenarslan/codebook/issues
-License: BSD_2_clause + file LICENSE
+License: MIT + file LICENSE
 Imports:
 		stats,
 		methods,
