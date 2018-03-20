@@ -1,5 +1,19 @@
 ## Resubmission
-This is a resubmission. In this version I have:
+This is a second resubmission. In this version I have:
+
+* changed the title to omit "in R"
+* changed the description to put 'rmarkdown' in single quotes
+* added small executable examples to the codebook functions in the codebook.R. 
+  Some of these examples will, by necessity, create files. 
+  I know other examples also do this (e.g. knitr), but I'm unsure whether it's 
+  desirable. I've noted/warned about file creation in every example.
+  * the function `codebook_items` cannot be run in examples. 
+    It causes an error during checking, probably because it indirectly includes 
+    an htmlwidget. It works fine in non-example use (tests, vignettes, 
+    interactively). Therefore, I wrapped the example in dontrun.
+* slightly changed the docs to be clearer
+
+In the first resubmission I
 
 * changed the LICENSE to MIT and used the appropriate file template (before I had BSD_2_clause and didn't know I had to use a specific file template)
 

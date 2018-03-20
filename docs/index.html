@@ -5,16 +5,17 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cook Codebooks from Survey Metadata Encoded in Attributes in R • codebook</title>
+<title>Automatic Codebooks from Survey Metadata Encoded in Attributes • codebook</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Cook Codebooks from Survey Metadata Encoded in Attributes in R">
-<meta property="og:description" content="This package allows you to easily automate the following tasks to describe data frames: 
+<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Automatic Codebooks from Survey Metadata Encoded in Attributes">
+<meta property="og:description" content="Easily automate the following tasks to describe data frames: 
   computing reliabilities (internal consistencies, retest, multilevel) for psychological scales, 
   summarise the distributions of scales and items graphically and using descriptive statistics,
-  combine this information with metadata such as item labels and labelled values that is derived from R attributes.
-  To do so, the package relies on rmarkdown partials. To mark up the metadata you need to use haven semantics.">
+  combine this information with metadata (such as item labels and labelled values) that is derived from R attributes.
+  To do so, the package relies on 'rmarkdown' partials, so you can generate HTML, PDF, and Word documents. Codebooks
+  are also available as tables (CSV, Excel, etc.).">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -79,18 +80,22 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#codebook-cookbook" class="anchor"></a>Codebook Cookbook</h1></div>
 
+<div id="description" class="section level2">
+<h2 class="hasAnchor">
+<a href="#description" class="anchor"></a>Description</h2>
+<p>Easily automate the following tasks to describe data frames: computing reliabilities (internal consistencies, retest, multilevel) for psychological scales, summarise the distributions of scales and items graphically and using descriptive statistics, combine this information with metadata (such as item labels and labelled values) that is derived from R attributes. To do so, the package relies on ‘rmarkdown’ partials, so you can generate HTML, PDF, and Word documents. Codebooks are also available as tables (CSV, Excel, etc.).</p>
+</div>
 <div id="generate-markdown-codebooks-from-the-attributes-of-the-variables-in-your-data-frame" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generate-markdown-codebooks-from-the-attributes-of-the-variables-in-your-data-frame" class="anchor"></a>Generate markdown codebooks from the attributes of the variables in your data frame</h2>
 <p>RStudio and a few of the tidyverse package already usefully display the information contained in the attributes of the variables in your data frame. The <a href="https://github.com/hadley/haven">haven</a> package also manages to grab variable documentation from SPSS or Stata files.</p>
 <p>The codebook package takes those attributes and the data and tries to produce a good-looking codebook, i.e. a place to get an overview of the variables in a dataset. The codebook processes single items, but also “scales”, i.e. psychological questionnaires that are aggregated to extract a construct. For scales, the appropriate reliability coefficients (internal consistencies for single measurements, retest reliabilities for repeated measurements, multilevel reliability for multilevel data) are computed. For items and scales, the distributions are summarised graphically and numerically.</p>
-<p>This package integrates tightly with formr (<a href="https://formr.org">formr.org</a>), an online survey framework and especially the data frames produced and marked up by the <a href="https://github.com/rubenarslan/formr">formr R package</a>, but is completely independent of it.</p>
-<p>To do this, this package uses rmarkdown <em>partials</em>, that can be integrated in a larger rmarkdown document and then translated to HTML or PDF format.</p>
+<p>This package integrates tightly with formr (<a href="https://formr.org">formr.org</a>), an online survey framework and especially the data frames produced and marked up by the <a href="https://github.com/rubenarslan/formr">formr R package</a>. However, codebook is completely independent of it.</p>
 </div>
 <div id="documentation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#documentation" class="anchor"></a>Documentation</h2>
-<p>Confer the help or: <a href="https://rubenarslan.github.io/codebook" class="uri">https://rubenarslan.github.io/codebook</a></p>
+<p>Confer the help or: <a href="https://rubenarslan.github.io/codebook" class="uri">https://rubenarslan.github.io/codebook</a>. See the <a href="https://rubenarslan.github.io/codebook/articles/codebook.html">vignette</a> for a quick example of an HTML document generated using <code>codebook</code>.</p>
 </div>
 <div id="use-as-a-webapp" class="section level2">
 <h2 class="hasAnchor">
@@ -142,7 +147,7 @@ results =<span class="st"> </span><span class="kw"><a href="http://www.rdocument
 </li>
 </ul>
 <h2>License</h2>
-<p><a href="https://opensource.org/licenses/BSD-2-Clause">BSD_2_clause</a> + file <a href="LICENSE-text.html">LICENSE</a></p>
+<p><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></p>
 <h2>Citation</h2>
 <ul class="list-unstyled">
 <li><a href="authors.html">Citing codebook</a></li>

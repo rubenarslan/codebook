@@ -9,7 +9,7 @@ codebook(results, reliabilities = NULL, survey_repetition = c("auto",
   metadata_table = TRUE, metadata_json = TRUE, indent = "#")
 }
 \arguments{
-\item{results}{a formr results table with attributes set on items and scales}
+\item{results}{a data frame, ideally with attributes set on variables}
 
 \item{reliabilities}{a named list with one entry per scale and one or several printable reliability computations for this scale. if NULL, computed on-the-fly using compute_reliabilities}
 
@@ -24,8 +24,18 @@ codebook(results, reliabilities = NULL, survey_repetition = c("auto",
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 }
 \description{
-If you pass the object resulting from a call to formr_results to this function, it will generate a markdown codebook for this object.
+Pass a data frame to this function to make a codebook for that dataset.
+If the dataset has metadata (attributes) set on its variables, these will be
+used to make the codebook more informative. Examples are item, value, and
+missing labels.
+Data frames imported via \link[haven:read_dta]{haven::read_dta}, \link[haven:read_sav]{haven::read_sav}, or from
+\href{https://formr.org}{formr.org} will have these attributes in the right format.
+By calling this function inside a knitr code chunk, the
+codebook will become part of the document you are generating.
 }
 \examples{
-# see vignette
+# will generate figures in a figure/ subdirectory
+data("bfi")
+bfi <- bfi[, c("BFIK_open_1", "BFIK_open_1")]
+md <- codebook(bfi, survey_repetition = "single", metadata_table = FALSE)
 }

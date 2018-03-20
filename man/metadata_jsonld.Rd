@@ -7,8 +7,12 @@
 metadata_jsonld(results)
 }
 \arguments{
-\item{results}{a formr results table which has the following columns: session, created, modified, expired, ended}
+\item{results}{a data frame, ideally with attributes set on variables}
 }
 \description{
-Metadata as JSON-LD
+Echo a list of a metadata as JSON-LD in a script tag.
+}
+\examples{
+data("bfi")
+metadata_jsonld(bfi)
 }

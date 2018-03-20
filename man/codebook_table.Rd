@@ -7,9 +7,13 @@
 codebook_table(results)
 }
 \arguments{
-\item{results}{a data frame}
+\item{results}{a data frame, ideally with attributes set on variables}
 }
 \description{
 will generate a table combining metadata from variable attributes
 with data summaries generated using skimr
+}
+\examples{
+data("bfi")
+codebook_table(bfi)
 }

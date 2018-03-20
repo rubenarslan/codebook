@@ -15,6 +15,15 @@ knitr::opts_chunk$set(
 # Codebook Cookbook
 [![Travis-CI Build Status](https://travis-ci.org/rubenarslan/codebook.svg?branch=master)](https://travis-ci.org/rubenarslan/codebook) [![codecov](https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg)](https://codecov.io/gh/rubenarslan/codebook)
 
+## Description
+
+Easily automate the following tasks to describe data frames: 
+  computing reliabilities (internal consistencies, retest, multilevel) for psychological scales, 
+  summarise the distributions of scales and items graphically and using descriptive statistics,
+  combine this information with metadata (such as item labels and labelled values) that is derived from R attributes.
+  To do so, the package relies on 'rmarkdown' partials, so you can generate HTML, PDF, and Word documents. Codebooks
+  are also available as tables (CSV, Excel, etc.).
+  
 ## Generate markdown codebooks from the attributes of the variables in your data frame
 
 RStudio and a few of the tidyverse package already usefully display the information contained in the attributes of the variables in your data frame. The [haven](https://github.com/hadley/haven) package also manages to grab variable documentation from SPSS or Stata files.
@@ -22,12 +31,11 @@ RStudio and a few of the tidyverse package already usefully display the informat
 The codebook package takes those attributes and the data and tries to produce a good-looking codebook, i.e. a place to get an overview of the variables in a dataset. The codebook processes single items, but also "scales", i.e. psychological questionnaires that are aggregated to extract a construct. For scales, the appropriate reliability coefficients (internal consistencies for single measurements, retest reliabilities for repeated measurements, multilevel reliability for multilevel data) are computed.
 For items and scales, the distributions are summarised graphically and numerically.
 
-This package integrates tightly with formr ([formr.org](https://formr.org)), an online survey framework and especially the data frames produced and marked up by the [formr R package](https://github.com/rubenarslan/formr), but is completely independent of it.
-
-To do this, this package uses rmarkdown _partials_, that can be integrated in a larger rmarkdown document and then translated to HTML or PDF format.
+This package integrates tightly with formr ([formr.org](https://formr.org)), an online survey framework and especially the data frames produced and marked up by the [formr R package](https://github.com/rubenarslan/formr). However, codebook is completely independent of it.
 
 ## Documentation
-Confer the help or: https://rubenarslan.github.io/codebook
+Confer the help or: https://rubenarslan.github.io/codebook.
+See the [vignette](https://rubenarslan.github.io/codebook/articles/codebook.html) for a quick example of an HTML document generated using `codebook`.
 
 ## Use as a webapp
 

@@ -21,3 +21,10 @@ codebook_component_scale(scale, scale_name, items, reliabilities,
 \description{
 Codebook component for scales
 }
+\examples{
+# will generate figure in a figure/ subdirectory
+data("bfi")
+bfi <- bfi[,c("BFIK_open", paste0("BFIK_open_", 1:4))]
+codebook_component_scale(bfi[,1], "BFIK_open", bfi[,-1],
+   reliabilities = list(BFIK_open = psych::alpha(bfi[,-1])))
+}

@@ -16,3 +16,8 @@ codebook_component_single_item(item, item_name, indent = "##")
 \description{
 Codebook component for single items
 }
+\examples{
+# will generate figure in a figure/ subdirectory
+#' data("bfi")
+codebook_component_single_item(bfi$BFIK_open_1, "BFIK_open_1")
+}

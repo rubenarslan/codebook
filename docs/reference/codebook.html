@@ -27,7 +27,14 @@
 <script src="../pkgdown.js"></script>
 <meta property="og:title" content="Generate rmarkdown codebook — codebook" />
 
-<meta property="og:description" content="If you pass the object resulting from a call to formr_results to this function, it will generate a markdown codebook for this object." />
+<meta property="og:description" content="Pass a data frame to this function to make a codebook for that dataset.
+If the dataset has metadata (attributes) set on its variables, these will be
+used to make the codebook more informative. Examples are item, value, and
+missing labels.
+Data frames imported via haven::read_dta, haven::read_sav, or from
+formr.org will have these attributes in the right format.
+By calling this function inside a knitr code chunk, the
+codebook will become part of the document you are generating." />
 <meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -95,7 +102,14 @@
     </div>
 
     
-    <p>If you pass the object resulting from a call to formr_results to this function, it will generate a markdown codebook for this object.</p>
+    <p>Pass a data frame to this function to make a codebook for that dataset.
+If the dataset has metadata (attributes) set on its variables, these will be
+used to make the codebook more informative. Examples are item, value, and
+missing labels.
+Data frames imported via <a href='http://www.rdocumentation.org/packages/haven/topics/read_dta'>haven::read_dta</a>, <a href='http://www.rdocumentation.org/packages/haven/topics/read_spss'>haven::read_sav</a>, or from
+<a href='https://formr.org'>formr.org</a> will have these attributes in the right format.
+By calling this function inside a knitr code chunk, the
+codebook will become part of the document you are generating.</p>
     
 
     <pre class="usage"><span class='fu'>codebook</span>(<span class='no'>results</span>, <span class='kw'>reliabilities</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>survey_repetition</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"auto"</span>,
@@ -107,7 +121,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>results</th>
-      <td><p>a formr results table with attributes set on items and scales</p></td>
+      <td><p>a data frame, ideally with attributes set on variables</p></td>
     </tr>
     <tr>
       <th>reliabilities</th>
@@ -137,8 +151,10 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'># see vignette
-</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># will generate figures in a figure/ subdirectory</span>
+<span class='fu'>data</span>(<span class='st'>"bfi"</span>)
+<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='no'>bfi</span>[, <span class='fu'>c</span>(<span class='st'>"BFIK_open_1"</span>, <span class='st'>"BFIK_open_1"</span>)]
+<span class='no'>md</span> <span class='kw'>&lt;-</span> <span class='fu'>codebook</span>(<span class='no'>bfi</span>, <span class='kw'>survey_repetition</span> <span class='kw'>=</span> <span class='st'>"single"</span>, <span class='kw'>metadata_table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: The variables session, created, ended, expired, modified have to be defined for automatic survey duration calculations to work.</span></div><div class='output co'>#&gt; <span class='message'>No missings.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

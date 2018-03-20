@@ -118,12 +118,177 @@
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># will generate figure in a figure/ subdirectory</span>
+<span class='co'>#' data("bfi")</span>
+<span class='fu'>codebook_component_single_item</span>(<span class='no'>bfi</span>$<span class='no'>BFIK_open_1</span>, <span class='st'>"BFIK_open_1"</span>)</div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; 
+#&gt; #### BFIK_open_1 {#BFIK_open_1 .tabset}
+#&gt; 
+#&gt; __Ich bin vielseitig interessiert.__
+#&gt; 
+#&gt; ##### Distribution {#BFIK_open_1_distribution}
+#&gt; 
+#&gt; ```r
+#&gt; show_missings &lt;- FALSE
+#&gt; if (haven::is.labelled(item)) {
+#&gt;   missings &lt;- item[is.na(haven::zap_missing(item))]
+#&gt;   if (is.numeric(item)) {
+#&gt;     show_missings &lt;- length(unique(haven::na_tag(missings))) &gt; 1
+#&gt;     item &lt;- haven::zap_missing(item)
+#&gt;   }
+#&gt;   if (length(attributes(item)$labels) == 0 &amp;&amp; is.numeric(item)) {
+#&gt;     item &lt;- haven::zap_labels(item)
+#&gt;   }
+#&gt; }
+#&gt; old_height &lt;- knitr::opts_chunk$get("fig.height")
+#&gt; non_missing_choices &lt;- attributes(item)[["labels"]]
+#&gt; many_labels &lt;- length(non_missing_choices) &gt; 7
+#&gt; go_vertical &lt;- !is.numeric(item) || many_labels
+#&gt; if ( go_vertical ) {
+#&gt;   # numeric items are plotted horizontally (because that's what usually expected)
+#&gt;   # categorical items are plotted vertically because we can use the screen real estate better this way
+#&gt; 
+#&gt; 	if (is.null(choices) || 
+#&gt; 	    dplyr::n_distinct(na.omit(item)) &gt; length(non_missing_choices)) {
+#&gt; 		choices &lt;- unique(na.omit(item))
+#&gt; 		names(choices) &lt;- choices
+#&gt; 		non_missing_choices &lt;- choices
+#&gt; 	}
+#&gt;   choice_multiplier &lt;- old_height/6.5
+#&gt; 	new_height &lt;- 2 + choice_multiplier * length(non_missing_choices)
+#&gt; 	new_height &lt;- ifelse(new_height &gt; 20, 20, new_height)
+#&gt; 	new_height &lt;- ifelse(new_height &lt; 1, 1, new_height)
+#&gt; 	knitr::opts_chunk$set(fig.height = new_height)
+#&gt; }
+#&gt; 
+#&gt; wrap_at &lt;- knitr::opts_chunk$get("fig.width") * 10
+#&gt; ```
+#&gt; 
+#&gt; ```r
+#&gt; # todo: if there are free-text choices mingled in with the pre-defined ones, don't show
+#&gt; # todo: show rare items if they are pre-defined
+#&gt; # todo: bin rare responses into "other category"
+#&gt; 
+#&gt; if (is.numeric(item) || dplyr::n_distinct(item) &lt; 20) {
+#&gt;   attribs &lt;- attributes(item)
+#&gt;   item &lt;- item[!is.na(item)]
+#&gt;   attributes(item) &lt;- attribs
+#&gt;   plot_labelled(item, item_name, wrap_at, go_vertical)
+#&gt; } else {
+#&gt; 	cat(dplyr::n_distinct(item), " unique, categorical values, so not shown.")
+#&gt; }
+#&gt; ```
+#&gt; 
+#&gt; ![plot of chunk distribution](figure/BFIK_open_1_distribution-1.png)
+#&gt; 
+#&gt; ```r
+#&gt; knitr::opts_chunk$set(fig.height = old_height)
+#&gt; ```
+#&gt; 
+#&gt; 0 missings.
+#&gt; 
+#&gt; ##### Summary statistics {#BFIK_open_1_summary}
+#&gt; 
+#&gt; ```r
+#&gt; df = data.frame(item)
+#&gt; names(df) = item_name
+#&gt; pander::pander(codebook_table(df))
+#&gt; ```
+#&gt; 
+#&gt; 
+#&gt; -------------------------------------------------------------------------------
+#&gt;     name              label               type        type_options   data_type 
+#&gt; ------------- ---------------------- --------------- -------------- -----------
+#&gt;  BFIK_open_1   __Ich bin vielseitig   rating_button        5         labelled  
+#&gt;                  interessiert.__                                               
+#&gt; -------------------------------------------------------------------------------
+#&gt; 
+#&gt; Table: Table continues below
+#&gt; 
+#&gt;  
+#&gt; ------------------------------------------------------------------------
+#&gt;  ordered          value_labels          optional   item_order   missing 
+#&gt; --------- ---------------------------- ---------- ------------ ---------
+#&gt;   FALSE    1: Trifft überhaupt nicht       0           8           0    
+#&gt;            zu=1,2=2,3=3,4=4,5: Trifft                                   
+#&gt;                voll und ganz zu=5                                       
+#&gt; ------------------------------------------------------------------------
+#&gt; 
+#&gt; Table: Table continues below
+#&gt; 
+#&gt;  
+#&gt; ----------------------------------------------------
+#&gt;  complete   n    n_unique         top_counts        
+#&gt; ---------- ---- ---------- -------------------------
+#&gt;     28      28      4       5: 16, 4: 8, 3: 3, 2: 1 
+#&gt; ----------------------------------------------------
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; ```r
+#&gt; if (show_missings) {
+#&gt;   plot_labelled(missings, item_name, wrap_at)
+#&gt; }
+#&gt; ```
+#&gt; 
+#&gt; ##### Item {#BFIK_open_1_item}
+#&gt; 
+#&gt; 
+#&gt; ```r
+#&gt; if (!is.null(item_info)) {
+#&gt;   item_info$label_parsed &lt;- item_info$choices &lt;- 
+#&gt;     item_info$choice_list &lt;- item_info$study_id &lt;- item_info$id &lt;- NULL
+#&gt;   pander::pander(as.data.frame(t(item_info)))
+#&gt; }
+#&gt; ```
+#&gt; 
+#&gt; 
+#&gt; ------------------------------------------------------------------------------
+#&gt;      type        type_options      name              label           optional 
+#&gt; --------------- -------------- ------------- ---------------------- ----------
+#&gt;  rating_button        5         BFIK_open_1   __Ich bin vielseitig      0     
+#&gt;                                                 interessiert.__               
+#&gt; ------------------------------------------------------------------------------
+#&gt; 
+#&gt; Table: Table continues below
+#&gt; 
+#&gt;  
+#&gt; ---------------------------------------------------
+#&gt;  class   showif   value   block_order   item_order 
+#&gt; ------- -------- ------- ------------- ------------
+#&gt;  NULL     NULL    NULL       NULL           8      
+#&gt; ---------------------------------------------------
+#&gt; 
+#&gt; 
+#&gt; ##### Value labels {#BFIK_open_1_labels}
+#&gt; 
+#&gt; ```r
+#&gt; if (!is.null(choices) &amp;&amp; length(choices) &lt; 30) {
+#&gt; 	pander::pander(as.list(choices))
+#&gt; }
+#&gt; ```
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt;   * **1: Trifft überhaupt nicht zu**: _1_
+#&gt;   * **2**: _2_
+#&gt;   * **3**: _3_
+#&gt;   * **4**: _4_
+#&gt;   * **5: Trifft voll und ganz zu**: _5_
+#&gt;   * **Item was never rendered for this user.**: _NA_
+#&gt; 
+#&gt; &lt;!-- end of list --&gt;
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

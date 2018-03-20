@@ -127,12 +127,248 @@
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># will generate figure in a figure/ subdirectory</span>
+<span class='fu'>data</span>(<span class='st'>"bfi"</span>)
+<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='no'>bfi</span>[,<span class='fu'>c</span>(<span class='st'>"BFIK_open"</span>, <span class='fu'>paste0</span>(<span class='st'>"BFIK_open_"</span>, <span class='fl'>1</span>:<span class='fl'>4</span>))]
+<span class='fu'>codebook_component_scale</span>(<span class='no'>bfi</span>[,<span class='fl'>1</span>], <span class='st'>"BFIK_open"</span>, <span class='no'>bfi</span>[,-<span class='fl'>1</span>],
+   <span class='kw'>reliabilities</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>BFIK_open</span> <span class='kw'>=</span> <span class='kw pkg'>psych</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/psych/topics/alpha'>alpha</a></span>(<span class='no'>bfi</span>[,-<span class='fl'>1</span>])))</div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; 
+#&gt; #### Scale: BFIK_open {#BFIK_open .tabset}
+#&gt; &lt;a name="BFIK_open_2"&gt;&lt;/a&gt;&lt;a name="BFIK_open_1"&gt;&lt;/a&gt;&lt;a name="BFIK_open_4"&gt;&lt;/a&gt;&lt;a name="BFIK_open_3"&gt;&lt;/a&gt;
+#&gt; 
+#&gt; ##### Reliability {#BFIK_open_reliability}
+#&gt; 
+#&gt; ```r
+#&gt; for (i in seq_along(reliabilities)) {
+#&gt;   rel &lt;- reliabilities[[i]]
+#&gt;   cat(knitr::knit_print(rel, indent = paste0(indent, "####")))
+#&gt; }
+#&gt; ```
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; ###### Reliability
+#&gt; 
+#&gt; ###### 95% Confidence Interval
+#&gt; 
+#&gt; ```r
+#&gt; if (!is.null(x$total$ase)) {
+#&gt;   pander::pander(data.frame(lower = x$total$raw_alpha - 1.96 * x$total$ase, 
+#&gt;              estimate = x$total$raw_alpha, 
+#&gt;              upper = x$total$raw_alpha + 1.96 * 
+#&gt;   x$total$ase))
+#&gt; }
+#&gt; ```
+#&gt; 
+#&gt; 
+#&gt; ----------------------------
+#&gt;  lower    estimate   upper  
+#&gt; -------- ---------- --------
+#&gt;  0.2473    0.5271    0.8068 
+#&gt; ----------------------------
+#&gt; 
+#&gt; ```r
+#&gt; pander::pander(x$total)
+#&gt; ```
+#&gt; 
+#&gt; 
+#&gt; -------------------------------------------------------------------------------
+#&gt;  raw_alpha   std.alpha   G6(smc)   average_r    S/N     ase     mean      sd   
+#&gt; ----------- ----------- --------- ----------- ------- -------- ------- --------
+#&gt;   0.5271       0.513     0.5384     0.2085     1.054   0.1427   4.259   0.5631 
+#&gt; -------------------------------------------------------------------------------
+#&gt; 
+#&gt; ######  Reliability if an item is dropped:
+#&gt; 
+#&gt; ```r
+#&gt; pander::pander(x$alpha.drop)
+#&gt; ```
+#&gt; 
+#&gt; 
+#&gt; -----------------------------------------------------------------------------------
+#&gt;      &amp;nbsp;        raw_alpha   std.alpha   G6(smc)   average_r    S/N     alpha se 
+#&gt; ----------------- ----------- ----------- --------- ----------- -------- ----------
+#&gt;  **BFIK_open_1**    0.5787      0.5594      0.513     0.2973     1.269     0.1308  
+#&gt; 
+#&gt;  **BFIK_open_2**    0.5187      0.5019     0.5306     0.2515     1.008     0.1551  
+#&gt; 
+#&gt;  **BFIK_open_3**    0.2202      0.2437     0.2042     0.09701    0.3223    0.2572  
+#&gt; 
+#&gt;  **BFIK_open_4**    0.4119      0.4101     0.3218     0.1881     0.6952    0.1885  
+#&gt; -----------------------------------------------------------------------------------
+#&gt; 
+#&gt; ###### Item statistics
+#&gt; 
+#&gt; ```r
+#&gt; pander::pander(x$item.stats)
+#&gt; ```
+#&gt; 
+#&gt; 
+#&gt; ---------------------------------------------------------------------------
+#&gt;      &amp;nbsp;        n    raw.r    std.r    r.cor    r.drop   mean      sd   
+#&gt; ----------------- ---- -------- -------- -------- -------- ------- --------
+#&gt;  **BFIK_open_1**   28   0.5063   0.5329   0.2761   0.1569   4.393   0.8317 
+#&gt; 
+#&gt;  **BFIK_open_2**   28   0.5298   0.5869   0.3017   0.2318   4.214   0.7382 
+#&gt; 
+#&gt;  **BFIK_open_3**   28   0.8041   0.7686   0.7253   0.538    4.214   0.9567 
+#&gt; 
+#&gt;  **BFIK_open_4**   28   0.701    0.6614   0.5679   0.3612   4.214   0.9567 
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
+#&gt; ###### Non missing response frequency for each item
+#&gt; 
+#&gt; ```r
+#&gt; pander::pander(x$response.freq)
+#&gt; ```
+#&gt; 
+#&gt; 
+#&gt; ------------------------------------------------------------------------
+#&gt;      &amp;nbsp;           1         2         3        4        5      miss 
+#&gt; ----------------- --------- --------- --------- -------- -------- ------
+#&gt;  **BFIK_open_1**      0      0.03571   0.1071    0.2857   0.5714    0   
+#&gt; 
+#&gt;  **BFIK_open_2**      0      0.03571   0.07143   0.5357   0.3571    0   
+#&gt; 
+#&gt;  **BFIK_open_3**      0      0.07143   0.1429    0.2857    0.5      0   
+#&gt; 
+#&gt;  **BFIK_open_4**   0.03571      0      0.1429    0.3571   0.4643    0   
+#&gt; ------------------------------------------------------------------------
+#&gt; 
+#&gt; ##### Likert plot {#BFIK_open_likert}
+#&gt; 
+#&gt; 
+#&gt; ```r
+#&gt; old_height &lt;- knitr::opts_chunk$get("fig.height")
+#&gt; new_height &lt;- length(scale_info$scale_item_names)
+#&gt; new_height &lt;- ifelse(new_height &gt; 20, 20, new_height)
+#&gt; new_height &lt;- ifelse(new_height &lt; 1, 1, new_height)
+#&gt; new_height &lt;- ifelse(is.na(new_height) | is.nan(new_height), 
+#&gt;                      old_height, new_height)
+#&gt; knitr::opts_chunk$set(fig.height = new_height)
+#&gt; ```
+#&gt; 
+#&gt; ```r
+#&gt; likert_plot &lt;- likert_from_items(items)
+#&gt; if (!is.null(likert_plot)) {
+#&gt;   graphics::plot(likert_plot)
+#&gt; }
+#&gt; ```
+#&gt; 
+#&gt; ![plot of chunk likert](figure/BFIK_open_likert-1.png)
+#&gt; 
+#&gt; ```r
+#&gt; knitr::opts_chunk$set(fig.height = old_height)
+#&gt; ```
+#&gt; 
+#&gt; 
+#&gt; ##### Distribution {#BFIK_open_distribution}
+#&gt; 
+#&gt; ```r
+#&gt; binwidth &lt;- mean(diff(sort(unique(scale))))
+#&gt; 
+#&gt; wrap_at &lt;- knitr::opts_chunk$get("fig.width") * 10
+#&gt; ```
+#&gt; 
+#&gt; ```r
+#&gt; dist_plot &lt;- plot_labelled(scale, scale_name, wrap_at)
+#&gt; 
+#&gt; choices &lt;- attributes(items[[1]])$item$choices
+#&gt; breaks &lt;- as.numeric(names(choices))
+#&gt; if (length(breaks)) {
+#&gt;   dist_plot &lt;- dist_plot +
+#&gt;     	ggplot2::scale_x_continuous("Choices", 
+#&gt; 	                            breaks = breaks, 
+#&gt; 	                            labels = stringr::str_wrap(unlist(choices), 15), 
+#&gt; 	                            limits = range(breaks))
+#&gt; }
+#&gt; 
+#&gt; dist_plot
+#&gt; ```
+#&gt; 
+#&gt; ![plot of chunk distribution](figure/BFIK_open_distribution-1.png)
+#&gt; 
+#&gt; ##### Summary statistics {#BFIK_open_summary}
+#&gt; 
+#&gt; ```r
+#&gt; pander::pander(codebook_table(items))
+#&gt; ```
+#&gt; 
+#&gt; 
+#&gt; ---------------------------------------------------------------------------
+#&gt;     name                  label                   type        type_options 
+#&gt; ------------- ------------------------------ --------------- --------------
+#&gt;  BFIK_open_1       __Ich bin vielseitig       rating_button        5       
+#&gt;                      interessiert.__                                       
+#&gt; 
+#&gt;  BFIK_open_2   __Ich bin tiefsinnig, denke    rating_button        5       
+#&gt;                 gerne über Sachen nach.__                                  
+#&gt; 
+#&gt;  BFIK_open_3      __Ich habe eine aktive      rating_button        5       
+#&gt;                   Vorstellungskraft, bin                                   
+#&gt;                      phantasievoll.__                                      
+#&gt; 
+#&gt;  BFIK_open_4   __Ich schätze künstlerische    rating_button        5       
+#&gt;                und ästhetische Eindrücke.__                                
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
+#&gt; Table: Table continues below
+#&gt; 
+#&gt;  
+#&gt; ---------------------------------------------------------------------------
+#&gt;  data_type   ordered          value_labels           optional   item_order 
+#&gt; ----------- --------- ----------------------------- ---------- ------------
+#&gt;  labelled     FALSE     1: Trifft überhaupt nicht       0           8      
+#&gt;                        zu=1,2=2,3=3,4=4,5: Trifft                          
+#&gt;                        voll und ganz zu=5,Item was                         
+#&gt;                          never rendered for this                           
+#&gt;                                 user.=NA                                   
+#&gt; 
+#&gt;  labelled     FALSE     1: Trifft überhaupt nicht       0           4      
+#&gt;                        zu=1,2=2,3=3,4=4,5: Trifft                          
+#&gt;                        voll und ganz zu=5,Item was                         
+#&gt;                          never rendered for this                           
+#&gt;                                 user.=NA                                   
+#&gt; 
+#&gt;  labelled     FALSE     1: Trifft überhaupt nicht       0           22     
+#&gt;                        zu=1,2=2,3=3,4=4,5: Trifft                          
+#&gt;                        voll und ganz zu=5,Item was                         
+#&gt;                          never rendered for this                           
+#&gt;                                 user.=NA                                   
+#&gt; 
+#&gt;  labelled     FALSE     1: Trifft überhaupt nicht       0           19     
+#&gt;                        zu=1,2=2,3=3,4=4,5: Trifft                          
+#&gt;                        voll und ganz zu=5,Item was                         
+#&gt;                          never rendered for this                           
+#&gt;                                 user.=NA                                   
+#&gt; ---------------------------------------------------------------------------
+#&gt; 
+#&gt; Table: Table continues below
+#&gt; 
+#&gt;  
+#&gt; ---------------------------------------------------------------
+#&gt;  missing   complete   n    n_unique          top_counts        
+#&gt; --------- ---------- ---- ---------- --------------------------
+#&gt;     0         28      28      4       5: 16, 4: 8, 3: 3, 2: 1  
+#&gt; 
+#&gt;     0         28      28      4       4: 15, 5: 10, 3: 2, 2: 1 
+#&gt; 
+#&gt;     0         28      28      4       5: 14, 4: 8, 3: 4, 2: 2  
+#&gt; 
+#&gt;     0         28      28      4       5: 13, 4: 10, 3: 4, 1: 1 
+#&gt; ---------------------------------------------------------------</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

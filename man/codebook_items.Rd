@@ -7,10 +7,17 @@
 codebook_items(results, indent = "##")
 }
 \arguments{
-\item{results}{a formr results table which has the following columns: session, created, modified, expired, ended}
+\item{results}{a data frame, ideally with attributes set on variables}
 
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 }
 \description{
 Renders a tabular codebook including attributes and data summaries.
+}
+\examples{
+data("bfi")
+\dontrun{
+# doesn't show interactively, because a html widget needs to be registered
+codebook_items(bfi)
+}
 }

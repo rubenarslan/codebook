@@ -7,10 +7,14 @@
 codebook_missingness(results, indent = "##")
 }
 \arguments{
-\item{results}{a formr results table which has the following columns: session, created, modified, expired, ended}
+\item{results}{a data frame}
 
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 }
 \description{
 Codebook missingness
+}
+\examples{
+data("bfi")
+codebook_missingness(bfi)
 }

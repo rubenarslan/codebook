@@ -105,7 +105,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>results</th>
-      <td><p>a formr results table which has the following columns: session, created, modified, expired, ended</p></td>
+      <td><p>a data frame</p></td>
     </tr>
     <tr>
       <th>indent</th>
@@ -114,12 +114,45 @@
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='st'>"bfi"</span>)
+<span class='fu'>codebook_missingness</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; ### Missingness report
+#&gt; 
+#&gt; Among those who finished the survey. Only variables that have missings are shown.
+#&gt; 
+#&gt; 
+#&gt; ```r
+#&gt; if (  exists("ended", results) &amp;&amp;
+#&gt;   exists("expired", results)) {
+#&gt;   finisher_results &lt;- dplyr::filter(results, !is.na(.data$ended))
+#&gt; } else {
+#&gt;   finisher_results &lt;- results
+#&gt;   warning("Could not figure out who finished the surveys, because the ",
+#&gt;           "variables expired and ended were missing.")
+#&gt; }
+#&gt; if (length(md_pattern)) {
+#&gt;   pander::pander(md_pattern)
+#&gt; }
+#&gt; ```
+#&gt; 
+#&gt; 
+#&gt; -----------------------------------------------------
+#&gt;       description        expired   var_miss   n_miss 
+#&gt; ----------------------- --------- ---------- --------
+#&gt;  Missings per variable     28         28        28   
+#&gt; -----------------------------------------------------</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

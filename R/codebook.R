@@ -2,9 +2,16 @@
 
 #' Generate rmarkdown codebook
 #'
-#' If you pass the object resulting from a call to formr_results to this function, it will generate a markdown codebook for this object.
+#' Pass a data frame to this function to make a codebook for that dataset.
+#' If the dataset has metadata (attributes) set on its variables, these will be
+#' used to make the codebook more informative. Examples are item, value, and
+#' missing labels.
+#' Data frames imported via [haven::read_dta], [haven::read_sav], or from
+#' [formr.org](https://formr.org) will have these attributes in the right format.
+#' By calling this function inside a knitr code chunk, the
+#' codebook will become part of the document you are generating.
 #'
-#' @param results a formr results table with attributes set on items and scales
+#' @param results a data frame, ideally with attributes set on variables
 #' @param reliabilities a named list with one entry per scale and one or several printable reliability computations for this scale. if NULL, computed on-the-fly using compute_reliabilities
 #' @param survey_repetition defaults to "auto" which is to try to determine the level of repetition from the "session" and "created" variables. Other values are: single, repeated_once, repeated_many
 #' @param missingness_report whether to print a missingness report. Turn off if this gets too complicated and you need a custom solution (e.g. in case of random missings).
@@ -14,7 +21,10 @@
 #'
 #' @export
 #' @examples
-#' # see vignette
+#' # will generate figures in a figure/ subdirectory
+#' data("bfi")
+#' bfi <- bfi[, c("BFIK_open_1", "BFIK_open_1")]
+#' md <- codebook(bfi, survey_repetition = "single", metadata_table = FALSE)
 codebook <- function(results, reliabilities = NULL,
     survey_repetition = c('auto', 'single', 'repeated_once', 'repeated_many'),
     missingness_report = TRUE, metadata_table = TRUE,
@@ -49,10 +59,6 @@ codebook <- function(results, reliabilities = NULL,
                                          "repeated_many"))
     }
   }
-  suppressMessages(
-    skimr::skim_with(labelled = skimr::get_skimmers()$factor)
-  )
-  on.exit(skimr::skim_with_defaults())
 
   if (is.null(reliabilities)) {
     reliabilities <- compute_reliabilities(results, survey_repetition)
@@ -137,11 +143,15 @@ codebook <- function(results, reliabilities = NULL,
 #' Codebook survey overview
 #'
 #'
-#' @param results a formr results table which has the following columns: session, created, modified, expired, ended
+#' @param results a data frame which has the following columns: session, created, modified, expired, ended
 #' @param survey_repetition defaults to single (other values: repeated_once, repeated_many). controls whether internal consistency, retest reliability or multilevel reliability is computed
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
+#' @examples
+#' # will generate figures in a figure/ subdirectory
+#' data("bfi")
+#' codebook_survey_overview(bfi)
 codebook_survey_overview <- function(results, survey_repetition = "single",
                                      indent = "##") {
   stopifnot(exists("session", results))
@@ -185,10 +195,13 @@ codebook_survey_overview <- function(results, survey_repetition = "single",
 #' Codebook missingness
 #'
 #'
-#' @param results a formr results table which has the following columns: session, created, modified, expired, ended
+#' @param results a data frame
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
+#' @examples
+#' data("bfi")
+#' codebook_missingness(bfi)
 codebook_missingness <- function(results, indent = "##") {
   options <- list(
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
@@ -202,10 +215,13 @@ codebook_missingness <- function(results, indent = "##") {
 
 #' Metadata as JSON-LD
 #'
+#' Echo a list of a metadata as JSON-LD in a script tag.
 #'
-#' @param results a formr results table which has the following columns: session, created, modified, expired, ended
-#'
+#' @param results a data frame, ideally with attributes set on variables
 #' @export
+#' @examples
+#' data("bfi")
+#' metadata_jsonld(bfi)
 metadata_jsonld <- function(results) {
   options <- list(
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), "metadata_"),
@@ -221,10 +237,16 @@ metadata_jsonld <- function(results) {
 #' Renders a tabular codebook including attributes and data summaries.
 #'
 #'
-#' @param results a formr results table which has the following columns: session, created, modified, expired, ended
+#' @param results a data frame, ideally with attributes set on variables
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
+#' @examples
+#' data("bfi")
+#' \dontrun{
+#' # doesn't show interactively, because a html widget needs to be registered
+#' codebook_items(bfi)
+#' }
 codebook_items <- function(results, indent = "##") {
   options <- list(
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
@@ -245,6 +267,12 @@ codebook_items <- function(results, indent = "##") {
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
+#' @examples
+#' # will generate figure in a figure/ subdirectory
+#' data("bfi")
+#' bfi <- bfi[,c("BFIK_open", paste0("BFIK_open_", 1:4))]
+#' codebook_component_scale(bfi[,1], "BFIK_open", bfi[,-1],
+#'    reliabilities = list(BFIK_open = psych::alpha(bfi[,-1])))
 codebook_component_scale <- function(scale, scale_name, items, reliabilities,
                                      indent = '##') {
   stopifnot( exists("scale_item_names", attributes(scale)))
@@ -254,6 +282,10 @@ codebook_component_scale <- function(scale, scale_name, items, reliabilities,
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), scale_name, "_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), scale_name, "_")
   )
+  old_opt <- options('knitr.duplicate.label')$knitr.duplicate.label
+  options(knitr.duplicate.label = 'allow')
+  on.exit(options(knitr.duplicate.label = old_opt))
+
   asis_knit_child(require_file("_codebook_scale.Rmd"), options = options)
 }
 
@@ -265,6 +297,10 @@ codebook_component_scale <- function(scale, scale_name, items, reliabilities,
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @export
+#' @examples
+#' # will generate figure in a figure/ subdirectory
+#' #' data("bfi")
+#' codebook_component_single_item(bfi$BFIK_open_1, "BFIK_open_1")
 codebook_component_single_item <- function(item, item_name, indent = '##') {
   options <- list(
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), item_name, "_"),
@@ -278,11 +314,14 @@ codebook_component_single_item <- function(item, item_name, indent = '##') {
 #' will generate a table combining metadata from variable attributes
 #' with data summaries generated using skimr
 #'
-#' @param results a data frame
+#' @param results a data frame, ideally with attributes set on variables
 #'
 #' @export
+#' @examples
+#' data("bfi")
+#' codebook_table(bfi)
 codebook_table <- function(results) {
-  skimmed <- skimr::skim_to_wide(results)
+  skimmed <- skim_to_wide_labelled(results)
 
   metadata <- dplyr::bind_rows(
     # var = results$session
@@ -356,9 +395,13 @@ codebook_table <- function(results) {
 #'
 #' Returns a list containing variable metadata (attributes) and data summaries.
 #'
-#' @param results a data frame
+#' @param results a data frame, ideally with attributes set on variables
 #'
 #' @export
+#' @examples
+#' data("bfi")
+#' md_list <- metadata_list(bfi)
+#' md_list$variableMeasured[[20]]
 metadata_list <- function(results) {
   name <- deparse(substitute(results))
   metadata <- attributes(results)
@@ -411,7 +454,7 @@ metadata_list <- function(results) {
         }
 
       }
-      x$data_summary <- skimr::skim_to_wide(results[[var]])
+      x$data_summary <- skim_to_wide_labelled(results[[var]])
       x$data_summary$variable <- NULL
       if (exists("type", x$data_summary)) {
         if (!exists("value", x)) {
@@ -435,4 +478,13 @@ metadata_list <- function(results) {
   metadata[["@type"]] <- "Dataset"
 
   metadata
+}
+
+
+skim_to_wide_labelled <- function(...) {
+  suppressMessages(
+    skimr::skim_with(labelled = skimr::get_skimmers()$factor)
+  )
+  on.exit(skimr::skim_with_defaults())
+  skimr::skim_to_wide(...)
 }

@@ -7,8 +7,13 @@
 metadata_list(results)
 }
 \arguments{
-\item{results}{a data frame}
+\item{results}{a data frame, ideally with attributes set on variables}
 }
 \description{
 Returns a list containing variable metadata (attributes) and data summaries.
+}
+\examples{
+data("bfi")
+md_list <- metadata_list(bfi)
+md_list$variableMeasured[[20]]
 }

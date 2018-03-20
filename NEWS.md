@@ -1,3 +1,6 @@
+# codebook 0.5.7
+- changed description and documentation
+
 # codebook 0.5.6
 - changed license to MIT
 

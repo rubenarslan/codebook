@@ -106,7 +106,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>results</th>
-      <td><p>a formr results table which has the following columns: session, created, modified, expired, ended</p></td>
+      <td><p>a data frame which has the following columns: session, created, modified, expired, ended</p></td>
     </tr>
     <tr>
       <th>survey_repetition</th>
@@ -119,12 +119,91 @@
     </table>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># will generate figures in a figure/ subdirectory</span>
+<span class='fu'>data</span>(<span class='st'>"bfi"</span>)
+<span class='fu'>codebook_survey_overview</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; ### Survey overview
+#&gt; 
+#&gt; 28 completed rows, 28 who entered any information, 0 only viewed the first page. There are 0 expired rows (people who did not finish filling out in the requested time frame). In total, there are 28 rows including unfinished and expired rows. 
+#&gt; 
+#&gt; 
+#&gt; There were 28 unique participants, of which 28 finished filling out at least one survey.
+#&gt; 
+#&gt; This survey was not repeated.
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; ```r
+#&gt; if (survey_repetition != "single") {
+#&gt; 	overview = results %&gt;% dplyr::group_by(session) %&gt;% 
+#&gt; 		dplyr::summarise(
+#&gt; 			n = sum(!is.na(session)),
+#&gt; 			expired = sum(!is.na(expired)),
+#&gt; 			ended = sum(!is.na(ended))
+#&gt; 		) %&gt;% 
+#&gt; 		tidyr::gather(key, value, -session)
+#&gt; 	if (length(unique(dplyr::filter(overview, key == "expired")$value)) == 1) {
+#&gt; 		overview = dplyr::filter(overview, key != "expired")
+#&gt; 	}
+#&gt; 	print(
+#&gt; 		ggplot2::ggplot(overview, ggplot2::aes(value, ..count..)) + ggplot2::geom_bar() + ggplot2::facet_wrap(~ key, nrow = 1)
+#&gt; 	)
+#&gt; }
+#&gt; ```
+#&gt; 
+#&gt; The first session started on 2016-07-08 09:54:16, the last session on 2016-11-02 21:19:50. 
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; ```r
+#&gt; ggplot2::qplot(results$created) + ggplot2::scale_x_datetime("Date/time when survey was started")
+#&gt; ```
+#&gt; 
+#&gt; ```
+#&gt; ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+#&gt; ```
+#&gt; 
+#&gt; ![plot of chunk starting_time](figure/overview_starting_time-1.png)
+#&gt; 
+#&gt; People took on average 127.36 minutes (median 1.48) to answer the survey.
+#&gt; 
+#&gt; 
+#&gt; ```r
+#&gt; if (low_vals == 0) {
+#&gt;   warning("Durations below 0 detected.")
+#&gt; }
+#&gt; ```
+#&gt; 
+#&gt; ```
+#&gt; ## Warning: Durations below 0 detected.
+#&gt; ```
+#&gt; 
+#&gt; ```r
+#&gt; ggplot2::qplot(duration$duration, binwidth = 0.5) + ggplot2::scale_x_continuous(paste("Duration (in minutes), excluding", high_vals, "values above median + 4*MAD"), limits = c(lower_limit, upper_limit))
+#&gt; ```
+#&gt; 
+#&gt; ```
+#&gt; ## Warning: Removed 4 rows containing non-finite values (stat_bin).
+#&gt; ```
+#&gt; 
+#&gt; ```
+#&gt; ## Warning: Removed 1 rows containing missing values (geom_bar).
+#&gt; ```
+#&gt; 
+#&gt; ![plot of chunk duration](figure/overview_duration-1.png)
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

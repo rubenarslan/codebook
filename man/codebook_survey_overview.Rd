@@ -8,7 +8,7 @@ codebook_survey_overview(results, survey_repetition = "single",
   indent = "##")
 }
 \arguments{
-\item{results}{a formr results table which has the following columns: session, created, modified, expired, ended}
+\item{results}{a data frame which has the following columns: session, created, modified, expired, ended}
 
 \item{survey_repetition}{defaults to single (other values: repeated_once, repeated_many). controls whether internal consistency, retest reliability or multilevel reliability is computed}
 
@@ -16,4 +16,9 @@ codebook_survey_overview(results, survey_repetition = "single",
 }
 \description{
 Codebook survey overview
+}
+\examples{
+# will generate figures in a figure/ subdirectory
+data("bfi")
+codebook_survey_overview(bfi)
 }
