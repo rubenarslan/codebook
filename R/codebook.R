@@ -21,7 +21,10 @@
 #'
 #' @export
 #' @examples
-#' # will generate figures in a figure/ subdirectory
+#' # will generate figures in a temporary directory
+#' old_base_dir <- knitr::opts_knit$get("base.dir")
+#' knitr::opts_knit$set(base.dir = tempdir())
+#' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
 #' data("bfi")
 #' bfi <- bfi[, c("BFIK_open_1", "BFIK_open_1")]
 #' md <- codebook(bfi, survey_repetition = "single", metadata_table = FALSE)
@@ -273,7 +276,10 @@ codebook_items <- function(results, indent = "##") {
 #'
 #' @export
 #' @examples
-#' # will generate figure in a figure/ subdirectory
+#' # will generate figures in a temporary directory
+#' old_base_dir <- knitr::opts_knit$get("base.dir")
+#' knitr::opts_knit$set(base.dir = tempdir())
+#' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
 #' data("bfi")
 #' bfi <- bfi[,c("BFIK_open", paste0("BFIK_open_", 1:4))]
 #' codebook_component_scale(bfi[,1], "BFIK_open", bfi[,-1],
@@ -303,8 +309,11 @@ codebook_component_scale <- function(scale, scale_name, items, reliabilities,
 #'
 #' @export
 #' @examples
-#' # will generate figure in a figure/ subdirectory
-#' #' data("bfi")
+#' # will generate figure in a temporary directory
+#' old_base_dir <- knitr::opts_knit$get("base.dir")
+#' knitr::opts_knit$set(base.dir = tempdir())
+#' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
+#' data("bfi")
 #' codebook_component_single_item(bfi$BFIK_open_1, "BFIK_open_1")
 codebook_component_single_item <- function(item, item_name, indent = '##') {
   options <- list(
@@ -494,3 +503,5 @@ skim_to_wide_labelled <- function(...) {
   on.exit(skimr::skim_with_defaults())
   skimr::skim_to_wide(...)
 }
+
+

@@ -1,5 +1,13 @@
 ## Resubmission
-This is a second resubmission. In this version I have:
+This is the third resubmission. In this version I have:
+
+* added the following code to examples that would have created figures in the user
+  work space, so that figures are now written to a tempdir:
+  #' old_base_dir <- knitr::opts_knit$get("base.dir")
+  #' knitr::opts_knit$set(base.dir = tempdir())
+  #' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
+
+In the second resubmission I
 
 * changed the title to omit "in R"
 * changed the description to put 'rmarkdown' in single quotes

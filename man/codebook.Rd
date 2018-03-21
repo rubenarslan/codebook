@@ -34,7 +34,10 @@ By calling this function inside a knitr code chunk, the
 codebook will become part of the document you are generating.
 }
 \examples{
-# will generate figures in a figure/ subdirectory
+# will generate figures in a temporary directory
+old_base_dir <- knitr::opts_knit$get("base.dir")
+knitr::opts_knit$set(base.dir = tempdir())
+on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
 data("bfi")
 bfi <- bfi[, c("BFIK_open_1", "BFIK_open_1")]
 md <- codebook(bfi, survey_repetition = "single", metadata_table = FALSE)
