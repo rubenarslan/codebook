@@ -2,7 +2,7 @@
 % Please edit documentation in R/rmarkdown_helpers.R
 \name{print.knit_asis}
 \alias{print.knit_asis}
-\title{Print new lines in knit_asis outputs}
+\title{Print new lines in \code{knit_asis} outputs}
 \usage{
 \method{print}{knit_asis}(x, ...)
 }
@@ -12,5 +12,5 @@
 \item{...}{ignored}
 }
 \description{
-Print new lines in knit_asis outputs
+Print new lines in \code{knit_asis} outputs
 }

@@ -14,5 +14,5 @@ rescue_attributes(df_no_attributes, df_with_attributes)
 \description{
 You can use this function if some of your items have lost their attributes during wrangling
 Variables have to have the same name (Duh) and no attributes should be overwritten.
-But use with care.
+But use with care. Similar to \code{\link[labelled:copy_labels]{labelled::copy_labels()}}.
 }

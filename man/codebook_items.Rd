@@ -12,7 +12,8 @@ codebook_items(results, indent = "##")
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 }
 \description{
-Renders a tabular codebook including attributes and data summaries.
+Renders a tabular codebook including attributes and data summaries. The table
+is generated using \code{\link[DT:datatable]{DT::datatable()}} and can be exported to CSV, Excel, etc.
 }
 \examples{
 data("bfi")

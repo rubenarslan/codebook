@@ -10,7 +10,8 @@ metadata_jsonld(results)
 \item{results}{a data frame, ideally with attributes set on variables}
 }
 \description{
-Echo a list of a metadata as JSON-LD in a script tag.
+Echo a list of a metadata, generated using \code{\link[=metadata_list]{metadata_list()}} as JSON-LD in a
+script tag.
 }
 \examples{
 data("bfi")

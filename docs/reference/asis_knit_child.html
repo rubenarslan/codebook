@@ -101,8 +101,8 @@ defaults to quiet = TRUE
     
     <p>This slightly modifies the <code><a href='http://www.rdocumentation.org/packages/knitr/topics/knit_child'>knitr::knit_child()</a></code> function to have different defaults.</p><ul>
 <li><p>the environment defaults to the calling environment.</p></li>
-<li><p>the output receives the class knit_asis, so that the output will be rendered "as is" by knitr when calling inside a chunk (no need to set results='asis' as a chunk option).</p></li>
-<li><p>defaults to quiet = TRUE</p></li>
+<li><p>the output receives the class <code>knit_asis</code>, so that the output will be rendered "as is" by knitr when calling inside a chunk (no need to set <code>results='asis'</code> as a chunk option).</p></li>
+<li><p>defaults to <code>quiet = TRUE</code></p></li>
 </ul>
     
 
@@ -144,10 +144,10 @@ defaults to quiet = TRUE
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Why default to the calling environment? Typically this function defaults to the global environment. This makes sense if you want to use knit_children in the same context as the rest of the document.
-However, you may also want to use knit_children inside functions to e.g. summarise a regression using a set of commands (e.g. plot some diagnostic graphs and a summary for a regression nicely formatted).</p>
+    <p>Why default to the calling environment? Typically this function defaults to the global environment. This makes sense if you want to use knit children in the same context as the rest of the document.
+However, you may also want to use knit children inside functions to e.g. summarise a regression using a set of commands (e.g. plot some diagnostic graphs and a summary for a regression nicely formatted).</p>
 <p>Some caveats:</p><ul>
-<li><p>the function has to return to the top-level. There's no way to <code>cat()</code> this from loops or an if-condition without without setting results='asis'. You can however concatenate these objects with <code><a href='paste.knit_asis.html'>paste.knit_asis()</a></code></p></li>
+<li><p>the function has to return to the top-level. There's no way to <code>cat()</code> this from loops or an if-condition without without setting <code>results='asis'</code>. You can however concatenate these objects with <code><a href='paste.knit_asis.html'>paste.knit_asis()</a></code></p></li>
 </ul>
     
 

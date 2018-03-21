@@ -12,7 +12,7 @@ codebook_missingness(results, indent = "##")
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 }
 \description{
-Codebook missingness
+An overview table of missingness patterns generated using \code{\link[=md_pattern]{md_pattern()}}.
 }
 \examples{
 data("bfi")

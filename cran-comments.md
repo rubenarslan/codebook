@@ -11,7 +11,7 @@ This is a second resubmission. In this version I have:
     It causes an error during checking, probably because it indirectly includes 
     an htmlwidget. It works fine in non-example use (tests, vignettes, 
     interactively). Therefore, I wrapped the example in dontrun.
-* slightly changed the docs to be clearer
+* slightly changed the docs to be clearer and use markdown to link functions
 
 In the first resubmission I
 

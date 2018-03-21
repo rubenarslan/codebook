@@ -2,7 +2,7 @@
 % Please edit documentation in R/psych_print.R
 \name{knit_print.alpha}
 \alias{knit_print.alpha}
-\title{Pretty-print a psych::alpha object}
+\title{Pretty-print a Cronbach's alpha object}
 \usage{
 knit_print.alpha(x, indent = "#####", ...)
 }
@@ -14,7 +14,7 @@ knit_print.alpha(x, indent = "#####", ...)
 \item{...}{ignored}
 }
 \description{
-Make the tables HTML instead of code.
+Turn a \code{\link[psych:alpha]{psych::alpha()}} object into HTML tables.
 }
 \examples{
 example("alpha", "psych")

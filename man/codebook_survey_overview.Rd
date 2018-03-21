@@ -15,7 +15,8 @@ codebook_survey_overview(results, survey_repetition = "single",
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 }
 \description{
-Codebook survey overview
+An overview of the number of rows and groups, and of the durations participants
+needed to respond (if those data are available).
 }
 \examples{
 # will generate figures in a figure/ subdirectory

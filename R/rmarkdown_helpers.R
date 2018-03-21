@@ -2,14 +2,14 @@
 #'
 #' This slightly modifies the [knitr::knit_child()] function to have different defaults.
 #' - the environment defaults to the calling environment.
-#' - the output receives the class knit_asis, so that the output will be rendered "as is" by knitr when calling inside a chunk (no need to set results='asis' as a chunk option).
-#' - defaults to quiet = TRUE
+#' - the output receives the class `knit_asis`, so that the output will be rendered "as is" by knitr when calling inside a chunk (no need to set `results='asis'` as a chunk option).
+#' - defaults to `quiet = TRUE`
 #'
-#' Why default to the calling environment? Typically this function defaults to the global environment. This makes sense if you want to use knit_children in the same context as the rest of the document.
-#' However, you may also want to use knit_children inside functions to e.g. summarise a regression using a set of commands (e.g. plot some diagnostic graphs and a summary for a regression nicely formatted).
+#' Why default to the calling environment? Typically this function defaults to the global environment. This makes sense if you want to use knit children in the same context as the rest of the document.
+#' However, you may also want to use knit children inside functions to e.g. summarise a regression using a set of commands (e.g. plot some diagnostic graphs and a summary for a regression nicely formatted).
 #'
 #' Some caveats:
-#' - the function has to return to the top-level. There's no way to [cat()] this from loops or an if-condition without without setting results='asis'. You can however concatenate these objects with [paste.knit_asis()]
+#' - the function has to return to the top-level. There's no way to [cat()] this from loops or an if-condition without without setting `results='asis'`. You can however concatenate these objects with [paste.knit_asis()]
 #'
 #'
 #' @param input if you specify a file path here, it will be read in before being passed to knitr (to avoid a working directory mess)
@@ -71,13 +71,13 @@ asis_knit_child <- function(input = NULL, text = NULL, ...,
 
 #' Paste and output as is (render markup)
 #'
-#' Helper function for knit_asis objects, useful when e.g. [asis_knit_child()] was used in a loop.
+#' Helper function for `knit_asis` objects, useful when e.g. [asis_knit_child()] was used in a loop.
 #'
-#' Works like [paste()] with both the sep and the collapse argument set to two empty lines
+#' Works like [base::paste()] with both the sep and the collapse argument set to two empty lines
 #'
-#' @param ... passed to [paste()]
-#' @param sep defaults to two empty lines, passed to [paste()]
-#' @param collapse defaults to two empty lines, passed to [paste()]
+#' @param ... passed to [base::paste()]
+#' @param sep defaults to two empty lines, passed to [base::paste()]
+#' @param collapse defaults to two empty lines, passed to [base::paste()]
 #'
 #' @export
 #' @examples
@@ -86,7 +86,7 @@ paste.knit_asis <- function(..., sep = "\n\n\n", collapse = "\n\n\n") {
   knitr::asis_output(paste(..., sep = sep, collapse = collapse))
 }
 
-#' Print new lines in knit_asis outputs
+#' Print new lines in `knit_asis` outputs
 #'
 #' @param x the knit_asis object
 #' @param ... ignored
@@ -101,12 +101,14 @@ print.knit_asis <- function(x, ...) {
 #' Render codebook based on file
 #'
 #'
-#' Render text
+#' Submit a data file and an rmarkdown template as a file to generate a codebook.
+#' Used chiefly in the webapp.
 #'
-#' @param file file to make codebook from (sav, rds, dta, etc.)
+#' @param file path to a file to make codebook from (sav, rds, dta, por, xpt, csv, csv2, tsv, etc.)
 #' @param text codebook template
 #' @param remove_file whether to remove file after rendering
 #' @param ... all other arguments passed to [rmarkdown::render()]
+#' @md
 #'
 #' @export
 

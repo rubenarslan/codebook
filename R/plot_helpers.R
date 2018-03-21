@@ -1,7 +1,8 @@
 #' Derive a likert object from items
 #'
 #' Pass a data.frame containing several items composing one scale, get a
-#' likert object, which you can plot. Intelligently makes use of labels and value labels if present.
+#' [likert::likert()] object, which you can plot.
+#' Intelligently makes use of labels and value labels if present.
 #'
 #' @param items a data frame of items composing one scale
 #'

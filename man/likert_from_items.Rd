@@ -11,7 +11,8 @@ likert_from_items(items)
 }
 \description{
 Pass a data.frame containing several items composing one scale, get a
-likert object, which you can plot. Intelligently makes use of labels and value labels if present.
+\code{\link[likert:likert]{likert::likert()}} object, which you can plot.
+Intelligently makes use of labels and value labels if present.
 }
 \examples{
 data("bfi", package = "codebook")

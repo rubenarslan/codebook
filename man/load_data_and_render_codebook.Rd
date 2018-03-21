@@ -7,7 +7,7 @@
 load_data_and_render_codebook(file, text, remove_file = FALSE, ...)
 }
 \arguments{
-\item{file}{file to make codebook from (sav, rds, dta, etc.)}
+\item{file}{path to a file to make codebook from (sav, rds, dta, por, xpt, csv, csv2, tsv, etc.)}
 
 \item{text}{codebook template}
 
@@ -16,5 +16,6 @@ load_data_and_render_codebook(file, text, remove_file = FALSE, ...)
 \item{...}{all other arguments passed to \code{\link[rmarkdown:render]{rmarkdown::render()}}}
 }
 \description{
-Render text
+Submit a data file and an rmarkdown template as a file to generate a codebook.
+Used chiefly in the webapp.
 }

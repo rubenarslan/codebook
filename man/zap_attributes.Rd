@@ -14,7 +14,7 @@ zap_attributes(x, attributes = c("format.spss", "format.sas", "format.stata",
 (including factor levels etc) should be zapped}
 }
 \description{
-Modelled on havens zap_labels, but more encompassing. By default removes
+Modelled on \code{\link[haven:zap_labels]{haven::zap_labels()}}, but more encompassing. By default removes
 the following attributes:
 format.spss, format.sas, format.stata, label, labels, na_values, na_range,
 display_width

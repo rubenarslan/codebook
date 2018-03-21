@@ -6,7 +6,7 @@
 #' If the dataset has metadata (attributes) set on its variables, these will be
 #' used to make the codebook more informative. Examples are item, value, and
 #' missing labels.
-#' Data frames imported via [haven::read_dta], [haven::read_sav], or from
+#' Data frames imported via [haven::read_dta()], [haven::read_sav()], or from
 #' [formr.org](https://formr.org) will have these attributes in the right format.
 #' By calling this function inside a knitr code chunk, the
 #' codebook will become part of the document you are generating.
@@ -142,6 +142,8 @@ codebook <- function(results, reliabilities = NULL,
 
 #' Codebook survey overview
 #'
+#' An overview of the number of rows and groups, and of the durations participants
+#' needed to respond (if those data are available).
 #'
 #' @param results a data frame which has the following columns: session, created, modified, expired, ended
 #' @param survey_repetition defaults to single (other values: repeated_once, repeated_many). controls whether internal consistency, retest reliability or multilevel reliability is computed
@@ -194,6 +196,7 @@ codebook_survey_overview <- function(results, survey_repetition = "single",
 
 #' Codebook missingness
 #'
+#' An overview table of missingness patterns generated using [md_pattern()].
 #'
 #' @param results a data frame
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
@@ -215,7 +218,8 @@ codebook_missingness <- function(results, indent = "##") {
 
 #' Metadata as JSON-LD
 #'
-#' Echo a list of a metadata as JSON-LD in a script tag.
+#' Echo a list of a metadata, generated using [metadata_list()] as JSON-LD in a
+#' script tag.
 #'
 #' @param results a data frame, ideally with attributes set on variables
 #' @export
@@ -234,7 +238,8 @@ metadata_jsonld <- function(results) {
 
 #' Tabular codebook
 #'
-#' Renders a tabular codebook including attributes and data summaries.
+#' Renders a tabular codebook including attributes and data summaries. The table
+#' is generated using [DT::datatable()] and can be exported to CSV, Excel, etc.
 #'
 #'
 #' @param results a data frame, ideally with attributes set on variables
@@ -312,7 +317,7 @@ codebook_component_single_item <- function(item, item_name, indent = '##') {
 #' Codebook metadata table
 #'
 #' will generate a table combining metadata from variable attributes
-#' with data summaries generated using skimr
+#' with data summaries generated using [skimr::skim_to_wide()]
 #'
 #' @param results a data frame, ideally with attributes set on variables
 #'
@@ -483,7 +488,8 @@ metadata_list <- function(results) {
 
 skim_to_wide_labelled <- function(...) {
   suppressMessages(
-    skimr::skim_with(labelled = skimr::get_skimmers()$factor)
+    skimr::skim_with(labelled = skimr::get_skimmers()$factor,
+                     labelled_spss = skimr::get_skimmers()$factor)
   )
   on.exit(skimr::skim_with_defaults())
   skimr::skim_to_wide(...)

@@ -8,7 +8,7 @@
 #' @param only_labelled_missings don't set values to missing if there's no label for them
 #' @param negative_values_are_missing by default we label negative values as missing
 #' @param ninety_nine_problems SPSS users often store values as 99/999, should we do this for values with 5*MAD of the median
-#' @param learn_from_labels if there are labels for missings of the form \preformatted{[-1]} no answer, set -1 in the data to the corresponding tagged missing
+#' @param learn_from_labels if there are labels for missings of the form `[-1] no answer`, set -1 in the data to the corresponding tagged missing
 #' @param missing also set these values to missing (or enforce for 99/999 within 5*MAD)
 #' @param non_missing don't set these values to missing
 #' @param vars only edit these variables
@@ -124,7 +124,7 @@ detect_missings <- function(data, only_labelled_missings = TRUE,
 #'
 #' You can use this function if some of your items have lost their attributes during wrangling
 #' Variables have to have the same name (Duh) and no attributes should be overwritten.
-#' But use with care.
+#' But use with care. Similar to [labelled::copy_labels()].
 #'
 #'
 #' @param df_no_attributes the data frame with missing attributes
@@ -156,8 +156,7 @@ rescue_attributes <- function(df_no_attributes, df_with_attributes) {
 #' Detect item scales
 #'
 #' Did you create aggregates of items like this
-#' scale <- scale_1 + scale_2R + scale_3R
-#' ?
+#' `scale <- scale_1 + scale_2R + scale_3R`?
 #' If you run this function on a dataset, it will detect these
 #' relationships and set the appropriate attributes. Once they are set,
 #' the codebook package can perform reliability computations for you.
@@ -207,7 +206,7 @@ detect_scales <- function(data, quiet = FALSE) {
 
 #' Zap attributes
 #'
-#' Modelled on havens zap_labels, but more encompassing. By default removes
+#' Modelled on [haven::zap_labels()], but more encompassing. By default removes
 #' the following attributes:
 #' format.spss, format.sas, format.stata, label, labels, na_values, na_range,
 #' display_width
@@ -258,7 +257,7 @@ zap_attributes.data.frame <- function(x, attributes = NULL) {
 
 #' Zap variable label
 #'
-#' Modelled on havens zap_labels, zaps variable labels.
+#' Modelled on [haven::zap_labels()], zaps variable labels (not value labels).
 #'
 #' @param x the data frame or variable
 #' @export
@@ -270,6 +269,6 @@ zap_label.data.frame <- function(x) {
   x
 }
 zap_label.default <- function(x) {
-  attributes(x)$label <- NULL
+  attr(x, "label") <- NULL
   x
 }

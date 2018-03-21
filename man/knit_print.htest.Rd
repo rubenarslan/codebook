@@ -2,7 +2,7 @@
 % Please edit documentation in R/psych_print.R
 \name{knit_print.htest}
 \alias{knit_print.htest}
-\title{Print a stats::cor.test object for knitr}
+\title{Print a \code{\link[stats:cor.test]{stats::cor.test()}} object for knitr}
 \usage{
 knit_print.htest(x, indent = "#####", ...)
 }
@@ -14,7 +14,7 @@ knit_print.htest(x, indent = "#####", ...)
 \item{...}{ignored}
 }
 \description{
-Just prints the normal output.
+Just prints the normal output of \code{\link[stats:cor.test]{stats::cor.test()}}.
 }
 \examples{
 knitr::knit_print(cor.test(rnorm(100), rnorm(100)))

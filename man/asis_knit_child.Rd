@@ -26,17 +26,17 @@ asis_knit_child(input = NULL, text = NULL, ..., quiet = TRUE,
 This slightly modifies the \code{\link[knitr:knit_child]{knitr::knit_child()}} function to have different defaults.
 \itemize{
 \item the environment defaults to the calling environment.
-\item the output receives the class knit_asis, so that the output will be rendered "as is" by knitr when calling inside a chunk (no need to set results='asis' as a chunk option).
-\item defaults to quiet = TRUE
+\item the output receives the class \code{knit_asis}, so that the output will be rendered "as is" by knitr when calling inside a chunk (no need to set \code{results='asis'} as a chunk option).
+\item defaults to \code{quiet = TRUE}
 }
 }
 \details{
-Why default to the calling environment? Typically this function defaults to the global environment. This makes sense if you want to use knit_children in the same context as the rest of the document.
-However, you may also want to use knit_children inside functions to e.g. summarise a regression using a set of commands (e.g. plot some diagnostic graphs and a summary for a regression nicely formatted).
+Why default to the calling environment? Typically this function defaults to the global environment. This makes sense if you want to use knit children in the same context as the rest of the document.
+However, you may also want to use knit children inside functions to e.g. summarise a regression using a set of commands (e.g. plot some diagnostic graphs and a summary for a regression nicely formatted).
 
 Some caveats:
 \itemize{
-\item the function has to return to the top-level. There's no way to \code{\link[=cat]{cat()}} this from loops or an if-condition without without setting results='asis'. You can however concatenate these objects with \code{\link[=paste.knit_asis]{paste.knit_asis()}}
+\item the function has to return to the top-level. There's no way to \code{\link[=cat]{cat()}} this from loops or an if-condition without without setting \code{results='asis'}. You can however concatenate these objects with \code{\link[=paste.knit_asis]{paste.knit_asis()}}
 }
 }
 \examples{

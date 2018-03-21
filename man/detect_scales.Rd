@@ -13,8 +13,7 @@ detect_scales(data, quiet = FALSE)
 }
 \description{
 Did you create aggregates of items like this
-scale <- scale_1 + scale_2R + scale_3R
-?
+\code{scale <- scale_1 + scale_2R + scale_3R}?
 If you run this function on a dataset, it will detect these
 relationships and set the appropriate attributes. Once they are set,
 the codebook package can perform reliability computations for you.

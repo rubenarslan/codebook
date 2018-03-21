@@ -10,5 +10,5 @@ zap_label(x)
 \item{x}{the data frame or variable}
 }
 \description{
-Modelled on havens zap_labels, zaps variable labels.
+Modelled on \code{\link[haven:zap_labels]{haven::zap_labels()}}, zaps variable labels (not value labels).
 }

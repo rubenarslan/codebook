@@ -1,6 +1,6 @@
-#' Pretty-print a psych::alpha object
+#' Pretty-print a Cronbach's alpha object
 #'
-#' Make the tables HTML instead of code.
+#' Turn a [psych::alpha()] object into HTML tables.
 #'
 #' @param x a psych alpha object
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h5
@@ -15,9 +15,9 @@ knit_print.alpha <- function(x, indent = '#####', ...) {
   asis_knit_child(require_file("_knit_print_psych.Rmd"))
 }
 
-#' Print a psych::multilevel.reliability object for knitr
+#' Print a [psych::multilevel.reliability()] object for knitr
 #'
-#' Just prints the normal output.
+#' Just prints the normal output of [psych::multilevel.reliability()].
 #'
 #' @param x a psych alpha object
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h5
@@ -35,9 +35,9 @@ knit_print.multilevel <- function(x, indent = '#####', ...) {
 }
 
 
-#' Print a stats::cor.test object for knitr
+#' Print a [stats::cor.test()] object for knitr
 #'
-#' Just prints the normal output.
+#' Just prints the normal output of [stats::cor.test()].
 #'
 #' @param x a psych alpha object
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h5
@@ -51,34 +51,4 @@ knit_print.htest <- function(x, indent = '#####', ...) {
   knitr::asis_output(paste0("\n\n\n```\n",
     paste0(utils::capture.output(print(x)), collapse = "\n"),
     "\n```\n\n\n"))
-}
-
-#' Summary function for labelled vector
-#'
-#'
-#' @param object a labelled vector
-#' @param ... passed to summary.factor
-#'
-#' @export
-#' @examples
-#' example("labelled", "haven")
-#' summary(x)
-#'
-summary.labelled <- function(object, ...) {
-  summary(haven::as_factor(object, levels = "both"), ...)
-}
-
-#' Summary function for labelled_spss vector
-#'
-#'
-#' @param object a labelled_spss vector
-#' @param ... passed to summary.factor
-#'
-#' @export
-#' @examples
-#' example("labelled", "haven")
-#' summary(x)
-#'
-summary.labelled_spss <- function(object, ...) {
-  summary(haven::as_factor(object, levels = "both"), ...)
 }

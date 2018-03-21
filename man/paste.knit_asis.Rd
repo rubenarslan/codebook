@@ -7,17 +7,17 @@
 paste.knit_asis(..., sep = "\\n\\n\\n", collapse = "\\n\\n\\n")
 }
 \arguments{
-\item{...}{passed to \code{\link[=paste]{paste()}}}
+\item{...}{passed to \code{\link[base:paste]{base::paste()}}}
 
-\item{sep}{defaults to two empty lines, passed to \code{\link[=paste]{paste()}}}
+\item{sep}{defaults to two empty lines, passed to \code{\link[base:paste]{base::paste()}}}
 
-\item{collapse}{defaults to two empty lines, passed to \code{\link[=paste]{paste()}}}
+\item{collapse}{defaults to two empty lines, passed to \code{\link[base:paste]{base::paste()}}}
 }
 \description{
-Helper function for knit_asis objects, useful when e.g. \code{\link[=asis_knit_child]{asis_knit_child()}} was used in a loop.
+Helper function for \code{knit_asis} objects, useful when e.g. \code{\link[=asis_knit_child]{asis_knit_child()}} was used in a loop.
 }
 \details{
-Works like \code{\link[=paste]{paste()}} with both the sep and the collapse argument set to two empty lines
+Works like \code{\link[base:paste]{base::paste()}} with both the sep and the collapse argument set to two empty lines
 }
 \examples{
 paste.knit_asis("# Headline 1", "## Headline 2")

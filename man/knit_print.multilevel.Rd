@@ -2,7 +2,7 @@
 % Please edit documentation in R/psych_print.R
 \name{knit_print.multilevel}
 \alias{knit_print.multilevel}
-\title{Print a psych::multilevel.reliability object for knitr}
+\title{Print a \code{\link[psych:multilevel.reliability]{psych::multilevel.reliability()}} object for knitr}
 \usage{
 knit_print.multilevel(x, indent = "#####", ...)
 }
@@ -14,7 +14,7 @@ knit_print.multilevel(x, indent = "#####", ...)
 \item{...}{ignored}
 }
 \description{
-Just prints the normal output.
+Just prints the normal output of \code{\link[psych:multilevel.reliability]{psych::multilevel.reliability()}}.
 }
 \examples{
 example("mlr", "psych")

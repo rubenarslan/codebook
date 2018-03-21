@@ -14,12 +14,12 @@ require_package <- function(package) {
 
 #' Missing data patterns
 #'
-#' Generate missingness patterns using mice, with options to reduce
-#' the complexity of the output.
+#' Generate missingness patterns using [mice::md.pattern()],
+#' with options to reduce the complexity of the output.
 #'
 #' @param data the dataset
 #' @param only_vars_with_missings defaults to TRUE, omitting variables that have no missings
-#' @param min_freq mininum number of rows to have this missingness pattern
+#' @param min_freq minimum number of rows to have this missingness pattern
 #' @export
 #' @examples
 #' data("nhanes", package = "mice")
@@ -132,4 +132,37 @@ export_table <- function(df) {
                   buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
                   pageLength = 200
                 ))
+}
+
+
+
+
+#' Summary function for labelled vector
+#'
+#'
+#' @param object a labelled vector
+#' @param ... passed to summary.factor
+#'
+#' @export
+#' @examples
+#' example("labelled", "haven")
+#' summary(x)
+#'
+summary.labelled <- function(object, ...) {
+  summary(haven::as_factor(object, levels = "both"), ...)
+}
+
+#' Summary function for labelled_spss vector
+#'
+#'
+#' @param object a labelled_spss vector
+#' @param ... passed to summary.factor
+#'
+#' @export
+#' @examples
+#' example("labelled", "haven")
+#' summary(x)
+#'
+summary.labelled_spss <- function(object, ...) {
+  summary(haven::as_factor(object, levels = "both"), ...)
 }

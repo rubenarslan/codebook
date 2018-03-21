@@ -11,7 +11,7 @@ codebook_table(results)
 }
 \description{
 will generate a table combining metadata from variable attributes
-with data summaries generated using skimr
+with data summaries generated using \code{\link[skimr:skim_to_wide]{skimr::skim_to_wide()}}
 }
 \examples{
 data("bfi")

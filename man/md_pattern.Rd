@@ -11,11 +11,11 @@ md_pattern(data, only_vars_with_missings = TRUE, min_freq = 0.01)
 
 \item{only_vars_with_missings}{defaults to TRUE, omitting variables that have no missings}
 
-\item{min_freq}{mininum number of rows to have this missingness pattern}
+\item{min_freq}{minimum number of rows to have this missingness pattern}
 }
 \description{
-Generate missingness patterns using mice, with options to reduce
-the complexity of the output.
+Generate missingness patterns using \code{\link[mice:md.pattern]{mice::md.pattern()}},
+with options to reduce the complexity of the output.
 }
 \examples{
 data("nhanes", package = "mice")
