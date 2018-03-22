@@ -1,3 +1,6 @@
+# codebook 0.5.8
+- don't write files into anything but tempdir
+
 # codebook 0.5.7
 - changed description and documentation
 

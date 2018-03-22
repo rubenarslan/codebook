@@ -1,9 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-Codebook Cookbook
-=================
+codebook
+========
 
-[![Travis-CI Build Status](https://travis-ci.org/rubenarslan/codebook.svg?branch=master)](https://travis-ci.org/rubenarslan/codebook) [![codecov](https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg)](https://codecov.io/gh/rubenarslan/codebook)
+[![Travis-CI Build Status](https://travis-ci.org/rubenarslan/codebook.svg?branch=master)](https://travis-ci.org/rubenarslan/codebook) [![CRAN status](https://www.r-pkg.org/badges/version/codebook)](https://cran.r-project.org/package=codebook) [![codecov](https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg)](https://codecov.io/gh/rubenarslan/codebook) [![DOI](https://zenodo.org/badge/109252375.svg)](https://zenodo.org/badge/latestdoi/109252375)
+
+*Automatic Codebooks from Survey Metadata Encoded in Attributes*
 
 Description
 -----------
@@ -64,6 +66,13 @@ Generating a codebook is as simple as calling codebook from a chunk in an rmarkd
 ``` r
 codebook(results)
 ```
+
+Citation
+--------
+
+To cite the package
+
+> Arslan, R. C. (2018). Automatic codebook generation with codebook (2018). URL <https://github.com/rubenarslan/codebook>. <doi:10.5281/zenodo.1205454>
 
 [Code of conduct for contributing](CONDUCT.md)
 ----------------------------------------------
