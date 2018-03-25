@@ -64,10 +64,10 @@ plot_labelled <- function(item, item_name = deparse(substitute(item)),
       stringr::str_wrap(names(choices), 20)
     choices <- attributes(item)[["labels"]]
 
-    if (all(stringr::str_match(
+    if (length(stats::na.omit(choices)) && all(stringr::str_match(
       names(stats::na.omit(choices)), "\\[?([0-9-]+)(\\]|:)")[, 2] ==
       stats::na.omit(choices), na.rm = TRUE)) {
-      label_how = "default"
+      label_how <- "default"
     }
 
   }
