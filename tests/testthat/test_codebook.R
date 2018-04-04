@@ -99,6 +99,17 @@ test_that("Dupes are noticed", {
   expect_error(md <- codebook(bfi2, metadata_table = FALSE), "duplicated rows")
 })
 
+test_that("Variables with only missings work", {
+  onlymiss = data.frame(x = rep(NA, 20), y = rep(1, 20))
+  wd <- getwd()
+  dir <- tempdir()
+  setwd(dir)
+  on.exit(setwd(wd))
+  expect_warning(md <- codebook(onlymiss),
+                 "automatic survey repetition detection to work")
+
+  unlink(paste0(dir, "/figure"), recursive = TRUE)
+})
 
 test_that("Codebook with multilevel reliability", {
   data("bfi", package = "codebook")

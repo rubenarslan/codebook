@@ -32,17 +32,20 @@ if (haven::is.labelled(item)) {
     item <- haven::zap_labels(item)
   }
 }
+item_nomiss <- item[!is.na(item)]
+attributes(item_nomiss) <- attributes(item)
+
 old_height <- knitr::opts_chunk$get("fig.height")
 non_missing_choices <- attributes(item)[["labels"]]
 many_labels <- length(non_missing_choices) > 7
-go_vertical <- !is.numeric(item) || many_labels
+go_vertical <- !is.numeric(item_nomiss) || many_labels
 if ( go_vertical ) {
   # numeric items are plotted horizontally (because that's what usually expected)
   # categorical items are plotted vertically because we can use the screen real estate better this way
 
 	if (is.null(choices) || 
-	    dplyr::n_distinct(na.omit(item)) > length(non_missing_choices)) {
-		choices <- unique(na.omit(item))
+	    dplyr::n_distinct(item_nomiss) > length(non_missing_choices)) {
+		choices <- unique(item_nomiss)
 		names(choices) <- choices
 		non_missing_choices <- choices
 	}
@@ -59,14 +62,12 @@ wrap_at <- knitr::opts_chunk$get("fig.width") * 10
 # todo: if there are free-text choices mingled in with the pre-defined ones, don't show
 # todo: show rare items if they are pre-defined
 # todo: bin rare responses into "other category"
-
-if (is.numeric(item) || dplyr::n_distinct(item) < 20) {
-  attribs <- attributes(item)
-  item <- item[!is.na(item)]
-  attributes(item) <- attribs
-  plot_labelled(item, item_name, wrap_at, go_vertical)
+if (!length(item_nomiss)) {
+  cat("No non-missing values to show.")
+} else if (is.numeric(item_nomiss) || dplyr::n_distinct(item_nomiss) < 20) {
+  plot_labelled(item_nomiss, item_name, wrap_at, go_vertical)
 } else {
-	cat(dplyr::n_distinct(item), " unique, categorical values, so not shown.")
+	cat(dplyr::n_distinct(item_nomiss), " unique, categorical values, so not shown.")
 }
 knitr::opts_chunk$set(fig.height = old_height)
 ```
