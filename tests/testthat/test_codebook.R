@@ -39,8 +39,8 @@ test_that("codebook generation without formr", {
   dir <- tempdir()
   setwd(dir)
   on.exit(setwd(wd))
-  expect_warning(md <- codebook(bfi),
-                "automatic survey repetition detection to work")
+  expect_silent(md <- codebook(bfi, survey_repetition = "single",
+                               missingness_report = FALSE))
   figs <- list.files(paste0(dir, "/figure"))
   expect_equal(length(figs), 6)
   expect_match(md, "Scale: BFIK_neuro")
@@ -105,8 +105,9 @@ test_that("Variables with only missings work", {
   dir <- tempdir()
   setwd(dir)
   on.exit(setwd(wd))
-  expect_warning(md <- codebook(onlymiss),
-                 "automatic survey repetition detection to work")
+  expect_silent(md <- codebook(onlymiss, survey_repetition = "single",
+                               missingness_report = FALSE,
+                               metadata_json = FALSE))
 
   unlink(paste0(dir, "/figure"), recursive = TRUE)
 })

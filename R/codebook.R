@@ -14,6 +14,7 @@
 #' @param results a data frame, ideally with attributes set on variables
 #' @param reliabilities a named list with one entry per scale and one or several printable reliability computations for this scale. if NULL, computed on-the-fly using compute_reliabilities
 #' @param survey_repetition defaults to "auto" which is to try to determine the level of repetition from the "session" and "created" variables. Other values are: single, repeated_once, repeated_many
+#' @param survey_overview whether to print an overview of survey entries, durations (depends on presence of columns session, created, modified, ended, expired)
 #' @param missingness_report whether to print a missingness report. Turn off if this gets too complicated and you need a custom solution (e.g. in case of random missings).
 #' @param metadata_table whether to print a metadata table/tabular codebook.
 #' @param metadata_json whether to include machine-readable metadata as JSON-LD (not visible)
@@ -30,6 +31,7 @@
 #' md <- codebook(bfi, survey_repetition = "single", metadata_table = FALSE)
 codebook <- function(results, reliabilities = NULL,
     survey_repetition = c('auto', 'single', 'repeated_once', 'repeated_many'),
+    survey_overview = TRUE,
     missingness_report = TRUE, metadata_table = TRUE,
     metadata_json = TRUE, indent = '#') {
   # todo: factor out the time stuff
@@ -79,14 +81,11 @@ codebook <- function(results, reliabilities = NULL,
   )
 
   survey_overview <- ''
-  if (!(exists("session", results) &&
+  if ((exists("session", results) &&
         exists("created", results) &&
         exists("ended", results) &&
         exists("expired", results) &&
         exists("modified", results))) {
-    warning("The variables session, created, ended, expired, modified have to ",
-            "be defined for automatic survey duration calculations to work.")
-  } else {
     survey_overview <- codebook_survey_overview(results, survey_repetition)
   }
 
