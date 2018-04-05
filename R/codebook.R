@@ -91,9 +91,10 @@ codebook <- function(results, reliabilities = NULL,
     survey_overview <- ''
   }
 
-  scales_items <- c()
+  scales_items <- new.env()
   vars <- names(results)
   items_contained_in_scales <- c()
+  `%<-%` <- future::`%<-%`
   for (i in seq_along(vars)) {
     var <- vars[i]
     scale <- results[[ var ]]
@@ -103,10 +104,12 @@ codebook <- function(results, reliabilities = NULL,
                                      scale_info$scale_item_names, var)
       items <- dplyr::select(results,
                   rlang::UQS(rlang::quos(scale_info$scale_item_names)))
-      scales_items[var] <- codebook_component_scale(
-        scale = scale, scale_name = var,
-        items = items,
-        reliabilities = reliabilities[[var]], indent = indent)
+      scales_items[[var]] %<-% {tryCatch({
+        codebook_component_scale(
+          scale = scale, scale_name = var,
+          items = items,
+          reliabilities = reliabilities[[var]], indent = indent) },
+      error = function(e) stop("Error summarising scale ", var, e)) }
     }
   }
 
@@ -118,10 +121,18 @@ codebook <- function(results, reliabilities = NULL,
     if (var %in% dont_show_these) {
       next # don't do scales again
     } else {
-      scales_items[var] <- codebook_component_single_item( item = item,
-                              item_name = var, indent = indent )
+      scales_items[[var]] %<-% {tryCatch({
+                      codebook_component_single_item( item = item,
+                              item_name = var, indent = indent ) },
+      error = function(e) stop("Error summarising item ", var, e)) }
+
     }
   }
+
+  scales_items <- as.list(scales_items)
+  # reorder
+  done_vars <- intersect(vars, names(scales_items))
+  scales_items <- scales_items[done_vars]
 
   if (missingness_report) {
     missingness_report <- codebook_missingness(results, indent = indent)

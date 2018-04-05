@@ -37,7 +37,10 @@ library(ggplot2)
 theme_set(theme_bw())
 pander::panderOptions("table.split.table", Inf)
 knitr::opts_chunk$set(echo = FALSE)
-knitr::opts_chunk$set(error = TRUE)
+knitr::opts_chunk$set(error = TRUE, dev = "CairoPNG")
+library(future)
+plan(multicore(workers = 3))
+# plan(sequential)
 ```
 
 ```{r}

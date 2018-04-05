@@ -18,13 +18,15 @@
 #' reliabilities <- compute_reliabilities(bfi)
 
 compute_reliabilities <- function(results, survey_repetition = "single") {
-  reliabilities_futures <- new.env()
   vars <- names(results)
+  `%<-%` <- future::`%<-%`
+  reliabilities <- new.env()
+
   for (i in seq_along(vars)) {
     var <- vars[i]
     scale_info <- attributes(results[[var]])
     if (!is.null(scale_info) && exists("scale_item_names", scale_info)) {
-      reliabilities_futures[[ var ]] <- future::future(
+      reliabilities[[ var ]] %<-% {
         tryCatch({
           id_vars <- c("session", "created")
           id_vars <- intersect(id_vars, vars)
@@ -36,16 +38,10 @@ compute_reliabilities <- function(results, survey_repetition = "single") {
                                           items,
                                           survey_repetition)
         }, error = function(e) warning(e))
-      )
+      }
     }
   }
-  reliabilities <- list()
-  scale_names <- names(reliabilities_futures)
-  for (i in seq_along(reliabilities_futures)) {
-    scale <- scale_names[i]
-    reliabilities[[scale]] <- future::value(reliabilities_futures[[scale]])
-  }
-  reliabilities
+  as.list(reliabilities)
 }
 
 
