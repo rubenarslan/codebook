@@ -52,44 +52,122 @@ likert_from_items <- function(items) {
 #' @examples
 #' data("bfi", package = "codebook")
 #' plot_labelled(bfi$BFIK_open_1)
-plot_labelled <- function(item, item_name = deparse(substitute(item)),
+plot_labelled <- function(item, item_name = NULL,
                           wrap_at = 50, go_vertical = FALSE) {
+  if (is.null(item_name)) {
+    item_name <- deparse(substitute(item))
+  }
+
   choices <- attributes(item)[["labels"]]
   item_label <- attributes(item)[["label"]]
-
-  label_how <- "both"
-
-  if (length(choices)) {
-    names(attributes(item)[["labels"]]) <-
-      stringr::str_wrap(names(choices), 20)
-    choices <- attributes(item)[["labels"]]
-
-    if (length(stats::na.omit(choices)) && all(stringr::str_match(
-      names(stats::na.omit(choices)), "\\[?([0-9-]+)(\\]|:)")[, 2] ==
-      stats::na.omit(choices), na.rm = TRUE)) {
-      label_how <- "default"
-    }
-
+  if (is.null(item_label)) {
+    item_label <- ""
+  } else {
+    item_label <- stringr::str_wrap(item_label, width = wrap_at)
   }
+
+  item_nomiss <- haven::zap_missing(item)
+  nonmissing_unique_values <- length(unique(item_nomiss))
+    nonmissing_choices <- attributes(item_nomiss)[["labels"]]
+  has_labelled_missings <- length(nonmissing_choices) < length(choices)
+  if (all(is.na(item_nomiss))) {
+    if (haven::is.labelled(item)) {
+      item <- haven::as_factor(item, "both")
+    } else {
+      item <- factor(item, exclude = NULL)
+    }
+  }
+
+  # possible inputs
+  # * lbl+dbl -> continuous x axis with binning
+  #   * without labelled missings -> can't put on same x axis
+  #   * with labelled missings -> can't put on same x axis
+  # * lbl+chr -> discrete x axis
+  #    * with our without labelled missings -> can all go on same x axis
+  # * chr -> discrete
+  # * factor -> discrete
+  # * double/integer -> continuous, with binning
 
   if (haven::is.labelled(item)) {
-    item <- haven::as_factor(item, levels = label_how)
+    # for labelled values, make labels look proper
+    label_how <- "both"
+    if (length(choices)) {
+      # wrap
+      names(attributes(item)[["labels"]]) <-
+        stringr::str_wrap(names(choices), 20)
+      choices <- attributes(item)[["labels"]]
+
+      # don't duplicate [1]/1: in front
+      if (length(nonmissing_choices) && all(stringr::str_match(
+        names(stats::na.omit(choices)), "\\[?([0-9-]+)(\\]|:)")[, 2] ==
+        stats::na.omit(choices), na.rm = TRUE)) {
+        label_how <- "default"
+      }
+    }
+
+
+    type <- typeof(item)
+    if (type == "double" || type == "integer") {
+      item <- haven::zap_missing(haven::zap_labels(item))
+
+      # are ALL values labelled?
+      if (nonmissing_unique_values <= length(nonmissing_choices)) {
+        dist_plot <- ggplot2::ggplot(mapping = ggplot2::aes(x = item)) +
+          ggplot2::geom_bar(na.rm = TRUE) +
+          ggplot2::scale_x_continuous("values", breaks = nonmissing_choices,
+                                    labels = names(nonmissing_choices)) +
+          ggplot2::expand_limits(x = range(nonmissing_choices))
+      } else {
+        if (nonmissing_unique_values <= 10) {
+          breaks <- unique(item_nomiss)
+          names(breaks) <- breaks
+          breaks <- c(nonmissing_choices, breaks)
+          breaks <- breaks[!duplicated(breaks)]
+        } else {
+          rng <- range(item_nomiss)
+          breaks <- labeling::extended(rng[1], rng[2],  5, only.loose = FALSE)
+          names(breaks) <- breaks
+          breaks <- c(nonmissing_choices, breaks)
+          breaks <- breaks[!duplicated(breaks)]
+        }
+        bins <- nonmissing_unique_values
+        bins <- ifelse(bins > 30, 30, bins)
+        dist_plot <- ggplot2::ggplot(mapping = ggplot2::aes(x = item_nomiss)) +
+          ggplot2::geom_histogram(bins = bins, na.rm = TRUE) +
+          ggplot2::scale_x_continuous("values", breaks = breaks,
+                                      labels = names(breaks)) +
+          ggplot2::expand_limits(x = range(breaks))
+      }
+    } else if (type == "character") {
+      if (any(names(choices) != choices)) {
+        label_how <- "both"
+      }
+      item <- haven::as_factor(item, levels = label_how)
+
+      dist_plot <- ggplot2::ggplot(mapping = ggplot2::aes(x = item)) +
+        ggplot2::geom_bar() +
+        ggplot2::xlab("values")
+    }
+  } else if (is.character(item)) {
+    item <- stringr::str_wrap(as.character(item), 15)
+
+    dist_plot <- ggplot2::ggplot(mapping = ggplot2::aes(x = item)) +
+      ggplot2::geom_bar() +
+      ggplot2::xlab("values")
+  } else if (is.numeric(item)) {
+    dist_plot <- ggplot2::ggplot(mapping = ggplot2::aes(x = item_nomiss)) +
+      ggplot2::geom_histogram(bins = 30, na.rm = TRUE) +
+      ggplot2::scale_x_continuous("values")
+  } else {
+    dist_plot <- ggplot2::qplot(item) + ggplot2::xlab("values")
   }
 
-  if (is.character(item)) {
-    item <- stringr::str_wrap(as.character(item), 15)
-  }
-  dist_plot <- ggplot2::ggplot() +
-    ggplot2::geom_bar(ggplot2::aes(x = item)) +
-    ggplot2::stat_bin() +
-    ggplot2::ggtitle(item_name,
-              subtitle = stringr::str_wrap(item_label, width = wrap_at)) +
-    ggplot2::scale_y_continuous() +
-    ggplot2::xlab("Values")
 
   if ( go_vertical ) {
     dist_plot <- dist_plot + ggplot2::coord_flip()
   }
 
-  dist_plot
+  dist_plot +
+    ggplot2::ggtitle(item_name,
+                     subtitle = item_label)
 }

@@ -1,5 +1,6 @@
 # codebook 0.5.8.9000
 ## Additions
+- plot_labelled now makes better plots for numeric variables
 - codebook generation has been parallelised using the future package. By calling
   e.g. `plan(multicore(workers = 4))` before the codebook function, the 
   computation of reliabilities and the generation of scale and item summaries

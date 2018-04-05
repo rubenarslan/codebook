@@ -29,6 +29,10 @@ results = formr::formr_results("s2_initial", compute_alphas = F, plot_likert = F
 
 results = results %>% filter(!duplicated(session)) # %>% filter(row_number() < 200) %>% select(1:50)
 rm(credentials)
+options(device = function(file, width = 7, height = 7, ...) {
+  cairo_pdf(tempfile(), width = width, height = height, ...)
+})
+# ?Cairo::CairoPNG
 ```
 
 ```{r}
