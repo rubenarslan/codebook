@@ -381,6 +381,7 @@
 #&gt; 
 #&gt; 
 #&gt; ```r
+#&gt; rownames(x$alpha.drop) &lt;- recursive_escape(rownames(x$alpha.drop))
 #&gt; pander::pander(x$alpha.drop)
 #&gt; ```
 #&gt; 
@@ -401,6 +402,7 @@
 #&gt; 
 #&gt; 
 #&gt; ```r
+#&gt; rownames(x$item.stats) &lt;- recursive_escape(rownames(x$item.stats))
 #&gt; pander::pander(x$item.stats)
 #&gt; ```
 #&gt; 
@@ -421,6 +423,7 @@
 #&gt; 
 #&gt; 
 #&gt; ```r
+#&gt; rownames(x$response.freq) &lt;- recursive_escape(rownames(x$response.freq))
 #&gt; pander::pander(x$response.freq)
 #&gt; ```
 #&gt; 

@@ -76,10 +76,11 @@
     
 <div class="contents">
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<div id="codebook-cookbook" class="section level1">
+<div id="codebook" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#codebook-cookbook" class="anchor"></a>Codebook Cookbook</h1></div>
-
+<a href="#codebook" class="anchor"></a>codebook</h1></div>
+<p><a href="https://travis-ci.org/rubenarslan/codebook"><img src="https://travis-ci.org/rubenarslan/codebook.svg?branch=master" alt="Travis-CI Build Status"></a> <a href="https://cran.r-project.org/package=codebook"><img src="http://www.r-pkg.org/badges/version-ago/codebook" alt="CRAN status"></a> <img src="https://cranlogs.r-pkg.org/badges/grand-total/codebook" alt="Downloads"><a href="https://codecov.io/gh/rubenarslan/codebook"><img src="https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://zenodo.org/badge/latestdoi/109252375"><img src="https://zenodo.org/badge/109252375.svg" alt="DOI"></a></p>
+<p><em>Automatic Codebooks from Survey Metadata Encoded in Attributes</em></p>
 <div id="description" class="section level2">
 <h2 class="hasAnchor">
 <a href="#description" class="anchor"></a>Description</h2>
@@ -108,9 +109,11 @@
 <div id="install" class="section level3">
 <h3 class="hasAnchor">
 <a href="#install" class="anchor"></a>Install</h3>
-<p>Just run these two commands in R:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"rubenarslan/codebook"</span>)</code></pre></div>
+<p>Run the following in R.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"codebook"</span>)</a></code></pre></div>
+<p>Or to get the latest development version:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"rubenarslan/codebook"</span>)</a></code></pre></div>
 </div>
 <div id="how-to-use" class="section level3">
 <h3 class="hasAnchor">
@@ -118,15 +121,23 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <p>To see a simple markdown document that you could use to generate a codebook, see the <a href="https://rubenarslan.ocpu.io/codebook/">webapp</a>.</p>
 <p>The resulting codebook will be an HTML file, but you can also choose to generate PDFs or Word files.</p>
 <p>To generate a results file in the necessary format using the formr package, you can run something like this.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(formr)
-<span class="kw">source</span>(<span class="st">".passwords.R"</span>)
-<span class="kw"><a href="http://www.rdocumentation.org/packages/formr/topics/formr_connect">formr_connect</a></span>(<span class="dt">email =</span> credentials<span class="op">$</span>email, <span class="dt">password =</span> credentials<span class="op">$</span>password)
-results =<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/formr/topics/formr_results">formr_results</a></span>(<span class="st">"s3_daily"</span>)
-<span class="kw">saveRDS</span>(results, <span class="st">'results.rds'</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(formr)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">source</span>(<span class="st">".passwords.R"</span>)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw"><a href="http://www.rdocumentation.org/packages/formr/topics/formr_connect">formr_connect</a></span>(<span class="dt">email =</span> credentials<span class="op">$</span>email, <span class="dt">password =</span> credentials<span class="op">$</span>password)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4">results =<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/formr/topics/formr_results">formr_results</a></span>(<span class="st">"s3_daily"</span>)</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">saveRDS</span>(results, <span class="st">'results.rds'</span>)</a></code></pre></div>
 <p>To get a file in this format from SPSS, run e.g. <code>results = haven::read_sav("path/to/file.sav")</code></p>
 <p>Generating a codebook is as simple as calling codebook from a chunk in an rmarkdown document.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/codebook.html">codebook</a></span>(results)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/codebook.html">codebook</a></span>(results)</a></code></pre></div>
 </div>
+</div>
+<div id="citation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#citation" class="anchor"></a>Citation</h2>
+<p>To cite the package</p>
+<blockquote>
+<p>Arslan, R. C. (2018). Automatic codebook generation with codebook (2018). URL <a href="https://github.com/rubenarslan/codebook" class="uri">https://github.com/rubenarslan/codebook</a>. <a href="doi:10.5281/zenodo.1205454" class="uri">doi:10.5281/zenodo.1205454</a></p>
+</blockquote>
 </div>
 <div id="code-of-conduct-for-contributing" class="section level2">
 <h2 class="hasAnchor">
@@ -141,6 +152,8 @@ results =<span class="st"> </span><span class="kw"><a href="http://www.rdocument
     <h2 class="hasAnchor">
 <a href="#sidebar" class="anchor"></a>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cran.r-project.org/package=codebook">https://​cran.r-project.org/​package=codebook</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/rubenarslan/codebook">https://​github.com/​rubenarslan/​codebook</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/rubenarslan/codebook/issues">https://​github.com/​rubenarslan/​codebook/​issues</a>
@@ -155,11 +168,6 @@ results =<span class="st"> </span><span class="kw"><a href="http://www.rdocument
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Ruben Arslan <br><small class="roles"> Author, maintainer </small>  </li>
-</ul>
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://travis-ci.org/rubenarslan/codebook"><img src="https://travis-ci.org/rubenarslan/codebook.svg?branch=master" alt="Travis-CI Build Status"></a></li>
-<li><a href="https://codecov.io/gh/rubenarslan/codebook"><img src="https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg" alt="codecov"></a></li>
 </ul>
 </div>
 

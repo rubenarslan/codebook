@@ -188,6 +188,7 @@
 #&gt; ######  Reliability if an item is dropped:
 #&gt; 
 #&gt; ```r
+#&gt; rownames(x$alpha.drop) &lt;- recursive_escape(rownames(x$alpha.drop))
 #&gt; pander::pander(x$alpha.drop)
 #&gt; ```
 #&gt; 
@@ -207,6 +208,7 @@
 #&gt; ###### Item statistics
 #&gt; 
 #&gt; ```r
+#&gt; rownames(x$item.stats) &lt;- recursive_escape(rownames(x$item.stats))
 #&gt; pander::pander(x$item.stats)
 #&gt; ```
 #&gt; 
@@ -226,6 +228,7 @@
 #&gt; ###### Non missing response frequency for each item
 #&gt; 
 #&gt; ```r
+#&gt; rownames(x$response.freq) &lt;- recursive_escape(rownames(x$response.freq))
 #&gt; pander::pander(x$response.freq)
 #&gt; ```
 #&gt; 
@@ -289,7 +292,14 @@
 #&gt; 	                            labels = stringr::str_wrap(unlist(choices), 15), 
 #&gt; 	                            limits = range(breaks))
 #&gt; }
+#&gt; ```
 #&gt; 
+#&gt; ```
+#&gt; ## Scale for 'x' is already present. Adding another scale for 'x', which
+#&gt; ## will replace the existing scale.
+#&gt; ```
+#&gt; 
+#&gt; ```r
 #&gt; dist_plot
 #&gt; ```
 #&gt; 
@@ -298,6 +308,9 @@
 #&gt; ##### Summary statistics {#BFIK_open_summary}
 #&gt; 
 #&gt; ```r
+#&gt; for (i in seq_along(names(items))) {
+#&gt;   attributes(items[[i]]) = recursive_escape(attributes(items[[i]]))
+#&gt; }
 #&gt; pander::pander(codebook_table(items))
 #&gt; ```
 #&gt; 

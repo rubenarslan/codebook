@@ -18,7 +18,7 @@ Imports:
 		graphics,
 		utils,
 		rmarkdown,
-    ggplot2,
+    ggplot2 (>= 2.0.0),
     stringr,
     psych,
     likert,
@@ -27,7 +27,7 @@ Imports:
     dplyr,
     tidyr,
     pander,
-    skimr,
+    skimr (>= 1.0.2),
     DT,
     future,
     haven,
@@ -35,7 +35,8 @@ Imports:
     mice,
     tibble,
     purrr,
-    htmltools
+    htmltools,
+    labeling
 Suggests:
   testthat,
   lme4,

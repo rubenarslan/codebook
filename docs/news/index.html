@@ -93,23 +93,57 @@
     </div>
 
     <div class="contents">
+    <div id="codebook-0-5-8-9000" class="section level1">
+<h1 class="page-header">
+<a href="#codebook-0-5-8-9000" class="anchor"></a>codebook 0.5.8.9000<small> Unreleased </small>
+</h1>
+<div id="additions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#additions" class="anchor"></a>Additions</h2>
+<ul>
+<li>plot_labelled now makes better plots for numeric variables</li>
+<li>codebook generation has been parallelised using the future package. By calling e.g. <code>plan(multicore(workers = 4))</code> before the codebook function, the computation of reliabilities and the generation of scale and item summaries will happen in parallel. For this to work, you have to choose a graphics device in knitr that supports parallelisation, by calling e.g. <code>opts_chunk$set(dev = "CairoPNG")</code>.</li>
+</ul>
+</div>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<ul>
+<li>fix bugs in plot_labelled</li>
+<li>fix bugs when variables are entirely missings</li>
+<li>escape HTML in various labels, use safe names for anchors, figures</li>
+<li>reliability functions no longer garble names</li>
+</ul>
+</div>
+</div>
+    <div id="codebook-0-5-8" class="section level1">
+<h1 class="page-header">
+<a href="#codebook-0-5-8" class="anchor"></a>codebook 0.5.8<small> 2018-03-21 </small>
+</h1>
+<ul>
+<li>don’t write files into anything but tempdir</li>
+</ul>
+</div>
     <div id="codebook-0-5-7" class="section level1">
 <h1 class="page-header">
-<a href="#codebook-0-5-7" class="anchor"></a>codebook 0.5.7</h1>
+<a href="#codebook-0-5-7" class="anchor"></a>codebook 0.5.7<small> Unreleased </small>
+</h1>
 <ul>
 <li>changed description and documentation</li>
 </ul>
 </div>
     <div id="codebook-0-5-6" class="section level1">
 <h1 class="page-header">
-<a href="#codebook-0-5-6" class="anchor"></a>codebook 0.5.6</h1>
+<a href="#codebook-0-5-6" class="anchor"></a>codebook 0.5.6<small> Unreleased </small>
+</h1>
 <ul>
 <li>changed license to MIT</li>
 </ul>
 </div>
     <div id="codebook-0-5-5" class="section level1">
 <h1 class="page-header">
-<a href="#codebook-0-5-5" class="anchor"></a>codebook 0.5.5</h1>
+<a href="#codebook-0-5-5" class="anchor"></a>codebook 0.5.5<small> Unreleased </small>
+</h1>
 <ul>
 <li>improved documentation</li>
 <li>more tests</li>
@@ -117,7 +151,8 @@
 </div>
     <div id="codebook-0-4-4" class="section level1">
 <h1 class="page-header">
-<a href="#codebook-0-4-4" class="anchor"></a>codebook 0.4.4</h1>
+<a href="#codebook-0-4-4" class="anchor"></a>codebook 0.4.4<small> Unreleased </small>
+</h1>
 <ul>
 <li>wrote some tests</li>
 <li>tried to please goodpractice::gp()</li>
@@ -131,6 +166,8 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#codebook-0-5-8-9000">0.5.8.9000</a></li>
+        <li><a href="#codebook-0-5-8">0.5.8</a></li>
         <li><a href="#codebook-0-5-7">0.5.7</a></li>
         <li><a href="#codebook-0-5-6">0.5.6</a></li>
         <li><a href="#codebook-0-5-5">0.5.5</a></li>

@@ -113,8 +113,9 @@ codebook will become part of the document you are generating.</p>
     
 
     <pre class="usage"><span class='fu'>codebook</span>(<span class='no'>results</span>, <span class='kw'>reliabilities</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>survey_repetition</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"auto"</span>,
-  <span class='st'>"single"</span>, <span class='st'>"repeated_once"</span>, <span class='st'>"repeated_many"</span>), <span class='kw'>missingness_report</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>metadata_table</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metadata_json</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>indent</span> <span class='kw'>=</span> <span class='st'>"#"</span>)</pre>
+  <span class='st'>"single"</span>, <span class='st'>"repeated_once"</span>, <span class='st'>"repeated_many"</span>), <span class='kw'>survey_overview</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>missingness_report</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metadata_table</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metadata_json</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>indent</span> <span class='kw'>=</span> <span class='st'>"#"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -130,6 +131,10 @@ codebook will become part of the document you are generating.</p>
     <tr>
       <th>survey_repetition</th>
       <td><p>defaults to "auto" which is to try to determine the level of repetition from the "session" and "created" variables. Other values are: single, repeated_once, repeated_many</p></td>
+    </tr>
+    <tr>
+      <th>survey_overview</th>
+      <td><p>whether to print an overview of survey entries, durations (depends on presence of columns session, created, modified, ended, expired)</p></td>
     </tr>
     <tr>
       <th>missingness_report</th>
@@ -157,7 +162,7 @@ codebook will become part of the document you are generating.</p>
 <span class='fu'>on.exit</span>(<span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/knitr/topics/opts_knit'>opts_knit</a></span>$<span class='fu'>set</span>(<span class='kw'>base.dir</span> <span class='kw'>=</span> <span class='no'>old_base_dir</span>))
 <span class='fu'>data</span>(<span class='st'>"bfi"</span>)
 <span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='no'>bfi</span>[, <span class='fu'>c</span>(<span class='st'>"BFIK_open_1"</span>, <span class='st'>"BFIK_open_1"</span>)]
-<span class='no'>md</span> <span class='kw'>&lt;-</span> <span class='fu'>codebook</span>(<span class='no'>bfi</span>, <span class='kw'>survey_repetition</span> <span class='kw'>=</span> <span class='st'>"single"</span>, <span class='kw'>metadata_table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: The variables session, created, ended, expired, modified have to be defined for automatic survey duration calculations to work.</span></div><div class='output co'>#&gt; <span class='message'>No missings.</span></div></pre>
+<span class='no'>md</span> <span class='kw'>&lt;-</span> <span class='fu'>codebook</span>(<span class='no'>bfi</span>, <span class='kw'>survey_repetition</span> <span class='kw'>=</span> <span class='st'>"single"</span>, <span class='kw'>metadata_table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='message'>No missings.</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

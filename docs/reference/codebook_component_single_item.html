@@ -137,25 +137,29 @@
 #&gt; show_missings &lt;- FALSE
 #&gt; if (haven::is.labelled(item)) {
 #&gt;   missings &lt;- item[is.na(haven::zap_missing(item))]
+#&gt;   attributes(missings) &lt;- attributes(item)
 #&gt;   if (is.numeric(item)) {
 #&gt;     show_missings &lt;- length(unique(haven::na_tag(missings))) &gt; 1
 #&gt;     item &lt;- haven::zap_missing(item)
 #&gt;   }
-#&gt;   if (length(attributes(item)$labels) == 0 &amp;&amp; is.numeric(item)) {
+#&gt;   if (length(item_attributes$labels) == 0 &amp;&amp; is.numeric(item)) {
 #&gt;     item &lt;- haven::zap_labels(item)
 #&gt;   }
 #&gt; }
+#&gt; item_nomiss &lt;- item[!is.na(item)]
+#&gt; attributes(item_nomiss) &lt;- attributes(item)
+#&gt; 
 #&gt; old_height &lt;- knitr::opts_chunk$get("fig.height")
-#&gt; non_missing_choices &lt;- attributes(item)[["labels"]]
+#&gt; non_missing_choices &lt;- item_attributes[["labels"]]
 #&gt; many_labels &lt;- length(non_missing_choices) &gt; 7
-#&gt; go_vertical &lt;- !is.numeric(item) || many_labels
+#&gt; go_vertical &lt;- !is.numeric(item_nomiss) || many_labels
 #&gt; if ( go_vertical ) {
 #&gt;   # numeric items are plotted horizontally (because that's what usually expected)
 #&gt;   # categorical items are plotted vertically because we can use the screen real estate better this way
 #&gt; 
 #&gt; 	if (is.null(choices) || 
-#&gt; 	    dplyr::n_distinct(na.omit(item)) &gt; length(non_missing_choices)) {
-#&gt; 		choices &lt;- unique(na.omit(item))
+#&gt; 	    dplyr::n_distinct(item_nomiss) &gt; length(non_missing_choices)) {
+#&gt; 		choices &lt;- unique(item_nomiss)
 #&gt; 		names(choices) &lt;- choices
 #&gt; 		non_missing_choices &lt;- choices
 #&gt; 	}
@@ -173,14 +177,12 @@
 #&gt; # todo: if there are free-text choices mingled in with the pre-defined ones, don't show
 #&gt; # todo: show rare items if they are pre-defined
 #&gt; # todo: bin rare responses into "other category"
-#&gt; 
-#&gt; if (is.numeric(item) || dplyr::n_distinct(item) &lt; 20) {
-#&gt;   attribs &lt;- attributes(item)
-#&gt;   item &lt;- item[!is.na(item)]
-#&gt;   attributes(item) &lt;- attribs
-#&gt;   plot_labelled(item, item_name, wrap_at, go_vertical)
+#&gt; if (!length(item_nomiss)) {
+#&gt;   cat("No non-missing values to show.")
+#&gt; } else if (is.numeric(item_nomiss) || dplyr::n_distinct(item_nomiss) &lt; 20) {
+#&gt;   plot_labelled(item_nomiss, item_name, wrap_at, go_vertical)
 #&gt; } else {
-#&gt; 	cat(dplyr::n_distinct(item), " unique, categorical values, so not shown.")
+#&gt; 	cat(dplyr::n_distinct(item_nomiss), " unique, categorical values, so not shown.")
 #&gt; }
 #&gt; ```
 #&gt; 
@@ -195,38 +197,17 @@
 #&gt; ##### Summary statistics {#BFIK_open_1_summary}
 #&gt; 
 #&gt; ```r
+#&gt; attributes(item) &lt;- item_attributes
 #&gt; df = data.frame(item)
-#&gt; names(df) = item_name
-#&gt; pander::pander(codebook_table(df))
+#&gt; names(df) = html_item_name
+#&gt; knitr::kable(codebook_table(df), escape = TRUE)
 #&gt; ```
 #&gt; 
 #&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt;     name              label               type        type_options   data_type 
-#&gt; ------------- ---------------------- --------------- -------------- -----------
-#&gt;  BFIK_open_1   __Ich bin vielseitig   rating_button        5         labelled  
-#&gt;                  interessiert.__                                               
-#&gt; -------------------------------------------------------------------------------
 #&gt; 
-#&gt; Table: Table continues below
-#&gt; 
-#&gt;  
-#&gt; ------------------------------------------------------------------------
-#&gt;  ordered          value_labels          optional   item_order   missing 
-#&gt; --------- ---------------------------- ---------- ------------ ---------
-#&gt;   FALSE    1: Trifft überhaupt nicht       0           8           0    
-#&gt;            zu=1,2=2,3=3,4=4,5: Trifft                                   
-#&gt;                voll und ganz zu=5                                       
-#&gt; ------------------------------------------------------------------------
-#&gt; 
-#&gt; Table: Table continues below
-#&gt; 
-#&gt;  
-#&gt; ----------------------------------------------------
-#&gt;  complete   n    n_unique         top_counts        
-#&gt; ---------- ---- ---------- -------------------------
-#&gt;     28      28      4       5: 16, 4: 8, 3: 3, 2: 1 
-#&gt; ----------------------------------------------------
+#&gt; |name        |label                                |type          |type_options |data_type |ordered |value_labels                                                                                                      |optional |item_order |missing |complete |n  |n_unique |top_counts              |
+#&gt; |:-----------|:------------------------------------|:-------------|:------------|:---------|:-------|:-----------------------------------------------------------------------------------------------------------------|:--------|:----------|:-------|:--------|:--|:--------|:-----------------------|
+#&gt; |BFIK_open_1 |__Ich bin vielseitig interessiert.__ |rating_button |5            |labelled  |FALSE   |1: Trifft überhaupt nicht zu=1,2=2,3=3,4=4,5: Trifft voll und ganz zu=5,Item was never rendered for this user.=NA |0        |8          |0       |28       |28 |4        |5: 16, 4: 8, 3: 3, 2: 1 |
 #&gt; 
 #&gt; 
 #&gt; 
