@@ -80,13 +80,15 @@ codebook <- function(results, reliabilities = NULL,
       paste0(knitr::opts_chunk$get("cache.path"), "cb_", df_name, "_")
   )
 
-  survey_overview <- ''
-  if ((exists("session", results) &&
+  if (survey_overview &&
+        exists("session", results) &&
         exists("created", results) &&
         exists("ended", results) &&
         exists("expired", results) &&
-        exists("modified", results))) {
+        exists("modified", results)) {
     survey_overview <- codebook_survey_overview(results, survey_repetition)
+  } else {
+    survey_overview <- ''
   }
 
   scales_items <- c()
@@ -287,10 +289,11 @@ codebook_component_scale <- function(scale, scale_name, items, reliabilities,
                                      indent = '##') {
   stopifnot( exists("scale_item_names", attributes(scale)))
   stopifnot( attributes(scale)$scale_item_names %in% names(items) )
+  safe_name <- safe_name(scale_name)
 
   options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), scale_name, "_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), scale_name, "_")
+    fig.path = paste0(knitr::opts_chunk$get("fig.path"), safe_name, "_"),
+    cache.path = paste0(knitr::opts_chunk$get("cache.path"), safe_name, "_")
   )
   old_opt <- options('knitr.duplicate.label')$knitr.duplicate.label
   options(knitr.duplicate.label = 'allow')
@@ -315,9 +318,10 @@ codebook_component_scale <- function(scale, scale_name, items, reliabilities,
 #' data("bfi")
 #' codebook_component_single_item(bfi$BFIK_open_1, "BFIK_open_1")
 codebook_component_single_item <- function(item, item_name, indent = '##') {
+  safe_name <- safe_name(item_name)
   options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), item_name, "_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), item_name, "_")
+    fig.path = paste0(knitr::opts_chunk$get("fig.path"), safe_name, "_"),
+    cache.path = paste0(knitr::opts_chunk$get("cache.path"), safe_name, "_")
   )
   asis_knit_child(require_file("_codebook_item.Rmd"), options = options)
 }

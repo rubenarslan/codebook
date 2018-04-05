@@ -34,7 +34,7 @@ likert_from_items <- function(items) {
     }
   }
 
-  likert::likert(data.frame(items, check.names = FALSE))
+  likert::likert(as.data.frame(items))
 }
 
 #' Plot labelled vector

@@ -11,7 +11,11 @@ if (exists("testing")) {
 `r indent`# Codebook table
 
 ```{r items, message=TRUE}
-metadata_table <- dplyr::mutate(metadata_table, 
-                name = paste0('<a href="#', .data$name, '">', .data$name, '</a>'))
+metadata_table <- dplyr::mutate_at(dplyr::mutate(metadata_table, 
+                name = paste0('<a href="#', safe_name(.data$name), '">', 
+                              recursive_escape(.data$name), '</a>')),
+                dplyr::vars(dplyr::one_of("label", "scale_item_names", 
+                                          "value_labels", "showif")), 
+                dplyr::funs(recursive_escape))
 export_table(metadata_table)
 ```

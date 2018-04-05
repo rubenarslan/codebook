@@ -14,3 +14,5 @@ figure
 ^README\.Rmd$
 ^README-.*\.png$
 ^cran-comments\.md$
+paper.bib
+paper.md

@@ -4,31 +4,33 @@ if (!exists("indent")) {
 }
 if (exists("testing")) {
 	item <- 1:10
-	item_name <- "yay"
+	item_name <- safe_name <- "yay"
 	attributes(item) <- list(label = 'yayya')
 }
-item_attributes <- attributes(item)
+
+item_attributes <- recursive_escape(attributes(item))
+html_item_name <- recursive_escape(item_name)
 item_label <- ifelse(is.null(item_attributes) || is.null(item_attributes$label), 
                      "", item_attributes$label)
 item_info <- item_attributes$item
 choices <- item_attributes$labels
 ```
 
-`r indent`## `r item_name` {#`r item_name` .tabset}
+`r indent`## `r html_item_name` {#`r safe_name` .tabset}
 
 `r item_label`
 
-`r indent`### Distribution {#`r item_name`_distribution}
+`r indent`### Distribution {#`r safe_name`_distribution}
 ```{r setup_missings}
 show_missings <- FALSE
 if (haven::is.labelled(item)) {
   missings <- item[is.na(haven::zap_missing(item))]
-  attributes(missings) <- item_attributes
+  attributes(missings) <- attributes(item)
   if (is.numeric(item)) {
     show_missings <- length(unique(haven::na_tag(missings))) > 1
     item <- haven::zap_missing(item)
   }
-  if (length(attributes(item)$labels) == 0 && is.numeric(item)) {
+  if (length(item_attributes$labels) == 0 && is.numeric(item)) {
     item <- haven::zap_labels(item)
   }
 }
@@ -36,7 +38,7 @@ item_nomiss <- item[!is.na(item)]
 attributes(item_nomiss) <- attributes(item)
 
 old_height <- knitr::opts_chunk$get("fig.height")
-non_missing_choices <- attributes(item)[["labels"]]
+non_missing_choices <- item_attributes[["labels"]]
 many_labels <- length(non_missing_choices) > 7
 go_vertical <- !is.numeric(item_nomiss) || many_labels
 if ( go_vertical ) {
@@ -74,23 +76,24 @@ knitr::opts_chunk$set(fig.height = old_height)
 
 `r sum(is.na(item))` missings.
 
-`r indent`### Summary statistics {#`r item_name`_summary}
+`r indent`### Summary statistics {#`r safe_name`_summary}
 ```{r summary}
+attributes(item) <- item_attributes
 df = data.frame(item)
-names(df) = item_name
-pander::pander(codebook_table(df))
+names(df) = html_item_name
+knitr::kable(codebook_table(df), escape = TRUE)
 ```
 
-`r ifelse(show_missings, paste0(indent, '### Missing value types {#', item_name, '_missings}'), '')`
-```{r}
+`r ifelse(show_missings, paste0(indent, '### Missing value types {#', safe_name, '_missings}'), '')`
+```{r missings}
 if (show_missings) {
   plot_labelled(missings, item_name, wrap_at)
 }
 ```
 
-`r ifelse(!is.null(item_info), paste0(indent, '### Item {#', item_name, '_item}'), '')`
+`r ifelse(!is.null(item_info), paste0(indent, '### Item {#', safe_name, '_item}'), '')`
 
-```{r items}
+```{r item_info}
 if (!is.null(item_info)) {
   item_info$label_parsed <- item_info$choices <- 
     item_info$choice_list <- item_info$study_id <- item_info$id <- NULL
@@ -99,7 +102,7 @@ if (!is.null(item_info)) {
 ```
 
 
-`r ifelse(!is.null(choices) && length(choices) < 30, paste0(indent, '### Value labels {#', item_name, '_labels}'), '')`
+`r ifelse(!is.null(choices) && length(choices) < 30, paste0(indent, '### Value labels {#', safe_name, '_labels}'), '')`
 ```{r choices}
 if (!is.null(choices) && length(choices) < 30) {
 	pander::pander(as.list(choices))

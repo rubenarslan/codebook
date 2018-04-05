@@ -153,3 +153,30 @@ write_to_file <- function(..., name = NULL, ext = ".Rmd") {
 require_file <- function(file) {
   system.file(file, package = 'codebook', mustWork = TRUE)
 }
+
+
+recursive_escape <- function(x, depth = 0, max_depth = 3,
+                             escape_fun = htmltools::htmlEscape) {
+  if (depth < max_depth) {
+    # escape names for all vectors
+    if (!is.null(names(x))) {
+      names(x) <- escape_fun(names(x))
+    }
+    if (!is.null(rownames(x))) {
+      rownames(x) <- escape_fun(rownames(x))
+    }
+
+    # escape any character vectors
+    if (is.character(x)) {
+      x <- escape_fun(x)
+    } else if (is.list(x) && class(x) == "list") {
+      # turtle down into lists
+      x <- lapply(x, function(x) { recursive_escape(x, depth + 1) })
+    }
+  }
+  x
+}
+
+safe_name <- function(x) {
+  stringr::str_replace_all(x, "[^[:alnum:]]", "_")
+}

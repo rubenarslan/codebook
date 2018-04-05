@@ -112,6 +112,71 @@ test_that("Variables with only missings work", {
   unlink(paste0(dir, "/figure"), recursive = TRUE)
 })
 
+test_that("HTML is escaped", {
+  data('bfi')
+  library(dplyr)
+  funnybiz <- bfi %>% select(-starts_with("BFIK_extra"),
+                        -starts_with("BFIK_agree"),
+                        -starts_with("BFIK_open"),
+                        -starts_with("BFIK_consc")) %>%
+    rename(`Not <s>struck</s> scale name` = BFIK_neuro,
+           `Not <s>struck</s> item name` = BFIK_neuro_4)
+
+  attributes(funnybiz$`Not <s>struck</s> item name`)$label <-
+    "Not <s>struck</s> item label"
+  names(attributes(funnybiz$BFIK_neuro_3)$labels)[1] <-
+  names(attributes(funnybiz$BFIK_neuro_2R)$labels)[1] <-
+  names(attributes(funnybiz$`Not <s>struck</s> item name`)$labels)[1] <-
+  attributes(funnybiz$BFIK_neuro_3)$item$choices[[1]] <-
+  attributes(funnybiz$BFIK_neuro_2R)$item$choices[[1]] <-
+  attributes(funnybiz$`Not <s>struck</s> item name`)$item$choices[[1]] <-
+    "Not <s>struck</s> value label"
+   attributes(funnybiz$`Not <s>struck</s> item name`)$item$showif <-
+    c("1" = "Not <s>struck</s> showif")
+
+  funnybiz$`Not <s>struck</s> item name 2` <-
+    funnybiz$`Not <s>struck</s> item name`
+  attributes(funnybiz$`Not <s>struck</s> scale name`)$scale_item_names[3] <-
+    "Not <s>struck</s> item name"
+  attributes(funnybiz$`Not <s>struck</s> scale name`)$label <-
+    "Not <s>struck</s> scale label"
+
+  wd <- getwd()
+  dir <- tempdir()
+  setwd(dir)
+  on.exit(setwd(wd))
+  saveRDS(funnybiz, "funnybiz.rds")
+  expect_message(html <- load_data_and_render_codebook("funnybiz.rds",
+"
+```{r}
+codebook(codebook_data, survey_repetition = 'single',
+          missingness_report = FALSE,
+          metadata_json = FALSE)
+```
+"))
+  html <- paste(readLines(html), collapse = "\n")
+  # browseURL("codebook.html")
+  # browseURL(dir)
+  expect_failure(
+    expect_match(html, "Not <s>struck</s> item name", fixed = TRUE))
+  expect_failure(
+    expect_match(html, "Not <s>struck</s> item label", fixed = TRUE))
+  expect_failure(
+    expect_match(html, "Not <s>struck</s> value label", fixed = TRUE))
+  expect_failure(
+    expect_match(html, "Not <s>struck</s> showif", fixed = TRUE))
+  expect_failure(
+    expect_match(html, "Not <s>struck</s> choice label", fixed = TRUE))
+  expect_failure(
+    expect_match(html, "Not <s>struck</s> scale name", fixed = TRUE))
+  expect_failure(
+    expect_match(html, "Not <s>struck</s> scale label", fixed = TRUE))
+  expect_failure(
+    expect_match(html, "<s>", fixed = TRUE))
+
+  unlink(paste0(dir, "/figure"), recursive = TRUE)
+})
+
 test_that("Codebook with multilevel reliability", {
   data("bfi", package = "codebook")
   library(dplyr)
@@ -190,7 +255,7 @@ test_that("codebook table generation", {
   expect_identical(cb$name, names(bfi))
 })
 
-test_that("codebook table generation", {
+test_that("codebook table generation, no attributes", {
   data("bfi", package = 'codebook')
   library(dplyr)
   bfi <- bfi %>% select(-starts_with("BFIK_extra"),

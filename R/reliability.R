@@ -55,7 +55,7 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
   if (survey_repetition == 'single') {
     list(
       internal_consistency =
-        psych::alpha(data.frame(results[, scale_item_names]),
+        psych::alpha(as.data.frame(results[, scale_item_names]),
           title = scale_name, check.keys = FALSE)
     )
   } else if (survey_repetition == 'repeated_once') {
@@ -74,11 +74,11 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
       key = .data$Time, value = !!dplyr::quo(scale_name), sep = "_")
     list(
       internal_consistency_T1 =
-        psych::alpha(data.frame(results[!duplicated(results$session),
+        psych::alpha(as.data.frame(results[!duplicated(results$session),
           scale_item_names]), title = paste( scale_name, "Time 1"),
           check.keys = FALSE),
       internal_consistency_T2 =
-        psych::alpha(data.frame(results[duplicated(results$session),
+        psych::alpha(as.data.frame(results[duplicated(results$session),
           scale_item_names]), title = paste( scale_name, "Time 2"),
           check.keys = FALSE),
       retest_reliability = stats::cor.test(wide$Time_1, wide$Time_2)

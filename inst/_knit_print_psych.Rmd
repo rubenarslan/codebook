@@ -28,17 +28,20 @@ pander::pander(x$total)
 `r indent`  Reliability if an item is dropped:
 
 ```{r}
+rownames(x$alpha.drop) <- recursive_escape(rownames(x$alpha.drop))
 pander::pander(x$alpha.drop)
 ```
 
 `r indent` Item statistics
 
 ```{r}
+rownames(x$item.stats) <- recursive_escape(rownames(x$item.stats))
 pander::pander(x$item.stats)
 ```
 
 `r indent` Non missing response frequency for each item
 
 ```{r}
+rownames(x$response.freq) <- recursive_escape(rownames(x$response.freq))
 pander::pander(x$response.freq)
 ```

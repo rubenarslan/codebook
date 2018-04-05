@@ -34,7 +34,8 @@ Imports:
     readr,
     mice,
     tibble,
-    purrr
+    purrr,
+    htmltools
 Suggests:
   testthat,
   lme4,
