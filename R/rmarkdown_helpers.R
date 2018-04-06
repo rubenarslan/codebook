@@ -53,7 +53,7 @@ asis_knit_child <- function(input = NULL, text = NULL, ...,
       knitr::opts_chunk$set(options)
       on.exit({
         for (i in names(options)) if (identical(options[[i]],
-           knitr::opts_chunk$get(i))) knitr::opts_chunk$set(optc[i])
+                                                knitr::opts_chunk$get(i))) knitr::opts_chunk$set(optc[i])
       }, add = TRUE)
     }
   }
@@ -63,8 +63,8 @@ asis_knit_child <- function(input = NULL, text = NULL, ...,
     encode <- getOption("encoding")
   }
   res <- knitr::knit(input = input, text = text, ...,
-            quiet = quiet, tangle = knitr::opts_knit$get("tangle"),
-            envir = envir, encoding = encode)
+                     quiet = quiet, tangle = knitr::opts_knit$get("tangle"),
+                     envir = envir, encoding = encode)
   knitr::asis_output(paste(c("", res), collapse = "\n"))
 }
 
@@ -115,24 +115,16 @@ print.knit_asis <- function(x, ...) {
 load_data_and_render_codebook <- function(file, text,
                                           remove_file = FALSE, ...) {
   codebook_data <- switch(tools::file_ext(file),
-       "rds" = readRDS(file),
-       "rdata" = load(file),
-       "rda" = load(file),
-       "sav" = haven::read_sav(file),
-       "dta" = haven::read_dta(file),
-       "por" = haven::read_por(file),
-       "xpt" = haven::read_xpt(file),
-       "csv" = readr::read_csv(file),
-       "csv2" = readr::read_csv2(file),
-       "tsv" = readr::read_tsv(file),
-       NULL
+                          "rdata" = rio::import_list(file)[[1]],
+                          "rda" = rio::import_list(file)[[1]],
+                          rio::import(file)
   )
   stopifnot(!is.null(codebook_data))
   if (remove_file) {
     file.remove(file)
   }
   fileName <- rmarkdown::render(input = write_to_file(text,
-      name = "codebook", ext = ".Rmd"), ...)
+                                                      name = "codebook", ext = ".Rmd"), ...)
   fileName
 }
 

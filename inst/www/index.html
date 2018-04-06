@@ -48,7 +48,7 @@
         The codebook generated here will be stored for 24 hours. Unless you share the link, others cannot easily discover it. The data you upload is not stored, but if you do not want to upload the data, you can also install the <a href="https://github.com/rubenarslan/codebook" target="_blank">codebook R package</a> on your computer. This will also make it easier to document multiple data files in the same document, should you want to.
       </p>
       <p>
-        The following <strong>file formats</strong> are supported: .sav (SPSS), .dta (Stata), .rds (R), .rdata (R), .por, .xpt, .csv, .tsv, .csv2. RDS/Rdata files are read using base R, all others using haven or readr.
+        The following <strong>file formats</strong> are supported, among others: .sav (SPSS), .dta (Stata), .rds (R), .rdata (R), .por, .xpt, .csv, .tsv, .csv2. All are read using <a href="https://github.com/leeper/rio">rio</a>, which means you can also upload zipped files, see rio docs for more information.
       </p>
       <p>
         The codebook package uses variable and value labels, as well as labelled missings to make sense of the data. You can upload files without such metadata, but the resulting codebook will be less useful. You'll get the most mileage out of this package by using data collected with <a href="https://formr.org">formr.org</a> and imported using the <a href="https://github.com/rubenarslan/formr">formr R package</a>.

@@ -52,12 +52,13 @@ completely independent of it.
 
 Confer the help or: <https://rubenarslan.github.io/codebook>. See the
 [vignette](https://rubenarslan.github.io/codebook/articles/codebook.html)
-for a quick example of an HTML document generated using `codebook`.
+for a quick example of an HTML document generated using `codebook`, or
+below for a copy-pastable rmarkdown document to get you started.
 
 ## Use as a webapp
 
 If you don’t want to install the codebook package, you can just upload
-an annotated dataset in a variety of formats here:
+an annotated dataset in a variety of formats (R, SPSS, Stata, …) here:
 <https://rubenarslan.ocpu.io/codebook/>
 
 ## Use locally
@@ -77,35 +78,6 @@ install.packages("devtools")
 devtools::install_github("rubenarslan/codebook")
 ```
 
-### How to use
-
-To see a simple markdown document that you could use to generate a
-codebook, see the [webapp](https://rubenarslan.ocpu.io/codebook/).
-
-The resulting codebook will be an HTML file, but you can also choose to
-generate PDFs or Word files.
-
-To generate a results file in the necessary format using the formr
-package, you can run something like this.
-
-``` r
-library(formr)
-source(".passwords.R")
-formr_connect(email = credentials$email, password = credentials$password)
-results = formr_results("s3_daily")
-saveRDS(results, 'results.rds')
-```
-
-To get a file in this format from SPSS, run e.g. `results =
-haven::read_sav("path/to/file.sav")`
-
-Generating a codebook is as simple as calling codebook from a chunk in
-an rmarkdown document.
-
-``` r
-codebook(results)
-```
-
 ## Citation
 
 To cite the package
@@ -113,5 +85,86 @@ To cite the package
 > Arslan, R. C. (2018). Automatic codebook generation with codebook
 > (2018). URL <https://github.com/rubenarslan/codebook>.
 > <doi:10.5281/zenodo.1205454>
+
+### How to use
+
+Here’s a simple rmarkdown template, that you could use to get started.
+The resulting codebook will be an HTML file, but you can also choose to
+generate PDFs or Word files by fiddling with the `output` settings.
+
+```` markdown
+---
+title: "Codebook"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    code_folding: 'hide'
+    self_contained: true
+  pdf_document:
+    toc: yes
+    toc_depth: 4
+    latex_engine: xelatex
+---
+
+```{r setup}
+knitr::opts_chunk$set(
+  warning = TRUE, # show warnings during codebook generation
+  message = TRUE, # show messages during codebook generation
+  error = TRUE, # do not interrupt codebook generation in case of errors,
+                # usually makes debugging easier, and sometimes half a codebook
+                # is better than none
+  echo = FALSE  # don't show the R code
+)
+ggplot2::theme_set(ggplot2::theme_bw())
+pander::panderOptions("table.split.table", Inf)
+```
+
+Here, we import data from formr
+
+```{r}
+library(formr)
+source(".passwords.R")
+formr_connect(email = credentials$email, password = credentials$password)
+codebook_data <- formr_results("s3_daily")
+```
+
+But we can also import data from e.g. an SPSS file.
+```{r}
+codebook_data <- rio::import("s3_daily.sav")
+```
+
+
+Sometimes, the metadata is not set up in such a way that codebook
+can leverage it fully. These functions help fix this.
+
+```{r codebook}
+library(codebook) # load the package
+# omit the following lines, if your missing values are already properly labelled
+codebook_data <- detect_missings(codebook_data,
+    only_labelled_missings = TRUE, # only labelled values are autodetected as
+                                   # missing
+    negative_values_are_missing = FALSE, # negative values are NOT missing values
+    ninety_nine_problems = TRUE,   # 99/999 are missing values, if they
+                                   # are more than 5 MAD from the median
+    )
+
+# If you are not using formr, the codebook package needs to guess which items
+# form a scale. The following line finds item aggregates with names like this:
+# scale = scale_1 + scale_2R + scale_3R
+# identifying these aggregates allows the codebook function to
+# automatically compute reliabilities.
+# However, it will not reverse items automatically.
+codebook_data <- detect_scales(codebook_data)
+```
+
+Now, generating a codebook is as simple as calling codebook from a chunk in an
+rmarkdown document.
+
+```{r}
+codebook(codebook_data)
+```
+````
 
 ## [Code of conduct for contributing](CONDUCT.md)
