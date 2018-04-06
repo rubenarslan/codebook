@@ -109,7 +109,7 @@ codebook <- function(results, reliabilities = NULL,
           scale = scale, scale_name = var,
           items = items,
           reliabilities = reliabilities[[var]], indent = indent) },
-      error = function(e) stop("Error summarising scale ", var, e)) }
+      error = function(e) stop("Could not summarise scale ", var, ". ", e)) }
     }
   }
 
@@ -124,7 +124,7 @@ codebook <- function(results, reliabilities = NULL,
       scales_items[[var]] %<-% {tryCatch({
                       codebook_component_single_item( item = item,
                               item_name = var, indent = indent ) },
-      error = function(e) stop("Error summarising item ", var, e)) }
+      error = function(e) stop("Could not summarise item ", var, ". ", e)) }
 
     }
   }

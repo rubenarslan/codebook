@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 
 
 ```{r}
-knitr::opts_chunk$set(warning = TRUE, message = TRUE, echo = FALSE)
+knitr::opts_chunk$set(warning = TRUE, message = TRUE, echo = FALSE, error = FALSE)
 pander::panderOptions("table.split.table", Inf)
 library(codebook)
 data("bfi", package = 'codebook')
@@ -35,6 +35,7 @@ bfi <- bfi2
 ggplot2::theme_set(ggplot2::theme_bw())
 pander::panderOptions("table.split.table", Inf)
 bfi$age <- rpois(nrow(bfi), 30)
+# class(bfi$age) = c("udhfibr")
 bfi <- detect_scales(bfi)
 ```
 
