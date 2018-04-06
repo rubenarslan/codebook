@@ -57,11 +57,13 @@ dist_plot <- plot_labelled(scale, scale_name, wrap_at)
 choices <- attributes(items[[1]])$item$choices
 breaks <- as.numeric(names(choices))
 if (length(breaks)) {
+  suppressMessages( # ignore message about overwriting x axis
   dist_plot <- dist_plot +
-    	ggplot2::scale_x_continuous("Choices", 
+    	ggplot2::scale_x_continuous("values", 
 	                            breaks = breaks, 
-	                            labels = stringr::str_wrap(unlist(choices), 15), 
-	                            limits = range(breaks))
+	                            labels = stringr::str_wrap(unlist(choices), 15)) +
+      ggplot2::expand_limits(x = range(breaks)))
+  
 }
 
 dist_plot

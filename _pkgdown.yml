@@ -20,6 +20,7 @@ reference:
   - '`detect_scales`'
   - '`compute_reliabilities`'
   - '`rescue_attributes`'
+  - '`aggregate_and_document_scale`'
 - title: Prepare data for non-codebook stuff
   desc: Functions to remove attributes that might confuse other packages
   contents:

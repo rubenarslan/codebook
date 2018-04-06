@@ -1,0 +1,46 @@
+---
+title: "Codebook example nested"
+author: "Ruben Arslan"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+  toc: true
+toc_depth: 4
+toc_float: true
+code_folding: 'hide'
+self_contained: true
+---
+
+
+```{r}
+knitr::opts_chunk$set(warning = TRUE, message = TRUE, echo = FALSE, error = FALSE)
+pander::panderOptions("table.split.table", Inf)
+library(codebook)
+data("bfi", package = 'codebook')
+library(dplyr)
+
+bfi$alpha <- aggregate_and_document_scale(bfi %>% 
+  select(BFIK_agree_1R:BFIK_agree_4R, BFIK_consc_1:BFIK_consc_4, BFIK_neuro_2R:BFIK_neuro_4) %>% 
+  mutate_at(vars(BFIK_neuro_2R:BFIK_neuro_4), funs(formr::reverse_labelled_values)))
+
+bfi <- bfi %>% mutate(
+  alpha = aggregate_and_document_scale(bfi %>% 
+  select(BFIK_agree_1R:BFIK_agree_4R, BFIK_consc_1:BFIK_consc_4, BFIK_neuro_2R:BFIK_neuro_4) %>% 
+  mutate_at(vars(BFIK_neuro_2R:BFIK_neuro_4), funs(formr::reverse_labelled_values))
+))
+
+bfi$beta <- aggregate_and_document_scale(bfi %>% 
+  select(BFIK_extra_1R:BFIK_extra_4, BFIK_open_1:BFIK_open_3))
+
+bfi <- bfi %>% mutate(beta = aggregate_and_document_scale(select(. ,
+  BFIK_extra_1R:BFIK_extra_4, BFIK_open_1:BFIK_open_3)))
+
+ggplot2::theme_set(ggplot2::theme_bw())
+pander::panderOptions("table.split.table", Inf)
+bfi$age <- rpois(nrow(bfi), 30)
+```
+
+```{r cb}
+codebook(bfi)
+```
+

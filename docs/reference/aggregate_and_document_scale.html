@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Metadata from dataframe — metadata_list • codebook</title>
+<title>Aggregate variables and remember which variables this were — aggregate_and_document_scale • codebook</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,9 +25,12 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Metadata from dataframe — metadata_list" />
+<meta property="og:title" content="Aggregate variables and remember which variables this were — aggregate_and_document_scale" />
 
-<meta property="og:description" content="Returns a list containing variable metadata (attributes) and data summaries." />
+<meta property="og:description" content="The resulting variables will have the attribute scale_item_names containing
+the basis for aggregation. Its label attribute will refer to the common stem of the
+aggregated variable names (if any), the number of variables, and the
+aggregation function." />
 <meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -90,139 +93,50 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Metadata from dataframe</h1>
-    <small>Source: <a href='https:/github.com/rubenarslan/codebook/blob/master/R/codebook.R'><code>R/codebook.R</code></a></small>
+    <h1>Aggregate variables and remember which variables this were</h1>
+    <small>Source: <a href='https:/github.com/rubenarslan/codebook/blob/master/R/correct_attributes.R'><code>R/correct_attributes.R</code></a></small>
     </div>
 
     
-    <p>Returns a list containing variable metadata (attributes) and data summaries.</p>
+    <p>The resulting variables will have the attribute <code>scale_item_names</code> containing
+the basis for aggregation. Its <code>label</code> attribute will refer to the common stem of the
+aggregated variable names (if any), the number of variables, and the
+aggregation function.</p>
     
 
-    <pre class="usage"><span class='fu'>metadata_list</span>(<span class='no'>results</span>)</pre>
+    <pre class="usage"><span class='fu'>aggregate_and_document_scale</span>(<span class='no'>items</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='no'>rowMeans</span>, <span class='kw'>stem</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>results</th>
-      <td><p>a data frame, ideally with attributes set on variables</p></td>
+      <th>items</th>
+      <td><p>data.frame of the items that should be aggregated</p></td>
+    </tr>
+    <tr>
+      <th>fun</th>
+      <td><p>aggregation function, defaults to rowMeans with na.rm = FALSE</p></td>
+    </tr>
+    <tr>
+      <th>stem</th>
+      <td><p>common stem for the variables, specify if it should not be auto-detected
+as the longest common stem of the variable names</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='st'>"bfi"</span>)
-<span class='no'>md_list</span> <span class='kw'>&lt;-</span> <span class='fu'>metadata_list</span>(<span class='no'>bfi</span>)
-<span class='no'>md_list</span>$<span class='no'>variableMeasured</span><span class='kw'>[[</span><span class='fl'>20</span>]]</div><div class='output co'>#&gt; $item
-#&gt; $item$choice_list
-#&gt; [1] "BFIK_consc_1"
-#&gt; 
-#&gt; $item$type_options
-#&gt; [1] 5
-#&gt; 
-#&gt; $item$name
-#&gt; [1] "BFIK_consc_1"
-#&gt; 
-#&gt; $item$label
-#&gt; [1] "__Ich erledige Aufgaben gründlich.__"
-#&gt; 
-#&gt; $item$label_parsed
-#&gt; [1] "&lt;strong&gt;Ich erledige Aufgaben gründlich.&lt;/strong&gt;"
-#&gt; 
-#&gt; $item$optional
-#&gt; [1] 0
-#&gt; 
-#&gt; $item$class
-#&gt; NULL
-#&gt; 
-#&gt; $item$showif
-#&gt; NULL
-#&gt; 
-#&gt; $item$value
-#&gt; NULL
-#&gt; 
-#&gt; $item$block_order
-#&gt; NULL
-#&gt; 
-#&gt; $item$item_order
-#&gt; [1] 18
-#&gt; 
-#&gt; $item$choices
-#&gt; $item$choices$`1`
-#&gt; [1] "1: Trifft überhaupt nicht zu"
-#&gt; 
-#&gt; $item$choices$`2`
-#&gt; [1] "2"
-#&gt; 
-#&gt; $item$choices$`3`
-#&gt; [1] "3"
-#&gt; 
-#&gt; $item$choices$`4`
-#&gt; [1] "4"
-#&gt; 
-#&gt; $item$choices$`5`
-#&gt; [1] "5: Trifft voll und ganz zu"
-#&gt; 
-#&gt; $item$choices$`@type`
-#&gt; [1] "http://formr.org/codebook/ItemChoices"
-#&gt; 
-#&gt; 
-#&gt; $item$item_type
-#&gt; [1] "rating_button"
-#&gt; 
-#&gt; $item$`@type`
-#&gt; [1] "http://formr.org/codebook/Item"
-#&gt; 
-#&gt; 
-#&gt; $name
-#&gt; [1] "BFIK_consc_1"
-#&gt; 
-#&gt; $description
-#&gt; [1] "__Ich erledige Aufgaben gründlich.__"
-#&gt; 
-#&gt; $value
-#&gt; $value$`1: Trifft überhaupt nicht zu`
-#&gt; [1] 1
-#&gt; 
-#&gt; $value$`2`
-#&gt; [1] 2
-#&gt; 
-#&gt; $value$`3`
-#&gt; [1] 3
-#&gt; 
-#&gt; $value$`4`
-#&gt; [1] 4
-#&gt; 
-#&gt; $value$`5: Trifft voll und ganz zu`
-#&gt; [1] 5
-#&gt; 
-#&gt; $value$`Item was never rendered for this user.`
-#&gt; [1] NA
-#&gt; 
-#&gt; 
-#&gt; $maxValue
-#&gt; [1] 5
-#&gt; 
-#&gt; $minValue
-#&gt; [1] 1
-#&gt; 
-#&gt; $measurementTechnique
-#&gt; [1] "self-report"
-#&gt; 
-#&gt; $data_summary
-#&gt; # A tibble: 1 x 7
-#&gt;   missing complete n     n_unique top_counts               ordered `@type`     
-#&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;                    &lt;chr&gt;   &lt;chr&gt;       
-#&gt; 1 0       28       28    4        4: 12, 5: 10, 3: 4, 2: 2 FALSE   http://form…
-#&gt; 
-#&gt; $`@context`
-#&gt; $`@context`$`@vocab`
-#&gt; [1] "http://pending.schema.org/"
-#&gt; 
-#&gt; 
-#&gt; $`@type`
-#&gt; [1] "propertyValue"
-#&gt; </div></pre>
+    <pre class="examples"><div class='input'><span class='no'>testdf</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='kw'>bfi_neuro_1</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>20</span>), <span class='kw'>bfi_neuro_2</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>20</span>),
+                    <span class='kw'>bfi_neuro_3R</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>20</span>), <span class='kw'>age</span> <span class='kw'>=</span> <span class='fu'>rpois</span>(<span class='fl'>20</span>, <span class='fl'>30</span>))
+<span class='no'>item_names</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>'bfi_neuro_1'</span>, <span class='st'>'bfi_neuro_2'</span>, <span class='st'>'bfi_neuro_3R'</span>)
+<span class='no'>testdf</span>$<span class='no'>bfi_neuro</span> <span class='kw'>&lt;-</span> <span class='fu'>aggregate_and_document_scale</span>(<span class='no'>testdf</span>[, <span class='no'>item_names</span>])
+<span class='no'>testdf</span>$<span class='no'>bfi_neuro</span></div><div class='output co'>#&gt;  [1] -0.2873 -0.0070 -1.2639  0.1602  0.9850  1.2688 -0.9037  0.1048 -0.3176
+#&gt; [10] -1.2356  0.4146  0.1874  0.7009  0.0039  0.2180 -0.4824 -1.5687  0.7836
+#&gt; [19] -0.0439  0.1222
+#&gt; attr(,"scale_item_names")
+#&gt; [1] "bfi_neuro_1"  "bfi_neuro_2"  "bfi_neuro_3R"
+#&gt; attr(,"label")
+#&gt; [1] "3 bfi_neuro items averaged with rowMeans"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

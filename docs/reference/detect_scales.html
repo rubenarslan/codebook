@@ -126,18 +126,19 @@ the codebook package can perform reliability computations for you.</p>
     <pre class="examples"><div class='input'><span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='fu'>matrix</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>500</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>5</span>))
 <span class='fu'>names</span>(<span class='no'>bfi</span>) <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>, <span class='st'>"bfi_n1"</span>, <span class='st'>"bfi_n2"</span>)
 <span class='no'>bfi</span>$<span class='no'>bfi_e</span> <span class='kw'>&lt;-</span> <span class='fu'>rowMeans</span>(<span class='no'>bfi</span>[, <span class='fu'>c</span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>)])
-<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>detect_scales</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; <span class='message'>3 bfi_e items connected to scale</span></div><div class='output co'>#&gt; <span class='warning'>Warning: bfi_n items found, but no aggregate</span></div><div class='input'><span class='no'>bfi</span>$<span class='no'>bfi_e</span></div><div class='output co'>#&gt;   [1] -0.7389  0.2768 -1.1883 -0.3578 -1.1938  0.1745 -1.1596 -0.4724 -0.6936
-#&gt;  [10]  1.1149 -0.6387 -0.3704  1.0366 -1.1144  0.5411  0.1130  0.1538 -0.4405
-#&gt;  [19] -0.2200  0.3667  0.7229  0.2456  0.0425  0.4295  0.3326  0.3861  0.0027
-#&gt;  [28] -0.2504 -0.2154 -0.9497  0.0089 -0.0967  0.3575 -0.4147 -0.2539 -0.1064
-#&gt;  [37] -1.2035  0.0364  0.5783 -0.1840 -0.3318 -0.0496  0.9756  0.5729 -0.0022
-#&gt;  [46]  1.8200 -0.3567  0.3381 -0.3165 -0.0834  0.1537 -0.2082 -0.8459 -0.4302
-#&gt;  [55]  0.8460  0.1330 -0.6486  0.6154 -0.0611  0.8260 -0.2253 -0.3875  0.2649
-#&gt;  [64] -0.0650 -1.2915 -1.2888  0.6085 -0.1576  0.0334 -0.3139 -0.5042 -0.9558
-#&gt;  [73]  0.8300  0.4366  0.6983  1.1459  0.7639 -0.2252  0.2112  0.6044  0.6316
-#&gt;  [82] -0.2557 -0.1211  0.8015  0.1242  1.4112 -1.2360  0.8755  0.9704  0.1257
-#&gt;  [91]  0.4580  0.1481 -0.2614 -0.0454  1.2848  0.0970 -0.4646  0.9873  1.0607
-#&gt; [100]  0.8092
+<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>detect_scales</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; <span class='message'>3 bfi_e items connected to scale</span></div><div class='output co'>#&gt; <span class='warning'>Warning: bfi_n items found, but no aggregate</span></div><div class='input'><span class='no'>bfi</span>$<span class='no'>bfi_e</span></div><div class='output co'>#&gt;   [1]  0.80155  0.12420  1.41116 -1.23598  0.87552  0.97043  0.12567  0.45798
+#&gt;   [9]  0.14812 -0.26136 -0.04542  1.28478  0.09695 -0.46463  0.98728  1.06074
+#&gt;  [17]  0.80924 -0.39091 -0.16315 -0.01683  0.03796 -1.33485 -0.34182 -0.34697
+#&gt;  [25]  0.26811  0.01605  0.67959 -0.63407 -0.96984  0.53467 -1.17722  0.50136
+#&gt;  [33]  0.74803  0.72101 -0.50860 -0.75308  0.73761  0.78366  0.23926  0.96985
+#&gt;  [41]  0.20763  0.41187 -0.07350  0.45064  0.21954  0.18026 -0.22742  0.04779
+#&gt;  [49] -0.81539  0.67904 -1.01231 -0.19294  0.36038 -0.94525 -0.24757  0.71944
+#&gt;  [57] -0.25543 -0.43328  0.85900  0.95526  0.19245 -0.53120  1.46977 -0.39889
+#&gt;  [65] -0.00019 -0.39563  0.81604 -0.32667 -0.17564 -0.60173  0.14128  1.31901
+#&gt;  [73]  0.45576 -0.01858  0.33023 -0.12449  0.46626 -0.69807  0.18845  0.16457
+#&gt;  [81]  0.61810 -0.93400 -0.63599 -0.31765 -0.47883  0.23733  0.19460  0.04560
+#&gt;  [89] -1.28336  0.06412  0.03258  0.14601  1.35534  0.69666 -0.34551  0.10937
+#&gt;  [97]  1.04341  0.10109 -0.80422 -0.40350
 #&gt; attr(,"scale_item_names")
 #&gt; [1] "bfi_e1"  "bfi_e2R" "bfi_e3" 
 #&gt; attr(,"label")

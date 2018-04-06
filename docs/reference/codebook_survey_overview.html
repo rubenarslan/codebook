@@ -139,31 +139,10 @@ needed to respond (if those data are available).</p>
 #&gt; 
 #&gt; 
 #&gt; 
-#&gt; ```r
-#&gt; if (survey_repetition != "single") {
-#&gt; 	overview = results %&gt;% dplyr::group_by(session) %&gt;% 
-#&gt; 		dplyr::summarise(
-#&gt; 			n = sum(!is.na(session)),
-#&gt; 			expired = sum(!is.na(expired)),
-#&gt; 			ended = sum(!is.na(ended))
-#&gt; 		) %&gt;% 
-#&gt; 		tidyr::gather(key, value, -session)
-#&gt; 	if (length(unique(dplyr::filter(overview, key == "expired")$value)) == 1) {
-#&gt; 		overview = dplyr::filter(overview, key != "expired")
-#&gt; 	}
-#&gt; 	print(
-#&gt; 		ggplot2::ggplot(overview, ggplot2::aes(value, ..count..)) + ggplot2::geom_bar() + ggplot2::facet_wrap(~ key, nrow = 1)
-#&gt; 	)
-#&gt; }
-#&gt; ```
 #&gt; 
 #&gt; The first session started on 2016-07-08 09:54:16, the last session on 2016-11-02 21:19:50. 
 #&gt; 
 #&gt; 
-#&gt; 
-#&gt; ```r
-#&gt; ggplot2::qplot(results$created) + ggplot2::scale_x_datetime("Date/time when survey was started")
-#&gt; ```
 #&gt; 
 #&gt; ```
 #&gt; ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
@@ -174,18 +153,8 @@ needed to respond (if those data are available).</p>
 #&gt; People took on average 127.36 minutes (median 1.48) to answer the survey.
 #&gt; 
 #&gt; 
-#&gt; ```r
-#&gt; if (low_vals == 0) {
-#&gt;   warning("Durations below 0 detected.")
-#&gt; }
-#&gt; ```
-#&gt; 
 #&gt; ```
 #&gt; ## Warning: Durations below 0 detected.
-#&gt; ```
-#&gt; 
-#&gt; ```r
-#&gt; ggplot2::qplot(duration$duration, binwidth = 0.5) + ggplot2::scale_x_continuous(paste("Duration (in minutes), excluding", high_vals, "values above median + 4*MAD"), limits = c(lower_limit, upper_limit))
 #&gt; ```
 #&gt; 
 #&gt; ```

@@ -273,6 +273,15 @@ codebook_items <- function(results, indent = "##") {
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), "overview_")
   )
   metadata_table <- codebook_table(results)
+  metadata_table <- dplyr::mutate(metadata_table,
+         name = paste0('<a href="#', safe_name(.data$name), '">',
+                       recursive_escape(.data$name), '</a>'))
+  # bit ugly to suppress warnings here, but necessary for escaping whatever
+  # columns there may be
+  suppressWarnings(
+    metadata_table <- dplyr::mutate_at(metadata_table, dplyr::vars(
+    dplyr::one_of("label", "scale_item_names", "value_labels", "showif")),
+    dplyr::funs(recursive_escape)) )
 
   asis_knit_child(require_file("_codebook_items.Rmd"), options = options)
 }
