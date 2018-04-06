@@ -53,7 +53,7 @@ asis_knit_child <- function(input = NULL, text = NULL, ...,
       knitr::opts_chunk$set(options)
       on.exit({
         for (i in names(options)) if (identical(options[[i]],
-                                                knitr::opts_chunk$get(i))) knitr::opts_chunk$set(optc[i])
+             knitr::opts_chunk$get(i))) knitr::opts_chunk$set(optc[i])
       }, add = TRUE)
     }
   }
@@ -124,7 +124,7 @@ load_data_and_render_codebook <- function(file, text,
     file.remove(file)
   }
   fileName <- rmarkdown::render(input = write_to_file(text,
-                                                      name = "codebook", ext = ".Rmd"), ...)
+                name = "codebook", ext = ".Rmd"), ...)
   fileName
 }
 

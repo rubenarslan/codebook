@@ -293,7 +293,7 @@ zap_label.default <- function(x) {
 #' item_names <- c('bfi_neuro_1', 'bfi_neuro_2', 'bfi_neuro_3R')
 #' testdf$bfi_neuro <- aggregate_and_document_scale(testdf[, item_names])
 #' testdf$bfi_neuro
-aggregate_and_document_scale = function(items, fun = rowMeans, stem = NULL) {
+aggregate_and_document_scale <- function(items, fun = rowMeans, stem = NULL) {
   new_scale <- fun(items)
   item_names <- names(items)
   attributes(new_scale)$scale_item_names <- item_names
@@ -303,7 +303,7 @@ aggregate_and_document_scale = function(items, fun = rowMeans, stem = NULL) {
     max_len <- min(nchar(item_names))
     for (l in max_len:0) {
       stem <- unique(stringr::str_sub(item_names, 1, l))
-      if (length(stem) == 1) break;
+      if (length(stem) == 1) break
     }
   }
   # string trimming for idiots
