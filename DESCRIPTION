@@ -36,7 +36,8 @@ Imports:
     tibble,
     purrr,
     htmltools,
-    labeling
+    labeling,
+    rio
 Suggests:
   testthat,
   lme4,
