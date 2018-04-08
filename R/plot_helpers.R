@@ -148,6 +148,13 @@ plot_labelled <- function(item, item_name = NULL,
         ggplot2::geom_bar() +
         ggplot2::xlab("values")
     }
+  } else if (is.factor(item)) {
+    levels(item) <- stringr::str_wrap(levels(item), 15)
+
+    dist_plot <- ggplot2::ggplot(mapping = ggplot2::aes(x = item)) +
+      ggplot2::geom_bar() +
+      ggplot2::xlab("values") +
+      ggplot2::expand_limits(x = levels(item))
   } else if (is.character(item)) {
     item <- stringr::str_wrap(as.character(item), 15)
 

@@ -47,9 +47,8 @@ if ( go_vertical ) {
 
 	if (is.null(choices) || 
 	    dplyr::n_distinct(item_nomiss) > length(non_missing_choices)) {
-		choices <- unique(item_nomiss)
-		names(choices) <- choices
-		non_missing_choices <- choices
+		non_missing_choices <- unique(item_nomiss)
+		names(non_missing_choices) <- non_missing_choices
 	}
   choice_multiplier <- old_height/6.5
 	new_height <- 2 + choice_multiplier * length(non_missing_choices)
@@ -95,16 +94,22 @@ if (show_missings) {
 
 ```{r item_info}
 if (!is.null(item_info)) {
-  item_info$label_parsed <- item_info$choices <- 
+  # don't show choices again, if they're basically same thing as value labels
+  if (!is.null(choices) && !is.null(item_info$choices) && 
+    all(names(na.omit(choices)) == item_info$choices) &&
+    all(na.omit(choices) == names(item_info$choices))) {
+    item_info$choices <- NULL
+  }
+  item_info$label_parsed <- 
     item_info$choice_list <- item_info$study_id <- item_info$id <- NULL
-  pander::pander(as.data.frame(t(item_info)))
+  pander::pander(item_info)
 }
 ```
 
 
-`r ifelse(!is.null(choices) && length(choices) < 30, paste0(indent, '### Value labels {#', safe_name, '_labels}'), '')`
+`r ifelse(!is.null(choices) && length(choices) && length(choices) < 30, paste0(indent, '### Value labels {#', safe_name, '_labels}'), '')`
 ```{r choices}
-if (!is.null(choices) && length(choices) < 30) {
+if (!is.null(choices) && length(choices) && length(choices) < 30) {
 	pander::pander(as.list(choices))
 }
 ```
