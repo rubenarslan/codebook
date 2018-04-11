@@ -124,7 +124,7 @@ plot_labelled <- function(item, item_name = NULL,
           breaks <- c(nonmissing_choices, breaks)
           breaks <- breaks[!duplicated(breaks)]
         } else {
-          rng <- range(item_nomiss)
+          rng <- range(item_nomiss, na.rm = TRUE)
           breaks <- labeling::extended(rng[1], rng[2],  5, only.loose = FALSE)
           names(breaks) <- breaks
           breaks <- c(nonmissing_choices, breaks)
