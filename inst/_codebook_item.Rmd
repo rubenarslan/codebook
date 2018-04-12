@@ -35,6 +35,16 @@ if (haven::is.labelled(item)) {
   }
 }
 item_nomiss <- item[!is.na(item)]
+
+# unnest mc_multiple and so on
+if (
+  is.character(item_nomiss) &&
+  stringr::str_detect(item_nomiss, stringr::fixed(", ")) &&
+  (exists("type", item_info) && 
+    stringr::str_detect(item_info$type, pattern = stringr::fixed("multiple")))
+  ) {
+  item_nomiss <- unlist(stringr::str_split(item_nomiss, pattern = stringr::fixed(", ")))
+}
 attributes(item_nomiss) <- attributes(item)
 
 old_height <- knitr::opts_chunk$get("fig.height")
