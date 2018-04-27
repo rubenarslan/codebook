@@ -101,7 +101,11 @@ test_that("Dupes are noticed", {
 })
 
 test_that("Variables with only missings work", {
-  onlymiss = data.frame(x = rep(NA, 20), y = rep(1, 20))
+  onlymiss = data.frame(x = rep(NA_real_, 20),
+                        y = rep(1, 20),
+                        z = rep(NA_real_, 20))
+  attributes(onlymiss$x)$label <- "X"
+  onlymiss$x <- haven::labelled(onlymiss$x, labels = c("bla" = 1))
   wd <- getwd()
   dir <- tempdir()
   setwd(dir)

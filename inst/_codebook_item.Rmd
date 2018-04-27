@@ -26,6 +26,10 @@ show_missings <- FALSE
 if (haven::is.labelled(item)) {
   missings <- item[is.na(haven::zap_missing(item))]
   attributes(missings) <- attributes(item)
+  if (!is.null(attributes(item)$labels)) {
+    attributes(missings)$labels <- attributes(missings)$labels[is.na(attributes(missings)$labels)]
+    attributes(item)$labels <- attributes(item)$labels[!is.na(attributes(item)$labels)]
+  }
   if (is.numeric(item)) {
     show_missings <- length(unique(haven::na_tag(missings))) > 1
     item <- haven::zap_missing(item)

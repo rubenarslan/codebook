@@ -147,7 +147,7 @@ require_file <- function(file) {
 }
 
 
-recursive_escape <- function(x, depth = 0, max_depth = 3,
+recursive_escape <- function(x, depth = 0, max_depth = 4,
                              escape_fun = htmltools::htmlEscape) {
   if (depth < max_depth) {
     # escape names for all vectors
