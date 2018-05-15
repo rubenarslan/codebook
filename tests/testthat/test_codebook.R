@@ -100,12 +100,29 @@ test_that("Dupes are noticed", {
   expect_error(md <- codebook(bfi2, metadata_table = FALSE), "duplicated rows")
 })
 
-test_that("Variables with only missings work", {
+test_that("Degenerate cases: Variables with only missings work", {
   onlymiss = data.frame(x = rep(NA_real_, 20),
                         y = rep(1, 20),
                         z = rep(NA_real_, 20))
   attributes(onlymiss$x)$label <- "X"
   onlymiss$x <- haven::labelled(onlymiss$x, labels = c("bla" = 1))
+  wd <- getwd()
+  dir <- tempdir()
+  setwd(dir)
+  on.exit(setwd(wd))
+  expect_silent(md <- codebook(onlymiss, survey_repetition = "single",
+                               missingness_report = FALSE,
+                               metadata_json = FALSE))
+
+  unlink(paste0(dir, "/figure"), recursive = TRUE)
+})
+
+test_that("Degenerate cases: Odd variables names", {
+  onlymiss = data.frame(SysJustEth02.T1 = rnorm(20),
+                        `Über` = rnorm(20),
+                        `var/name` = rnorm(20),
+                        `reallylongvariablenamethatmayirritateknitrmaybe` =
+                          rnorm(20))
   wd <- getwd()
   dir <- tempdir()
   setwd(dir)
