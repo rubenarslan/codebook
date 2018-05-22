@@ -1,3 +1,7 @@
+## Resubmission
+
+Fixed note about DOIs.
+
 ## Test environments
 * local OS X install, R 3.4.4
 * ubuntu 14.04 (on travis-ci), R 3.4.4
@@ -5,11 +9,7 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
-
-* The note says that a DOI in my README.md  could be written as a URL 
-  in Rd syntax, but I prefer to keep it as plaintext, so it also renders nicely
-  on Github.
+0 errors | 0 warnings | 0 notes
 
 ## Particularities
 * This package uses rmarkdown partials, i.e. some of the functions are designed

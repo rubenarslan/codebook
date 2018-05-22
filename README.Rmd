@@ -65,7 +65,7 @@ devtools::install_github("rubenarslan/codebook")
 ## Citation
 To cite the package
 
-> Arslan, R. C. (2018). Automatic codebook generation with codebook (2018). URL https://github.com/rubenarslan/codebook. doi:10.5281/zenodo.1205454
+> Arslan, R. C. (2018). Automatic codebook generation with codebook (2018). URL https://github.com/rubenarslan/codebook. doi\:[10.5281/zenodo.1205454](https://doi.org/10.5281/zenodo.1205454)
 
 ### How to use
 Here's a simple rmarkdown template, that you could use to get started.

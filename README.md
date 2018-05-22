@@ -84,7 +84,7 @@ To cite the package
 
 > Arslan, R. C. (2018). Automatic codebook generation with codebook
 > (2018). URL <https://github.com/rubenarslan/codebook>.
-> <doi:10.5281/zenodo.1205454>
+> doi:[10.5281/zenodo.1205454](https://doi.org/10.5281/zenodo.1205454)
 
 ### How to use
 
