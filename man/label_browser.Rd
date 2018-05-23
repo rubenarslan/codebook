@@ -7,5 +7,6 @@
 label_browser()
 }
 \description{
-Browse and search variable and value labels
+Same as the \code{\link[=codebook_browser]{codebook_browser()}}, but doesn't show data summaries and
+additional attributes.
 }

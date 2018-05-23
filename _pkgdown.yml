@@ -1,4 +1,9 @@
 reference:
+- title: RStudio Addins
+  desc: Addins to help you browse the metadata within RStudio
+  contents:
+  - '`codebook_browser`'
+  - '`label_browser`'
 - title: Codebook generators
   desc: Functions to generate (parts of) the codebook
   contents:

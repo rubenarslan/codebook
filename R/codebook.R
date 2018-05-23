@@ -276,6 +276,11 @@ codebook_items <- function(results, indent = "##") {
   metadata_table <- dplyr::mutate(metadata_table,
          name = paste0('<a href="#', safe_name(.data$name), '">',
                        recursive_escape(.data$name), '</a>'))
+  if (exists("value_labels", metadata_table)) {
+    metadata_table$value_labels <- gsub(pattern = "\n", replacement = "<br>",
+                                x = metadata_table$value_labels)
+  }
+
   # bit ugly to suppress warnings here, but necessary for escaping whatever
   # columns there may be
   suppressWarnings(
@@ -386,9 +391,9 @@ codebook_table <- function(results) {
       if (exists("labels", x)) {
         if (!is.null(names(x$labels))) {
           x$value_labels <- paste(paste0(names(x$labels),
-                                         "=", x$labels), collapse = ",")
+                                         "=", x$labels), collapse = ",\n")
         } else {
-          x$value_labels <- paste(x$labels, collapse = ",")
+          x$value_labels <- paste(x$labels, collapse = ",\n")
         }
         x$labels <- NULL
         if (exists("item", x) && exists("choices", x$item)) {

@@ -1,8 +1,28 @@
 #' Browse and search variable and value labels
 #'
-#' @import shiny miniUI rstudioapi
+#' Same as the [codebook_browser()], but doesn't show data summaries and
+#' additional attributes.
+#'
 #' @export
 label_browser <- function() {
+  codebook_browser(TRUE, "Variable and value labels")
+}
+
+#' Browse and search codebook
+#'
+#' Usable as an Addin in RStudio. You can select it from a menu at the top,
+#' when this package is installed. If you're currently selecting the name of a
+#' data frame in your source code, this will be the dataset shown by default.
+#' If you don't select text, you can pick a dataset from a dropdown.
+#' You can add a keyboard shortcut for this command by following the
+#' [instructions](https://support.rstudio.com/hc/en-us/articles/206382178-Customizing-Keyboard-Shortcuts)
+#' by RStudio. How about Ctrl+C?
+#'
+#' @import shiny miniUI rstudioapi
+#' @param labels_only defaults to false called with TRUE from [label_browser()]
+#' @param title title of the gadget
+#' @export
+codebook_browser <- function(labels_only = FALSE, title = "Codebook metadata") {
 
   # Get the document context.
   context <- rstudioapi::getActiveDocumentContext()
@@ -13,10 +33,11 @@ label_browser <- function() {
 
   # Generate UI for the gadget.
   ui <- miniPage(
-    gadgetTitleBar("Variable and value labels"),
+    gadgetTitleBar(title),
     miniContentPanel(
       stableColumnLayout(
-        textInputCode("data", "Data", value = defaultData)
+        selectInput("data", "Data", selected = defaultData, choices =
+                      names(which(unlist(eapply(.GlobalEnv,is.data.frame)))))
       ),
       uiOutput("pending"),
       dataTableOutput("output")
@@ -43,7 +64,15 @@ label_browser <- function() {
 
       data <- get(dataString, envir = .GlobalEnv)
 
-      labels <- codebook_table(data)#[, c("name", "label")]
+      labels <- codebook_table(data)
+      if (labels_only) {
+        cols <- intersect(names(labels), c("name", "label", "value_labels"))
+        labels <- labels[, cols, drop = FALSE]
+      }
+      if (exists("value_labels", labels)) {
+        labels$value_labels <- gsub(pattern = "\n", replacement = "<br>",
+                                    x = labels$value_labels)
+      }
 
       return(labels)
     })
@@ -60,6 +89,7 @@ label_browser <- function() {
         return(NULL)
       data
     },
+    escape = setdiff(names(reactiveData()), 'value_labels'),
     options = list(
       pageLength = 100, autoWidth = TRUE))
 
@@ -107,32 +137,5 @@ errorMessage <- function(type, message) {
   structure(
     list(type = type, message = message),
     class = "error_message"
-  )
-}
-
-
-# taken from https://github.com/gadenbuie/regexplain/blob/ef1fe54958a4f42a8e46eabc15ef098bed2530ec/R/shiny_modified_inputs.R because it's not on CRAN for 3.4.4
-#' Modified Text Input
-#'
-#' Standard [shiny::textInput()] with additional `width` parameter, added code
-#' font style for the input text and with `autocomplete`, `autocorrect`,
-#' `autocapitalize` and `spellcheck` set to `off` or `false`.
-#'
-#' @inheritParams shiny::textInput
-#' @param width Width of `shiny-input-container` div.
-#' @family modified shiny inputs
-textInputCode <- function(inputId, label, value = "", width = NULL,
-                          placeholder = NULL) {
-  `%AND%` <- getFromNamespace("%AND%", "shiny")
-  value <- shiny::restoreInput(id = inputId, default = value)
-
-  shiny::div(class = "form-group shiny-input-container",
-             style = if (!is.null(width)) paste0("width: ", shiny::validateCssUnit(width), ";"),
-             label %AND% shiny::tags$label(label, `for` = inputId),
-             shiny::tags$input(id = inputId, type="text", class="form-control", value = value,
-                               style = 'font-family: "Monaco", "Inconsolata", monospace;',
-                               autocomplete = "off", autocorrect = "off",
-                               autocapitalize = "off", spellcheck = "false",
-                               placeholder = placeholder)
   )
 }
