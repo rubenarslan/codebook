@@ -364,52 +364,7 @@ codebook_component_single_item <- function(item, item_name, indent = '##') {
 #' codebook_table(bfi)
 codebook_table <- function(results) {
   skimmed <- skim_to_wide_labelled(results)
-
-  metadata <- dplyr::bind_rows(
-    # var = results$session
-  lapply(results, function(var) {
-    x <- attributes(var)
-    if (is.null(x)) {
-      data.frame(label = NA)
-    } else {
-      if (exists("class", x)) {
-        x$class <- NULL
-      }
-      if (exists("tzone", x)) {
-        x$tzone <- NULL
-      }
-      if (exists("label", x)) {
-        if (exists("item", x)) {
-          if (exists("label", x$item)) {
-            x$item$label <- NULL
-          }
-          if (exists("label_parsed", x$item)) {
-            x$item$label_parsed <- NULL
-          }
-        }
-      }
-      if (exists("labels", x)) {
-        if (!is.null(names(x$labels))) {
-          x$value_labels <- paste(paste0(names(x$labels),
-                                         "=", x$labels), collapse = ",\n")
-        } else {
-          x$value_labels <- paste(x$labels, collapse = ",\n")
-        }
-        x$labels <- NULL
-        if (exists("item", x) && exists("choices", x$item)) {
-          x$item$choices <- NULL
-        }
-      }
-
-      if (exists("item", x) && exists("name", x$item)) {
-        x$item$name <- NULL
-      }
-      if (exists("scale_item_names", x)) {
-        x$scale_item_names <- paste(x$scale_item_names, collapse = ", ")
-      }
-      as.data.frame(t(purrr::flatten(x)))
-    }
-  }), .id = "name")
+  metadata <- metadata(results)
 
   metadata <- dplyr::left_join(metadata,
                                dplyr::rename(skimmed, data_type = .data$type),
@@ -429,6 +384,54 @@ codebook_table <- function(results) {
 
   metadata <- dplyr::select(metadata,  rlang::UQS(rlang::quos(cols)))
   dplyr::select_if(metadata, not_all_na )
+}
+
+metadata <- function(results) {
+  dplyr::bind_rows(
+    # var = results$session
+    lapply(results, function(var) {
+      x <- attributes(var)
+      if (is.null(x)) {
+        data.frame(label = NA)
+      } else {
+        if (exists("class", x)) {
+          x$class <- NULL
+        }
+        if (exists("tzone", x)) {
+          x$tzone <- NULL
+        }
+        if (exists("label", x)) {
+          if (exists("item", x)) {
+            if (exists("label", x$item)) {
+              x$item$label <- NULL
+            }
+            if (exists("label_parsed", x$item)) {
+              x$item$label_parsed <- NULL
+            }
+          }
+        }
+        if (exists("labels", x)) {
+          if (!is.null(names(x$labels))) {
+            x$value_labels <- paste(paste0(names(x$labels),
+                                           "=", x$labels), collapse = ",\n")
+          } else {
+            x$value_labels <- paste(x$labels, collapse = ",\n")
+          }
+          x$labels <- NULL
+          if (exists("item", x) && exists("choices", x$item)) {
+            x$item$choices <- NULL
+          }
+        }
+
+        if (exists("item", x) && exists("name", x$item)) {
+          x$item$name <- NULL
+        }
+        if (exists("scale_item_names", x)) {
+          x$scale_item_names <- paste(x$scale_item_names, collapse = ", ")
+        }
+        as.data.frame(t(purrr::flatten(x)))
+      }
+    }), .id = "name")
 }
 
 

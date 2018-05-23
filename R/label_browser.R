@@ -16,7 +16,7 @@ label_browser <- function() {
 #' If you don't select text, you can pick a dataset from a dropdown.
 #' You can add a keyboard shortcut for this command by following the
 #' [instructions](https://support.rstudio.com/hc/en-us/articles/206382178-Customizing-Keyboard-Shortcuts)
-#' by RStudio. How about Ctrl+C?
+#' by RStudio. How about Cmd+Ctrl+C?
 #'
 #' @import shiny miniUI rstudioapi
 #' @param labels_only defaults to false called with TRUE from [label_browser()]
@@ -64,11 +64,14 @@ codebook_browser <- function(labels_only = FALSE, title = "Codebook metadata") {
 
       data <- get(dataString, envir = .GlobalEnv)
 
-      labels <- codebook_table(data)
       if (labels_only) {
+        labels <- metadata(data)
         cols <- intersect(names(labels), c("name", "label", "value_labels"))
         labels <- labels[, cols, drop = FALSE]
+      } else {
+        labels <- codebook_table(data)
       }
+
       if (exists("value_labels", labels)) {
         labels$value_labels <- gsub(pattern = "\n", replacement = "<br>",
                                     x = labels$value_labels)
@@ -85,11 +88,9 @@ codebook_browser <- function(labels_only = FALSE, title = "Codebook metadata") {
 
     output$output <- renderDataTable({
       data <- reactiveData()
-      if (isErrorMessage(data))
-        return(NULL)
       data
     },
-    escape = setdiff(names(reactiveData()), 'value_labels'),
+    escape = TRUE,
     options = list(
       pageLength = 100, autoWidth = TRUE))
 

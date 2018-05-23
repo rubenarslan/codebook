@@ -22,6 +22,7 @@ library(dplyr)
 bfi$alpha <- aggregate_and_document_scale(bfi %>% 
   select(BFIK_agree_1R:BFIK_agree_4R, BFIK_consc_1:BFIK_consc_4, BFIK_neuro_2R:BFIK_neuro_4) %>% 
   mutate_at(vars(BFIK_neuro_2R:BFIK_neuro_4), funs(formr::reverse_labelled_values)))
+attributes(bfi$alpha)$label <-"some higher order personality factor (consc, neuro, agree)"
 
 bfi <- bfi %>% mutate(
   alpha = aggregate_and_document_scale(bfi %>% 
