@@ -1,3 +1,7 @@
+# codebook 0.6.0
+## Additions
+RStudio Addin to browse variable labels etc.
+
 # codebook 0.5.9
 ## Additions
 - plot_labelled now makes better plots for numeric variables

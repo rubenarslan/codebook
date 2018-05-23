@@ -1,0 +1,4 @@
+Name: Label browser
+Description: Browse and search variable and value labels
+Binding: label_browser
+Interactive: true

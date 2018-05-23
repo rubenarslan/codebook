@@ -37,7 +37,10 @@ Imports:
     purrr,
     htmltools,
     labeling,
-    rio
+    rio,
+    shiny (>= 0.13),
+    miniUI (>= 0.1.1),
+    rstudioapi (>= 0.5)
 Suggests:
   testthat,
   lme4,
