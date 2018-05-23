@@ -93,16 +93,30 @@
     </div>
 
     <div class="contents">
-    <div id="codebook-0-5-8-9000" class="section level1">
+    <div id="codebook-0-6-0" class="section level1">
 <h1 class="page-header">
-<a href="#codebook-0-5-8-9000" class="anchor"></a>codebook 0.5.8.9000<small> Unreleased </small>
+<a href="#codebook-0-6-0" class="anchor"></a>codebook 0.6.0<small> Unreleased </small>
 </h1>
 <div id="additions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#additions" class="anchor"></a>Additions</h2>
+<p>RStudio Addin to browse variable labels etc.</p>
+</div>
+</div>
+    <div id="codebook-0-5-9" class="section level1">
+<h1 class="page-header">
+<a href="#codebook-0-5-9" class="anchor"></a>codebook 0.5.9<small> 2018-05-22 </small>
+</h1>
+<div id="additions-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#additions-1" class="anchor"></a>Additions</h2>
 <ul>
 <li>plot_labelled now makes better plots for numeric variables</li>
-<li>codebook generation has been parallelised using the future package. By calling e.g. <code>plan(multicore(workers = 4))</code> before the codebook function, the computation of reliabilities and the generation of scale and item summaries will happen in parallel. For this to work, you have to choose a graphics device in knitr that supports parallelisation, by calling e.g. <code>opts_chunk$set(dev = "CairoPNG")</code>.</li>
+<li>codebook generation has been parallelised using the future package. By calling e.g. <code>plan(multicore(workers = 4))</code> before the codebook function, the computation of reliabilities and the generation of scale and item summaries will happen in parallel. For this to work with plots, you have to choose a graphics device in knitr that supports parallelisation, by calling e.g. <code>opts_chunk$set(dev = "CairoPNG")</code>.</li>
+<li>for variables that store multiple multiple choice values comma-separated, we now separate the values before plotting, if that item attribute <code>attributes(item)$item$type</code> contains “multiple”</li>
+<li>make it easier to trace which variable in a dataset cannot be summarised</li>
+<li>added and document <code>aggregate_and_document_scale</code> for people who don’t import data via formr.org and want reliabilities to be calculated automatically</li>
+<li>use <code>rio</code> to import all kinds of file formats in the webapp</li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level2">
@@ -113,6 +127,7 @@
 <li>fix bugs when variables are entirely missings</li>
 <li>escape HTML in various labels, use safe names for anchors, figures</li>
 <li>reliability functions no longer garble names</li>
+<li>require skimr &gt;= 1.0.2 and ggplot2 &gt;= 2.0.0</li>
 </ul>
 </div>
 </div>
@@ -166,7 +181,8 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#codebook-0-5-8-9000">0.5.8.9000</a></li>
+        <li><a href="#codebook-0-6-0">0.6.0</a></li>
+        <li><a href="#codebook-0-5-9">0.5.9</a></li>
         <li><a href="#codebook-0-5-8">0.5.8</a></li>
         <li><a href="#codebook-0-5-7">0.5.7</a></li>
         <li><a href="#codebook-0-5-6">0.5.6</a></li>

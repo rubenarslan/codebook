@@ -125,6 +125,21 @@
 #&gt; Among those who finished the survey. Only variables that have missings are shown.
 #&gt; 
 #&gt; 
+#&gt; ```r
+#&gt; if (  exists("ended", results) &amp;&amp;
+#&gt;   exists("expired", results)) {
+#&gt;   finisher_results &lt;- dplyr::filter(results, !is.na(.data$ended))
+#&gt; } else {
+#&gt;   finisher_results &lt;- results
+#&gt;   warning("Could not figure out who finished the surveys, because the ",
+#&gt;           "variables expired and ended were missing.")
+#&gt; }
+#&gt; if (length(md_pattern)) {
+#&gt;   pander::pander(md_pattern)
+#&gt; }
+#&gt; ```
+#&gt; 
+#&gt; 
 #&gt; -----------------------------------------------------
 #&gt;       description        expired   var_miss   n_miss 
 #&gt; ----------------------- --------- ---------- --------
