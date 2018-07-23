@@ -21,18 +21,26 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Detect item scales — detect_scales" />
 
 <meta property="og:description" content="Did you create aggregates of items like this
-scale &lt;- scale_1 + scale_2R + scale_3R?
+scale &amp;lt;- scale_1 + scale_2R + scale_3R?
 If you run this function on a dataset, it will detect these
 relationships and set the appropriate attributes. Once they are set,
 the codebook package can perform reliability computations for you." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -55,8 +63,12 @@ the codebook package can perform reliability computations for you." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codebook</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">codebook</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -66,7 +78,7 @@ the codebook package can perform reliability computations for you." />
   </a>
 </li>
 <li>
-  <a href="../articles/codebook.html">Get Started</a>
+  <a href="../articles/codebook.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -84,6 +96,7 @@ the codebook package can perform reliability computations for you." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -91,13 +104,15 @@ the codebook package can perform reliability computations for you." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Detect item scales</h1>
-    <small>Source: <a href='https:/github.com/rubenarslan/codebook/blob/master/R/correct_attributes.R'><code>R/correct_attributes.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/correct_attributes.R'><code>R/correct_attributes.R</code></a></small>
+    <div class="hidden name"><code>detect_scales.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Did you create aggregates of items like this
 <code>scale &lt;- scale_1 + scale_2R + scale_3R</code>?
@@ -105,10 +120,11 @@ If you run this function on a dataset, it will detect these
 relationships and set the appropriate attributes. Once they are set,
 the codebook package can perform reliability computations for you.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>detect_scales</span>(<span class='no'>data</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -126,19 +142,26 @@ the codebook package can perform reliability computations for you.</p>
     <pre class="examples"><div class='input'><span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>data.frame</span>(<span class='fu'>matrix</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>500</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>5</span>))
 <span class='fu'>names</span>(<span class='no'>bfi</span>) <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>, <span class='st'>"bfi_n1"</span>, <span class='st'>"bfi_n2"</span>)
 <span class='no'>bfi</span>$<span class='no'>bfi_e</span> <span class='kw'>&lt;-</span> <span class='fu'>rowMeans</span>(<span class='no'>bfi</span>[, <span class='fu'>c</span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>)])
-<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>detect_scales</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; <span class='message'>3 bfi_e items connected to scale</span></div><div class='output co'>#&gt; <span class='warning'>Warning: bfi_n items found, but no aggregate</span></div><div class='input'><span class='no'>bfi</span>$<span class='no'>bfi_e</span></div><div class='output co'>#&gt;   [1]  0.80155  0.12420  1.41116 -1.23598  0.87552  0.97043  0.12567  0.45798
-#&gt;   [9]  0.14812 -0.26136 -0.04542  1.28478  0.09695 -0.46463  0.98728  1.06074
-#&gt;  [17]  0.80924 -0.39091 -0.16315 -0.01683  0.03796 -1.33485 -0.34182 -0.34697
-#&gt;  [25]  0.26811  0.01605  0.67959 -0.63407 -0.96984  0.53467 -1.17722  0.50136
-#&gt;  [33]  0.74803  0.72101 -0.50860 -0.75308  0.73761  0.78366  0.23926  0.96985
-#&gt;  [41]  0.20763  0.41187 -0.07350  0.45064  0.21954  0.18026 -0.22742  0.04779
-#&gt;  [49] -0.81539  0.67904 -1.01231 -0.19294  0.36038 -0.94525 -0.24757  0.71944
-#&gt;  [57] -0.25543 -0.43328  0.85900  0.95526  0.19245 -0.53120  1.46977 -0.39889
-#&gt;  [65] -0.00019 -0.39563  0.81604 -0.32667 -0.17564 -0.60173  0.14128  1.31901
-#&gt;  [73]  0.45576 -0.01858  0.33023 -0.12449  0.46626 -0.69807  0.18845  0.16457
-#&gt;  [81]  0.61810 -0.93400 -0.63599 -0.31765 -0.47883  0.23733  0.19460  0.04560
-#&gt;  [89] -1.28336  0.06412  0.03258  0.14601  1.35534  0.69666 -0.34551  0.10937
-#&gt;  [97]  1.04341  0.10109 -0.80422 -0.40350
+<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>detect_scales</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; <span class='message'>3 bfi_e items connected to scale</span></div><div class='output co'>#&gt; <span class='warning'>Warning: bfi_n items found, but no aggregate</span></div><div class='input'><span class='no'>bfi</span>$<span class='no'>bfi_e</span></div><div class='output co'>#&gt;   [1]  0.8015485778  0.1242008715  1.4111601036 -1.2359843828  0.8755174016
+#&gt;   [6]  0.9704337425  0.1256702396  0.4579800147  0.1481186619 -0.2613590844
+#&gt;  [11] -0.0454207511  1.2847818751  0.0969500761 -0.4646285832  0.9872776221
+#&gt;  [16]  1.0607406147  0.8092427361 -0.3909060260 -0.1631451792 -0.0168259197
+#&gt;  [21]  0.0379601509 -1.3348544542 -0.3418188349 -0.3469655384  0.2681050820
+#&gt;  [26]  0.0160450021  0.6795888007 -0.6340680673 -0.9698365999  0.5346686176
+#&gt;  [31] -1.1772199366  0.5013617944  0.7480301550  0.7210123466 -0.5085987698
+#&gt;  [36] -0.7530780276  0.7376071929  0.7836556475  0.2392642892  0.9698502499
+#&gt;  [41]  0.2076311038  0.4118653252 -0.0735040359  0.4506413326  0.2195415811
+#&gt;  [46]  0.1802557582 -0.2274196804  0.0477936993 -0.8153949023  0.6790446071
+#&gt;  [51] -1.0123051762 -0.1929429826  0.3603824703 -0.9452471654 -0.2475681063
+#&gt;  [56]  0.7194436012 -0.2554316310 -0.4332763827  0.8590040320  0.9552586648
+#&gt;  [61]  0.1924536606 -0.5312016165  1.4697668632 -0.3988861741 -0.0001894151
+#&gt;  [66] -0.3956289014  0.8160424138 -0.3266707117 -0.1756387935 -0.6017318640
+#&gt;  [71]  0.1412798858  1.3190123866  0.4557577536 -0.0185777490  0.3302301687
+#&gt;  [76] -0.1244923341  0.4662560852 -0.6980709833  0.1884465481  0.1645677940
+#&gt;  [81]  0.6181046675 -0.9340002428 -0.6359859871 -0.3176546090 -0.4788309317
+#&gt;  [86]  0.2373336437  0.1946028667  0.0456007471 -1.2833583570  0.0641209995
+#&gt;  [91]  0.0325788440  0.1460103547  1.3553405723  0.6966568876 -0.3455142832
+#&gt;  [96]  0.1093705621  1.0434134739  0.1010924876 -0.8042213045 -0.4034993055
 #&gt; attr(,"scale_item_names")
 #&gt; [1] "bfi_e1"  "bfi_e2R" "bfi_e3" 
 #&gt; attr(,"label")
@@ -166,6 +189,8 @@ the codebook package can perform reliability computations for you.</p>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

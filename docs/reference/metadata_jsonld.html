@@ -21,15 +21,23 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Metadata as JSON-LD — metadata_jsonld" />
 
 <meta property="og:description" content="Echo a list of a metadata, generated using metadata_list() as JSON-LD in a
 script tag." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -52,8 +60,12 @@ script tag." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codebook</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">codebook</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -63,7 +75,7 @@ script tag." />
   </a>
 </li>
 <li>
-  <a href="../articles/codebook.html">Get Started</a>
+  <a href="../articles/codebook.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -81,6 +93,7 @@ script tag." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -88,21 +101,24 @@ script tag." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Metadata as JSON-LD</h1>
-    <small>Source: <a href='https:/github.com/rubenarslan/codebook/blob/master/R/codebook.R'><code>R/codebook.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/codebook.R'><code>R/codebook.R</code></a></small>
+    <div class="hidden name"><code>metadata_jsonld.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Echo a list of a metadata, generated using <code><a href='metadata_list.html'>metadata_list()</a></code> as JSON-LD in a
 script tag.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>metadata_jsonld</span>(<span class='no'>results</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -120,1129 +136,647 @@ script tag.</p>
 #&gt; &lt;script type="application/ld+json"&gt;
 #&gt; {
 #&gt;   "name": "results",
-#&gt;   "keywords": ["session", "created", "modified", "ended", "expired", "BFIK_open_2", "BFIK_agree_4R", "BFIK_extra_2", "BFIK_agree_1R", "BFIK_open_1", "BFIK_neuro_2R", "BFIK_consc_3", "BFIK_consc_4", "BFIK_consc_2R", "BFIK_agree_3R", "BFIK_extra_3R", "BFIK_neuro_3", "BFIK_neuro_4", "BFIK_agree_2", "BFIK_consc_1", "BFIK_open_4", "BFIK_extra_4", "BFIK_extra_1R", "BFIK_open_3", "BFIK_agree", "BFIK_open", "BFIK_consc", "BFIK_extra", "BFIK_neuro"],
+#&gt;   "keywords": ["A1", "A2", "A3", "A4", "A5", "C1", "C2", "C3", "C4", "C5", "E1", "E2", "E3", "E4", "E5", "N1", "N2", "N3", "N4", "N5", "O1", "O2", "O3", "O4", "O5", "gender", "education", "age"],
 #&gt;   "variableMeasured": [
 #&gt;     {
-#&gt;       "name": "session",
+#&gt;       "name": "A1",
 #&gt;       "data_summary": [
 #&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "min": "64",
-#&gt;           "max": "64",
-#&gt;           "empty": "0",
-#&gt;           "n_unique": "28",
+#&gt;           "missing": "16",
+#&gt;           "complete": "2784",
+#&gt;           "n": "2800",
+#&gt;           "mean": "2.41",
+#&gt;           "sd": "1.41",
+#&gt;           "p0": "1",
+#&gt;           "p25": "1",
+#&gt;           "p50": "2",
+#&gt;           "p75": "3",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▇▇▁▃▃▁▂▁",
 #&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
 #&gt;         }
 #&gt;       ],
-#&gt;       "value": "text",
+#&gt;       "value": "Number",
 #&gt;       "@context": {
 #&gt;         "@vocab": "http://pending.schema.org/"
 #&gt;       },
 #&gt;       "@type": "propertyValue"
 #&gt;     },
 #&gt;     {
-#&gt;       "name": "created",
-#&gt;       "description": "user first opened survey",
+#&gt;       "name": "A2",
 #&gt;       "data_summary": [
 #&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "min": "2016-07-08",
-#&gt;           "max": "2016-11-02",
-#&gt;           "median": "2016-07-08",
-#&gt;           "n_unique": "28",
+#&gt;           "missing": "27",
+#&gt;           "complete": "2773",
+#&gt;           "n": "2800",
+#&gt;           "mean": "4.8",
+#&gt;           "sd": "1.17",
+#&gt;           "p0": "1",
+#&gt;           "p25": "4",
+#&gt;           "p50": "5",
+#&gt;           "p75": "6",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▁▁▁▁▅▁▇▇",
 #&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
 #&gt;         }
 #&gt;       ],
+#&gt;       "value": "Number",
 #&gt;       "@context": {
 #&gt;         "@vocab": "http://pending.schema.org/"
 #&gt;       },
 #&gt;       "@type": "propertyValue"
 #&gt;     },
 #&gt;     {
-#&gt;       "name": "modified",
-#&gt;       "description": "user last edited survey",
+#&gt;       "name": "A3",
 #&gt;       "data_summary": [
 #&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "min": "2016-07-08",
-#&gt;           "max": "2016-11-02",
-#&gt;           "median": "2016-07-08",
-#&gt;           "n_unique": "28",
+#&gt;           "missing": "26",
+#&gt;           "complete": "2774",
+#&gt;           "n": "2800",
+#&gt;           "mean": "4.6",
+#&gt;           "sd": "1.3",
+#&gt;           "p0": "1",
+#&gt;           "p25": "4",
+#&gt;           "p50": "5",
+#&gt;           "p75": "6",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▁▂▁▂▅▁▇▆",
 #&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
 #&gt;         }
 #&gt;       ],
+#&gt;       "value": "Number",
 #&gt;       "@context": {
 #&gt;         "@vocab": "http://pending.schema.org/"
 #&gt;       },
 #&gt;       "@type": "propertyValue"
 #&gt;     },
 #&gt;     {
-#&gt;       "name": "ended",
-#&gt;       "description": "user finished survey",
+#&gt;       "name": "A4",
 #&gt;       "data_summary": [
 #&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "min": "2016-07-08",
-#&gt;           "max": "2016-11-02",
-#&gt;           "median": "2016-07-08",
-#&gt;           "n_unique": "28",
+#&gt;           "missing": "19",
+#&gt;           "complete": "2781",
+#&gt;           "n": "2800",
+#&gt;           "mean": "4.7",
+#&gt;           "sd": "1.48",
+#&gt;           "p0": "1",
+#&gt;           "p25": "4",
+#&gt;           "p50": "5",
+#&gt;           "p75": "6",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▁▂▁▁▃▁▅▇",
 #&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
 #&gt;         }
 #&gt;       ],
+#&gt;       "value": "Number",
 #&gt;       "@context": {
 #&gt;         "@vocab": "http://pending.schema.org/"
 #&gt;       },
 #&gt;       "@type": "propertyValue"
 #&gt;     },
 #&gt;     {
-#&gt;       "name": "expired",
+#&gt;       "name": "A5",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "16",
+#&gt;           "complete": "2784",
+#&gt;           "n": "2800",
+#&gt;           "mean": "4.56",
+#&gt;           "sd": "1.26",
+#&gt;           "p0": "1",
+#&gt;           "p25": "4",
+#&gt;           "p50": "5",
+#&gt;           "p75": "5",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▁▂▁▂▅▁▇▆",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "C1",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "21",
+#&gt;           "complete": "2779",
+#&gt;           "n": "2800",
+#&gt;           "mean": "4.5",
+#&gt;           "sd": "1.24",
+#&gt;           "p0": "1",
+#&gt;           "p25": "4",
+#&gt;           "p50": "5",
+#&gt;           "p75": "5",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▁▁▁▂▅▁▇▅",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "C2",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "24",
+#&gt;           "complete": "2776",
+#&gt;           "n": "2800",
+#&gt;           "mean": "4.37",
+#&gt;           "sd": "1.32",
+#&gt;           "p0": "1",
+#&gt;           "p25": "4",
+#&gt;           "p50": "5",
+#&gt;           "p75": "5",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▁▂▁▂▆▁▇▅",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "C3",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "20",
+#&gt;           "complete": "2780",
+#&gt;           "n": "2800",
+#&gt;           "mean": "4.3",
+#&gt;           "sd": "1.29",
+#&gt;           "p0": "1",
+#&gt;           "p25": "4",
+#&gt;           "p50": "5",
+#&gt;           "p75": "5",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▁▂▁▂▆▁▇▅",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "C4",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "26",
+#&gt;           "complete": "2774",
+#&gt;           "n": "2800",
+#&gt;           "mean": "2.55",
+#&gt;           "sd": "1.38",
+#&gt;           "p0": "1",
+#&gt;           "p25": "1",
+#&gt;           "p50": "2",
+#&gt;           "p75": "4",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▇▇▁▅▅▁▂▁",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "C5",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "16",
+#&gt;           "complete": "2784",
+#&gt;           "n": "2800",
+#&gt;           "mean": "3.3",
+#&gt;           "sd": "1.63",
+#&gt;           "p0": "1",
+#&gt;           "p25": "2",
+#&gt;           "p50": "3",
+#&gt;           "p75": "5",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▆▇▁▅▇▁▆▃",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "E1",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "23",
+#&gt;           "complete": "2777",
+#&gt;           "n": "2800",
+#&gt;           "mean": "2.97",
+#&gt;           "sd": "1.63",
+#&gt;           "p0": "1",
+#&gt;           "p25": "2",
+#&gt;           "p50": "3",
+#&gt;           "p75": "4",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▇▇▁▅▆▁▅▃",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "E2",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "16",
+#&gt;           "complete": "2784",
+#&gt;           "n": "2800",
+#&gt;           "mean": "3.14",
+#&gt;           "sd": "1.61",
+#&gt;           "p0": "1",
+#&gt;           "p25": "2",
+#&gt;           "p50": "3",
+#&gt;           "p75": "4",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▆▇▁▅▇▁▅▃",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "E3",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "25",
+#&gt;           "complete": "2775",
+#&gt;           "n": "2800",
+#&gt;           "mean": "4",
+#&gt;           "sd": "1.35",
+#&gt;           "p0": "1",
+#&gt;           "p25": "3",
+#&gt;           "p50": "4",
+#&gt;           "p75": "5",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▂▃▁▃▇▁▇▃",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "E4",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "9",
+#&gt;           "complete": "2791",
+#&gt;           "n": "2800",
+#&gt;           "mean": "4.42",
+#&gt;           "sd": "1.46",
+#&gt;           "p0": "1",
+#&gt;           "p25": "4",
+#&gt;           "p50": "5",
+#&gt;           "p75": "6",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▁▂▁▂▃▁▇▆",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "E5",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "21",
+#&gt;           "complete": "2779",
+#&gt;           "n": "2800",
+#&gt;           "mean": "4.42",
+#&gt;           "sd": "1.33",
+#&gt;           "p0": "1",
+#&gt;           "p25": "4",
+#&gt;           "p50": "5",
+#&gt;           "p75": "5",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▁▂▁▂▅▁▇▅",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "N1",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "22",
+#&gt;           "complete": "2778",
+#&gt;           "n": "2800",
+#&gt;           "mean": "2.93",
+#&gt;           "sd": "1.57",
+#&gt;           "p0": "1",
+#&gt;           "p25": "2",
+#&gt;           "p50": "3",
+#&gt;           "p75": "4",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▇▇▁▅▆▁▅▂",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "N2",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "21",
+#&gt;           "complete": "2779",
+#&gt;           "n": "2800",
+#&gt;           "mean": "3.51",
+#&gt;           "sd": "1.53",
+#&gt;           "p0": "1",
+#&gt;           "p25": "2",
+#&gt;           "p50": "4",
+#&gt;           "p75": "5",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▃▆▁▅▇▁▆▃",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "N3",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "11",
+#&gt;           "complete": "2789",
+#&gt;           "n": "2800",
+#&gt;           "mean": "3.22",
+#&gt;           "sd": "1.6",
+#&gt;           "p0": "1",
+#&gt;           "p25": "2",
+#&gt;           "p50": "3",
+#&gt;           "p75": "4",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▆▇▁▅▇▁▆▃",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "N4",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "36",
+#&gt;           "complete": "2764",
+#&gt;           "n": "2800",
+#&gt;           "mean": "3.19",
+#&gt;           "sd": "1.57",
+#&gt;           "p0": "1",
+#&gt;           "p25": "2",
+#&gt;           "p50": "3",
+#&gt;           "p75": "4",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▆▇▁▅▇▁▅▃",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "N5",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "29",
+#&gt;           "complete": "2771",
+#&gt;           "n": "2800",
+#&gt;           "mean": "2.97",
+#&gt;           "sd": "1.62",
+#&gt;           "p0": "1",
+#&gt;           "p25": "2",
+#&gt;           "p50": "3",
+#&gt;           "p75": "4",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▇▇▁▅▆▁▃▃",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "O1",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "22",
+#&gt;           "complete": "2778",
+#&gt;           "n": "2800",
+#&gt;           "mean": "4.82",
+#&gt;           "sd": "1.13",
+#&gt;           "p0": "1",
+#&gt;           "p25": "4",
+#&gt;           "p50": "5",
+#&gt;           "p75": "6",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▁▁▁▂▅▁▇▇",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "O2",
+#&gt;       "data_summary": [
+#&gt;         {
+#&gt;           "missing": "0",
+#&gt;           "complete": "2800",
+#&gt;           "n": "2800",
+#&gt;           "mean": "2.71",
+#&gt;           "sd": "1.57",
+#&gt;           "p0": "1",
+#&gt;           "p25": "1",
+#&gt;           "p50": "2",
+#&gt;           "p75": "4",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▇▇▁▃▅▁▃▂",
+#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
+#&gt;         }
+#&gt;       ],
+#&gt;       "value": "Number",
+#&gt;       "@context": {
+#&gt;         "@vocab": "http://pending.schema.org/"
+#&gt;       },
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "O3",
 #&gt;       "data_summary": [
 #&gt;         {
 #&gt;           "missing": "28",
-#&gt;           "complete": "0",
-#&gt;           "n": "28",
-#&gt;           "mean": "NaN",
-#&gt;           "count": "28",
+#&gt;           "complete": "2772",
+#&gt;           "n": "2800",
+#&gt;           "mean": "4.44",
+#&gt;           "sd": "1.22",
+#&gt;           "p0": "1",
+#&gt;           "p25": "4",
+#&gt;           "p50": "5",
+#&gt;           "p75": "5",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▁▁▁▂▆▁▇▅",
 #&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
 #&gt;         }
 #&gt;       ],
+#&gt;       "value": "Number",
 #&gt;       "@context": {
 #&gt;         "@vocab": "http://pending.schema.org/"
 #&gt;       },
 #&gt;       "@type": "propertyValue"
 #&gt;     },
 #&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_open_2",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_open_2",
-#&gt;         "label": "__Ich bin tiefsinnig, denke gerne über Sachen nach.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich bin tiefsinnig, denke gerne über Sachen nach.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 4,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_open_2",
-#&gt;       "description": "__Ich bin tiefsinnig, denke gerne über Sachen nach.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 1,
-#&gt;         "2": 2,
-#&gt;         "3": 3,
-#&gt;         "4": 4,
-#&gt;         "5: Trifft voll und ganz zu": 5,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
+#&gt;       "name": "O4",
 #&gt;       "data_summary": [
 #&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "4",
-#&gt;           "top_counts": "4: 15, 5: 10, 3: 2, 2: 1",
-#&gt;           "ordered": "FALSE",
+#&gt;           "missing": "14",
+#&gt;           "complete": "2786",
+#&gt;           "n": "2800",
+#&gt;           "mean": "4.89",
+#&gt;           "sd": "1.22",
+#&gt;           "p0": "1",
+#&gt;           "p25": "4",
+#&gt;           "p50": "5",
+#&gt;           "p75": "6",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▁▁▁▁▃▁▆▇",
 #&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
 #&gt;         }
 #&gt;       ],
+#&gt;       "value": "Number",
 #&gt;       "@context": {
 #&gt;         "@vocab": "http://pending.schema.org/"
 #&gt;       },
 #&gt;       "@type": "propertyValue"
 #&gt;     },
 #&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_agree_4R",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_agree_4R",
-#&gt;         "label": "__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich kann mich schroff und abweisend anderen gegenüber verhalten.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 5,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_agree_4R",
-#&gt;       "description": "__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 5,
-#&gt;         "2": 4,
-#&gt;         "3": 3,
-#&gt;         "4": 2,
-#&gt;         "5: Trifft voll und ganz zu": 1,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
+#&gt;       "name": "O5",
 #&gt;       "data_summary": [
 #&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "5",
-#&gt;           "top_counts": "2: 11, 4: 7, 3: 5, 5: 3",
-#&gt;           "ordered": "FALSE",
+#&gt;           "missing": "20",
+#&gt;           "complete": "2780",
+#&gt;           "n": "2800",
+#&gt;           "mean": "2.49",
+#&gt;           "sd": "1.33",
+#&gt;           "p0": "1",
+#&gt;           "p25": "1",
+#&gt;           "p50": "2",
+#&gt;           "p75": "3",
+#&gt;           "p100": "6",
+#&gt;           "hist": "▇▇▁▅▃▁▂▁",
 #&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
 #&gt;         }
 #&gt;       ],
+#&gt;       "value": "Number",
 #&gt;       "@context": {
 #&gt;         "@vocab": "http://pending.schema.org/"
 #&gt;       },
 #&gt;       "@type": "propertyValue"
 #&gt;     },
 #&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_extra_2",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_extra_2",
-#&gt;         "label": "__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich bin begeisterungsfähig und kann andere leicht mitreißen.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 6,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_extra_2",
-#&gt;       "description": "__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 1,
-#&gt;         "2": 2,
-#&gt;         "3": 3,
-#&gt;         "4": 4,
-#&gt;         "5: Trifft voll und ganz zu": 5,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
+#&gt;       "name": "gender",
 #&gt;       "data_summary": [
 #&gt;         {
 #&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "4",
-#&gt;           "top_counts": "5: 13, 4: 11, 1: 2, 3: 2",
-#&gt;           "ordered": "FALSE",
+#&gt;           "complete": "2800",
+#&gt;           "n": "2800",
+#&gt;           "mean": "1.67",
+#&gt;           "sd": "0.47",
+#&gt;           "p0": "1",
+#&gt;           "p25": "1",
+#&gt;           "p50": "2",
+#&gt;           "p75": "2",
+#&gt;           "p100": "2",
+#&gt;           "hist": "▃▁▁▁▁▁▁▇",
 #&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
 #&gt;         }
 #&gt;       ],
+#&gt;       "value": "Number",
 #&gt;       "@context": {
 #&gt;         "@vocab": "http://pending.schema.org/"
 #&gt;       },
 #&gt;       "@type": "propertyValue"
 #&gt;     },
 #&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_agree_1R",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_agree_1R",
-#&gt;         "label": "__Ich neige dazu, andere zu kritisieren.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich neige dazu, andere zu kritisieren.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 7,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_agree_1R",
-#&gt;       "description": "__Ich neige dazu, andere zu kritisieren.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 5,
-#&gt;         "2": 4,
-#&gt;         "3": 3,
-#&gt;         "4": 2,
-#&gt;         "5: Trifft voll und ganz zu": 1,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
+#&gt;       "name": "education",
 #&gt;       "data_summary": [
 #&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "4",
-#&gt;           "top_counts": "2: 11, 4: 9, 3: 7, 5: 1",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_open_1",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_open_1",
-#&gt;         "label": "__Ich bin vielseitig interessiert.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich bin vielseitig interessiert.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 8,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_open_1",
-#&gt;       "description": "__Ich bin vielseitig interessiert.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 1,
-#&gt;         "2": 2,
-#&gt;         "3": 3,
-#&gt;         "4": 4,
-#&gt;         "5: Trifft voll und ganz zu": 5,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "4",
-#&gt;           "top_counts": "5: 16, 4: 8, 3: 3, 2: 1",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_neuro_2R",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_neuro_2R",
-#&gt;         "label": "__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 9,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_neuro_2R",
-#&gt;       "description": "__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 5,
-#&gt;         "2": 4,
-#&gt;         "3": 3,
-#&gt;         "4": 2,
-#&gt;         "5: Trifft voll und ganz zu": 1,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "4",
-#&gt;           "top_counts": "3: 10, 4: 9, 2: 8, 5: 1",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_consc_3",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_consc_3",
-#&gt;         "label": "__Ich bin tüchtig und arbeite flott.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich bin tüchtig und arbeite flott.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 10,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_consc_3",
-#&gt;       "description": "__Ich bin tüchtig und arbeite flott.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 1,
-#&gt;         "2": 2,
-#&gt;         "3": 3,
-#&gt;         "4": 4,
-#&gt;         "5: Trifft voll und ganz zu": 5,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "5",
-#&gt;           "top_counts": "4: 12, 3: 7, 2: 4, 5: 4",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_consc_4",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_consc_4",
-#&gt;         "label": "__Ich mache Pläne und führe sie auch durch.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich mache Pläne und führe sie auch durch.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 11,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_consc_4",
-#&gt;       "description": "__Ich mache Pläne und führe sie auch durch.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 1,
-#&gt;         "2": 2,
-#&gt;         "3": 3,
-#&gt;         "4": 4,
-#&gt;         "5: Trifft voll und ganz zu": 5,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "4",
-#&gt;           "top_counts": "4: 15, 3: 7, 5: 5, 2: 1",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_consc_2R",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_consc_2R",
-#&gt;         "label": "__Ich bin bequem, neige zur Faulheit.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich bin bequem, neige zur Faulheit.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 12,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_consc_2R",
-#&gt;       "description": "__Ich bin bequem, neige zur Faulheit.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 5,
-#&gt;         "2": 4,
-#&gt;         "3": 3,
-#&gt;         "4": 2,
-#&gt;         "5: Trifft voll und ganz zu": 1,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "5",
-#&gt;           "top_counts": "4: 12, 1: 5, 3: 5, 2: 3",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_agree_3R",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_agree_3R",
-#&gt;         "label": "__Ich kann mich kalt und distanziert verhalten.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich kann mich kalt und distanziert verhalten.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 13,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_agree_3R",
-#&gt;       "description": "__Ich kann mich kalt und distanziert verhalten.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 5,
-#&gt;         "2": 4,
-#&gt;         "3": 3,
-#&gt;         "4": 2,
-#&gt;         "5: Trifft voll und ganz zu": 1,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "5",
-#&gt;           "top_counts": "2: 9, 4: 8, 3: 4, 5: 4",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_extra_3R",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_extra_3R",
-#&gt;         "label": "__Ich bin eher der \"stille Typ\", wortkarg.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich bin eher der &amp;quot;stille Typ&amp;quot;, wortkarg.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 14,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_extra_3R",
-#&gt;       "description": "__Ich bin eher der \"stille Typ\", wortkarg.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 5,
-#&gt;         "2": 4,
-#&gt;         "3": 3,
-#&gt;         "4": 2,
-#&gt;         "5: Trifft voll und ganz zu": 1,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "5",
-#&gt;           "top_counts": "4: 9, 5: 9, 3: 6, 1: 2",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_neuro_3",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_neuro_3",
-#&gt;         "label": "__Ich mache mir viele Sorgen.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich mache mir viele Sorgen.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 15,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_neuro_3",
-#&gt;       "description": "__Ich mache mir viele Sorgen.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 1,
-#&gt;         "2": 2,
-#&gt;         "3": 3,
-#&gt;         "4": 4,
-#&gt;         "5: Trifft voll und ganz zu": 5,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "5",
-#&gt;           "top_counts": "3: 8, 2: 7, 4: 5, 5: 5",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_neuro_4",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_neuro_4",
-#&gt;         "label": "__Ich werde leicht nervös und unsicher.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich werde leicht nervös und unsicher.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 16,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_neuro_4",
-#&gt;       "description": "__Ich werde leicht nervös und unsicher.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 1,
-#&gt;         "2": 2,
-#&gt;         "3": 3,
-#&gt;         "4": 4,
-#&gt;         "5: Trifft voll und ganz zu": 5,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "4",
-#&gt;           "top_counts": "2: 9, 4: 9, 1: 7, 3: 3",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_agree_2",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_agree_2",
-#&gt;         "label": "__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 17,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_agree_2",
-#&gt;       "description": "__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 1,
-#&gt;         "2": 2,
-#&gt;         "3": 3,
-#&gt;         "4": 4,
-#&gt;         "5: Trifft voll und ganz zu": 5,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "5",
-#&gt;           "top_counts": "4: 9, 5: 7, 2: 5, 3: 5",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_consc_1",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_consc_1",
-#&gt;         "label": "__Ich erledige Aufgaben gründlich.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich erledige Aufgaben gründlich.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 18,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_consc_1",
-#&gt;       "description": "__Ich erledige Aufgaben gründlich.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 1,
-#&gt;         "2": 2,
-#&gt;         "3": 3,
-#&gt;         "4": 4,
-#&gt;         "5: Trifft voll und ganz zu": 5,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "4",
-#&gt;           "top_counts": "4: 12, 5: 10, 3: 4, 2: 2",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_open_4",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_open_4",
-#&gt;         "label": "__Ich schätze künstlerische und ästhetische Eindrücke.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich schätze künstlerische und ästhetische Eindrücke.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 19,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_open_4",
-#&gt;       "description": "__Ich schätze künstlerische und ästhetische Eindrücke.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 1,
-#&gt;         "2": 2,
-#&gt;         "3": 3,
-#&gt;         "4": 4,
-#&gt;         "5: Trifft voll und ganz zu": 5,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "4",
-#&gt;           "top_counts": "5: 13, 4: 10, 3: 4, 1: 1",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_extra_4",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_extra_4",
-#&gt;         "label": "__Ich gehe aus mir heraus, bin gesellig.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich gehe aus mir heraus, bin gesellig.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 20,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_extra_4",
-#&gt;       "description": "__Ich gehe aus mir heraus, bin gesellig.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 1,
-#&gt;         "2": 2,
-#&gt;         "3": 3,
-#&gt;         "4": 4,
-#&gt;         "5: Trifft voll und ganz zu": 5,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "5",
-#&gt;           "top_counts": "4: 11, 5: 9, 3: 4, 2: 3",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_extra_1R",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_extra_1R",
-#&gt;         "label": "__Ich bin eher zurückhaltend, reserviert.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich bin eher zurückhaltend, reserviert.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 21,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_extra_1R",
-#&gt;       "description": "__Ich bin eher zurückhaltend, reserviert.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 5,
-#&gt;         "2": 4,
-#&gt;         "3": 3,
-#&gt;         "4": 2,
-#&gt;         "5: Trifft voll und ganz zu": 1,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "5",
-#&gt;           "top_counts": "4: 8, 5: 8, 3: 6, 2: 5",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "item": {
-#&gt;         "choice_list": "BFIK_open_3",
-#&gt;         "type_options": 5,
-#&gt;         "name": "BFIK_open_3",
-#&gt;         "label": "__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__",
-#&gt;         "label_parsed": "&lt;strong&gt;Ich habe eine aktive Vorstellungskraft, bin phantasievoll.&lt;\/strong&gt;",
-#&gt;         "optional": 0,
-#&gt;         "class": {},
-#&gt;         "showif": {},
-#&gt;         "value": {},
-#&gt;         "block_order": {},
-#&gt;         "item_order": 22,
-#&gt;         "choices": {
-#&gt;           "1": "1: Trifft überhaupt nicht zu",
-#&gt;           "2": "2",
-#&gt;           "3": "3",
-#&gt;           "4": "4",
-#&gt;           "5": "5: Trifft voll und ganz zu",
-#&gt;           "@type": "http://formr.org/codebook/ItemChoices"
-#&gt;         },
-#&gt;         "item_type": "rating_button",
-#&gt;         "@type": "http://formr.org/codebook/Item"
-#&gt;       },
-#&gt;       "name": "BFIK_open_3",
-#&gt;       "description": "__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__",
-#&gt;       "value": {
-#&gt;         "1: Trifft überhaupt nicht zu": 1,
-#&gt;         "2": 2,
-#&gt;         "3": 3,
-#&gt;         "4": 4,
-#&gt;         "5: Trifft voll und ganz zu": 5,
-#&gt;         "Item was never rendered for this user.": "NA"
-#&gt;       },
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "n_unique": "4",
-#&gt;           "top_counts": "5: 14, 4: 8, 3: 4, 2: 2",
-#&gt;           "ordered": "FALSE",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "scale_item_names": ["BFIK_agree_4R", "BFIK_agree_1R", "BFIK_agree_3R", "BFIK_agree_2"],
-#&gt;       "name": "BFIK_agree",
-#&gt;       "description": "4 BFIK_agree items averaged with aggregation_function",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "mean": "3.12",
-#&gt;           "sd": "0.93",
-#&gt;           "p0": "1.5",
-#&gt;           "p25": "2.25",
+#&gt;           "missing": "223",
+#&gt;           "complete": "2577",
+#&gt;           "n": "2800",
+#&gt;           "mean": "3.19",
+#&gt;           "sd": "1.11",
+#&gt;           "p0": "1",
+#&gt;           "p25": "3",
 #&gt;           "p50": "3",
 #&gt;           "p75": "4",
-#&gt;           "p100": "4.75",
-#&gt;           "hist": "▂▇▂▇▃▁▅▅",
+#&gt;           "p100": "5",
+#&gt;           "hist": "▂▂▁▇▁▂▁▃",
 #&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
 #&gt;         }
 #&gt;       ],
@@ -1253,100 +787,20 @@ script tag.</p>
 #&gt;       "@type": "propertyValue"
 #&gt;     },
 #&gt;     {
-#&gt;       "scale_item_names": ["BFIK_open_2", "BFIK_open_1", "BFIK_open_4", "BFIK_open_3"],
-#&gt;       "name": "BFIK_open",
-#&gt;       "description": "4 BFIK_open items averaged with aggregation_function",
+#&gt;       "name": "age",
 #&gt;       "data_summary": [
 #&gt;         {
 #&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "mean": "4.26",
-#&gt;           "sd": "0.56",
+#&gt;           "complete": "2800",
+#&gt;           "n": "2800",
+#&gt;           "mean": "28.78",
+#&gt;           "sd": "11.13",
 #&gt;           "p0": "3",
-#&gt;           "p25": "3.94",
-#&gt;           "p50": "4.25",
-#&gt;           "p75": "4.75",
-#&gt;           "p100": "5",
-#&gt;           "hist": "▃▂▂▁▇▃▇▂",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "value": "Number",
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "scale_item_names": ["BFIK_consc_3", "BFIK_consc_4", "BFIK_consc_2R", "BFIK_consc_1"],
-#&gt;       "name": "BFIK_consc",
-#&gt;       "description": "4 BFIK_consc items averaged with aggregation_function",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "mean": "3.65",
-#&gt;           "sd": "0.79",
-#&gt;           "p0": "2",
-#&gt;           "p25": "3.12",
-#&gt;           "p50": "3.75",
-#&gt;           "p75": "4.25",
-#&gt;           "p100": "5",
-#&gt;           "hist": "▂▃▁▃▃▇▂▂",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "value": "Number",
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "scale_item_names": ["BFIK_extra_2", "BFIK_extra_3R", "BFIK_extra_4", "BFIK_extra_1R"],
-#&gt;       "name": "BFIK_extra",
-#&gt;       "description": "4 BFIK_extra items averaged with aggregation_function",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "mean": "3.85",
-#&gt;           "sd": "1.01",
-#&gt;           "p0": "1.5",
-#&gt;           "p25": "3.25",
-#&gt;           "p50": "4.25",
-#&gt;           "p75": "4.56",
-#&gt;           "p100": "5",
-#&gt;           "hist": "▂▁▂▃▁▃▇▇",
-#&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
-#&gt;         }
-#&gt;       ],
-#&gt;       "value": "Number",
-#&gt;       "@context": {
-#&gt;         "@vocab": "http://pending.schema.org/"
-#&gt;       },
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "scale_item_names": ["BFIK_neuro_2R", "BFIK_neuro_3", "BFIK_neuro_4"],
-#&gt;       "name": "BFIK_neuro",
-#&gt;       "description": "3 BFIK_neuro items averaged with aggregation_function",
-#&gt;       "data_summary": [
-#&gt;         {
-#&gt;           "missing": "0",
-#&gt;           "complete": "28",
-#&gt;           "n": "28",
-#&gt;           "mean": "2.89",
-#&gt;           "sd": "0.93",
-#&gt;           "p0": "1.33",
-#&gt;           "p25": "2",
-#&gt;           "p50": "2.83",
-#&gt;           "p75": "3.42",
-#&gt;           "p100": "4.33",
-#&gt;           "hist": "▅▅▂▅▃▅▁▇",
+#&gt;           "p25": "20",
+#&gt;           "p50": "26",
+#&gt;           "p75": "35",
+#&gt;           "p100": "86",
+#&gt;           "hist": "▁▇▆▃▂▁▁▁",
 #&gt;           "@type": "http://formr.org/codebook/SummaryStatistics"
 #&gt;         }
 #&gt;       ],
@@ -1384,6 +838,8 @@ script tag.</p>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

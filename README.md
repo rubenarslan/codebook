@@ -22,8 +22,13 @@ graphically and using descriptive statistics, combine this information
 with metadata (such as item labels and labelled values) that is derived
 from R attributes. To do so, the package relies on ‘rmarkdown’ partials,
 so you can generate HTML, PDF, and Word documents. Codebooks are also
-available as tables (CSV, Excel,
-etc.).
+available as tables (CSV, Excel, etc.).
+
+## RStudio Addin
+
+Use our RStudio Addins (ideally assigned to a keyboard shortcut) to see
+and search variable and value labels in the viewer pane while you work.
+![addin\_gif](inst/codebook_addin.gif)
 
 ## Generate markdown codebooks from the attributes of the variables in your data frame
 

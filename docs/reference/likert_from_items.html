@@ -21,16 +21,24 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Derive a likert object from items — likert_from_items" />
 
 <meta property="og:description" content="Pass a data.frame containing several items composing one scale, get a
 likert::likert() object, which you can plot.
 Intelligently makes use of labels and value labels if present." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -53,8 +61,12 @@ Intelligently makes use of labels and value labels if present." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codebook</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">codebook</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -64,7 +76,7 @@ Intelligently makes use of labels and value labels if present." />
   </a>
 </li>
 <li>
-  <a href="../articles/codebook.html">Get Started</a>
+  <a href="../articles/codebook.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -82,6 +94,7 @@ Intelligently makes use of labels and value labels if present." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -89,22 +102,25 @@ Intelligently makes use of labels and value labels if present." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Derive a likert object from items</h1>
-    <small>Source: <a href='https:/github.com/rubenarslan/codebook/blob/master/R/plot_helpers.R'><code>R/plot_helpers.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/plot_helpers.R'><code>R/plot_helpers.R</code></a></small>
+    <div class="hidden name"><code>likert_from_items.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Pass a data.frame containing several items composing one scale, get a
 <code><a href='http://www.rdocumentation.org/packages/likert/topics/likert'>likert::likert()</a></code> object, which you can plot.
 Intelligently makes use of labels and value labels if present.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>likert_from_items</span>(<span class='no'>items</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -117,7 +133,7 @@ Intelligently makes use of labels and value labels if present.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='st'>"bfi"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"codebook"</span>)
 <span class='no'>open_items</span> <span class='kw'>&lt;-</span> <span class='fu'>paste0</span>(<span class='st'>"BFIK_open_"</span>,<span class='fl'>1</span>:<span class='fl'>4</span>)
-<span class='kw pkg'>graphics</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='fu'>likert_from_items</span>(<span class='no'>bfi</span>[, <span class='no'>open_items</span>]))</div><div class='img'><img src='likert_from_items-1.png' alt='' width='700' height='432.632880098887' /></div></pre>
+<span class='kw pkg'>graphics</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/graphics/topics/plot'>plot</a></span>(<span class='fu'>likert_from_items</span>(<span class='no'>bfi</span>[, <span class='no'>open_items</span>]))</div><div class='img'><img src='likert_from_items-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -141,6 +157,8 @@ Intelligently makes use of labels and value labels if present.</p>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

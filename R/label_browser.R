@@ -1,11 +1,77 @@
 #' Browse and search variable and value labels
 #'
 #' Same as the [codebook_browser()], but doesn't show data summaries and
+#' additional attributes. This yields a static table, so you can continue
+#' to edit code while viewing the labels, but you cannot switch the dataset
+#' via a dropdown menu.
+#'
+#' @param data data frame. if left empty, will use the text you currently select in RStudio as the label or the first data frame in your environment
+#' @param viewer where to show. defaults to viewer tab
+#' @export
+#' @examples
+#' label_browser_static(bfi)
+#'
+#'
+label_browser_static <- function(data = NULL, viewer = rstudioapi::viewer) {
+  # if data argument given, use it
+    if (!is.null(data)) {
+      df_name <- deparse(substitute(data))
+  } else {
+    # if text is selected, use that
+    context <- rstudioapi::getActiveDocumentContext()
+
+    # Set the default data to use based on the selection.
+    df_name <- context$selection[[1]]$text
+
+    data <- NULL
+    if (!is.null(df_name) && df_name != "" && exists(df_name)) {
+      data <- get(df_name)
+    }
+
+    # if no text selected, or not name of a dataframe, use first in global env
+    if (!is.data.frame(data)) {
+      data_frames <- names(which(unlist(eapply(.GlobalEnv,is.data.frame))))
+      if (length(data_frames) == 0) {
+        stop("No data frame found. Make sure to select one or have one
+             in your global environment.")
+      }
+      df_name <- data_frames[1]
+      data <- get(df_name)
+    }
+  }
+
+    labels <- metadata(data)
+    cols <- intersect(names(labels), c("name", "label", "value_labels"))
+    labels <- labels[, cols, drop = FALSE]
+    if (exists("value_labels", labels)) {
+      labels$value_labels <- stringr::str_replace_all(labels$value_labels,
+                                                      "\n", "<br>")
+    }
+
+    DT::datatable(labels,
+                  caption = paste(df_name, " columns and labels"),
+                  filter = 'top',
+                  escape = FALSE,
+                  rownames = FALSE,
+                  options = list(
+                    # searching = FALSE,
+                    info = FALSE,
+                    # dom = 't',
+                    paging = FALSE
+                    )
+                  )
+}
+
+#' Browse and search variable and value labels
+#'
+#' Same as the [codebook_browser()], but doesn't show data summaries and
 #' additional attributes.
 #'
+#' @inheritParams codebook_browser
 #' @export
-label_browser <- function() {
-  codebook_browser(TRUE, "Variable and value labels")
+label_browser <- function(data = NULL, viewer = rstudioapi::viewer) {
+  codebook_browser(data = data, labels_only = TRUE,
+                   title = "Variable and value labels", viewer = viewer)
 }
 
 #' Browse and search codebook
@@ -19,17 +85,42 @@ label_browser <- function() {
 #' by RStudio. How about Cmd+Ctrl+C?
 #'
 #' @import shiny miniUI rstudioapi
+#' @param data the dataset to display. If left empty will try to use selected text in RStudio or offer a dropdown
 #' @param labels_only defaults to false called with TRUE from [label_browser()]
 #' @param title title of the gadget
+#' @param viewer defaults to displaying in the RStudio viewer
 #' @export
-codebook_browser <- function(labels_only = FALSE, title = "Codebook metadata") {
+codebook_browser <- function(
+  data = NULL,
+  labels_only = FALSE, title = "Codebook metadata",
+                             viewer = rstudioapi::viewer) {
 
-  # Get the document context.
-  context <- rstudioapi::getActiveDocumentContext()
+  # if data argument given, use it
+  if (!is.null(data)) {
+    df_name <- deparse(substitute(data))
+  } else {
+    # if text is selected, use that
+    context <- rstudioapi::getActiveDocumentContext()
 
-  # Set the default data to use based on the selection.
-  text <- context$selection[[1]]$text
-  defaultData <- text
+    # Set the default data to use based on the selection.
+    df_name <- context$selection[[1]]$text
+
+    data <- NULL
+    if (!is.null(df_name) && df_name != "" && exists(df_name)) {
+      data <- get(df_name)
+    }
+
+    # if no text selected, or not name of a dataframe, use first in global env
+    if (!is.data.frame(data)) {
+      data_frames <- names(which(unlist(eapply(.GlobalEnv,is.data.frame))))
+      if (length(data_frames) == 0) {
+        stop("No data frame found. Make sure to select one or have one
+             in your global environment.")
+      }
+      df_name <- data_frames[1]
+    }
+  }
+  defaultData <- df_name
 
   # Generate UI for the gadget.
   ui <- miniPage(
@@ -73,8 +164,8 @@ codebook_browser <- function(labels_only = FALSE, title = "Codebook metadata") {
       }
 
       if (exists("value_labels", labels)) {
-        labels$value_labels <- gsub(pattern = "\n", replacement = "<br>",
-                                    x = labels$value_labels)
+        labels$value_labels <- stringr::str_replace_all(labels$value_labels,
+                                                        "\n", "<br>")
       }
 
       return(labels)
@@ -90,9 +181,13 @@ codebook_browser <- function(labels_only = FALSE, title = "Codebook metadata") {
       data <- reactiveData()
       data
     },
-    escape = TRUE,
+    # filter = 'top',
+    escape = FALSE,
     options = list(
-      pageLength = 100, autoWidth = TRUE))
+      searching = FALSE,
+      info = FALSE,
+      paging = FALSE)
+    )
 
     # Listen for 'done'.
     observeEvent(input$done, {
@@ -111,11 +206,12 @@ codebook_browser <- function(labels_only = FALSE, title = "Codebook metadata") {
     })
   }
 
-  # Use a modal dialog as a viewr.
-  viewer <- dialogViewer("Labels", width = 1000, height = 800)
-  runGadget(ui, server, viewer = viewer)
+  if (isTRUE(getOption("shiny.testmode"))) {
+    shinyApp(ui, server)
+  } else {
+    runGadget(ui, server, viewer = viewer)
+  }
 }
-
 
 
 stableColumnLayout <- function(...) {

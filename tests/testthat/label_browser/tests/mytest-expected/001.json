@@ -1,0 +1,28 @@
+{
+  "input": {
+    "cancel": 0,
+    "data": "bfi",
+    "done": 0
+  },
+  "output": {
+    "output": {
+      "colnames": [
+        "name",
+        "label",
+        "value_labels"
+      ],
+      "options": {
+        "pageLength": 100,
+        "autoWidth": true
+      },
+      "evalOptions": null,
+      "searchDelay": 500,
+      "callback": "function(oTable) {}",
+      "escape": true
+    },
+    "pending": null
+  },
+  "export": {
+
+  }
+}

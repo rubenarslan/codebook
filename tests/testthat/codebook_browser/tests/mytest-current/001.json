@@ -1,0 +1,53 @@
+{
+  "input": {
+    "cancel": 0,
+    "data": "bfi",
+    "done": 0
+  },
+  "output": {
+    "output": {
+      "colnames": [
+        "name",
+        "label",
+        "type",
+        "type_options",
+        "data_type",
+        "ordered",
+        "value_labels",
+        "optional",
+        "scale_item_names",
+        "item_order",
+        "missing",
+        "complete",
+        "n",
+        "empty",
+        "n_unique",
+        "top_counts",
+        "count",
+        "median",
+        "min",
+        "max",
+        "mean",
+        "sd",
+        "p0",
+        "p25",
+        "p50",
+        "p75",
+        "p100",
+        "hist"
+      ],
+      "options": {
+        "pageLength": 100,
+        "autoWidth": true
+      },
+      "evalOptions": null,
+      "searchDelay": 500,
+      "callback": "function(oTable) {}",
+      "escape": true
+    },
+    "pending": null
+  },
+  "export": {
+
+  }
+}

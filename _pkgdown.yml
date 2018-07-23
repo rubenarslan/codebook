@@ -4,6 +4,7 @@ reference:
   contents:
   - '`codebook_browser`'
   - '`label_browser`'
+  - '`label_browser_static`'
 - title: Codebook generators
   desc: Functions to generate (parts of) the codebook
   contents:

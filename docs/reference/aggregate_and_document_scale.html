@@ -21,10 +21,15 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Aggregate variables and remember which variables this were — aggregate_and_document_scale" />
 
 <meta property="og:description" content="The resulting variables will have the attribute scale_item_names containing
@@ -32,6 +37,9 @@ the basis for aggregation. Its label attribute will refer to the common stem of 
 aggregated variable names (if any), the number of variables, and the
 aggregation function." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -54,8 +62,12 @@ aggregation function." />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codebook</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">codebook</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -65,7 +77,7 @@ aggregation function." />
   </a>
 </li>
 <li>
-  <a href="../articles/codebook.html">Get Started</a>
+  <a href="../articles/codebook.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -83,6 +95,7 @@ aggregation function." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -90,23 +103,26 @@ aggregation function." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Aggregate variables and remember which variables this were</h1>
-    <small>Source: <a href='https:/github.com/rubenarslan/codebook/blob/master/R/correct_attributes.R'><code>R/correct_attributes.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/correct_attributes.R'><code>R/correct_attributes.R</code></a></small>
+    <div class="hidden name"><code>aggregate_and_document_scale.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>The resulting variables will have the attribute <code>scale_item_names</code> containing
 the basis for aggregation. Its <code>label</code> attribute will refer to the common stem of the
 aggregated variable names (if any), the number of variables, and the
 aggregation function.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>aggregate_and_document_scale</span>(<span class='no'>items</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='no'>rowMeans</span>, <span class='kw'>stem</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -130,9 +146,10 @@ as the longest common stem of the variable names</p></td>
                     <span class='kw'>bfi_neuro_3R</span> <span class='kw'>=</span> <span class='fu'>rnorm</span>(<span class='fl'>20</span>), <span class='kw'>age</span> <span class='kw'>=</span> <span class='fu'>rpois</span>(<span class='fl'>20</span>, <span class='fl'>30</span>))
 <span class='no'>item_names</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>'bfi_neuro_1'</span>, <span class='st'>'bfi_neuro_2'</span>, <span class='st'>'bfi_neuro_3R'</span>)
 <span class='no'>testdf</span>$<span class='no'>bfi_neuro</span> <span class='kw'>&lt;-</span> <span class='fu'>aggregate_and_document_scale</span>(<span class='no'>testdf</span>[, <span class='no'>item_names</span>])
-<span class='no'>testdf</span>$<span class='no'>bfi_neuro</span></div><div class='output co'>#&gt;  [1] -0.2873 -0.0070 -1.2639  0.1602  0.9850  1.2688 -0.9037  0.1048 -0.3176
-#&gt; [10] -1.2356  0.4146  0.1874  0.7009  0.0039  0.2180 -0.4824 -1.5687  0.7836
-#&gt; [19] -0.0439  0.1222
+<span class='no'>testdf</span>$<span class='no'>bfi_neuro</span></div><div class='output co'>#&gt;  [1] -0.287284749 -0.006951671 -1.263924018  0.160240530  0.984951589
+#&gt;  [6]  1.268794692 -0.903711211  0.104811152 -0.317597895 -1.235608530
+#&gt; [11]  0.414583429  0.187411304  0.700874388  0.003912358  0.218008596
+#&gt; [16] -0.482393654 -1.568738280  0.783572677 -0.043890297  0.122196267
 #&gt; attr(,"scale_item_names")
 #&gt; [1] "bfi_neuro_1"  "bfi_neuro_2"  "bfi_neuro_3R"
 #&gt; attr(,"label")
@@ -160,6 +177,8 @@ as the longest common stem of the variable names</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

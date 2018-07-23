@@ -4,7 +4,12 @@
 \alias{label_browser}
 \title{Browse and search variable and value labels}
 \usage{
-label_browser()
+label_browser(data = NULL, viewer = rstudioapi::viewer)
+}
+\arguments{
+\item{data}{the dataset to display. If left empty will try to use selected text in RStudio or offer a dropdown}
+
+\item{viewer}{defaults to displaying in the RStudio viewer}
 }
 \description{
 Same as the \code{\link[=codebook_browser]{codebook_browser()}}, but doesn't show data summaries and

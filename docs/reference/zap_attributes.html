@@ -21,10 +21,15 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Zap attributes — zap_attributes" />
 
 <meta property="og:description" content="Modelled on haven::zap_labels(), but more encompassing. By default removes
@@ -32,6 +37,9 @@ the following attributes:
 format.spss, format.sas, format.stata, label, labels, na_values, na_range,
 display_width" />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -54,8 +62,12 @@ display_width" />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codebook</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">codebook</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -65,7 +77,7 @@ display_width" />
   </a>
 </li>
 <li>
-  <a href="../articles/codebook.html">Get Started</a>
+  <a href="../articles/codebook.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -83,6 +95,7 @@ display_width" />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -90,24 +103,27 @@ display_width" />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Zap attributes</h1>
-    <small>Source: <a href='https:/github.com/rubenarslan/codebook/blob/master/R/correct_attributes.R'><code>R/correct_attributes.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/correct_attributes.R'><code>R/correct_attributes.R</code></a></small>
+    <div class="hidden name"><code>zap_attributes.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Modelled on <code><a href='http://www.rdocumentation.org/packages/haven/topics/zap_labels'>haven::zap_labels()</a></code>, but more encompassing. By default removes
 the following attributes:
 format.spss, format.sas, format.stata, label, labels, na_values, na_range,
 display_width</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>zap_attributes</span>(<span class='no'>x</span>, <span class='kw'>attributes</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"format.spss"</span>, <span class='st'>"format.sas"</span>, <span class='st'>"format.stata"</span>,
   <span class='st'>"label"</span>, <span class='st'>"labels"</span>, <span class='st'>"na_values"</span>, <span class='st'>"na_range"</span>, <span class='st'>"display_width"</span>))</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -135,18 +151,26 @@ display_width</p>
 #&gt;  $ bfi_e2R: num  -0.5637 -1.4025 -2.3491 0.0793 1.2248 ...
 #&gt;  $ bfi_e3 : num  0.449 -0.258 -0.717 -0.225 0.26 ...
 #&gt;  $ bfi_e  : atomic  0.0335 -0.4892 -1.0282 0.3108 1.081 ...
-#&gt;   ..- attr(*, "scale_item_names")= chr  "bfi_e1" "bfi_e2R" "bfi_e3"</div><div class='input'><span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>$<span class='no'>bfi_e</span>)</div><div class='output co'>#&gt;   [1]  0.0335 -0.4892 -1.0282  0.3108  1.0810  0.1867 -0.0041  1.0195 -1.1515
-#&gt;  [10] -0.0098  0.1986  0.6845 -0.0813 -0.0069 -0.2705 -0.1273 -0.4507 -0.2552
-#&gt;  [19]  0.1116 -0.3513 -0.4777 -0.5857 -0.7270 -0.0965 -0.3057 -0.5618  0.8572
-#&gt;  [28]  0.1950 -0.0671  0.1301 -0.2134 -0.0920  0.5613 -0.1113 -0.3610 -0.2424
-#&gt;  [37]  1.2748 -0.1279 -0.2639 -0.2740 -0.9279  1.0178 -0.8863 -0.1622  0.5874
-#&gt;  [46] -0.7541  0.5661 -0.2209  1.0286 -0.5828  0.1653  0.2286 -0.6294 -0.8324
-#&gt;  [55] -0.2359  0.6060  0.8046 -0.1938  0.0659 -0.4575 -0.1381  0.9892  0.1335
-#&gt;  [64]  0.1550  0.4096 -0.1624  0.5745  0.1642 -0.8876  0.5416  0.4920 -0.1557
-#&gt;  [73]  0.5948  1.1550  1.8328 -0.5183 -1.3576  0.6590  0.2187  0.2924  0.8631
-#&gt;  [82]  0.3457 -0.2499  0.3276 -0.5914  0.2770  0.5769  0.7891 -0.3022  0.1943
-#&gt;  [91]  0.2125 -0.5819 -0.0587  1.1788  0.8855  0.2975 -0.7602  0.5149 -0.2545
-#&gt; [100]  0.1458</div></pre>
+#&gt;   ..- attr(*, "scale_item_names")= chr  "bfi_e1" "bfi_e2R" "bfi_e3"</div><div class='input'><span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>$<span class='no'>bfi_e</span>)</div><div class='output co'>#&gt;   [1]  0.033521830 -0.489214026 -1.028169437  0.310835809  1.080984008
+#&gt;   [6]  0.186740025 -0.004104253  1.019459431 -1.151478960 -0.009786653
+#&gt;  [11]  0.198577688  0.684540653 -0.081271361 -0.006924049 -0.270495940
+#&gt;  [16] -0.127314812 -0.450675910 -0.255239133  0.111597528 -0.351254628
+#&gt;  [21] -0.477726076 -0.585710943 -0.727025190 -0.096506554 -0.305682265
+#&gt;  [26] -0.561809361  0.857179159  0.194983468 -0.067084362  0.130067596
+#&gt;  [31] -0.213378743 -0.091963570  0.561315920 -0.111306149 -0.361031207
+#&gt;  [36] -0.242367684  1.274835781 -0.127851633 -0.263910556 -0.274003693
+#&gt;  [41] -0.927901284  1.017808455 -0.886265267 -0.162162492  0.587376565
+#&gt;  [46] -0.754100468  0.566094969 -0.220948596  1.028583311 -0.582840080
+#&gt;  [51]  0.165262071  0.228629128 -0.629373066 -0.832428417 -0.235853871
+#&gt;  [56]  0.606029106  0.804578053 -0.193818382  0.065907277 -0.457479365
+#&gt;  [61] -0.138117281  0.989167581  0.133539814  0.155028258  0.409615917
+#&gt;  [66] -0.162410026  0.574497417  0.164201118 -0.887644905  0.541568698
+#&gt;  [71]  0.492000032 -0.155672293  0.594756415  1.154984921  1.832769460
+#&gt;  [76] -0.518284857 -1.357618880  0.659036881  0.218730756  0.292376303
+#&gt;  [81]  0.863148324  0.345660349 -0.249865799  0.327621845 -0.591421719
+#&gt;  [86]  0.276967302  0.576863456  0.789108084 -0.302243166  0.194340764
+#&gt;  [91]  0.212521642 -0.581899587 -0.058666692  1.178802069  0.885454676
+#&gt;  [96]  0.297452459 -0.760231667  0.514904431 -0.254481278  0.145778019</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -170,6 +194,8 @@ display_width</p>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

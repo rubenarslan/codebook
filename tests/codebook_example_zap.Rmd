@@ -37,6 +37,7 @@ pander::panderOptions("table.split.table", Inf)
 bfi$age <- rpois(nrow(bfi), 30)
 # class(bfi$age) = c("udhfibr")
 bfi <- detect_scales(bfi)
+
 ```
 
 ```{r cb}

@@ -4,12 +4,17 @@
 \alias{codebook_browser}
 \title{Browse and search codebook}
 \usage{
-codebook_browser(labels_only = FALSE, title = "Codebook metadata")
+codebook_browser(data = NULL, labels_only = FALSE,
+  title = "Codebook metadata", viewer = rstudioapi::viewer)
 }
 \arguments{
+\item{data}{the dataset to display. If left empty will try to use selected text in RStudio or offer a dropdown}
+
 \item{labels_only}{defaults to false called with TRUE from \code{\link[=label_browser]{label_browser()}}}
 
 \item{title}{title of the gadget}
+
+\item{viewer}{defaults to displaying in the RStudio viewer}
 }
 \description{
 Usable as an Addin in RStudio. You can select it from a menu at the top,
@@ -18,5 +23,5 @@ data frame in your source code, this will be the dataset shown by default.
 If you don't select text, you can pick a dataset from a dropdown.
 You can add a keyboard shortcut for this command by following the
 \href{https://support.rstudio.com/hc/en-us/articles/206382178-Customizing-Keyboard-Shortcuts}{instructions}
-by RStudio. How about Ctrl+C?
+by RStudio. How about Cmd+Ctrl+C?
 }

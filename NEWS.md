@@ -1,6 +1,6 @@
 # codebook 0.6.0
 ## Additions
-RStudio Addin to browse variable labels etc.
+- Two RStudio Addin Shinyapps to browse variable labels and codebook etc.
 
 # codebook 0.5.9
 ## Additions

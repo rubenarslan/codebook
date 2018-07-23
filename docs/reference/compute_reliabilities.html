@@ -21,10 +21,15 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Compute reliabilities — compute_reliabilities" />
 
 <meta property="og:description" content="If you pass the object resulting from a call to formr_results to this function, it will compute reliabilities for each scale.
@@ -36,6 +41,9 @@ need to call this function directly, but can rely on it being automatically
 called during codebook generation.
 If you do plan to do that, you can pass the results of this operation to the codebook function." />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -58,8 +66,12 @@ If you do plan to do that, you can pass the results of this operation to the cod
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codebook</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">codebook</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -69,7 +81,7 @@ If you do plan to do that, you can pass the results of this operation to the cod
   </a>
 </li>
 <li>
-  <a href="../articles/codebook.html">Get Started</a>
+  <a href="../articles/codebook.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -87,6 +99,7 @@ If you do plan to do that, you can pass the results of this operation to the cod
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -94,13 +107,15 @@ If you do plan to do that, you can pass the results of this operation to the cod
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compute reliabilities</h1>
-    <small>Source: <a href='https:/github.com/rubenarslan/codebook/blob/master/R/reliability.R'><code>R/reliability.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/reliability.R'><code>R/reliability.R</code></a></small>
+    <div class="hidden name"><code>compute_reliabilities.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>If you pass the object resulting from a call to formr_results to this function, it will compute reliabilities for each scale.
 Internally, each reliability computation is passed to a <code><a href='http://www.rdocumentation.org/packages/future/topics/future'>future::future()</a></code>.
@@ -111,10 +126,11 @@ need to call this function directly, but can rely on it being automatically
 called during codebook generation.
 If you do plan to do that, you can pass the results of this operation to the codebook function.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>compute_reliabilities</span>(<span class='no'>results</span>, <span class='kw'>survey_repetition</span> <span class='kw'>=</span> <span class='st'>"single"</span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -154,6 +170,8 @@ If you do plan to do that, you can pass the results of this operation to the cod
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

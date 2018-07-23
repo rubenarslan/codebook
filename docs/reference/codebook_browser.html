@@ -21,10 +21,15 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
+
+
+
 <meta property="og:title" content="Browse and search codebook — codebook_browser" />
 
 <meta property="og:description" content="Usable as an Addin in RStudio. You can select it from a menu at the top,
@@ -33,8 +38,11 @@ data frame in your source code, this will be the dataset shown by default.
 If you don't select text, you can pick a dataset from a dropdown.
 You can add a keyboard shortcut for this command by following the
 instructions
-by RStudio. How about Ctrl+C?" />
+by RStudio. How about Cmd+Ctrl+C?" />
 <meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -57,8 +65,12 @@ by RStudio. How about Ctrl+C?" />
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">codebook</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">codebook</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -68,7 +80,7 @@ by RStudio. How about Ctrl+C?" />
   </a>
 </li>
 <li>
-  <a href="../articles/codebook.html">Get Started</a>
+  <a href="../articles/codebook.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -86,6 +98,7 @@ by RStudio. How about Ctrl+C?" />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -93,13 +106,15 @@ by RStudio. How about Ctrl+C?" />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Browse and search codebook</h1>
-    <small>Source: <a href='https:/github.com/rubenarslan/codebook/blob/master/R/label_browser.R'><code>R/label_browser.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/label_browser.R'><code>R/label_browser.R</code></a></small>
+    <div class="hidden name"><code>codebook_browser.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Usable as an Addin in RStudio. You can select it from a menu at the top,
 when this package is installed. If you're currently selecting the name of a
@@ -107,14 +122,20 @@ data frame in your source code, this will be the dataset shown by default.
 If you don't select text, you can pick a dataset from a dropdown.
 You can add a keyboard shortcut for this command by following the
 <a href='https://support.rstudio.com/hc/en-us/articles/206382178-Customizing-Keyboard-Shortcuts'>instructions</a>
-by RStudio. How about Ctrl+C?</p>
+by RStudio. How about Cmd+Ctrl+C?</p>
     
+    </div>
 
-    <pre class="usage"><span class='fu'>codebook_browser</span>(<span class='kw'>labels_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Codebook metadata"</span>)</pre>
+    <pre class="usage"><span class='fu'>codebook_browser</span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>labels_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Codebook metadata"</span>, <span class='kw'>viewer</span> <span class='kw'>=</span> <span class='kw pkg'>rstudioapi</span><span class='kw ns'>::</span><span class='no'><a href='http://www.rdocumentation.org/packages/rstudioapi/topics/viewer'>viewer</a></span>)</pre>
     
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>data</th>
+      <td><p>the dataset to display. If left empty will try to use selected text in RStudio or offer a dropdown</p></td>
+    </tr>
     <tr>
       <th>labels_only</th>
       <td><p>defaults to false called with TRUE from <code><a href='label_browser.html'>label_browser()</a></code></p></td>
@@ -122,6 +143,10 @@ by RStudio. How about Ctrl+C?</p>
     <tr>
       <th>title</th>
       <td><p>title of the gadget</p></td>
+    </tr>
+    <tr>
+      <th>viewer</th>
+      <td><p>defaults to displaying in the RStudio viewer</p></td>
     </tr>
     </table>
     
@@ -147,6 +172,8 @@ by RStudio. How about Ctrl+C?</p>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>
