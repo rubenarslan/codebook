@@ -54,11 +54,13 @@ detect_missings <- function(data, only_labelled_missings = TRUE,
       # classic SPSS missings only if they are far out of real data range
       # can be turned off using non_missing or ninety_nine_problems
       if (ninety_nine_problems) {
-        if (any(!is.na(data[[ var ]])) && (stats::median(data[[var]], na.rm = TRUE) +
+        if (any(!is.na(data[[ var ]])) &&
+            (stats::median(data[[var]], na.rm = TRUE) +
              stats::mad(data[[var]], na.rm = TRUE) * 5) < 99) {
           potential_missings <- c(potential_missings, 99)
         }
-        if (any(!is.na(data[[ var ]])) && (stats::median(data[[var]], na.rm = TRUE) +
+        if (any(!is.na(data[[ var ]])) &&
+            (stats::median(data[[var]], na.rm = TRUE) +
              stats::mad(data[[var]], na.rm = TRUE) * 5) < 999) {
           potential_missings <- c(potential_missings, 999)
         }

@@ -151,7 +151,8 @@ codebook_browser <- function(
         return(errorMessage("data", "No dataset available."))
 
       if (!exists(dataString, envir = .GlobalEnv))
-        return(errorMessage("data", paste("No dataset named '", dataString, "' available.")))
+        return(errorMessage("data",
+            paste("No dataset named '", dataString, "' available.")))
 
       data <- get(dataString, envir = .GlobalEnv)
 
