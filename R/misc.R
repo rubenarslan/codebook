@@ -33,7 +33,7 @@ md_pattern <- function(data, only_vars_with_missings = TRUE, min_freq = 0.01) {
       # mice::md.pattern coerces character/factor to NA
       data[[i]] <- as.numeric(as.factor(data[[i]]))
     }
-    md_pattern <- mice::md.pattern(data)
+    md_pattern <- mice::md.pattern(data, plot = FALSE)
     n_miss <- rownames(md_pattern)
     if (is.null(n_miss)) {
       n_miss <- rep(0, nrow(md_pattern))

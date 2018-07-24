@@ -387,13 +387,15 @@ codebook_table <- function(results) {
 }
 
 metadata <- function(results) {
-    purrr::map_dfr(results, attribute_summary, .id = "name")
+    metadata <- purrr::map_dfr(results, attribute_summary, .id = "name")
+    stopifnot(nrow(metadata) == ncol(results))
+    metadata
 }
 
 attribute_summary <- function(var) {
   x <- attributes(var)
   if (is.null(x)) {
-    return(data.frame(label = NA_character_))
+    return(data.frame(label = NA_character_, stringsAsFactors = FALSE))
   }
   if (exists("class", x)) {
     x$class <- NULL
@@ -413,8 +415,8 @@ attribute_summary <- function(var) {
   }
   if (exists("labels", x)) {
     if (!is.null(names(x$labels))) {
-      x$value_labels <- paste(paste0(names(x$labels),
-                                     "=", x$labels), collapse = ",\n")
+      x$value_labels <- paste(paste0(x$labels, ". ", names(x$labels)),
+                              collapse = ",\n")
     } else {
       x$value_labels <- paste(x$labels, collapse = ",\n")
     }
@@ -432,8 +434,9 @@ attribute_summary <- function(var) {
   }
   x <- purrr::flatten_dfr(purrr::flatten(x))
   if (ncol(x) == 0) {
-    x <- data.frame(label = NA_character_)
+    x <- data.frame(label = NA_character_, stringsAsFactors = FALSE)
   }
+  x
 }
 
 

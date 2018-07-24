@@ -1,6 +1,8 @@
-## Resubmission
-
-Fixed note about DOIs.
+## Submission
+* All three added RStudio Addins were tested, but tests were omitted for two 
+owing to problems with 'shinytest'.
+* Owing to bugs in mice that broke (degenerate test cases), codebook requires
+mice > 3.2.0 which has been submitted to CRAN.
 
 ## Test environments
 * local OS X install, R 3.4.4

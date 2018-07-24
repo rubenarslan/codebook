@@ -1,14 +1,14 @@
 citHeader("To cite codebook in publications use:")
 
 citEntry(entry = "Unpublished",
-         title        = "Automatic codebook generation with {codebook}",
+         title        = "Automatic codebooks from metadata in R",
          author       = personList(as.person("Ruben C. Arslan")),
          year         = "2018",
-         url          = "https://github.com/rubenarslan/codebook",
+         url          = "https://doi.org/10.5281/zenodo.1205454",
          note         = "Software package",
 
          textVersion  =
            paste("Arslan, R. C. (2018).",
                  "Automatic codebook generation with {codebook} (2018).",
-                 "URL https://github.com/rubenarslan/codebook")
+                 "URL https://github.com/rubenarslan/codebook doi:10.5281/zenodo.1205454")
 )

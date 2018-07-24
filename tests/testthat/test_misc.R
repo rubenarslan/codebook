@@ -39,7 +39,7 @@ test_that("Missings are computed properly", {
                                   only_vars_with_missings = FALSE,
                                   min_freq = 0))
   expect_equal(nrow(mdp), 2)
-  expect_equal(sum(mdp$n_miss), 2)
+  expect_equal(sum(mdp$n_miss), 3)
   expect_equal(ncol(mdp), 5)
 })
 

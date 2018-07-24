@@ -2,6 +2,10 @@ context("Test codebook")
 
 test_that("plot labelled", {
   data("bfi", package = 'codebook')
+  wd <- getwd()
+  dir <- tempdir()
+  setwd(dir)
+  on.exit(setwd(wd))
 
   # Likert item (numeric, all labelled)
   expect_silent(p <- plot_labelled(bfi$BFIK_open_2))
@@ -98,6 +102,8 @@ test_that("plot labelled", {
   expect_silent(p <- plot_labelled(miss5))
   expect_silent(print(p))
   expect_identical(p$scales$scales, list())
+
+  unlink(paste0(dir, "/Rplots.pdf"), recursive = TRUE)
 })
 
 test_that("likert from items", {

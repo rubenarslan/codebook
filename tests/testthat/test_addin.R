@@ -1,6 +1,15 @@
+context("Test addins")
+
+test_that("static label browser", {
+  data('bfi')
+  expect_silent(dt <- label_browser_static(bfi))
+  expect_identical(class(dt), c("datatables", "htmlwidget"))
+  expect_equal(nrow(dt$x$data), ncol(bfi))
+  expect_equal(ncol(dt$x$data), 3)
+})
+
 # library(shinytest)
 #
-# context("Test addin shinyapps")
 #
 # # recordTest("tests/testthat/codebook_browser/")
 #

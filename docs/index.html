@@ -90,16 +90,20 @@
 <a href="#description" class="anchor"></a>Description</h2>
 <p>Easily automate the following tasks to describe data frames: computing reliabilities (internal consistencies, retest, multilevel) for psychological scales, summarise the distributions of scales and items graphically and using descriptive statistics, combine this information with metadata (such as item labels and labelled values) that is derived from R attributes. To do so, the package relies on ‘rmarkdown’ partials, so you can generate HTML, PDF, and Word documents. Codebooks are also available as tables (CSV, Excel, etc.).</p>
 </div>
-<div id="rstudio-addin" class="section level2">
-<h2 class="hasAnchor">
-<a href="#rstudio-addin" class="anchor"></a>RStudio Addin</h2>
-<p>Use our RStudio Addins (ideally assigned to a keyboard shortcut) to see and search variable and value labels in the viewer pane while you work.</p>
-<p><img src="reference/figures/codebook_addin.gif"></p>
-</div>
 <div id="generate-markdown-codebooks-from-the-attributes-of-the-variables-in-your-data-frame" class="section level2">
 <h2 class="hasAnchor">
 <a href="#generate-markdown-codebooks-from-the-attributes-of-the-variables-in-your-data-frame" class="anchor"></a>Generate markdown codebooks from the attributes of the variables in your data frame</h2>
 <p>RStudio and a few of the tidyverse package already usefully display the information contained in the attributes of the variables in your data frame. The <a href="https://github.com/hadley/haven">haven</a> package also manages to grab variable documentation from SPSS or Stata files.</p>
+</div>
+<div id="rstudio-addin" class="section level2">
+<h2 class="hasAnchor">
+<a href="#rstudio-addin" class="anchor"></a>RStudio Addin</h2>
+<p>If the RStudio data viewer scrolls slow for your taste, or you’d like to keep the variable labels in view while working, use our RStudio Addins (ideally assigned to a keyboard shortcut) to see and search variable and value labels in the viewer pane.</p>
+<p><img src="reference/figures/codebook_addin.gif"></p>
+</div>
+<div id="codebook-generation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#codebook-generation" class="anchor"></a>Codebook generation</h2>
 <p>The codebook package takes those attributes and the data and tries to produce a good-looking codebook, i.e. a place to get an overview of the variables in a dataset. The codebook processes single items, but also “scales”, i.e. psychological questionnaires that are aggregated to extract a construct. For scales, the appropriate reliability coefficients (internal consistencies for single measurements, retest reliabilities for repeated measurements, multilevel reliability for multilevel data) are computed. For items and scales, the distributions are summarised graphically and numerically.</p>
 <p>This package integrates tightly with formr (<a href="https://formr.org">formr.org</a>), an online survey framework and especially the data frames produced and marked up by the <a href="https://github.com/rubenarslan/formr">formr R package</a>. However, codebook is completely independent of it.</p>
 </div>
@@ -131,7 +135,7 @@
 <a href="#citation" class="anchor"></a>Citation</h2>
 <p>To cite the package</p>
 <blockquote>
-<p>Arslan, R. C. (2018). Automatic codebook generation with codebook (2018). URL <a href="https://github.com/rubenarslan/codebook" class="uri">https://github.com/rubenarslan/codebook</a>. doi:<a href="https://doi.org/10.5281/zenodo.1205454">10.5281/zenodo.1205454</a></p>
+<p>Arslan, R. C. (2018). Automatic codebooks from survey metadata (2018). URL <a href="https://github.com/rubenarslan/codebook" class="uri">https://github.com/rubenarslan/codebook</a>. doi:<a href="https://doi.org/10.5281/zenodo.1205454">10.5281/zenodo.1205454</a></p>
 </blockquote>
 <div id="how-to-use" class="section level3">
 <h3 class="hasAnchor">

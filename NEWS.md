@@ -1,6 +1,9 @@
 # codebook 0.6.0
 ## Additions
-- Two RStudio Addin Shinyapps to browse variable labels and codebook etc.
+- Three RStudio Addin Shinyapps to browse variable labels and codebook. 
+
+## Bug fix
+- Specify a mice dependency that doesn't break degenerate test cases.
 
 # codebook 0.5.9
 ## Additions

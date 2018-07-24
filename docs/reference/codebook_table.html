@@ -130,9 +130,216 @@ with data summaries generated using <code><a href='http://www.rdocumentation.org
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='st'>"bfi"</span>)
-<span class='fu'>codebook_table</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt;      name data_type missing complete  n empty n_unique count  min  max mean
-#&gt; 1 session character       0       28 28     0       28  &lt;NA&gt;   64   64 &lt;NA&gt;
-#&gt; 2 expired   logical      28        0 28  &lt;NA&gt;     &lt;NA&gt;    28 &lt;NA&gt; &lt;NA&gt;  NaN</div></pre>
+<span class='fu'>codebook_table</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt;             name
+#&gt; 1        session
+#&gt; 2        created
+#&gt; 3       modified
+#&gt; 4          ended
+#&gt; 5        expired
+#&gt; 6    BFIK_open_2
+#&gt; 7  BFIK_agree_4R
+#&gt; 8   BFIK_extra_2
+#&gt; 9  BFIK_agree_1R
+#&gt; 10   BFIK_open_1
+#&gt; 11 BFIK_neuro_2R
+#&gt; 12  BFIK_consc_3
+#&gt; 13  BFIK_consc_4
+#&gt; 14 BFIK_consc_2R
+#&gt; 15 BFIK_agree_3R
+#&gt; 16 BFIK_extra_3R
+#&gt; 17  BFIK_neuro_3
+#&gt; 18  BFIK_neuro_4
+#&gt; 19  BFIK_agree_2
+#&gt; 20  BFIK_consc_1
+#&gt; 21   BFIK_open_4
+#&gt; 22  BFIK_extra_4
+#&gt; 23 BFIK_extra_1R
+#&gt; 24   BFIK_open_3
+#&gt; 25    BFIK_agree
+#&gt; 26     BFIK_open
+#&gt; 27    BFIK_consc
+#&gt; 28    BFIK_extra
+#&gt; 29    BFIK_neuro
+#&gt;                                                                         label
+#&gt; 1                                                                        &lt;NA&gt;
+#&gt; 2                                                    user first opened survey
+#&gt; 3                                                     user last edited survey
+#&gt; 4                                                        user finished survey
+#&gt; 5                                                                        &lt;NA&gt;
+#&gt; 6                       __Ich bin tiefsinnig, denke gerne über Sachen nach.__
+#&gt; 7        __Ich kann mich schroff und abweisend anderen gegenüber verhalten.__
+#&gt; 8            __Ich bin begeisterungsfähig und kann andere leicht mitreißen.__
+#&gt; 9                                  __Ich neige dazu, andere zu kritisieren.__
+#&gt; 10                                       __Ich bin vielseitig interessiert.__
+#&gt; 11 __Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__
+#&gt; 12                                     __Ich bin tüchtig und arbeite flott.__
+#&gt; 13                              __Ich mache Pläne und führe sie auch durch.__
+#&gt; 14                                    __Ich bin bequem, neige zur Faulheit.__
+#&gt; 15                          __Ich kann mich kalt und distanziert verhalten.__
+#&gt; 16                               __Ich bin eher der "stille Typ", wortkarg.__
+#&gt; 17                                            __Ich mache mir viele Sorgen.__
+#&gt; 18                                  __Ich werde leicht nervös und unsicher.__
+#&gt; 19  __Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__
+#&gt; 20                                       __Ich erledige Aufgaben gründlich.__
+#&gt; 21                   __Ich schätze künstlerische und ästhetische Eindrücke.__
+#&gt; 22                                 __Ich gehe aus mir heraus, bin gesellig.__
+#&gt; 23                                __Ich bin eher zurückhaltend, reserviert.__
+#&gt; 24             __Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__
+#&gt; 25                      4 BFIK_agree items averaged with aggregation_function
+#&gt; 26                       4 BFIK_open items averaged with aggregation_function
+#&gt; 27                      4 BFIK_consc items averaged with aggregation_function
+#&gt; 28                      4 BFIK_extra items averaged with aggregation_function
+#&gt; 29                      3 BFIK_neuro items averaged with aggregation_function
+#&gt;             type type_options data_type ordered
+#&gt; 1           &lt;NA&gt;           NA character    &lt;NA&gt;
+#&gt; 2           &lt;NA&gt;           NA   POSIXct    &lt;NA&gt;
+#&gt; 3           &lt;NA&gt;           NA   POSIXct    &lt;NA&gt;
+#&gt; 4           &lt;NA&gt;           NA   POSIXct    &lt;NA&gt;
+#&gt; 5           &lt;NA&gt;           NA   logical    &lt;NA&gt;
+#&gt; 6  rating_button            5  labelled   FALSE
+#&gt; 7  rating_button            5  labelled   FALSE
+#&gt; 8  rating_button            5  labelled   FALSE
+#&gt; 9  rating_button            5  labelled   FALSE
+#&gt; 10 rating_button            5  labelled   FALSE
+#&gt; 11 rating_button            5  labelled   FALSE
+#&gt; 12 rating_button            5  labelled   FALSE
+#&gt; 13 rating_button            5  labelled   FALSE
+#&gt; 14 rating_button            5  labelled   FALSE
+#&gt; 15 rating_button            5  labelled   FALSE
+#&gt; 16 rating_button            5  labelled   FALSE
+#&gt; 17 rating_button            5  labelled   FALSE
+#&gt; 18 rating_button            5  labelled   FALSE
+#&gt; 19 rating_button            5  labelled   FALSE
+#&gt; 20 rating_button            5  labelled   FALSE
+#&gt; 21 rating_button            5  labelled   FALSE
+#&gt; 22 rating_button            5  labelled   FALSE
+#&gt; 23 rating_button            5  labelled   FALSE
+#&gt; 24 rating_button            5  labelled   FALSE
+#&gt; 25          &lt;NA&gt;           NA   numeric    &lt;NA&gt;
+#&gt; 26          &lt;NA&gt;           NA   numeric    &lt;NA&gt;
+#&gt; 27          &lt;NA&gt;           NA   numeric    &lt;NA&gt;
+#&gt; 28          &lt;NA&gt;           NA   numeric    &lt;NA&gt;
+#&gt; 29          &lt;NA&gt;           NA   numeric    &lt;NA&gt;
+#&gt;                                                                                                                         value_labels
+#&gt; 1                                                                                                                               &lt;NA&gt;
+#&gt; 2                                                                                                                               &lt;NA&gt;
+#&gt; 3                                                                                                                               &lt;NA&gt;
+#&gt; 4                                                                                                                               &lt;NA&gt;
+#&gt; 5                                                                                                                               &lt;NA&gt;
+#&gt; 6  1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 7  5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 8  1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 9  5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 10 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 11 5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 12 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 13 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 14 5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 15 5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 16 5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 17 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 18 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 19 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 20 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 21 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 22 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 23 5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 24 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+#&gt; 25                                                                                                                              &lt;NA&gt;
+#&gt; 26                                                                                                                              &lt;NA&gt;
+#&gt; 27                                                                                                                              &lt;NA&gt;
+#&gt; 28                                                                                                                              &lt;NA&gt;
+#&gt; 29                                                                                                                              &lt;NA&gt;
+#&gt;    optional                                          scale_item_names
+#&gt; 1        NA                                                      &lt;NA&gt;
+#&gt; 2        NA                                                      &lt;NA&gt;
+#&gt; 3        NA                                                      &lt;NA&gt;
+#&gt; 4        NA                                                      &lt;NA&gt;
+#&gt; 5        NA                                                      &lt;NA&gt;
+#&gt; 6         0                                                      &lt;NA&gt;
+#&gt; 7         0                                                      &lt;NA&gt;
+#&gt; 8         0                                                      &lt;NA&gt;
+#&gt; 9         0                                                      &lt;NA&gt;
+#&gt; 10        0                                                      &lt;NA&gt;
+#&gt; 11        0                                                      &lt;NA&gt;
+#&gt; 12        0                                                      &lt;NA&gt;
+#&gt; 13        0                                                      &lt;NA&gt;
+#&gt; 14        0                                                      &lt;NA&gt;
+#&gt; 15        0                                                      &lt;NA&gt;
+#&gt; 16        0                                                      &lt;NA&gt;
+#&gt; 17        0                                                      &lt;NA&gt;
+#&gt; 18        0                                                      &lt;NA&gt;
+#&gt; 19        0                                                      &lt;NA&gt;
+#&gt; 20        0                                                      &lt;NA&gt;
+#&gt; 21        0                                                      &lt;NA&gt;
+#&gt; 22        0                                                      &lt;NA&gt;
+#&gt; 23        0                                                      &lt;NA&gt;
+#&gt; 24        0                                                      &lt;NA&gt;
+#&gt; 25       NA BFIK_agree_4R, BFIK_agree_1R, BFIK_agree_3R, BFIK_agree_2
+#&gt; 26       NA        BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3
+#&gt; 27       NA   BFIK_consc_3, BFIK_consc_4, BFIK_consc_2R, BFIK_consc_1
+#&gt; 28       NA  BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R
+#&gt; 29       NA                 BFIK_neuro_2R, BFIK_neuro_3, BFIK_neuro_4
+#&gt;    item_order missing complete  n empty n_unique               top_counts count
+#&gt; 1          NA       0       28 28     0       28                     &lt;NA&gt;  &lt;NA&gt;
+#&gt; 2          NA       0       28 28  &lt;NA&gt;       28                     &lt;NA&gt;  &lt;NA&gt;
+#&gt; 3          NA       0       28 28  &lt;NA&gt;       28                     &lt;NA&gt;  &lt;NA&gt;
+#&gt; 4          NA       0       28 28  &lt;NA&gt;       28                     &lt;NA&gt;  &lt;NA&gt;
+#&gt; 5          NA      28        0 28  &lt;NA&gt;     &lt;NA&gt;                     &lt;NA&gt;    28
+#&gt; 6           4       0       28 28  &lt;NA&gt;        4 4: 15, 5: 10, 3: 2, 2: 1  &lt;NA&gt;
+#&gt; 7           5       0       28 28  &lt;NA&gt;        5  2: 11, 4: 7, 3: 5, 5: 3  &lt;NA&gt;
+#&gt; 8           6       0       28 28  &lt;NA&gt;        4 5: 13, 4: 11, 1: 2, 3: 2  &lt;NA&gt;
+#&gt; 9           7       0       28 28  &lt;NA&gt;        4  2: 11, 4: 9, 3: 7, 5: 1  &lt;NA&gt;
+#&gt; 10          8       0       28 28  &lt;NA&gt;        4  5: 16, 4: 8, 3: 3, 2: 1  &lt;NA&gt;
+#&gt; 11          9       0       28 28  &lt;NA&gt;        4  3: 10, 4: 9, 2: 8, 5: 1  &lt;NA&gt;
+#&gt; 12         10       0       28 28  &lt;NA&gt;        5  4: 12, 3: 7, 2: 4, 5: 4  &lt;NA&gt;
+#&gt; 13         11       0       28 28  &lt;NA&gt;        4  4: 15, 3: 7, 5: 5, 2: 1  &lt;NA&gt;
+#&gt; 14         12       0       28 28  &lt;NA&gt;        5  4: 12, 1: 5, 3: 5, 2: 3  &lt;NA&gt;
+#&gt; 15         13       0       28 28  &lt;NA&gt;        5   2: 9, 4: 8, 3: 4, 5: 4  &lt;NA&gt;
+#&gt; 16         14       0       28 28  &lt;NA&gt;        5   4: 9, 5: 9, 3: 6, 1: 2  &lt;NA&gt;
+#&gt; 17         15       0       28 28  &lt;NA&gt;        5   3: 8, 2: 7, 4: 5, 5: 5  &lt;NA&gt;
+#&gt; 18         16       0       28 28  &lt;NA&gt;        4   2: 9, 4: 9, 1: 7, 3: 3  &lt;NA&gt;
+#&gt; 19         17       0       28 28  &lt;NA&gt;        5   4: 9, 5: 7, 2: 5, 3: 5  &lt;NA&gt;
+#&gt; 20         18       0       28 28  &lt;NA&gt;        4 4: 12, 5: 10, 3: 4, 2: 2  &lt;NA&gt;
+#&gt; 21         19       0       28 28  &lt;NA&gt;        4 5: 13, 4: 10, 3: 4, 1: 1  &lt;NA&gt;
+#&gt; 22         20       0       28 28  &lt;NA&gt;        5  4: 11, 5: 9, 3: 4, 2: 3  &lt;NA&gt;
+#&gt; 23         21       0       28 28  &lt;NA&gt;        5   4: 8, 5: 8, 3: 6, 2: 5  &lt;NA&gt;
+#&gt; 24         22       0       28 28  &lt;NA&gt;        4  5: 14, 4: 8, 3: 4, 2: 2  &lt;NA&gt;
+#&gt; 25         NA       0       28 28  &lt;NA&gt;     &lt;NA&gt;                     &lt;NA&gt;  &lt;NA&gt;
+#&gt; 26         NA       0       28 28  &lt;NA&gt;     &lt;NA&gt;                     &lt;NA&gt;  &lt;NA&gt;
+#&gt; 27         NA       0       28 28  &lt;NA&gt;     &lt;NA&gt;                     &lt;NA&gt;  &lt;NA&gt;
+#&gt; 28         NA       0       28 28  &lt;NA&gt;     &lt;NA&gt;                     &lt;NA&gt;  &lt;NA&gt;
+#&gt; 29         NA       0       28 28  &lt;NA&gt;     &lt;NA&gt;                     &lt;NA&gt;  &lt;NA&gt;
+#&gt;        median        min        max mean   sd   p0  p25  p50  p75 p100     hist
+#&gt; 1        &lt;NA&gt;         64         64 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 2  2016-07-08 2016-07-08 2016-11-02 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 3  2016-07-08 2016-07-08 2016-11-02 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 4  2016-07-08 2016-07-08 2016-11-02 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 5        &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;  NaN &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 6        &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 7        &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 8        &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 9        &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 10       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 11       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 12       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 13       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 14       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 15       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 16       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 17       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 18       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 19       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 20       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 21       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 22       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 23       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 24       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 25       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; 3.12 0.93 1.5  2.25 3    4    4.75 ▂▇▂▇▃▁▅▅
+#&gt; 26       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; 4.26 0.56 3    3.94 4.25 4.75 5    ▃▂▂▁▇▃▇▂
+#&gt; 27       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; 3.65 0.79 2    3.12 3.75 4.25 5    ▂▃▁▃▃▇▂▂
+#&gt; 28       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; 3.85 1.01 1.5  3.25 4.25 4.56 5    ▂▁▂▃▁▃▇▇
+#&gt; 29       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; 2.89 0.93 1.33 2    2.83 3.42 4.33 ▅▅▂▅▃▅▁▇</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
