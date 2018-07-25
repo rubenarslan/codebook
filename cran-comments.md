@@ -2,11 +2,12 @@
 * All three added RStudio Addins were tested, but tests were omitted for two 
 owing to problems with 'shinytest'.
 * Owing to bugs in mice that broke (degenerate test cases), codebook requires
-mice > 3.2.0 which has been submitted to CRAN.
+mice > 3.2.0 which has just been released on CRAN. This meant winbuilder still
+had the old version. Apart from this, it tested ok.
 
 ## Test environments
-* local OS X install, R 3.4.4
-* ubuntu 14.04 (on travis-ci), R 3.4.4
+* local OS X install, R 3.5.1
+* ubuntu 14.04 (on travis-ci), R 3.5.1
 * win-builder (devel and release)
 
 ## R CMD check results

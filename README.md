@@ -3,12 +3,10 @@
 
 # codebook
 
-[![Travis-CI Build
-Status](https://travis-ci.org/rubenarslan/codebook.svg?branch=master)](https://travis-ci.org/rubenarslan/codebook)
-[![CRAN
-status](http://www.r-pkg.org/badges/version-ago/codebook)](https://cran.r-project.org/package=codebook)
-![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/codebook)
-[![codecov](https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg)](https://codecov.io/gh/rubenarslan/codebook)
+[![Travis-CI Build Status](https://travis-ci.org/rubenarslan/codebook.svg?branch=master)](https://travis-ci.org/rubenarslan/codebook) 
+[![CRAN status](http://www.r-pkg.org/badges/version-ago/codebook)](https://cran.r-project.org/package=codebook) 
+![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/codebook) 
+[![codecov](https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg)](https://codecov.io/gh/rubenarslan/codebook) 
 [![DOI](https://zenodo.org/badge/109252375.svg)](https://zenodo.org/badge/latestdoi/109252375)
 
 *Automatic Codebooks from Survey Metadata Encoded in Attributes*
@@ -22,13 +20,8 @@ graphically and using descriptive statistics, combine this information
 with metadata (such as item labels and labelled values) that is derived
 from R attributes. To do so, the package relies on ‘rmarkdown’ partials,
 so you can generate HTML, PDF, and Word documents. Codebooks are also
-available as tables (CSV, Excel, etc.).
-
-## RStudio Addin
-
-Use our RStudio Addins (ideally assigned to a keyboard shortcut) to see
-and search variable and value labels in the viewer pane while you work.
-![addin\_gif](inst/codebook_addin.gif)
+available as tables (CSV, Excel,
+etc.).
 
 ## Generate markdown codebooks from the attributes of the variables in your data frame
 
@@ -36,6 +29,17 @@ RStudio and a few of the tidyverse package already usefully display the
 information contained in the attributes of the variables in your data
 frame. The [haven](https://github.com/hadley/haven) package also manages
 to grab variable documentation from SPSS or Stata files.
+
+## RStudio Addin
+
+If the RStudio data viewer scrolls slow for your taste, or you’d like to
+keep the variable labels in view while working, use our RStudio Addins
+(ideally assigned to a keyboard shortcut) to see and search variable and
+value labels in the viewer pane.
+
+![](man/figures/codebook_addin.gif)
+
+## Codebook generation
 
 The codebook package takes those attributes and the data and tries to
 produce a good-looking codebook, i.e. a place to get an overview of the
@@ -87,8 +91,8 @@ devtools::install_github("rubenarslan/codebook")
 
 To cite the package
 
-> Arslan, R. C. (2018). Automatic codebooks from metadata in R
-> (2018). URL <https://github.com/rubenarslan/codebook>.
+> Arslan, R. C. (2018). Automatic codebooks from survey metadata (2018).
+> URL <https://github.com/rubenarslan/codebook>.
 > doi:[10.5281/zenodo.1205454](https://doi.org/10.5281/zenodo.1205454)
 
 ### How to use
