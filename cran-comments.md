@@ -1,3 +1,7 @@
+## Resubmission
+* the file man/figures/codebook_adding.gif was ignored because of a leftover line in .Rbuildignore. 
+The README.md should now work.
+
 ## Submission
 * All three added RStudio Addins were tested, but tests were omitted for two 
 owing to problems with 'shinytest'.

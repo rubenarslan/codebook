@@ -1,3 +1,12 @@
+find_dfs_in_environment <- function(env = .GlobalEnv) {
+  dfs <- unlist(eapply(env,is.data.frame))
+  if (length(dfs)) {
+    names(which(dfs))
+  } else {
+    stop("No data frames in the global environment.")
+  }
+}
+
 #' Browse and search variable and value labels
 #'
 #' Same as the [codebook_browser()], but doesn't show data summaries and
@@ -30,7 +39,7 @@ label_browser_static <- function(data = NULL, viewer = rstudioapi::viewer) {
 
     # if no text selected, or not name of a dataframe, use first in global env
     if (!is.data.frame(data)) {
-      data_frames <- names(which(unlist(eapply(.GlobalEnv,is.data.frame))))
+      data_frames <- find_dfs_in_environment()
       if (length(data_frames) == 0) {
         stop("No data frame found. Make sure to select one or have one
              in your global environment.")
@@ -43,6 +52,7 @@ label_browser_static <- function(data = NULL, viewer = rstudioapi::viewer) {
     labels <- metadata(data)
     cols <- intersect(names(labels), c("name", "label", "value_labels"))
     labels <- labels[, cols, drop = FALSE]
+    labels <- dplyr::mutate_if(labels, is.character, htmltools::htmlEscape)
     if (exists("value_labels", labels)) {
       labels$value_labels <- stringr::str_replace_all(labels$value_labels,
                                                       "\n", "<br>")
@@ -112,7 +122,7 @@ codebook_browser <- function(
 
     # if no text selected, or not name of a dataframe, use first in global env
     if (!is.data.frame(data)) {
-      data_frames <- names(which(unlist(eapply(.GlobalEnv,is.data.frame))))
+      data_frames <- find_dfs_in_environment()
       if (length(data_frames) == 0) {
         stop("No data frame found. Make sure to select one or have one
              in your global environment.")
@@ -128,7 +138,7 @@ codebook_browser <- function(
     miniContentPanel(
       stableColumnLayout(
         selectInput("data", "Data", selected = defaultData, choices =
-                      names(which(unlist(eapply(.GlobalEnv,is.data.frame)))))
+                      find_dfs_in_environment())
       ),
       uiOutput("pending"),
       dataTableOutput("output")
@@ -163,6 +173,7 @@ codebook_browser <- function(
       } else {
         labels <- codebook_table(data)
       }
+      labels <- dplyr::mutate_if(labels, is.character, htmltools::htmlEscape)
 
       if (exists("value_labels", labels)) {
         labels$value_labels <- stringr::str_replace_all(labels$value_labels,
@@ -185,7 +196,7 @@ codebook_browser <- function(
     # filter = 'top',
     escape = FALSE,
     options = list(
-      searching = FALSE,
+      searching = TRUE,
       info = FALSE,
       paging = FALSE)
     )
