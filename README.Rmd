@@ -37,7 +37,7 @@ RStudio and a few of the tidyverse package already usefully display the informat
 ## RStudio Addin
 If the RStudio data viewer scrolls slow for your taste, or you'd like to keep the variable labels in view while working, use our RStudio Addins (ideally assigned to a keyboard shortcut) to see and search variable and value labels in the viewer pane. 
 
-![](man/figures/codebook_addin.gif)
+![](https://rubenarslan.github.io/codebook/reference/figures/codebook_addin.gif)
 
 ## Codebook generation
 

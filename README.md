@@ -3,10 +3,12 @@
 
 # codebook
 
-[![Travis-CI Build Status](https://travis-ci.org/rubenarslan/codebook.svg?branch=master)](https://travis-ci.org/rubenarslan/codebook) 
-[![CRAN status](http://www.r-pkg.org/badges/version-ago/codebook)](https://cran.r-project.org/package=codebook) 
-![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/codebook) 
-[![codecov](https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg)](https://codecov.io/gh/rubenarslan/codebook) 
+[![Travis-CI Build
+Status](https://travis-ci.org/rubenarslan/codebook.svg?branch=master)](https://travis-ci.org/rubenarslan/codebook)
+[![CRAN
+status](http://www.r-pkg.org/badges/version-ago/codebook)](https://cran.r-project.org/package=codebook)
+![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/codebook)
+[![codecov](https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg)](https://codecov.io/gh/rubenarslan/codebook)
 [![DOI](https://zenodo.org/badge/109252375.svg)](https://zenodo.org/badge/latestdoi/109252375)
 
 *Automatic Codebooks from Survey Metadata Encoded in Attributes*
@@ -35,9 +37,10 @@ to grab variable documentation from SPSS or Stata files.
 If the RStudio data viewer scrolls slow for your taste, or you’d like to
 keep the variable labels in view while working, use our RStudio Addins
 (ideally assigned to a keyboard shortcut) to see and search variable and
-value labels in the viewer pane.
+value labels in the viewer
+pane.
 
-![](man/figures/codebook_addin.gif)
+![](https://rubenarslan.github.io/codebook/reference/figures/codebook_addin.gif)
 
 ## Codebook generation
 
