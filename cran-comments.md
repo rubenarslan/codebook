@@ -1,6 +1,6 @@
 ## Resubmission
-* the file man/figures/codebook_adding.gif was ignored because of a leftover line in .Rbuildignore. 
-The README.md should now work.
+* I am now referencing the file man/figures/codebook_adding.gif from Github
+Pages because it's 13MB and so makes the package unduly big.
 
 ## Submission
 * All three added RStudio Addins were tested, but tests were omitted for two 
