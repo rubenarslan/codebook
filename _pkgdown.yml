@@ -27,6 +27,7 @@ reference:
   - '`compute_reliabilities`'
   - '`rescue_attributes`'
   - '`aggregate_and_document_scale`'
+  - '`reverse_labelled_values`'
 - title: Prepare data for non-codebook stuff
   desc: Functions to remove attributes that might confuse other packages
   contents:

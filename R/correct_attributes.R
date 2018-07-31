@@ -317,3 +317,46 @@ aggregate_and_document_scale <- function(items, fun = rowMeans, stem = NULL) {
                                       deparse(substitute(fun)))
   new_scale
 }
+
+
+#' Reverse labelled values
+#' reverse the underlying valus for a numeric [haven::labelled()] vector while keeping the labels correct
+#'
+#' @param x a labelled vector
+#' @return return the labelled vector with the underlying values having been reversed
+#' @export
+#' @examples
+#' x <- haven::labelled(rep(1:3, each = 3), c(Bad = 1, Good = 5))
+#' x
+#' reverse_labelled_values(x)
+reverse_labelled_values <- function(x) {
+  labels <- attributes(x)$labels
+  values <- unname(labels)
+  labels <- names(labels)
+  if (length(values) < length(unique(x)) ) {
+    # if only some values have labels (e.g. extremes), make sure we include all
+    possible_replies <- union(values, unique(x))
+  } else {
+    possible_replies <- values
+  }
+  if (!is.numeric(possible_replies)) {
+    warning(deparse(substitute(x)), " is not numeric and cannot be reversed.")
+    x
+  } else {
+    range <- min(possible_replies, na.rm = TRUE):max(possible_replies,
+                                                     na.rm = TRUE)
+    if (length(possible_replies) <
+        length(range)) {
+      possible_replies <- range
+    }
+    possible_replies <- sort(possible_replies)
+    recode_replies <- stats::setNames(
+      as.list(possible_replies), rev(possible_replies))
+    new_x <- dplyr::recode(as.numeric(x), rlang::UQS(recode_replies))
+    # cbind(new_x,x)
+    attributes(new_x) <- attributes(x)
+    attributes(new_x)$labels <- stats::setNames(rev(values), labels)
+    new_x
+  }
+}
+

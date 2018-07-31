@@ -92,9 +92,9 @@ knitr::opts_chunk$set(fig.height = old_height)
 `r indent`### Summary statistics {#`r safe_name`_summary}
 ```{r summary}
 attributes(item) <- item_attributes
-df = data.frame(item)
+df = data.frame(item, stringsAsFactors = FALSE)
 names(df) = html_item_name
-knitr::kable(codebook_table(df), escape = TRUE)
+escaped_table(codebook_table(df))
 ```
 
 `r ifelse(show_missings, paste0(indent, '### Missing value types {#', safe_name, '_missings}'), '')`

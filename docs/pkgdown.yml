@@ -3,4 +3,5 @@ pkgdown: 1.1.0
 pkgdown_sha: ~
 articles:
   codebook: codebook.html
+  codebook_labelled_manual: codebook_labelled_manual.html
 

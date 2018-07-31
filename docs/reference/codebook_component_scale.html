@@ -79,6 +79,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/codebook_labelled_manual.html">Codebook example with manual labelling</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -157,7 +169,64 @@
 #&gt; #### Scale: BFIK_open {#BFIK_open .tabset}
 #&gt; &lt;a name="BFIK_open_2"&gt;&lt;/a&gt;&lt;a name="BFIK_open_1"&gt;&lt;/a&gt;&lt;a name="BFIK_open_4"&gt;&lt;/a&gt;&lt;a name="BFIK_open_3"&gt;&lt;/a&gt;
 #&gt; 
-#&gt; ##### Reliability {#BFIK_open_reliability}
+#&gt; ##### Overview {#BFIK_open_likert}
+#&gt; 
+#&gt; __Reliability__: Cronbach's α [95% CI] = 0.53 [0.25;0.81].
+#&gt; 
+#&gt; __Missings__: 0.
+#&gt; 
+#&gt; 
+#&gt; ```r
+#&gt; old_height &lt;- knitr::opts_chunk$get("fig.height")
+#&gt; new_height &lt;- length(scale_info$scale_item_names)
+#&gt; new_height &lt;- ifelse(new_height &gt; 20, 20, new_height)
+#&gt; new_height &lt;- ifelse(new_height &lt; 1, 1, new_height)
+#&gt; new_height &lt;- ifelse(is.na(new_height) | is.nan(new_height), 
+#&gt;                      old_height, new_height)
+#&gt; knitr::opts_chunk$set(fig.height = new_height)
+#&gt; ```
+#&gt; 
+#&gt; ```r
+#&gt; likert_plot &lt;- likert_from_items(items)
+#&gt; if (!is.null(likert_plot)) {
+#&gt;   graphics::plot(likert_plot)
+#&gt; }
+#&gt; ```
+#&gt; 
+#&gt; ![plot of chunk likert](figure/BFIK_open_likert-1.png)
+#&gt; 
+#&gt; ```r
+#&gt; knitr::opts_chunk$set(fig.height = old_height)
+#&gt; ```
+#&gt; 
+#&gt; 
+#&gt; ```r
+#&gt; binwidth &lt;- mean(diff(sort(unique(scale))))
+#&gt; 
+#&gt; wrap_at &lt;- knitr::opts_chunk$get("fig.width") * 10
+#&gt; ```
+#&gt; 
+#&gt; ```r
+#&gt; dist_plot &lt;- plot_labelled(scale, scale_name, wrap_at)
+#&gt; 
+#&gt; choices &lt;- attributes(items[[1]])$item$choices
+#&gt; breaks &lt;- as.numeric(names(choices))
+#&gt; if (length(breaks)) {
+#&gt;   suppressMessages( # ignore message about overwriting x axis
+#&gt;   dist_plot &lt;- dist_plot +
+#&gt;     	ggplot2::scale_x_continuous("values", 
+#&gt; 	                            breaks = breaks, 
+#&gt; 	                            labels = stringr::str_wrap(unlist(choices), 15)) +
+#&gt;       ggplot2::expand_limits(x = range(breaks)))
+#&gt;   
+#&gt; }
+#&gt; 
+#&gt; dist_plot
+#&gt; ```
+#&gt; 
+#&gt; ![plot of chunk distribution](figure/BFIK_open_distribution-1.png)
+#&gt; 
+#&gt; ##### Reliability details {#BFIK_open_reliability}
 #&gt; 
 #&gt; ```r
 #&gt; for (i in seq_along(reliabilities)) {
@@ -285,60 +354,6 @@
 #&gt;  **BFIK_open_4**   0.03571      0      0.1429    0.3571   0.4643    0   
 #&gt; ------------------------------------------------------------------------
 #&gt; 
-#&gt; ##### Likert plot {#BFIK_open_likert}
-#&gt; 
-#&gt; 
-#&gt; ```r
-#&gt; old_height &lt;- knitr::opts_chunk$get("fig.height")
-#&gt; new_height &lt;- length(scale_info$scale_item_names)
-#&gt; new_height &lt;- ifelse(new_height &gt; 20, 20, new_height)
-#&gt; new_height &lt;- ifelse(new_height &lt; 1, 1, new_height)
-#&gt; new_height &lt;- ifelse(is.na(new_height) | is.nan(new_height), 
-#&gt;                      old_height, new_height)
-#&gt; knitr::opts_chunk$set(fig.height = new_height)
-#&gt; ```
-#&gt; 
-#&gt; ```r
-#&gt; likert_plot &lt;- likert_from_items(items)
-#&gt; if (!is.null(likert_plot)) {
-#&gt;   graphics::plot(likert_plot)
-#&gt; }
-#&gt; ```
-#&gt; 
-#&gt; ![plot of chunk likert](figure/BFIK_open_likert-1.png)
-#&gt; 
-#&gt; ```r
-#&gt; knitr::opts_chunk$set(fig.height = old_height)
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; ##### Distribution {#BFIK_open_distribution}
-#&gt; 
-#&gt; ```r
-#&gt; binwidth &lt;- mean(diff(sort(unique(scale))))
-#&gt; 
-#&gt; wrap_at &lt;- knitr::opts_chunk$get("fig.width") * 10
-#&gt; ```
-#&gt; 
-#&gt; ```r
-#&gt; dist_plot &lt;- plot_labelled(scale, scale_name, wrap_at)
-#&gt; 
-#&gt; choices &lt;- attributes(items[[1]])$item$choices
-#&gt; breaks &lt;- as.numeric(names(choices))
-#&gt; if (length(breaks)) {
-#&gt;   suppressMessages( # ignore message about overwriting x axis
-#&gt;   dist_plot &lt;- dist_plot +
-#&gt;     	ggplot2::scale_x_continuous("values", 
-#&gt; 	                            breaks = breaks, 
-#&gt; 	                            labels = stringr::str_wrap(unlist(choices), 15)) +
-#&gt;       ggplot2::expand_limits(x = range(breaks)))
-#&gt;   
-#&gt; }
-#&gt; 
-#&gt; dist_plot
-#&gt; ```
-#&gt; 
-#&gt; ![plot of chunk distribution](figure/BFIK_open_distribution-1.png)
 #&gt; 
 #&gt; ##### Summary statistics {#BFIK_open_summary}
 #&gt; 
@@ -371,47 +386,47 @@
 #&gt; 
 #&gt;  
 #&gt; ----------------------------------------------------------------------------
-#&gt;  data_type   ordered           value_labels           optional   item_order 
-#&gt; ----------- --------- ------------------------------ ---------- ------------
-#&gt;  labelled     FALSE    1. 1: Trifft überhaupt nicht      0           8      
-#&gt;                        zu, 2. 2, 3. 3, 4. 4, 5. 5:                          
-#&gt;                        Trifft voll und ganz zu, NA.                         
-#&gt;                        Item was never rendered for                          
-#&gt;                                 this user.                                  
+#&gt;  data_type           value_labels           optional   item_order   missing 
+#&gt; ----------- ------------------------------ ---------- ------------ ---------
+#&gt;   numeric    1. 1: Trifft überhaupt nicht      0           8           0    
+#&gt;              zu, 2. 2, 3. 3, 4. 4, 5. 5:                                    
+#&gt;              Trifft voll und ganz zu, NA.                                   
+#&gt;              Item was never rendered for                                    
+#&gt;                       this user.                                            
 #&gt; 
-#&gt;  labelled     FALSE    1. 1: Trifft überhaupt nicht      0           4      
-#&gt;                        zu, 2. 2, 3. 3, 4. 4, 5. 5:                          
-#&gt;                        Trifft voll und ganz zu, NA.                         
-#&gt;                        Item was never rendered for                          
-#&gt;                                 this user.                                  
+#&gt;   numeric    1. 1: Trifft überhaupt nicht      0           4           0    
+#&gt;              zu, 2. 2, 3. 3, 4. 4, 5. 5:                                    
+#&gt;              Trifft voll und ganz zu, NA.                                   
+#&gt;              Item was never rendered for                                    
+#&gt;                       this user.                                            
 #&gt; 
-#&gt;  labelled     FALSE    1. 1: Trifft überhaupt nicht      0           22     
-#&gt;                        zu, 2. 2, 3. 3, 4. 4, 5. 5:                          
-#&gt;                        Trifft voll und ganz zu, NA.                         
-#&gt;                        Item was never rendered for                          
-#&gt;                                 this user.                                  
+#&gt;   numeric    1. 1: Trifft überhaupt nicht      0           22          0    
+#&gt;              zu, 2. 2, 3. 3, 4. 4, 5. 5:                                    
+#&gt;              Trifft voll und ganz zu, NA.                                   
+#&gt;              Item was never rendered for                                    
+#&gt;                       this user.                                            
 #&gt; 
-#&gt;  labelled     FALSE    1. 1: Trifft überhaupt nicht      0           19     
-#&gt;                        zu, 2. 2, 3. 3, 4. 4, 5. 5:                          
-#&gt;                        Trifft voll und ganz zu, NA.                         
-#&gt;                        Item was never rendered for                          
-#&gt;                                 this user.                                  
+#&gt;   numeric    1. 1: Trifft überhaupt nicht      0           19          0    
+#&gt;              zu, 2. 2, 3. 3, 4. 4, 5. 5:                                    
+#&gt;              Trifft voll und ganz zu, NA.                                   
+#&gt;              Item was never rendered for                                    
+#&gt;                       this user.                                            
 #&gt; ----------------------------------------------------------------------------
 #&gt; 
 #&gt; Table: Table continues below
 #&gt; 
 #&gt;  
-#&gt; ---------------------------------------------------------------
-#&gt;  missing   complete   n    n_unique          top_counts        
-#&gt; --------- ---------- ---- ---------- --------------------------
-#&gt;     0         28      28      4       5: 16, 4: 8, 3: 3, 2: 1  
+#&gt; ----------------------------------------------------------------------
+#&gt;  complete   n    mean    sd    p0   p25   p50   p75   p100     hist   
+#&gt; ---------- ---- ------ ------ ---- ----- ----- ----- ------ ----------
+#&gt;     28      28   4.39   0.83   2     4     5     5     5     ▁▁▂▁▁▃▁▇ 
 #&gt; 
-#&gt;     0         28      28      4       4: 15, 5: 10, 3: 2, 2: 1 
+#&gt;     28      28   4.21   0.74   2     4     4     5     5     ▁▁▁▁▁▇▁▅ 
 #&gt; 
-#&gt;     0         28      28      4       5: 14, 4: 8, 3: 4, 2: 2  
+#&gt;     28      28   4.21   0.96   2     4    4.5    5     5     ▁▁▂▁▁▅▁▇ 
 #&gt; 
-#&gt;     0         28      28      4       5: 13, 4: 10, 3: 4, 1: 1 
-#&gt; ---------------------------------------------------------------</div></pre>
+#&gt;     28      28   4.21   0.96   1     4     4     5     5     ▁▁▁▂▁▆▁▇ 
+#&gt; ----------------------------------------------------------------------</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

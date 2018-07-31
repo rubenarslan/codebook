@@ -126,7 +126,8 @@ modified <- function(survey, variable = "modified") {
 
 export_table <- function(df) {
   DT::datatable(df, filter = "top", extensions = 'Buttons',
-                escape = setdiff(names(df), c('name', 'value_labels')),
+                escape = FALSE,
+                rownames = FALSE,
                 options = list(
                   dom = 'Bfrtip',
                   buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),

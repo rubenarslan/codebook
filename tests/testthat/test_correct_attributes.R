@@ -203,3 +203,33 @@ test_that("scale aggregation", {
   expect_identical(attributes(testdf$bfi_neuro)$label,
                    "4  items aggregated by rowMeans")
 })
+
+
+
+test_that("reverse labelled values", {
+  x <- haven::labelled(rep(1:3, each = 3), c(Bad = 1, Good = 5))
+  expect_silent(reversed <- reverse_labelled_values(x))
+  expect_identical(attributes(reversed)$labels, c(Bad = 5, Good = 1))
+  expect_equal(reversed[[1]], 5)
+  expect_equal(reversed[[4]], 4)
+  expect_equal(reversed[[9]], 3)
+
+  x <- haven::labelled(rep(1:3, each = 3), c(Bad = 1, Medium = 2, Good = 3))
+  expect_silent(reversed <- reverse_labelled_values(x))
+  expect_identical(attributes(reversed)$labels,
+                   c(Bad = 3, Medium = 2, Good = 1))
+  expect_equal(reversed[[1]], 3)
+  expect_equal(reversed[[4]], 2)
+  expect_equal(reversed[[9]], 1)
+
+  x <- haven::labelled(rep(1:3, each = 3), c(Missing = NA_real_))
+  expect_silent(reversed <- reverse_labelled_values(x))
+  expect_identical(attributes(reversed)$labels, c(Missing = NA_real_))
+  expect_equal(reversed[[1]], 3)
+  expect_equal(reversed[[4]], 2)
+  expect_equal(reversed[[9]], 1)
+
+  x <- haven::labelled(c("herp", "derp", "jerk"), c("Herpetologist" = "herp"))
+  expect_warning(reversed <- reverse_labelled_values(x))
+  expect_identical(x, reversed)
+})

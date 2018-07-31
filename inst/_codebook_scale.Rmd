@@ -17,15 +17,11 @@ scale_info <- recursive_escape(attributes(scale))
 `r indent`## Scale: `r html_scale_name` {#`r safe_name` .tabset}
 `r paste0('<a name="', scale_info$scale_item_names, '"></a>', collapse = '', sep = '')`
 
-`r indent`### Reliability {#`r safe_name`_reliability}
-```{r reliability, results='asis'}
-for (i in seq_along(reliabilities)) {
-  rel <- reliabilities[[i]]
-  cat(knitr::knit_print(rel, indent = paste0(indent, "####")))
-}
-```
+`r indent`### Overview {#`r safe_name`_likert}
 
-`r indent`### Likert plot {#`r safe_name`_likert}
+__Reliability__: `r pull_reliability(reliabilities)`.
+
+__Missings__: `r sum(is.na(scale))`.
 
 ```{r likert_setup}
 old_height <- knitr::opts_chunk$get("fig.height")
@@ -44,8 +40,6 @@ if (!is.null(likert_plot)) {
 knitr::opts_chunk$set(fig.height = old_height)
 ```
 
-
-`r indent`### Distribution {#`r safe_name`_distribution}
 ```{r setup_distribution}
 binwidth <- mean(diff(sort(unique(scale))))
 
@@ -69,10 +63,19 @@ if (length(breaks)) {
 dist_plot
 ```
 
+`r indent`### Reliability details {#`r safe_name`_reliability}
+```{r reliability, results='asis'}
+for (i in seq_along(reliabilities)) {
+  rel <- reliabilities[[i]]
+  cat(knitr::knit_print(rel, indent = paste0(indent, "####")))
+}
+```
+
+
 `r indent`### Summary statistics {#`r safe_name`_summary}
 ```{r summary}
 for (i in seq_along(names(items))) {
   attributes(items[[i]]) = recursive_escape(attributes(items[[i]]))
 }
-pander::pander(codebook_table(items))
+escaped_table(codebook_table(items))
 ```

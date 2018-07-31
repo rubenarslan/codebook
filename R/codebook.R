@@ -1,5 +1,9 @@
 .data <- rlang::.data
 
+no_md <- function() {
+  knitr::asis_output('')
+}
+
 #' Generate rmarkdown codebook
 #'
 #' Pass a data frame to this function to make a codebook for that dataset.
@@ -88,7 +92,7 @@ codebook <- function(results, reliabilities = NULL,
         exists("modified", results)) {
     survey_overview <- codebook_survey_overview(results, survey_repetition)
   } else {
-    survey_overview <- ''
+    survey_overview <- no_md()
   }
 
   scales_items <- new.env()
@@ -137,18 +141,18 @@ codebook <- function(results, reliabilities = NULL,
   if (missingness_report) {
     missingness_report <- codebook_missingness(results, indent = indent)
   } else {
-    missingness_report <- ''
+    missingness_report <- no_md()
   }
 
   if (metadata_table) {
     items <- codebook_items(results, indent = indent)
   } else {
-    items <- ''
+    items <- no_md()
   }
   if (metadata_json) {
     jsonld <- metadata_jsonld(results)
   } else {
-    jsonld <- ''
+    jsonld <- no_md()
   }
 
   asis_knit_child(require_file("_codebook.Rmd"), options = options)
@@ -276,10 +280,6 @@ codebook_items <- function(results, indent = "##") {
   metadata_table <- dplyr::mutate(metadata_table,
          name = paste0('<a href="#', safe_name(.data$name), '">',
                        recursive_escape(.data$name), '</a>'))
-  if (exists("value_labels", metadata_table)) {
-    metadata_table$value_labels <- gsub(pattern = "\n", replacement = "<br>",
-                                x = metadata_table$value_labels)
-  }
 
   # bit ugly to suppress warnings here, but necessary for escaping whatever
   # columns there may be
@@ -288,7 +288,29 @@ codebook_items <- function(results, indent = "##") {
     dplyr::one_of("label", "scale_item_names", "value_labels", "showif")),
     dplyr::funs(recursive_escape)) )
 
+  if (exists("value_labels", metadata_table)) {
+    metadata_table$value_labels <- stringr::str_replace_all(
+      metadata_table$value_labels, "\n", "<br>")
+  }
+  if (exists("label", metadata_table)) {
+    metadata_table$label <- stringr::str_replace_all(
+      metadata_table$label, "\n", "<br>")
+  }
+
   asis_knit_child(require_file("_codebook_items.Rmd"), options = options)
+}
+
+escaped_table <- function(metadata_table) {
+  if (exists("value_labels", metadata_table)) {
+    metadata_table$value_labels <- stringr::str_replace_all(
+      metadata_table$value_labels, "\n", "<br>")
+  }
+  if (exists("label", metadata_table)) {
+    metadata_table$label <- stringr::str_replace_all(
+      metadata_table$label, "\n", "<br>")
+  }
+
+  knitr::kable(metadata_table, escape = FALSE)
 }
 
 #' Codebook component for scales
@@ -530,13 +552,14 @@ metadata_list <- function(results) {
 }
 
 
-skim_to_wide_labelled <- function(...) {
+skim_to_wide_labelled <- function(x, ...) {
+  x <- haven::zap_labels(x)
   suppressMessages(
     skimr::skim_with(labelled = skimr::get_skimmers()$factor,
                      labelled_spss = skimr::get_skimmers()$factor)
   )
   on.exit(skimr::skim_with_defaults())
-  skimr::skim_to_wide(...)
+  skimr::skim_to_wide(x, ...)
 }
 
 

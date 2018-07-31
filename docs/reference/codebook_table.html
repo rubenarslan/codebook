@@ -80,6 +80,18 @@ with data summaries generated using skimr::skim_to_wide()" />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/codebook_labelled_manual.html">Codebook example with manual labelling</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -190,36 +202,36 @@ with data summaries generated using <code><a href='http://www.rdocumentation.org
 #&gt; 27                      4 BFIK_consc items averaged with aggregation_function
 #&gt; 28                      4 BFIK_extra items averaged with aggregation_function
 #&gt; 29                      3 BFIK_neuro items averaged with aggregation_function
-#&gt;             type type_options data_type ordered
-#&gt; 1           &lt;NA&gt;           NA character    &lt;NA&gt;
-#&gt; 2           &lt;NA&gt;           NA   POSIXct    &lt;NA&gt;
-#&gt; 3           &lt;NA&gt;           NA   POSIXct    &lt;NA&gt;
-#&gt; 4           &lt;NA&gt;           NA   POSIXct    &lt;NA&gt;
-#&gt; 5           &lt;NA&gt;           NA   logical    &lt;NA&gt;
-#&gt; 6  rating_button            5  labelled   FALSE
-#&gt; 7  rating_button            5  labelled   FALSE
-#&gt; 8  rating_button            5  labelled   FALSE
-#&gt; 9  rating_button            5  labelled   FALSE
-#&gt; 10 rating_button            5  labelled   FALSE
-#&gt; 11 rating_button            5  labelled   FALSE
-#&gt; 12 rating_button            5  labelled   FALSE
-#&gt; 13 rating_button            5  labelled   FALSE
-#&gt; 14 rating_button            5  labelled   FALSE
-#&gt; 15 rating_button            5  labelled   FALSE
-#&gt; 16 rating_button            5  labelled   FALSE
-#&gt; 17 rating_button            5  labelled   FALSE
-#&gt; 18 rating_button            5  labelled   FALSE
-#&gt; 19 rating_button            5  labelled   FALSE
-#&gt; 20 rating_button            5  labelled   FALSE
-#&gt; 21 rating_button            5  labelled   FALSE
-#&gt; 22 rating_button            5  labelled   FALSE
-#&gt; 23 rating_button            5  labelled   FALSE
-#&gt; 24 rating_button            5  labelled   FALSE
-#&gt; 25          &lt;NA&gt;           NA   numeric    &lt;NA&gt;
-#&gt; 26          &lt;NA&gt;           NA   numeric    &lt;NA&gt;
-#&gt; 27          &lt;NA&gt;           NA   numeric    &lt;NA&gt;
-#&gt; 28          &lt;NA&gt;           NA   numeric    &lt;NA&gt;
-#&gt; 29          &lt;NA&gt;           NA   numeric    &lt;NA&gt;
+#&gt;             type type_options data_type
+#&gt; 1           &lt;NA&gt;           NA character
+#&gt; 2           &lt;NA&gt;           NA   POSIXct
+#&gt; 3           &lt;NA&gt;           NA   POSIXct
+#&gt; 4           &lt;NA&gt;           NA   POSIXct
+#&gt; 5           &lt;NA&gt;           NA   logical
+#&gt; 6  rating_button            5   numeric
+#&gt; 7  rating_button            5   numeric
+#&gt; 8  rating_button            5   numeric
+#&gt; 9  rating_button            5   numeric
+#&gt; 10 rating_button            5   numeric
+#&gt; 11 rating_button            5   numeric
+#&gt; 12 rating_button            5   numeric
+#&gt; 13 rating_button            5   numeric
+#&gt; 14 rating_button            5   numeric
+#&gt; 15 rating_button            5   numeric
+#&gt; 16 rating_button            5   numeric
+#&gt; 17 rating_button            5   numeric
+#&gt; 18 rating_button            5   numeric
+#&gt; 19 rating_button            5   numeric
+#&gt; 20 rating_button            5   numeric
+#&gt; 21 rating_button            5   numeric
+#&gt; 22 rating_button            5   numeric
+#&gt; 23 rating_button            5   numeric
+#&gt; 24 rating_button            5   numeric
+#&gt; 25          &lt;NA&gt;           NA   numeric
+#&gt; 26          &lt;NA&gt;           NA   numeric
+#&gt; 27          &lt;NA&gt;           NA   numeric
+#&gt; 28          &lt;NA&gt;           NA   numeric
+#&gt; 29          &lt;NA&gt;           NA   numeric
 #&gt;                                                                                                                         value_labels
 #&gt; 1                                                                                                                               &lt;NA&gt;
 #&gt; 2                                                                                                                               &lt;NA&gt;
@@ -280,66 +292,66 @@ with data summaries generated using <code><a href='http://www.rdocumentation.org
 #&gt; 27       NA   BFIK_consc_3, BFIK_consc_4, BFIK_consc_2R, BFIK_consc_1
 #&gt; 28       NA  BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R
 #&gt; 29       NA                 BFIK_neuro_2R, BFIK_neuro_3, BFIK_neuro_4
-#&gt;    item_order missing complete  n empty n_unique               top_counts count
-#&gt; 1          NA       0       28 28     0       28                     &lt;NA&gt;  &lt;NA&gt;
-#&gt; 2          NA       0       28 28  &lt;NA&gt;       28                     &lt;NA&gt;  &lt;NA&gt;
-#&gt; 3          NA       0       28 28  &lt;NA&gt;       28                     &lt;NA&gt;  &lt;NA&gt;
-#&gt; 4          NA       0       28 28  &lt;NA&gt;       28                     &lt;NA&gt;  &lt;NA&gt;
-#&gt; 5          NA      28        0 28  &lt;NA&gt;     &lt;NA&gt;                     &lt;NA&gt;    28
-#&gt; 6           4       0       28 28  &lt;NA&gt;        4 4: 15, 5: 10, 3: 2, 2: 1  &lt;NA&gt;
-#&gt; 7           5       0       28 28  &lt;NA&gt;        5  2: 11, 4: 7, 3: 5, 5: 3  &lt;NA&gt;
-#&gt; 8           6       0       28 28  &lt;NA&gt;        4 5: 13, 4: 11, 1: 2, 3: 2  &lt;NA&gt;
-#&gt; 9           7       0       28 28  &lt;NA&gt;        4  2: 11, 4: 9, 3: 7, 5: 1  &lt;NA&gt;
-#&gt; 10          8       0       28 28  &lt;NA&gt;        4  5: 16, 4: 8, 3: 3, 2: 1  &lt;NA&gt;
-#&gt; 11          9       0       28 28  &lt;NA&gt;        4  3: 10, 4: 9, 2: 8, 5: 1  &lt;NA&gt;
-#&gt; 12         10       0       28 28  &lt;NA&gt;        5  4: 12, 3: 7, 2: 4, 5: 4  &lt;NA&gt;
-#&gt; 13         11       0       28 28  &lt;NA&gt;        4  4: 15, 3: 7, 5: 5, 2: 1  &lt;NA&gt;
-#&gt; 14         12       0       28 28  &lt;NA&gt;        5  4: 12, 1: 5, 3: 5, 2: 3  &lt;NA&gt;
-#&gt; 15         13       0       28 28  &lt;NA&gt;        5   2: 9, 4: 8, 3: 4, 5: 4  &lt;NA&gt;
-#&gt; 16         14       0       28 28  &lt;NA&gt;        5   4: 9, 5: 9, 3: 6, 1: 2  &lt;NA&gt;
-#&gt; 17         15       0       28 28  &lt;NA&gt;        5   3: 8, 2: 7, 4: 5, 5: 5  &lt;NA&gt;
-#&gt; 18         16       0       28 28  &lt;NA&gt;        4   2: 9, 4: 9, 1: 7, 3: 3  &lt;NA&gt;
-#&gt; 19         17       0       28 28  &lt;NA&gt;        5   4: 9, 5: 7, 2: 5, 3: 5  &lt;NA&gt;
-#&gt; 20         18       0       28 28  &lt;NA&gt;        4 4: 12, 5: 10, 3: 4, 2: 2  &lt;NA&gt;
-#&gt; 21         19       0       28 28  &lt;NA&gt;        4 5: 13, 4: 10, 3: 4, 1: 1  &lt;NA&gt;
-#&gt; 22         20       0       28 28  &lt;NA&gt;        5  4: 11, 5: 9, 3: 4, 2: 3  &lt;NA&gt;
-#&gt; 23         21       0       28 28  &lt;NA&gt;        5   4: 8, 5: 8, 3: 6, 2: 5  &lt;NA&gt;
-#&gt; 24         22       0       28 28  &lt;NA&gt;        4  5: 14, 4: 8, 3: 4, 2: 2  &lt;NA&gt;
-#&gt; 25         NA       0       28 28  &lt;NA&gt;     &lt;NA&gt;                     &lt;NA&gt;  &lt;NA&gt;
-#&gt; 26         NA       0       28 28  &lt;NA&gt;     &lt;NA&gt;                     &lt;NA&gt;  &lt;NA&gt;
-#&gt; 27         NA       0       28 28  &lt;NA&gt;     &lt;NA&gt;                     &lt;NA&gt;  &lt;NA&gt;
-#&gt; 28         NA       0       28 28  &lt;NA&gt;     &lt;NA&gt;                     &lt;NA&gt;  &lt;NA&gt;
-#&gt; 29         NA       0       28 28  &lt;NA&gt;     &lt;NA&gt;                     &lt;NA&gt;  &lt;NA&gt;
-#&gt;        median        min        max mean   sd   p0  p25  p50  p75 p100     hist
-#&gt; 1        &lt;NA&gt;         64         64 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 2  2016-07-08 2016-07-08 2016-11-02 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 3  2016-07-08 2016-07-08 2016-11-02 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 4  2016-07-08 2016-07-08 2016-11-02 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 5        &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;  NaN &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 6        &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 7        &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 8        &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 9        &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 10       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 11       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 12       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 13       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 14       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 15       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 16       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 17       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 18       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 19       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 20       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 21       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 22       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 23       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 24       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 25       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; 3.12 0.93 1.5  2.25 3    4    4.75 ▂▇▂▇▃▁▅▅
-#&gt; 26       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; 4.26 0.56 3    3.94 4.25 4.75 5    ▃▂▂▁▇▃▇▂
-#&gt; 27       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; 3.65 0.79 2    3.12 3.75 4.25 5    ▂▃▁▃▃▇▂▂
-#&gt; 28       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; 3.85 1.01 1.5  3.25 4.25 4.56 5    ▂▁▂▃▁▃▇▇
-#&gt; 29       &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt; 2.89 0.93 1.33 2    2.83 3.42 4.33 ▅▅▂▅▃▅▁▇</div></pre>
+#&gt;    item_order missing complete  n empty n_unique count     median        min
+#&gt; 1          NA       0       28 28     0       28  &lt;NA&gt;       &lt;NA&gt;         64
+#&gt; 2          NA       0       28 28  &lt;NA&gt;       28  &lt;NA&gt; 2016-07-08 2016-07-08
+#&gt; 3          NA       0       28 28  &lt;NA&gt;       28  &lt;NA&gt; 2016-07-08 2016-07-08
+#&gt; 4          NA       0       28 28  &lt;NA&gt;       28  &lt;NA&gt; 2016-07-08 2016-07-08
+#&gt; 5          NA      28        0 28  &lt;NA&gt;     &lt;NA&gt;    28       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 6           4       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 7           5       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 8           6       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 9           7       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 10          8       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 11          9       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 12         10       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 13         11       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 14         12       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 15         13       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 16         14       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 17         15       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 18         16       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 19         17       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 20         18       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 21         19       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 22         20       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 23         21       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 24         22       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 25         NA       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 26         NA       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 27         NA       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 28         NA       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt; 29         NA       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
+#&gt;           max mean   sd   p0  p25  p50  p75 p100     hist
+#&gt; 1          64 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 2  2016-11-02 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 3  2016-11-02 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 4  2016-11-02 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 5        &lt;NA&gt;  NaN &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
+#&gt; 6        &lt;NA&gt; 4.21 0.74 2    4    4    5    5    ▁▁▁▁▁▇▁▅
+#&gt; 7        &lt;NA&gt; 2.93 1.18 1    2    3    4    5    ▂▇▁▃▁▅▁▂
+#&gt; 8        &lt;NA&gt; 4.18 1.09 1    4    4    5    5    ▁▁▁▁▁▇▁▇
+#&gt; 9        &lt;NA&gt; 3    0.94 2    2    3    4    5    ▇▁▅▁▁▆▁▁
+#&gt; 10       &lt;NA&gt; 4.39 0.83 2    4    5    5    5    ▁▁▂▁▁▃▁▇
+#&gt; 11       &lt;NA&gt; 3.11 0.88 2    2    3    4    5    ▆▁▇▁▁▇▁▁
+#&gt; 12       &lt;NA&gt; 3.5  1.04 1    3    4    4    5    ▁▂▁▅▁▇▁▂
+#&gt; 13       &lt;NA&gt; 3.86 0.76 2    3    4    4    5    ▁▁▃▁▁▇▁▂
+#&gt; 14       &lt;NA&gt; 3.18 1.31 1    2    4    4    5    ▃▂▁▃▁▇▁▂
+#&gt; 15       &lt;NA&gt; 3.04 1.29 1    2    3    4    5    ▂▇▁▃▁▇▁▃
+#&gt; 16       &lt;NA&gt; 3.75 1.21 1    3    4    5    5    ▂▂▁▅▁▇▁▇
+#&gt; 17       &lt;NA&gt; 3.07 1.27 1    2    3    4    5    ▃▇▁▇▁▅▁▅
+#&gt; 18       &lt;NA&gt; 2.5  1.2  1    1.75 2    4    4    ▆▁▇▁▁▂▁▇
+#&gt; 19       &lt;NA&gt; 3.5  1.26 1    2.75 4    4.25 5    ▂▅▁▅▁▇▁▆
+#&gt; 20       &lt;NA&gt; 4.07 0.9  2    4    4    5    5    ▁▁▂▁▁▇▁▇
+#&gt; 21       &lt;NA&gt; 4.21 0.96 1    4    4    5    5    ▁▁▁▂▁▆▁▇
+#&gt; 22       &lt;NA&gt; 3.86 1.11 1    3    4    5    5    ▁▂▁▃▁▇▁▆
+#&gt; 23       &lt;NA&gt; 3.61 1.2  1    3    4    5    5    ▁▅▁▆▁▇▁▇
+#&gt; 24       &lt;NA&gt; 4.21 0.96 2    4    4.5  5    5    ▁▁▂▁▁▅▁▇
+#&gt; 25       &lt;NA&gt; 3.12 0.93 1.5  2.25 3    4    4.75 ▂▇▂▇▃▁▅▅
+#&gt; 26       &lt;NA&gt; 4.26 0.56 3    3.94 4.25 4.75 5    ▃▂▂▁▇▃▇▂
+#&gt; 27       &lt;NA&gt; 3.65 0.79 2    3.12 3.75 4.25 5    ▂▃▁▃▃▇▂▂
+#&gt; 28       &lt;NA&gt; 3.85 1.01 1.5  3.25 4.25 4.56 5    ▂▁▂▃▁▃▇▇
+#&gt; 29       &lt;NA&gt; 2.89 0.93 1.33 2    2.83 3.42 4.33 ▅▅▂▅▃▅▁▇</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

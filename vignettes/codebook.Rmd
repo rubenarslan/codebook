@@ -9,8 +9,12 @@ output:
     toc_float: true
     code_folding: 'hide'
     self_contained: true
+    fig_width: 7
+    fig_height: 7
+    fig_retina: null
 vignette: >
-  %\VignetteIndexEntry{Codebook example formr}
+  %\VignetteIndexEntry{Example with metadata from formr.org}
+  \%VignetteKeyword{codebook}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -34,15 +38,26 @@ your codebook as an HTML file online, this metadata should make it easier for ot
 to find your data.
 
 ```{r}
+knit_by_pkgdown <- !is.null(knitr::opts_chunk$get("fig.retina"))
 knitr::opts_chunk$set(warning = TRUE, message = TRUE, error = TRUE, echo = FALSE)
 pander::panderOptions("table.split.table", Inf)
+ggplot2::theme_set(ggplot2::theme_bw())
+
 library(codebook)
 data("bfi", package = 'codebook')
 bfi$age <- rpois(nrow(bfi), 30)
-ggplot2::theme_set(ggplot2::theme_bw())
-pander::panderOptions("table.split.table", Inf)
+library(labelled)
+var_label(bfi$age) <- "Alter"
 ```
 
 ```{r cb}
-codebook(bfi)
+codebook(bfi, metadata_table = knit_by_pkgdown, metadata_json = knit_by_pkgdown)
+```
+
+
+`r ifelse(knit_by_pkgdown, '', '### Codebook table')
+```{r}
+if (!knit_by_pkgdown) {
+  codebook:::escaped_table(codebook_table(bfi))
+}
 ```

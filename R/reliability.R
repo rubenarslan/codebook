@@ -100,3 +100,17 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
     )
   }
 }
+
+pull_reliability <- function(rels) {
+  if (length(rels) == 0) {
+    "Not computed"
+  } else if (length(rels) == 1 && "alpha" %in% class(rels[[1]])) {
+    x <- rels[[1]]
+    paste0("Cronbach's \u03B1 [95% CI] = ", round(x$total$raw_alpha, 2), " [",
+           round(x$total$raw_alpha - 1.96 * x$total$ase, 2), ";",
+           round(x$total$raw_alpha + 1.96 * x$total$ase, 2), "]")
+  } else {
+    "See details tab"
+  }
+
+}

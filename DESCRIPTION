@@ -38,6 +38,7 @@ Imports:
     purrr,
     htmltools,
     labeling,
+    labelled,
     rio,
     shiny (>= 0.13),
     miniUI (>= 0.1.1),

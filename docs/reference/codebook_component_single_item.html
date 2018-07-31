@@ -79,6 +79,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/codebook_labelled_manual.html">Codebook example with manual labelling</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -227,21 +239,16 @@
 #&gt; 
 #&gt; ```r
 #&gt; attributes(item) &lt;- item_attributes
-#&gt; df = data.frame(item)
+#&gt; df = data.frame(item, stringsAsFactors = FALSE)
 #&gt; names(df) = html_item_name
-#&gt; knitr::kable(codebook_table(df), escape = TRUE)
+#&gt; escaped_table(codebook_table(df))
 #&gt; ```
 #&gt; 
 #&gt; 
 #&gt; 
-#&gt; |name        |label                                |type          | type_options|data_type |ordered |value_labels                                                                                                                 | optional| item_order|missing |complete |n  |n_unique |top_counts              |
-#&gt; |:-----------|:------------------------------------|:-------------|------------:|:---------|:-------|:----------------------------------------------------------------------------------------------------------------------------|--------:|----------:|:-------|:--------|:--|:--------|:-----------------------|
-#&gt; |BFIK_open_1 |__Ich bin vielseitig interessiert.__ |rating_button |            5|labelled  |FALSE   |1. 1: Trifft überhaupt nicht zu,
-#&gt; 2. 2,
-#&gt; 3. 3,
-#&gt; 4. 4,
-#&gt; 5. 5: Trifft voll und ganz zu,
-#&gt; NA. Item was never rendered for this user. |        0|          8|0       |28       |28 |4        |5: 16, 4: 8, 3: 3, 2: 1 |
+#&gt; |name        |label                                |type          | type_options|data_type |value_labels                                                                                                                                | optional| item_order|missing |complete |n  |mean |sd   |p0 |p25 |p50 |p75 |p100 |hist     |
+#&gt; |:-----------|:------------------------------------|:-------------|------------:|:---------|:-------------------------------------------------------------------------------------------------------------------------------------------|--------:|----------:|:-------|:--------|:--|:----|:----|:--|:---|:---|:---|:----|:--------|
+#&gt; |BFIK_open_1 |__Ich bin vielseitig interessiert.__ |rating_button |            5|numeric   |1. 1: Trifft überhaupt nicht zu,&lt;br&gt;2. 2,&lt;br&gt;3. 3,&lt;br&gt;4. 4,&lt;br&gt;5. 5: Trifft voll und ganz zu,&lt;br&gt;NA. Item was never rendered for this user. |        0|          8|0       |28       |28 |4.39 |0.83 |2  |4   |5   |5   |5    |▁▁▂▁▁▃▁▇ |
 #&gt; 
 #&gt; 
 #&gt; 

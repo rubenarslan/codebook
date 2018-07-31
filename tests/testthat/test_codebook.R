@@ -154,7 +154,7 @@ test_that("HTML is escaped", {
   attributes(funnybiz$`Not <s>struck</s> item name`)$item$choices[[1]] <-
     "Not <s>struck</s> value label"
    attributes(funnybiz$`Not <s>struck</s> item name`)$item$showif <-
-    c("1" = "Not <s>struck</s> showif")
+    "Not <s>struck</s> showif"
 
   funnybiz$`Not <s>struck</s> item name 2` <-
     funnybiz$`Not <s>struck</s> item name`
@@ -177,7 +177,7 @@ codebook(codebook_data, survey_repetition = 'single',
 ```
 "))
   html <- paste(readLines(html), collapse = "\n")
-  # browseURL("codebook.html")
+  browseURL("codebook.html")
   # browseURL(dir)
   expect_failure(
     expect_match(html, "Not <s>struck</s> item name", fixed = TRUE))
@@ -269,10 +269,10 @@ test_that("codebook table generation", {
   bfi$age <- 1:nrow(bfi)
   expect_silent(cb <- codebook_table(bfi))
   expect_identical(names(cb),
-    c("name", "label", "type", "type_options", "data_type", "ordered",
+    c("name", "label", "type", "type_options", "data_type",
       "value_labels", "optional", "scale_item_names", "item_order",
       "missing", "complete", "n",  "empty", "n_unique",
-      "top_counts", "count", "median", "min", "max", "mean", "sd",
+      "count", "median", "min", "max", "mean", "sd",
       "p0", "p25", "p50", "p75", "p100", "hist"))
   expect_equal(nrow(cb), ncol(bfi))
   expect_identical(cb$name, names(bfi))
