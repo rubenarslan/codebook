@@ -28,11 +28,14 @@ reference:
   - '`rescue_attributes`'
   - '`aggregate_and_document_scale`'
   - '`reverse_labelled_values`'
+  - '`has_label`'
+  - '`has_labels`'
 - title: Prepare data for non-codebook stuff
   desc: Functions to remove attributes that might confuse other packages
   contents:
   - '`zap_attributes`'
   - '`zap_label`'
+  - '`zap_labelled`'
 - title: Functions for rmarkdown partials
   desc: Make rmarkdown partials whether in interactive mode or not
   contents:

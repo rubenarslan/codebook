@@ -86,6 +86,15 @@
     <li>
       <a href="../articles/codebook_labelled_manual.html">Codebook example with manual labelling</a>
     </li>
+    <li>
+      <a href="../articles/codebook_nested_scale.html">Codebook example with nested scales</a>
+    </li>
+    <li>
+      <a href="../articles/codebook_qualtrics.html">Codebook example with Qualtrics dataset</a>
+    </li>
+    <li>
+      <a href="../articles/codebook_sav.html">Codebook example with SPSS dataset</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -116,13 +125,33 @@
       <small>Source: <a href='https://github.com/rubenarslan/codebook/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="codebook-0-6-0" class="section level1">
+    <div id="codebook-0-6-3" class="section level1">
 <h1 class="page-header">
-<a href="#codebook-0-6-0" class="anchor"></a>codebook 0.6.0<small> Unreleased </small>
+<a href="#codebook-0-6-3" class="anchor"></a>codebook 0.6.3<small> Unreleased </small>
 </h1>
 <div id="additions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#additions" class="anchor"></a>Additions</h2>
+<ul>
+<li>Vignettes for
+<ul>
+<li>documenting the expected attribute structure, how to add metadata in R</li>
+<li>importing metadata from SPSS or Stata files</li>
+<li>importing metadata from Qualtrics</li>
+</ul>
+</li>
+<li>
+</li>
+</ul>
+</div>
+</div>
+    <div id="codebook-0-6-2" class="section level1">
+<h1 class="page-header">
+<a href="#codebook-0-6-2" class="anchor"></a>codebook 0.6.2<small> 2018-07-26 </small>
+</h1>
+<div id="additions-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#additions-1" class="anchor"></a>Additions</h2>
 <ul>
 <li>Three RStudio Addin Shinyapps to browse variable labels and codebook.</li>
 </ul>
@@ -139,9 +168,9 @@
 <h1 class="page-header">
 <a href="#codebook-0-5-9" class="anchor"></a>codebook 0.5.9<small> 2018-05-22 </small>
 </h1>
-<div id="additions-1" class="section level2">
+<div id="additions-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#additions-1" class="anchor"></a>Additions</h2>
+<a href="#additions-2" class="anchor"></a>Additions</h2>
 <ul>
 <li>plot_labelled now makes better plots for numeric variables</li>
 <li>codebook generation has been parallelised using the future package. By calling e.g. <code>plan(multicore(workers = 4))</code> before the codebook function, the computation of reliabilities and the generation of scale and item summaries will happen in parallel. For this to work with plots, you have to choose a graphics device in knitr that supports parallelisation, by calling e.g. <code>opts_chunk$set(dev = "CairoPNG")</code>.</li>
@@ -212,7 +241,8 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#codebook-0-6-0">0.6.0</a></li>
+        <li><a href="#codebook-0-6-3">0.6.3</a></li>
+        <li><a href="#codebook-0-6-2">0.6.2</a></li>
         <li><a href="#codebook-0-5-9">0.5.9</a></li>
         <li><a href="#codebook-0-5-8">0.5.8</a></li>
         <li><a href="#codebook-0-5-7">0.5.7</a></li>

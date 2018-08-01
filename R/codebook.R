@@ -435,7 +435,16 @@ attribute_summary <- function(var) {
       }
     }
   }
-  if (exists("labels", x)) {
+  if (exists("levels", x)) {
+    x$value_labels <- paste(paste0(seq_len(length(x$levels)), ". ", x$levels),
+                              collapse = ",\n")
+    x$levels <- NULL
+    # remove extremely deep qualtrics choices attributes
+    if (exists("item", x) && exists("choices", x$item)
+        && exists("variableName", x$item$choices[[1]])) {
+      x$item$choices <- NULL
+    }
+  } else if (exists("labels", x)) {
     if (!is.null(names(x$labels))) {
       x$value_labels <- paste(paste0(x$labels, ". ", names(x$labels)),
                               collapse = ",\n")

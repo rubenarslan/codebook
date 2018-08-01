@@ -12,3 +12,7 @@ zap_label(x)
 \description{
 Modelled on \code{\link[haven:zap_labels]{haven::zap_labels()}}, zaps variable labels (not value labels).
 }
+\examples{
+x <- haven::labelled(rep(1:5, each = 1), c(Bad = 1, Good = 5))
+zap_label(x)
+}

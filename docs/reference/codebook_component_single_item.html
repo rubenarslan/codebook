@@ -89,6 +89,15 @@
     <li>
       <a href="../articles/codebook_labelled_manual.html">Codebook example with manual labelling</a>
     </li>
+    <li>
+      <a href="../articles/codebook_nested_scale.html">Codebook example with nested scales</a>
+    </li>
+    <li>
+      <a href="../articles/codebook_qualtrics.html">Codebook example with Qualtrics dataset</a>
+    </li>
+    <li>
+      <a href="../articles/codebook_sav.html">Codebook example with SPSS dataset</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -163,7 +172,7 @@
 #&gt; 
 #&gt; ```r
 #&gt; show_missings &lt;- FALSE
-#&gt; if (haven::is.labelled(item)) {
+#&gt; if (has_label(item)) {
 #&gt;   missings &lt;- item[is.na(haven::zap_missing(item))]
 #&gt;   attributes(missings) &lt;- attributes(item)
 #&gt;   if (!is.null(attributes(item)$labels)) {

@@ -177,7 +177,7 @@ codebook(codebook_data, survey_repetition = 'single',
 ```
 "))
   html <- paste(readLines(html), collapse = "\n")
-  browseURL("codebook.html")
+  # browseURL("codebook.html")
   # browseURL(dir)
   expect_failure(
     expect_match(html, "Not <s>struck</s> item name", fixed = TRUE))

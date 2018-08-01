@@ -1,0 +1,60 @@
+---
+title: "Codebook example with SPSS dataset"
+author: "Ruben Arslan"
+date: "`r Sys.Date()`"
+output:
+  html_vignette:
+    fig_width: 7
+    fig_height: 6
+vignette: >
+  %\VignetteIndexEntry{Example with SPSS dataset}
+  \%VignetteKeyword{manual}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r message = FALSE}
+knit_by_pkgdown <- !is.null(knitr::opts_chunk$get("fig.retina"))
+pander::panderOptions("table.split.table", Inf)
+ggplot2::theme_set(ggplot2::theme_bw())
+knitr::opts_chunk$set(warning = TRUE, message = TRUE, error = TRUE, echo = TRUE)
+library(dplyr)
+library(codebook)
+```
+
+In this vignette, you can see how to use the metadata that is often already stored
+in SPSS and Stata files. It's easy. All we need is the `rio::import` function.
+For files with the right file extension, we can automatically pick the right way 
+to import the data. Here, we're downloading straight from the Open Science Framework, 
+so we have to specify the file extension.
+
+We select a subset of variables, just to keep it short. The data were shared by
+Emanuel Jauk in a project called [How alluring are dark personalities? The Dark Triad and attractiveness in speed dating](https://osf.io/j4fcb/).
+
+Often, files imported from SPSS or Stata to R will not have their missings coded
+properly. Here, that is not the case, but if you find yourself with such a dataset,
+the `detect_missings` function makes it easy to recognise common ways to specify
+missing data (e.g. negative values, labelled values, 99/999).
+
+```{r}
+darktriad <- rio::import("https://osf.io/j4fcb/download", format = "sav") %>%
+  select(DG, sex, relStat, education, NPI_avg)
+if (!knit_by_pkgdown) knitr::opts_chunk$set(echo = FALSE)
+```
+
+Now, we can immediately generate a codebook.
+
+```{r cb}
+codebook(darktriad, survey_repetition = "single",
+         metadata_table = knit_by_pkgdown, metadata_json = knit_by_pkgdown)
+```
+
+
+`r ifelse(knit_by_pkgdown, '', '### Codebook table')`
+
+```{r}
+if (!knit_by_pkgdown) {
+  codebook:::escaped_table(codebook_table(darktriad))
+}
+```
+

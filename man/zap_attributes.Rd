@@ -4,8 +4,9 @@
 \alias{zap_attributes}
 \title{Zap attributes}
 \usage{
-zap_attributes(x, attributes = c("format.spss", "format.sas", "format.stata",
-  "label", "labels", "na_values", "na_range", "display_width"))
+zap_attributes(x, attributes = c("format.spss", "format.sas",
+  "format.stata", "label", "labels", "na_values", "na_range",
+  "display_width"))
 }
 \arguments{
 \item{x}{the data frame or variable}

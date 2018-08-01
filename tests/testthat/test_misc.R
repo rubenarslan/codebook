@@ -61,3 +61,20 @@ test_that("Require package", {
   expect_silent(require_package("codebook"))
   expect_error(require_package("3k43hb34bk3"))
 })
+
+
+test_that("has_label(s)", {
+  data('bfi')
+  expect_true(has_label(bfi$created))
+  expect_false(has_labels(bfi$created))
+  expect_true(has_labels(bfi$BFIK_agree_1R))
+  expect_false(has_label(bfi$session))
+  expect_false(has_labels(bfi$session))
+
+  x <- haven::labelled(rep(1:5, each = 1), c(Bad = 1, Good = 5))
+  expect_equal(as_factor(x),
+               structure(1:5, .Label = c("Bad", "2", "3", "4", "Good"),
+                         class = "factor"))
+  expect_equal(as_factor(x), as_factor(zap_labelled(x)))
+  expect_equal(as_factor(x, "both"), as_factor(zap_labelled(x), "both"))
+})

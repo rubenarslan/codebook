@@ -4,6 +4,8 @@
 \name{reexports}
 \alias{reexports}
 \alias{as_factor}
+\alias{var_label}
+\alias{var_label<-}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -12,5 +14,7 @@ below to see their documentation.
 
 \describe{
   \item{haven}{\code{\link[haven]{as_factor}}}
+
+  \item{labelled}{\code{\link[labelled]{var_label}}, \code{\link[labelled]{var_label<-}}}
 }}
 

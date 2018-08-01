@@ -1,4 +1,24 @@
-# codebook 0.6.0
+# codebook 0.6.3
+## Additions
+- Vignettes for
+  - documenting the expected attribute structure, how to add metadata in R
+  - importing metadata from SPSS or Stata files
+  - importing metadata from Qualtrics as made available by `qualtRics` package
+- Importing some functions from labelled package to add metadata
+- Default method for haven::as_factor when labelled class is absent
+  
+## Changes
+- Changed the scale summary, so that Likert plots and distributions are shown
+  on the first tab. Reliability now hidden under "Reliability details".
+- removed unnecessary `readr` dependency.
+
+## Bugfixes
+- summarising factors in a table
+- turning off components of the codebook without empty strings being echoed
+- allow using variable and value labels in the absence of the labelled class
+  (as imported by rio for example)
+
+# codebook 0.6.2
 ## Additions
 - Three RStudio Addin Shinyapps to browse variable labels and codebook. 
 

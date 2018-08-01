@@ -6,8 +6,8 @@
 \usage{
 codebook(results, reliabilities = NULL, survey_repetition = c("auto",
   "single", "repeated_once", "repeated_many"), survey_overview = TRUE,
-  missingness_report = TRUE, metadata_table = TRUE, metadata_json = TRUE,
-  indent = "#")
+  missingness_report = TRUE, metadata_table = TRUE,
+  metadata_json = TRUE, indent = "#")
 }
 \arguments{
 \item{results}{a data frame, ideally with attributes set on variables}

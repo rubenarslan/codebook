@@ -57,6 +57,15 @@
 <li>
       <a href="../articles/codebook_labelled_manual.html">Codebook example with manual labelling</a>
     </li>
+    <li>
+      <a href="../articles/codebook_nested_scale.html">Codebook example with nested scales</a>
+    </li>
+    <li>
+      <a href="../articles/codebook_qualtrics.html">Codebook example with Qualtrics dataset</a>
+    </li>
+    <li>
+      <a href="../articles/codebook_sav.html">Codebook example with SPSS dataset</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -92,7 +101,7 @@
       <h1>Codebook example with manual labelling</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2018-07-31</h4>
+            <h4 class="date">2018-08-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook_labelled_manual.Rmd"><code>vignettes/codebook_labelled_manual.Rmd</code></a></small>
       <div class="hidden name"><code>codebook_labelled_manual.Rmd</code></div>
@@ -101,7 +110,7 @@
 
     
     
-<p>In this vignette, you can how to add metadata to a dataset when it isn’t yet stored in its attributes. For this example, we’ll use the <code>bfi</code> and <code>bfi.dictionary</code> datasets from the <code>psych</code> package. We use functions from the labelled package to set the relevant attributes with convenience functions.</p>
+<p>In this vignette, you can see how to add metadata to a dataset when it isn’t already stored in its attributes. For this example, we’ll use the <code>bfi</code> and <code>bfi.dictionary</code> datasets from the <code>psych</code> package. We use functions from the <code>labelled</code> package to set the relevant attributes with convenience functions.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">knit_by_pkgdown &lt;-<span class="st"> </span><span class="op">!</span><span class="kw">is.null</span>(knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">"fig.retina"</span>))</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(dplyr)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(codebook)</a>
@@ -417,6 +426,7 @@
 <div id="age_distribution" class="section level4">
 <h4 class="hasAnchor">
 <a href="#age_distribution" class="anchor"></a>Distribution</h4>
+<pre><code>## Error: `x` must be a double vector</code></pre>
 <p><img src="codebook_labelled_manual_files/figure-html/age_distribution-1.png" width="700"></p>
 <p>0 missings.</p>
 </div>
@@ -780,125 +790,108 @@
 <h4 class="hasAnchor">
 <a href="#consc_summary" class="anchor"></a>Summary statistics</h4>
 <table class="table">
-<colgroup>
-<col width="4%">
-<col width="19%">
-<col width="7%">
-<col width="18%">
-<col width="6%">
-<col width="6%">
-<col width="4%">
-<col width="4%">
-<col width="4%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="4%">
-<col width="6%">
-</colgroup>
 <thead><tr class="header">
-<th align="center">name</th>
-<th align="center">label</th>
-<th align="center">data_type</th>
-<th align="center">value_labels</th>
-<th align="center">missing</th>
-<th align="center">complete</th>
-<th align="center">n</th>
-<th align="center">mean</th>
-<th align="center">sd</th>
-<th align="center">p0</th>
-<th align="center">p25</th>
-<th align="center">p50</th>
-<th align="center">p75</th>
-<th align="center">p100</th>
-<th align="center">hist</th>
+<th align="left">name</th>
+<th align="left">label</th>
+<th align="left">data_type</th>
+<th align="left">value_labels</th>
+<th align="left">missing</th>
+<th align="left">complete</th>
+<th align="left">n</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="center">C1</td>
-<td align="center">Conscientiousness: Am exacting in my work.</td>
-<td align="center">integer</td>
-<td align="center">1. Very Inaccurate, 2. Moderately Inaccurate, 3. Slightly Inaccurate, 4. Slightly Accurate, 5. Moderately Accurate, 6. Very Accurate</td>
-<td align="center">21</td>
-<td align="center">2779</td>
-<td align="center">2800</td>
-<td align="center">4.5</td>
-<td align="center">1.24</td>
-<td align="center">1</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">▁▁▁▂▅▁▇▅</td>
+<td align="left">C1</td>
+<td align="left">Conscientiousness: Am exacting in my work.</td>
+<td align="left">integer</td>
+<td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
+<td align="left">21</td>
+<td align="left">2779</td>
+<td align="left">2800</td>
+<td align="left">4.5</td>
+<td align="left">1.24</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">▁▁▁▂▅▁▇▅</td>
 </tr>
 <tr class="even">
-<td align="center">C2</td>
-<td align="center">Conscientiousness: Continue until everything is perfect.</td>
-<td align="center">integer</td>
-<td align="center">1. Very Inaccurate, 2. Moderately Inaccurate, 3. Slightly Inaccurate, 4. Slightly Accurate, 5. Moderately Accurate, 6. Very Accurate</td>
-<td align="center">24</td>
-<td align="center">2776</td>
-<td align="center">2800</td>
-<td align="center">4.37</td>
-<td align="center">1.32</td>
-<td align="center">1</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">▁▂▁▂▆▁▇▅</td>
+<td align="left">C2</td>
+<td align="left">Conscientiousness: Continue until everything is perfect.</td>
+<td align="left">integer</td>
+<td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
+<td align="left">24</td>
+<td align="left">2776</td>
+<td align="left">2800</td>
+<td align="left">4.37</td>
+<td align="left">1.32</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▂▆▁▇▅</td>
 </tr>
 <tr class="odd">
-<td align="center">C3</td>
-<td align="center">Conscientiousness: Do things according to a plan.</td>
-<td align="center">integer</td>
-<td align="center">1. Very Inaccurate, 2. Moderately Inaccurate, 3. Slightly Inaccurate, 4. Slightly Accurate, 5. Moderately Accurate, 6. Very Accurate</td>
-<td align="center">20</td>
-<td align="center">2780</td>
-<td align="center">2800</td>
-<td align="center">4.3</td>
-<td align="center">1.29</td>
-<td align="center">1</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">▁▂▁▂▆▁▇▅</td>
+<td align="left">C3</td>
+<td align="left">Conscientiousness: Do things according to a plan.</td>
+<td align="left">integer</td>
+<td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
+<td align="left">20</td>
+<td align="left">2780</td>
+<td align="left">2800</td>
+<td align="left">4.3</td>
+<td align="left">1.29</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▂▆▁▇▅</td>
 </tr>
 <tr class="even">
-<td align="center">C4R</td>
-<td align="center">Conscientiousness: Do things in a half-way manner.</td>
-<td align="center">numeric</td>
-<td align="center">6. Very Inaccurate, 5. Moderately Inaccurate, 4. Slightly Inaccurate, 3. Slightly Accurate, 2. Moderately Accurate, 1. Very Accurate</td>
-<td align="center">26</td>
-<td align="center">2774</td>
-<td align="center">2800</td>
-<td align="center">4.45</td>
-<td align="center">1.38</td>
-<td align="center">1</td>
-<td align="center">3</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">6</td>
-<td align="center">▁▂▁▅▅▁▇▇</td>
+<td align="left">C4R</td>
+<td align="left">Conscientiousness: Do things in a half-way manner.</td>
+<td align="left">numeric</td>
+<td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
+<td align="left">26</td>
+<td align="left">2774</td>
+<td align="left">2800</td>
+<td align="left">4.45</td>
+<td align="left">1.38</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▅▅▁▇▇</td>
 </tr>
 <tr class="odd">
-<td align="center">C5R</td>
-<td align="center">Conscientiousness: Waste my time.</td>
-<td align="center">numeric</td>
-<td align="center">6. Very Inaccurate, 5. Moderately Inaccurate, 4. Slightly Inaccurate, 3. Slightly Accurate, 2. Moderately Accurate, 1. Very Accurate</td>
-<td align="center">16</td>
-<td align="center">2784</td>
-<td align="center">2800</td>
-<td align="center">3.7</td>
-<td align="center">1.63</td>
-<td align="center">1</td>
-<td align="center">2</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">▃▆▁▇▅▁▇▆</td>
+<td align="left">C5R</td>
+<td align="left">Conscientiousness: Waste my time.</td>
+<td align="left">numeric</td>
+<td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
+<td align="left">16</td>
+<td align="left">2784</td>
+<td align="left">2800</td>
+<td align="left">3.7</td>
+<td align="left">1.63</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">▃▆▁▇▅▁▇▆</td>
 </tr>
 </tbody>
 </table>
@@ -1224,126 +1217,109 @@
 <div id="extra_summary" class="section level4">
 <h4 class="hasAnchor">
 <a href="#extra_summary" class="anchor"></a>Summary statistics</h4>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="4%">
-<col width="19%">
-<col width="7%">
-<col width="18%">
-<col width="6%">
-<col width="6%">
-<col width="4%">
-<col width="4%">
-<col width="4%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="4%">
-<col width="6%">
-</colgroup>
+<table class="table">
 <thead><tr class="header">
-<th align="center">name</th>
-<th align="center">label</th>
-<th align="center">data_type</th>
-<th align="center">value_labels</th>
-<th align="center">missing</th>
-<th align="center">complete</th>
-<th align="center">n</th>
-<th align="center">mean</th>
-<th align="center">sd</th>
-<th align="center">p0</th>
-<th align="center">p25</th>
-<th align="center">p50</th>
-<th align="center">p75</th>
-<th align="center">p100</th>
-<th align="center">hist</th>
+<th align="left">name</th>
+<th align="left">label</th>
+<th align="left">data_type</th>
+<th align="left">value_labels</th>
+<th align="left">missing</th>
+<th align="left">complete</th>
+<th align="left">n</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="center">E1R</td>
-<td align="center">Extraversion: Don’t talk a lot.</td>
-<td align="center">numeric</td>
-<td align="center">6. Very Inaccurate, 5. Moderately Inaccurate, 4. Slightly Inaccurate, 3. Slightly Accurate, 2. Moderately Accurate, 1. Very Accurate</td>
-<td align="center">23</td>
-<td align="center">2777</td>
-<td align="center">2800</td>
-<td align="center">4.03</td>
-<td align="center">1.63</td>
-<td align="center">1</td>
-<td align="center">3</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">▃▅▁▆▅▁▇▇</td>
+<td align="left">E1R</td>
+<td align="left">Extraversion: Don’t talk a lot.</td>
+<td align="left">numeric</td>
+<td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
+<td align="left">23</td>
+<td align="left">2777</td>
+<td align="left">2800</td>
+<td align="left">4.03</td>
+<td align="left">1.63</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">▃▅▁▆▅▁▇▇</td>
 </tr>
 <tr class="even">
-<td align="center">E2R</td>
-<td align="center">Extraversion: Find it difficult to approach others.</td>
-<td align="center">numeric</td>
-<td align="center">6. Very Inaccurate, 5. Moderately Inaccurate, 4. Slightly Inaccurate, 3. Slightly Accurate, 2. Moderately Accurate, 1. Very Accurate</td>
-<td align="center">16</td>
-<td align="center">2784</td>
-<td align="center">2800</td>
-<td align="center">3.86</td>
-<td align="center">1.61</td>
-<td align="center">1</td>
-<td align="center">3</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">▃▅▁▇▅▁▇▆</td>
+<td align="left">E2R</td>
+<td align="left">Extraversion: Find it difficult to approach others.</td>
+<td align="left">numeric</td>
+<td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
+<td align="left">16</td>
+<td align="left">2784</td>
+<td align="left">2800</td>
+<td align="left">3.86</td>
+<td align="left">1.61</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">▃▅▁▇▅▁▇▆</td>
 </tr>
 <tr class="odd">
-<td align="center">E3</td>
-<td align="center">Extraversion: Know how to captivate people.</td>
-<td align="center">integer</td>
-<td align="center">1. Very Inaccurate, 2. Moderately Inaccurate, 3. Slightly Inaccurate, 4. Slightly Accurate, 5. Moderately Accurate, 6. Very Accurate</td>
-<td align="center">25</td>
-<td align="center">2775</td>
-<td align="center">2800</td>
-<td align="center">4</td>
-<td align="center">1.35</td>
-<td align="center">1</td>
-<td align="center">3</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">▂▃▁▃▇▁▇▃</td>
+<td align="left">E3</td>
+<td align="left">Extraversion: Know how to captivate people.</td>
+<td align="left">integer</td>
+<td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
+<td align="left">25</td>
+<td align="left">2775</td>
+<td align="left">2800</td>
+<td align="left">4</td>
+<td align="left">1.35</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">▂▃▁▃▇▁▇▃</td>
 </tr>
 <tr class="even">
-<td align="center">E4</td>
-<td align="center">Extraversion: Make friends easily.</td>
-<td align="center">integer</td>
-<td align="center">1. Very Inaccurate, 2. Moderately Inaccurate, 3. Slightly Inaccurate, 4. Slightly Accurate, 5. Moderately Accurate, 6. Very Accurate</td>
-<td align="center">9</td>
-<td align="center">2791</td>
-<td align="center">2800</td>
-<td align="center">4.42</td>
-<td align="center">1.46</td>
-<td align="center">1</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">6</td>
-<td align="center">▁▂▁▂▃▁▇▆</td>
+<td align="left">E4</td>
+<td align="left">Extraversion: Make friends easily.</td>
+<td align="left">integer</td>
+<td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
+<td align="left">9</td>
+<td align="left">2791</td>
+<td align="left">2800</td>
+<td align="left">4.42</td>
+<td align="left">1.46</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▂▃▁▇▆</td>
 </tr>
 <tr class="odd">
-<td align="center">E5</td>
-<td align="center">Extraversion: Take charge.</td>
-<td align="center">integer</td>
-<td align="center">1. Very Inaccurate, 2. Moderately Inaccurate, 3. Slightly Inaccurate, 4. Slightly Accurate, 5. Moderately Accurate, 6. Very Accurate</td>
-<td align="center">21</td>
-<td align="center">2779</td>
-<td align="center">2800</td>
-<td align="center">4.42</td>
-<td align="center">1.33</td>
-<td align="center">1</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">▁▂▁▂▅▁▇▅</td>
+<td align="left">E5</td>
+<td align="left">Extraversion: Take charge.</td>
+<td align="left">integer</td>
+<td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
+<td align="left">21</td>
+<td align="left">2779</td>
+<td align="left">2800</td>
+<td align="left">4.42</td>
+<td align="left">1.33</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▂▅▁▇▅</td>
 </tr>
 </tbody>
 </table>
@@ -1669,126 +1645,109 @@
 <div id="open_summary" class="section level4">
 <h4 class="hasAnchor">
 <a href="#open_summary" class="anchor"></a>Summary statistics</h4>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="4%">
-<col width="18%">
-<col width="7%">
-<col width="19%">
-<col width="6%">
-<col width="6%">
-<col width="4%">
-<col width="4%">
-<col width="4%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="4%">
-<col width="6%">
-</colgroup>
+<table class="table">
 <thead><tr class="header">
-<th align="center">name</th>
-<th align="center">label</th>
-<th align="center">data_type</th>
-<th align="center">value_labels</th>
-<th align="center">missing</th>
-<th align="center">complete</th>
-<th align="center">n</th>
-<th align="center">mean</th>
-<th align="center">sd</th>
-<th align="center">p0</th>
-<th align="center">p25</th>
-<th align="center">p50</th>
-<th align="center">p75</th>
-<th align="center">p100</th>
-<th align="center">hist</th>
+<th align="left">name</th>
+<th align="left">label</th>
+<th align="left">data_type</th>
+<th align="left">value_labels</th>
+<th align="left">missing</th>
+<th align="left">complete</th>
+<th align="left">n</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="center">O1</td>
-<td align="center">Openness: Am full of ideas.</td>
-<td align="center">integer</td>
-<td align="center">1. Very Inaccurate, 2. Moderately Inaccurate, 3. Slightly Inaccurate, 4. Slightly Accurate, 5. Moderately Accurate, 6. Very Accurate</td>
-<td align="center">22</td>
-<td align="center">2778</td>
-<td align="center">2800</td>
-<td align="center">4.82</td>
-<td align="center">1.13</td>
-<td align="center">1</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">6</td>
-<td align="center">▁▁▁▂▅▁▇▇</td>
+<td align="left">O1</td>
+<td align="left">Openness: Am full of ideas.</td>
+<td align="left">integer</td>
+<td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
+<td align="left">22</td>
+<td align="left">2778</td>
+<td align="left">2800</td>
+<td align="left">4.82</td>
+<td align="left">1.13</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">6</td>
+<td align="left">▁▁▁▂▅▁▇▇</td>
 </tr>
 <tr class="even">
-<td align="center">O2R</td>
-<td align="center">Openness: Avoid difficult reading material.</td>
-<td align="center">numeric</td>
-<td align="center">6. Very Inaccurate, 5. Moderately Inaccurate, 4. Slightly Inaccurate, 3. Slightly Accurate, 2. Moderately Accurate, 1. Very Accurate</td>
-<td align="center">0</td>
-<td align="center">2800</td>
-<td align="center">2800</td>
-<td align="center">4.29</td>
-<td align="center">1.57</td>
-<td align="center">1</td>
-<td align="center">3</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">6</td>
-<td align="center">▂▃▁▅▃▁▇▇</td>
+<td align="left">O2R</td>
+<td align="left">Openness: Avoid difficult reading material.</td>
+<td align="left">numeric</td>
+<td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
+<td align="left">0</td>
+<td align="left">2800</td>
+<td align="left">2800</td>
+<td align="left">4.29</td>
+<td align="left">1.57</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">6</td>
+<td align="left">▂▃▁▅▃▁▇▇</td>
 </tr>
 <tr class="odd">
-<td align="center">O3</td>
-<td align="center">Openness: Carry the conversation to a higher level.</td>
-<td align="center">integer</td>
-<td align="center">1. Very Inaccurate, 2. Moderately Inaccurate, 3. Slightly Inaccurate, 4. Slightly Accurate, 5. Moderately Accurate, 6. Very Accurate</td>
-<td align="center">28</td>
-<td align="center">2772</td>
-<td align="center">2800</td>
-<td align="center">4.44</td>
-<td align="center">1.22</td>
-<td align="center">1</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">▁▁▁▂▆▁▇▅</td>
+<td align="left">O3</td>
+<td align="left">Openness: Carry the conversation to a higher level.</td>
+<td align="left">integer</td>
+<td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
+<td align="left">28</td>
+<td align="left">2772</td>
+<td align="left">2800</td>
+<td align="left">4.44</td>
+<td align="left">1.22</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">▁▁▁▂▆▁▇▅</td>
 </tr>
 <tr class="even">
-<td align="center">O4</td>
-<td align="center">Openness: Spend time reflecting on things.</td>
-<td align="center">integer</td>
-<td align="center">1. Very Inaccurate, 2. Moderately Inaccurate, 3. Slightly Inaccurate, 4. Slightly Accurate, 5. Moderately Accurate, 6. Very Accurate</td>
-<td align="center">14</td>
-<td align="center">2786</td>
-<td align="center">2800</td>
-<td align="center">4.89</td>
-<td align="center">1.22</td>
-<td align="center">1</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">6</td>
-<td align="center">▁▁▁▁▃▁▆▇</td>
+<td align="left">O4</td>
+<td align="left">Openness: Spend time reflecting on things.</td>
+<td align="left">integer</td>
+<td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
+<td align="left">14</td>
+<td align="left">2786</td>
+<td align="left">2800</td>
+<td align="left">4.89</td>
+<td align="left">1.22</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">6</td>
+<td align="left">▁▁▁▁▃▁▆▇</td>
 </tr>
 <tr class="odd">
-<td align="center">O5R</td>
-<td align="center">Openness: Will not probe deeply into a subject.</td>
-<td align="center">numeric</td>
-<td align="center">6. Very Inaccurate, 5. Moderately Inaccurate, 4. Slightly Inaccurate, 3. Slightly Accurate, 2. Moderately Accurate, 1. Very Accurate</td>
-<td align="center">20</td>
-<td align="center">2780</td>
-<td align="center">2800</td>
-<td align="center">4.51</td>
-<td align="center">1.33</td>
-<td align="center">1</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">6</td>
-<td align="center">▁▂▁▃▅▁▇▇</td>
+<td align="left">O5R</td>
+<td align="left">Openness: Will not probe deeply into a subject.</td>
+<td align="left">numeric</td>
+<td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
+<td align="left">20</td>
+<td align="left">2780</td>
+<td align="left">2800</td>
+<td align="left">4.51</td>
+<td align="left">1.33</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▃▅▁▇▇</td>
 </tr>
 </tbody>
 </table>
@@ -2114,126 +2073,109 @@
 <div id="agree_summary" class="section level4">
 <h4 class="hasAnchor">
 <a href="#agree_summary" class="anchor"></a>Summary statistics</h4>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="4%">
-<col width="19%">
-<col width="7%">
-<col width="18%">
-<col width="6%">
-<col width="6%">
-<col width="4%">
-<col width="4%">
-<col width="4%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="4%">
-<col width="6%">
-</colgroup>
+<table class="table">
 <thead><tr class="header">
-<th align="center">name</th>
-<th align="center">label</th>
-<th align="center">data_type</th>
-<th align="center">value_labels</th>
-<th align="center">missing</th>
-<th align="center">complete</th>
-<th align="center">n</th>
-<th align="center">mean</th>
-<th align="center">sd</th>
-<th align="center">p0</th>
-<th align="center">p25</th>
-<th align="center">p50</th>
-<th align="center">p75</th>
-<th align="center">p100</th>
-<th align="center">hist</th>
+<th align="left">name</th>
+<th align="left">label</th>
+<th align="left">data_type</th>
+<th align="left">value_labels</th>
+<th align="left">missing</th>
+<th align="left">complete</th>
+<th align="left">n</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="center">A1R</td>
-<td align="center">Agreeableness: Am indifferent to the feelings of others.</td>
-<td align="center">numeric</td>
-<td align="center">6. Very Inaccurate, 5. Moderately Inaccurate, 4. Slightly Inaccurate, 3. Slightly Accurate, 2. Moderately Accurate, 1. Very Accurate</td>
-<td align="center">16</td>
-<td align="center">2784</td>
-<td align="center">2800</td>
-<td align="center">4.59</td>
-<td align="center">1.41</td>
-<td align="center">1</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">6</td>
-<td align="center">▁▂▁▃▃▁▇▇</td>
+<td align="left">A1R</td>
+<td align="left">Agreeableness: Am indifferent to the feelings of others.</td>
+<td align="left">numeric</td>
+<td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
+<td align="left">16</td>
+<td align="left">2784</td>
+<td align="left">2800</td>
+<td align="left">4.59</td>
+<td align="left">1.41</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▃▃▁▇▇</td>
 </tr>
 <tr class="even">
-<td align="center">A2</td>
-<td align="center">Agreeableness: Inquire about others’ well-being.</td>
-<td align="center">integer</td>
-<td align="center">1. Very Inaccurate, 2. Moderately Inaccurate, 3. Slightly Inaccurate, 4. Slightly Accurate, 5. Moderately Accurate, 6. Very Accurate</td>
-<td align="center">27</td>
-<td align="center">2773</td>
-<td align="center">2800</td>
-<td align="center">4.8</td>
-<td align="center">1.17</td>
-<td align="center">1</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">6</td>
-<td align="center">▁▁▁▁▅▁▇▇</td>
+<td align="left">A2</td>
+<td align="left">Agreeableness: Inquire about others’ well-being.</td>
+<td align="left">integer</td>
+<td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
+<td align="left">27</td>
+<td align="left">2773</td>
+<td align="left">2800</td>
+<td align="left">4.8</td>
+<td align="left">1.17</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">6</td>
+<td align="left">▁▁▁▁▅▁▇▇</td>
 </tr>
 <tr class="odd">
-<td align="center">A3</td>
-<td align="center">Agreeableness: Know how to comfort others.</td>
-<td align="center">integer</td>
-<td align="center">1. Very Inaccurate, 2. Moderately Inaccurate, 3. Slightly Inaccurate, 4. Slightly Accurate, 5. Moderately Accurate, 6. Very Accurate</td>
-<td align="center">26</td>
-<td align="center">2774</td>
-<td align="center">2800</td>
-<td align="center">4.6</td>
-<td align="center">1.3</td>
-<td align="center">1</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">6</td>
-<td align="center">▁▂▁▂▅▁▇▆</td>
+<td align="left">A3</td>
+<td align="left">Agreeableness: Know how to comfort others.</td>
+<td align="left">integer</td>
+<td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
+<td align="left">26</td>
+<td align="left">2774</td>
+<td align="left">2800</td>
+<td align="left">4.6</td>
+<td align="left">1.3</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▂▅▁▇▆</td>
 </tr>
 <tr class="even">
-<td align="center">A4</td>
-<td align="center">Agreeableness: Love children.</td>
-<td align="center">integer</td>
-<td align="center">1. Very Inaccurate, 2. Moderately Inaccurate, 3. Slightly Inaccurate, 4. Slightly Accurate, 5. Moderately Accurate, 6. Very Accurate</td>
-<td align="center">19</td>
-<td align="center">2781</td>
-<td align="center">2800</td>
-<td align="center">4.7</td>
-<td align="center">1.48</td>
-<td align="center">1</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">6</td>
-<td align="center">▁▂▁▁▃▁▅▇</td>
+<td align="left">A4</td>
+<td align="left">Agreeableness: Love children.</td>
+<td align="left">integer</td>
+<td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
+<td align="left">19</td>
+<td align="left">2781</td>
+<td align="left">2800</td>
+<td align="left">4.7</td>
+<td align="left">1.48</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▁▃▁▅▇</td>
 </tr>
 <tr class="odd">
-<td align="center">A5</td>
-<td align="center">Agreeableness: Make people feel at ease.</td>
-<td align="center">integer</td>
-<td align="center">1. Very Inaccurate, 2. Moderately Inaccurate, 3. Slightly Inaccurate, 4. Slightly Accurate, 5. Moderately Accurate, 6. Very Accurate</td>
-<td align="center">16</td>
-<td align="center">2784</td>
-<td align="center">2800</td>
-<td align="center">4.56</td>
-<td align="center">1.26</td>
-<td align="center">1</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">▁▂▁▂▅▁▇▆</td>
+<td align="left">A5</td>
+<td align="left">Agreeableness: Make people feel at ease.</td>
+<td align="left">integer</td>
+<td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
+<td align="left">16</td>
+<td align="left">2784</td>
+<td align="left">2800</td>
+<td align="left">4.56</td>
+<td align="left">1.26</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▂▅▁▇▆</td>
 </tr>
 </tbody>
 </table>
@@ -2560,125 +2502,108 @@
 <h4 class="hasAnchor">
 <a href="#neuro_summary" class="anchor"></a>Summary statistics</h4>
 <table class="table">
-<colgroup>
-<col width="4%">
-<col width="19%">
-<col width="7%">
-<col width="18%">
-<col width="6%">
-<col width="6%">
-<col width="4%">
-<col width="4%">
-<col width="4%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="4%">
-<col width="6%">
-</colgroup>
 <thead><tr class="header">
-<th align="center">name</th>
-<th align="center">label</th>
-<th align="center">data_type</th>
-<th align="center">value_labels</th>
-<th align="center">missing</th>
-<th align="center">complete</th>
-<th align="center">n</th>
-<th align="center">mean</th>
-<th align="center">sd</th>
-<th align="center">p0</th>
-<th align="center">p25</th>
-<th align="center">p50</th>
-<th align="center">p75</th>
-<th align="center">p100</th>
-<th align="center">hist</th>
+<th align="left">name</th>
+<th align="left">label</th>
+<th align="left">data_type</th>
+<th align="left">value_labels</th>
+<th align="left">missing</th>
+<th align="left">complete</th>
+<th align="left">n</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="center">N1R</td>
-<td align="center">Emotional Stability: Get angry easily.</td>
-<td align="center">numeric</td>
-<td align="center">6. Very Inaccurate, 5. Moderately Inaccurate, 4. Slightly Inaccurate, 3. Slightly Accurate, 2. Moderately Accurate, 1. Very Accurate</td>
-<td align="center">22</td>
-<td align="center">2778</td>
-<td align="center">2800</td>
-<td align="center">4.07</td>
-<td align="center">1.57</td>
-<td align="center">1</td>
-<td align="center">3</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">▂▅▁▆▅▁▇▇</td>
+<td align="left">N1R</td>
+<td align="left">Emotional Stability: Get angry easily.</td>
+<td align="left">numeric</td>
+<td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
+<td align="left">22</td>
+<td align="left">2778</td>
+<td align="left">2800</td>
+<td align="left">4.07</td>
+<td align="left">1.57</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">▂▅▁▆▅▁▇▇</td>
 </tr>
 <tr class="even">
-<td align="center">N2R</td>
-<td align="center">Emotional Stability: Get irritated easily.</td>
-<td align="center">numeric</td>
-<td align="center">6. Very Inaccurate, 5. Moderately Inaccurate, 4. Slightly Inaccurate, 3. Slightly Accurate, 2. Moderately Accurate, 1. Very Accurate</td>
-<td align="center">21</td>
-<td align="center">2779</td>
-<td align="center">2800</td>
-<td align="center">3.49</td>
-<td align="center">1.53</td>
-<td align="center">1</td>
-<td align="center">2</td>
-<td align="center">3</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">▃▆▁▇▅▁▆▃</td>
+<td align="left">N2R</td>
+<td align="left">Emotional Stability: Get irritated easily.</td>
+<td align="left">numeric</td>
+<td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
+<td align="left">21</td>
+<td align="left">2779</td>
+<td align="left">2800</td>
+<td align="left">3.49</td>
+<td align="left">1.53</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">▃▆▁▇▅▁▆▃</td>
 </tr>
 <tr class="odd">
-<td align="center">N3R</td>
-<td align="center">Emotional Stability: Have frequent mood swings.</td>
-<td align="center">numeric</td>
-<td align="center">6. Very Inaccurate, 5. Moderately Inaccurate, 4. Slightly Inaccurate, 3. Slightly Accurate, 2. Moderately Accurate, 1. Very Accurate</td>
-<td align="center">11</td>
-<td align="center">2789</td>
-<td align="center">2800</td>
-<td align="center">3.78</td>
-<td align="center">1.6</td>
-<td align="center">1</td>
-<td align="center">3</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">▃▆▁▇▅▁▇▆</td>
+<td align="left">N3R</td>
+<td align="left">Emotional Stability: Have frequent mood swings.</td>
+<td align="left">numeric</td>
+<td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
+<td align="left">11</td>
+<td align="left">2789</td>
+<td align="left">2800</td>
+<td align="left">3.78</td>
+<td align="left">1.6</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">▃▆▁▇▅▁▇▆</td>
 </tr>
 <tr class="even">
-<td align="center">N4R</td>
-<td align="center">Emotional Stability: Often feel blue.</td>
-<td align="center">numeric</td>
-<td align="center">6. Very Inaccurate, 5. Moderately Inaccurate, 4. Slightly Inaccurate, 3. Slightly Accurate, 2. Moderately Accurate, 1. Very Accurate</td>
-<td align="center">36</td>
-<td align="center">2764</td>
-<td align="center">2800</td>
-<td align="center">3.81</td>
-<td align="center">1.57</td>
-<td align="center">1</td>
-<td align="center">3</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">▃▅▁▇▅▁▇▆</td>
+<td align="left">N4R</td>
+<td align="left">Emotional Stability: Often feel blue.</td>
+<td align="left">numeric</td>
+<td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
+<td align="left">36</td>
+<td align="left">2764</td>
+<td align="left">2800</td>
+<td align="left">3.81</td>
+<td align="left">1.57</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">▃▅▁▇▅▁▇▆</td>
 </tr>
 <tr class="odd">
-<td align="center">N5R</td>
-<td align="center">Emotional Stability: Panic easily.</td>
-<td align="center">numeric</td>
-<td align="center">6. Very Inaccurate, 5. Moderately Inaccurate, 4. Slightly Inaccurate, 3. Slightly Accurate, 2. Moderately Accurate, 1. Very Accurate</td>
-<td align="center">29</td>
-<td align="center">2771</td>
-<td align="center">2800</td>
-<td align="center">4.03</td>
-<td align="center">1.62</td>
-<td align="center">1</td>
-<td align="center">3</td>
-<td align="center">4</td>
-<td align="center">5</td>
-<td align="center">6</td>
-<td align="center">▃▃▁▆▅▁▇▇</td>
+<td align="left">N5R</td>
+<td align="left">Emotional Stability: Panic easily.</td>
+<td align="left">numeric</td>
+<td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
+<td align="left">29</td>
+<td align="left">2771</td>
+<td align="left">2800</td>
+<td align="left">4.03</td>
+<td align="left">1.62</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">▃▃▁▆▅▁▇▇</td>
 </tr>
 </tbody>
 </table>
@@ -2909,8 +2834,8 @@
 <div id="codebook-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#codebook-table" class="anchor"></a>Codebook table</h2>
-<div id="htmlwidget-4c25c1f9a4383021a12d" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4c25c1f9a4383021a12d">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#A1R\">A1R<\/a>","<a href=\"#A2\">A2<\/a>","<a href=\"#A3\">A3<\/a>","<a href=\"#A4\">A4<\/a>","<a href=\"#A5\">A5<\/a>","<a href=\"#C1\">C1<\/a>","<a href=\"#C2\">C2<\/a>","<a href=\"#C3\">C3<\/a>","<a href=\"#C4R\">C4R<\/a>","<a href=\"#C5R\">C5R<\/a>","<a href=\"#E1R\">E1R<\/a>","<a href=\"#E2R\">E2R<\/a>","<a href=\"#E3\">E3<\/a>","<a href=\"#E4\">E4<\/a>","<a href=\"#E5\">E5<\/a>","<a href=\"#N1R\">N1R<\/a>","<a href=\"#N2R\">N2R<\/a>","<a href=\"#N3R\">N3R<\/a>","<a href=\"#N4R\">N4R<\/a>","<a href=\"#N5R\">N5R<\/a>","<a href=\"#O1\">O1<\/a>","<a href=\"#O2R\">O2R<\/a>","<a href=\"#O3\">O3<\/a>","<a href=\"#O4\">O4<\/a>","<a href=\"#O5R\">O5R<\/a>","<a href=\"#gender\">gender<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#age\">age<\/a>","<a href=\"#consc\">consc<\/a>","<a href=\"#extra\">extra<\/a>","<a href=\"#open\">open<\/a>","<a href=\"#agree\">agree<\/a>","<a href=\"#neuro\">neuro<\/a>"],["Agreeableness: Am indifferent to the feelings of others.","Agreeableness: Inquire about others' well-being.","Agreeableness: Know how to comfort others.","Agreeableness: Love children.","Agreeableness: Make people feel at ease.","Conscientiousness: Am exacting in my work.","Conscientiousness: Continue until everything is perfect.","Conscientiousness: Do things according to a plan.","Conscientiousness: Do things in a half-way manner.","Conscientiousness: Waste my time.","Extraversion: Don't talk a lot.","Extraversion: Find it difficult to approach others.","Extraversion: Know how to captivate people.","Extraversion: Make friends easily.","Extraversion: Take charge.","Emotional Stability: Get angry easily.","Emotional Stability: Get irritated easily.","Emotional Stability: Have frequent mood swings.","Emotional Stability: Often feel blue.","Emotional Stability: Panic easily.","Openness: Am full of ideas.","Openness: Avoid difficult reading material.","Openness: Carry the conversation to a higher level.","Openness: Spend time reflecting on things.","Openness: Will not probe deeply into a subject.","Self-reported gender","Highest degree","age in years","5 C items aggregated by rowMeans","5 E items aggregated by rowMeans","5 O items aggregated by rowMeans","5 A items aggregated by rowMeans","5 N items aggregated by rowMeans"],["numeric","integer","integer","integer","integer","integer","integer","integer","numeric","numeric","numeric","numeric","integer","integer","integer","numeric","numeric","numeric","numeric","numeric","integer","numeric","integer","integer","numeric","numeric","numeric","integer","numeric","numeric","numeric","numeric","numeric"],["6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. male,<br>2. female","1. in high school,<br>2. finished high school,<br>3. some college,<br>4. college graduate,<br>5. graduate degree",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"C1, C2, C3, C4R, C5R","E1R, E2R, E3, E4, E5","O1, O2R, O3, O4, O5R","A1R, A2, A3, A4, A5","N1R, N2R, N3R, N4R, N5R"],["16","27","26","19","16","21","24","20","26","16","23","16","25","9","21","22","21","11","36","29","22","0","28","14","20","0","223","0","93","87","74","91","106"],["2784","2773","2774","2781","2784","2779","2776","2780","2774","2784","2777","2784","2775","2791","2779","2778","2779","2789","2764","2771","2778","2800","2772","2786","2780","2800","2577","2800","2707","2713","2726","2709","2694"],["2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800"],["4.59"," 4.8 "," 4.6 "," 4.7 "," 4.56"," 4.5 "," 4.37"," 4.3 ","4.45","3.7 ","4.03","3.86"," 4   "," 4.42"," 4.42","4.07","3.49","3.78","3.81","4.03"," 4.82","4.29"," 4.44"," 4.89","4.51","1.67","3.19","28.78","4.26","4.14","4.59","4.64","3.84"],["1.41"," 1.17"," 1.3 "," 1.48"," 1.26"," 1.24"," 1.32"," 1.29","1.38","1.63","1.63","1.61"," 1.35"," 1.46"," 1.33","1.57","1.53","1.6 ","1.57","1.62"," 1.13","1.57"," 1.22"," 1.22","1.33","0.47","1.11","11.13","0.95","1.06","0.81","0.9 ","1.19"],["1  ","1","1","1","1","1","1","1","1  ","1  ","1  ","1  ","1","1","1","1  ","1  ","1  ","1  ","1  ","1","1  ","1","1","1  ","1  ","1  ","3","1  ","1  ","1.2","1  ","1  "],["4  ","4","4","4","4","4","4","4","3  ","2  ","3  ","3  ","3","4","4","3  ","2  ","3  ","3  ","3  ","4","3  ","4","4","4  ","1  ","3  ","20","3.6","3.4","4  ","4.2","3  "],["5  ","5","5","5","5","5","5","5","5  ","4  ","4  ","4  ","4","5","5","4  ","3  ","4  ","4  ","4  ","5","5  ","5","5","5  ","2  ","3  ","26","4.4","4.2","4.6","4.8","4  "],["6  ","6","6","6","5","5","5","5","6  ","5  ","5  ","5  ","5","6","5","5  ","5  ","5  ","5  ","5  ","6","6  ","5","6","6  ","2  ","4  ","35","5  ","5  ","5.2","5.4","4.8"],["6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","2","5","86","6","6","6","6","6"],["▁▂▁▃▃▁▇▇","▁▁▁▁▅▁▇▇","▁▂▁▂▅▁▇▆","▁▂▁▁▃▁▅▇","▁▂▁▂▅▁▇▆","▁▁▁▂▅▁▇▅","▁▂▁▂▆▁▇▅","▁▂▁▂▆▁▇▅","▁▂▁▅▅▁▇▇","▃▆▁▇▅▁▇▆","▃▅▁▆▅▁▇▇","▃▅▁▇▅▁▇▆","▂▃▁▃▇▁▇▃","▁▂▁▂▃▁▇▆","▁▂▁▂▅▁▇▅","▂▅▁▆▅▁▇▇","▃▆▁▇▅▁▆▃","▃▆▁▇▅▁▇▆","▃▅▁▇▅▁▇▆","▃▃▁▆▅▁▇▇","▁▁▁▂▅▁▇▇","▂▃▁▅▃▁▇▇","▁▁▁▂▆▁▇▅","▁▁▁▁▃▁▆▇","▁▂▁▃▅▁▇▇","▃▁▁▁▁▁▁▇","▂▂▁▇▁▂▁▃","▁▇▆▃▂▁▁▁","▁▁▂▅▇▇▇▅","▁▁▃▅▇▇▇▆","▁▁▁▂▇▇▇▅","▁▁▁▂▃▆▇▇","▂▃▆▇▇▇▇▅"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>value_labels<\/th>\n      <th>scale_item_names<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
+<div id="htmlwidget-0591df3b8ab9b1624cd8" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0591df3b8ab9b1624cd8">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#A1R\">A1R<\/a>","<a href=\"#A2\">A2<\/a>","<a href=\"#A3\">A3<\/a>","<a href=\"#A4\">A4<\/a>","<a href=\"#A5\">A5<\/a>","<a href=\"#C1\">C1<\/a>","<a href=\"#C2\">C2<\/a>","<a href=\"#C3\">C3<\/a>","<a href=\"#C4R\">C4R<\/a>","<a href=\"#C5R\">C5R<\/a>","<a href=\"#E1R\">E1R<\/a>","<a href=\"#E2R\">E2R<\/a>","<a href=\"#E3\">E3<\/a>","<a href=\"#E4\">E4<\/a>","<a href=\"#E5\">E5<\/a>","<a href=\"#N1R\">N1R<\/a>","<a href=\"#N2R\">N2R<\/a>","<a href=\"#N3R\">N3R<\/a>","<a href=\"#N4R\">N4R<\/a>","<a href=\"#N5R\">N5R<\/a>","<a href=\"#O1\">O1<\/a>","<a href=\"#O2R\">O2R<\/a>","<a href=\"#O3\">O3<\/a>","<a href=\"#O4\">O4<\/a>","<a href=\"#O5R\">O5R<\/a>","<a href=\"#gender\">gender<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#age\">age<\/a>","<a href=\"#consc\">consc<\/a>","<a href=\"#extra\">extra<\/a>","<a href=\"#open\">open<\/a>","<a href=\"#agree\">agree<\/a>","<a href=\"#neuro\">neuro<\/a>"],["Agreeableness: Am indifferent to the feelings of others.","Agreeableness: Inquire about others' well-being.","Agreeableness: Know how to comfort others.","Agreeableness: Love children.","Agreeableness: Make people feel at ease.","Conscientiousness: Am exacting in my work.","Conscientiousness: Continue until everything is perfect.","Conscientiousness: Do things according to a plan.","Conscientiousness: Do things in a half-way manner.","Conscientiousness: Waste my time.","Extraversion: Don't talk a lot.","Extraversion: Find it difficult to approach others.","Extraversion: Know how to captivate people.","Extraversion: Make friends easily.","Extraversion: Take charge.","Emotional Stability: Get angry easily.","Emotional Stability: Get irritated easily.","Emotional Stability: Have frequent mood swings.","Emotional Stability: Often feel blue.","Emotional Stability: Panic easily.","Openness: Am full of ideas.","Openness: Avoid difficult reading material.","Openness: Carry the conversation to a higher level.","Openness: Spend time reflecting on things.","Openness: Will not probe deeply into a subject.","Self-reported gender","Highest degree","age in years","5 C items aggregated by rowMeans","5 E items aggregated by rowMeans","5 O items aggregated by rowMeans","5 A items aggregated by rowMeans","5 N items aggregated by rowMeans"],["numeric","integer","integer","integer","integer","integer","integer","integer","numeric","numeric","numeric","numeric","integer","integer","integer","numeric","numeric","numeric","numeric","numeric","integer","numeric","integer","integer","numeric","numeric","numeric","integer","numeric","numeric","numeric","numeric","numeric"],["6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. male,<br>2. female","1. in high school,<br>2. finished high school,<br>3. some college,<br>4. college graduate,<br>5. graduate degree",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"C1, C2, C3, C4R, C5R","E1R, E2R, E3, E4, E5","O1, O2R, O3, O4, O5R","A1R, A2, A3, A4, A5","N1R, N2R, N3R, N4R, N5R"],["16","27","26","19","16","21","24","20","26","16","23","16","25","9","21","22","21","11","36","29","22","0","28","14","20","0","223","0","93","87","74","91","106"],["2784","2773","2774","2781","2784","2779","2776","2780","2774","2784","2777","2784","2775","2791","2779","2778","2779","2789","2764","2771","2778","2800","2772","2786","2780","2800","2577","2800","2707","2713","2726","2709","2694"],["2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800"],["4.59"," 4.8 "," 4.6 "," 4.7 "," 4.56"," 4.5 "," 4.37"," 4.3 ","4.45","3.7 ","4.03","3.86"," 4   "," 4.42"," 4.42","4.07","3.49","3.78","3.81","4.03"," 4.82","4.29"," 4.44"," 4.89","4.51","1.67","3.19","28.78","4.26","4.14","4.59","4.64","3.84"],["1.41"," 1.17"," 1.3 "," 1.48"," 1.26"," 1.24"," 1.32"," 1.29","1.38","1.63","1.63","1.61"," 1.35"," 1.46"," 1.33","1.57","1.53","1.6 ","1.57","1.62"," 1.13","1.57"," 1.22"," 1.22","1.33","0.47","1.11","11.13","0.95","1.06","0.81","0.9 ","1.19"],["1  ","1","1","1","1","1","1","1","1  ","1  ","1  ","1  ","1","1","1","1  ","1  ","1  ","1  ","1  ","1","1  ","1","1","1  ","1  ","1  ","3","1  ","1  ","1.2","1  ","1  "],["4  ","4","4","4","4","4","4","4","3  ","2  ","3  ","3  ","3","4","4","3  ","2  ","3  ","3  ","3  ","4","3  ","4","4","4  ","1  ","3  ","20","3.6","3.4","4  ","4.2","3  "],["5  ","5","5","5","5","5","5","5","5  ","4  ","4  ","4  ","4","5","5","4  ","3  ","4  ","4  ","4  ","5","5  ","5","5","5  ","2  ","3  ","26","4.4","4.2","4.6","4.8","4  "],["6  ","6","6","6","5","5","5","5","6  ","5  ","5  ","5  ","5","6","5","5  ","5  ","5  ","5  ","5  ","6","6  ","5","6","6  ","2  ","4  ","35","5  ","5  ","5.2","5.4","4.8"],["6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","2","5","86","6","6","6","6","6"],["▁▂▁▃▃▁▇▇","▁▁▁▁▅▁▇▇","▁▂▁▂▅▁▇▆","▁▂▁▁▃▁▅▇","▁▂▁▂▅▁▇▆","▁▁▁▂▅▁▇▅","▁▂▁▂▆▁▇▅","▁▂▁▂▆▁▇▅","▁▂▁▅▅▁▇▇","▃▆▁▇▅▁▇▆","▃▅▁▆▅▁▇▇","▃▅▁▇▅▁▇▆","▂▃▁▃▇▁▇▃","▁▂▁▂▃▁▇▆","▁▂▁▂▅▁▇▅","▂▅▁▆▅▁▇▇","▃▆▁▇▅▁▆▃","▃▆▁▇▅▁▇▆","▃▅▁▇▅▁▇▆","▃▃▁▆▅▁▇▇","▁▁▁▂▅▁▇▇","▂▃▁▅▃▁▇▇","▁▁▁▂▆▁▇▅","▁▁▁▁▃▁▆▇","▁▂▁▃▅▁▇▇","▃▁▁▁▁▁▁▇","▂▂▁▇▁▂▁▃","▁▇▆▃▂▁▁▁","▁▁▂▅▇▇▇▅","▁▁▃▅▇▇▇▆","▁▁▁▂▇▇▇▅","▁▁▁▂▃▆▇▇","▂▃▆▇▇▇▇▅"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>value_labels<\/th>\n      <th>scale_item_names<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
 {
   "name": "results",
   "keywords": ["A1R", "A2", "A3", "A4", "A5", "C1", "C2", "C3", "C4R", "C5R", "E1R", "E2R", "E3", "E4", "E5", "N1R", "N2R", "N3R", "N4R", "N5R", "O1", "O2R", "O3", "O4", "O5R", "gender", "education", "age", "consc", "extra", "open", "agree", "neuro"],
@@ -3987,7 +3912,7 @@
   "@context": "http://schema.org/",
   "@type": "Dataset"
 }
-</script><p>`r ifelse(knit_by_pkgdown, ’‘,’### Codebook table’)</p>
+</script>
 </div>
   </div>
 

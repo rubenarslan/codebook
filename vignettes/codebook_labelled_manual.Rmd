@@ -14,9 +14,9 @@ vignette: >
 ---
 
 
-In this vignette, you can how to add metadata to a dataset when it isn't yet 
+In this vignette, you can see how to add metadata to a dataset when it isn't already 
 stored in its attributes. For this example, we'll use the `bfi` and `bfi.dictionary`
-datasets from the `psych` package. We use functions from the labelled package
+datasets from the `psych` package. We use functions from the `labelled` package
 to set the relevant attributes with convenience functions.
 
 
@@ -157,7 +157,8 @@ codebook(bfi, survey_repetition = "single",
 ```
 
 
-`r ifelse(knit_by_pkgdown, '', '### Codebook table')
+`r ifelse(knit_by_pkgdown, '', '### Codebook table')`
+
 ```{r}
 if (!knit_by_pkgdown) {
   codebook:::escaped_table(codebook_table(bfi))

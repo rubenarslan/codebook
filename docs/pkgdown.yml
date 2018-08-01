@@ -4,4 +4,7 @@ pkgdown_sha: ~
 articles:
   codebook: codebook.html
   codebook_labelled_manual: codebook_labelled_manual.html
+  codebook_nested_scale: codebook_nested_scale.html
+  codebook_qualtrics: codebook_qualtrics.html
+  codebook_sav: codebook_sav.html
 

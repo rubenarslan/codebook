@@ -167,3 +167,43 @@ summary.labelled <- function(object, ...) {
 summary.labelled_spss <- function(object, ...) {
   summary(haven::as_factor(object, levels = "both"), ...)
 }
+
+
+
+#' Has label
+#'
+#'
+#' @param x a vector
+#'
+#' @export
+#' @examples
+#' example("labelled", "haven")
+#' has_label(x)
+has_label <- function(x) {
+  haven::is.labelled(x) ||
+    !is.null(attr(x, 'label')) ||
+    !is.null(attr(x, 'labels'))
+}
+
+
+#' Has labels
+#'
+#'
+#' @param x a vector
+#'
+#' @export
+#' @examples
+#' example("labelled", "haven")
+#' has_labels(x)
+has_labels <- function(x) {
+  haven::is.labelled(x) ||
+    !is.null(attr(x, 'labels'))
+}
+
+#' @export
+as_factor.default <- function(x,
+          levels = c("default", "labels", "values", "both"),
+          ordered = FALSE, ...) {
+  class(x) <- c("labelled", class(x))
+  haven::as_factor(x, levels, ordered, ...)
+}

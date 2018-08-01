@@ -55,7 +55,8 @@ codebook(bfi, metadata_table = knit_by_pkgdown, metadata_json = knit_by_pkgdown)
 ```
 
 
-`r ifelse(knit_by_pkgdown, '', '### Codebook table')
+`r ifelse(knit_by_pkgdown, '', '### Codebook table')`
+
 ```{r}
 if (!knit_by_pkgdown) {
   codebook:::escaped_table(codebook_table(bfi))

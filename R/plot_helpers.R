@@ -71,8 +71,8 @@ plot_labelled <- function(item, item_name = NULL,
     nonmissing_choices <- attributes(item_nomiss)[["labels"]]
   has_labelled_missings <- length(nonmissing_choices) < length(choices)
   if (all(is.na(item_nomiss))) {
-    if (haven::is.labelled(item)) {
-      item <- haven::as_factor(item, "both")
+    if (has_labels(item)) {
+      item <- as_factor(item, "both")
     } else {
       item <- factor(item, exclude = NULL)
     }
@@ -88,7 +88,7 @@ plot_labelled <- function(item, item_name = NULL,
   # * factor -> discrete
   # * double/integer -> continuous, with binning
 
-  if (haven::is.labelled(item)) {
+  if (has_labels(item)) {
     # for labelled values, make labels look proper
     label_how <- "both"
     if (length(choices)) {
@@ -142,7 +142,7 @@ plot_labelled <- function(item, item_name = NULL,
       if (any(names(choices) != choices)) {
         label_how <- "both"
       }
-      item <- haven::as_factor(item, levels = label_how)
+      item <- as_factor(item, levels = label_how)
 
       dist_plot <- ggplot2::ggplot(mapping = ggplot2::aes(x = item)) +
         ggplot2::geom_bar() +
