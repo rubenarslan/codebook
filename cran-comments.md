@@ -1,13 +1,6 @@
-## Resubmission
-* I am now referencing the file man/figures/codebook_adding.gif from Github
-Pages because it's 13MB and so makes the package unduly big.
-
 ## Submission
-* All three added RStudio Addins were tested, but tests were omitted for two 
-owing to problems with 'shinytest'.
-* Owing to bugs in mice that broke (degenerate test cases), codebook requires
-mice > 3.2.0 which has just been released on CRAN. This meant winbuilder still
-had the old version. Apart from this, it tested ok.
+* Mainly added vignettes. There is some code in the vignettes to make them more
+  compact for CRAN, but prettier for the Github docs.
 
 ## Test environments
 * local OS X install, R 3.5.1
