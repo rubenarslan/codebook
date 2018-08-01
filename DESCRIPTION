@@ -46,12 +46,9 @@ Suggests:
   testthat,
   shinytest,
   lme4,
-  roxygen2,
-  qualtRics
+  roxygen2
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
 Roxygen: list(markdown = TRUE) 
 VignetteBuilder: knitr
-Remotes:
-  ropensci/qualtRics
