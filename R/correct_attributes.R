@@ -325,6 +325,12 @@ reverse_labelled_values <- function(x) {
   labels <- attributes(x)$labels
   values <- unname(labels)
   labels <- names(labels)
+  if (is.factor(x) && is.null(labels) && !is.null(attributes(x)$levels)) {
+    warning("Turning a factor into a labelled numeric vector")
+    values <- seq_len(length(attributes(x)$levels))
+    labels <- attributes(x)$levels
+    x <- as.numeric(x)
+  }
   if (
     sum(!is.na(values)) == 0 ||
     (any(x > max(values, na.rm = TRUE) |
@@ -354,7 +360,7 @@ reverse_labelled_values <- function(x) {
     recode_replies <- stats::setNames(
       as.list(possible_replies), rev(possible_replies))
     new_x <- dplyr::recode(as.numeric(x), rlang::UQS(recode_replies))
-    # cbind(new_x,x)
+
     attributes(new_x) <- attributes(x)
     attributes(new_x)$labels <- stats::setNames(rev(values), labels)
     new_x

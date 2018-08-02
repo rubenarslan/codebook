@@ -260,4 +260,12 @@ test_that("reverse labelled values", {
   expect_equal(reversed[[1]], 3)
   expect_equal(reversed[[4]], 2)
   expect_equal(reversed[[9]], 1)
+
+  x <- factor(rep(1:3, each = 3), levels = 1:5, labels = letters[1:5])
+  expect_warning(reversed <- reverse_labelled_values(x), "factor")
+  expect_identical(names(attributes(reversed)$labels), letters[1:5])
+  expect_equivalent(attributes(reversed)$labels, 5:1)
+  expect_equal(reversed[[1]], 5)
+  expect_equal(reversed[[4]], 4)
+  expect_equal(reversed[[9]], 3)
 })
