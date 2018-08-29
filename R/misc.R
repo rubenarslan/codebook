@@ -204,6 +204,6 @@ has_labels <- function(x) {
 as_factor.default <- function(x,
           levels = c("default", "labels", "values", "both"),
           ordered = FALSE, ...) {
-  class(x) <- c("labelled", class(x))
+  class(x) <- c("haven_labelled", class(x))
   haven::as_factor(x, levels, ordered, ...)
 }

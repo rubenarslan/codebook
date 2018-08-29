@@ -257,32 +257,6 @@ zap_attributes.data.frame <- function(x, attributes = NULL) {
 }
 
 
-#' Zap variable label
-#'
-#' Modelled on [haven::zap_labels()], zaps variable labels (not value labels).
-#'
-#' @param x the data frame or variable
-#'
-#' @export
-#' @examples
-#' x <- haven::labelled(rep(1:5, each = 1), c(Bad = 1, Good = 5))
-#' zap_label(x)
-zap_label <- function(x) {
-  UseMethod("zap_label")
-}
-
-#' @export
-zap_label.data.frame <- function(x) {
-  x[] <- lapply(x, zap_label)
-  x
-}
-
-#' @export
-zap_label.default <- function(x) {
-  attr(x, "label") <- NULL
-  x
-}
-
 
 #' Zap labelled class
 #'
@@ -301,14 +275,22 @@ zap_labelled.data.frame <- function(x) {
 }
 
 #' @export
-zap_labelled.labelled <- function(x) {
-  if (inherits(x, "labelled")) {
+zap_labelled.haven_labelled <- function(x) {
+  if (inherits(x, "haven_labelled")) {
     unclass(x)
   } else {
     x
   }
 }
 
+#' @export
+zap_labelled.haven_labelled_spss <- function(x) {
+  if (inherits(x, "haven_labelled_spss")) {
+    unclass(x)
+  } else {
+    x
+  }
+}
 
 
 #' Reverse labelled values

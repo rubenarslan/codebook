@@ -1,3 +1,11 @@
+# codebook 0.6.3.9000
+
+## Changes
+- removed `zap_label` because haven 2.0.0 has this function
+
+## Bugfixes
+- work with haven's changed class names
+
 # codebook 0.6.3
 ## Additions
 - Vignettes for

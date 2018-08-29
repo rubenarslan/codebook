@@ -82,7 +82,7 @@ attributes(bfi$gender) # check what we're doing
 attributes(bfi$gender) <- list(
   label = "Self-reported gender", 
   labels = c(male = 1L, female = 2L), 
-  class = "labelled")
+  class = "haven_labelled")
 ```
 
 As we see, adding value labels turned the variable `gender` into a different type (from

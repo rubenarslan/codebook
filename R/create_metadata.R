@@ -2,6 +2,10 @@
 #' @export
 haven::as_factor
 
+#' @importFrom haven zap_label
+#' @export
+haven::zap_label
+
 #' @importFrom labelled var_label
 #' @export
 labelled::var_label

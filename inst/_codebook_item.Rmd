@@ -23,7 +23,7 @@ choices <- item_attributes$labels
 `r indent`### Distribution {#`r safe_name`_distribution}
 ```{r setup_missings}
 show_missings <- FALSE
-if (has_label(item)) {
+if (has_labels(item)) {
   missings <- item[is.na(haven::zap_missing(item))]
   attributes(missings) <- attributes(item)
   if (!is.null(attributes(item)$labels)) {
