@@ -30,6 +30,7 @@ compute_reliabilities <- function(results, survey_repetition = "single") {
         tryCatch({
           id_vars <- c("session", "created")
           id_vars <- intersect(id_vars, vars)
+          scale_info$scale_item_names <- unname(scale_info$scale_item_names)
           items <- dplyr::select(results,
               rlang::UQS(rlang::quos(id_vars)),
               rlang::UQ(rlang::quo(var)),
