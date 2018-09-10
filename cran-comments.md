@@ -1,6 +1,6 @@
 ## Submission
-* Mainly added vignettes. There is some code in the vignettes to make them more
-  compact for CRAN, but prettier for the Github docs.
+* Don't forget to add pre-rendered vignette.
+* Don't forget to remove Remotes from DESCRIPTION.
 
 ## Test environments
 * local OS X install, R 3.5.1

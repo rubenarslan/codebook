@@ -57,3 +57,129 @@ aggregate_and_document_scale <- function(items, fun = rowMeans, stem = NULL) {
   new_scale
 }
 
+#' Add description to a dataset
+#'
+#' Add a single character vector to describe a data frame in preparation for JSON-LD
+#' metadata generation using [codebook()] or [metadata_list()].
+#'
+#' @param data the data frame
+#' @param value the description
+#' @export
+#' @examples
+#' data_description(bfi) <- "a small mock Big Five Inventory dataset"
+#'
+`data_description<-` <- function(data, value) {
+  UseMethod("data_description<-")
+}
+
+#' @export
+`data_description<-.data.frame` <- function(data, value) {
+  if ((!is.character(value) & !is.null(value)) | length(value) >
+      1)
+    stop("`value` should be a single character string or NULL",
+         call. = FALSE, domain = "R-codebook")
+  attributes(data)$description <- value
+  data
+}
+
+
+#' Give a name to a dataset
+#'
+#' Add a single character vector to name a data frame in preparation for JSON-LD
+#' metadata generation using [codebook()] or [metadata_list()].
+#'
+#' @param data the data frame
+#' @param value the name
+#' @export
+#' @examples
+#' data_name(bfi) <- "a small mock Big Five Inventory dataset"
+#'
+`data_name<-` <- function(data, value) {
+  UseMethod("data_name<-")
+}
+
+#' @export
+`data_name<-.data.frame` <- function(data, value) {
+  if ((!is.character(value) & !is.null(value)) | length(value) >
+      1)
+    stop("`value` should be a single character string or NULL",
+         call. = FALSE, domain = "R-codebook")
+  attributes(data)$name <- value
+  data
+}
+
+
+#' Add an URL to a dataset
+#'
+#' Add a URL where the dataset description can be found in preparation for
+#' JSON-LD metadata generation using [codebook()] or [metadata_list()].
+#'
+#' @param data the data frame
+#' @param value the URL
+#' @export
+#' @examples
+#' data_url(bfi) <- "https://rubenarslan.github.io/codebook/articles/codebook.html"
+#'
+`data_url<-` <- function(data, value) {
+  UseMethod("data_url<-")
+}
+
+#' @export
+`data_url<-.data.frame` <- function(data, value) {
+  if ((!is.character(value) & !is.null(value)) | length(value) >
+      1)
+    stop("`value` should be a single character string or NULL",
+         call. = FALSE, domain = "R-codebook")
+  attributes(data)$url <- value
+  data
+}
+
+
+#' Add citation information to a dataset
+#'
+#' Add a single character vector or a list to give citation information for
+#' JSON-LD metadata generation using [codebook()] or [metadata_list()].
+#'
+#' @param data the data frame
+#' @param value the citation information
+#' @export
+#' @examples
+#' data_citation(bfi) <- "doi:10.5281/zenodo.1326520"
+#'
+`data_citation<-` <- function(data, value) {
+  UseMethod("data_citation<-")
+}
+
+#' @export
+`data_citation<-.data.frame` <- function(data, value) {
+  if (!((is.character(value) | is.null(value) | is.list(value))))
+    stop("`value` should be a single character string or NULL",
+         call. = FALSE, domain = "R-codebook")
+  attributes(data)$citation <- value
+  data
+}
+
+
+#' Add keywords to a dataset
+#'
+#' Add a character vector to to add keywords in preparation for JSON-LD
+#' metadata generation using [codebook()] or [metadata_list()].
+#'
+#' @param data the data frame
+#' @param value the keywords
+#' @export
+#' @examples
+#' data_keywords(bfi) <- c("Big Five", "Personality", "Psychology")
+#'
+`data_keywords<-` <- function(data, value) {
+  UseMethod("data_keywords<-")
+}
+
+#' @export
+`data_keywords<-.data.frame` <- function(data, value) {
+  if (!((is.character(value) | is.null(value))))
+    stop("`value` should be a character vector or NULL",
+         call. = FALSE, domain = "R-codebook")
+  attributes(data)$keywords <- value
+  data
+}

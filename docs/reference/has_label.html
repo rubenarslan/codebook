@@ -67,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3.9000</span>
       </span>
     </div>
 
@@ -164,6 +164,9 @@
 #&gt; lablld&gt; s1 &lt;- labelled(c("M", "M", "F"), c(Male = "M", Female = "F"))
 #&gt; 
 #&gt; lablld&gt; s2 &lt;- labelled(c(1, 1, 2), c(Male = 1, Female = 2))
+#&gt; 
+#&gt; lablld&gt; s3 &lt;- labelled(c(1, 1, 2), c(Male = 1, Female = 2),
+#&gt; lablld+                label="Assigned sex at birth")
 #&gt; 
 #&gt; lablld&gt; # Unfortunately it's not possible to make as.factor work for labelled objects
 #&gt; lablld&gt; # so instead use as_factor. This works for all types of labelled vectors.

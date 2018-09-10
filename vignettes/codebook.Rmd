@@ -48,10 +48,15 @@ data("bfi", package = 'codebook')
 bfi$age <- rpois(nrow(bfi), 30)
 library(labelled)
 var_label(bfi$age) <- "Alter"
+
+data_name(bfi) <- "MOCK Big Five Inventory dataset (German metadata demo)"
+data_description(bfi) <- "a small mock Big Five Inventory dataset"
+data_citation(bfi) <- "doi:10.5281/zenodo.1326520"
+data_url(bfi) <- "https://rubenarslan.github.io/codebook/articles/codebook.html"
 ```
 
 ```{r cb}
-codebook(bfi, metadata_table = knit_by_pkgdown, metadata_json = knit_by_pkgdown)
+codebook(bfi, metadata_table = knit_by_pkgdown, metadata_json = TRUE)
 ```
 
 

@@ -67,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3.9000</span>
       </span>
     </div>
 
@@ -170,6 +170,9 @@
 #&gt; 
 #&gt; lablld&gt; s2 &lt;- labelled(c(1, 1, 2), c(Male = 1, Female = 2))
 #&gt; 
+#&gt; lablld&gt; s3 &lt;- labelled(c(1, 1, 2), c(Male = 1, Female = 2),
+#&gt; lablld+                label="Assigned sex at birth")
+#&gt; 
 #&gt; lablld&gt; # Unfortunately it's not possible to make as.factor work for labelled objects
 #&gt; lablld&gt; # so instead use as_factor. This works for all types of labelled vectors.
 #&gt; lablld&gt; as_factor(s1)
@@ -210,8 +213,8 @@
 #&gt; lablld&gt; x &lt;- labelled(c(1, 2, 1, 2, 10, 9), c(Unknown = 9, Refused = 10))
 #&gt; 
 #&gt; lablld&gt; zap_labels(x)
-#&gt; [1]  1  2  1  2 10  9</div><div class='input'><span class='fu'>summary</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;            1            2  [9] Unknown [10] Refused 
-#&gt;            2            2            1            1 </div><div class='input'>
+#&gt; [1]  1  2  1  2 10  9</div><div class='input'><span class='fu'>summary</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+#&gt;   1.000   1.250   2.000   4.167   7.250  10.000 </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

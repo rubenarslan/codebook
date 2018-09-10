@@ -30,6 +30,11 @@ reference:
   - '`reverse_labelled_values`'
   - '`has_label`'
   - '`has_labels`'
+  - '`data_name<-`'
+  - '`data_description<-`'
+  - '`data_url<-`'
+  - '`data_keywords<-`'
+  - '`data_citation<-`'
 - title: Prepare data for non-codebook stuff
   desc: Functions to remove attributes that might confuse other packages
   contents:

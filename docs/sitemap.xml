@@ -40,6 +40,21 @@
     <loc>https://rubenarslan.github.io/codebook//reference/compute_reliabilities.html</loc>
   </url>
   <url>
+    <loc>https://rubenarslan.github.io/codebook//reference/data_citation-set.html</loc>
+  </url>
+  <url>
+    <loc>https://rubenarslan.github.io/codebook//reference/data_description-set.html</loc>
+  </url>
+  <url>
+    <loc>https://rubenarslan.github.io/codebook//reference/data_keywords-set.html</loc>
+  </url>
+  <url>
+    <loc>https://rubenarslan.github.io/codebook//reference/data_name-set.html</loc>
+  </url>
+  <url>
+    <loc>https://rubenarslan.github.io/codebook//reference/data_url-set.html</loc>
+  </url>
+  <url>
     <loc>https://rubenarslan.github.io/codebook//reference/detect_missings.html</loc>
   </url>
   <url>
@@ -116,9 +131,6 @@
   </url>
   <url>
     <loc>https://rubenarslan.github.io/codebook//reference/zap_attributes.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook//reference/zap_label.html</loc>
   </url>
   <url>
     <loc>https://rubenarslan.github.io/codebook//reference/zap_labelled.html</loc>

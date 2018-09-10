@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Metadata from dataframe — metadata_list • codebook</title>
+<title>Add description to a dataset — data_description&lt;- • codebook</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,9 +36,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Metadata from dataframe — metadata_list" />
+<meta property="og:title" content="Add description to a dataset — data_description&lt;-" />
 
-<meta property="og:description" content="Returns a list containing variable metadata (attributes) and data summaries." />
+<meta property="og:description" content="Add a single character vector to describe a data frame in preparation for JSON-LD
+metadata generation using codebook() or metadata_list()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -136,57 +137,36 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Metadata from dataframe</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/codebook.R'><code>R/codebook.R</code></a></small>
-    <div class="hidden name"><code>metadata_list.Rd</code></div>
+    <h1>Add description to a dataset</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/create_metadata.R'><code>R/create_metadata.R</code></a></small>
+    <div class="hidden name"><code>data_description-set.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Returns a list containing variable metadata (attributes) and data summaries.</p>
+    <p>Add a single character vector to describe a data frame in preparation for JSON-LD
+metadata generation using <code><a href='codebook.html'>codebook()</a></code> or <code><a href='metadata_list.html'>metadata_list()</a></code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>metadata_list</span>(<span class='no'>results</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>data_description</span>(<span class='no'>data</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>results</th>
-      <td><p>a data frame, ideally with attributes set on variables</p></td>
+      <th>data</th>
+      <td><p>the data frame</p></td>
     </tr>
     <tr>
-      <th>name</th>
-      <td><p>the name of the data frame (taken from attributes if set or from
-name of first argument)</p></td>
+      <th>value</th>
+      <td><p>the description</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='st'>"bfi"</span>)
-<span class='no'>md_list</span> <span class='kw'>&lt;-</span> <span class='fu'>metadata_list</span>(<span class='no'>bfi</span>)
-<span class='no'>md_list</span>$<span class='no'>variableMeasured</span><span class='kw'>[[</span><span class='fl'>20</span>]]</div><div class='output co'>#&gt; $name
-#&gt; [1] "N5"
-#&gt; 
-#&gt; $data_summary
-#&gt; # A tibble: 1 x 12
-#&gt;   missing complete n     mean  sd    p0    p25   p50   p75   p100  hist  `@typ…
-#&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; 
-#&gt; 1 29      2771     2800  2.97  1.62  1     2     3     4     6     ▇▇▁▅… http:…
-#&gt; 
-#&gt; $value
-#&gt; [1] "Number"
-#&gt; 
-#&gt; $`@context`
-#&gt; $`@context`$`@vocab`
-#&gt; [1] "http://pending.schema.org/"
-#&gt; 
-#&gt; 
-#&gt; $`@type`
-#&gt; [1] "propertyValue"
-#&gt; </div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>data_description</span>(<span class='no'>bfi</span>) <span class='kw'>&lt;-</span> <span class='st'>"a small mock Big Five Inventory dataset"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

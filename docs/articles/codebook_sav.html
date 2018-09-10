@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3.9000</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
       <h1>Codebook example with SPSS dataset</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2018-08-01</h4>
+            <h4 class="date">2018-09-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook_sav.Rmd"><code>vignettes/codebook_sav.Rmd</code></a></small>
       <div class="hidden name"><code>codebook_sav.Rmd</code></div>
@@ -146,7 +146,7 @@
 <h4 class="hasAnchor">
 <a href="#DG_distribution" class="anchor"></a>Distribution</h4>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">show_missings &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_label.html">has_label</a></span>(item)) {</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_labels.html">has_labels</a></span>(item)) {</a>
 <a class="sourceLine" id="cb6-3" data-line-number="3">  missings &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
 <a class="sourceLine" id="cb6-4" data-line-number="4">  <span class="kw">attributes</span>(missings) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
 <a class="sourceLine" id="cb6-5" data-line-number="5">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)) {</a>
@@ -279,7 +279,7 @@
 <h4 class="hasAnchor">
 <a href="#sex_distribution" class="anchor"></a>Distribution</h4>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">show_missings &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_label.html">has_label</a></span>(item)) {</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_labels.html">has_labels</a></span>(item)) {</a>
 <a class="sourceLine" id="cb13-3" data-line-number="3">  missings &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
 <a class="sourceLine" id="cb13-4" data-line-number="4">  <span class="kw">attributes</span>(missings) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
 <a class="sourceLine" id="cb13-5" data-line-number="5">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)) {</a>
@@ -429,7 +429,7 @@
 <h4 class="hasAnchor">
 <a href="#relStat_distribution" class="anchor"></a>Distribution</h4>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">show_missings &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_label.html">has_label</a></span>(item)) {</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_labels.html">has_labels</a></span>(item)) {</a>
 <a class="sourceLine" id="cb20-3" data-line-number="3">  missings &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
 <a class="sourceLine" id="cb20-4" data-line-number="4">  <span class="kw">attributes</span>(missings) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
 <a class="sourceLine" id="cb20-5" data-line-number="5">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)) {</a>
@@ -582,7 +582,7 @@
 <h4 class="hasAnchor">
 <a href="#education_distribution" class="anchor"></a>Distribution</h4>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">show_missings &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_label.html">has_label</a></span>(item)) {</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_labels.html">has_labels</a></span>(item)) {</a>
 <a class="sourceLine" id="cb27-3" data-line-number="3">  missings &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
 <a class="sourceLine" id="cb27-4" data-line-number="4">  <span class="kw">attributes</span>(missings) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
 <a class="sourceLine" id="cb27-5" data-line-number="5">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)) {</a>
@@ -741,7 +741,7 @@
 <h4 class="hasAnchor">
 <a href="#NPI_avg_distribution" class="anchor"></a>Distribution</h4>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">show_missings &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_label.html">has_label</a></span>(item)) {</a>
+<a class="sourceLine" id="cb34-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_labels.html">has_labels</a></span>(item)) {</a>
 <a class="sourceLine" id="cb34-3" data-line-number="3">  missings &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
 <a class="sourceLine" id="cb34-4" data-line-number="4">  <span class="kw">attributes</span>(missings) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
 <a class="sourceLine" id="cb34-5" data-line-number="5">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)) {</a>
@@ -939,11 +939,13 @@
 <h2 class="hasAnchor">
 <a href="#codebook-table" class="anchor"></a>Codebook table</h2>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">export_table</span>(metadata_table)</a></code></pre></div>
-<div id="htmlwidget-31b993b4896ffe513cd0" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-31b993b4896ffe513cd0">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"5\" data-max=\"10\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#DG\">DG<\/a>","<a href=\"#sex\">sex<\/a>","<a href=\"#relStat\">relStat<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#NPI_avg\">NPI_avg<\/a>"],["dating group","sex","relationship status","highest educational attainment","narcissistic personality inventory - average"],["numeric","numeric","numeric","numeric","numeric"],[null,"1. female,<br>2. male","1. single,<br>2. in a relationship,<br>3. living separately / divorced","1. nine years schooling only,<br>2. professional training,<br>3. vocational school,<br>4. university-entrance diploma,<br>5. academic degree",null],["0","0","1","1","0"],["90","90","89","89","90"],["90","90","90","90","90"],["2.03","1.49","1.09","4.17","2.61"],["0.77","0.5 ","0.32","0.38","0.35"],["1  ","1  ","1  ","4  ","1.7"],["1   ","1   ","1   ","4   ","2.42"],["2  ","1  ","1  ","4  ","2.6"],["3   ","2   ","1   ","4   ","2.82"],["3   ","2   ","3   ","5   ","3.65"],["▆▁▁▇▁▁▁▆","▇▁▁▁▁▁▁▇","▇▁▁▁▁▁▁▁","▇▁▁▁▁▁▁▂","▁▂▃▇▆▂▁▁"],["F8.0","F1.0","F8.0","F1.0","F8.2"],[null,5,10,5,10]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>value_labels<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n      <th>format.spss<\/th>\n      <th>display_width<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":16}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">jsonld</a></code></pre></div>
+<div id="htmlwidget-fd4ed09ae39626c3c236" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fd4ed09ae39626c3c236">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"5\" data-max=\"10\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#DG\">DG<\/a>","<a href=\"#sex\">sex<\/a>","<a href=\"#relStat\">relStat<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#NPI_avg\">NPI_avg<\/a>"],["dating group","sex","relationship status","highest educational attainment","narcissistic personality inventory - average"],["numeric","numeric","numeric","numeric","numeric"],[null,"1. female,<br>2. male","1. single,<br>2. in a relationship,<br>3. living separately / divorced","1. nine years schooling only,<br>2. professional training,<br>3. vocational school,<br>4. university-entrance diploma,<br>5. academic degree",null],["0","0","1","1","0"],["90","90","89","89","90"],["90","90","90","90","90"],["2.03","1.49","1.09","4.17","2.61"],["0.77","0.5 ","0.32","0.38","0.35"],["1  ","1  ","1  ","4  ","1.7"],["1   ","1   ","1   ","4   ","2.42"],["2  ","1  ","1  ","4  ","2.6"],["3   ","2   ","1   ","4   ","2.82"],["3   ","2   ","3   ","5   ","3.65"],["▆▁▁▇▁▁▁▆","▇▁▁▁▁▁▁▇","▇▁▁▁▁▁▁▁","▇▁▁▁▁▁▁▂","▁▂▃▇▆▂▁▁"],["F8.0","F1.0","F8.0","F1.0","F8.2"],[null,5,10,5,10]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>value_labels<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n      <th>format.spss<\/th>\n      <th>display_width<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":16}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">jsonld</a></code></pre></div>
 <script type="application/ld+json">
 {
-  "name": "results",
+  "@context": "http://schema.org/",
+  "@type": "Dataset",
+  "description": "Automatically described using the codebook R package.",
   "keywords": ["DG", "sex", "relStat", "education", "NPI_avg"],
   "variableMeasured": [
     {
@@ -963,7 +965,7 @@
           "p75": "3",
           "p100": "3",
           "hist": "▆▁▁▇▁▁▁▆",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
       "value": "Number",
@@ -977,10 +979,6 @@
       "display_width": 5,
       "name": "sex",
       "description": "sex",
-      "value": {
-        "female": 1,
-        "male": 2
-      },
       "maxValue": 2,
       "minValue": 1,
       "data_summary": [
@@ -996,9 +994,10 @@
           "p75": "2",
           "p100": "2",
           "hist": "▇▁▁▁▁▁▁▇",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "Number",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -1009,11 +1008,6 @@
       "display_width": 10,
       "name": "relStat",
       "description": "relationship status",
-      "value": {
-        "single": 1,
-        "in a relationship": 2,
-        "living separately / divorced": 3
-      },
       "maxValue": 3,
       "minValue": 1,
       "data_summary": [
@@ -1029,9 +1023,10 @@
           "p75": "1",
           "p100": "3",
           "hist": "▇▁▁▁▁▁▁▁",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "Number",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -1042,13 +1037,6 @@
       "display_width": 5,
       "name": "education",
       "description": "highest educational attainment",
-      "value": {
-        "nine years schooling only": 1,
-        "professional training": 2,
-        "vocational school": 3,
-        "university-entrance diploma": 4,
-        "academic degree": 5
-      },
       "maxValue": 5,
       "minValue": 1,
       "data_summary": [
@@ -1064,9 +1052,10 @@
           "p75": "4",
           "p100": "5",
           "hist": "▇▁▁▁▁▁▁▂",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "Number",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -1090,7 +1079,7 @@
           "p75": "2.82",
           "p100": "3.65",
           "hist": "▁▂▃▇▆▂▁▁",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
       "value": "Number",
@@ -1099,9 +1088,7 @@
       },
       "@type": "propertyValue"
     }
-  ],
-  "@context": "http://schema.org/",
-  "@type": "Dataset"
+  ]
 }
 </script><div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span>knit_by_pkgdown) {</a>
 <a class="sourceLine" id="cb48-2" data-line-number="2">  codebook<span class="op">:::</span><span class="kw">escaped_table</span>(<span class="kw"><a href="../reference/codebook_table.html">codebook_table</a></span>(darktriad))</a>

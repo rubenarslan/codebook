@@ -476,21 +476,42 @@ attribute_summary <- function(var) {
 #' Returns a list containing variable metadata (attributes) and data summaries.
 #'
 #' @param results a data frame, ideally with attributes set on variables
+#' @param name the name of the data frame (taken from attributes if set or from
+#' name of first argument)
+#' @param only_existing whether to drop helpful metadata to comply with the list
+#' of currently defined schema.org properties
 #'
 #' @export
 #' @examples
 #' data("bfi")
 #' md_list <- metadata_list(bfi)
 #' md_list$variableMeasured[[20]]
-metadata_list <- function(results) {
-  name <- deparse(substitute(results))
+metadata_list <- function(results, name = NULL, only_existing = FALSE) {
   metadata <- attributes(results)
   metadata$names <- NULL
   metadata$row.names <- NULL
   metadata$class <- NULL
 
+  if (!exists("@context", metadata)) {
+    metadata[["@context"]] <- "http://schema.org/"
+  }
+
+  if (!exists("@type", metadata)) {
+    metadata[["@type"]] <- "Dataset"
+  }
+
+  if (!exists("description", metadata)) {
+    metadata[["description"]] <-
+      "Automatically described using the codebook R package."
+  }
+
+
   if (!exists("name", metadata)) {
-    metadata$name <- name
+    if (is.null(name)) {
+      name <- deparse(substitute(results))
+    } else {
+      metadata$name <- name
+    }
   }
 
   if (!exists("keywords", metadata)) {
@@ -515,7 +536,7 @@ metadata_list <- function(results) {
           x$label <- NULL
         }
         if (exists("labels", x)) {
-          x$value <- as.list(x$labels)
+          # x$value <- as.list(x$labels)
           # x$value[["@type"]] = "StructuredValue"
           x$maxValue <- max(x$labels, na.rm = TRUE)
           x$minValue <- min(x$labels, na.rm = TRUE)
@@ -527,13 +548,14 @@ metadata_list <- function(results) {
             x$item$type <- NULL
           }
           if (exists("choices", x$item)) {
-            x$item$choices[["@type"]] <- "http://formr.org/codebook/ItemChoices"
+            x$item$choices[["@type"]] <-
+              "http://rubenarslan.github.io/codebook/ItemChoices"
           }
           x$measurementTechnique <- "self-report"
-          x$item[["@type"]] <- "http://formr.org/codebook/Item"
+          x$item[["@type"]] <- "http://rubenarslan.github.io/codebook/Item"
         }
-
       }
+
       x$data_summary <- skim_to_wide_labelled(results[[var]])
       x$data_summary$variable <- NULL
       if (exists("type", x$data_summary)) {
@@ -548,14 +570,26 @@ metadata_list <- function(results) {
         }
         x$data_summary$type <- NULL
       }
-      x$data_summary[["@type"]] <- "http://formr.org/codebook/SummaryStatistics"
+      x$data_summary[["@type"]] <-
+        "http://rubenarslan.github.io/codebook/SummaryStatistics"
+
+      if (only_existing) {
+        if (exists("item", x)) {
+          x$item <- NULL
+        }
+        if (exists("scale_item_names", x)) {
+          x$scale_item_names <- NULL
+        }
+        if (exists("data_summary", x)) {
+          x$data_summary <- NULL
+        }
+      }
+
       x[["@context"]] <- list("@vocab" = "http://pending.schema.org/")
       x[["@type"]] <- "propertyValue"
       x
     })
 
-  metadata[["@context"]] <- "http://schema.org/"
-  metadata[["@type"]] <- "Dataset"
 
   metadata
 }

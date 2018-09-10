@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3.9000</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
       <h1>Codebook example with manual labelling</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2018-08-01</h4>
+            <h4 class="date">2018-09-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook_labelled_manual.Rmd"><code>vignettes/codebook_labelled_manual.Rmd</code></a></small>
       <div class="hidden name"><code>codebook_labelled_manual.Rmd</code></div>
@@ -223,7 +223,7 @@
 <a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">attributes</span>(bfi<span class="op">$</span>gender) &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
 <a class="sourceLine" id="cb13-3" data-line-number="3">  <span class="dt">label =</span> <span class="st">"Self-reported gender"</span>, </a>
 <a class="sourceLine" id="cb13-4" data-line-number="4">  <span class="dt">labels =</span> <span class="kw">c</span>(<span class="dt">male =</span> 1L, <span class="dt">female =</span> 2L), </a>
-<a class="sourceLine" id="cb13-5" data-line-number="5">  <span class="dt">class =</span> <span class="st">"labelled"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb13-5" data-line-number="5">  <span class="dt">class =</span> <span class="st">"haven_labelled"</span>)</a></code></pre></div>
 <p>As we see, adding value labels turned the variable <code>gender</code> into a different type (from a simple integer to a labelled class).</p>
 <p>This is all pretty tedious, and we have the data we need in a nice dictionary already. With a few easy steps, we can transform it.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">dict &lt;-<span class="st"> </span>bfi.dictionary <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -372,35 +372,25 @@
 <th align="left">name</th>
 <th align="left">label</th>
 <th align="left">data_type</th>
+<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">mean</th>
-<th align="left">sd</th>
-<th align="left">p0</th>
-<th align="left">p25</th>
-<th align="left">p50</th>
-<th align="left">p75</th>
-<th align="left">p100</th>
-<th align="left">hist</th>
+<th align="left">n_unique</th>
+<th align="left">top_counts</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="left">education</td>
 <td align="left">Highest degree</td>
-<td align="left">numeric</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">1. in high school,<br>2. finished high school,<br>3. some college,<br>4. college graduate,<br>5. graduate degree</td>
 <td align="left">223</td>
 <td align="left">2577</td>
 <td align="left">2800</td>
-<td align="left">3.19</td>
-<td align="left">1.11</td>
-<td align="left">1</td>
-<td align="left">3</td>
-<td align="left">3</td>
-<td align="left">4</td>
 <td align="left">5</td>
-<td align="left">▂▂▁▇▁▂▁▃</td>
+<td align="left">3: 1249, 5: 418, 4: 394, 2: 292</td>
 </tr></tbody>
 </table>
 </div>
@@ -434,7 +424,6 @@
 <div id="age_distribution" class="section level4">
 <h4 class="hasAnchor">
 <a href="#age_distribution" class="anchor"></a>Distribution</h4>
-<pre><code>## Error: `x` must be a double vector</code></pre>
 <p><img src="codebook_labelled_manual_files/figure-html/age_distribution-1.png" width="700"></p>
 <p>0 missings.</p>
 </div>
@@ -802,104 +791,74 @@
 <th align="left">name</th>
 <th align="left">label</th>
 <th align="left">data_type</th>
+<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">mean</th>
-<th align="left">sd</th>
-<th align="left">p0</th>
-<th align="left">p25</th>
-<th align="left">p50</th>
-<th align="left">p75</th>
-<th align="left">p100</th>
-<th align="left">hist</th>
+<th align="left">n_unique</th>
+<th align="left">top_counts</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">C1</td>
 <td align="left">Conscientiousness: Am exacting in my work.</td>
-<td align="left">integer</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">21</td>
 <td align="left">2779</td>
 <td align="left">2800</td>
-<td align="left">4.5</td>
-<td align="left">1.24</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">5</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">▁▁▁▂▅▁▇▅</td>
+<td align="left">5: 1018, 4: 655, 6: 597, 3: 275</td>
 </tr>
 <tr class="even">
 <td align="left">C2</td>
 <td align="left">Conscientiousness: Continue until everything is perfect.</td>
-<td align="left">integer</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">24</td>
 <td align="left">2776</td>
 <td align="left">2800</td>
-<td align="left">4.37</td>
-<td align="left">1.32</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">5</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">▁▂▁▂▆▁▇▅</td>
+<td align="left">5: 962, 4: 643, 6: 550, 3: 296</td>
 </tr>
 <tr class="odd">
 <td align="left">C3</td>
 <td align="left">Conscientiousness: Do things according to a plan.</td>
-<td align="left">integer</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">20</td>
 <td align="left">2780</td>
 <td align="left">2800</td>
-<td align="left">4.3</td>
-<td align="left">1.29</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">5</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">▁▂▁▂▆▁▇▅</td>
+<td align="left">5: 942, 4: 741, 6: 472, 3: 293</td>
 </tr>
 <tr class="even">
 <td align="left">C4R</td>
 <td align="left">Conscientiousness: Do things in a half-way manner.</td>
-<td align="left">numeric</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">26</td>
 <td align="left">2774</td>
 <td align="left">2800</td>
-<td align="left">4.45</td>
-<td align="left">1.38</td>
-<td align="left">1</td>
-<td align="left">3</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6</td>
-<td align="left">▁▂▁▅▅▁▇▇</td>
+<td align="left">5: 794, 6: 769, 4: 472, 3: 448</td>
 </tr>
 <tr class="odd">
 <td align="left">C5R</td>
 <td align="left">Conscientiousness: Waste my time.</td>
-<td align="left">numeric</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">16</td>
 <td align="left">2784</td>
 <td align="left">2800</td>
-<td align="left">3.7</td>
-<td align="left">1.63</td>
-<td align="left">1</td>
-<td align="left">2</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">▃▆▁▇▅▁▇▆</td>
+<td align="left">3: 614, 5: 567, 6: 504, 2: 466</td>
 </tr>
 </tbody>
 </table>
@@ -1230,104 +1189,74 @@
 <th align="left">name</th>
 <th align="left">label</th>
 <th align="left">data_type</th>
+<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">mean</th>
-<th align="left">sd</th>
-<th align="left">p0</th>
-<th align="left">p25</th>
-<th align="left">p50</th>
-<th align="left">p75</th>
-<th align="left">p100</th>
-<th align="left">hist</th>
+<th align="left">n_unique</th>
+<th align="left">top_counts</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">E1R</td>
 <td align="left">Extraversion: Don’t talk a lot.</td>
-<td align="left">numeric</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">23</td>
 <td align="left">2777</td>
 <td align="left">2800</td>
-<td align="left">4.03</td>
-<td align="left">1.63</td>
-<td align="left">1</td>
-<td align="left">3</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">▃▅▁▆▅▁▇▇</td>
+<td align="left">6: 663, 5: 652, 3: 450, 4: 404</td>
 </tr>
 <tr class="even">
 <td align="left">E2R</td>
 <td align="left">Extraversion: Find it difficult to approach others.</td>
-<td align="left">numeric</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">16</td>
 <td align="left">2784</td>
 <td align="left">2800</td>
-<td align="left">3.86</td>
-<td align="left">1.61</td>
-<td align="left">1</td>
-<td align="left">3</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">▃▅▁▇▅▁▇▆</td>
+<td align="left">5: 670, 3: 599, 6: 533, 2: 385</td>
 </tr>
 <tr class="odd">
 <td align="left">E3</td>
 <td align="left">Extraversion: Know how to captivate people.</td>
-<td align="left">integer</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">25</td>
 <td align="left">2775</td>
 <td align="left">2800</td>
-<td align="left">4</td>
-<td align="left">1.35</td>
-<td align="left">1</td>
-<td align="left">3</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">▂▃▁▃▇▁▇▃</td>
+<td align="left">4: 826, 5: 743, 3: 412, 6: 352</td>
 </tr>
 <tr class="even">
 <td align="left">E4</td>
 <td align="left">Extraversion: Make friends easily.</td>
-<td align="left">integer</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">9</td>
 <td align="left">2791</td>
 <td align="left">2800</td>
-<td align="left">4.42</td>
-<td align="left">1.46</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6</td>
-<td align="left">▁▂▁▂▃▁▇▆</td>
+<td align="left">5: 942, 6: 726, 4: 450, 3: 271</td>
 </tr>
 <tr class="odd">
 <td align="left">E5</td>
 <td align="left">Extraversion: Take charge.</td>
-<td align="left">integer</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">21</td>
 <td align="left">2779</td>
 <td align="left">2800</td>
-<td align="left">4.42</td>
-<td align="left">1.33</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">5</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">▁▂▁▂▅▁▇▅</td>
+<td align="left">5: 940, 4: 619, 6: 616, 3: 288</td>
 </tr>
 </tbody>
 </table>
@@ -1658,104 +1587,74 @@
 <th align="left">name</th>
 <th align="left">label</th>
 <th align="left">data_type</th>
+<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">mean</th>
-<th align="left">sd</th>
-<th align="left">p0</th>
-<th align="left">p25</th>
-<th align="left">p50</th>
-<th align="left">p75</th>
-<th align="left">p100</th>
-<th align="left">hist</th>
+<th align="left">n_unique</th>
+<th align="left">top_counts</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">O1</td>
 <td align="left">Openness: Am full of ideas.</td>
-<td align="left">integer</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">22</td>
 <td align="left">2778</td>
 <td align="left">2800</td>
-<td align="left">4.82</td>
-<td align="left">1.13</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6</td>
-<td align="left">▁▁▁▂▅▁▇▇</td>
+<td align="left">5: 925, 6: 912, 4: 606, 3: 210</td>
 </tr>
 <tr class="even">
 <td align="left">O2R</td>
 <td align="left">Openness: Avoid difficult reading material.</td>
-<td align="left">numeric</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">0</td>
 <td align="left">2800</td>
 <td align="left">2800</td>
-<td align="left">4.29</td>
-<td align="left">1.57</td>
-<td align="left">1</td>
-<td align="left">3</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6</td>
-<td align="left">▂▃▁▅▃▁▇▇</td>
+<td align="left">6: 805, 5: 717, 3: 435, 4: 388</td>
 </tr>
 <tr class="odd">
 <td align="left">O3</td>
 <td align="left">Openness: Carry the conversation to a higher level.</td>
-<td align="left">integer</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">28</td>
 <td align="left">2772</td>
 <td align="left">2800</td>
-<td align="left">4.44</td>
-<td align="left">1.22</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">5</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">▁▁▁▂▆▁▇▅</td>
+<td align="left">5: 943, 4: 775, 6: 541, 3: 292</td>
 </tr>
 <tr class="even">
 <td align="left">O4</td>
 <td align="left">Openness: Spend time reflecting on things.</td>
-<td align="left">integer</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">14</td>
 <td align="left">2786</td>
 <td align="left">2800</td>
-<td align="left">4.89</td>
-<td align="left">1.22</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6</td>
-<td align="left">▁▁▁▁▃▁▆▇</td>
+<td align="left">6: 1084, 5: 887, 4: 481, 3: 154</td>
 </tr>
 <tr class="odd">
 <td align="left">O5R</td>
 <td align="left">Openness: Will not probe deeply into a subject.</td>
-<td align="left">numeric</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">20</td>
 <td align="left">2780</td>
 <td align="left">2800</td>
-<td align="left">4.51</td>
-<td align="left">1.33</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6</td>
-<td align="left">▁▂▁▃▅▁▇▇</td>
+<td align="left">5: 883, 6: 746, 4: 526, 3: 364</td>
 </tr>
 </tbody>
 </table>
@@ -2086,104 +1985,74 @@
 <th align="left">name</th>
 <th align="left">label</th>
 <th align="left">data_type</th>
+<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">mean</th>
-<th align="left">sd</th>
-<th align="left">p0</th>
-<th align="left">p25</th>
-<th align="left">p50</th>
-<th align="left">p75</th>
-<th align="left">p100</th>
-<th align="left">hist</th>
+<th align="left">n_unique</th>
+<th align="left">top_counts</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">A1R</td>
 <td align="left">Agreeableness: Am indifferent to the feelings of others.</td>
-<td align="left">numeric</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">16</td>
 <td align="left">2784</td>
 <td align="left">2800</td>
-<td align="left">4.59</td>
-<td align="left">1.41</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6</td>
-<td align="left">▁▂▁▃▃▁▇▇</td>
+<td align="left">6: 922, 5: 818, 4: 402, 3: 337</td>
 </tr>
 <tr class="even">
 <td align="left">A2</td>
 <td align="left">Agreeableness: Inquire about others’ well-being.</td>
-<td align="left">integer</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">27</td>
 <td align="left">2773</td>
 <td align="left">2800</td>
-<td align="left">4.8</td>
-<td align="left">1.17</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6</td>
-<td align="left">▁▁▁▁▅▁▇▇</td>
+<td align="left">5: 1023, 6: 873, 4: 553, 3: 151</td>
 </tr>
 <tr class="odd">
 <td align="left">A3</td>
 <td align="left">Agreeableness: Know how to comfort others.</td>
-<td align="left">integer</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">26</td>
 <td align="left">2774</td>
 <td align="left">2800</td>
-<td align="left">4.6</td>
-<td align="left">1.3</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6</td>
-<td align="left">▁▂▁▂▅▁▇▆</td>
+<td align="left">5: 986, 6: 755, 4: 564, 3: 207</td>
 </tr>
 <tr class="even">
 <td align="left">A4</td>
 <td align="left">Agreeableness: Love children.</td>
-<td align="left">integer</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">19</td>
 <td align="left">2781</td>
 <td align="left">2800</td>
-<td align="left">4.7</td>
-<td align="left">1.48</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6</td>
-<td align="left">▁▂▁▁▃▁▅▇</td>
+<td align="left">6: 1147, 5: 654, 4: 451, 2: 215</td>
 </tr>
 <tr class="odd">
 <td align="left">A5</td>
 <td align="left">Agreeableness: Make people feel at ease.</td>
-<td align="left">integer</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">16</td>
 <td align="left">2784</td>
 <td align="left">2800</td>
-<td align="left">4.56</td>
-<td align="left">1.26</td>
-<td align="left">1</td>
-<td align="left">4</td>
-<td align="left">5</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">▁▂▁▂▅▁▇▆</td>
+<td align="left">5: 973, 6: 695, 4: 617, 3: 254</td>
 </tr>
 </tbody>
 </table>
@@ -2514,104 +2383,74 @@
 <th align="left">name</th>
 <th align="left">label</th>
 <th align="left">data_type</th>
+<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">mean</th>
-<th align="left">sd</th>
-<th align="left">p0</th>
-<th align="left">p25</th>
-<th align="left">p50</th>
-<th align="left">p75</th>
-<th align="left">p100</th>
-<th align="left">hist</th>
+<th align="left">n_unique</th>
+<th align="left">top_counts</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">N1R</td>
 <td align="left">Emotional Stability: Get angry easily.</td>
-<td align="left">numeric</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">22</td>
 <td align="left">2778</td>
 <td align="left">2800</td>
-<td align="left">4.07</td>
-<td align="left">1.57</td>
-<td align="left">1</td>
-<td align="left">3</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">▂▅▁▆▅▁▇▇</td>
+<td align="left">5: 654, 6: 654, 3: 515, 4: 427</td>
 </tr>
 <tr class="even">
 <td align="left">N2R</td>
 <td align="left">Emotional Stability: Get irritated easily.</td>
-<td align="left">numeric</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">21</td>
 <td align="left">2779</td>
 <td align="left">2800</td>
-<td align="left">3.49</td>
-<td align="left">1.53</td>
-<td align="left">1</td>
-<td align="left">2</td>
-<td align="left">3</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">▃▆▁▇▅▁▆▃</td>
+<td align="left">3: 709, 5: 535, 2: 510, 4: 411</td>
 </tr>
 <tr class="odd">
 <td align="left">N3R</td>
 <td align="left">Emotional Stability: Have frequent mood swings.</td>
-<td align="left">numeric</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">11</td>
 <td align="left">2789</td>
 <td align="left">2800</td>
-<td align="left">3.78</td>
-<td align="left">1.6</td>
-<td align="left">1</td>
-<td align="left">3</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">▃▆▁▇▅▁▇▆</td>
+<td align="left">5: 638, 3: 591, 6: 499, 2: 439</td>
 </tr>
 <tr class="even">
 <td align="left">N4R</td>
 <td align="left">Emotional Stability: Often feel blue.</td>
-<td align="left">numeric</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">36</td>
 <td align="left">2764</td>
 <td align="left">2800</td>
-<td align="left">3.81</td>
-<td align="left">1.57</td>
-<td align="left">1</td>
-<td align="left">3</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">▃▅▁▇▅▁▇▆</td>
+<td align="left">5: 655, 3: 608, 6: 472, 4: 401</td>
 </tr>
 <tr class="odd">
 <td align="left">N5R</td>
 <td align="left">Emotional Stability: Panic easily.</td>
-<td align="left">numeric</td>
+<td align="left">labelled</td>
+<td align="left">FALSE</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">29</td>
 <td align="left">2771</td>
 <td align="left">2800</td>
-<td align="left">4.03</td>
-<td align="left">1.62</td>
-<td align="left">1</td>
-<td align="left">3</td>
-<td align="left">4</td>
-<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">▃▃▁▆▅▁▇▇</td>
+<td align="left">5: 660, 6: 654, 3: 507, 4: 382</td>
 </tr>
 </tbody>
 </table>
@@ -2842,23 +2681,17 @@
 <div id="codebook-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#codebook-table" class="anchor"></a>Codebook table</h2>
-<div id="htmlwidget-b73f17387e4e1f8f927d" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b73f17387e4e1f8f927d">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#A1R\">A1R<\/a>","<a href=\"#A2\">A2<\/a>","<a href=\"#A3\">A3<\/a>","<a href=\"#A4\">A4<\/a>","<a href=\"#A5\">A5<\/a>","<a href=\"#C1\">C1<\/a>","<a href=\"#C2\">C2<\/a>","<a href=\"#C3\">C3<\/a>","<a href=\"#C4R\">C4R<\/a>","<a href=\"#C5R\">C5R<\/a>","<a href=\"#E1R\">E1R<\/a>","<a href=\"#E2R\">E2R<\/a>","<a href=\"#E3\">E3<\/a>","<a href=\"#E4\">E4<\/a>","<a href=\"#E5\">E5<\/a>","<a href=\"#N1R\">N1R<\/a>","<a href=\"#N2R\">N2R<\/a>","<a href=\"#N3R\">N3R<\/a>","<a href=\"#N4R\">N4R<\/a>","<a href=\"#N5R\">N5R<\/a>","<a href=\"#O1\">O1<\/a>","<a href=\"#O2R\">O2R<\/a>","<a href=\"#O3\">O3<\/a>","<a href=\"#O4\">O4<\/a>","<a href=\"#O5R\">O5R<\/a>","<a href=\"#gender\">gender<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#age\">age<\/a>","<a href=\"#consc\">consc<\/a>","<a href=\"#extra\">extra<\/a>","<a href=\"#open\">open<\/a>","<a href=\"#agree\">agree<\/a>","<a href=\"#neuro\">neuro<\/a>"],["Agreeableness: Am indifferent to the feelings of others.","Agreeableness: Inquire about others' well-being.","Agreeableness: Know how to comfort others.","Agreeableness: Love children.","Agreeableness: Make people feel at ease.","Conscientiousness: Am exacting in my work.","Conscientiousness: Continue until everything is perfect.","Conscientiousness: Do things according to a plan.","Conscientiousness: Do things in a half-way manner.","Conscientiousness: Waste my time.","Extraversion: Don't talk a lot.","Extraversion: Find it difficult to approach others.","Extraversion: Know how to captivate people.","Extraversion: Make friends easily.","Extraversion: Take charge.","Emotional Stability: Get angry easily.","Emotional Stability: Get irritated easily.","Emotional Stability: Have frequent mood swings.","Emotional Stability: Often feel blue.","Emotional Stability: Panic easily.","Openness: Am full of ideas.","Openness: Avoid difficult reading material.","Openness: Carry the conversation to a higher level.","Openness: Spend time reflecting on things.","Openness: Will not probe deeply into a subject.","Self-reported gender","Highest degree","age in years","5 C items aggregated by rowMeans","5 E items aggregated by rowMeans","5 O items aggregated by rowMeans","5 A items aggregated by rowMeans","5 N items aggregated by rowMeans"],["numeric","integer","integer","integer","integer","integer","integer","integer","numeric","numeric","numeric","numeric","integer","integer","integer","numeric","numeric","numeric","numeric","numeric","integer","numeric","integer","integer","numeric","numeric","numeric","integer","numeric","numeric","numeric","numeric","numeric"],["6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. male,<br>2. female","1. in high school,<br>2. finished high school,<br>3. some college,<br>4. college graduate,<br>5. graduate degree",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"C1, C2, C3, C4R, C5R","E1R, E2R, E3, E4, E5","O1, O2R, O3, O4, O5R","A1R, A2, A3, A4, A5","N1R, N2R, N3R, N4R, N5R"],["16","27","26","19","16","21","24","20","26","16","23","16","25","9","21","22","21","11","36","29","22","0","28","14","20","0","223","0","93","87","74","91","106"],["2784","2773","2774","2781","2784","2779","2776","2780","2774","2784","2777","2784","2775","2791","2779","2778","2779","2789","2764","2771","2778","2800","2772","2786","2780","2800","2577","2800","2707","2713","2726","2709","2694"],["2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800"],["4.59"," 4.8 "," 4.6 "," 4.7 "," 4.56"," 4.5 "," 4.37"," 4.3 ","4.45","3.7 ","4.03","3.86"," 4   "," 4.42"," 4.42","4.07","3.49","3.78","3.81","4.03"," 4.82","4.29"," 4.44"," 4.89","4.51","1.67","3.19","28.78","4.26","4.14","4.59","4.64","3.84"],["1.41"," 1.17"," 1.3 "," 1.48"," 1.26"," 1.24"," 1.32"," 1.29","1.38","1.63","1.63","1.61"," 1.35"," 1.46"," 1.33","1.57","1.53","1.6 ","1.57","1.62"," 1.13","1.57"," 1.22"," 1.22","1.33","0.47","1.11","11.13","0.95","1.06","0.81","0.9 ","1.19"],["1  ","1","1","1","1","1","1","1","1  ","1  ","1  ","1  ","1","1","1","1  ","1  ","1  ","1  ","1  ","1","1  ","1","1","1  ","1  ","1  ","3","1  ","1  ","1.2","1  ","1  "],["4  ","4","4","4","4","4","4","4","3  ","2  ","3  ","3  ","3","4","4","3  ","2  ","3  ","3  ","3  ","4","3  ","4","4","4  ","1  ","3  ","20","3.6","3.4","4  ","4.2","3  "],["5  ","5","5","5","5","5","5","5","5  ","4  ","4  ","4  ","4","5","5","4  ","3  ","4  ","4  ","4  ","5","5  ","5","5","5  ","2  ","3  ","26","4.4","4.2","4.6","4.8","4  "],["6  ","6","6","6","5","5","5","5","6  ","5  ","5  ","5  ","5","6","5","5  ","5  ","5  ","5  ","5  ","6","6  ","5","6","6  ","2  ","4  ","35","5  ","5  ","5.2","5.4","4.8"],["6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","2","5","86","6","6","6","6","6"],["▁▂▁▃▃▁▇▇","▁▁▁▁▅▁▇▇","▁▂▁▂▅▁▇▆","▁▂▁▁▃▁▅▇","▁▂▁▂▅▁▇▆","▁▁▁▂▅▁▇▅","▁▂▁▂▆▁▇▅","▁▂▁▂▆▁▇▅","▁▂▁▅▅▁▇▇","▃▆▁▇▅▁▇▆","▃▅▁▆▅▁▇▇","▃▅▁▇▅▁▇▆","▂▃▁▃▇▁▇▃","▁▂▁▂▃▁▇▆","▁▂▁▂▅▁▇▅","▂▅▁▆▅▁▇▇","▃▆▁▇▅▁▆▃","▃▆▁▇▅▁▇▆","▃▅▁▇▅▁▇▆","▃▃▁▆▅▁▇▇","▁▁▁▂▅▁▇▇","▂▃▁▅▃▁▇▇","▁▁▁▂▆▁▇▅","▁▁▁▁▃▁▆▇","▁▂▁▃▅▁▇▇","▃▁▁▁▁▁▁▇","▂▂▁▇▁▂▁▃","▁▇▆▃▂▁▁▁","▁▁▂▅▇▇▇▅","▁▁▃▅▇▇▇▆","▁▁▁▂▇▇▇▅","▁▁▁▂▃▆▇▇","▂▃▆▇▇▇▇▅"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>value_labels<\/th>\n      <th>scale_item_names<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
+<div id="htmlwidget-624171c0351cf2f1b7e8" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-624171c0351cf2f1b7e8">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#A1R\">A1R<\/a>","<a href=\"#A2\">A2<\/a>","<a href=\"#A3\">A3<\/a>","<a href=\"#A4\">A4<\/a>","<a href=\"#A5\">A5<\/a>","<a href=\"#C1\">C1<\/a>","<a href=\"#C2\">C2<\/a>","<a href=\"#C3\">C3<\/a>","<a href=\"#C4R\">C4R<\/a>","<a href=\"#C5R\">C5R<\/a>","<a href=\"#E1R\">E1R<\/a>","<a href=\"#E2R\">E2R<\/a>","<a href=\"#E3\">E3<\/a>","<a href=\"#E4\">E4<\/a>","<a href=\"#E5\">E5<\/a>","<a href=\"#N1R\">N1R<\/a>","<a href=\"#N2R\">N2R<\/a>","<a href=\"#N3R\">N3R<\/a>","<a href=\"#N4R\">N4R<\/a>","<a href=\"#N5R\">N5R<\/a>","<a href=\"#O1\">O1<\/a>","<a href=\"#O2R\">O2R<\/a>","<a href=\"#O3\">O3<\/a>","<a href=\"#O4\">O4<\/a>","<a href=\"#O5R\">O5R<\/a>","<a href=\"#gender\">gender<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#age\">age<\/a>","<a href=\"#consc\">consc<\/a>","<a href=\"#extra\">extra<\/a>","<a href=\"#open\">open<\/a>","<a href=\"#agree\">agree<\/a>","<a href=\"#neuro\">neuro<\/a>"],["Agreeableness: Am indifferent to the feelings of others.","Agreeableness: Inquire about others' well-being.","Agreeableness: Know how to comfort others.","Agreeableness: Love children.","Agreeableness: Make people feel at ease.","Conscientiousness: Am exacting in my work.","Conscientiousness: Continue until everything is perfect.","Conscientiousness: Do things according to a plan.","Conscientiousness: Do things in a half-way manner.","Conscientiousness: Waste my time.","Extraversion: Don't talk a lot.","Extraversion: Find it difficult to approach others.","Extraversion: Know how to captivate people.","Extraversion: Make friends easily.","Extraversion: Take charge.","Emotional Stability: Get angry easily.","Emotional Stability: Get irritated easily.","Emotional Stability: Have frequent mood swings.","Emotional Stability: Often feel blue.","Emotional Stability: Panic easily.","Openness: Am full of ideas.","Openness: Avoid difficult reading material.","Openness: Carry the conversation to a higher level.","Openness: Spend time reflecting on things.","Openness: Will not probe deeply into a subject.","Self-reported gender","Highest degree","age in years","5 C items aggregated by rowMeans","5 E items aggregated by rowMeans","5 O items aggregated by rowMeans","5 A items aggregated by rowMeans","5 N items aggregated by rowMeans"],["labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","numeric","labelled","integer","numeric","numeric","numeric","numeric","numeric"],["FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE",null,"FALSE",null,null,null,null,null,null],["6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. male,<br>2. female","1. in high school,<br>2. finished high school,<br>3. some college,<br>4. college graduate,<br>5. graduate degree",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"C1, C2, C3, C4R, C5R","E1R, E2R, E3, E4, E5","O1, O2R, O3, O4, O5R","A1R, A2, A3, A4, A5","N1R, N2R, N3R, N4R, N5R"],["16","27","26","19","16","21","24","20","26","16","23","16","25","9","21","22","21","11","36","29","22","0","28","14","20","0","223","0","93","87","74","91","106"],["2784","2773","2774","2781","2784","2779","2776","2780","2774","2784","2777","2784","2775","2791","2779","2778","2779","2789","2764","2771","2778","2800","2772","2786","2780","2800","2577","2800","2707","2713","2726","2709","2694"],["2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800"],["6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6",null,"5",null,null,null,null,null,null],["6: 922, 5: 818, 4: 402, 3: 337","5: 1023, 6: 873, 4: 553, 3: 151","5: 986, 6: 755, 4: 564, 3: 207","6: 1147, 5: 654, 4: 451, 2: 215","5: 973, 6: 695, 4: 617, 3: 254","5: 1018, 4: 655, 6: 597, 3: 275","5: 962, 4: 643, 6: 550, 3: 296","5: 942, 4: 741, 6: 472, 3: 293","5: 794, 6: 769, 4: 472, 3: 448","3: 614, 5: 567, 6: 504, 2: 466","6: 663, 5: 652, 3: 450, 4: 404","5: 670, 3: 599, 6: 533, 2: 385","4: 826, 5: 743, 3: 412, 6: 352","5: 942, 6: 726, 4: 450, 3: 271","5: 940, 4: 619, 6: 616, 3: 288","5: 654, 6: 654, 3: 515, 4: 427","3: 709, 5: 535, 2: 510, 4: 411","5: 638, 3: 591, 6: 499, 2: 439","5: 655, 3: 608, 6: 472, 4: 401","5: 660, 6: 654, 3: 507, 4: 382","5: 925, 6: 912, 4: 606, 3: 210","6: 805, 5: 717, 3: 435, 4: 388","5: 943, 4: 775, 6: 541, 3: 292","6: 1084, 5: 887, 4: 481, 3: 154","5: 883, 6: 746, 4: 526, 3: 364",null,"3: 1249, 5: 418, 4: 394, 2: 292",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1.67",null,"28.78","4.26","4.14","4.59","4.64","3.84"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"0.47",null,"11.13","0.95","1.06","0.81","0.9 ","1.19"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1  ",null,"3","1  ","1  ","1.2","1  ","1  "],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1  ",null,"20","3.6","3.4","4  ","4.2","3  "],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2  ",null,"26","4.4","4.2","4.6","4.8","4  "],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2  ",null,"35","5  ","5  ","5.2","5.4","4.8"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2",null,"86","6","6","6","6","6"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"▃▁▁▁▁▁▁▇",null,"▁▇▆▃▂▁▁▁","▁▁▂▅▇▇▇▅","▁▁▃▅▇▇▇▆","▁▁▁▂▇▇▇▅","▁▁▁▂▃▆▇▇","▂▃▆▇▇▇▇▅"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>scale_item_names<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>n_unique<\/th>\n      <th>top_counts<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
 {
-  "name": "results",
+  "@context": "http://schema.org/",
+  "@type": "Dataset",
+  "description": "Automatically described using the codebook R package.",
   "keywords": ["A1R", "A2", "A3", "A4", "A5", "C1", "C2", "C3", "C4R", "C5R", "E1R", "E2R", "E3", "E4", "E5", "N1R", "N2R", "N3R", "N4R", "N5R", "O1", "O2R", "O3", "O4", "O5R", "gender", "education", "age", "consc", "extra", "open", "agree", "neuro"],
   "variableMeasured": [
     {
       "name": "A1R",
       "description": "Agreeableness: Am indifferent to the feelings of others.",
-      "value": {
-        "Very Inaccurate": 6,
-        "Moderately Inaccurate": 5,
-        "Slightly Inaccurate": 4,
-        "Slightly Accurate": 3,
-        "Moderately Accurate": 2,
-        "Very Accurate": 1
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -2866,17 +2699,13 @@
           "missing": "16",
           "complete": "2784",
           "n": "2800",
-          "mean": "4.59",
-          "sd": "1.41",
-          "p0": "1",
-          "p25": "4",
-          "p50": "5",
-          "p75": "6",
-          "p100": "6",
-          "hist": "▁▂▁▃▃▁▇▇",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "6: 922, 5: 818, 4: 402, 3: 337",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -2885,14 +2714,6 @@
     {
       "name": "A2",
       "description": "Agreeableness: Inquire about others' well-being.",
-      "value": {
-        "Very Inaccurate": 1,
-        "Moderately Inaccurate": 2,
-        "Slightly Inaccurate": 3,
-        "Slightly Accurate": 4,
-        "Moderately Accurate": 5,
-        "Very Accurate": 6
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -2900,17 +2721,13 @@
           "missing": "27",
           "complete": "2773",
           "n": "2800",
-          "mean": "4.8",
-          "sd": "1.17",
-          "p0": "1",
-          "p25": "4",
-          "p50": "5",
-          "p75": "6",
-          "p100": "6",
-          "hist": "▁▁▁▁▅▁▇▇",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 1023, 6: 873, 4: 553, 3: 151",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -2919,14 +2736,6 @@
     {
       "name": "A3",
       "description": "Agreeableness: Know how to comfort others.",
-      "value": {
-        "Very Inaccurate": 1,
-        "Moderately Inaccurate": 2,
-        "Slightly Inaccurate": 3,
-        "Slightly Accurate": 4,
-        "Moderately Accurate": 5,
-        "Very Accurate": 6
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -2934,17 +2743,13 @@
           "missing": "26",
           "complete": "2774",
           "n": "2800",
-          "mean": "4.6",
-          "sd": "1.3",
-          "p0": "1",
-          "p25": "4",
-          "p50": "5",
-          "p75": "6",
-          "p100": "6",
-          "hist": "▁▂▁▂▅▁▇▆",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 986, 6: 755, 4: 564, 3: 207",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -2953,14 +2758,6 @@
     {
       "name": "A4",
       "description": "Agreeableness: Love children.",
-      "value": {
-        "Very Inaccurate": 1,
-        "Moderately Inaccurate": 2,
-        "Slightly Inaccurate": 3,
-        "Slightly Accurate": 4,
-        "Moderately Accurate": 5,
-        "Very Accurate": 6
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -2968,17 +2765,13 @@
           "missing": "19",
           "complete": "2781",
           "n": "2800",
-          "mean": "4.7",
-          "sd": "1.48",
-          "p0": "1",
-          "p25": "4",
-          "p50": "5",
-          "p75": "6",
-          "p100": "6",
-          "hist": "▁▂▁▁▃▁▅▇",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "6: 1147, 5: 654, 4: 451, 2: 215",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -2987,14 +2780,6 @@
     {
       "name": "A5",
       "description": "Agreeableness: Make people feel at ease.",
-      "value": {
-        "Very Inaccurate": 1,
-        "Moderately Inaccurate": 2,
-        "Slightly Inaccurate": 3,
-        "Slightly Accurate": 4,
-        "Moderately Accurate": 5,
-        "Very Accurate": 6
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3002,17 +2787,13 @@
           "missing": "16",
           "complete": "2784",
           "n": "2800",
-          "mean": "4.56",
-          "sd": "1.26",
-          "p0": "1",
-          "p25": "4",
-          "p50": "5",
-          "p75": "5",
-          "p100": "6",
-          "hist": "▁▂▁▂▅▁▇▆",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 973, 6: 695, 4: 617, 3: 254",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3021,14 +2802,6 @@
     {
       "name": "C1",
       "description": "Conscientiousness: Am exacting in my work.",
-      "value": {
-        "Very Inaccurate": 1,
-        "Moderately Inaccurate": 2,
-        "Slightly Inaccurate": 3,
-        "Slightly Accurate": 4,
-        "Moderately Accurate": 5,
-        "Very Accurate": 6
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3036,17 +2809,13 @@
           "missing": "21",
           "complete": "2779",
           "n": "2800",
-          "mean": "4.5",
-          "sd": "1.24",
-          "p0": "1",
-          "p25": "4",
-          "p50": "5",
-          "p75": "5",
-          "p100": "6",
-          "hist": "▁▁▁▂▅▁▇▅",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 1018, 4: 655, 6: 597, 3: 275",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3055,14 +2824,6 @@
     {
       "name": "C2",
       "description": "Conscientiousness: Continue until everything is perfect.",
-      "value": {
-        "Very Inaccurate": 1,
-        "Moderately Inaccurate": 2,
-        "Slightly Inaccurate": 3,
-        "Slightly Accurate": 4,
-        "Moderately Accurate": 5,
-        "Very Accurate": 6
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3070,17 +2831,13 @@
           "missing": "24",
           "complete": "2776",
           "n": "2800",
-          "mean": "4.37",
-          "sd": "1.32",
-          "p0": "1",
-          "p25": "4",
-          "p50": "5",
-          "p75": "5",
-          "p100": "6",
-          "hist": "▁▂▁▂▆▁▇▅",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 962, 4: 643, 6: 550, 3: 296",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3089,14 +2846,6 @@
     {
       "name": "C3",
       "description": "Conscientiousness: Do things according to a plan.",
-      "value": {
-        "Very Inaccurate": 1,
-        "Moderately Inaccurate": 2,
-        "Slightly Inaccurate": 3,
-        "Slightly Accurate": 4,
-        "Moderately Accurate": 5,
-        "Very Accurate": 6
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3104,17 +2853,13 @@
           "missing": "20",
           "complete": "2780",
           "n": "2800",
-          "mean": "4.3",
-          "sd": "1.29",
-          "p0": "1",
-          "p25": "4",
-          "p50": "5",
-          "p75": "5",
-          "p100": "6",
-          "hist": "▁▂▁▂▆▁▇▅",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 942, 4: 741, 6: 472, 3: 293",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3123,14 +2868,6 @@
     {
       "name": "C4R",
       "description": "Conscientiousness: Do things in a half-way manner.",
-      "value": {
-        "Very Inaccurate": 6,
-        "Moderately Inaccurate": 5,
-        "Slightly Inaccurate": 4,
-        "Slightly Accurate": 3,
-        "Moderately Accurate": 2,
-        "Very Accurate": 1
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3138,17 +2875,13 @@
           "missing": "26",
           "complete": "2774",
           "n": "2800",
-          "mean": "4.45",
-          "sd": "1.38",
-          "p0": "1",
-          "p25": "3",
-          "p50": "5",
-          "p75": "6",
-          "p100": "6",
-          "hist": "▁▂▁▅▅▁▇▇",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 794, 6: 769, 4: 472, 3: 448",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3157,14 +2890,6 @@
     {
       "name": "C5R",
       "description": "Conscientiousness: Waste my time.",
-      "value": {
-        "Very Inaccurate": 6,
-        "Moderately Inaccurate": 5,
-        "Slightly Inaccurate": 4,
-        "Slightly Accurate": 3,
-        "Moderately Accurate": 2,
-        "Very Accurate": 1
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3172,17 +2897,13 @@
           "missing": "16",
           "complete": "2784",
           "n": "2800",
-          "mean": "3.7",
-          "sd": "1.63",
-          "p0": "1",
-          "p25": "2",
-          "p50": "4",
-          "p75": "5",
-          "p100": "6",
-          "hist": "▃▆▁▇▅▁▇▆",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "3: 614, 5: 567, 6: 504, 2: 466",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3191,14 +2912,6 @@
     {
       "name": "E1R",
       "description": "Extraversion: Don't talk a lot.",
-      "value": {
-        "Very Inaccurate": 6,
-        "Moderately Inaccurate": 5,
-        "Slightly Inaccurate": 4,
-        "Slightly Accurate": 3,
-        "Moderately Accurate": 2,
-        "Very Accurate": 1
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3206,17 +2919,13 @@
           "missing": "23",
           "complete": "2777",
           "n": "2800",
-          "mean": "4.03",
-          "sd": "1.63",
-          "p0": "1",
-          "p25": "3",
-          "p50": "4",
-          "p75": "5",
-          "p100": "6",
-          "hist": "▃▅▁▆▅▁▇▇",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "6: 663, 5: 652, 3: 450, 4: 404",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3225,14 +2934,6 @@
     {
       "name": "E2R",
       "description": "Extraversion: Find it difficult to approach others.",
-      "value": {
-        "Very Inaccurate": 6,
-        "Moderately Inaccurate": 5,
-        "Slightly Inaccurate": 4,
-        "Slightly Accurate": 3,
-        "Moderately Accurate": 2,
-        "Very Accurate": 1
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3240,17 +2941,13 @@
           "missing": "16",
           "complete": "2784",
           "n": "2800",
-          "mean": "3.86",
-          "sd": "1.61",
-          "p0": "1",
-          "p25": "3",
-          "p50": "4",
-          "p75": "5",
-          "p100": "6",
-          "hist": "▃▅▁▇▅▁▇▆",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 670, 3: 599, 6: 533, 2: 385",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3259,14 +2956,6 @@
     {
       "name": "E3",
       "description": "Extraversion: Know how to captivate people.",
-      "value": {
-        "Very Inaccurate": 1,
-        "Moderately Inaccurate": 2,
-        "Slightly Inaccurate": 3,
-        "Slightly Accurate": 4,
-        "Moderately Accurate": 5,
-        "Very Accurate": 6
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3274,17 +2963,13 @@
           "missing": "25",
           "complete": "2775",
           "n": "2800",
-          "mean": "4",
-          "sd": "1.35",
-          "p0": "1",
-          "p25": "3",
-          "p50": "4",
-          "p75": "5",
-          "p100": "6",
-          "hist": "▂▃▁▃▇▁▇▃",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "4: 826, 5: 743, 3: 412, 6: 352",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3293,14 +2978,6 @@
     {
       "name": "E4",
       "description": "Extraversion: Make friends easily.",
-      "value": {
-        "Very Inaccurate": 1,
-        "Moderately Inaccurate": 2,
-        "Slightly Inaccurate": 3,
-        "Slightly Accurate": 4,
-        "Moderately Accurate": 5,
-        "Very Accurate": 6
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3308,17 +2985,13 @@
           "missing": "9",
           "complete": "2791",
           "n": "2800",
-          "mean": "4.42",
-          "sd": "1.46",
-          "p0": "1",
-          "p25": "4",
-          "p50": "5",
-          "p75": "6",
-          "p100": "6",
-          "hist": "▁▂▁▂▃▁▇▆",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 942, 6: 726, 4: 450, 3: 271",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3327,14 +3000,6 @@
     {
       "name": "E5",
       "description": "Extraversion: Take charge.",
-      "value": {
-        "Very Inaccurate": 1,
-        "Moderately Inaccurate": 2,
-        "Slightly Inaccurate": 3,
-        "Slightly Accurate": 4,
-        "Moderately Accurate": 5,
-        "Very Accurate": 6
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3342,17 +3007,13 @@
           "missing": "21",
           "complete": "2779",
           "n": "2800",
-          "mean": "4.42",
-          "sd": "1.33",
-          "p0": "1",
-          "p25": "4",
-          "p50": "5",
-          "p75": "5",
-          "p100": "6",
-          "hist": "▁▂▁▂▅▁▇▅",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 940, 4: 619, 6: 616, 3: 288",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3361,14 +3022,6 @@
     {
       "name": "N1R",
       "description": "Emotional Stability: Get angry easily.",
-      "value": {
-        "Very Inaccurate": 6,
-        "Moderately Inaccurate": 5,
-        "Slightly Inaccurate": 4,
-        "Slightly Accurate": 3,
-        "Moderately Accurate": 2,
-        "Very Accurate": 1
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3376,17 +3029,13 @@
           "missing": "22",
           "complete": "2778",
           "n": "2800",
-          "mean": "4.07",
-          "sd": "1.57",
-          "p0": "1",
-          "p25": "3",
-          "p50": "4",
-          "p75": "5",
-          "p100": "6",
-          "hist": "▂▅▁▆▅▁▇▇",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 654, 6: 654, 3: 515, 4: 427",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3395,14 +3044,6 @@
     {
       "name": "N2R",
       "description": "Emotional Stability: Get irritated easily.",
-      "value": {
-        "Very Inaccurate": 6,
-        "Moderately Inaccurate": 5,
-        "Slightly Inaccurate": 4,
-        "Slightly Accurate": 3,
-        "Moderately Accurate": 2,
-        "Very Accurate": 1
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3410,17 +3051,13 @@
           "missing": "21",
           "complete": "2779",
           "n": "2800",
-          "mean": "3.49",
-          "sd": "1.53",
-          "p0": "1",
-          "p25": "2",
-          "p50": "3",
-          "p75": "5",
-          "p100": "6",
-          "hist": "▃▆▁▇▅▁▆▃",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "3: 709, 5: 535, 2: 510, 4: 411",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3429,14 +3066,6 @@
     {
       "name": "N3R",
       "description": "Emotional Stability: Have frequent mood swings.",
-      "value": {
-        "Very Inaccurate": 6,
-        "Moderately Inaccurate": 5,
-        "Slightly Inaccurate": 4,
-        "Slightly Accurate": 3,
-        "Moderately Accurate": 2,
-        "Very Accurate": 1
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3444,17 +3073,13 @@
           "missing": "11",
           "complete": "2789",
           "n": "2800",
-          "mean": "3.78",
-          "sd": "1.6",
-          "p0": "1",
-          "p25": "3",
-          "p50": "4",
-          "p75": "5",
-          "p100": "6",
-          "hist": "▃▆▁▇▅▁▇▆",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 638, 3: 591, 6: 499, 2: 439",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3463,14 +3088,6 @@
     {
       "name": "N4R",
       "description": "Emotional Stability: Often feel blue.",
-      "value": {
-        "Very Inaccurate": 6,
-        "Moderately Inaccurate": 5,
-        "Slightly Inaccurate": 4,
-        "Slightly Accurate": 3,
-        "Moderately Accurate": 2,
-        "Very Accurate": 1
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3478,17 +3095,13 @@
           "missing": "36",
           "complete": "2764",
           "n": "2800",
-          "mean": "3.81",
-          "sd": "1.57",
-          "p0": "1",
-          "p25": "3",
-          "p50": "4",
-          "p75": "5",
-          "p100": "6",
-          "hist": "▃▅▁▇▅▁▇▆",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 655, 3: 608, 6: 472, 4: 401",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3497,14 +3110,6 @@
     {
       "name": "N5R",
       "description": "Emotional Stability: Panic easily.",
-      "value": {
-        "Very Inaccurate": 6,
-        "Moderately Inaccurate": 5,
-        "Slightly Inaccurate": 4,
-        "Slightly Accurate": 3,
-        "Moderately Accurate": 2,
-        "Very Accurate": 1
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3512,17 +3117,13 @@
           "missing": "29",
           "complete": "2771",
           "n": "2800",
-          "mean": "4.03",
-          "sd": "1.62",
-          "p0": "1",
-          "p25": "3",
-          "p50": "4",
-          "p75": "5",
-          "p100": "6",
-          "hist": "▃▃▁▆▅▁▇▇",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 660, 6: 654, 3: 507, 4: 382",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3531,14 +3132,6 @@
     {
       "name": "O1",
       "description": "Openness: Am full of ideas.",
-      "value": {
-        "Very Inaccurate": 1,
-        "Moderately Inaccurate": 2,
-        "Slightly Inaccurate": 3,
-        "Slightly Accurate": 4,
-        "Moderately Accurate": 5,
-        "Very Accurate": 6
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3546,17 +3139,13 @@
           "missing": "22",
           "complete": "2778",
           "n": "2800",
-          "mean": "4.82",
-          "sd": "1.13",
-          "p0": "1",
-          "p25": "4",
-          "p50": "5",
-          "p75": "6",
-          "p100": "6",
-          "hist": "▁▁▁▂▅▁▇▇",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 925, 6: 912, 4: 606, 3: 210",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3565,14 +3154,6 @@
     {
       "name": "O2R",
       "description": "Openness: Avoid difficult reading material.",
-      "value": {
-        "Very Inaccurate": 6,
-        "Moderately Inaccurate": 5,
-        "Slightly Inaccurate": 4,
-        "Slightly Accurate": 3,
-        "Moderately Accurate": 2,
-        "Very Accurate": 1
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3580,17 +3161,13 @@
           "missing": "0",
           "complete": "2800",
           "n": "2800",
-          "mean": "4.29",
-          "sd": "1.57",
-          "p0": "1",
-          "p25": "3",
-          "p50": "5",
-          "p75": "6",
-          "p100": "6",
-          "hist": "▂▃▁▅▃▁▇▇",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "6: 805, 5: 717, 3: 435, 4: 388",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3599,14 +3176,6 @@
     {
       "name": "O3",
       "description": "Openness: Carry the conversation to a higher level.",
-      "value": {
-        "Very Inaccurate": 1,
-        "Moderately Inaccurate": 2,
-        "Slightly Inaccurate": 3,
-        "Slightly Accurate": 4,
-        "Moderately Accurate": 5,
-        "Very Accurate": 6
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3614,17 +3183,13 @@
           "missing": "28",
           "complete": "2772",
           "n": "2800",
-          "mean": "4.44",
-          "sd": "1.22",
-          "p0": "1",
-          "p25": "4",
-          "p50": "5",
-          "p75": "5",
-          "p100": "6",
-          "hist": "▁▁▁▂▆▁▇▅",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 943, 4: 775, 6: 541, 3: 292",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3633,14 +3198,6 @@
     {
       "name": "O4",
       "description": "Openness: Spend time reflecting on things.",
-      "value": {
-        "Very Inaccurate": 1,
-        "Moderately Inaccurate": 2,
-        "Slightly Inaccurate": 3,
-        "Slightly Accurate": 4,
-        "Moderately Accurate": 5,
-        "Very Accurate": 6
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3648,17 +3205,13 @@
           "missing": "14",
           "complete": "2786",
           "n": "2800",
-          "mean": "4.89",
-          "sd": "1.22",
-          "p0": "1",
-          "p25": "4",
-          "p50": "5",
-          "p75": "6",
-          "p100": "6",
-          "hist": "▁▁▁▁▃▁▆▇",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "6: 1084, 5: 887, 4: 481, 3: 154",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3667,14 +3220,6 @@
     {
       "name": "O5R",
       "description": "Openness: Will not probe deeply into a subject.",
-      "value": {
-        "Very Inaccurate": 6,
-        "Moderately Inaccurate": 5,
-        "Slightly Inaccurate": 4,
-        "Slightly Accurate": 3,
-        "Moderately Accurate": 2,
-        "Very Accurate": 1
-      },
       "maxValue": 6,
       "minValue": 1,
       "data_summary": [
@@ -3682,17 +3227,13 @@
           "missing": "20",
           "complete": "2780",
           "n": "2800",
-          "mean": "4.51",
-          "sd": "1.33",
-          "p0": "1",
-          "p25": "4",
-          "p50": "5",
-          "p75": "6",
-          "p100": "6",
-          "hist": "▁▂▁▃▅▁▇▇",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "6",
+          "top_counts": "5: 883, 6: 746, 4: 526, 3: 364",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3701,10 +3242,6 @@
     {
       "name": "gender",
       "description": "Self-reported gender",
-      "value": {
-        "male": 1,
-        "female": 2
-      },
       "maxValue": 2,
       "minValue": 1,
       "data_summary": [
@@ -3720,9 +3257,10 @@
           "p75": "2",
           "p100": "2",
           "hist": "▃▁▁▁▁▁▁▇",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "Number",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3731,13 +3269,6 @@
     {
       "name": "education",
       "description": "Highest degree",
-      "value": {
-        "in high school": 1,
-        "finished high school": 2,
-        "some college": 3,
-        "college graduate": 4,
-        "graduate degree": 5
-      },
       "maxValue": 5,
       "minValue": 1,
       "data_summary": [
@@ -3745,17 +3276,13 @@
           "missing": "223",
           "complete": "2577",
           "n": "2800",
-          "mean": "3.19",
-          "sd": "1.11",
-          "p0": "1",
-          "p25": "3",
-          "p50": "3",
-          "p75": "4",
-          "p100": "5",
-          "hist": "▂▂▁▇▁▂▁▃",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "n_unique": "5",
+          "top_counts": "3: 1249, 5: 418, 4: 394, 2: 292",
+          "ordered": "FALSE",
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
+      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3777,7 +3304,7 @@
           "p75": "35",
           "p100": "86",
           "hist": "▁▇▆▃▂▁▁▁",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
       "value": "Number",
@@ -3803,7 +3330,7 @@
           "p75": "5",
           "p100": "6",
           "hist": "▁▁▂▅▇▇▇▅",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
       "value": "Number",
@@ -3829,7 +3356,7 @@
           "p75": "5",
           "p100": "6",
           "hist": "▁▁▃▅▇▇▇▆",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
       "value": "Number",
@@ -3855,7 +3382,7 @@
           "p75": "5.2",
           "p100": "6",
           "hist": "▁▁▁▂▇▇▇▅",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
       "value": "Number",
@@ -3881,7 +3408,7 @@
           "p75": "5.4",
           "p100": "6",
           "hist": "▁▁▁▂▃▆▇▇",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
       "value": "Number",
@@ -3907,7 +3434,7 @@
           "p75": "4.8",
           "p100": "6",
           "hist": "▂▃▆▇▇▇▇▅",
-          "@type": "http://formr.org/codebook/SummaryStatistics"
+          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
         }
       ],
       "value": "Number",
@@ -3916,9 +3443,7 @@
       },
       "@type": "propertyValue"
     }
-  ],
-  "@context": "http://schema.org/",
-  "@type": "Dataset"
+  ]
 }
 </script>
 </div>
