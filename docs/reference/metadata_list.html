@@ -147,7 +147,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>metadata_list</span>(<span class='no'>results</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>metadata_list</span>(<span class='no'>results</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>only_existing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,6 +161,11 @@
       <td><p>the name of the data frame (taken from attributes if set or from
 name of first argument)</p></td>
     </tr>
+    <tr>
+      <th>only_existing</th>
+      <td><p>whether to drop helpful metadata to comply with the list
+of currently defined schema.org properties</p></td>
+    </tr>
     </table>
     
 
@@ -169,15 +174,6 @@ name of first argument)</p></td>
 <span class='no'>md_list</span> <span class='kw'>&lt;-</span> <span class='fu'>metadata_list</span>(<span class='no'>bfi</span>)
 <span class='no'>md_list</span>$<span class='no'>variableMeasured</span><span class='kw'>[[</span><span class='fl'>20</span>]]</div><div class='output co'>#&gt; $name
 #&gt; [1] "N5"
-#&gt; 
-#&gt; $data_summary
-#&gt; # A tibble: 1 x 12
-#&gt;   missing complete n     mean  sd    p0    p25   p50   p75   p100  hist  `@typ…
-#&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; 
-#&gt; 1 29      2771     2800  2.97  1.62  1     2     3     4     6     ▇▇▁▅… http:…
-#&gt; 
-#&gt; $value
-#&gt; [1] "Number"
 #&gt; 
 #&gt; $`@context`
 #&gt; $`@context`$`@vocab`

@@ -84,6 +84,12 @@ codebook <- function(results, reliabilities = NULL,
       paste0(knitr::opts_chunk$get("cache.path"), "cb_", df_name, "_")
   )
 
+  if (!exists("description", attributes(results))) {
+    data_description(results) <- data_description_default(results)
+  }
+
+  data_info <- codebook_data_info(results)
+
   if (survey_overview &&
         exists("session", results) &&
         exists("created", results) &&
@@ -155,6 +161,8 @@ codebook <- function(results, reliabilities = NULL,
     jsonld <- no_md()
   }
 
+
+
   asis_knit_child(require_file("_codebook.Rmd"), options = options)
 }
 
@@ -211,6 +219,33 @@ codebook_survey_overview <- function(results, survey_repetition = "single",
   asis_knit_child(require_file("_codebook_survey_overview.Rmd"),
                   options = options)
 }
+
+#' Codebook data info
+#'
+#' A readout of the metadata for this dataset, with some defaults set
+#'
+#' @param results a data frame which has the following columns: session, created, modified, expired, ended
+#' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
+#'
+#' @export
+#' @examples
+#' # will generate figures in a figure/ subdirectory
+#' data("bfi")
+#' data_name(bfi) <- "MOCK Big Five Inventory dataset (German metadata demo)"
+#' data_description(bfi) <- "a small mock Big Five Inventory dataset"
+#' data_citation(bfi) <- "doi:10.5281/zenodo.1326520"
+#' data_url(bfi) <-
+#'    "https://rubenarslan.github.io/codebook/articles/codebook.html"
+#' codebook_data_info(bfi)
+codebook_data_info <- function(results, indent = "##") {
+  options <- list(
+    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "data_info_"),
+    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "data_info_")
+  )
+  asis_knit_child(require_file("_codebook_data_info.Rmd"),
+                  options = options)
+}
+
 
 
 #' Codebook missingness
@@ -486,7 +521,7 @@ attribute_summary <- function(var) {
 #' data("bfi")
 #' md_list <- metadata_list(bfi)
 #' md_list$variableMeasured[[20]]
-metadata_list <- function(results, name = NULL, only_existing = FALSE) {
+metadata_list <- function(results, name = NULL, only_existing = TRUE) {
   metadata <- attributes(results)
   metadata$names <- NULL
   metadata$row.names <- NULL
@@ -501,8 +536,7 @@ metadata_list <- function(results, name = NULL, only_existing = FALSE) {
   }
 
   if (!exists("description", metadata)) {
-    metadata[["description"]] <-
-      "Automatically described using the codebook R package."
+    metadata[["description"]] <- data_description_default(results)
   }
 
 
@@ -555,23 +589,25 @@ metadata_list <- function(results, name = NULL, only_existing = FALSE) {
           x$item[["@type"]] <- "http://rubenarslan.github.io/codebook/Item"
         }
       }
+      if (!only_existing) {
 
-      x$data_summary <- skim_to_wide_labelled(results[[var]])
-      x$data_summary$variable <- NULL
-      if (exists("type", x$data_summary)) {
-        if (!exists("value", x)) {
-          x$value <- switch(x$data_summary$type,
-              character = "text",
-              integer = "Number",
-              numeric = "Number",
-              factor = "StructuredValue",
-              labelled = "StructuredValue"
-          )
+        x$data_summary <- skim_to_wide_labelled(results[[var]])
+        x$data_summary$variable <- NULL
+        if (exists("type", x$data_summary)) {
+          if (!exists("value", x)) {
+            x$value <- switch(x$data_summary$type,
+                character = "text",
+                integer = "Number",
+                numeric = "Number",
+                factor = "StructuredValue",
+                labelled = "StructuredValue"
+            )
+          }
+          x$data_summary$type <- NULL
         }
-        x$data_summary$type <- NULL
+        x$data_summary[["@type"]] <-
+          "http://rubenarslan.github.io/codebook/SummaryStatistics"
       }
-      x$data_summary[["@type"]] <-
-        "http://rubenarslan.github.io/codebook/SummaryStatistics"
 
       if (only_existing) {
         if (exists("item", x)) {

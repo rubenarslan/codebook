@@ -207,3 +207,7 @@ as_factor.default <- function(x,
   class(x) <- c("haven_labelled", class(x))
   haven::as_factor(x, levels, ordered, ...)
 }
+
+is_attribute_set <- function(attribute, data) {
+  !is.null(attr(data, attribute, exact = TRUE))
+}

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add citation information to a dataset — data_citation&lt;- • codebook</title>
+<title>Add identifier to a dataset — data_identifier&lt;- • codebook</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,10 +36,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Add citation information to a dataset — data_citation&lt;-" />
+<meta property="og:title" content="Add identifier to a dataset — data_identifier&lt;-" />
 
-<meta property="og:description" content="Add a single character vector or a list to give citation information for
-JSON-LD metadata generation using codebook() or metadata_list()." />
+<meta property="og:description" content="Add a single character vector or a list to give an identifier for the dataset,
+such as a DOI." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -137,19 +137,19 @@ JSON-LD metadata generation using codebook() or metadata_list()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add citation information to a dataset</h1>
+    <h1>Add identifier to a dataset</h1>
     <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/create_metadata.R'><code>R/create_metadata.R</code></a></small>
-    <div class="hidden name"><code>data_citation-set.Rd</code></div>
+    <div class="hidden name"><code>data_identifier-set.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Add a single character vector or a list to give citation information for
-JSON-LD metadata generation using <code><a href='codebook.html'>codebook()</a></code> or <code><a href='metadata_list.html'>metadata_list()</a></code>.</p>
+    <p>Add a single character vector or a list to give an identifier for the dataset,
+such as a DOI.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>data_citation</span>(<span class='no'>data</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+    <pre class="usage"><span class='fu'>data_identifier</span>(<span class='no'>data</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,13 +160,13 @@ JSON-LD metadata generation using <code><a href='codebook.html'>codebook()</a></
     </tr>
     <tr>
       <th>value</th>
-      <td><p>the citation information</p></td>
+      <td><p>the identifier</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>data_citation</span>(<span class='no'>bfi</span>) <span class='kw'>&lt;-</span> <span class='st'>"Arslan (2018). Mock BFI data."</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>data_identifier</span>(<span class='no'>bfi</span>) <span class='kw'>&lt;-</span> <span class='st'>"doi:10.5281/zenodo.1326520"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

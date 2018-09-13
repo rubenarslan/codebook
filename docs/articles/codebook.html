@@ -109,7 +109,7 @@
       <h1>Codebook example formr</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2018-09-10</h4>
+            <h4 class="date">2018-09-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook.Rmd"><code>vignettes/codebook.Rmd</code></a></small>
       <div class="hidden name"><code>codebook.Rmd</code></div>
@@ -119,7 +119,7 @@
     
     
 <p>In this vignette, you can see what a codebook generated from a dataset with rich metadata looks like. This dataset includes mock data for a short German Big Five personality inventory and an age variable. The dataset follows the format created when importing data from <a href="https://formr.org">formr.org</a>. However, data imported using the <code>haven</code> package uses similar metadata. You can also add such metadata yourself, or use the codebook package for unannotated datasets.</p>
-<p>As you can see below, the <code>codebook</code> package automatically computes reliabilities for multi-item inventories, generates nicely labelled plots and outputs summary statistics. The same information is also stored in a table, which you can export to various formats. Additionally, <code>codebook</code> can show you different kinds of (labelled) missing values, and show you common missingness patterns. As <em>you</em> cannot see, but <em>search engines</em> one day might, the <code>codebook</code> package also generates <a href="https://json-ld.org/">JSON-LD</a> metadata for the <a href="https://developers.google.com/search/docs/data-types/dataset">dataset</a>. If you share your codebook as an HTML file online, this metadata should make it easier for others to find your data.</p>
+<p>As you can see below, the <code>codebook</code> package automatically computes reliabilities for multi-item inventories, generates nicely labelled plots and outputs summary statistics. The same information is also stored in a table, which you can export to various formats. Additionally, <code>codebook</code> can show you different kinds of (labelled) missing values, and show you common missingness patterns. As <em>you</em> cannot see, but <em><a href="https://toolbox.google.com/datasetsearch">search engines</a></em> will, the <code>codebook</code> package also generates <a href="https://json-ld.org/">JSON-LD</a> metadata for the <a href="https://developers.google.com/search/docs/data-types/dataset">dataset</a>. If you share your codebook as an HTML file online, this metadata should make it easier for others to find your data.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">knit_by_pkgdown &lt;-<span class="st"> </span><span class="op">!</span><span class="kw">is.null</span>(knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">"fig.retina"</span>))</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">TRUE</span>, <span class="dt">message =</span> <span class="ot">TRUE</span>, <span class="dt">error =</span> <span class="ot">TRUE</span>, <span class="dt">echo =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/panderOptions">panderOptions</a></span>(<span class="st">"table.split.table"</span>, <span class="ot">Inf</span>)</a>
@@ -129,12 +129,34 @@
 <a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw">data</span>(<span class="st">"bfi"</span>, <span class="dt">package =</span> <span class="st">'codebook'</span>)</a>
 <a class="sourceLine" id="cb1-8" data-line-number="8">bfi<span class="op">$</span>age &lt;-<span class="st"> </span><span class="kw">rpois</span>(<span class="kw">nrow</span>(bfi), <span class="dv">30</span>)</a>
 <a class="sourceLine" id="cb1-9" data-line-number="9"><span class="kw">library</span>(labelled)</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/var_label">var_label</a></span>(bfi<span class="op">$</span>age) &lt;-<span class="st"> "Alter"</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="kw">data_name</span>(bfi) &lt;-<span class="st"> "MOCK Big Five Inventory dataset (German metadata demo)"</span></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="kw">data_description</span>(bfi) &lt;-<span class="st"> "a small mock Big Five Inventory dataset"</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw">data_citation</span>(bfi) &lt;-<span class="st"> "doi:10.5281/zenodo.1326520"</span></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">data_url</span>(bfi) &lt;-<span class="st"> "https://rubenarslan.github.io/codebook/articles/codebook.html"</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/var_label">var_label</a></span>(bfi<span class="op">$</span>age) &lt;-<span class="st"> "Alter"</span></a></code></pre></div>
+<p>By default, we only set the required metadata attributes <code>name</code> and <code>description</code> to sensible values. However, there is a number of attributes you can set to describe the data better. <a href="https://developers.google.com/search/docs/data-types/dataset">Find out more</a>.</p>
+<div id="metadata" class="section level3">
+<h3 class="hasAnchor">
+<a href="#metadata" class="anchor"></a>Metadata</h3>
+<div id="description" class="section level4">
+<h4 class="hasAnchor">
+<a href="#description" class="anchor"></a>Description</h4>
+<p><strong>Dataset name</strong>: MOCK Big Five Inventory dataset (German metadata demo)</p>
+<p>a small mock Big Five Inventory dataset</p>
+<ul>
+<li>
+<strong>Temporal Coverage</strong>: <a href="url">https://rubenarslan.github.io/codebook/articles/codebook.html</a>
+</li>
+<li>
+<strong>Spatial Coverage</strong>: <a href="url">https://rubenarslan.github.io/codebook/articles/codebook.html</a>
+</li>
+<li>
+<strong>Citation</strong>: Arslan (2016). Mock BFI data.</li>
+<li>
+<strong>URL</strong>: <a href="url">https://rubenarslan.github.io/codebook/articles/codebook.html</a>
+</li>
+<li>
+<strong>Identifier</strong>: <a href="doi:10.5281/zenodo.1326520" class="uri">doi:10.5281/zenodo.1326520</a>
+</li>
+</ul>
+</div>
+</div>
 <div id="survey-overview" class="section level3">
 <h3 class="hasAnchor">
 <a href="#survey-overview" class="anchor"></a>Survey overview</h3>
@@ -1989,14 +2011,14 @@
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
-<td align="left">29.93</td>
-<td align="left">4.42</td>
-<td align="left">23</td>
-<td align="left">27.75</td>
-<td align="left">29</td>
-<td align="left">31.25</td>
-<td align="left">41</td>
-<td align="left">▅▂▇▇▂▁▃▁</td>
+<td align="left">30.11</td>
+<td align="left">5</td>
+<td align="left">20</td>
+<td align="left">26.75</td>
+<td align="left">29.5</td>
+<td align="left">33.25</td>
+<td align="left">39</td>
+<td align="left">▂▁▇▇▃▇▃▃</td>
 </tr></tbody>
 </table>
 </div>
@@ -2038,32 +2060,22 @@
 <div id="codebook-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#codebook-table" class="anchor"></a>Codebook table</h2>
-<div id="htmlwidget-677a5bdf8771e52bcde6" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-677a5bdf8771e52bcde6">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"4\" data-max=\"22\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#session\">session<\/a>","<a href=\"#created\">created<\/a>","<a href=\"#modified\">modified<\/a>","<a href=\"#ended\">ended<\/a>","<a href=\"#expired\">expired<\/a>","<a href=\"#BFIK_open_2\">BFIK_open_2<\/a>","<a href=\"#BFIK_agree_4R\">BFIK_agree_4R<\/a>","<a href=\"#BFIK_extra_2\">BFIK_extra_2<\/a>","<a href=\"#BFIK_agree_1R\">BFIK_agree_1R<\/a>","<a href=\"#BFIK_open_1\">BFIK_open_1<\/a>","<a href=\"#BFIK_neuro_2R\">BFIK_neuro_2R<\/a>","<a href=\"#BFIK_consc_3\">BFIK_consc_3<\/a>","<a href=\"#BFIK_consc_4\">BFIK_consc_4<\/a>","<a href=\"#BFIK_consc_2R\">BFIK_consc_2R<\/a>","<a href=\"#BFIK_agree_3R\">BFIK_agree_3R<\/a>","<a href=\"#BFIK_extra_3R\">BFIK_extra_3R<\/a>","<a href=\"#BFIK_neuro_3\">BFIK_neuro_3<\/a>","<a href=\"#BFIK_neuro_4\">BFIK_neuro_4<\/a>","<a href=\"#BFIK_agree_2\">BFIK_agree_2<\/a>","<a href=\"#BFIK_consc_1\">BFIK_consc_1<\/a>","<a href=\"#BFIK_open_4\">BFIK_open_4<\/a>","<a href=\"#BFIK_extra_4\">BFIK_extra_4<\/a>","<a href=\"#BFIK_extra_1R\">BFIK_extra_1R<\/a>","<a href=\"#BFIK_open_3\">BFIK_open_3<\/a>","<a href=\"#BFIK_agree\">BFIK_agree<\/a>","<a href=\"#BFIK_open\">BFIK_open<\/a>","<a href=\"#BFIK_consc\">BFIK_consc<\/a>","<a href=\"#BFIK_extra\">BFIK_extra<\/a>","<a href=\"#BFIK_neuro\">BFIK_neuro<\/a>","<a href=\"#age\">age<\/a>"],[null,"user first opened survey","user last edited survey","user finished survey",null,"__Ich bin tiefsinnig, denke gerne über Sachen nach.__","__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__","__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__","__Ich neige dazu, andere zu kritisieren.__","__Ich bin vielseitig interessiert.__","__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__","__Ich bin tüchtig und arbeite flott.__","__Ich mache Pläne und führe sie auch durch.__","__Ich bin bequem, neige zur Faulheit.__","__Ich kann mich kalt und distanziert verhalten.__","__Ich bin eher der \"stille Typ\", wortkarg.__","__Ich mache mir viele Sorgen.__","__Ich werde leicht nervös und unsicher.__","__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__","__Ich erledige Aufgaben gründlich.__","__Ich schätze künstlerische und ästhetische Eindrücke.__","__Ich gehe aus mir heraus, bin gesellig.__","__Ich bin eher zurückhaltend, reserviert.__","__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__","4 BFIK_agree items averaged with aggregation_function","4 BFIK_open items averaged with aggregation_function","4 BFIK_consc items averaged with aggregation_function","4 BFIK_extra items averaged with aggregation_function","3 BFIK_neuro items averaged with aggregation_function","Alter"],[null,null,null,null,null,"rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button",null,null,null,null,null,null],[null,null,null,null,null,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,null,null,null,null,null,null],["character","POSIXct","POSIXct","POSIXct","logical","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","numeric","numeric","numeric","numeric","numeric","integer"],[null,null,null,null,null,"FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE",null,null,null,null,null,null],[null,null,null,null,null,"1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.",null,null,null,null,null,null],[null,null,null,null,null,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"BFIK_agree_4R, BFIK_agree_1R, BFIK_agree_3R, BFIK_agree_2","BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3","BFIK_consc_3, BFIK_consc_4, BFIK_consc_2R, BFIK_consc_1","BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R","BFIK_neuro_2R, BFIK_neuro_3, BFIK_neuro_4",null],[null,null,null,null,null,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,null,null,null,null,null,null],["0","0","0","0","28","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],["28","28","28","28","0","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28"],["28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28"],["0",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["28","28","28","28",null,"4","5","4","4","4","4","5","4","5","5","5","5","4","5","4","4","5","5","4",null,null,null,null,null,null],[null,null,null,null,null,"4: 15, 5: 10, 3: 2, 2: 1","2: 11, 4: 7, 3: 5, 5: 3","5: 13, 4: 11, 1: 2, 3: 2","2: 11, 4: 9, 3: 7, 5: 1","5: 16, 4: 8, 3: 3, 2: 1","3: 10, 4: 9, 2: 8, 5: 1","4: 12, 3: 7, 2: 4, 5: 4","4: 15, 3: 7, 5: 5, 2: 1","4: 12, 1: 5, 3: 5, 2: 3","2: 9, 4: 8, 3: 4, 5: 4","4: 9, 5: 9, 3: 6, 1: 2","3: 8, 2: 7, 4: 5, 5: 5","2: 9, 4: 9, 1: 7, 3: 3","4: 9, 5: 7, 2: 5, 3: 5","4: 12, 5: 10, 3: 4, 2: 2","5: 13, 4: 10, 3: 4, 1: 1","4: 11, 5: 9, 3: 4, 2: 3","4: 8, 5: 8, 3: 6, 2: 5","5: 14, 4: 8, 3: 4, 2: 2",null,null,null,null,null,null],[null,null,null,null,"28",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,"2016-07-08","2016-07-08","2016-07-08",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["64","2016-07-08","2016-07-08","2016-07-08",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["64","2016-11-02","2016-11-02","2016-11-02",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,"NaN",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"3.12","4.26","3.65","3.85","2.89","29.93"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"0.93","0.56","0.79","1.01","0.93","4.42"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1.5 ","3   ","2   ","1.5 ","1.33","23"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2.25","3.94","3.12","3.25","2   ","27.75"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"3   ","4.25","3.75","4.25","2.83","29"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"4   ","4.75","4.25","4.56","3.42","31.25"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"4.75","5   ","5   ","5   ","4.33","41"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"▂▇▂▇▃▁▅▅","▃▂▂▁▇▃▇▂","▂▃▁▃▃▇▂▂","▂▁▂▃▁▃▇▇","▅▅▂▅▃▅▁▇","▅▂▇▇▂▁▃▁"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>type<\/th>\n      <th>type_options<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>optional<\/th>\n      <th>scale_item_names<\/th>\n      <th>item_order<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>empty<\/th>\n      <th>n_unique<\/th>\n      <th>top_counts<\/th>\n      <th>count<\/th>\n      <th>median<\/th>\n      <th>min<\/th>\n      <th>max<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":[3,7,9]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
+<div id="htmlwidget-a7e32a672dc984136f89" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a7e32a672dc984136f89">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"4\" data-max=\"22\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#session\">session<\/a>","<a href=\"#created\">created<\/a>","<a href=\"#modified\">modified<\/a>","<a href=\"#ended\">ended<\/a>","<a href=\"#expired\">expired<\/a>","<a href=\"#BFIK_open_2\">BFIK_open_2<\/a>","<a href=\"#BFIK_agree_4R\">BFIK_agree_4R<\/a>","<a href=\"#BFIK_extra_2\">BFIK_extra_2<\/a>","<a href=\"#BFIK_agree_1R\">BFIK_agree_1R<\/a>","<a href=\"#BFIK_open_1\">BFIK_open_1<\/a>","<a href=\"#BFIK_neuro_2R\">BFIK_neuro_2R<\/a>","<a href=\"#BFIK_consc_3\">BFIK_consc_3<\/a>","<a href=\"#BFIK_consc_4\">BFIK_consc_4<\/a>","<a href=\"#BFIK_consc_2R\">BFIK_consc_2R<\/a>","<a href=\"#BFIK_agree_3R\">BFIK_agree_3R<\/a>","<a href=\"#BFIK_extra_3R\">BFIK_extra_3R<\/a>","<a href=\"#BFIK_neuro_3\">BFIK_neuro_3<\/a>","<a href=\"#BFIK_neuro_4\">BFIK_neuro_4<\/a>","<a href=\"#BFIK_agree_2\">BFIK_agree_2<\/a>","<a href=\"#BFIK_consc_1\">BFIK_consc_1<\/a>","<a href=\"#BFIK_open_4\">BFIK_open_4<\/a>","<a href=\"#BFIK_extra_4\">BFIK_extra_4<\/a>","<a href=\"#BFIK_extra_1R\">BFIK_extra_1R<\/a>","<a href=\"#BFIK_open_3\">BFIK_open_3<\/a>","<a href=\"#BFIK_agree\">BFIK_agree<\/a>","<a href=\"#BFIK_open\">BFIK_open<\/a>","<a href=\"#BFIK_consc\">BFIK_consc<\/a>","<a href=\"#BFIK_extra\">BFIK_extra<\/a>","<a href=\"#BFIK_neuro\">BFIK_neuro<\/a>","<a href=\"#age\">age<\/a>"],[null,"user first opened survey","user last edited survey","user finished survey",null,"__Ich bin tiefsinnig, denke gerne über Sachen nach.__","__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__","__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__","__Ich neige dazu, andere zu kritisieren.__","__Ich bin vielseitig interessiert.__","__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__","__Ich bin tüchtig und arbeite flott.__","__Ich mache Pläne und führe sie auch durch.__","__Ich bin bequem, neige zur Faulheit.__","__Ich kann mich kalt und distanziert verhalten.__","__Ich bin eher der \"stille Typ\", wortkarg.__","__Ich mache mir viele Sorgen.__","__Ich werde leicht nervös und unsicher.__","__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__","__Ich erledige Aufgaben gründlich.__","__Ich schätze künstlerische und ästhetische Eindrücke.__","__Ich gehe aus mir heraus, bin gesellig.__","__Ich bin eher zurückhaltend, reserviert.__","__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__","4 BFIK_agree items averaged with aggregation_function","4 BFIK_open items averaged with aggregation_function","4 BFIK_consc items averaged with aggregation_function","4 BFIK_extra items averaged with aggregation_function","3 BFIK_neuro items averaged with aggregation_function","Alter"],[null,null,null,null,null,"rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button",null,null,null,null,null,null],[null,null,null,null,null,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,null,null,null,null,null,null],["character","POSIXct","POSIXct","POSIXct","logical","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","numeric","numeric","numeric","numeric","numeric","integer"],[null,null,null,null,null,"FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE",null,null,null,null,null,null],[null,null,null,null,null,"1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.",null,null,null,null,null,null],[null,null,null,null,null,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"BFIK_agree_4R, BFIK_agree_1R, BFIK_agree_3R, BFIK_agree_2","BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3","BFIK_consc_3, BFIK_consc_4, BFIK_consc_2R, BFIK_consc_1","BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R","BFIK_neuro_2R, BFIK_neuro_3, BFIK_neuro_4",null],[null,null,null,null,null,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,null,null,null,null,null,null],["0","0","0","0","28","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],["28","28","28","28","0","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28"],["28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28"],["0",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["28","28","28","28",null,"4","5","4","4","4","4","5","4","5","5","5","5","4","5","4","4","5","5","4",null,null,null,null,null,null],[null,null,null,null,null,"4: 15, 5: 10, 3: 2, 2: 1","2: 11, 4: 7, 3: 5, 5: 3","5: 13, 4: 11, 1: 2, 3: 2","2: 11, 4: 9, 3: 7, 5: 1","5: 16, 4: 8, 3: 3, 2: 1","3: 10, 4: 9, 2: 8, 5: 1","4: 12, 3: 7, 2: 4, 5: 4","4: 15, 3: 7, 5: 5, 2: 1","4: 12, 1: 5, 3: 5, 2: 3","2: 9, 4: 8, 3: 4, 5: 4","4: 9, 5: 9, 3: 6, 1: 2","3: 8, 2: 7, 4: 5, 5: 5","2: 9, 4: 9, 1: 7, 3: 3","4: 9, 5: 7, 2: 5, 3: 5","4: 12, 5: 10, 3: 4, 2: 2","5: 13, 4: 10, 3: 4, 1: 1","4: 11, 5: 9, 3: 4, 2: 3","4: 8, 5: 8, 3: 6, 2: 5","5: 14, 4: 8, 3: 4, 2: 2",null,null,null,null,null,null],[null,null,null,null,"28",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,"2016-07-08","2016-07-08","2016-07-08",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["64","2016-07-08","2016-07-08","2016-07-08",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["64","2016-11-02","2016-11-02","2016-11-02",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,"NaN",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"3.12","4.26","3.65","3.85","2.89","30.11"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"0.93","0.56","0.79","1.01","0.93","5"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1.5 ","3   ","2   ","1.5 ","1.33","20"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2.25","3.94","3.12","3.25","2   ","26.75"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"3   ","4.25","3.75","4.25","2.83","29.5"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"4   ","4.75","4.25","4.56","3.42","33.25"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"4.75","5   ","5   ","5   ","4.33","39"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"▂▇▂▇▃▁▅▅","▃▂▂▁▇▃▇▂","▂▃▁▃▃▇▂▂","▂▁▂▃▁▃▇▇","▅▅▂▅▃▅▁▇","▂▁▇▇▃▇▃▃"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>type<\/th>\n      <th>type_options<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>optional<\/th>\n      <th>scale_item_names<\/th>\n      <th>item_order<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>empty<\/th>\n      <th>n_unique<\/th>\n      <th>top_counts<\/th>\n      <th>count<\/th>\n      <th>median<\/th>\n      <th>min<\/th>\n      <th>max<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":[3,7,9]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
 {
   "name": "MOCK Big Five Inventory dataset (German metadata demo)",
   "description": "a small mock Big Five Inventory dataset",
-  "citation": "doi:10.5281/zenodo.1326520",
+  "identifier": "doi:10.5281/zenodo.1326520",
+  "citation": "Arslan (2016). Mock BFI data.",
   "url": "https://rubenarslan.github.io/codebook/articles/codebook.html",
+  "temporalCoverage": "2016",
+  "spatialCoverage": "Goettingen, Germany",
   "@context": "http://schema.org/",
   "@type": "Dataset",
   "keywords": ["session", "created", "modified", "ended", "expired", "BFIK_open_2", "BFIK_agree_4R", "BFIK_extra_2", "BFIK_agree_1R", "BFIK_open_1", "BFIK_neuro_2R", "BFIK_consc_3", "BFIK_consc_4", "BFIK_consc_2R", "BFIK_agree_3R", "BFIK_extra_3R", "BFIK_neuro_3", "BFIK_neuro_4", "BFIK_agree_2", "BFIK_consc_1", "BFIK_open_4", "BFIK_extra_4", "BFIK_extra_1R", "BFIK_open_3", "BFIK_agree", "BFIK_open", "BFIK_consc", "BFIK_extra", "BFIK_neuro", "age"],
   "variableMeasured": [
     {
       "name": "session",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "min": "64",
-          "max": "64",
-          "empty": "0",
-          "n_unique": "28",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "text",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -2072,18 +2084,6 @@
     {
       "name": "created",
       "description": "user first opened survey",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "min": "2016-07-08",
-          "max": "2016-11-02",
-          "median": "2016-07-08",
-          "n_unique": "28",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -2092,18 +2092,6 @@
     {
       "name": "modified",
       "description": "user last edited survey",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "min": "2016-07-08",
-          "max": "2016-11-02",
-          "median": "2016-07-08",
-          "n_unique": "28",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -2112,18 +2100,6 @@
     {
       "name": "ended",
       "description": "user finished survey",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "min": "2016-07-08",
-          "max": "2016-11-02",
-          "median": "2016-07-08",
-          "n_unique": "28",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -2131,1020 +2107,255 @@
     },
     {
       "name": "expired",
-      "data_summary": [
-        {
-          "missing": "28",
-          "complete": "0",
-          "n": "28",
-          "mean": "NaN",
-          "count": "28",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_open_2",
-        "type_options": 5,
-        "name": "BFIK_open_2",
-        "label": "__Ich bin tiefsinnig, denke gerne über Sachen nach.__",
-        "label_parsed": "<strong>Ich bin tiefsinnig, denke gerne über Sachen nach.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 4,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_open_2",
       "description": "__Ich bin tiefsinnig, denke gerne über Sachen nach.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "4",
-          "top_counts": "4: 15, 5: 10, 3: 2, 2: 1",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_agree_4R",
-        "type_options": 5,
-        "name": "BFIK_agree_4R",
-        "label": "__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__",
-        "label_parsed": "<strong>Ich kann mich schroff und abweisend anderen gegenüber verhalten.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 5,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_agree_4R",
       "description": "__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "5",
-          "top_counts": "2: 11, 4: 7, 3: 5, 5: 3",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_extra_2",
-        "type_options": 5,
-        "name": "BFIK_extra_2",
-        "label": "__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__",
-        "label_parsed": "<strong>Ich bin begeisterungsfähig und kann andere leicht mitreißen.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 6,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_extra_2",
       "description": "__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "4",
-          "top_counts": "5: 13, 4: 11, 1: 2, 3: 2",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_agree_1R",
-        "type_options": 5,
-        "name": "BFIK_agree_1R",
-        "label": "__Ich neige dazu, andere zu kritisieren.__",
-        "label_parsed": "<strong>Ich neige dazu, andere zu kritisieren.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 7,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_agree_1R",
       "description": "__Ich neige dazu, andere zu kritisieren.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "4",
-          "top_counts": "2: 11, 4: 9, 3: 7, 5: 1",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_open_1",
-        "type_options": 5,
-        "name": "BFIK_open_1",
-        "label": "__Ich bin vielseitig interessiert.__",
-        "label_parsed": "<strong>Ich bin vielseitig interessiert.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 8,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_open_1",
       "description": "__Ich bin vielseitig interessiert.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "4",
-          "top_counts": "5: 16, 4: 8, 3: 3, 2: 1",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_neuro_2R",
-        "type_options": 5,
-        "name": "BFIK_neuro_2R",
-        "label": "__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__",
-        "label_parsed": "<strong>Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 9,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_neuro_2R",
       "description": "__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "4",
-          "top_counts": "3: 10, 4: 9, 2: 8, 5: 1",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_consc_3",
-        "type_options": 5,
-        "name": "BFIK_consc_3",
-        "label": "__Ich bin tüchtig und arbeite flott.__",
-        "label_parsed": "<strong>Ich bin tüchtig und arbeite flott.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 10,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_consc_3",
       "description": "__Ich bin tüchtig und arbeite flott.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "5",
-          "top_counts": "4: 12, 3: 7, 2: 4, 5: 4",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_consc_4",
-        "type_options": 5,
-        "name": "BFIK_consc_4",
-        "label": "__Ich mache Pläne und führe sie auch durch.__",
-        "label_parsed": "<strong>Ich mache Pläne und führe sie auch durch.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 11,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_consc_4",
       "description": "__Ich mache Pläne und führe sie auch durch.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "4",
-          "top_counts": "4: 15, 3: 7, 5: 5, 2: 1",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_consc_2R",
-        "type_options": 5,
-        "name": "BFIK_consc_2R",
-        "label": "__Ich bin bequem, neige zur Faulheit.__",
-        "label_parsed": "<strong>Ich bin bequem, neige zur Faulheit.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 12,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_consc_2R",
       "description": "__Ich bin bequem, neige zur Faulheit.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "5",
-          "top_counts": "4: 12, 1: 5, 3: 5, 2: 3",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_agree_3R",
-        "type_options": 5,
-        "name": "BFIK_agree_3R",
-        "label": "__Ich kann mich kalt und distanziert verhalten.__",
-        "label_parsed": "<strong>Ich kann mich kalt und distanziert verhalten.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 13,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_agree_3R",
       "description": "__Ich kann mich kalt und distanziert verhalten.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "5",
-          "top_counts": "2: 9, 4: 8, 3: 4, 5: 4",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_extra_3R",
-        "type_options": 5,
-        "name": "BFIK_extra_3R",
-        "label": "__Ich bin eher der \"stille Typ\", wortkarg.__",
-        "label_parsed": "<strong>Ich bin eher der &quot;stille Typ&quot;, wortkarg.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 14,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_extra_3R",
       "description": "__Ich bin eher der \"stille Typ\", wortkarg.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "5",
-          "top_counts": "4: 9, 5: 9, 3: 6, 1: 2",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_neuro_3",
-        "type_options": 5,
-        "name": "BFIK_neuro_3",
-        "label": "__Ich mache mir viele Sorgen.__",
-        "label_parsed": "<strong>Ich mache mir viele Sorgen.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 15,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_neuro_3",
       "description": "__Ich mache mir viele Sorgen.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "5",
-          "top_counts": "3: 8, 2: 7, 4: 5, 5: 5",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_neuro_4",
-        "type_options": 5,
-        "name": "BFIK_neuro_4",
-        "label": "__Ich werde leicht nervös und unsicher.__",
-        "label_parsed": "<strong>Ich werde leicht nervös und unsicher.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 16,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_neuro_4",
       "description": "__Ich werde leicht nervös und unsicher.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "4",
-          "top_counts": "2: 9, 4: 9, 1: 7, 3: 3",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_agree_2",
-        "type_options": 5,
-        "name": "BFIK_agree_2",
-        "label": "__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__",
-        "label_parsed": "<strong>Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 17,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_agree_2",
       "description": "__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "5",
-          "top_counts": "4: 9, 5: 7, 2: 5, 3: 5",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_consc_1",
-        "type_options": 5,
-        "name": "BFIK_consc_1",
-        "label": "__Ich erledige Aufgaben gründlich.__",
-        "label_parsed": "<strong>Ich erledige Aufgaben gründlich.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 18,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_consc_1",
       "description": "__Ich erledige Aufgaben gründlich.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "4",
-          "top_counts": "4: 12, 5: 10, 3: 4, 2: 2",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_open_4",
-        "type_options": 5,
-        "name": "BFIK_open_4",
-        "label": "__Ich schätze künstlerische und ästhetische Eindrücke.__",
-        "label_parsed": "<strong>Ich schätze künstlerische und ästhetische Eindrücke.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 19,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_open_4",
       "description": "__Ich schätze künstlerische und ästhetische Eindrücke.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "4",
-          "top_counts": "5: 13, 4: 10, 3: 4, 1: 1",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_extra_4",
-        "type_options": 5,
-        "name": "BFIK_extra_4",
-        "label": "__Ich gehe aus mir heraus, bin gesellig.__",
-        "label_parsed": "<strong>Ich gehe aus mir heraus, bin gesellig.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 20,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_extra_4",
       "description": "__Ich gehe aus mir heraus, bin gesellig.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "5",
-          "top_counts": "4: 11, 5: 9, 3: 4, 2: 3",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_extra_1R",
-        "type_options": 5,
-        "name": "BFIK_extra_1R",
-        "label": "__Ich bin eher zurückhaltend, reserviert.__",
-        "label_parsed": "<strong>Ich bin eher zurückhaltend, reserviert.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 21,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_extra_1R",
       "description": "__Ich bin eher zurückhaltend, reserviert.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "5",
-          "top_counts": "4: 8, 5: 8, 3: 6, 2: 5",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "item": {
-        "choice_list": "BFIK_open_3",
-        "type_options": 5,
-        "name": "BFIK_open_3",
-        "label": "__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__",
-        "label_parsed": "<strong>Ich habe eine aktive Vorstellungskraft, bin phantasievoll.<\/strong>",
-        "optional": 0,
-        "class": {},
-        "showif": {},
-        "value": {},
-        "block_order": {},
-        "item_order": 22,
-        "choices": {
-          "1": "1: Trifft überhaupt nicht zu",
-          "2": "2",
-          "3": "3",
-          "4": "4",
-          "5": "5: Trifft voll und ganz zu",
-          "@type": "http://rubenarslan.github.io/codebook/ItemChoices"
-        },
-        "item_type": "rating_button",
-        "@type": "http://rubenarslan.github.io/codebook/Item"
-      },
       "name": "BFIK_open_3",
       "description": "__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "n_unique": "4",
-          "top_counts": "5: 14, 4: 8, 3: 4, 2: 2",
-          "ordered": "FALSE",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "StructuredValue",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "scale_item_names": ["BFIK_agree_4R", "BFIK_agree_1R", "BFIK_agree_3R", "BFIK_agree_2"],
       "name": "BFIK_agree",
       "description": "4 BFIK_agree items averaged with aggregation_function",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "mean": "3.12",
-          "sd": "0.93",
-          "p0": "1.5",
-          "p25": "2.25",
-          "p50": "3",
-          "p75": "4",
-          "p100": "4.75",
-          "hist": "▂▇▂▇▃▁▅▅",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "Number",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "scale_item_names": ["BFIK_open_2", "BFIK_open_1", "BFIK_open_4", "BFIK_open_3"],
       "name": "BFIK_open",
       "description": "4 BFIK_open items averaged with aggregation_function",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "mean": "4.26",
-          "sd": "0.56",
-          "p0": "3",
-          "p25": "3.94",
-          "p50": "4.25",
-          "p75": "4.75",
-          "p100": "5",
-          "hist": "▃▂▂▁▇▃▇▂",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "Number",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "scale_item_names": ["BFIK_consc_3", "BFIK_consc_4", "BFIK_consc_2R", "BFIK_consc_1"],
       "name": "BFIK_consc",
       "description": "4 BFIK_consc items averaged with aggregation_function",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "mean": "3.65",
-          "sd": "0.79",
-          "p0": "2",
-          "p25": "3.12",
-          "p50": "3.75",
-          "p75": "4.25",
-          "p100": "5",
-          "hist": "▂▃▁▃▃▇▂▂",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "Number",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "scale_item_names": ["BFIK_extra_2", "BFIK_extra_3R", "BFIK_extra_4", "BFIK_extra_1R"],
       "name": "BFIK_extra",
       "description": "4 BFIK_extra items averaged with aggregation_function",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "mean": "3.85",
-          "sd": "1.01",
-          "p0": "1.5",
-          "p25": "3.25",
-          "p50": "4.25",
-          "p75": "4.56",
-          "p100": "5",
-          "hist": "▂▁▂▃▁▃▇▇",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "Number",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
       "@type": "propertyValue"
     },
     {
-      "scale_item_names": ["BFIK_neuro_2R", "BFIK_neuro_3", "BFIK_neuro_4"],
       "name": "BFIK_neuro",
       "description": "3 BFIK_neuro items averaged with aggregation_function",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "mean": "2.89",
-          "sd": "0.93",
-          "p0": "1.33",
-          "p25": "2",
-          "p50": "2.83",
-          "p75": "3.42",
-          "p100": "4.33",
-          "hist": "▅▅▂▅▃▅▁▇",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "Number",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },
@@ -3153,23 +2364,6 @@
     {
       "name": "age",
       "description": "Alter",
-      "data_summary": [
-        {
-          "missing": "0",
-          "complete": "28",
-          "n": "28",
-          "mean": "29.93",
-          "sd": "4.42",
-          "p0": "23",
-          "p25": "27.75",
-          "p50": "29",
-          "p75": "31.25",
-          "p100": "41",
-          "hist": "▅▂▇▇▂▁▃▁",
-          "@type": "http://rubenarslan.github.io/codebook/SummaryStatistics"
-        }
-      ],
-      "value": "Number",
       "@context": {
         "@vocab": "http://pending.schema.org/"
       },

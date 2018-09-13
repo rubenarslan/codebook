@@ -82,6 +82,33 @@ aggregate_and_document_scale <- function(items, fun = rowMeans, stem = NULL) {
   data
 }
 
+#' Data description default
+#'
+#' If you do not define a dataset description yourself, this will be the
+#' automatically generated default.
+#'
+#' @param data the data frame
+#' @export
+#' @examples
+#' data_description_default(bfi)
+#'
+#' @export
+data_description_default <- function(data) {
+  stopifnot(is.data.frame(data))
+  glue::glue(
+    "The dataset has N={n_observations} rows of
+    which n={n_completecases} have no missings and a total of
+    {n_variables} columns.
+
+    <details><summary>Variable names</summary>{variable_names}</details>
+
+    This dataset was automatically described using the codebook R package.",
+    n_observations = nrow(data),
+    n_completecases = sum(stats::complete.cases(data)),
+    n_variables = ncol(data),
+    variable_names = paste(recursive_escape(colnames(data)), collapse = ", "))
+}
+
 
 #' Give a name to a dataset
 #'
@@ -144,7 +171,7 @@ aggregate_and_document_scale <- function(items, fun = rowMeans, stem = NULL) {
 #' @param value the citation information
 #' @export
 #' @examples
-#' data_citation(bfi) <- "doi:10.5281/zenodo.1326520"
+#' data_citation(bfi) <- "Arslan (2018). Mock BFI data."
 #'
 `data_citation<-` <- function(data, value) {
   UseMethod("data_citation<-")
@@ -153,12 +180,87 @@ aggregate_and_document_scale <- function(items, fun = rowMeans, stem = NULL) {
 #' @export
 `data_citation<-.data.frame` <- function(data, value) {
   if (!((is.character(value) | is.null(value) | is.list(value))))
-    stop("`value` should be a single character string or NULL",
+    stop("`value` should be a single character string, a list, or NULL",
          call. = FALSE, domain = "R-codebook")
   attributes(data)$citation <- value
   data
 }
 
+
+#' Add identifier to a dataset
+#'
+#' Add a single character vector or a list to give an identifier for the dataset,
+#' such as a DOI.
+#'
+#' @param data the data frame
+#' @param value the identifier
+#' @export
+#' @examples
+#' data_identifier(bfi) <- "doi:10.5281/zenodo.1326520"
+#'
+`data_identifier<-` <- function(data, value) {
+  UseMethod("data_identifier<-")
+}
+
+#' @export
+`data_identifier<-.data.frame` <- function(data, value) {
+  if (!((is.character(value) | is.null(value) | is.list(value))))
+    stop("`value` should be a single character string, a list, or NULL",
+         call. = FALSE, domain = "R-codebook")
+  attributes(data)$identifier <- value
+  data
+}
+
+#' Add temporal coverage information to a dataset
+#'
+#' Add a single character vector or a list to give temporal coverage the dataset
+#' if it has a temporal extent for JSON-LD metadata generation, e.g., the period
+#' of data collection.
+#'
+#' @param data the data frame
+#' @param value the temporal coverage information
+#' @export
+#' @examples
+#' data_temporalCoverage(bfi) <- "2017"
+#'
+`data_temporalCoverage<-` <- function(data, value) {
+  UseMethod("data_temporalCoverage<-")
+}
+
+#' @export
+`data_temporalCoverage<-.data.frame` <- function(data, value) {
+  if (!((is.character(value) | is.null(value) | is.list(value))))
+    stop("`value` should be a single character string, a list, or NULL",
+         call. = FALSE, domain = "R-codebook")
+  attributes(data)$temporalCoverage <- value
+  data
+}
+
+
+#' Add spatial coverage information to a dataset
+#'
+#' Add a single character vector or a list to give spatial coverage the dataset
+#' if it has a spatial extent for JSON-LD metadata generation, e.g., the place
+#' where data was collected.
+#'
+#' @param data the data frame
+#' @param value the spatial coverage information
+#' @export
+#' @examples
+#' data_spatialCoverage(bfi) <- "Goettingen, Germany"
+#'
+`data_spatialCoverage<-` <- function(data, value) {
+  UseMethod("data_spatialCoverage<-")
+}
+
+#' @export
+`data_spatialCoverage<-.data.frame` <- function(data, value) {
+  if (!((is.character(value) | is.null(value) | is.list(value))))
+    stop("`value` should be a single character string, a list, or NULL",
+         call. = FALSE, domain = "R-codebook")
+  attributes(data)$spatialCoverage <- value
+  data
+}
 
 #' Add keywords to a dataset
 #'

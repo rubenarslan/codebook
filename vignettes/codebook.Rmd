@@ -32,8 +32,8 @@ for multi-item inventories, generates nicely labelled plots and outputs summary 
 The same information is also stored in a table, which you can export to various formats.
 Additionally, `codebook` can show you different kinds of (labelled) missing values, and show you common 
 missingness patterns.
-As _you_ cannot see, but _search engines_ one day might, the `codebook` package also
-generates [JSON-LD](https://json-ld.org/) metadata for the [dataset](https://developers.google.com/search/docs/data-types/dataset). If you share
+As _you_ cannot see, but _[search engines](https://toolbox.google.com/datasetsearch)_
+will, the `codebook` package also generates [JSON-LD](https://json-ld.org/) metadata for the [dataset](https://developers.google.com/search/docs/data-types/dataset). If you share
 your codebook as an HTML file online, this metadata should make it easier for others
 to find your data.
 
@@ -48,11 +48,20 @@ data("bfi", package = 'codebook')
 bfi$age <- rpois(nrow(bfi), 30)
 library(labelled)
 var_label(bfi$age) <- "Alter"
+```
 
+By default, we only set the required metadata attributes `name` and `description`
+to sensible values. However, there is a number of attributes you can set to 
+describe the data better. [Find out more](https://developers.google.com/search/docs/data-types/dataset).
+
+```{r}
 data_name(bfi) <- "MOCK Big Five Inventory dataset (German metadata demo)"
 data_description(bfi) <- "a small mock Big Five Inventory dataset"
-data_citation(bfi) <- "doi:10.5281/zenodo.1326520"
+data_identifier(bfi) <- "doi:10.5281/zenodo.1326520"
+data_citation(bfi) <- "Arslan (2016). Mock BFI data."
 data_url(bfi) <- "https://rubenarslan.github.io/codebook/articles/codebook.html"
+data_temporalCoverage(bfi) <- "2016" 
+data_spatialCoverage(bfi) <- "Goettingen, Germany" 
 ```
 
 ```{r cb}

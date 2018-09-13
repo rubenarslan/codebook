@@ -1,7 +1,11 @@
 context("Test addins")
 
 test_that("static label browser", {
+  expect_error(dt <- label_browser_static(), "No data frame")
   data('bfi')
+  expect_silent(dt <- label_browser_static())
+  expect_identical(class(dt), c("datatables", "htmlwidget"))
+  expect_equal(nrow(dt$x$data), ncol(bfi))
   expect_silent(dt <- label_browser_static(bfi))
   expect_identical(class(dt), c("datatables", "htmlwidget"))
   expect_equal(nrow(dt$x$data), ncol(bfi))

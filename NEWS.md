@@ -2,6 +2,9 @@
 
 ## Changes
 - removed `zap_label` because haven 2.0.0 has this function
+- added several functions to add JSON-LD compliant metadata and to show it
+  in the codebook
+- removed some non-standard attributes from the JSON-LD metadata in the hope
 
 ## Bugfixes
 - work with haven's changed class names

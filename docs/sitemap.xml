@@ -25,6 +25,9 @@
     <loc>https://rubenarslan.github.io/codebook//reference/codebook_component_single_item.html</loc>
   </url>
   <url>
+    <loc>https://rubenarslan.github.io/codebook//reference/codebook_data_info.html</loc>
+  </url>
+  <url>
     <loc>https://rubenarslan.github.io/codebook//reference/codebook_items.html</loc>
   </url>
   <url>
@@ -46,10 +49,22 @@
     <loc>https://rubenarslan.github.io/codebook//reference/data_description-set.html</loc>
   </url>
   <url>
+    <loc>https://rubenarslan.github.io/codebook//reference/data_description_default.html</loc>
+  </url>
+  <url>
+    <loc>https://rubenarslan.github.io/codebook//reference/data_identifier-set.html</loc>
+  </url>
+  <url>
     <loc>https://rubenarslan.github.io/codebook//reference/data_keywords-set.html</loc>
   </url>
   <url>
     <loc>https://rubenarslan.github.io/codebook//reference/data_name-set.html</loc>
+  </url>
+  <url>
+    <loc>https://rubenarslan.github.io/codebook//reference/data_spatialCoverage-set.html</loc>
+  </url>
+  <url>
+    <loc>https://rubenarslan.github.io/codebook//reference/data_temporalCoverage-set.html</loc>
   </url>
   <url>
     <loc>https://rubenarslan.github.io/codebook//reference/data_url-set.html</loc>

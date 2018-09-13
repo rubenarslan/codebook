@@ -1,4 +1,4 @@
-context("Test codebook")
+context("Test plots")
 
 test_that("plot labelled", {
   data("bfi", package = 'codebook')

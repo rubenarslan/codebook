@@ -70,9 +70,17 @@ devtools::install_github("rubenarslan/codebook")
 ```
 
 ## Citation
-To cite the package
+To cite the package, you can cite the preprint, but to make your codebook
+traceable to the version of the package you used, you might also want to cite
+the archived package DOI.
 
-> Arslan, R. C. (2018). Automatic codebooks from survey metadata (2018). URL https://github.com/rubenarslan/codebook. doi\:[10.5281/zenodo.1205454](https://doi.org/10.5281/zenodo.1205454)
+### Preprint
+> Arslan, R. C. (2018). How to automatically generate rich 
+codebooks from study metadata. [doi:10.31234/osf.io/5qc6h](https://doi.org/10.31234/osf.io/5qc6h)
+
+### Zenodo
+> Arslan, R. C. (2018). Automatic codebooks from survey metadata (2018). URL https://github.com/rubenarslan/codebook. [![DOI](https://zenodo.org/badge/109252375.svg)](https://zenodo.org/badge/latestdoi/109252375)
+
 
 ### How to use
 Here's a simple rmarkdown template, that you could use to get started.

@@ -4,7 +4,7 @@
 \alias{metadata_list}
 \title{Metadata from dataframe}
 \usage{
-metadata_list(results, name = NULL, only_existing = FALSE)
+metadata_list(results, name = NULL, only_existing = TRUE)
 }
 \arguments{
 \item{results}{a data frame, ideally with attributes set on variables}

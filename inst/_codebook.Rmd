@@ -7,10 +7,17 @@ if (exists("testing")) {
 	survey_repetition <- 'single'
 	reliabilities <- list()
 	missingness_report <- ''
+	data_info <- '' 
 	survey_overview <- '' 
 	scales_items <- c()
 }
 ```
+
+
+```{r}
+knitr::asis_output(data_info)
+```
+
 
 ```{r}
 knitr::asis_output(survey_overview)

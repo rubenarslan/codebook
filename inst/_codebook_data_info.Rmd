@@ -1,0 +1,63 @@
+```{r setup,eval=TRUE,echo=FALSE}
+if (exists("testing")) {
+	indent = '#' # ugly hack so _regression_summary can be "spun" (variables included via `r ` have to be available)
+	results = data("bfi")
+	attributes(results)$description <- data_description_default(bfi)
+}
+
+meta <- attributes(results)
+description <- meta$description
+meta <- meta[setdiff(names(meta), c("row.names", "names", "class"))]
+meta <- recursive_escape(meta)
+```
+
+`r indent`# Metadata
+
+`r indent`## Description
+```{r results='asis'}
+if (is_attribute_set("name", results)) {
+  glue::glue(
+    "__Dataset name__: {name}",
+    .envir = meta)
+}
+```
+
+```{r results='asis'}
+cat(description)
+```
+
+```{r results='asis'}
+if (is_attribute_set("temporalCoverage", results)) {
+  glue::glue(
+    "- __Temporal Coverage__: [{url}](url)",
+    .envir = meta)
+}
+```
+```{r results='asis'}
+if (is_attribute_set("spatialCoverage", results)) {
+  glue::glue(
+    "- __Spatial Coverage__: [{url}](url)",
+    .envir = meta)
+}
+```
+```{r results='asis'}
+if (is_attribute_set("citation", results)) {
+  glue::glue(
+    "- __Citation__: {citation}",
+    .envir = meta)
+}
+```
+```{r results='asis'}
+if (is_attribute_set("url", results)) {
+  glue::glue(
+    "- __URL__: [{url}](url)",
+    .envir = meta)
+}
+```
+```{r results='asis'}
+if (is_attribute_set("identifier", results)) {
+  glue::glue(
+    "- __Identifier__: {identifier}",
+    .envir = meta)
+}
+```

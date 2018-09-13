@@ -41,7 +41,8 @@ Imports:
     rio,
     shiny (>= 0.13),
     miniUI (>= 0.1.1),
-    rstudioapi (>= 0.5)
+    rstudioapi (>= 0.5),
+    glue
 Suggests:
   testthat,
   shinytest,
