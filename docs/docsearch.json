@@ -2,21 +2,21 @@
   "index_name": "rubenarslan",
   "start_urls": [
     {
-      "url": "https://rubenarslan.github.io/codebook//index.html",
+      "url": "https://rubenarslan.github.io/codebook/index.html",
       "selectors_key": "homepage",
       "tags": [
         "homepage"
       ]
     },
     {
-      "url": "https://rubenarslan.github.io/codebook//reference",
+      "url": "https://rubenarslan.github.io/codebook/reference",
       "selectors_key": "reference",
       "tags": [
         "reference"
       ]
     },
     {
-      "url": "https://rubenarslan.github.io/codebook//articles",
+      "url": "https://rubenarslan.github.io/codebook/articles",
       "selectors_key": "articles",
       "tags": [
         "articles"
@@ -30,7 +30,7 @@
     "/articles/index.html"
   ],
   "sitemap_urls": [
-    "https://rubenarslan.github.io/codebook//sitemap.xml"
+    "https://rubenarslan.github.io/codebook/sitemap.xml"
   ],
   "selectors": {
     "homepage": {
