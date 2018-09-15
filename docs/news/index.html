@@ -141,6 +141,13 @@
 <h1 class="page-header">
 <a href="#codebook-0-6-3-9000" class="anchor"></a>codebook 0.6.3.9000<small> Unreleased </small>
 </h1>
+<div id="additions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#additions" class="anchor"></a>Additions</h2>
+<ul>
+<li>Function <code>new_codebook_rmd</code> creates a new file in your working directory with a codebook template.</li>
+</ul>
+</div>
 <div id="changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#changes" class="anchor"></a>Changes</h2>
@@ -162,9 +169,9 @@
 <h1 class="page-header">
 <a href="#codebook-0-6-3" class="anchor"></a>codebook 0.6.3<small> 2018-08-01 </small>
 </h1>
-<div id="additions" class="section level2">
+<div id="additions-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#additions" class="anchor"></a>Additions</h2>
+<a href="#additions-1" class="anchor"></a>Additions</h2>
 <ul>
 <li>Vignettes for
 <ul>
@@ -199,9 +206,9 @@
 <h1 class="page-header">
 <a href="#codebook-0-6-2" class="anchor"></a>codebook 0.6.2<small> 2018-07-26 </small>
 </h1>
-<div id="additions-1" class="section level2">
+<div id="additions-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#additions-1" class="anchor"></a>Additions</h2>
+<a href="#additions-2" class="anchor"></a>Additions</h2>
 <ul>
 <li>Three RStudio Addin Shinyapps to browse variable labels and codebook.</li>
 </ul>
@@ -218,9 +225,9 @@
 <h1 class="page-header">
 <a href="#codebook-0-5-9" class="anchor"></a>codebook 0.5.9<small> 2018-05-22 </small>
 </h1>
-<div id="additions-2" class="section level2">
+<div id="additions-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#additions-2" class="anchor"></a>Additions</h2>
+<a href="#additions-3" class="anchor"></a>Additions</h2>
 <ul>
 <li>plot_labelled now makes better plots for numeric variables</li>
 <li>codebook generation has been parallelised using the future package. By calling e.g. <code>plan(multicore(workers = 4))</code> before the codebook function, the computation of reliabilities and the generation of scale and item summaries will happen in parallel. For this to work with plots, you have to choose a graphics device in knitr that supports parallelisation, by calling e.g. <code>opts_chunk$set(dev = "CairoPNG")</code>.</li>

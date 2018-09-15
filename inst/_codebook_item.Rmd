@@ -21,17 +21,17 @@ choices <- item_attributes$labels
 `r item_label`
 
 `r indent`### Distribution {#`r safe_name`_distribution}
-```{r setup_missings}
-show_missings <- FALSE
+```{r setup_missing_values}
+show_missing_values <- FALSE
 if (has_labels(item)) {
-  missings <- item[is.na(haven::zap_missing(item))]
-  attributes(missings) <- attributes(item)
+  missing_values <- item[is.na(haven::zap_missing(item))]
+  attributes(missing_values) <- attributes(item)
   if (!is.null(attributes(item)$labels)) {
-    attributes(missings)$labels <- attributes(missings)$labels[is.na(attributes(missings)$labels)]
+    attributes(missing_values)$labels <- attributes(missing_values)$labels[is.na(attributes(missing_values)$labels)]
     attributes(item)$labels <- attributes(item)$labels[!is.na(attributes(item)$labels)]
   }
   if (is.numeric(item)) {
-    show_missings <- length(unique(haven::na_tag(missings))) > 1
+    show_missing_values <- length(unique(haven::na_tag(missing_values))) > 1
     item <- haven::zap_missing(item)
   }
   if (length(item_attributes$labels) == 0 && is.numeric(item)) {
@@ -87,7 +87,7 @@ if (!length(item_nomiss)) {
 knitr::opts_chunk$set(fig.height = old_height)
 ```
 
-`r sum(is.na(item))` missings.
+`r sum(is.na(item))` missing values.
 
 `r indent`### Summary statistics {#`r safe_name`_summary}
 ```{r summary}
@@ -97,10 +97,10 @@ names(df) = html_item_name
 escaped_table(codebook_table(df))
 ```
 
-`r ifelse(show_missings, paste0(indent, '### Missing value types {#', safe_name, '_missings}'), '')`
-```{r missings}
-if (show_missings) {
-  plot_labelled(missings, item_name, wrap_at)
+`r ifelse(show_missing_values, paste0(indent, '### Missing value types {#', safe_name, '_missing_values}'), '')`
+```{r missing_values}
+if (show_missing_values) {
+  plot_labelled(missing_values, item_name, wrap_at)
 }
 ```
 

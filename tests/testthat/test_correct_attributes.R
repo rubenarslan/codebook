@@ -19,7 +19,7 @@ test_that("user-defined missing values read as normal missing by default", {
   expect_identical(num[3, 4][[1]][[1]], NA_real_)
   expect_equal(num[5, 4][[1]][[1]], 999)
 
-  expect_silent(num <- detect_missings(num))
+  expect_silent(num <- detect_missing(num))
 
   expect_identical(num[2, 4][[1]][[1]], NA_real_)
   expect_identical(num[3, 4][[1]][[1]], NA_real_)
@@ -29,7 +29,7 @@ test_that("user-defined missing values read as normal missing by default", {
   expect_identical(num[3, 2][[1]][[1]], NA_real_)
   expect_equal(num[5, 2][[1]][[1]], 999)
 
-  expect_silent(num <- detect_missings(num, only_labelled_missings = FALSE))
+  expect_silent(num <- detect_missing(num, only_labelled = FALSE))
   expect_equal(sum(num$val1, na.rm = TRUE), 19)
   expect_equal(sum(num$val2, na.rm = TRUE), 19)
   expect_equal(sum(num$val3, na.rm = TRUE), 19)
@@ -53,9 +53,9 @@ test_that("labelled_spss can be transformed into more useful tagged na", {
 
   expect_failure(expect_identical(num[, 3][[1]], num[, 4][[1]]))
 
-  expect_silent(num <- detect_missings(num,
+  expect_silent(num <- detect_missing(num,
                                 negative_values_are_missing = FALSE,
-                                only_labelled_missings = FALSE))
+                                only_labelled = FALSE))
   expect_equal(sum(num$val1, na.rm = TRUE), 18)
   expect_equal(sum(num$val2, na.rm = TRUE), 18)
   expect_equal(sum(num$val3, na.rm = TRUE), 18)
@@ -76,8 +76,8 @@ test_that("labelled_spss can be transformed into more useful tagged na", {
   expect_identical(haven::na_tag(num[, 1][[1]]), haven::na_tag(num[, 3][[1]]) )
   expect_identical(haven::na_tag(num[, 1][[1]]), haven::na_tag(num[, 4][[1]]) )
 
-  num <- detect_missings(num, negative_values_are_missing = TRUE,
-                                only_labelled_missings = FALSE)
+  num <- detect_missing(num, negative_values_are_missing = TRUE,
+                                only_labelled = FALSE)
   expect_equal(sum(num$val1, na.rm = TRUE), 19)
   expect_equal(sum(num$val2, na.rm = TRUE), 19)
   expect_equal(sum(num$val3, na.rm = TRUE), 19)
@@ -98,11 +98,11 @@ test_that("we can also keep labelled_spss", {
 
   expect_failure(expect_identical(num[, 3][[1]], num[, 4][[1]]))
 
-  num <- detect_missings(num, negative_values_are_missing = FALSE,
-                                only_labelled_missings = FALSE,
+  num <- detect_missing(num, negative_values_are_missing = FALSE,
+                                only_labelled = FALSE,
                                 use_labelled_spss = TRUE)
   expect_failure(expect_equal(sum(num$val1, na.rm = TRUE), 18))
-  # SPSS missings suck because base R does not know them
+  # SPSS missing values suck because base R does not know them
   sum <- function(x, na.rm = TRUE) { base::sum(x[!is.na(x)]) }
   expect_equal(sum(num$val1, na.rm = TRUE), 18)
   expect_equal(sum(num$val2, na.rm = TRUE), 18)
@@ -118,8 +118,8 @@ test_that("we can also keep labelled_spss", {
   expect_equal(num[3, 2][[1]][[1]], NA_real_)
   expect_equal(num[5, 2][[1]][[1]], 999)
 
-  num <- detect_missings(num, negative_values_are_missing = TRUE,
-                                only_labelled_missings = FALSE)
+  num <- detect_missing(num, negative_values_are_missing = TRUE,
+                                only_labelled = FALSE)
   expect_failure(expect_equal(base::sum(num$val1, na.rm = TRUE), 18))
 
   expect_equal(sum(num$val1, na.rm = TRUE), 19)

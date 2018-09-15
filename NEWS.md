@@ -1,5 +1,9 @@
 # codebook 0.6.3.9000
 
+## Additions
+- Function `new_codebook_rmd` creates a new file in your working directory
+with a codebook template.
+
 ## Changes
 - removed `zap_label` because haven 2.0.0 has this function
 - added several functions to add JSON-LD compliant metadata and to show it

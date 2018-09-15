@@ -183,16 +183,16 @@
 #&gt; ##### Distribution {#BFIK_open_1_distribution}
 #&gt; 
 #&gt; ```r
-#&gt; show_missings &lt;- FALSE
+#&gt; show_missing_values &lt;- FALSE
 #&gt; if (has_labels(item)) {
-#&gt;   missings &lt;- item[is.na(haven::zap_missing(item))]
-#&gt;   attributes(missings) &lt;- attributes(item)
+#&gt;   missing_values &lt;- item[is.na(haven::zap_missing(item))]
+#&gt;   attributes(missing_values) &lt;- attributes(item)
 #&gt;   if (!is.null(attributes(item)$labels)) {
-#&gt;     attributes(missings)$labels &lt;- attributes(missings)$labels[is.na(attributes(missings)$labels)]
+#&gt;     attributes(missing_values)$labels &lt;- attributes(missing_values)$labels[is.na(attributes(missing_values)$labels)]
 #&gt;     attributes(item)$labels &lt;- attributes(item)$labels[!is.na(attributes(item)$labels)]
 #&gt;   }
 #&gt;   if (is.numeric(item)) {
-#&gt;     show_missings &lt;- length(unique(haven::na_tag(missings))) &gt; 1
+#&gt;     show_missing_values &lt;- length(unique(haven::na_tag(missing_values))) &gt; 1
 #&gt;     item &lt;- haven::zap_missing(item)
 #&gt;   }
 #&gt;   if (length(item_attributes$labels) == 0 &amp;&amp; is.numeric(item)) {
@@ -254,7 +254,7 @@
 #&gt; knitr::opts_chunk$set(fig.height = old_height)
 #&gt; ```
 #&gt; 
-#&gt; 0 missings.
+#&gt; 0 missing values.
 #&gt; 
 #&gt; ##### Summary statistics {#BFIK_open_1_summary}
 #&gt; 
@@ -274,8 +274,8 @@
 #&gt; 
 #&gt; 
 #&gt; ```r
-#&gt; if (show_missings) {
-#&gt;   plot_labelled(missings, item_name, wrap_at)
+#&gt; if (show_missing_values) {
+#&gt;   plot_labelled(missing_values, item_name, wrap_at)
 #&gt; }
 #&gt; ```
 #&gt; 

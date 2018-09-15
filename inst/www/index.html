@@ -45,16 +45,19 @@
   <div class="col-md-12">
     <div class="card card-body">
       <p>
-        The codebook generated here will be stored for 24 hours. Unless you share the link, others cannot easily discover it. The data you upload is not stored, but if you do not want to upload the data, you can also install the <a href="https://github.com/rubenarslan/codebook" target="_blank">codebook R package</a> on your computer. This will also make it easier to document multiple data files in the same document, should you want to.
+        The codebook generated here will be stored for 24 hours. Unless you share the link, others cannot easily discover it. The data you upload is not stored, but if you do not want to upload the data, you can also install the <a href="https://github.com/rubenarslan/codebook" target="_blank">codebook R package</a> on your computer using <code>install.packages("codebook")</code>. This will also make it easier to document multiple data files in the same document, should you want to.
       </p>
       <p>
         The following <strong>file formats</strong> are supported, among others: .sav (SPSS), .dta (Stata), .rds (R), .rdata (R), .por, .xpt, .csv, .tsv, .csv2. All are read using <a href="https://github.com/leeper/rio">rio</a>, which means you can also upload zipped files, see rio docs for more information.
       </p>
       <p>
-        The codebook package uses variable and value labels, as well as labelled missings to make sense of the data. You can upload files without such metadata, but the resulting codebook will be less useful. You'll get the most mileage out of this package by using data collected with <a href="https://formr.org">formr.org</a> and imported using the <a href="https://github.com/rubenarslan/formr">formr R package</a>.
+        The codebook package uses variable and value labels, as well as labelled missing values to make sense of the data. You can upload files without such metadata, but the resulting codebook will be less useful. You'll get the most mileage out of this package by using data collected with <a href="https://formr.org">formr.org</a> and imported using the <a href="https://github.com/rubenarslan/formr">formr R package</a>.
         </p>
       <p>
         If you prefer a PDF over HTML (but remember, PDF are much less readable for machines and hard to read on mobile devices), just remove the html_document block below.
+      </p>
+      <p>
+        The webapp sets reasonable defaults and it is possible to edit the text and the R code to improve the resulting codebook. However, the webapp does not store edits, is not as interactive as working in R, and it requires the user to upload the dataset to a server. This is not permissible for certain restricted-use datasets. Moreover, for very large datasets, you may get an error message, because the server limits the resources you can use. If one wants to document large, private, or many datasets, or if you first need to add the metadata, it is easier to install the codebook package locally.
       </p>
       <p>
         <a href="https://rubenarslan.github.io/codebook/">More documentation on the R package.</a>
@@ -97,8 +100,8 @@ We collected the following data.
 
 ```{r codebook}
 # omit the following lines, if your missing values are already properly labelled
-codebook_data = detect_missings(codebook_data,
-    only_labelled_missings = TRUE, # only labelled values are autodetected as
+codebook_data = detect_missing(codebook_data,
+    only_labelled = TRUE, # only labelled values are autodetected as
                                    # missing
     negative_values_are_missing = FALSE, # negative values are missing values
     ninety_nine_problems = TRUE,   # 99/999 are missing values, if they
@@ -112,6 +115,11 @@ codebook_data = detect_missings(codebook_data,
 # automatically compute reliabilities.
 # However, it will not reverse items automatically.
 codebook_data = detect_scales(codebook_data)
+
+
+# Does your dataset have a name that is not reflected in the file name?
+data_name(codebook_data) <- "My Awesome Dataset"
+
 codebook(codebook_data)
 ```
 </div>

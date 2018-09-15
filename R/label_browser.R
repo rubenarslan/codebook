@@ -26,15 +26,17 @@ label_browser_static <- function(data = NULL, viewer = rstudioapi::viewer) {
     if (!is.null(data)) {
       df_name <- deparse(substitute(data))
   } else {
-    # if text is selected, use that
-    context <- rstudioapi::getActiveDocumentContext()
+    if (rstudioapi::isAvailable()) {
+      # if text is selected, use that
+      context <- rstudioapi::getActiveDocumentContext()
 
-    # Set the default data to use based on the selection.
-    df_name <- context$selection[[1]]$text
+      # Set the default data to use based on the selection.
+      df_name <- context$selection[[1]]$text
 
-    data <- NULL
-    if (!is.null(df_name) && df_name != "" && exists(df_name)) {
-      data <- get(df_name)
+      data <- NULL
+      if (!is.null(df_name) && df_name != "" && exists(df_name)) {
+        data <- get(df_name)
+      }
     }
 
     # if no text selected, or not name of a dataframe, use first in global env

@@ -136,8 +136,8 @@ can leverage it fully. These functions help fix this.
 ```{r codebook}`r ''`
 library(codebook) # load the package
 # omit the following lines, if your missing values are already properly labelled
-codebook_data <- detect_missings(codebook_data,
-    only_labelled_missings = TRUE, # only labelled values are autodetected as
+codebook_data <- detect_missing(codebook_data,
+    only_labelled = TRUE, # only labelled values are autodetected as
                                    # missing
     negative_values_are_missing = FALSE, # negative values are NOT missing values
     ninety_nine_problems = TRUE,   # 99/999 are missing values, if they

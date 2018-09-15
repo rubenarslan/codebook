@@ -11,32 +11,32 @@ test_that("Can print codebook table", {
   expect_silent(codebook:::export_table(codebook_table(nhanes)))
 })
 
-test_that("Missings are computed properly", {
+test_that("Missing values are computed properly", {
   data("nhanes", package = "mice")
 
   expect_silent(mdp <- md_pattern(nhanes))
   expect_equal(mdp$n_miss[1], 27)
   expect_equal(nrow(mdp), 6)
   expect_silent(mdp <- md_pattern(nhanes,
-                        only_vars_with_missings = FALSE, min_freq = 0.2))
+                        omit_complete = FALSE, min_freq = 0.2))
   expect_equal(mdp$n_miss[1], 27)
   expect_equal(mdp$n_miss[4], 5)
   expect_equal(nrow(mdp), 4)
-  expect_message(mdp <- md_pattern(data.frame()), "No missings")
-  expect_message(mdp <- md_pattern(data.frame(x = 1, y = 1)), "No missings")
+  expect_message(mdp <- md_pattern(data.frame()), "No missing")
+  expect_message(mdp <- md_pattern(data.frame(x = 1, y = 1)), "No missing")
   expect_null(mdp)
   expect_message(mdp <- md_pattern(data.frame(x = 1, y = 1),
-                                 only_vars_with_missings = FALSE,
-                                 min_freq = 0), "No missings")
+                                   omit_complete = FALSE,
+                                 min_freq = 0), "No missing")
   expect_null(mdp)
 
   expect_message(mdp <- md_pattern(data.frame(x = "a", y = "b"),
-                                  only_vars_with_missings = FALSE,
-                                  min_freq = 0), "No missings")
+                                   omit_complete = FALSE,
+                                  min_freq = 0), "No missing")
   expect_null(mdp)
 
   expect_silent(mdp <- md_pattern(data.frame(x = NA, y = NA),
-                                  only_vars_with_missings = FALSE,
+                                  omit_complete = FALSE,
                                   min_freq = 0))
   expect_equal(nrow(mdp), 2)
   expect_equal(sum(mdp$n_miss), 3)
@@ -60,6 +60,11 @@ test_that("Progress counters", {
 test_that("Require package", {
   expect_silent(require_package("codebook"))
   expect_error(require_package("3k43hb34bk3"))
+})
+
+
+test_that("New codebook Rmd", {
+  expect_silent(new_codebook_rmd(NULL))
 })
 
 

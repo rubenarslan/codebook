@@ -146,6 +146,34 @@ require_file <- function(file) {
   system.file(file, package = 'codebook', mustWork = TRUE)
 }
 
+#' Create a codebook rmarkdown document
+#'
+#' This function will create and open an .Rmd file in the current working
+#' directory. By default, the file is named codebook.Rmd. No files will be
+#' overwritten. The .Rmd file has some useful defaults set for creating codebooks.
+#'
+#'
+#' @param filename under which file name do you want to create a template
+#' @param template only "default" exists for now
+#'
+#' @export
+#' @examples
+#' \dontrun{
+#' new_codebook_rmd()
+#' }
+new_codebook_rmd <- function(filename = "codebook", template = "default") {
+  if (!is.null(filename)) {
+    stopifnot(!file.exists(filename))
+  }
+  stopifnot(template == "default")
+
+  template <- readLines(require_file("_template_codebook.Rmd"))
+
+  rmd_file <- write_to_file(template, name = filename, ext = ".Rmd")
+  if (rstudioapi::isAvailable()) {
+    rstudioapi::navigateToFile(rmd_file)
+  }
+}
 
 recursive_escape <- function(x, depth = 0, max_depth = 4,
                              escape_fun = htmltools::htmlEscape) {

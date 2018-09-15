@@ -69,7 +69,7 @@ plot_labelled <- function(item, item_name = NULL,
   item_nomiss <- haven::zap_missing(item)
   nonmissing_unique_values <- length(unique(item_nomiss))
     nonmissing_choices <- attributes(item_nomiss)[["labels"]]
-  has_labelled_missings <- length(nonmissing_choices) < length(choices)
+
   if (all(is.na(item_nomiss))) {
     if (has_labels(item)) {
       item <- as_factor(item, "both")
@@ -80,10 +80,10 @@ plot_labelled <- function(item, item_name = NULL,
 
   # possible inputs
   # * lbl+dbl -> continuous x axis with binning
-  #   * without labelled missings -> can't put on same x axis
-  #   * with labelled missings -> can't put on same x axis
+  #   * without labelled missing values -> can't put on same x axis
+  #   * with labelled missing values -> can't put on same x axis
   # * lbl+chr -> discrete x axis
-  #    * with our without labelled missings -> can all go on same x axis
+  #    * with our without labelled missing values -> can all go on same x axis
   # * chr -> discrete
   # * factor -> discrete
   # * double/integer -> continuous, with binning

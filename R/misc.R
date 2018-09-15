@@ -18,16 +18,16 @@ require_package <- function(package) {
 #' with options to reduce the complexity of the output.
 #'
 #' @param data the dataset
-#' @param only_vars_with_missings defaults to TRUE, omitting variables that have no missings
+#' @param omit_complete defaults to TRUE, omitting variables without missing values
 #' @param min_freq minimum number of rows to have this missingness pattern
 #' @export
 #' @examples
 #' data("nhanes", package = "mice")
 #' md_pattern(nhanes)
-#' md_pattern(nhanes, only_vars_with_missings = FALSE, min_freq = 0.2)
-md_pattern <- function(data, only_vars_with_missings = TRUE, min_freq = 0.01) {
+#' md_pattern(nhanes, omit_complete = FALSE, min_freq = 0.2)
+md_pattern <- function(data, omit_complete = TRUE, min_freq = 0.01) {
   if (sum(is.na(data)) == 0) {
-    message("No missings.")
+    message("No missing values.")
   } else {
     for (i in seq_along(names(data))) {
       # mice::md.pattern coerces character/factor to NA
@@ -40,7 +40,7 @@ md_pattern <- function(data, only_vars_with_missings = TRUE, min_freq = 0.01) {
     }
     colnames(md_pattern)[ncol(md_pattern)] <- "var_miss"
     rownames(md_pattern) <- NULL
-    if (only_vars_with_missings) {
+    if (omit_complete) {
       missing_by_var <- md_pattern[nrow(md_pattern), ]
       md_pattern <- md_pattern[, missing_by_var > 0]
     }
@@ -50,9 +50,9 @@ md_pattern <- function(data, only_vars_with_missings = TRUE, min_freq = 0.01) {
     md_pattern$n_miss[nrow(md_pattern)] <-
       md_pattern$var_miss[nrow(md_pattern)]
     stopifnot(!exists("description", md_pattern))
-    md_pattern$description <- paste0("Missings in ", md_pattern$var_miss,
+    md_pattern$description <- paste0("Missing values in ", md_pattern$var_miss,
                                      " variables")
-    md_pattern$description[nrow(md_pattern)] <- "Missings per variable"
+    md_pattern$description[nrow(md_pattern)] <- "Missing values per variable"
     md_pattern <- md_pattern[, c(ncol(md_pattern), 1:(ncol(md_pattern) - 1))]
 
     other <- md_pattern[ md_pattern$n_miss / nrow(data) < min_freq, -1]

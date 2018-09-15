@@ -33,7 +33,7 @@ Emanuel Jauk in a project called [How alluring are dark personalities? The Dark 
 
 Often, files imported from SPSS or Stata to R will not have their missings coded
 properly. Here, that is not the case, but if you find yourself with such a dataset,
-the `detect_missings` function makes it easy to recognise common ways to specify
+the `detect_missing` function makes it easy to recognise common ways to specify
 missing data (e.g. negative values, labelled values, 99/999).
 
 ```{r}

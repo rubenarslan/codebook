@@ -4,15 +4,15 @@ author: "Ruben Arslan"
 date: "`r Sys.Date()`"
 output:
   html_document:
-    toc: true
+    code_folding: hide
+    keep_md: yes
+    toc: yes
     toc_depth: 4
-    toc_float: true
-    code_folding: 'hide'
-    self_contained: true
+    toc_float: yes
 vignette: >
   %\VignetteIndexEntry{Codebook example formr}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 

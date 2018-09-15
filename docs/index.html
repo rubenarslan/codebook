@@ -230,8 +230,8 @@
 <a class="sourceLine" id="cb3-47" data-line-number="47">```{r codebook}</a>
 <a class="sourceLine" id="cb3-48" data-line-number="48">library(codebook) # load the package</a>
 <a class="sourceLine" id="cb3-49" data-line-number="49"><span class="fu"># omit the following lines, if your missing values are already properly labelled</span></a>
-<a class="sourceLine" id="cb3-50" data-line-number="50">codebook_data &lt;- detect_missings(codebook_data,</a>
-<a class="sourceLine" id="cb3-51" data-line-number="51"><span class="bn">    only_labelled_missings = TRUE, # only labelled values are autodetected as</span></a>
+<a class="sourceLine" id="cb3-50" data-line-number="50">codebook_data &lt;- detect_missing(codebook_data,</a>
+<a class="sourceLine" id="cb3-51" data-line-number="51"><span class="bn">    only_labelled = TRUE, # only labelled values are autodetected as</span></a>
 <a class="sourceLine" id="cb3-52" data-line-number="52"><span class="bn">                                   # missing</span></a>
 <a class="sourceLine" id="cb3-53" data-line-number="53"><span class="bn">    negative_values_are_missing = FALSE, # negative values are NOT missing values</span></a>
 <a class="sourceLine" id="cb3-54" data-line-number="54"><span class="bn">    ninety_nine_problems = TRUE,   # 99/999 are missing values, if they</span></a>

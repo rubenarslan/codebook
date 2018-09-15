@@ -21,7 +21,7 @@ scale_info <- recursive_escape(attributes(scale))
 
 __Reliability__: `r pull_reliability(reliabilities)`.
 
-__Missings__: `r sum(is.na(scale))`.
+__Missing__: `r sum(is.na(scale))`.
 
 ```{r likert_setup}
 old_height <- knitr::opts_chunk$get("fig.height")

@@ -109,7 +109,7 @@
       <h1>Codebook example with SPSS dataset</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2018-09-13</h4>
+            <h4 class="date">2018-09-15</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook_sav.Rmd"><code>vignettes/codebook_sav.Rmd</code></a></small>
       <div class="hidden name"><code>codebook_sav.Rmd</code></div>
@@ -126,7 +126,7 @@
 <a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">library</span>(codebook)</a></code></pre></div>
 <p>In this vignette, you can see how to use the metadata that is often already stored in SPSS and Stata files. It’s easy. All we need is the <code><a href="http://www.rdocumentation.org/packages/rio/topics/import">rio::import</a></code> function. For files with the right file extension, we can automatically pick the right way to import the data. Here, we’re downloading straight from the Open Science Framework, so we have to specify the file extension.</p>
 <p>We select a subset of variables, just to keep it short. The data were shared by Emanuel Jauk in a project called <a href="https://osf.io/j4fcb/">How alluring are dark personalities? The Dark Triad and attractiveness in speed dating</a>.</p>
-<p>Often, files imported from SPSS or Stata to R will not have their missings coded properly. Here, that is not the case, but if you find yourself with such a dataset, the <code>detect_missings</code> function makes it easy to recognise common ways to specify missing data (e.g. negative values, labelled values, 99/999).</p>
+<p>Often, files imported from SPSS or Stata to R will not have their missings coded properly. Here, that is not the case, but if you find yourself with such a dataset, the <code>detect_missing</code> function makes it easy to recognise common ways to specify missing data (e.g. negative values, labelled values, 99/999).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">darktriad &lt;-<span class="st"> </span>rio<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rio/topics/import">import</a></span>(<span class="st">"https://osf.io/j4fcb/download"</span>, <span class="dt">format =</span> <span class="st">"sav"</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(DG, sex, relStat, education, NPI_avg)</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3"><span class="cf">if</span> (<span class="op">!</span>knit_by_pkgdown) knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
@@ -188,16 +188,16 @@
 <div id="DG_distribution" class="section level4">
 <h4 class="hasAnchor">
 <a href="#DG_distribution" class="anchor"></a>Distribution</h4>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">show_missings &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">show_missing_values &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb14-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_labels.html">has_labels</a></span>(item)) {</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">  missings &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
-<a class="sourceLine" id="cb14-4" data-line-number="4">  <span class="kw">attributes</span>(missings) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">  missing_values &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">  <span class="kw">attributes</span>(missing_values) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
 <a class="sourceLine" id="cb14-5" data-line-number="5">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)) {</a>
-<a class="sourceLine" id="cb14-6" data-line-number="6">    <span class="kw">attributes</span>(missings)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(missings)<span class="op">$</span>labels[<span class="kw">is.na</span>(<span class="kw">attributes</span>(missings)<span class="op">$</span>labels)]</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">    <span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels[<span class="kw">is.na</span>(<span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels)]</a>
 <a class="sourceLine" id="cb14-7" data-line-number="7">    <span class="kw">attributes</span>(item)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)<span class="op">$</span>labels[<span class="op">!</span><span class="kw">is.na</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)]</a>
 <a class="sourceLine" id="cb14-8" data-line-number="8">  }</a>
 <a class="sourceLine" id="cb14-9" data-line-number="9">  <span class="cf">if</span> (<span class="kw">is.numeric</span>(item)) {</a>
-<a class="sourceLine" id="cb14-10" data-line-number="10">    show_missings &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/tagged_na">na_tag</a></span>(missings))) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10">    show_missing_values &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/tagged_na">na_tag</a></span>(missing_values))) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></a>
 <a class="sourceLine" id="cb14-11" data-line-number="11">    item &lt;-<span class="st"> </span>haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item)</a>
 <a class="sourceLine" id="cb14-12" data-line-number="12">  }</a>
 <a class="sourceLine" id="cb14-13" data-line-number="13">  <span class="cf">if</span> (<span class="kw">length</span>(item_attributes<span class="op">$</span>labels) <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">is.numeric</span>(item)) {</a>
@@ -250,7 +250,7 @@
 <a class="sourceLine" id="cb15-10" data-line-number="10">}</a></code></pre></div>
 <p><img src="codebook_sav_files/figure-html/DG_distribution-1.png" width="700"></p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> old_height)</a></code></pre></div>
-<p>0 missings.</p>
+<p>0 missing values.</p>
 </div>
 <div id="DG_summary" class="section level4">
 <h4 class="hasAnchor">
@@ -295,8 +295,8 @@
 <td align="left">F8.0</td>
 </tr></tbody>
 </table>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="cf">if</span> (show_missings) {</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(missings, item_name, wrap_at)</a>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="cf">if</span> (show_missing_values) {</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(missing_values, item_name, wrap_at)</a>
 <a class="sourceLine" id="cb18-3" data-line-number="3">}</a></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(item_info)) {</a>
 <a class="sourceLine" id="cb19-2" data-line-number="2">  <span class="co"># don't show choices again, if they're basically same thing as value labels</span></a>
@@ -321,16 +321,16 @@
 <div id="sex_distribution" class="section level4">
 <h4 class="hasAnchor">
 <a href="#sex_distribution" class="anchor"></a>Distribution</h4>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">show_missings &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">show_missing_values &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb21-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_labels.html">has_labels</a></span>(item)) {</a>
-<a class="sourceLine" id="cb21-3" data-line-number="3">  missings &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
-<a class="sourceLine" id="cb21-4" data-line-number="4">  <span class="kw">attributes</span>(missings) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3">  missing_values &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
+<a class="sourceLine" id="cb21-4" data-line-number="4">  <span class="kw">attributes</span>(missing_values) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
 <a class="sourceLine" id="cb21-5" data-line-number="5">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)) {</a>
-<a class="sourceLine" id="cb21-6" data-line-number="6">    <span class="kw">attributes</span>(missings)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(missings)<span class="op">$</span>labels[<span class="kw">is.na</span>(<span class="kw">attributes</span>(missings)<span class="op">$</span>labels)]</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6">    <span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels[<span class="kw">is.na</span>(<span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels)]</a>
 <a class="sourceLine" id="cb21-7" data-line-number="7">    <span class="kw">attributes</span>(item)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)<span class="op">$</span>labels[<span class="op">!</span><span class="kw">is.na</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)]</a>
 <a class="sourceLine" id="cb21-8" data-line-number="8">  }</a>
 <a class="sourceLine" id="cb21-9" data-line-number="9">  <span class="cf">if</span> (<span class="kw">is.numeric</span>(item)) {</a>
-<a class="sourceLine" id="cb21-10" data-line-number="10">    show_missings &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/tagged_na">na_tag</a></span>(missings))) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb21-10" data-line-number="10">    show_missing_values &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/tagged_na">na_tag</a></span>(missing_values))) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></a>
 <a class="sourceLine" id="cb21-11" data-line-number="11">    item &lt;-<span class="st"> </span>haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item)</a>
 <a class="sourceLine" id="cb21-12" data-line-number="12">  }</a>
 <a class="sourceLine" id="cb21-13" data-line-number="13">  <span class="cf">if</span> (<span class="kw">length</span>(item_attributes<span class="op">$</span>labels) <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">is.numeric</span>(item)) {</a>
@@ -383,7 +383,7 @@
 <a class="sourceLine" id="cb22-10" data-line-number="10">}</a></code></pre></div>
 <p><img src="codebook_sav_files/figure-html/sex_distribution-1.png" width="700"></p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> old_height)</a></code></pre></div>
-<p>0 missings.</p>
+<p>0 missing values.</p>
 </div>
 <div id="sex_summary" class="section level4">
 <h4 class="hasAnchor">
@@ -432,8 +432,8 @@
 <td align="right">5</td>
 </tr></tbody>
 </table>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="cf">if</span> (show_missings) {</a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(missings, item_name, wrap_at)</a>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="cf">if</span> (show_missing_values) {</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(missing_values, item_name, wrap_at)</a>
 <a class="sourceLine" id="cb25-3" data-line-number="3">}</a></code></pre></div>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(item_info)) {</a>
 <a class="sourceLine" id="cb26-2" data-line-number="2">  <span class="co"># don't show choices again, if they're basically same thing as value labels</span></a>
@@ -471,16 +471,16 @@
 <div id="relStat_distribution" class="section level4">
 <h4 class="hasAnchor">
 <a href="#relStat_distribution" class="anchor"></a>Distribution</h4>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">show_missings &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">show_missing_values &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb28-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_labels.html">has_labels</a></span>(item)) {</a>
-<a class="sourceLine" id="cb28-3" data-line-number="3">  missings &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
-<a class="sourceLine" id="cb28-4" data-line-number="4">  <span class="kw">attributes</span>(missings) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
+<a class="sourceLine" id="cb28-3" data-line-number="3">  missing_values &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
+<a class="sourceLine" id="cb28-4" data-line-number="4">  <span class="kw">attributes</span>(missing_values) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
 <a class="sourceLine" id="cb28-5" data-line-number="5">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)) {</a>
-<a class="sourceLine" id="cb28-6" data-line-number="6">    <span class="kw">attributes</span>(missings)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(missings)<span class="op">$</span>labels[<span class="kw">is.na</span>(<span class="kw">attributes</span>(missings)<span class="op">$</span>labels)]</a>
+<a class="sourceLine" id="cb28-6" data-line-number="6">    <span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels[<span class="kw">is.na</span>(<span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels)]</a>
 <a class="sourceLine" id="cb28-7" data-line-number="7">    <span class="kw">attributes</span>(item)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)<span class="op">$</span>labels[<span class="op">!</span><span class="kw">is.na</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)]</a>
 <a class="sourceLine" id="cb28-8" data-line-number="8">  }</a>
 <a class="sourceLine" id="cb28-9" data-line-number="9">  <span class="cf">if</span> (<span class="kw">is.numeric</span>(item)) {</a>
-<a class="sourceLine" id="cb28-10" data-line-number="10">    show_missings &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/tagged_na">na_tag</a></span>(missings))) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb28-10" data-line-number="10">    show_missing_values &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/tagged_na">na_tag</a></span>(missing_values))) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></a>
 <a class="sourceLine" id="cb28-11" data-line-number="11">    item &lt;-<span class="st"> </span>haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item)</a>
 <a class="sourceLine" id="cb28-12" data-line-number="12">  }</a>
 <a class="sourceLine" id="cb28-13" data-line-number="13">  <span class="cf">if</span> (<span class="kw">length</span>(item_attributes<span class="op">$</span>labels) <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">is.numeric</span>(item)) {</a>
@@ -533,7 +533,7 @@
 <a class="sourceLine" id="cb29-10" data-line-number="10">}</a></code></pre></div>
 <p><img src="codebook_sav_files/figure-html/relStat_distribution-1.png" width="700"></p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> old_height)</a></code></pre></div>
-<p>1 missings.</p>
+<p>1 missing values.</p>
 </div>
 <div id="relStat_summary" class="section level4">
 <h4 class="hasAnchor">
@@ -582,8 +582,8 @@
 <td align="right">10</td>
 </tr></tbody>
 </table>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="cf">if</span> (show_missings) {</a>
-<a class="sourceLine" id="cb32-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(missings, item_name, wrap_at)</a>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="cf">if</span> (show_missing_values) {</a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(missing_values, item_name, wrap_at)</a>
 <a class="sourceLine" id="cb32-3" data-line-number="3">}</a></code></pre></div>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(item_info)) {</a>
 <a class="sourceLine" id="cb33-2" data-line-number="2">  <span class="co"># don't show choices again, if they're basically same thing as value labels</span></a>
@@ -624,16 +624,16 @@
 <div id="education_distribution" class="section level4">
 <h4 class="hasAnchor">
 <a href="#education_distribution" class="anchor"></a>Distribution</h4>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">show_missings &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">show_missing_values &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb35-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_labels.html">has_labels</a></span>(item)) {</a>
-<a class="sourceLine" id="cb35-3" data-line-number="3">  missings &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
-<a class="sourceLine" id="cb35-4" data-line-number="4">  <span class="kw">attributes</span>(missings) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">  missing_values &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
+<a class="sourceLine" id="cb35-4" data-line-number="4">  <span class="kw">attributes</span>(missing_values) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
 <a class="sourceLine" id="cb35-5" data-line-number="5">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)) {</a>
-<a class="sourceLine" id="cb35-6" data-line-number="6">    <span class="kw">attributes</span>(missings)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(missings)<span class="op">$</span>labels[<span class="kw">is.na</span>(<span class="kw">attributes</span>(missings)<span class="op">$</span>labels)]</a>
+<a class="sourceLine" id="cb35-6" data-line-number="6">    <span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels[<span class="kw">is.na</span>(<span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels)]</a>
 <a class="sourceLine" id="cb35-7" data-line-number="7">    <span class="kw">attributes</span>(item)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)<span class="op">$</span>labels[<span class="op">!</span><span class="kw">is.na</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)]</a>
 <a class="sourceLine" id="cb35-8" data-line-number="8">  }</a>
 <a class="sourceLine" id="cb35-9" data-line-number="9">  <span class="cf">if</span> (<span class="kw">is.numeric</span>(item)) {</a>
-<a class="sourceLine" id="cb35-10" data-line-number="10">    show_missings &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/tagged_na">na_tag</a></span>(missings))) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb35-10" data-line-number="10">    show_missing_values &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/tagged_na">na_tag</a></span>(missing_values))) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></a>
 <a class="sourceLine" id="cb35-11" data-line-number="11">    item &lt;-<span class="st"> </span>haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item)</a>
 <a class="sourceLine" id="cb35-12" data-line-number="12">  }</a>
 <a class="sourceLine" id="cb35-13" data-line-number="13">  <span class="cf">if</span> (<span class="kw">length</span>(item_attributes<span class="op">$</span>labels) <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">is.numeric</span>(item)) {</a>
@@ -686,7 +686,7 @@
 <a class="sourceLine" id="cb36-10" data-line-number="10">}</a></code></pre></div>
 <p><img src="codebook_sav_files/figure-html/education_distribution-1.png" width="700"></p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> old_height)</a></code></pre></div>
-<p>1 missings.</p>
+<p>1 missing values.</p>
 </div>
 <div id="education_summary" class="section level4">
 <h4 class="hasAnchor">
@@ -735,8 +735,8 @@
 <td align="right">5</td>
 </tr></tbody>
 </table>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="cf">if</span> (show_missings) {</a>
-<a class="sourceLine" id="cb39-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(missings, item_name, wrap_at)</a>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="cf">if</span> (show_missing_values) {</a>
+<a class="sourceLine" id="cb39-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(missing_values, item_name, wrap_at)</a>
 <a class="sourceLine" id="cb39-3" data-line-number="3">}</a></code></pre></div>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(item_info)) {</a>
 <a class="sourceLine" id="cb40-2" data-line-number="2">  <span class="co"># don't show choices again, if they're basically same thing as value labels</span></a>
@@ -783,16 +783,16 @@
 <div id="NPI_avg_distribution" class="section level4">
 <h4 class="hasAnchor">
 <a href="#NPI_avg_distribution" class="anchor"></a>Distribution</h4>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">show_missings &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">show_missing_values &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
 <a class="sourceLine" id="cb42-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_labels.html">has_labels</a></span>(item)) {</a>
-<a class="sourceLine" id="cb42-3" data-line-number="3">  missings &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
-<a class="sourceLine" id="cb42-4" data-line-number="4">  <span class="kw">attributes</span>(missings) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3">  missing_values &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
+<a class="sourceLine" id="cb42-4" data-line-number="4">  <span class="kw">attributes</span>(missing_values) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
 <a class="sourceLine" id="cb42-5" data-line-number="5">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)) {</a>
-<a class="sourceLine" id="cb42-6" data-line-number="6">    <span class="kw">attributes</span>(missings)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(missings)<span class="op">$</span>labels[<span class="kw">is.na</span>(<span class="kw">attributes</span>(missings)<span class="op">$</span>labels)]</a>
+<a class="sourceLine" id="cb42-6" data-line-number="6">    <span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels[<span class="kw">is.na</span>(<span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels)]</a>
 <a class="sourceLine" id="cb42-7" data-line-number="7">    <span class="kw">attributes</span>(item)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)<span class="op">$</span>labels[<span class="op">!</span><span class="kw">is.na</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)]</a>
 <a class="sourceLine" id="cb42-8" data-line-number="8">  }</a>
 <a class="sourceLine" id="cb42-9" data-line-number="9">  <span class="cf">if</span> (<span class="kw">is.numeric</span>(item)) {</a>
-<a class="sourceLine" id="cb42-10" data-line-number="10">    show_missings &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/tagged_na">na_tag</a></span>(missings))) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb42-10" data-line-number="10">    show_missing_values &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/tagged_na">na_tag</a></span>(missing_values))) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></a>
 <a class="sourceLine" id="cb42-11" data-line-number="11">    item &lt;-<span class="st"> </span>haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item)</a>
 <a class="sourceLine" id="cb42-12" data-line-number="12">  }</a>
 <a class="sourceLine" id="cb42-13" data-line-number="13">  <span class="cf">if</span> (<span class="kw">length</span>(item_attributes<span class="op">$</span>labels) <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">is.numeric</span>(item)) {</a>
@@ -845,7 +845,7 @@
 <a class="sourceLine" id="cb43-10" data-line-number="10">}</a></code></pre></div>
 <p><img src="codebook_sav_files/figure-html/NPI_avg_distribution-1.png" width="700"></p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> old_height)</a></code></pre></div>
-<p>0 missings.</p>
+<p>0 missing values.</p>
 </div>
 <div id="NPI_avg_summary" class="section level4">
 <h4 class="hasAnchor">
@@ -892,8 +892,8 @@
 <td align="right">10</td>
 </tr></tbody>
 </table>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="cf">if</span> (show_missings) {</a>
-<a class="sourceLine" id="cb46-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(missings, item_name, wrap_at)</a>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="cf">if</span> (show_missing_values) {</a>
+<a class="sourceLine" id="cb46-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(missing_values, item_name, wrap_at)</a>
 <a class="sourceLine" id="cb46-3" data-line-number="3">}</a></code></pre></div>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(item_info)) {</a>
 <a class="sourceLine" id="cb47-2" data-line-number="2">  <span class="co"># don't show choices again, if they're basically same thing as value labels</span></a>
@@ -916,7 +916,7 @@
 <div id="missingness-report" class="section level2">
 <h2 class="hasAnchor">
 <a href="#missingness-report" class="anchor"></a>Missingness report</h2>
-<p>Among those who finished the survey. Only variables that have missings are shown.</p>
+<p>Among those who finished the survey. Only variables that have missing values are shown.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="cf">if</span> (  <span class="kw">exists</span>(<span class="st">"ended"</span>, results) <span class="op">&amp;&amp;</span></a>
 <a class="sourceLine" id="cb50-2" data-line-number="2"><span class="st">  </span><span class="kw">exists</span>(<span class="st">"expired"</span>, results)) {</a>
 <a class="sourceLine" id="cb50-3" data-line-number="3">  finisher_results &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(results, <span class="op">!</span><span class="kw">is.na</span>(.data<span class="op">$</span>ended))</a>
@@ -930,13 +930,13 @@
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">length</span>(md_pattern)) {</a>
 <a class="sourceLine" id="cb52-2" data-line-number="2">  pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(md_pattern)</a>
 <a class="sourceLine" id="cb52-3" data-line-number="3">}</a></code></pre></div>
-<table style="width:93%;" class="table">
+<table class="table">
 <colgroup>
-<col width="36%">
+<col width="43%">
 <col width="13%">
 <col width="16%">
 <col width="15%">
-<col width="11%">
+<col width="10%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">description</th>
@@ -947,28 +947,28 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="center">Missings in 0 variables</td>
+<td align="center">Missing values in 0 variables</td>
 <td align="center">1</td>
 <td align="center">1</td>
 <td align="center">0</td>
 <td align="center">88</td>
 </tr>
 <tr class="even">
-<td align="center">Missings per variable</td>
+<td align="center">Missing values per variable</td>
 <td align="center">1</td>
 <td align="center">1</td>
 <td align="center">2</td>
 <td align="center">2</td>
 </tr>
 <tr class="odd">
-<td align="center">Missings in 1 variables</td>
+<td align="center">Missing values in 1 variables</td>
 <td align="center">1</td>
 <td align="center">0</td>
 <td align="center">1</td>
 <td align="center">1</td>
 </tr>
 <tr class="even">
-<td align="center">Missings in 1 variables</td>
+<td align="center">Missing values in 1 variables</td>
 <td align="center">0</td>
 <td align="center">1</td>
 <td align="center">1</td>
@@ -982,8 +982,8 @@
 <h2 class="hasAnchor">
 <a href="#codebook-table" class="anchor"></a>Codebook table</h2>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">export_table</span>(metadata_table)</a></code></pre></div>
-<div id="htmlwidget-7f48b343cc5e5ccfc716" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7f48b343cc5e5ccfc716">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"5\" data-max=\"10\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#DG\">DG<\/a>","<a href=\"#sex\">sex<\/a>","<a href=\"#relStat\">relStat<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#NPI_avg\">NPI_avg<\/a>"],["dating group","sex","relationship status","highest educational attainment","narcissistic personality inventory - average"],["numeric","numeric","numeric","numeric","numeric"],[null,"1. female,<br>2. male","1. single,<br>2. in a relationship,<br>3. living separately / divorced","1. nine years schooling only,<br>2. professional training,<br>3. vocational school,<br>4. university-entrance diploma,<br>5. academic degree",null],["0","0","1","1","0"],["90","90","89","89","90"],["90","90","90","90","90"],["2.03","1.49","1.09","4.17","2.61"],["0.77","0.5 ","0.32","0.38","0.35"],["1  ","1  ","1  ","4  ","1.7"],["1   ","1   ","1   ","4   ","2.42"],["2  ","1  ","1  ","4  ","2.6"],["3   ","2   ","1   ","4   ","2.82"],["3   ","2   ","3   ","5   ","3.65"],["▆▁▁▇▁▁▁▆","▇▁▁▁▁▁▁▇","▇▁▁▁▁▁▁▁","▇▁▁▁▁▁▁▂","▁▂▃▇▆▂▁▁"],["F8.0","F1.0","F8.0","F1.0","F8.2"],[null,5,10,5,10]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>value_labels<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n      <th>format.spss<\/th>\n      <th>display_width<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":16}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">jsonld</a></code></pre></div>
+<div id="htmlwidget-0a7d393538f129f48958" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0a7d393538f129f48958">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"5\" data-max=\"10\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#DG\">DG<\/a>","<a href=\"#sex\">sex<\/a>","<a href=\"#relStat\">relStat<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#NPI_avg\">NPI_avg<\/a>"],["dating group","sex","relationship status","highest educational attainment","narcissistic personality inventory - average"],["numeric","numeric","numeric","numeric","numeric"],[null,"1. female,<br>2. male","1. single,<br>2. in a relationship,<br>3. living separately / divorced","1. nine years schooling only,<br>2. professional training,<br>3. vocational school,<br>4. university-entrance diploma,<br>5. academic degree",null],["0","0","1","1","0"],["90","90","89","89","90"],["90","90","90","90","90"],["2.03","1.49","1.09","4.17","2.61"],["0.77","0.5 ","0.32","0.38","0.35"],["1  ","1  ","1  ","4  ","1.7"],["1   ","1   ","1   ","4   ","2.42"],["2  ","1  ","1  ","4  ","2.6"],["3   ","2   ","1   ","4   ","2.82"],["3   ","2   ","3   ","5   ","3.65"],["▆▁▁▇▁▁▁▆","▇▁▁▁▁▁▁▇","▇▁▁▁▁▁▁▁","▇▁▁▁▁▁▁▂","▁▂▃▇▆▂▁▁"],["F8.0","F1.0","F8.0","F1.0","F8.2"],[null,5,10,5,10]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>value_labels<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n      <th>format.spss<\/th>\n      <th>display_width<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":16}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">jsonld</a></code></pre></div>
 <script type="application/ld+json">
 {
   "description": "The dataset has N=90 rows of\nwhich n=88 have no missings and a total of\n5 columns.\n\n<details><summary>Variable names<\/summary>DG, sex, relStat, education, NPI_avg<\/details>\n\nThis dataset was automatically described using the codebook R package.",

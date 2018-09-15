@@ -13,7 +13,7 @@ if (exists("testing")) {
 
 `r indent`# Missingness report
 
-Among those who finished the survey. Only variables that have missings are shown.
+Among those who finished the survey. Only variables that have missing values are shown.
 
 ```{r missingness_all_setup}
 if (  exists("ended", results) &&

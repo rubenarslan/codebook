@@ -16,7 +16,7 @@ test_that("codebook generation", {
   expect_equal(length(figs), 7)
   expect_match(md, "Scale: BFIK_neuro")
   expect_match(md, "Scale: BFIK_consc")
-  expect_match(md, "Missings per variable")
+  expect_match(md, "Missing values per variable")
   expect_match(md, "28 completed rows")
   expect_match(md, "application/ld\\+json")
 
@@ -76,7 +76,7 @@ test_that("Codebook with retest reliabilities can be computed", {
   figs <- list.files(paste0(dir, "/figure"))
   expect_equal(length(figs), 5)
   expect_match(md, "Scale: BFIK_neuro")
-  expect_match(md, "Missings per variable")
+  expect_match(md, "Missing values per variable")
   expect_match(md, "56 completed rows")
 
   unlink(paste0(dir, "/figure"), recursive = TRUE)
@@ -100,7 +100,7 @@ test_that("Dupes are noticed", {
   expect_error(md <- codebook(bfi2, metadata_table = FALSE), "duplicated rows")
 })
 
-test_that("Degenerate cases: Variables with only missings work", {
+test_that("Degenerate cases: Variables with only missing data work", {
   onlymiss = data.frame(x = rep(NA_real_, 20),
                         y = rep(1, 20),
                         z = rep(NA_real_, 20))
@@ -230,7 +230,7 @@ test_that("Codebook with multilevel reliability", {
   figs <- list.files(paste0(dir, "/figure"))
   expect_equal(length(figs), 6)
   expect_match(md, "Scale: BFIK_neuro")
-  expect_match(md, "Missings per variable")
+  expect_match(md, "Missing values per variable")
   expect_match(md, "168 completed rows")
 
   unlink(paste0(dir, "/figure"), recursive = TRUE)
