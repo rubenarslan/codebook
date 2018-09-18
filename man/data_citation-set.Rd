@@ -16,6 +16,8 @@ Add a single character vector or a list to give citation information for
 JSON-LD metadata generation using \code{\link[=codebook]{codebook()}} or \code{\link[=metadata_list]{metadata_list()}}.
 }
 \examples{
+data('bfi')
 data_citation(bfi) <- "Arslan (2018). Mock BFI data."
+attributes(bfi)[[4]]
 
 }

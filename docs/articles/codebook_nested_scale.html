@@ -109,7 +109,7 @@
       <h1>Codebook example with nested scales</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2018-09-15</h4>
+            <h4 class="date">2018-09-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook_nested_scale.Rmd"><code>vignettes/codebook_nested_scale.Rmd</code></a></small>
       <div class="hidden name"><code>codebook_nested_scale.Rmd</code></div>
@@ -148,8 +148,22 @@
 <p>To keep things short, we omit the alpha scale.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">bfi &lt;-<span class="st"> </span>bfi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(beta, <span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"BFIK_extra"</span>), <span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"BFIK_open"</span>))</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span>knit_by_pkgdown) knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="../reference/codebook.html">codebook</a></span>(bfi, <span class="dt">survey_repetition =</span> <span class="st">'single'</span>,</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">         <span class="dt">metadata_table =</span> knit_by_pkgdown, <span class="dt">metadata_json =</span> knit_by_pkgdown)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">data_name</span>(bfi) &lt;-<span class="st"> "MOCK Big Five Inventory dataset (German metadata demo)"</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">data_description</span>(bfi) &lt;-<span class="st"> "a small mock Big Five Inventory dataset"</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">data_identifier</span>(bfi) &lt;-<span class="st"> "doi:10.5281/zenodo.1326520"</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">data_datePublished</span>(bfi) &lt;-<span class="st"> "2016-06-01"</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">data_creator</span>(bfi) &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb8-6" data-line-number="6">      <span class="st">"@type"</span> =<span class="st"> "Person"</span>,</a>
+<a class="sourceLine" id="cb8-7" data-line-number="7">      <span class="dt">givenName =</span> <span class="st">"Ruben"</span>, <span class="dt">familyName =</span> <span class="st">"Arslan"</span>,</a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">      <span class="dt">email =</span> <span class="st">"ruben.arslan@gmail.com"</span>, </a>
+<a class="sourceLine" id="cb8-9" data-line-number="9">      <span class="dt">affiliation =</span> <span class="kw">list</span>(<span class="st">"@type"</span> =<span class="st"> "Organization"</span>,</a>
+<a class="sourceLine" id="cb8-10" data-line-number="10">        <span class="dt">name =</span> <span class="st">"MPI Human Development, Berlin"</span>))</a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="kw">data_citation</span>(bfi) &lt;-<span class="st"> "Arslan (2016). Mock BFI data."</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="kw">data_url</span>(bfi) &lt;-<span class="st"> "https://rubenarslan.github.io/codebook/articles/codebook.html"</span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="kw">data_temporalCoverage</span>(bfi) &lt;-<span class="st"> "2016"</span> </a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="kw">data_spatialCoverage</span>(bfi) &lt;-<span class="st"> "Goettingen, Germany"</span> </a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># We don't want to look at the code in the codebook.</span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">TRUE</span>, <span class="dt">message =</span> <span class="ot">TRUE</span>, <span class="dt">echo =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## Warning in psych::alpha(as.data.frame(results[, scale_item_names]), title = scale_name, : Some items were negatively correlated with the total scale and probably 
 ## should be reversed.  
 ## To do this, run the function again with the 'check.keys=TRUE' option</code></pre>
@@ -157,54 +171,57 @@
 ## probably should be reversed.</code></pre>
 <pre><code>## To do this, run the function again with the 'check.keys=TRUE' option</code></pre>
 <pre><code>## No missing values.</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/asis_output">asis_output</a></span>(data_info)</a></code></pre></div>
 <div id="metadata" class="section level3">
 <h3 class="hasAnchor">
 <a href="#metadata" class="anchor"></a>Metadata</h3>
 <div id="description" class="section level4">
 <h4 class="hasAnchor">
 <a href="#description" class="anchor"></a>Description</h4>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">is_attribute_set</span>(<span class="st">"name"</span>, results)) {</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">  glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">    <span class="st">"__Dataset name__: {name}"</span>,</a>
-<a class="sourceLine" id="cb14-4" data-line-number="4">    <span class="dt">.envir =</span> meta)</a>
-<a class="sourceLine" id="cb14-5" data-line-number="5">}</a></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">cat</span>(description)</a></code></pre></div>
-<p>The dataset has N=28 rows of which n=28 have no missings and a total of 11 columns.</p>
-<details><summary>Variable names</summary>beta, BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R, BFIK_extra, BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3, BFIK_open
-</details><p>This dataset was automatically described using the codebook R package.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">is_attribute_set</span>(<span class="st">"temporalCoverage"</span>, results)) {</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">  glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">    <span class="st">"- __Temporal Coverage__: [{url}](url)"</span>,</a>
-<a class="sourceLine" id="cb16-4" data-line-number="4">    <span class="dt">.envir =</span> meta)</a>
-<a class="sourceLine" id="cb16-5" data-line-number="5">}</a></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">is_attribute_set</span>(<span class="st">"spatialCoverage"</span>, results)) {</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">  glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3">    <span class="st">"- __Spatial Coverage__: [{url}](url)"</span>,</a>
-<a class="sourceLine" id="cb17-4" data-line-number="4">    <span class="dt">.envir =</span> meta)</a>
-<a class="sourceLine" id="cb17-5" data-line-number="5">}</a></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">is_attribute_set</span>(<span class="st">"citation"</span>, results)) {</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">  glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(</a>
-<a class="sourceLine" id="cb18-3" data-line-number="3">    <span class="st">"- __Citation__: {citation}"</span>,</a>
-<a class="sourceLine" id="cb18-4" data-line-number="4">    <span class="dt">.envir =</span> meta)</a>
-<a class="sourceLine" id="cb18-5" data-line-number="5">}</a></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">is_attribute_set</span>(<span class="st">"url"</span>, results)) {</a>
-<a class="sourceLine" id="cb19-2" data-line-number="2">  glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(</a>
-<a class="sourceLine" id="cb19-3" data-line-number="3">    <span class="st">"- __URL__: [{url}](url)"</span>,</a>
-<a class="sourceLine" id="cb19-4" data-line-number="4">    <span class="dt">.envir =</span> meta)</a>
-<a class="sourceLine" id="cb19-5" data-line-number="5">}</a></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">is_attribute_set</span>(<span class="st">"identifier"</span>, results)) {</a>
-<a class="sourceLine" id="cb20-2" data-line-number="2">  glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(</a>
-<a class="sourceLine" id="cb20-3" data-line-number="3">    <span class="st">"- __Identifier__: {identifier}"</span>,</a>
-<a class="sourceLine" id="cb20-4" data-line-number="4">    <span class="dt">.envir =</span> meta)</a>
-<a class="sourceLine" id="cb20-5" data-line-number="5">}</a></code></pre></div>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/asis_output">asis_output</a></span>(survey_overview)</a></code></pre></div>
+<p><strong>Dataset name</strong>: MOCK Big Five Inventory dataset (German metadata demo)</p>
+<p>a small mock Big Five Inventory dataset</p>
+<ul>
+<li>
+<strong>Temporal Coverage</strong>: 2016</li>
+<li>
+<strong>Spatial Coverage</strong>: Goettingen, Germany</li>
+<li>
+<strong>Citation</strong>: Arslan (2016). Mock BFI data.</li>
+<li>
+<strong>URL</strong>: <a href="https://rubenarslan.github.io/codebook/articles/codebook.html" class="uri">https://rubenarslan.github.io/codebook/articles/codebook.html</a>
+</li>
+<li>
+<strong>Identifier</strong>: <a href="doi:10.5281/zenodo.1326520" class="uri">doi:10.5281/zenodo.1326520</a>
+</li>
+<li>
+<strong>Date published</strong>: 2016-06-01</li>
+</ul>
+<p><strong>Creator</strong>:</p>
+<ul>
+<li>
+<strong><span class="citation">@type</span></strong>: Person</li>
+<li>
+<strong>givenName</strong>: Ruben</li>
+<li>
+<strong>familyName</strong>: Arslan</li>
+<li>
+<strong>email</strong>: <a href="mailto:ruben.arslan@gmail.com">ruben.arslan@gmail.com</a>
+</li>
+<li>
+<p><strong>affiliation</strong>:</p>
+<ul>
+<li>
+<strong><span class="citation">@type</span></strong>: Organization</li>
+<li>
+<strong>name</strong>: MPI Human Development, Berlin</li>
+</ul>
+</li>
+</ul>
+<!-- end of list -->
 </div>
 </div>
-<div id="items" class="section level2">
+<div id="variables" class="section level2">
 <h2 class="hasAnchor">
-<a href="#items" class="anchor"></a>Items</h2>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/asis_output">asis_output</a></span>(<span class="kw">paste0</span>(scales_items, <span class="dt">sep =</span> <span class="st">"</span><span class="ch">\n\n\n</span><span class="st">"</span>, <span class="dt">collapse =</span> <span class="st">"</span><span class="ch">\n\n\n</span><span class="st">"</span>))</a></code></pre></div>
+<a href="#variables" class="anchor"></a>Variables</h2>
 <div id="beta" class="section level3 tabset">
 <h3 class="hasAnchor">
 <a href="#beta" class="anchor"></a>Scale: beta</h3>
@@ -214,46 +231,12 @@
 <a href="#beta_likert" class="anchor"></a>Overview</h4>
 <p><strong>Reliability</strong>: Cronbach’s α [95% CI] = 0.73 [0.58;0.87].</p>
 <p><strong>Missing</strong>: 0.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">old_height &lt;-<span class="st"> </span>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">"fig.height"</span>)</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2">new_height &lt;-<span class="st"> </span><span class="kw">length</span>(scale_info<span class="op">$</span>scale_item_names)</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3">new_height &lt;-<span class="st"> </span><span class="kw">ifelse</span>(new_height <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>, <span class="dv">20</span>, new_height)</a>
-<a class="sourceLine" id="cb23-4" data-line-number="4">new_height &lt;-<span class="st"> </span><span class="kw">ifelse</span>(new_height <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>, <span class="dv">1</span>, new_height)</a>
-<a class="sourceLine" id="cb23-5" data-line-number="5">new_height &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">is.na</span>(new_height) <span class="op">|</span><span class="st"> </span><span class="kw">is.nan</span>(new_height), </a>
-<a class="sourceLine" id="cb23-6" data-line-number="6">                     old_height, new_height)</a>
-<a class="sourceLine" id="cb23-7" data-line-number="7">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> new_height)</a></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">likert_plot &lt;-<span class="st"> </span><span class="kw"><a href="../reference/likert_from_items.html">likert_from_items</a></span>(items)</a>
-<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(likert_plot)) {</a>
-<a class="sourceLine" id="cb24-3" data-line-number="3">  graphics<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(likert_plot)</a>
-<a class="sourceLine" id="cb24-4" data-line-number="4">}</a></code></pre></div>
 <p><img src="codebook_nested_scale_files/figure-html/beta_likert-1.png" width="700"></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> old_height)</a></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">binwidth &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">diff</span>(<span class="kw">sort</span>(<span class="kw">unique</span>(scale))))</a>
-<a class="sourceLine" id="cb26-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb26-3" data-line-number="3">wrap_at &lt;-<span class="st"> </span>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">"fig.width"</span>) <span class="op">*</span><span class="st"> </span><span class="dv">10</span></a></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">dist_plot &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(scale, scale_name, wrap_at)</a>
-<a class="sourceLine" id="cb27-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb27-3" data-line-number="3">choices &lt;-<span class="st"> </span><span class="kw">attributes</span>(items[[<span class="dv">1</span>]])<span class="op">$</span>item<span class="op">$</span>choices</a>
-<a class="sourceLine" id="cb27-4" data-line-number="4">breaks &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">names</span>(choices))</a>
-<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="cf">if</span> (<span class="kw">length</span>(breaks)) {</a>
-<a class="sourceLine" id="cb27-6" data-line-number="6">  <span class="kw">suppressMessages</span>( <span class="co"># ignore message about overwriting x axis</span></a>
-<a class="sourceLine" id="cb27-7" data-line-number="7">  dist_plot &lt;-<span class="st"> </span>dist_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb27-8" data-line-number="8"><span class="st">        </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_x_continuous</a></span>(<span class="st">"values"</span>, </a>
-<a class="sourceLine" id="cb27-9" data-line-number="9">                                <span class="dt">breaks =</span> breaks, </a>
-<a class="sourceLine" id="cb27-10" data-line-number="10">                                <span class="dt">labels =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/str_wrap">str_wrap</a></span>(<span class="kw">unlist</span>(choices), <span class="dv">15</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb27-11" data-line-number="11"><span class="st">      </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/expand_limits">expand_limits</a></span>(<span class="dt">x =</span> <span class="kw">range</span>(breaks)))</a>
-<a class="sourceLine" id="cb27-12" data-line-number="12">  </a>
-<a class="sourceLine" id="cb27-13" data-line-number="13">}</a>
-<a class="sourceLine" id="cb27-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb27-15" data-line-number="15">dist_plot</a></code></pre></div>
 <p><img src="codebook_nested_scale_files/figure-html/beta_distribution-1.png" width="700"></p>
 </div>
 <div id="beta_reliability" class="section level4">
 <h4 class="hasAnchor">
 <a href="#beta_reliability" class="anchor"></a>Reliability details</h4>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(reliabilities)) {</a>
-<a class="sourceLine" id="cb28-2" data-line-number="2">  rel &lt;-<span class="st"> </span>reliabilities[[i]]</a>
-<a class="sourceLine" id="cb28-3" data-line-number="3">  <span class="kw">cat</span>(knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/knit_print">knit_print</a></span>(rel, <span class="dt">indent =</span> <span class="kw">paste0</span>(indent, <span class="st">"####"</span>)))</a>
-<a class="sourceLine" id="cb28-4" data-line-number="4">}</a></code></pre></div>
 <div id="reliability" class="section level5">
 <h5 class="hasAnchor">
 <a href="#reliability" class="anchor"></a>Reliability</h5>
@@ -261,12 +244,6 @@
 <div id="confidence-interval" class="section level5">
 <h5 class="hasAnchor">
 <a href="#confidence-interval" class="anchor"></a>95% Confidence Interval</h5>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(x<span class="op">$</span>total<span class="op">$</span>ase)) {</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2">  pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(<span class="kw">data.frame</span>(<span class="dt">lower =</span> x<span class="op">$</span>total<span class="op">$</span>raw_alpha <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>x<span class="op">$</span>total<span class="op">$</span>ase, </a>
-<a class="sourceLine" id="cb29-3" data-line-number="3">             <span class="dt">estimate =</span> x<span class="op">$</span>total<span class="op">$</span>raw_alpha, </a>
-<a class="sourceLine" id="cb29-4" data-line-number="4">             <span class="dt">upper =</span> x<span class="op">$</span>total<span class="op">$</span>raw_alpha <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb29-5" data-line-number="5"><span class="st">  </span>x<span class="op">$</span>total<span class="op">$</span>ase))</a>
-<a class="sourceLine" id="cb29-6" data-line-number="6">}</a></code></pre></div>
 <table style="width:39%;" class="table">
 <colgroup>
 <col width="12%">
@@ -284,7 +261,6 @@
 <td align="center">0.8712</td>
 </tr></tbody>
 </table>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(x<span class="op">$</span>total)</a></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="13%">
@@ -324,8 +300,6 @@
 <div id="reliability-if-an-item-is-dropped" class="section level5">
 <h5 class="hasAnchor">
 <a href="#reliability-if-an-item-is-dropped" class="anchor"></a>Reliability if an item is dropped:</h5>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">rownames</span>(x<span class="op">$</span>alpha.drop) &lt;-<span class="st"> </span><span class="kw">recursive_escape</span>(<span class="kw">rownames</span>(x<span class="op">$</span>alpha.drop))</a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(x<span class="op">$</span>alpha.drop)</a></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="19%">
@@ -444,8 +418,6 @@
 <div id="item-statistics" class="section level5">
 <h5 class="hasAnchor">
 <a href="#item-statistics" class="anchor"></a>Item statistics</h5>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">rownames</span>(x<span class="op">$</span>item.stats) &lt;-<span class="st"> </span><span class="kw">recursive_escape</span>(<span class="kw">rownames</span>(x<span class="op">$</span>item.stats))</a>
-<a class="sourceLine" id="cb32-2" data-line-number="2">pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(x<span class="op">$</span>item.stats)</a></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="25%">
@@ -554,8 +526,6 @@
 <div id="non-missing-response-frequency-for-each-item" class="section level5">
 <h5 class="hasAnchor">
 <a href="#non-missing-response-frequency-for-each-item" class="anchor"></a>Non missing response frequency for each item</h5>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="kw">rownames</span>(x<span class="op">$</span>response.freq) &lt;-<span class="st"> </span><span class="kw">recursive_escape</span>(<span class="kw">rownames</span>(x<span class="op">$</span>response.freq))</a>
-<a class="sourceLine" id="cb33-2" data-line-number="2">pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(x<span class="op">$</span>response.freq)</a></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="27%">
@@ -655,10 +625,6 @@
 <div id="beta_summary" class="section level4">
 <h4 class="hasAnchor">
 <a href="#beta_summary" class="anchor"></a>Summary statistics</h4>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(<span class="kw">names</span>(items))) {</a>
-<a class="sourceLine" id="cb34-2" data-line-number="2">  <span class="kw">attributes</span>(items[[i]]) =<span class="st"> </span><span class="kw">recursive_escape</span>(<span class="kw">attributes</span>(items[[i]]))</a>
-<a class="sourceLine" id="cb34-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb34-4" data-line-number="4"><span class="kw">escaped_table</span>(<span class="kw"><a href="../reference/codebook_table.html">codebook_table</a></span>(items))</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -818,46 +784,12 @@
 <a href="#BFIK_extra_likert" class="anchor"></a>Overview</h4>
 <p><strong>Reliability</strong>: Cronbach’s α [95% CI] = 0.9 [0.84;0.96].</p>
 <p><strong>Missing</strong>: 0.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">old_height &lt;-<span class="st"> </span>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">"fig.height"</span>)</a>
-<a class="sourceLine" id="cb35-2" data-line-number="2">new_height &lt;-<span class="st"> </span><span class="kw">length</span>(scale_info<span class="op">$</span>scale_item_names)</a>
-<a class="sourceLine" id="cb35-3" data-line-number="3">new_height &lt;-<span class="st"> </span><span class="kw">ifelse</span>(new_height <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>, <span class="dv">20</span>, new_height)</a>
-<a class="sourceLine" id="cb35-4" data-line-number="4">new_height &lt;-<span class="st"> </span><span class="kw">ifelse</span>(new_height <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>, <span class="dv">1</span>, new_height)</a>
-<a class="sourceLine" id="cb35-5" data-line-number="5">new_height &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">is.na</span>(new_height) <span class="op">|</span><span class="st"> </span><span class="kw">is.nan</span>(new_height), </a>
-<a class="sourceLine" id="cb35-6" data-line-number="6">                     old_height, new_height)</a>
-<a class="sourceLine" id="cb35-7" data-line-number="7">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> new_height)</a></code></pre></div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">likert_plot &lt;-<span class="st"> </span><span class="kw"><a href="../reference/likert_from_items.html">likert_from_items</a></span>(items)</a>
-<a class="sourceLine" id="cb36-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(likert_plot)) {</a>
-<a class="sourceLine" id="cb36-3" data-line-number="3">  graphics<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(likert_plot)</a>
-<a class="sourceLine" id="cb36-4" data-line-number="4">}</a></code></pre></div>
 <p><img src="codebook_nested_scale_files/figure-html/BFIK_extra_likert-1.png" width="700"></p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> old_height)</a></code></pre></div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">binwidth &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">diff</span>(<span class="kw">sort</span>(<span class="kw">unique</span>(scale))))</a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb38-3" data-line-number="3">wrap_at &lt;-<span class="st"> </span>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">"fig.width"</span>) <span class="op">*</span><span class="st"> </span><span class="dv">10</span></a></code></pre></div>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1">dist_plot &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(scale, scale_name, wrap_at)</a>
-<a class="sourceLine" id="cb39-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb39-3" data-line-number="3">choices &lt;-<span class="st"> </span><span class="kw">attributes</span>(items[[<span class="dv">1</span>]])<span class="op">$</span>item<span class="op">$</span>choices</a>
-<a class="sourceLine" id="cb39-4" data-line-number="4">breaks &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">names</span>(choices))</a>
-<a class="sourceLine" id="cb39-5" data-line-number="5"><span class="cf">if</span> (<span class="kw">length</span>(breaks)) {</a>
-<a class="sourceLine" id="cb39-6" data-line-number="6">  <span class="kw">suppressMessages</span>( <span class="co"># ignore message about overwriting x axis</span></a>
-<a class="sourceLine" id="cb39-7" data-line-number="7">  dist_plot &lt;-<span class="st"> </span>dist_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb39-8" data-line-number="8"><span class="st">        </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_x_continuous</a></span>(<span class="st">"values"</span>, </a>
-<a class="sourceLine" id="cb39-9" data-line-number="9">                                <span class="dt">breaks =</span> breaks, </a>
-<a class="sourceLine" id="cb39-10" data-line-number="10">                                <span class="dt">labels =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/str_wrap">str_wrap</a></span>(<span class="kw">unlist</span>(choices), <span class="dv">15</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb39-11" data-line-number="11"><span class="st">      </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/expand_limits">expand_limits</a></span>(<span class="dt">x =</span> <span class="kw">range</span>(breaks)))</a>
-<a class="sourceLine" id="cb39-12" data-line-number="12">  </a>
-<a class="sourceLine" id="cb39-13" data-line-number="13">}</a>
-<a class="sourceLine" id="cb39-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb39-15" data-line-number="15">dist_plot</a></code></pre></div>
 <p><img src="codebook_nested_scale_files/figure-html/BFIK_extra_distribution-1.png" width="700"></p>
 </div>
 <div id="BFIK_extra_reliability" class="section level4">
 <h4 class="hasAnchor">
 <a href="#BFIK_extra_reliability" class="anchor"></a>Reliability details</h4>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(reliabilities)) {</a>
-<a class="sourceLine" id="cb40-2" data-line-number="2">  rel &lt;-<span class="st"> </span>reliabilities[[i]]</a>
-<a class="sourceLine" id="cb40-3" data-line-number="3">  <span class="kw">cat</span>(knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/knit_print">knit_print</a></span>(rel, <span class="dt">indent =</span> <span class="kw">paste0</span>(indent, <span class="st">"####"</span>)))</a>
-<a class="sourceLine" id="cb40-4" data-line-number="4">}</a></code></pre></div>
 <div id="reliability-1" class="section level5">
 <h5 class="hasAnchor">
 <a href="#reliability-1" class="anchor"></a>Reliability</h5>
@@ -865,12 +797,6 @@
 <div id="confidence-interval-1" class="section level5">
 <h5 class="hasAnchor">
 <a href="#confidence-interval-1" class="anchor"></a>95% Confidence Interval</h5>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(x<span class="op">$</span>total<span class="op">$</span>ase)) {</a>
-<a class="sourceLine" id="cb41-2" data-line-number="2">  pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(<span class="kw">data.frame</span>(<span class="dt">lower =</span> x<span class="op">$</span>total<span class="op">$</span>raw_alpha <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>x<span class="op">$</span>total<span class="op">$</span>ase, </a>
-<a class="sourceLine" id="cb41-3" data-line-number="3">             <span class="dt">estimate =</span> x<span class="op">$</span>total<span class="op">$</span>raw_alpha, </a>
-<a class="sourceLine" id="cb41-4" data-line-number="4">             <span class="dt">upper =</span> x<span class="op">$</span>total<span class="op">$</span>raw_alpha <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb41-5" data-line-number="5"><span class="st">  </span>x<span class="op">$</span>total<span class="op">$</span>ase))</a>
-<a class="sourceLine" id="cb41-6" data-line-number="6">}</a></code></pre></div>
 <table style="width:39%;" class="table">
 <colgroup>
 <col width="12%">
@@ -888,7 +814,6 @@
 <td align="center">0.9617</td>
 </tr></tbody>
 </table>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(x<span class="op">$</span>total)</a></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="13%">
@@ -928,8 +853,6 @@
 <div id="reliability-if-an-item-is-dropped-1" class="section level5">
 <h5 class="hasAnchor">
 <a href="#reliability-if-an-item-is-dropped-1" class="anchor"></a>Reliability if an item is dropped:</h5>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">rownames</span>(x<span class="op">$</span>alpha.drop) &lt;-<span class="st"> </span><span class="kw">recursive_escape</span>(<span class="kw">rownames</span>(x<span class="op">$</span>alpha.drop))</a>
-<a class="sourceLine" id="cb43-2" data-line-number="2">pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(x<span class="op">$</span>alpha.drop)</a></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="19%">
@@ -1004,8 +927,6 @@
 <div id="item-statistics-1" class="section level5">
 <h5 class="hasAnchor">
 <a href="#item-statistics-1" class="anchor"></a>Item statistics</h5>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">rownames</span>(x<span class="op">$</span>item.stats) &lt;-<span class="st"> </span><span class="kw">recursive_escape</span>(<span class="kw">rownames</span>(x<span class="op">$</span>item.stats))</a>
-<a class="sourceLine" id="cb44-2" data-line-number="2">pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(x<span class="op">$</span>item.stats)</a></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="25%">
@@ -1074,8 +995,6 @@
 <div id="non-missing-response-frequency-for-each-item-1" class="section level5">
 <h5 class="hasAnchor">
 <a href="#non-missing-response-frequency-for-each-item-1" class="anchor"></a>Non missing response frequency for each item</h5>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">rownames</span>(x<span class="op">$</span>response.freq) &lt;-<span class="st"> </span><span class="kw">recursive_escape</span>(<span class="kw">rownames</span>(x<span class="op">$</span>response.freq))</a>
-<a class="sourceLine" id="cb45-2" data-line-number="2">pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(x<span class="op">$</span>response.freq)</a></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="27%">
@@ -1139,10 +1058,6 @@
 <div id="BFIK_extra_summary" class="section level4">
 <h4 class="hasAnchor">
 <a href="#BFIK_extra_summary" class="anchor"></a>Summary statistics</h4>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(<span class="kw">names</span>(items))) {</a>
-<a class="sourceLine" id="cb46-2" data-line-number="2">  <span class="kw">attributes</span>(items[[i]]) =<span class="st"> </span><span class="kw">recursive_escape</span>(<span class="kw">attributes</span>(items[[i]]))</a>
-<a class="sourceLine" id="cb46-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="kw">escaped_table</span>(<span class="kw"><a href="../reference/codebook_table.html">codebook_table</a></span>(items))</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -1238,46 +1153,12 @@
 <a href="#BFIK_open_likert" class="anchor"></a>Overview</h4>
 <p><strong>Reliability</strong>: Cronbach’s α [95% CI] = 0.53 [0.25;0.81].</p>
 <p><strong>Missing</strong>: 0.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">old_height &lt;-<span class="st"> </span>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">"fig.height"</span>)</a>
-<a class="sourceLine" id="cb47-2" data-line-number="2">new_height &lt;-<span class="st"> </span><span class="kw">length</span>(scale_info<span class="op">$</span>scale_item_names)</a>
-<a class="sourceLine" id="cb47-3" data-line-number="3">new_height &lt;-<span class="st"> </span><span class="kw">ifelse</span>(new_height <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>, <span class="dv">20</span>, new_height)</a>
-<a class="sourceLine" id="cb47-4" data-line-number="4">new_height &lt;-<span class="st"> </span><span class="kw">ifelse</span>(new_height <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>, <span class="dv">1</span>, new_height)</a>
-<a class="sourceLine" id="cb47-5" data-line-number="5">new_height &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">is.na</span>(new_height) <span class="op">|</span><span class="st"> </span><span class="kw">is.nan</span>(new_height), </a>
-<a class="sourceLine" id="cb47-6" data-line-number="6">                     old_height, new_height)</a>
-<a class="sourceLine" id="cb47-7" data-line-number="7">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> new_height)</a></code></pre></div>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">likert_plot &lt;-<span class="st"> </span><span class="kw"><a href="../reference/likert_from_items.html">likert_from_items</a></span>(items)</a>
-<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(likert_plot)) {</a>
-<a class="sourceLine" id="cb48-3" data-line-number="3">  graphics<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(likert_plot)</a>
-<a class="sourceLine" id="cb48-4" data-line-number="4">}</a></code></pre></div>
 <p><img src="codebook_nested_scale_files/figure-html/BFIK_open_likert-1.png" width="700"></p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> old_height)</a></code></pre></div>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">binwidth &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">diff</span>(<span class="kw">sort</span>(<span class="kw">unique</span>(scale))))</a>
-<a class="sourceLine" id="cb50-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb50-3" data-line-number="3">wrap_at &lt;-<span class="st"> </span>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">"fig.width"</span>) <span class="op">*</span><span class="st"> </span><span class="dv">10</span></a></code></pre></div>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">dist_plot &lt;-<span class="st"> </span><span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(scale, scale_name, wrap_at)</a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb51-3" data-line-number="3">choices &lt;-<span class="st"> </span><span class="kw">attributes</span>(items[[<span class="dv">1</span>]])<span class="op">$</span>item<span class="op">$</span>choices</a>
-<a class="sourceLine" id="cb51-4" data-line-number="4">breaks &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">names</span>(choices))</a>
-<a class="sourceLine" id="cb51-5" data-line-number="5"><span class="cf">if</span> (<span class="kw">length</span>(breaks)) {</a>
-<a class="sourceLine" id="cb51-6" data-line-number="6">  <span class="kw">suppressMessages</span>( <span class="co"># ignore message about overwriting x axis</span></a>
-<a class="sourceLine" id="cb51-7" data-line-number="7">  dist_plot &lt;-<span class="st"> </span>dist_plot <span class="op">+</span></a>
-<a class="sourceLine" id="cb51-8" data-line-number="8"><span class="st">        </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_continuous">scale_x_continuous</a></span>(<span class="st">"values"</span>, </a>
-<a class="sourceLine" id="cb51-9" data-line-number="9">                                <span class="dt">breaks =</span> breaks, </a>
-<a class="sourceLine" id="cb51-10" data-line-number="10">                                <span class="dt">labels =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/str_wrap">str_wrap</a></span>(<span class="kw">unlist</span>(choices), <span class="dv">15</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb51-11" data-line-number="11"><span class="st">      </span>ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/expand_limits">expand_limits</a></span>(<span class="dt">x =</span> <span class="kw">range</span>(breaks)))</a>
-<a class="sourceLine" id="cb51-12" data-line-number="12">  </a>
-<a class="sourceLine" id="cb51-13" data-line-number="13">}</a>
-<a class="sourceLine" id="cb51-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb51-15" data-line-number="15">dist_plot</a></code></pre></div>
 <p><img src="codebook_nested_scale_files/figure-html/BFIK_open_distribution-1.png" width="700"></p>
 </div>
 <div id="BFIK_open_reliability" class="section level4">
 <h4 class="hasAnchor">
 <a href="#BFIK_open_reliability" class="anchor"></a>Reliability details</h4>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(reliabilities)) {</a>
-<a class="sourceLine" id="cb52-2" data-line-number="2">  rel &lt;-<span class="st"> </span>reliabilities[[i]]</a>
-<a class="sourceLine" id="cb52-3" data-line-number="3">  <span class="kw">cat</span>(knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/knit_print">knit_print</a></span>(rel, <span class="dt">indent =</span> <span class="kw">paste0</span>(indent, <span class="st">"####"</span>)))</a>
-<a class="sourceLine" id="cb52-4" data-line-number="4">}</a></code></pre></div>
 <div id="reliability-2" class="section level5">
 <h5 class="hasAnchor">
 <a href="#reliability-2" class="anchor"></a>Reliability</h5>
@@ -1285,12 +1166,6 @@
 <div id="confidence-interval-2" class="section level5">
 <h5 class="hasAnchor">
 <a href="#confidence-interval-2" class="anchor"></a>95% Confidence Interval</h5>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(x<span class="op">$</span>total<span class="op">$</span>ase)) {</a>
-<a class="sourceLine" id="cb53-2" data-line-number="2">  pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(<span class="kw">data.frame</span>(<span class="dt">lower =</span> x<span class="op">$</span>total<span class="op">$</span>raw_alpha <span class="op">-</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span>x<span class="op">$</span>total<span class="op">$</span>ase, </a>
-<a class="sourceLine" id="cb53-3" data-line-number="3">             <span class="dt">estimate =</span> x<span class="op">$</span>total<span class="op">$</span>raw_alpha, </a>
-<a class="sourceLine" id="cb53-4" data-line-number="4">             <span class="dt">upper =</span> x<span class="op">$</span>total<span class="op">$</span>raw_alpha <span class="op">+</span><span class="st"> </span><span class="fl">1.96</span> <span class="op">*</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb53-5" data-line-number="5"><span class="st">  </span>x<span class="op">$</span>total<span class="op">$</span>ase))</a>
-<a class="sourceLine" id="cb53-6" data-line-number="6">}</a></code></pre></div>
 <table style="width:39%;" class="table">
 <colgroup>
 <col width="12%">
@@ -1308,7 +1183,6 @@
 <td align="center">0.8068</td>
 </tr></tbody>
 </table>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(x<span class="op">$</span>total)</a></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="13%">
@@ -1348,8 +1222,6 @@
 <div id="reliability-if-an-item-is-dropped-2" class="section level5">
 <h5 class="hasAnchor">
 <a href="#reliability-if-an-item-is-dropped-2" class="anchor"></a>Reliability if an item is dropped:</h5>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="kw">rownames</span>(x<span class="op">$</span>alpha.drop) &lt;-<span class="st"> </span><span class="kw">recursive_escape</span>(<span class="kw">rownames</span>(x<span class="op">$</span>alpha.drop))</a>
-<a class="sourceLine" id="cb55-2" data-line-number="2">pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(x<span class="op">$</span>alpha.drop)</a></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="17%">
@@ -1424,8 +1296,6 @@
 <div id="item-statistics-2" class="section level5">
 <h5 class="hasAnchor">
 <a href="#item-statistics-2" class="anchor"></a>Item statistics</h5>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1"><span class="kw">rownames</span>(x<span class="op">$</span>item.stats) &lt;-<span class="st"> </span><span class="kw">recursive_escape</span>(<span class="kw">rownames</span>(x<span class="op">$</span>item.stats))</a>
-<a class="sourceLine" id="cb56-2" data-line-number="2">pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(x<span class="op">$</span>item.stats)</a></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="24%">
@@ -1494,8 +1364,6 @@
 <div id="non-missing-response-frequency-for-each-item-2" class="section level5">
 <h5 class="hasAnchor">
 <a href="#non-missing-response-frequency-for-each-item-2" class="anchor"></a>Non missing response frequency for each item</h5>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="kw">rownames</span>(x<span class="op">$</span>response.freq) &lt;-<span class="st"> </span><span class="kw">recursive_escape</span>(<span class="kw">rownames</span>(x<span class="op">$</span>response.freq))</a>
-<a class="sourceLine" id="cb57-2" data-line-number="2">pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(x<span class="op">$</span>response.freq)</a></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="25%">
@@ -1559,10 +1427,6 @@
 <div id="BFIK_open_summary" class="section level4">
 <h4 class="hasAnchor">
 <a href="#BFIK_open_summary" class="anchor"></a>Summary statistics</h4>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">seq_along</span>(<span class="kw">names</span>(items))) {</a>
-<a class="sourceLine" id="cb58-2" data-line-number="2">  <span class="kw">attributes</span>(items[[i]]) =<span class="st"> </span><span class="kw">recursive_escape</span>(<span class="kw">attributes</span>(items[[i]]))</a>
-<a class="sourceLine" id="cb58-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="kw">escaped_table</span>(<span class="kw"><a href="../reference/codebook_table.html">codebook_table</a></span>(items))</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -1647,7 +1511,6 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">missingness_report</a></code></pre></div>
 </div>
 </div>
 </div>
@@ -1655,151 +1518,127 @@
 <h2 class="hasAnchor">
 <a href="#missingness-report" class="anchor"></a>Missingness report</h2>
 <p>Among those who finished the survey. Only variables that have missing values are shown.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="cf">if</span> (  <span class="kw">exists</span>(<span class="st">"ended"</span>, results) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="st">  </span><span class="kw">exists</span>(<span class="st">"expired"</span>, results)) {</a>
-<a class="sourceLine" id="cb60-3" data-line-number="3">  finisher_results &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(results, <span class="op">!</span><span class="kw">is.na</span>(.data<span class="op">$</span>ended))</a>
-<a class="sourceLine" id="cb60-4" data-line-number="4">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb60-5" data-line-number="5">  finisher_results &lt;-<span class="st"> </span>results</a>
-<a class="sourceLine" id="cb60-6" data-line-number="6">  <span class="kw">warning</span>(<span class="st">"Could not figure out who finished the surveys, because the "</span>,</a>
-<a class="sourceLine" id="cb60-7" data-line-number="7">          <span class="st">"variables expired and ended were missing."</span>)</a>
-<a class="sourceLine" id="cb60-8" data-line-number="8">}</a></code></pre></div>
 <pre><code>## Warning: Could not figure out who finished the surveys, because the
 ## variables expired and ended were missing.</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">length</span>(md_pattern)) {</a>
-<a class="sourceLine" id="cb62-2" data-line-number="2">  pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(md_pattern)</a>
-<a class="sourceLine" id="cb62-3" data-line-number="3">}</a></code></pre></div>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">items</a></code></pre></div>
 </div>
 <div id="codebook-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#codebook-table" class="anchor"></a>Codebook table</h2>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="kw">export_table</span>(metadata_table)</a></code></pre></div>
-<div id="htmlwidget-775605ca8f18cbe8525a" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-775605ca8f18cbe8525a">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"4\" data-max=\"22\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#beta\">beta<\/a>","<a href=\"#BFIK_extra_2\">BFIK_extra_2<\/a>","<a href=\"#BFIK_extra_3R\">BFIK_extra_3R<\/a>","<a href=\"#BFIK_extra_4\">BFIK_extra_4<\/a>","<a href=\"#BFIK_extra_1R\">BFIK_extra_1R<\/a>","<a href=\"#BFIK_extra\">BFIK_extra<\/a>","<a href=\"#BFIK_open_2\">BFIK_open_2<\/a>","<a href=\"#BFIK_open_1\">BFIK_open_1<\/a>","<a href=\"#BFIK_open_4\">BFIK_open_4<\/a>","<a href=\"#BFIK_open_3\">BFIK_open_3<\/a>","<a href=\"#BFIK_open\">BFIK_open<\/a>"],["Beta: higher order personality factor (extra, open)","__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__","__Ich bin eher der \"stille Typ\", wortkarg.__","__Ich gehe aus mir heraus, bin gesellig.__","__Ich bin eher zurückhaltend, reserviert.__","4 BFIK_extra items averaged with aggregation_function","__Ich bin tiefsinnig, denke gerne über Sachen nach.__","__Ich bin vielseitig interessiert.__","__Ich schätze künstlerische und ästhetische Eindrücke.__","__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__","4 BFIK_open items averaged with aggregation_function"],[null,"rating_button","rating_button","rating_button","rating_button",null,"rating_button","rating_button","rating_button","rating_button",null],[null,5,5,5,5,null,5,5,5,5,null],["numeric","labelled","labelled","labelled","labelled","numeric","labelled","labelled","labelled","labelled","numeric"],[null,"FALSE","FALSE","FALSE","FALSE",null,"FALSE","FALSE","FALSE","FALSE",null],[null,"1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.",null,"1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.",null],[null,0,0,0,0,null,0,0,0,0,null],["BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R, BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3",null,null,null,null,"BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R",null,null,null,null,"BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3"],[null,6,14,20,21,null,4,8,19,22,null],["0","0","0","0","0","0","0","0","0","0","0"],["28","28","28","28","28","28","28","28","28","28","28"],["28","28","28","28","28","28","28","28","28","28","28"],[null,"4","5","5","5",null,"4","4","4","4",null],[null,"5: 13, 4: 11, 1: 2, 3: 2","4: 9, 5: 9, 3: 6, 1: 2","4: 11, 5: 9, 3: 4, 2: 3","4: 8, 5: 8, 3: 6, 2: 5",null,"4: 15, 5: 10, 3: 2, 2: 1","5: 16, 4: 8, 3: 3, 2: 1","5: 13, 4: 10, 3: 4, 1: 1","5: 14, 4: 8, 3: 4, 2: 2",null],["4.05",null,null,null,null,"3.85",null,null,null,null,"4.26"],["0.6 ",null,null,null,null,"1.01",null,null,null,null,"0.56"],["2.88",null,null,null,null,"1.5 ",null,null,null,null,"3   "],["3.59",null,null,null,null,"3.25",null,null,null,null,"3.94"],["4.25",null,null,null,null,"4.25",null,null,null,null,"4.25"],["4.5 ",null,null,null,null,"4.56",null,null,null,null,"4.75"],["4.88",null,null,null,null,"5   ",null,null,null,null,"5   "],["▃▂▃▃▂▆▇▃",null,null,null,null,"▂▁▂▃▁▃▇▇",null,null,null,null,"▃▂▂▁▇▃▇▂"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>type<\/th>\n      <th>type_options<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>optional<\/th>\n      <th>scale_item_names<\/th>\n      <th>item_order<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>n_unique<\/th>\n      <th>top_counts<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":[3,7,9]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">jsonld</a></code></pre></div>
-<script type="application/ld+json">
+<div id="htmlwidget-c885f4611185a09bb6f3" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c885f4611185a09bb6f3">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"4\" data-max=\"22\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#beta\">beta<\/a>","<a href=\"#BFIK_extra_2\">BFIK_extra_2<\/a>","<a href=\"#BFIK_extra_3R\">BFIK_extra_3R<\/a>","<a href=\"#BFIK_extra_4\">BFIK_extra_4<\/a>","<a href=\"#BFIK_extra_1R\">BFIK_extra_1R<\/a>","<a href=\"#BFIK_extra\">BFIK_extra<\/a>","<a href=\"#BFIK_open_2\">BFIK_open_2<\/a>","<a href=\"#BFIK_open_1\">BFIK_open_1<\/a>","<a href=\"#BFIK_open_4\">BFIK_open_4<\/a>","<a href=\"#BFIK_open_3\">BFIK_open_3<\/a>","<a href=\"#BFIK_open\">BFIK_open<\/a>"],["Beta: higher order personality factor (extra, open)","__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__","__Ich bin eher der \"stille Typ\", wortkarg.__","__Ich gehe aus mir heraus, bin gesellig.__","__Ich bin eher zurückhaltend, reserviert.__","4 BFIK_extra items averaged with aggregation_function","__Ich bin tiefsinnig, denke gerne über Sachen nach.__","__Ich bin vielseitig interessiert.__","__Ich schätze künstlerische und ästhetische Eindrücke.__","__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__","4 BFIK_open items averaged with aggregation_function"],[null,"rating_button","rating_button","rating_button","rating_button",null,"rating_button","rating_button","rating_button","rating_button",null],[null,5,5,5,5,null,5,5,5,5,null],["numeric","labelled","labelled","labelled","labelled","numeric","labelled","labelled","labelled","labelled","numeric"],[null,"FALSE","FALSE","FALSE","FALSE",null,"FALSE","FALSE","FALSE","FALSE",null],[null,"1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.",null,"1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.",null],[null,0,0,0,0,null,0,0,0,0,null],["BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R, BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3",null,null,null,null,"BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R",null,null,null,null,"BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3"],[null,6,14,20,21,null,4,8,19,22,null],["0","0","0","0","0","0","0","0","0","0","0"],["28","28","28","28","28","28","28","28","28","28","28"],["28","28","28","28","28","28","28","28","28","28","28"],[null,"4","5","5","5",null,"4","4","4","4",null],[null,"5: 13, 4: 11, 1: 2, 3: 2","4: 9, 5: 9, 3: 6, 1: 2","4: 11, 5: 9, 3: 4, 2: 3","4: 8, 5: 8, 3: 6, 2: 5",null,"4: 15, 5: 10, 3: 2, 2: 1","5: 16, 4: 8, 3: 3, 2: 1","5: 13, 4: 10, 3: 4, 1: 1","5: 14, 4: 8, 3: 4, 2: 2",null],["4.05",null,null,null,null,"3.85",null,null,null,null,"4.26"],["0.6 ",null,null,null,null,"1.01",null,null,null,null,"0.56"],["2.88",null,null,null,null,"1.5 ",null,null,null,null,"3   "],["3.59",null,null,null,null,"3.25",null,null,null,null,"3.94"],["4.25",null,null,null,null,"4.25",null,null,null,null,"4.25"],["4.5 ",null,null,null,null,"4.56",null,null,null,null,"4.75"],["4.88",null,null,null,null,"5   ",null,null,null,null,"5   "],["▃▂▃▃▂▆▇▃",null,null,null,null,"▂▁▂▃▁▃▇▇",null,null,null,null,"▃▂▂▁▇▃▇▂"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>type<\/th>\n      <th>type_options<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>optional<\/th>\n      <th>scale_item_names<\/th>\n      <th>item_order<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>n_unique<\/th>\n      <th>top_counts<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":[3,7,9]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
 {
-  "description": "The dataset has N=28 rows of\nwhich n=28 have no missings and a total of\n11 columns.\n\n<details><summary>Variable names<\/summary>beta, BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R, BFIK_extra, BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3, BFIK_open<\/details>\n\nThis dataset was automatically described using the codebook R package.",
+  "name": "MOCK Big Five Inventory dataset (German metadata demo)",
+  "description": "a small mock Big Five Inventory dataset",
+  "identifier": "doi:10.5281/zenodo.1326520",
+  "datePublished": "2016-06-01",
+  "creator": {
+    "@type": "Person",
+    "givenName": "Ruben",
+    "familyName": "Arslan",
+    "email": "ruben.arslan@gmail.com",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "MPI Human Development, Berlin"
+    }
+  },
+  "citation": "Arslan (2016). Mock BFI data.",
+  "url": "https://rubenarslan.github.io/codebook/articles/codebook.html",
+  "temporalCoverage": "2016",
+  "spatialCoverage": "Goettingen, Germany",
+  "keywords": ["beta", "BFIK_extra_2", "BFIK_extra_3R", "BFIK_extra_4", "BFIK_extra_1R", "BFIK_extra", "BFIK_open_2", "BFIK_open_1", "BFIK_open_4", "BFIK_open_3", "BFIK_open"],
   "@context": "http://schema.org/",
   "@type": "Dataset",
-  "keywords": ["beta", "BFIK_extra_2", "BFIK_extra_3R", "BFIK_extra_4", "BFIK_extra_1R", "BFIK_extra", "BFIK_open_2", "BFIK_open_1", "BFIK_open_4", "BFIK_open_3", "BFIK_open"],
   "variableMeasured": [
     {
       "name": "beta",
       "description": "Beta: higher order personality factor (extra, open)",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "BFIK_extra_2",
       "description": "__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "BFIK_extra_3R",
       "description": "__Ich bin eher der \"stille Typ\", wortkarg.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "BFIK_extra_4",
       "description": "__Ich gehe aus mir heraus, bin gesellig.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "BFIK_extra_1R",
       "description": "__Ich bin eher zurückhaltend, reserviert.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "BFIK_extra",
       "description": "4 BFIK_extra items averaged with aggregation_function",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "BFIK_open_2",
       "description": "__Ich bin tiefsinnig, denke gerne über Sachen nach.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "BFIK_open_1",
       "description": "__Ich bin vielseitig interessiert.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "BFIK_open_4",
       "description": "__Ich schätze künstlerische und ästhetische Eindrücke.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "BFIK_open_3",
       "description": "__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
       "maxValue": 5,
       "minValue": 1,
       "measurementTechnique": "self-report",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "BFIK_open",
       "description": "4 BFIK_open items averaged with aggregation_function",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     }
   ]
 }
-</script><div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span>knit_by_pkgdown) {</a>
-<a class="sourceLine" id="cb66-2" data-line-number="2">  codebook<span class="op">:::</span><span class="kw">escaped_table</span>(<span class="kw"><a href="../reference/codebook_table.html">codebook_table</a></span>(bfi))</a>
-<a class="sourceLine" id="cb66-3" data-line-number="3">}</a></code></pre></div>
+</script>
 </div>
   </div>
 
@@ -1808,7 +1647,7 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#items">Items</a></li>
+<li><a href="#variables">Variables</a></li>
       <li><a href="#missingness-report">Missingness report</a></li>
       <li><a href="#codebook-table">Codebook table</a></li>
       </ul>

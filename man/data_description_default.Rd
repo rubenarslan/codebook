@@ -14,6 +14,7 @@ If you do not define a dataset description yourself, this will be the
 automatically generated default.
 }
 \examples{
+data('bfi')
 data_description_default(bfi)
 
 }

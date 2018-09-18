@@ -16,6 +16,8 @@ Add a URL where the dataset description can be found in preparation for
 JSON-LD metadata generation using \code{\link[=codebook]{codebook()}} or \code{\link[=metadata_list]{metadata_list()}}.
 }
 \examples{
+data('bfi')
 data_url(bfi) <- "https://rubenarslan.github.io/codebook/articles/codebook.html"
+attributes(bfi)[[4]]
 
 }

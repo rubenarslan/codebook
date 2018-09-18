@@ -15,7 +15,6 @@ labelled::var_label
 labelled::`var_label<-`
 
 
-
 #' Aggregate variables and remember which variables this were
 #'
 #' The resulting variables will have the attribute `scale_item_names` containing
@@ -66,7 +65,9 @@ aggregate_and_document_scale <- function(items, fun = rowMeans, stem = NULL) {
 #' @param value the description
 #' @export
 #' @examples
+#' data('bfi')
 #' data_description(bfi) <- "a small mock Big Five Inventory dataset"
+#' attributes(bfi)[[4]]
 #'
 `data_description<-` <- function(data, value) {
   UseMethod("data_description<-")
@@ -90,6 +91,7 @@ aggregate_and_document_scale <- function(items, fun = rowMeans, stem = NULL) {
 #' @param data the data frame
 #' @export
 #' @examples
+#' data('bfi')
 #' data_description_default(bfi)
 #'
 #' @export
@@ -119,7 +121,9 @@ data_description_default <- function(data) {
 #' @param value the name
 #' @export
 #' @examples
+#' data('bfi')
 #' data_name(bfi) <- "a small mock Big Five Inventory dataset"
+#' attributes(bfi)[[4]]
 #'
 `data_name<-` <- function(data, value) {
   UseMethod("data_name<-")
@@ -145,7 +149,9 @@ data_description_default <- function(data) {
 #' @param value the URL
 #' @export
 #' @examples
+#' data('bfi')
 #' data_url(bfi) <- "https://rubenarslan.github.io/codebook/articles/codebook.html"
+#' attributes(bfi)[[4]]
 #'
 `data_url<-` <- function(data, value) {
   UseMethod("data_url<-")
@@ -171,7 +177,9 @@ data_description_default <- function(data) {
 #' @param value the citation information
 #' @export
 #' @examples
+#' data('bfi')
 #' data_citation(bfi) <- "Arslan (2018). Mock BFI data."
+#' attributes(bfi)[[4]]
 #'
 `data_citation<-` <- function(data, value) {
   UseMethod("data_citation<-")
@@ -196,7 +204,9 @@ data_description_default <- function(data) {
 #' @param value the identifier
 #' @export
 #' @examples
+#' data('bfi')
 #' data_identifier(bfi) <- "doi:10.5281/zenodo.1326520"
+#' attributes(bfi)[[4]]
 #'
 `data_identifier<-` <- function(data, value) {
   UseMethod("data_identifier<-")
@@ -221,7 +231,9 @@ data_description_default <- function(data) {
 #' @param value the temporal coverage information
 #' @export
 #' @examples
+#' data('bfi')
 #' data_temporalCoverage(bfi) <- "2017"
+#' attributes(bfi)[[4]]
 #'
 `data_temporalCoverage<-` <- function(data, value) {
   UseMethod("data_temporalCoverage<-")
@@ -247,7 +259,9 @@ data_description_default <- function(data) {
 #' @param value the spatial coverage information
 #' @export
 #' @examples
+#' data('bfi')
 #' data_spatialCoverage(bfi) <- "Goettingen, Germany"
+#' attributes(bfi)[[4]]
 #'
 `data_spatialCoverage<-` <- function(data, value) {
   UseMethod("data_spatialCoverage<-")
@@ -271,7 +285,9 @@ data_description_default <- function(data) {
 #' @param value the keywords
 #' @export
 #' @examples
+#' data('bfi')
 #' data_keywords(bfi) <- c("Big Five", "Personality", "Psychology")
+#' attributes(bfi)[[4]]
 #'
 `data_keywords<-` <- function(data, value) {
   UseMethod("data_keywords<-")
@@ -283,5 +299,53 @@ data_description_default <- function(data) {
     stop("`value` should be a character vector or NULL",
          call. = FALSE, domain = "R-codebook")
   attributes(data)$keywords <- value
+  data
+}
+
+#' Add published date
+#'
+#' Add a character vector to to add keywords in preparation for JSON-LD
+#' metadata generation using [codebook()] or [metadata_list()].
+#'
+#' @param data the data frame
+#' @param value the keywords
+#' @export
+#' @examples
+#' data('bfi')
+#' data_datePublished(bfi) <- Sys.time()
+#' attributes(bfi)[[4]]
+#'
+`data_datePublished<-` <- function(data, value) {
+  UseMethod("data_datePublished<-")
+}
+
+#' @export
+`data_datePublished<-.data.frame` <- function(data, value) {
+  attributes(data)$datePublished <- format(as.Date(value))
+  data
+}
+
+
+
+#' Add creator
+#'
+#' Add a character vector to to add keywords in preparation for JSON-LD
+#' metadata generation using [codebook()] or [metadata_list()].
+#'
+#' @param data the data frame
+#' @param value the keywords
+#' @export
+#' @examples
+#' data('bfi')
+#' data_creator(bfi) <- Sys.time()
+#' attributes(bfi)[[4]]
+#'
+`data_creator<-` <- function(data, value) {
+  UseMethod("data_creator<-")
+}
+
+#' @export
+`data_creator<-.data.frame` <- function(data, value) {
+  attributes(data)$creator <- value
   data
 }

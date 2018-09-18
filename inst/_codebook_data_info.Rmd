@@ -26,38 +26,52 @@ if (is_attribute_set("name", results)) {
 cat(description)
 ```
 
-```{r results='asis'}
+```{r results='asis', echo = FALSE}
 if (is_attribute_set("temporalCoverage", results)) {
   glue::glue(
-    "- __Temporal Coverage__: [{url}](url)",
+    "- __Temporal Coverage__: {temporalCoverage}",
     .envir = meta)
 }
 ```
-```{r results='asis'}
+```{r results='asis', echo = FALSE}
 if (is_attribute_set("spatialCoverage", results)) {
   glue::glue(
-    "- __Spatial Coverage__: [{url}](url)",
+    "- __Spatial Coverage__: {spatialCoverage}",
     .envir = meta)
 }
 ```
-```{r results='asis'}
+```{r results='asis', echo = FALSE}
 if (is_attribute_set("citation", results)) {
   glue::glue(
     "- __Citation__: {citation}",
     .envir = meta)
 }
 ```
-```{r results='asis'}
+```{r results='asis', echo = FALSE}
 if (is_attribute_set("url", results)) {
   glue::glue(
-    "- __URL__: [{url}](url)",
+    "- __URL__: [{url}]({url})",
     .envir = meta)
 }
 ```
-```{r results='asis'}
+```{r results='asis', echo = FALSE}
 if (is_attribute_set("identifier", results)) {
   glue::glue(
     "- __Identifier__: {identifier}",
     .envir = meta)
+}
+```
+```{r results='asis', echo = FALSE}
+if (is_attribute_set("datePublished", results)) {
+  glue::glue(
+    "- __Date published__: {datePublished}",
+    .envir = meta)
+}
+```
+
+```{r results='asis', echo = FALSE}
+if (is_attribute_set("creator", results)) {
+  cat("__Creator__:")
+  pander::pander(meta$creator)
 }
 ```

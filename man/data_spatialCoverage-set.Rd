@@ -17,6 +17,8 @@ if it has a spatial extent for JSON-LD metadata generation, e.g., the place
 where data was collected.
 }
 \examples{
+data('bfi')
 data_spatialCoverage(bfi) <- "Goettingen, Germany"
+attributes(bfi)[[4]]
 
 }

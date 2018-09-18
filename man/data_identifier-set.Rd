@@ -16,6 +16,8 @@ Add a single character vector or a list to give an identifier for the dataset,
 such as a DOI.
 }
 \examples{
+data('bfi')
 data_identifier(bfi) <- "doi:10.5281/zenodo.1326520"
+attributes(bfi)[[4]]
 
 }

@@ -147,7 +147,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>metadata_list</span>(<span class='no'>results</span>, <span class='kw'>name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>only_existing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>metadata_list</span>(<span class='no'>results</span>, <span class='kw'>only_existing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,11 +155,6 @@
     <tr>
       <th>results</th>
       <td><p>a data frame, ideally with attributes set on variables</p></td>
-    </tr>
-    <tr>
-      <th>name</th>
-      <td><p>the name of the data frame (taken from attributes if set or from
-name of first argument)</p></td>
     </tr>
     <tr>
       <th>only_existing</th>
@@ -174,11 +169,6 @@ of currently defined schema.org properties</p></td>
 <span class='no'>md_list</span> <span class='kw'>&lt;-</span> <span class='fu'>metadata_list</span>(<span class='no'>bfi</span>)
 <span class='no'>md_list</span>$<span class='no'>variableMeasured</span><span class='kw'>[[</span><span class='fl'>20</span>]]</div><div class='output co'>#&gt; $name
 #&gt; [1] "N5"
-#&gt; 
-#&gt; $`@context`
-#&gt; $`@context`$`@vocab`
-#&gt; [1] "http://pending.schema.org/"
-#&gt; 
 #&gt; 
 #&gt; $`@type`
 #&gt; [1] "propertyValue"

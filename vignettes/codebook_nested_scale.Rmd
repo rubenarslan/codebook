@@ -74,7 +74,27 @@ bfi <- bfi %>% select(beta, starts_with("BFIK_extra"), starts_with("BFIK_open"))
 if (!knit_by_pkgdown) knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r}
+data_name(bfi) <- "MOCK Big Five Inventory dataset (German metadata demo)"
+data_description(bfi) <- "a small mock Big Five Inventory dataset"
+data_identifier(bfi) <- "doi:10.5281/zenodo.1326520"
+data_datePublished(bfi) <- "2016-06-01"
+data_creator(bfi) <- list(
+      "@type" = "Person",
+      givenName = "Ruben", familyName = "Arslan",
+      email = "ruben.arslan@gmail.com", 
+      affiliation = list("@type" = "Organization",
+        name = "MPI Human Development, Berlin"))
+data_citation(bfi) <- "Arslan (2016). Mock BFI data."
+data_url(bfi) <- "https://rubenarslan.github.io/codebook/articles/codebook.html"
+data_temporalCoverage(bfi) <- "2016" 
+data_spatialCoverage(bfi) <- "Goettingen, Germany" 
+```
 
+```{r}
+# We don't want to look at the code in the codebook.
+knitr::opts_chunk$set(warning = TRUE, message = TRUE, echo = FALSE)
+```
 
 ```{r cb}
 codebook(bfi, survey_repetition = 'single',

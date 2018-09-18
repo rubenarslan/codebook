@@ -84,8 +84,20 @@ codebook <- function(results, reliabilities = NULL,
       paste0(knitr::opts_chunk$get("cache.path"), "cb_", df_name, "_")
   )
 
+  if (!exists("name", attributes(results))) {
+    data_name(results) <- deparse(substitute(results))
+  }
+
+  if (!exists("datePublished", attributes(results))) {
+    data_datePublished(results) <- Sys.Date()
+  }
+
   if (!exists("description", attributes(results))) {
     data_description(results) <- data_description_default(results)
+  }
+
+  if (!exists("keywords", attributes(results))) {
+    data_keywords(results) <- names(results)
   }
 
   data_info <- codebook_data_info(results)
@@ -511,8 +523,6 @@ attribute_summary <- function(var) {
 #' Returns a list containing variable metadata (attributes) and data summaries.
 #'
 #' @param results a data frame, ideally with attributes set on variables
-#' @param name the name of the data frame (taken from attributes if set or from
-#' name of first argument)
 #' @param only_existing whether to drop helpful metadata to comply with the list
 #' of currently defined schema.org properties
 #'
@@ -521,7 +531,7 @@ attribute_summary <- function(var) {
 #' data("bfi")
 #' md_list <- metadata_list(bfi)
 #' md_list$variableMeasured[[20]]
-metadata_list <- function(results, name = NULL, only_existing = TRUE) {
+metadata_list <- function(results, only_existing = TRUE) {
   metadata <- attributes(results)
   metadata$names <- NULL
   metadata$row.names <- NULL
@@ -533,23 +543,6 @@ metadata_list <- function(results, name = NULL, only_existing = TRUE) {
 
   if (!exists("@type", metadata)) {
     metadata[["@type"]] <- "Dataset"
-  }
-
-  if (!exists("description", metadata)) {
-    metadata[["description"]] <- data_description_default(results)
-  }
-
-
-  if (!exists("name", metadata)) {
-    if (is.null(name)) {
-      name <- deparse(substitute(results))
-    } else {
-      metadata$name <- name
-    }
-  }
-
-  if (!exists("keywords", metadata)) {
-    metadata$keywords <- names(results)
   }
 
   metadata$variableMeasured <- lapply(names(results), function(var) {
@@ -569,12 +562,29 @@ metadata_list <- function(results, name = NULL, only_existing = TRUE) {
           x$description <- x$label
           x$label <- NULL
         }
-        if (exists("labels", x)) {
-          # x$value <- as.list(x$labels)
-          # x$value[["@type"]] = "StructuredValue"
+
+        if (exists("levels", x)) {
+          x$value <- paste(paste0(seq_len(length(x$levels)), ". ", x$levels),
+                                  collapse = ",\n")
+          x$levels <- NULL
+          # remove extremely deep qualtrics choices attributes
+          if (exists("item", x) && exists("choices", x$item)
+              && exists("variableName", x$item$choices[[1]])) {
+            x$item$choices <- NULL
+          }
+        } else if (exists("labels", x)) {
+          if (!is.null(names(x$labels))) {
+            x$value <- paste(paste0(x$labels, ". ", names(x$labels)),
+                                    collapse = ",\n")
+          } else {
+            x$value <- paste(x$labels, collapse = ",\n")
+          }
           x$maxValue <- max(x$labels, na.rm = TRUE)
           x$minValue <- min(x$labels, na.rm = TRUE)
           x$labels <- NULL
+          if (exists("item", x) && exists("choices", x$item)) {
+            x$item$choices <- NULL
+          }
         }
         if (exists("item", x)) {
           if (exists("type", x$item)) {
@@ -621,7 +631,6 @@ metadata_list <- function(results, name = NULL, only_existing = TRUE) {
         }
       }
 
-      x[["@context"]] <- list("@vocab" = "http://pending.schema.org/")
       x[["@type"]] <- "propertyValue"
       x
     })

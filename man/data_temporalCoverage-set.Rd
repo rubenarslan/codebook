@@ -17,6 +17,8 @@ if it has a temporal extent for JSON-LD metadata generation, e.g., the period
 of data collection.
 }
 \examples{
+data('bfi')
 data_temporalCoverage(bfi) <- "2017"
+attributes(bfi)[[4]]
 
 }

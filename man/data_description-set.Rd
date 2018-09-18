@@ -16,6 +16,8 @@ Add a single character vector to describe a data frame in preparation for JSON-L
 metadata generation using \code{\link[=codebook]{codebook()}} or \code{\link[=metadata_list]{metadata_list()}}.
 }
 \examples{
+data('bfi')
 data_description(bfi) <- "a small mock Big Five Inventory dataset"
+attributes(bfi)[[4]]
 
 }

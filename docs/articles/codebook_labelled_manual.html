@@ -109,7 +109,7 @@
       <h1>Codebook example with manual labelling</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2018-09-15</h4>
+            <h4 class="date">2018-09-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook_labelled_manual.Rmd"><code>vignettes/codebook_labelled_manual.Rmd</code></a></small>
       <div class="hidden name"><code>codebook_labelled_manual.Rmd</code></div>
@@ -129,8 +129,7 @@
 <a class="sourceLine" id="cb1-8" data-line-number="8"><span class="kw">data</span>(<span class="st">"bfi"</span>, <span class="dt">package =</span> <span class="st">'psych'</span>)</a>
 <a class="sourceLine" id="cb1-9" data-line-number="9">bfi &lt;-<span class="st"> </span>bfi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tbl_df.html">tbl_df</a></span>()</a>
 <a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw">data</span>(<span class="st">"bfi.dictionary"</span>, <span class="dt">package =</span> <span class="st">'psych'</span>)</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">bfi.dictionary<span class="op">$</span>variable =<span class="st"> </span><span class="kw">rownames</span>(bfi.dictionary)</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">bfi.dictionary &lt;-<span class="st"> </span>bfi.dictionary <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/tbl_df.html">tbl_df</a></span>()</a></code></pre></div>
+<a class="sourceLine" id="cb1-11" data-line-number="11">bfi.dictionary &lt;-<span class="st"> </span>tibble<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tibble/topics/rownames">rownames_to_column</a></span>(bfi.dictionary, <span class="st">"variable"</span>)</a></code></pre></div>
 <p>Let’s start by getting an overview of our dataset</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">head</span>(bfi, <span class="dv">20</span>)</a></code></pre></div>
 <pre><code>## # A tibble: 20 x 28
@@ -161,20 +160,64 @@
 ## #   O4 &lt;int&gt;, O5 &lt;int&gt;, gender &lt;int&gt;, education &lt;int&gt;, age &lt;int&gt;</code></pre>
 <p>and our data dictionary.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">bfi.dictionary</a></code></pre></div>
-<pre><code>## # A tibble: 28 x 8
-##    ItemLabel Item         Giant3 Big6    Little12  Keying IPIP100 variable
-##  * &lt;fct&gt;     &lt;fct&gt;        &lt;fct&gt;  &lt;fct&gt;   &lt;fct&gt;      &lt;int&gt; &lt;fct&gt;   &lt;chr&gt;   
-##  1 q_146     Am indiffer… Cohes… Agreea… Compassi…     -1 B5:A    A1      
-##  2 q_1162    Inquire abo… Cohes… Agreea… Compassi…      1 B5:A    A2      
-##  3 q_1206    Know how to… Cohes… Agreea… Compassi…      1 B5:A    A3      
-##  4 q_1364    Love childr… Cohes… Agreea… Compassi…      1 B5:A    A4      
-##  5 q_1419    Make people… Cohes… Agreea… Compassi…      1 B5:A    A5      
-##  6 q_124     Am exacting… Stabi… Consci… Orderlin…      1 B5:C    C1      
-##  7 q_530     Continue un… Stabi… Consci… Orderlin…      1 B5:C    C2      
-##  8 q_619     Do things a… Stabi… Consci… Orderlin…      1 B5:C    C3      
-##  9 q_626     Do things i… Stabi… Consci… Industri…     -1 B5:C    C4      
-## 10 q_1949    Waste my ti… Stabi… Consci… Industri…     -1 B5:C    C5      
-## # ... with 18 more rows</code></pre>
+<pre><code>##     variable ItemLabel                                       Item
+## 1         A1     q_146  Am indifferent to the feelings of others.
+## 2         A2    q_1162          Inquire about others' well-being.
+## 3         A3    q_1206                Know how to comfort others.
+## 4         A4    q_1364                             Love children.
+## 5         A5    q_1419                  Make people feel at ease.
+## 6         C1     q_124                    Am exacting in my work.
+## 7         C2     q_530      Continue until everything is perfect.
+## 8         C3     q_619             Do things according to a plan.
+## 9         C4     q_626            Do things in a half-way manner.
+## 10        C5    q_1949                             Waste my time.
+## 11        E1     q_712                          Don't talk a lot.
+## 12        E2     q_901      Find it difficult to approach others.
+## 13        E3    q_1205              Know how to captivate people.
+## 14        E4    q_1410                       Make friends easily.
+## 15        E5    q_1768                               Take charge.
+## 16        N1     q_952                          Get angry easily.
+## 17        N2     q_974                      Get irritated easily.
+## 18        N3    q_1099                 Have frequent mood swings.
+## 19        N4    q_1479                           Often feel blue.
+## 20        N5    q_1505                              Panic easily.
+## 21        O1     q_128                          Am full of ideas.
+## 22        O2     q_316          Avoid difficult reading material.
+## 23        O3     q_492  Carry the conversation to a higher level.
+## 24        O4    q_1738           Spend time reflecting on things.
+## 25        O5    q_1964      Will not probe deeply into a subject.
+## 26    gender    gender                         males=1, females=2
+## 27 education education in HS, fin HS, coll,  coll grad , grad deg
+## 28       age       age                               age in years
+##        Giant3                Big6        Little12 Keying IPIP100
+## 1    Cohesion       Agreeableness      Compassion     -1    B5:A
+## 2    Cohesion       Agreeableness      Compassion      1    B5:A
+## 3    Cohesion       Agreeableness      Compassion      1    B5:A
+## 4    Cohesion       Agreeableness      Compassion      1    B5:A
+## 5    Cohesion       Agreeableness      Compassion      1    B5:A
+## 6   Stability   Conscientiousness     Orderliness      1    B5:C
+## 7   Stability   Conscientiousness     Orderliness      1    B5:C
+## 8   Stability   Conscientiousness     Orderliness      1    B5:C
+## 9   Stability   Conscientiousness Industriousness     -1    B5:C
+## 10  Stability   Conscientiousness Industriousness     -1    B5:C
+## 11 Plasticity        Extraversion     Sociability     -1    B5:E
+## 12 Plasticity        Extraversion     Sociability     -1    B5:E
+## 13 Plasticity        Extraversion   Assertiveness      1    B5:E
+## 14 Plasticity        Extraversion     Sociability      1    B5:E
+## 15 Plasticity        Extraversion   Assertiveness      1    B5:E
+## 16  Stability Emotional Stability         Balance     -1    B5:N
+## 17  Stability Emotional Stability         Balance     -1    B5:N
+## 18  Stability Emotional Stability         Balance     -1    B5:N
+## 19  Stability Emotional Stability         Balance     -1    B5:N
+## 20  Stability Emotional Stability         Balance     -1    B5:N
+## 21 Plasticity            Openness       Intellect      1    B5:O
+## 22 Plasticity            Openness       Intellect     -1    B5:O
+## 23 Plasticity            Openness       Intellect      1    B5:O
+## 24 Plasticity            Openness        Openness      1    B5:O
+## 25 Plasticity            Openness        Openness     -1    B5:O
+## 26       &lt;NA&gt;                &lt;NA&gt;            &lt;NA&gt;     NA    &lt;NA&gt;
+## 27       &lt;NA&gt;                &lt;NA&gt;            &lt;NA&gt;     NA    &lt;NA&gt;
+## 28       &lt;NA&gt;                &lt;NA&gt;            &lt;NA&gt;     NA    &lt;NA&gt;</code></pre>
 <div id="how-to-add-variable-and-value-labels" class="section level2">
 <h2 class="hasAnchor">
 <a href="#how-to-add-variable-and-value-labels" class="anchor"></a>How to add variable and value labels</h2>
@@ -185,12 +228,14 @@
 <a class="sourceLine" id="cb6-4" data-line-number="4">         <span class="dt">gender =</span> <span class="kw">as.double</span>(gender))</a>
 <a class="sourceLine" id="cb6-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb6-6" data-line-number="6">bfi.dictionary <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tail</span>(<span class="dv">3</span>)</a></code></pre></div>
-<pre><code>## # A tibble: 3 x 8
-##   ItemLabel Item             Giant3 Big6  Little12 Keying IPIP100 variable
-##   &lt;fct&gt;     &lt;fct&gt;            &lt;fct&gt;  &lt;fct&gt; &lt;fct&gt;     &lt;int&gt; &lt;fct&gt;   &lt;chr&gt;   
-## 1 gender    males=1, female… &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;         NA &lt;NA&gt;    gender  
-## 2 education in HS, fin HS, … &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;         NA &lt;NA&gt;    educati…
-## 3 age       age in years     &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;         NA &lt;NA&gt;    age</code></pre>
+<pre><code>##     variable ItemLabel                                       Item Giant3
+## 26    gender    gender                         males=1, females=2   &lt;NA&gt;
+## 27 education education in HS, fin HS, coll,  coll grad , grad deg   &lt;NA&gt;
+## 28       age       age                               age in years   &lt;NA&gt;
+##    Big6 Little12 Keying IPIP100
+## 26 &lt;NA&gt;     &lt;NA&gt;     NA    &lt;NA&gt;
+## 27 &lt;NA&gt;     &lt;NA&gt;     NA    &lt;NA&gt;
+## 28 &lt;NA&gt;     &lt;NA&gt;     NA    &lt;NA&gt;</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/var_label">var_label</a></span>(bfi<span class="op">$</span>gender) &lt;-<span class="st"> "Self-reported gender"</span></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">attributes</span>(bfi<span class="op">$</span>gender) <span class="co"># check what we're doing</span></a></code></pre></div>
 <pre><code>## $label
@@ -232,7 +277,7 @@
 <a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(variable, label, Keying)</a>
 <a class="sourceLine" id="cb14-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb14-6" data-line-number="6"><span class="co"># turn the key-value data frame into  a list</span></a>
-<a class="sourceLine" id="cb14-7" data-line-number="7">labels &lt;-<span class="st"> </span>dict<span class="op">$</span>label <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.character</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.list</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">labels &lt;-<span class="st"> </span>dict<span class="op">$</span>label <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.list</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb14-8" data-line-number="8"><span class="st">  </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/set_names">set_names</a></span>(dict<span class="op">$</span>variable)</a>
 <a class="sourceLine" id="cb14-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co"># assign the list of labels to the bfi data frame</span></a>
@@ -246,23 +291,32 @@
 <a class="sourceLine" id="cb14-18" data-line-number="18">                  <span class="st">"Moderately Accurate"</span> =<span class="st"> </span><span class="dv">5</span>,</a>
 <a class="sourceLine" id="cb14-19" data-line-number="19">                  <span class="st">"Very Accurate"</span> =<span class="st"> </span><span class="dv">6</span>)</a>
 <a class="sourceLine" id="cb14-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb14-21" data-line-number="21">add_likert_label &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb14-22" data-line-number="22">  <span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/val_labels">val_labels</a></span>(x) &lt;-<span class="st"> </span>value_labels</a>
-<a class="sourceLine" id="cb14-23" data-line-number="23">  x</a>
-<a class="sourceLine" id="cb14-24" data-line-number="24">}</a>
-<a class="sourceLine" id="cb14-25" data-line-number="25"></a>
-<a class="sourceLine" id="cb14-26" data-line-number="26">bfi &lt;-<span class="st"> </span>bfi <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-27" data-line-number="27"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise_all.html">mutate_at</a></span>(dict <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(variable), </a>
-<a class="sourceLine" id="cb14-28" data-line-number="28">                         add_likert_label)</a>
+<a class="sourceLine" id="cb14-21" data-line-number="21"><span class="co"># dict &lt;- dict %&gt;% tbl_df()</span></a>
+<a class="sourceLine" id="cb14-22" data-line-number="22"><span class="co"># dict$vals &lt;- list(value_labels)</span></a>
+<a class="sourceLine" id="cb14-23" data-line-number="23"><span class="co"># </span></a>
+<a class="sourceLine" id="cb14-24" data-line-number="24"><span class="co"># value_labels &lt;- dict$vals %&gt;% </span></a>
+<a class="sourceLine" id="cb14-25" data-line-number="25"><span class="co">#   purrr::set_names(dict$variable)</span></a>
+<a class="sourceLine" id="cb14-26" data-line-number="26"><span class="co"># </span></a>
+<a class="sourceLine" id="cb14-27" data-line-number="27"><span class="co"># bfi &lt;- set_value_labels(bfi,value_labels)</span></a>
+<a class="sourceLine" id="cb14-28" data-line-number="28"><span class="co"># rep(value_labels, nrow(dict))</span></a>
 <a class="sourceLine" id="cb14-29" data-line-number="29"></a>
-<a class="sourceLine" id="cb14-30" data-line-number="30"><span class="co"># reverse underlying values for the reverse-keyed items</span></a>
-<a class="sourceLine" id="cb14-31" data-line-number="31">bfi &lt;-<span class="st"> </span>bfi <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-32" data-line-number="32"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise_all.html">mutate_at</a></span>(dict <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(Keying <span class="op">==</span><span class="st"> </span><span class="dv">-1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(variable), </a>
-<a class="sourceLine" id="cb14-33" data-line-number="33">    reverse_labelled_values) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-34" data-line-number="34"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select_all.html">rename_at</a></span>(dict <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(Keying <span class="op">==</span><span class="st"> </span><span class="dv">-1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(variable), </a>
-<a class="sourceLine" id="cb14-35" data-line-number="35">    <span class="op">~</span><span class="st"> </span><span class="kw">paste0</span>(.,<span class="st">"R"</span>))</a>
-<a class="sourceLine" id="cb14-36" data-line-number="36"></a>
-<a class="sourceLine" id="cb14-37" data-line-number="37"><span class="kw">attributes</span>(bfi<span class="op">$</span>A1R)</a></code></pre></div>
+<a class="sourceLine" id="cb14-30" data-line-number="30">add_likert_label &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb14-31" data-line-number="31">  <span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/val_labels">val_labels</a></span>(x) &lt;-<span class="st"> </span>value_labels</a>
+<a class="sourceLine" id="cb14-32" data-line-number="32">  x</a>
+<a class="sourceLine" id="cb14-33" data-line-number="33">}</a>
+<a class="sourceLine" id="cb14-34" data-line-number="34"></a>
+<a class="sourceLine" id="cb14-35" data-line-number="35">bfi &lt;-<span class="st"> </span>bfi <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-36" data-line-number="36"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise_all.html">mutate_at</a></span>(dict <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(variable), </a>
+<a class="sourceLine" id="cb14-37" data-line-number="37">                         add_likert_label)</a>
+<a class="sourceLine" id="cb14-38" data-line-number="38"></a>
+<a class="sourceLine" id="cb14-39" data-line-number="39"><span class="co"># reverse underlying values for the reverse-keyed items</span></a>
+<a class="sourceLine" id="cb14-40" data-line-number="40">bfi &lt;-<span class="st"> </span>bfi <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-41" data-line-number="41"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise_all.html">mutate_at</a></span>(dict <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(Keying <span class="op">==</span><span class="st"> </span><span class="dv">-1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(variable), </a>
+<a class="sourceLine" id="cb14-42" data-line-number="42">    reverse_labelled_values) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-43" data-line-number="43"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select_all.html">rename_at</a></span>(dict <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(Keying <span class="op">==</span><span class="st"> </span><span class="dv">-1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(variable), </a>
+<a class="sourceLine" id="cb14-44" data-line-number="44">    <span class="op">~</span><span class="st"> </span><span class="kw">paste0</span>(.,<span class="st">"R"</span>))</a>
+<a class="sourceLine" id="cb14-45" data-line-number="45"></a>
+<a class="sourceLine" id="cb14-46" data-line-number="46"><span class="kw">attributes</span>(bfi<span class="op">$</span>A1R)</a></code></pre></div>
 <pre><code>## $label
 ## [1] "Agreeableness: Am indifferent to the feelings of others."
 ## 
@@ -284,7 +338,26 @@
 <a class="sourceLine" id="cb16-3" data-line-number="3">bfi<span class="op">$</span>open &lt;-<span class="st"> </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>(bfi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"O"</span>)))</a>
 <a class="sourceLine" id="cb16-4" data-line-number="4">bfi<span class="op">$</span>agree &lt;-<span class="st"> </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>(bfi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"A"</span>, <span class="dt">ignore.case =</span> F)))</a>
 <a class="sourceLine" id="cb16-5" data-line-number="5">bfi<span class="op">$</span>neuro &lt;-<span class="st"> </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>(bfi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"N"</span>)))</a></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">TRUE</span>, <span class="dt">message =</span> <span class="ot">TRUE</span>, <span class="dt">error =</span> <span class="ot">TRUE</span>, <span class="dt">echo =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">data_name</span>(bfi) &lt;-<span class="st"> "25 Personality items representing 5 factors"</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">data_description</span>(bfi) &lt;-<span class="st"> "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org) were included as part of the Synthetic Aperture Personality Assessment (SAPA) web based personality assessment project. The data from 2800 subjects are included here as a demonstration set for scale construction, factor analysis, and Item Response Theory analysis. Three additional demographic variables (sex, education, and age) are also included.</span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="st">The first 25 items are organized by five putative factors: Agreeableness, Conscientiousness, Extraversion, Neuroticism, and Opennness. The item data were collected using a 6 point response scale: 1 Very Inaccurate 2 Moderately Inaccurate 3 Slightly Inaccurate 4 Slightly Accurate 5 Moderately Accurate 6 Very Accurate</span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="st">To see an example of the data collection technique, visit https://SAPA-project.org or the International Cognitive Ability Resource at https://icar-project.com. The items given were sampled from the International Personality Item Pool of Lewis Goldberg using the sampling technique of SAPA. This is a sample data set taken from the much larger SAPA data bank."</span></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="kw">data_identifier</span>(bfi) &lt;-<span class="st"> "https://cran.r-project.org/web/packages/psych/index.html"</span></a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="kw">data_datePublished</span>(bfi) &lt;-<span class="st"> "2010-01-01"</span></a>
+<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="kw">data_creator</span>(bfi) &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb17-10" data-line-number="10">      <span class="st">"@type"</span> =<span class="st"> "Person"</span>,</a>
+<a class="sourceLine" id="cb17-11" data-line-number="11">      <span class="dt">givenName =</span> <span class="st">"William"</span>, <span class="dt">familyName =</span> <span class="st">"Revelle"</span>,</a>
+<a class="sourceLine" id="cb17-12" data-line-number="12">      <span class="dt">email =</span> <span class="st">"revelle@northwestern.edu"</span>, </a>
+<a class="sourceLine" id="cb17-13" data-line-number="13">      <span class="dt">affiliation =</span> <span class="kw">list</span>(<span class="st">"@type"</span> =<span class="st"> "Organization"</span>,</a>
+<a class="sourceLine" id="cb17-14" data-line-number="14">        <span class="dt">name =</span> <span class="st">"Northwestern University"</span>))</a>
+<a class="sourceLine" id="cb17-15" data-line-number="15"><span class="kw">data_citation</span>(bfi) &lt;-<span class="st"> "Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer."</span></a>
+<a class="sourceLine" id="cb17-16" data-line-number="16"><span class="kw">data_url</span>(bfi) &lt;-<span class="st"> "https://cran.r-project.org/web/packages/psych/index.html"</span></a>
+<a class="sourceLine" id="cb17-17" data-line-number="17"><span class="kw">data_temporalCoverage</span>(bfi) &lt;-<span class="st"> "Spring 2010"</span> </a>
+<a class="sourceLine" id="cb17-18" data-line-number="18"><span class="kw">data_spatialCoverage</span>(bfi) &lt;-<span class="st"> "Online"</span> </a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># We don't want to look at the code in the codebook.</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">TRUE</span>, <span class="dt">message =</span> <span class="ot">TRUE</span>, <span class="dt">echo =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Finally, we can generate our codebook.</p>
 <div id="metadata" class="section level3">
 <h3 class="hasAnchor">
@@ -292,15 +365,54 @@
 <div id="description" class="section level4">
 <h4 class="hasAnchor">
 <a href="#description" class="anchor"></a>Description</h4>
-<p>The dataset has N=2800 rows of which n=2236 have no missings and a total of 33 columns.</p>
-<details><summary>Variable names</summary>A1R, A2, A3, A4, A5, C1, C2, C3, C4R, C5R, E1R, E2R, E3, E4, E5, N1R, N2R, N3R, N4R, N5R, O1, O2R, O3, O4, O5R, gender, education, age, consc, extra, open, agree, neuro
-</details><p>This dataset was automatically described using the codebook R package.</p>
+<p><strong>Dataset name</strong>: 25 Personality items representing 5 factors</p>
+<p>25 personality self report items taken from the International Personality Item Pool (ipip.ori.org) were included as part of the Synthetic Aperture Personality Assessment (SAPA) web based personality assessment project. The data from 2800 subjects are included here as a demonstration set for scale construction, factor analysis, and Item Response Theory analysis. Three additional demographic variables (sex, education, and age) are also included.</p>
+<p>The first 25 items are organized by five putative factors: Agreeableness, Conscientiousness, Extraversion, Neuroticism, and Opennness. The item data were collected using a 6 point response scale: 1 Very Inaccurate 2 Moderately Inaccurate 3 Slightly Inaccurate 4 Slightly Accurate 5 Moderately Accurate 6 Very Accurate</p>
+<p>To see an example of the data collection technique, visit <a href="https://SAPA-project.org" class="uri">https://SAPA-project.org</a> or the International Cognitive Ability Resource at <a href="https://icar-project.com" class="uri">https://icar-project.com</a>. The items given were sampled from the International Personality Item Pool of Lewis Goldberg using the sampling technique of SAPA. This is a sample data set taken from the much larger SAPA data bank.</p>
+<ul>
+<li>
+<strong>Temporal Coverage</strong>: Spring 2010</li>
+<li>
+<strong>Spatial Coverage</strong>: Online</li>
+<li>
+<strong>Citation</strong>: Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer.</li>
+<li>
+<strong>URL</strong>: <a href="https://cran.r-project.org/web/packages/psych/index.html" class="uri">https://cran.r-project.org/web/packages/psych/index.html</a>
+</li>
+<li>
+<strong>Identifier</strong>: <a href="https://cran.r-project.org/web/packages/psych/index.html" class="uri">https://cran.r-project.org/web/packages/psych/index.html</a>
+</li>
+<li>
+<strong>Date published</strong>: 2010-01-01</li>
+</ul>
+<p><strong>Creator</strong>:</p>
+<ul>
+<li>
+<strong><span class="citation">@type</span></strong>: Person</li>
+<li>
+<strong>givenName</strong>: William</li>
+<li>
+<strong>familyName</strong>: Revelle</li>
+<li>
+<strong>email</strong>: <a href="mailto:revelle@northwestern.edu">revelle@northwestern.edu</a>
+</li>
+<li>
+<p><strong>affiliation</strong>:</p>
+<ul>
+<li>
+<strong><span class="citation">@type</span></strong>: Organization</li>
+<li>
+<strong>name</strong>: Northwestern University</li>
+</ul>
+</li>
+</ul>
+<!-- end of list -->
 </div>
 </div>
 </div>
-<div id="items" class="section level2">
+<div id="variables" class="section level2">
 <h2 class="hasAnchor">
-<a href="#items" class="anchor"></a>Items</h2>
+<a href="#variables" class="anchor"></a>Variables</h2>
 <div id="gender" class="section level3 tabset">
 <h3 class="hasAnchor">
 <a href="#gender" class="anchor"></a>gender</h3>
@@ -2692,330 +2804,275 @@
 <div id="codebook-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#codebook-table" class="anchor"></a>Codebook table</h2>
-<div id="htmlwidget-e29d2057d735aa70eabf" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e29d2057d735aa70eabf">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#A1R\">A1R<\/a>","<a href=\"#A2\">A2<\/a>","<a href=\"#A3\">A3<\/a>","<a href=\"#A4\">A4<\/a>","<a href=\"#A5\">A5<\/a>","<a href=\"#C1\">C1<\/a>","<a href=\"#C2\">C2<\/a>","<a href=\"#C3\">C3<\/a>","<a href=\"#C4R\">C4R<\/a>","<a href=\"#C5R\">C5R<\/a>","<a href=\"#E1R\">E1R<\/a>","<a href=\"#E2R\">E2R<\/a>","<a href=\"#E3\">E3<\/a>","<a href=\"#E4\">E4<\/a>","<a href=\"#E5\">E5<\/a>","<a href=\"#N1R\">N1R<\/a>","<a href=\"#N2R\">N2R<\/a>","<a href=\"#N3R\">N3R<\/a>","<a href=\"#N4R\">N4R<\/a>","<a href=\"#N5R\">N5R<\/a>","<a href=\"#O1\">O1<\/a>","<a href=\"#O2R\">O2R<\/a>","<a href=\"#O3\">O3<\/a>","<a href=\"#O4\">O4<\/a>","<a href=\"#O5R\">O5R<\/a>","<a href=\"#gender\">gender<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#age\">age<\/a>","<a href=\"#consc\">consc<\/a>","<a href=\"#extra\">extra<\/a>","<a href=\"#open\">open<\/a>","<a href=\"#agree\">agree<\/a>","<a href=\"#neuro\">neuro<\/a>"],["Agreeableness: Am indifferent to the feelings of others.","Agreeableness: Inquire about others' well-being.","Agreeableness: Know how to comfort others.","Agreeableness: Love children.","Agreeableness: Make people feel at ease.","Conscientiousness: Am exacting in my work.","Conscientiousness: Continue until everything is perfect.","Conscientiousness: Do things according to a plan.","Conscientiousness: Do things in a half-way manner.","Conscientiousness: Waste my time.","Extraversion: Don't talk a lot.","Extraversion: Find it difficult to approach others.","Extraversion: Know how to captivate people.","Extraversion: Make friends easily.","Extraversion: Take charge.","Emotional Stability: Get angry easily.","Emotional Stability: Get irritated easily.","Emotional Stability: Have frequent mood swings.","Emotional Stability: Often feel blue.","Emotional Stability: Panic easily.","Openness: Am full of ideas.","Openness: Avoid difficult reading material.","Openness: Carry the conversation to a higher level.","Openness: Spend time reflecting on things.","Openness: Will not probe deeply into a subject.","Self-reported gender","Highest degree","age in years","5 C items aggregated by rowMeans","5 E items aggregated by rowMeans","5 O items aggregated by rowMeans","5 A items aggregated by rowMeans","5 N items aggregated by rowMeans"],["labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","numeric","labelled","integer","numeric","numeric","numeric","numeric","numeric"],["FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE",null,"FALSE",null,null,null,null,null,null],["6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. male,<br>2. female","1. in high school,<br>2. finished high school,<br>3. some college,<br>4. college graduate,<br>5. graduate degree",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"C1, C2, C3, C4R, C5R","E1R, E2R, E3, E4, E5","O1, O2R, O3, O4, O5R","A1R, A2, A3, A4, A5","N1R, N2R, N3R, N4R, N5R"],["16","27","26","19","16","21","24","20","26","16","23","16","25","9","21","22","21","11","36","29","22","0","28","14","20","0","223","0","93","87","74","91","106"],["2784","2773","2774","2781","2784","2779","2776","2780","2774","2784","2777","2784","2775","2791","2779","2778","2779","2789","2764","2771","2778","2800","2772","2786","2780","2800","2577","2800","2707","2713","2726","2709","2694"],["2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800"],["6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6",null,"5",null,null,null,null,null,null],["6: 922, 5: 818, 4: 402, 3: 337","5: 1023, 6: 873, 4: 553, 3: 151","5: 986, 6: 755, 4: 564, 3: 207","6: 1147, 5: 654, 4: 451, 2: 215","5: 973, 6: 695, 4: 617, 3: 254","5: 1018, 4: 655, 6: 597, 3: 275","5: 962, 4: 643, 6: 550, 3: 296","5: 942, 4: 741, 6: 472, 3: 293","5: 794, 6: 769, 4: 472, 3: 448","3: 614, 5: 567, 6: 504, 2: 466","6: 663, 5: 652, 3: 450, 4: 404","5: 670, 3: 599, 6: 533, 2: 385","4: 826, 5: 743, 3: 412, 6: 352","5: 942, 6: 726, 4: 450, 3: 271","5: 940, 4: 619, 6: 616, 3: 288","5: 654, 6: 654, 3: 515, 4: 427","3: 709, 5: 535, 2: 510, 4: 411","5: 638, 3: 591, 6: 499, 2: 439","5: 655, 3: 608, 6: 472, 4: 401","5: 660, 6: 654, 3: 507, 4: 382","5: 925, 6: 912, 4: 606, 3: 210","6: 805, 5: 717, 3: 435, 4: 388","5: 943, 4: 775, 6: 541, 3: 292","6: 1084, 5: 887, 4: 481, 3: 154","5: 883, 6: 746, 4: 526, 3: 364",null,"3: 1249, 5: 418, 4: 394, 2: 292",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1.67",null,"28.78","4.26","4.14","4.59","4.64","3.84"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"0.47",null,"11.13","0.95","1.06","0.81","0.9 ","1.19"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1  ",null,"3","1  ","1  ","1.2","1  ","1  "],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1  ",null,"20","3.6","3.4","4  ","4.2","3  "],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2  ",null,"26","4.4","4.2","4.6","4.8","4  "],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2  ",null,"35","5  ","5  ","5.2","5.4","4.8"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2",null,"86","6","6","6","6","6"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"▃▁▁▁▁▁▁▇",null,"▁▇▆▃▂▁▁▁","▁▁▂▅▇▇▇▅","▁▁▃▅▇▇▇▆","▁▁▁▂▇▇▇▅","▁▁▁▂▃▆▇▇","▂▃▆▇▇▇▇▅"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>scale_item_names<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>n_unique<\/th>\n      <th>top_counts<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
+<div id="htmlwidget-190642c717ddc4fe1721" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-190642c717ddc4fe1721">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#A1R\">A1R<\/a>","<a href=\"#A2\">A2<\/a>","<a href=\"#A3\">A3<\/a>","<a href=\"#A4\">A4<\/a>","<a href=\"#A5\">A5<\/a>","<a href=\"#C1\">C1<\/a>","<a href=\"#C2\">C2<\/a>","<a href=\"#C3\">C3<\/a>","<a href=\"#C4R\">C4R<\/a>","<a href=\"#C5R\">C5R<\/a>","<a href=\"#E1R\">E1R<\/a>","<a href=\"#E2R\">E2R<\/a>","<a href=\"#E3\">E3<\/a>","<a href=\"#E4\">E4<\/a>","<a href=\"#E5\">E5<\/a>","<a href=\"#N1R\">N1R<\/a>","<a href=\"#N2R\">N2R<\/a>","<a href=\"#N3R\">N3R<\/a>","<a href=\"#N4R\">N4R<\/a>","<a href=\"#N5R\">N5R<\/a>","<a href=\"#O1\">O1<\/a>","<a href=\"#O2R\">O2R<\/a>","<a href=\"#O3\">O3<\/a>","<a href=\"#O4\">O4<\/a>","<a href=\"#O5R\">O5R<\/a>","<a href=\"#gender\">gender<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#age\">age<\/a>","<a href=\"#consc\">consc<\/a>","<a href=\"#extra\">extra<\/a>","<a href=\"#open\">open<\/a>","<a href=\"#agree\">agree<\/a>","<a href=\"#neuro\">neuro<\/a>"],["Agreeableness: Am indifferent to the feelings of others.","Agreeableness: Inquire about others' well-being.","Agreeableness: Know how to comfort others.","Agreeableness: Love children.","Agreeableness: Make people feel at ease.","Conscientiousness: Am exacting in my work.","Conscientiousness: Continue until everything is perfect.","Conscientiousness: Do things according to a plan.","Conscientiousness: Do things in a half-way manner.","Conscientiousness: Waste my time.","Extraversion: Don't talk a lot.","Extraversion: Find it difficult to approach others.","Extraversion: Know how to captivate people.","Extraversion: Make friends easily.","Extraversion: Take charge.","Emotional Stability: Get angry easily.","Emotional Stability: Get irritated easily.","Emotional Stability: Have frequent mood swings.","Emotional Stability: Often feel blue.","Emotional Stability: Panic easily.","Openness: Am full of ideas.","Openness: Avoid difficult reading material.","Openness: Carry the conversation to a higher level.","Openness: Spend time reflecting on things.","Openness: Will not probe deeply into a subject.","Self-reported gender","Highest degree","age in years","5 C items aggregated by rowMeans","5 E items aggregated by rowMeans","5 O items aggregated by rowMeans","5 A items aggregated by rowMeans","5 N items aggregated by rowMeans"],["labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","numeric","labelled","integer","numeric","numeric","numeric","numeric","numeric"],["FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE",null,"FALSE",null,null,null,null,null,null],["6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. male,<br>2. female","1. in high school,<br>2. finished high school,<br>3. some college,<br>4. college graduate,<br>5. graduate degree",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"C1, C2, C3, C4R, C5R","E1R, E2R, E3, E4, E5","O1, O2R, O3, O4, O5R","A1R, A2, A3, A4, A5","N1R, N2R, N3R, N4R, N5R"],["16","27","26","19","16","21","24","20","26","16","23","16","25","9","21","22","21","11","36","29","22","0","28","14","20","0","223","0","93","87","74","91","106"],["2784","2773","2774","2781","2784","2779","2776","2780","2774","2784","2777","2784","2775","2791","2779","2778","2779","2789","2764","2771","2778","2800","2772","2786","2780","2800","2577","2800","2707","2713","2726","2709","2694"],["2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800"],["6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6",null,"5",null,null,null,null,null,null],["6: 922, 5: 818, 4: 402, 3: 337","5: 1023, 6: 873, 4: 553, 3: 151","5: 986, 6: 755, 4: 564, 3: 207","6: 1147, 5: 654, 4: 451, 2: 215","5: 973, 6: 695, 4: 617, 3: 254","5: 1018, 4: 655, 6: 597, 3: 275","5: 962, 4: 643, 6: 550, 3: 296","5: 942, 4: 741, 6: 472, 3: 293","5: 794, 6: 769, 4: 472, 3: 448","3: 614, 5: 567, 6: 504, 2: 466","6: 663, 5: 652, 3: 450, 4: 404","5: 670, 3: 599, 6: 533, 2: 385","4: 826, 5: 743, 3: 412, 6: 352","5: 942, 6: 726, 4: 450, 3: 271","5: 940, 4: 619, 6: 616, 3: 288","5: 654, 6: 654, 3: 515, 4: 427","3: 709, 5: 535, 2: 510, 4: 411","5: 638, 3: 591, 6: 499, 2: 439","5: 655, 3: 608, 6: 472, 4: 401","5: 660, 6: 654, 3: 507, 4: 382","5: 925, 6: 912, 4: 606, 3: 210","6: 805, 5: 717, 3: 435, 4: 388","5: 943, 4: 775, 6: 541, 3: 292","6: 1084, 5: 887, 4: 481, 3: 154","5: 883, 6: 746, 4: 526, 3: 364",null,"3: 1249, 5: 418, 4: 394, 2: 292",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1.67",null,"28.78","4.26","4.14","4.59","4.64","3.84"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"0.47",null,"11.13","0.95","1.06","0.81","0.9 ","1.19"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1  ",null,"3","1  ","1  ","1.2","1  ","1  "],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1  ",null,"20","3.6","3.4","4  ","4.2","3  "],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2  ",null,"26","4.4","4.2","4.6","4.8","4  "],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2  ",null,"35","5  ","5  ","5.2","5.4","4.8"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2",null,"86","6","6","6","6","6"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"▃▁▁▁▁▁▁▇",null,"▁▇▆▃▂▁▁▁","▁▁▂▅▇▇▇▅","▁▁▃▅▇▇▇▆","▁▁▁▂▇▇▇▅","▁▁▁▂▃▆▇▇","▂▃▆▇▇▇▇▅"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>scale_item_names<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>n_unique<\/th>\n      <th>top_counts<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
 {
-  "description": "The dataset has N=2800 rows of\nwhich n=2236 have no missings and a total of\n33 columns.\n\n<details><summary>Variable names<\/summary>A1R, A2, A3, A4, A5, C1, C2, C3, C4R, C5R, E1R, E2R, E3, E4, E5, N1R, N2R, N3R, N4R, N5R, O1, O2R, O3, O4, O5R, gender, education, age, consc, extra, open, agree, neuro<\/details>\n\nThis dataset was automatically described using the codebook R package.",
+  "name": "25 Personality items representing 5 factors",
+  "description": "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org) were included as part of the Synthetic Aperture Personality Assessment (SAPA) web based personality assessment project. The data from 2800 subjects are included here as a demonstration set for scale construction, factor analysis, and Item Response Theory analysis. Three additional demographic variables (sex, education, and age) are also included.\n\nThe first 25 items are organized by five putative factors: Agreeableness, Conscientiousness, Extraversion, Neuroticism, and Opennness. The item data were collected using a 6 point response scale: 1 Very Inaccurate 2 Moderately Inaccurate 3 Slightly Inaccurate 4 Slightly Accurate 5 Moderately Accurate 6 Very Accurate\n\nTo see an example of the data collection technique, visit https://SAPA-project.org or the International Cognitive Ability Resource at https://icar-project.com. The items given were sampled from the International Personality Item Pool of Lewis Goldberg using the sampling technique of SAPA. This is a sample data set taken from the much larger SAPA data bank.",
+  "identifier": "https://cran.r-project.org/web/packages/psych/index.html",
+  "datePublished": "2010-01-01",
+  "creator": {
+    "@type": "Person",
+    "givenName": "William",
+    "familyName": "Revelle",
+    "email": "revelle@northwestern.edu",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Northwestern University"
+    }
+  },
+  "citation": "Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer.",
+  "url": "https://cran.r-project.org/web/packages/psych/index.html",
+  "temporalCoverage": "Spring 2010",
+  "spatialCoverage": "Online",
+  "keywords": ["A1R", "A2", "A3", "A4", "A5", "C1", "C2", "C3", "C4R", "C5R", "E1R", "E2R", "E3", "E4", "E5", "N1R", "N2R", "N3R", "N4R", "N5R", "O1", "O2R", "O3", "O4", "O5R", "gender", "education", "age", "consc", "extra", "open", "agree", "neuro"],
   "@context": "http://schema.org/",
   "@type": "Dataset",
-  "keywords": ["A1R", "A2", "A3", "A4", "A5", "C1", "C2", "C3", "C4R", "C5R", "E1R", "E2R", "E3", "E4", "E5", "N1R", "N2R", "N3R", "N4R", "N5R", "O1", "O2R", "O3", "O4", "O5R", "gender", "education", "age", "consc", "extra", "open", "agree", "neuro"],
   "variableMeasured": [
     {
       "name": "A1R",
       "description": "Agreeableness: Am indifferent to the feelings of others.",
+      "value": "6. Very Inaccurate,\n5. Moderately Inaccurate,\n4. Slightly Inaccurate,\n3. Slightly Accurate,\n2. Moderately Accurate,\n1. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "A2",
       "description": "Agreeableness: Inquire about others' well-being.",
+      "value": "1. Very Inaccurate,\n2. Moderately Inaccurate,\n3. Slightly Inaccurate,\n4. Slightly Accurate,\n5. Moderately Accurate,\n6. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "A3",
       "description": "Agreeableness: Know how to comfort others.",
+      "value": "1. Very Inaccurate,\n2. Moderately Inaccurate,\n3. Slightly Inaccurate,\n4. Slightly Accurate,\n5. Moderately Accurate,\n6. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "A4",
       "description": "Agreeableness: Love children.",
+      "value": "1. Very Inaccurate,\n2. Moderately Inaccurate,\n3. Slightly Inaccurate,\n4. Slightly Accurate,\n5. Moderately Accurate,\n6. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "A5",
       "description": "Agreeableness: Make people feel at ease.",
+      "value": "1. Very Inaccurate,\n2. Moderately Inaccurate,\n3. Slightly Inaccurate,\n4. Slightly Accurate,\n5. Moderately Accurate,\n6. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "C1",
       "description": "Conscientiousness: Am exacting in my work.",
+      "value": "1. Very Inaccurate,\n2. Moderately Inaccurate,\n3. Slightly Inaccurate,\n4. Slightly Accurate,\n5. Moderately Accurate,\n6. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "C2",
       "description": "Conscientiousness: Continue until everything is perfect.",
+      "value": "1. Very Inaccurate,\n2. Moderately Inaccurate,\n3. Slightly Inaccurate,\n4. Slightly Accurate,\n5. Moderately Accurate,\n6. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "C3",
       "description": "Conscientiousness: Do things according to a plan.",
+      "value": "1. Very Inaccurate,\n2. Moderately Inaccurate,\n3. Slightly Inaccurate,\n4. Slightly Accurate,\n5. Moderately Accurate,\n6. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "C4R",
       "description": "Conscientiousness: Do things in a half-way manner.",
+      "value": "6. Very Inaccurate,\n5. Moderately Inaccurate,\n4. Slightly Inaccurate,\n3. Slightly Accurate,\n2. Moderately Accurate,\n1. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "C5R",
       "description": "Conscientiousness: Waste my time.",
+      "value": "6. Very Inaccurate,\n5. Moderately Inaccurate,\n4. Slightly Inaccurate,\n3. Slightly Accurate,\n2. Moderately Accurate,\n1. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "E1R",
       "description": "Extraversion: Don't talk a lot.",
+      "value": "6. Very Inaccurate,\n5. Moderately Inaccurate,\n4. Slightly Inaccurate,\n3. Slightly Accurate,\n2. Moderately Accurate,\n1. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "E2R",
       "description": "Extraversion: Find it difficult to approach others.",
+      "value": "6. Very Inaccurate,\n5. Moderately Inaccurate,\n4. Slightly Inaccurate,\n3. Slightly Accurate,\n2. Moderately Accurate,\n1. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "E3",
       "description": "Extraversion: Know how to captivate people.",
+      "value": "1. Very Inaccurate,\n2. Moderately Inaccurate,\n3. Slightly Inaccurate,\n4. Slightly Accurate,\n5. Moderately Accurate,\n6. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "E4",
       "description": "Extraversion: Make friends easily.",
+      "value": "1. Very Inaccurate,\n2. Moderately Inaccurate,\n3. Slightly Inaccurate,\n4. Slightly Accurate,\n5. Moderately Accurate,\n6. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "E5",
       "description": "Extraversion: Take charge.",
+      "value": "1. Very Inaccurate,\n2. Moderately Inaccurate,\n3. Slightly Inaccurate,\n4. Slightly Accurate,\n5. Moderately Accurate,\n6. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "N1R",
       "description": "Emotional Stability: Get angry easily.",
+      "value": "6. Very Inaccurate,\n5. Moderately Inaccurate,\n4. Slightly Inaccurate,\n3. Slightly Accurate,\n2. Moderately Accurate,\n1. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "N2R",
       "description": "Emotional Stability: Get irritated easily.",
+      "value": "6. Very Inaccurate,\n5. Moderately Inaccurate,\n4. Slightly Inaccurate,\n3. Slightly Accurate,\n2. Moderately Accurate,\n1. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "N3R",
       "description": "Emotional Stability: Have frequent mood swings.",
+      "value": "6. Very Inaccurate,\n5. Moderately Inaccurate,\n4. Slightly Inaccurate,\n3. Slightly Accurate,\n2. Moderately Accurate,\n1. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "N4R",
       "description": "Emotional Stability: Often feel blue.",
+      "value": "6. Very Inaccurate,\n5. Moderately Inaccurate,\n4. Slightly Inaccurate,\n3. Slightly Accurate,\n2. Moderately Accurate,\n1. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "N5R",
       "description": "Emotional Stability: Panic easily.",
+      "value": "6. Very Inaccurate,\n5. Moderately Inaccurate,\n4. Slightly Inaccurate,\n3. Slightly Accurate,\n2. Moderately Accurate,\n1. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "O1",
       "description": "Openness: Am full of ideas.",
+      "value": "1. Very Inaccurate,\n2. Moderately Inaccurate,\n3. Slightly Inaccurate,\n4. Slightly Accurate,\n5. Moderately Accurate,\n6. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "O2R",
       "description": "Openness: Avoid difficult reading material.",
+      "value": "6. Very Inaccurate,\n5. Moderately Inaccurate,\n4. Slightly Inaccurate,\n3. Slightly Accurate,\n2. Moderately Accurate,\n1. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "O3",
       "description": "Openness: Carry the conversation to a higher level.",
+      "value": "1. Very Inaccurate,\n2. Moderately Inaccurate,\n3. Slightly Inaccurate,\n4. Slightly Accurate,\n5. Moderately Accurate,\n6. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "O4",
       "description": "Openness: Spend time reflecting on things.",
+      "value": "1. Very Inaccurate,\n2. Moderately Inaccurate,\n3. Slightly Inaccurate,\n4. Slightly Accurate,\n5. Moderately Accurate,\n6. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "O5R",
       "description": "Openness: Will not probe deeply into a subject.",
+      "value": "6. Very Inaccurate,\n5. Moderately Inaccurate,\n4. Slightly Inaccurate,\n3. Slightly Accurate,\n2. Moderately Accurate,\n1. Very Accurate",
       "maxValue": 6,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "gender",
       "description": "Self-reported gender",
+      "value": "1. male,\n2. female",
       "maxValue": 2,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "education",
       "description": "Highest degree",
+      "value": "1. in high school,\n2. finished high school,\n3. some college,\n4. college graduate,\n5. graduate degree",
       "maxValue": 5,
       "minValue": 1,
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "age",
       "description": "age in years",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "consc",
       "description": "5 C items aggregated by rowMeans",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "extra",
       "description": "5 E items aggregated by rowMeans",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "open",
       "description": "5 O items aggregated by rowMeans",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "agree",
       "description": "5 A items aggregated by rowMeans",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
       "name": "neuro",
       "description": "5 N items aggregated by rowMeans",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     }
   ]
@@ -3031,7 +3088,7 @@
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#how-to-add-variable-and-value-labels">How to add variable and value labels</a></li>
       <li><a href="#aggregating-scales">Aggregating scales</a></li>
-      <li><a href="#items">Items</a></li>
+      <li><a href="#variables">Variables</a></li>
       <li><a href="#missingness-report">Missingness report</a></li>
       <li><a href="#codebook-table">Codebook table</a></li>
       </ul>

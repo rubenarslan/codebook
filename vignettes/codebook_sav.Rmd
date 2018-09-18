@@ -37,9 +37,68 @@ the `detect_missing` function makes it easy to recognise common ways to specify
 missing data (e.g. negative values, labelled values, 99/999).
 
 ```{r}
-darktriad <- rio::import("https://osf.io/j4fcb/download", format = "sav") %>%
+darktriad <- rio::import("https://osf.io/j4fcb/download", format = "sav")
+if (!knit_by_pkgdown) {
+  darktriad <- darktriad %>%
   select(DG, sex, relStat, education, NPI_avg)
-if (!knit_by_pkgdown) knitr::opts_chunk$set(echo = FALSE)
+}
+```
+
+
+```{r}
+data_name(darktriad) <- "How alluring are dark personalities? The Dark Triad and attractiveness in speed dating"
+data_description(darktriad) <- "The data to this speed dating study comes in two different formats: Personwise (one record for each individual) and dyadic (pairwise; one record for each date). The respective SPSS files are named \"DarkTriadDate_person.sav\" and \"DarkTriadDate_dyad.sav\".
+
+The personwise datafile contains individual differences variables and perceiver and target effects according to the social relations model. These are centered marginal means that were calculated according to the formulae provided by Kenny, Kashy, and Cook (2006). These effects are not (!) based on multilevel analyses.
+
+All rating variables (i.e., actual choice, friendship, short-term relationship etc.) were corrected for prior acquaintance, which means that dates wih prior acquaintance were excluded (set to missing) on a dyadic basis.
+
+
+Variables are labeled in SPSS. Here is a list of important abbreviations, prefixes and suffixes:
+
+_acq = acquaintance (i.e., variables with this suffix are controlled for prior acquaintance)
+_avg = average
+_rat = rating variable
+_z = z-standardized score
+BC = booty call
+DG = dating group (three groups in this study)
+FIPI = five item personality inventory
+FS = friendship
+FWB = friends-with-benefits
+Int = Intelligence
+Like = Likeability
+LTR = long-term relationship
+MACHIV = mach-iv machiavellianism questionnaire
+N, E, O, A, C = Big5
+NPI = narcissistic personality inventory
+ONS = one night stand
+P = perceiver
+PA = physical attractiveness
+PercEff = perceiver effect
+SD = speed dating
+SRM = social relations model
+SRP = self-report psychopathy scale
+STR = short-term relationship
+T = target
+TargEff = target effect
+"
+data_identifier(darktriad) <- "https://osf.io/jvk3u/"
+data_datePublished(darktriad) <- "2015-10-07"
+data_creator(darktriad) <- list(
+      "@type" = "Person",
+      givenName = "Emanuel", familyName = "Jauk",
+      email = "emanuel.jauk@uni‐graz.at", 
+      affiliation = list("@type" = "Organization",
+        name = "Karl‐Franzens‐Universität Graz, Austria"))
+data_citation(darktriad) <- "Jauk, E., Neubauer, A. C., Mairunteregger, T., Pemp, S., Sieber, K. P., & Rauthmann, J. F. (2016). How alluring are dark personalities? The Dark Triad and attractiveness in speed dating. European Journal of Personality, 30(2), 125-138."
+data_url(darktriad) <- "https://osf.io/j4fcb/"
+data_temporalCoverage(darktriad) <- "2015" 
+data_spatialCoverage(darktriad) <- "Graz, Austria" 
+```
+
+```{r}
+# We don't want to look at the code in the codebook.
+knitr::opts_chunk$set(warning = TRUE, message = TRUE, echo = FALSE)
 ```
 
 Now, we can immediately generate a codebook.
@@ -48,7 +107,6 @@ Now, we can immediately generate a codebook.
 codebook(darktriad, survey_repetition = "single",
          metadata_table = knit_by_pkgdown, metadata_json = knit_by_pkgdown)
 ```
-
 
 `r ifelse(knit_by_pkgdown, '', '### Codebook table')`
 

@@ -109,7 +109,7 @@
       <h1>Codebook example with Qualtrics dataset</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2018-09-15</h4>
+            <h4 class="date">2018-09-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook_qualtrics.Rmd"><code>vignettes/codebook_qualtrics.Rmd</code></a></small>
       <div class="hidden name"><code>codebook_qualtrics.Rmd</code></div>
@@ -155,57 +155,70 @@
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span>knit_by_pkgdown) knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Please note, that we just reuse the metadata column names from Qualtrics. Standardising this across multiple survey providers would be great but requires more knowledge of Qualtrics than I have.</p>
 <p>Owing to a bug in pander, the deeply nested attribute structure is currently not shown as a nice list.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="../reference/codebook.html">codebook</a></span>(results, <span class="dt">survey_repetition =</span> <span class="st">"single"</span>,</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">         <span class="dt">metadata_table =</span> knit_by_pkgdown, <span class="dt">metadata_json =</span> knit_by_pkgdown)</a></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/asis_output">asis_output</a></span>(data_info)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">data_name</span>(results) &lt;-<span class="st"> "MOCK Qualtrics dataset"</span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw">data_description</span>(results) &lt;-<span class="st"> "a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package"</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="kw">data_identifier</span>(results) &lt;-<span class="st"> "doi:10.5281/zenodo.1326520"</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="kw">data_datePublished</span>(results) &lt;-<span class="st"> "2018-08-01"</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="kw">data_creator</span>(results) &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb10-6" data-line-number="6">      <span class="st">"@type"</span> =<span class="st"> "Person"</span>,</a>
+<a class="sourceLine" id="cb10-7" data-line-number="7">      <span class="dt">givenName =</span> <span class="st">"Ruben"</span>, <span class="dt">familyName =</span> <span class="st">"Arslan"</span>,</a>
+<a class="sourceLine" id="cb10-8" data-line-number="8">      <span class="dt">email =</span> <span class="st">"ruben.arslan@gmail.com"</span>, </a>
+<a class="sourceLine" id="cb10-9" data-line-number="9">      <span class="dt">affiliation =</span> <span class="kw">list</span>(<span class="st">"@type"</span> =<span class="st"> "Organization"</span>,</a>
+<a class="sourceLine" id="cb10-10" data-line-number="10">        <span class="dt">name =</span> <span class="st">"MPI Human Development, Berlin"</span>))</a>
+<a class="sourceLine" id="cb10-11" data-line-number="11"><span class="kw">data_url</span>(results) &lt;-<span class="st"> "https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html"</span></a>
+<a class="sourceLine" id="cb10-12" data-line-number="12"><span class="kw">data_temporalCoverage</span>(results) &lt;-<span class="st"> "2018"</span> </a>
+<a class="sourceLine" id="cb10-13" data-line-number="13"><span class="kw">data_spatialCoverage</span>(results) &lt;-<span class="st"> "Nowhere"</span> </a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># We don't want to look at the code in the codebook.</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">TRUE</span>, <span class="dt">message =</span> <span class="ot">TRUE</span>, <span class="dt">echo =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## No missing values.</code></pre>
 <div id="metadata" class="section level3">
 <h3 class="hasAnchor">
 <a href="#metadata" class="anchor"></a>Metadata</h3>
 <div id="description" class="section level4">
 <h4 class="hasAnchor">
 <a href="#description" class="anchor"></a>Description</h4>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">is_attribute_set</span>(<span class="st">"name"</span>, results)) {</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">  glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3">    <span class="st">"__Dataset name__: {name}"</span>,</a>
-<a class="sourceLine" id="cb12-4" data-line-number="4">    <span class="dt">.envir =</span> meta)</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5">}</a></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">cat</span>(description)</a></code></pre></div>
-<p>The dataset has N=2 rows of which n=2 have no missings and a total of 3 columns.</p>
-<details><summary>Variable names</summary>ResponseSet, Q7, Q10
-</details><p>This dataset was automatically described using the codebook R package.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">is_attribute_set</span>(<span class="st">"temporalCoverage"</span>, results)) {</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">  glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3">    <span class="st">"- __Temporal Coverage__: [{url}](url)"</span>,</a>
-<a class="sourceLine" id="cb14-4" data-line-number="4">    <span class="dt">.envir =</span> meta)</a>
-<a class="sourceLine" id="cb14-5" data-line-number="5">}</a></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">is_attribute_set</span>(<span class="st">"spatialCoverage"</span>, results)) {</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">  glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3">    <span class="st">"- __Spatial Coverage__: [{url}](url)"</span>,</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4">    <span class="dt">.envir =</span> meta)</a>
-<a class="sourceLine" id="cb15-5" data-line-number="5">}</a></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">is_attribute_set</span>(<span class="st">"citation"</span>, results)) {</a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">  glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3">    <span class="st">"- __Citation__: {citation}"</span>,</a>
-<a class="sourceLine" id="cb16-4" data-line-number="4">    <span class="dt">.envir =</span> meta)</a>
-<a class="sourceLine" id="cb16-5" data-line-number="5">}</a></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">is_attribute_set</span>(<span class="st">"url"</span>, results)) {</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">  glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3">    <span class="st">"- __URL__: [{url}](url)"</span>,</a>
-<a class="sourceLine" id="cb17-4" data-line-number="4">    <span class="dt">.envir =</span> meta)</a>
-<a class="sourceLine" id="cb17-5" data-line-number="5">}</a></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">is_attribute_set</span>(<span class="st">"identifier"</span>, results)) {</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">  glue<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/glue/topics/glue">glue</a></span>(</a>
-<a class="sourceLine" id="cb18-3" data-line-number="3">    <span class="st">"- __Identifier__: {identifier}"</span>,</a>
-<a class="sourceLine" id="cb18-4" data-line-number="4">    <span class="dt">.envir =</span> meta)</a>
-<a class="sourceLine" id="cb18-5" data-line-number="5">}</a></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/asis_output">asis_output</a></span>(survey_overview)</a></code></pre></div>
+<p><strong>Dataset name</strong>: MOCK Qualtrics dataset</p>
+<p>a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package</p>
+<ul>
+<li>
+<strong>Temporal Coverage</strong>: 2018</li>
+<li><p><strong>Spatial Coverage</strong>: Nowhere</p></li>
+<li>
+<strong>URL</strong>: <a href="https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html" class="uri">https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html</a>
+</li>
+<li>
+<strong>Identifier</strong>: <a href="doi:10.5281/zenodo.1326520" class="uri">doi:10.5281/zenodo.1326520</a>
+</li>
+<li><p><strong>Date published</strong>: 2018-08-01</p></li>
+</ul>
+<p><strong>Creator</strong>:</p>
+<ul>
+<li>
+<strong><span class="citation">@type</span></strong>: Person</li>
+<li>
+<strong>givenName</strong>: Ruben</li>
+<li>
+<strong>familyName</strong>: Arslan</li>
+<li>
+<strong>email</strong>: <a href="mailto:ruben.arslan@gmail.com">ruben.arslan@gmail.com</a>
+</li>
+<li>
+<p><strong>affiliation</strong>:</p>
+<ul>
+<li>
+<strong><span class="citation">@type</span></strong>: Organization</li>
+<li>
+<strong>name</strong>: MPI Human Development, Berlin</li>
+</ul>
+</li>
+</ul>
+<!-- end of list -->
 </div>
 </div>
 </div>
-<div id="items" class="section level2">
+<div id="variables" class="section level2">
 <h2 class="hasAnchor">
-<a href="#items" class="anchor"></a>Items</h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/asis_output">asis_output</a></span>(<span class="kw">paste0</span>(scales_items, <span class="dt">sep =</span> <span class="st">"</span><span class="ch">\n\n\n</span><span class="st">"</span>, <span class="dt">collapse =</span> <span class="st">"</span><span class="ch">\n\n\n</span><span class="st">"</span>))</a></code></pre></div>
+<a href="#variables" class="anchor"></a>Variables</h2>
 <div id="ResponseSet" class="section level3 tabset">
 <h3 class="hasAnchor">
 <a href="#ResponseSet" class="anchor"></a>ResponseSet</h3>
@@ -213,77 +226,12 @@
 <div id="ResponseSet_distribution" class="section level4">
 <h4 class="hasAnchor">
 <a href="#ResponseSet_distribution" class="anchor"></a>Distribution</h4>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">show_missing_values &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_labels.html">has_labels</a></span>(item)) {</a>
-<a class="sourceLine" id="cb21-3" data-line-number="3">  missing_values &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
-<a class="sourceLine" id="cb21-4" data-line-number="4">  <span class="kw">attributes</span>(missing_values) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
-<a class="sourceLine" id="cb21-5" data-line-number="5">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)) {</a>
-<a class="sourceLine" id="cb21-6" data-line-number="6">    <span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels[<span class="kw">is.na</span>(<span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels)]</a>
-<a class="sourceLine" id="cb21-7" data-line-number="7">    <span class="kw">attributes</span>(item)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)<span class="op">$</span>labels[<span class="op">!</span><span class="kw">is.na</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)]</a>
-<a class="sourceLine" id="cb21-8" data-line-number="8">  }</a>
-<a class="sourceLine" id="cb21-9" data-line-number="9">  <span class="cf">if</span> (<span class="kw">is.numeric</span>(item)) {</a>
-<a class="sourceLine" id="cb21-10" data-line-number="10">    show_missing_values &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/tagged_na">na_tag</a></span>(missing_values))) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb21-11" data-line-number="11">    item &lt;-<span class="st"> </span>haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item)</a>
-<a class="sourceLine" id="cb21-12" data-line-number="12">  }</a>
-<a class="sourceLine" id="cb21-13" data-line-number="13">  <span class="cf">if</span> (<span class="kw">length</span>(item_attributes<span class="op">$</span>labels) <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">is.numeric</span>(item)) {</a>
-<a class="sourceLine" id="cb21-14" data-line-number="14">    item &lt;-<span class="st"> </span>haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_labels">zap_labels</a></span>(item)</a>
-<a class="sourceLine" id="cb21-15" data-line-number="15">  }</a>
-<a class="sourceLine" id="cb21-16" data-line-number="16">}</a>
-<a class="sourceLine" id="cb21-17" data-line-number="17">item_nomiss &lt;-<span class="st"> </span>item[<span class="op">!</span><span class="kw">is.na</span>(item)]</a>
-<a class="sourceLine" id="cb21-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb21-19" data-line-number="19"><span class="co"># unnest mc_multiple and so on</span></a>
-<a class="sourceLine" id="cb21-20" data-line-number="20"><span class="cf">if</span> (</a>
-<a class="sourceLine" id="cb21-21" data-line-number="21">  <span class="kw">is.character</span>(item_nomiss) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb21-22" data-line-number="22"><span class="st">  </span>stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/str_detect">str_detect</a></span>(item_nomiss, stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">fixed</a></span>(<span class="st">", "</span>)) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb21-23" data-line-number="23"><span class="st">  </span>(<span class="kw">exists</span>(<span class="st">"type"</span>, item_info) <span class="op">&amp;&amp;</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-24" data-line-number="24"><span class="st">    </span>stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/str_detect">str_detect</a></span>(item_info<span class="op">$</span>type, <span class="dt">pattern =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">fixed</a></span>(<span class="st">"multiple"</span>)))</a>
-<a class="sourceLine" id="cb21-25" data-line-number="25">  ) {</a>
-<a class="sourceLine" id="cb21-26" data-line-number="26">  item_nomiss &lt;-<span class="st"> </span><span class="kw">unlist</span>(stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/str_split">str_split</a></span>(item_nomiss, <span class="dt">pattern =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">fixed</a></span>(<span class="st">", "</span>)))</a>
-<a class="sourceLine" id="cb21-27" data-line-number="27">}</a>
-<a class="sourceLine" id="cb21-28" data-line-number="28"><span class="kw">attributes</span>(item_nomiss) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
-<a class="sourceLine" id="cb21-29" data-line-number="29"></a>
-<a class="sourceLine" id="cb21-30" data-line-number="30">old_height &lt;-<span class="st"> </span>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">"fig.height"</span>)</a>
-<a class="sourceLine" id="cb21-31" data-line-number="31">non_missing_choices &lt;-<span class="st"> </span>item_attributes[[<span class="st">"labels"</span>]]</a>
-<a class="sourceLine" id="cb21-32" data-line-number="32">many_labels &lt;-<span class="st"> </span><span class="kw">length</span>(non_missing_choices) <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span></a>
-<a class="sourceLine" id="cb21-33" data-line-number="33">go_vertical &lt;-<span class="st"> </span><span class="op">!</span><span class="kw">is.numeric</span>(item_nomiss) <span class="op">||</span><span class="st"> </span>many_labels</a>
-<a class="sourceLine" id="cb21-34" data-line-number="34"><span class="cf">if</span> ( go_vertical ) {</a>
-<a class="sourceLine" id="cb21-35" data-line-number="35">  <span class="co"># numeric items are plotted horizontally (because that's what usually expected)</span></a>
-<a class="sourceLine" id="cb21-36" data-line-number="36">  <span class="co"># categorical items are plotted vertically because we can use the screen real estate better this way</span></a>
-<a class="sourceLine" id="cb21-37" data-line-number="37"></a>
-<a class="sourceLine" id="cb21-38" data-line-number="38">    <span class="cf">if</span> (<span class="kw">is.null</span>(choices) <span class="op">||</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb21-39" data-line-number="39"><span class="st">        </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span>(item_nomiss) <span class="op">&gt;</span><span class="st"> </span><span class="kw">length</span>(non_missing_choices)) {</a>
-<a class="sourceLine" id="cb21-40" data-line-number="40">        non_missing_choices &lt;-<span class="st"> </span><span class="kw">unique</span>(item_nomiss)</a>
-<a class="sourceLine" id="cb21-41" data-line-number="41">        <span class="kw">names</span>(non_missing_choices) &lt;-<span class="st"> </span>non_missing_choices</a>
-<a class="sourceLine" id="cb21-42" data-line-number="42">    }</a>
-<a class="sourceLine" id="cb21-43" data-line-number="43">  choice_multiplier &lt;-<span class="st"> </span>old_height<span class="op">/</span><span class="fl">6.5</span></a>
-<a class="sourceLine" id="cb21-44" data-line-number="44">    new_height &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>choice_multiplier <span class="op">*</span><span class="st"> </span><span class="kw">length</span>(non_missing_choices)</a>
-<a class="sourceLine" id="cb21-45" data-line-number="45">    new_height &lt;-<span class="st"> </span><span class="kw">ifelse</span>(new_height <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>, <span class="dv">20</span>, new_height)</a>
-<a class="sourceLine" id="cb21-46" data-line-number="46">    new_height &lt;-<span class="st"> </span><span class="kw">ifelse</span>(new_height <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>, <span class="dv">1</span>, new_height)</a>
-<a class="sourceLine" id="cb21-47" data-line-number="47">    knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> new_height)</a>
-<a class="sourceLine" id="cb21-48" data-line-number="48">}</a>
-<a class="sourceLine" id="cb21-49" data-line-number="49"></a>
-<a class="sourceLine" id="cb21-50" data-line-number="50">wrap_at &lt;-<span class="st"> </span>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">"fig.width"</span>) <span class="op">*</span><span class="st"> </span><span class="dv">10</span></a></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># todo: if there are free-text choices mingled in with the pre-defined ones, don't show</span></a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="co"># todo: show rare items if they are pre-defined</span></a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="co"># todo: bin rare responses into "other category"</span></a>
-<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="cf">if</span> (<span class="op">!</span><span class="kw">length</span>(item_nomiss)) {</a>
-<a class="sourceLine" id="cb22-5" data-line-number="5">  <span class="kw">cat</span>(<span class="st">"No non-missing values to show."</span>)</a>
-<a class="sourceLine" id="cb22-6" data-line-number="6">} <span class="cf">else</span> <span class="cf">if</span> (<span class="kw">is.numeric</span>(item_nomiss) <span class="op">||</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span>(item_nomiss) <span class="op">&lt;</span><span class="st"> </span><span class="dv">20</span>) {</a>
-<a class="sourceLine" id="cb22-7" data-line-number="7">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(item_nomiss, item_name, wrap_at, go_vertical)</a>
-<a class="sourceLine" id="cb22-8" data-line-number="8">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb22-9" data-line-number="9">    <span class="kw">cat</span>(dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span>(item_nomiss), <span class="st">" unique, categorical values, so not shown."</span>)</a>
-<a class="sourceLine" id="cb22-10" data-line-number="10">}</a></code></pre></div>
 <p><img src="codebook_qualtrics_files/figure-html/ResponseSet_distribution-1.png" width="700"></p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> old_height)</a></code></pre></div>
 <p>0 missing values.</p>
 </div>
 <div id="ResponseSet_summary" class="section level4">
 <h4 class="hasAnchor">
 <a href="#ResponseSet_summary" class="anchor"></a>Summary statistics</h4>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">attributes</span>(item) &lt;-<span class="st"> </span>item_attributes</a>
-<a class="sourceLine" id="cb24-2" data-line-number="2">df =<span class="st"> </span><span class="kw">data.frame</span>(item, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb24-3" data-line-number="3"><span class="kw">names</span>(df) =<span class="st"> </span>html_item_name</a>
-<a class="sourceLine" id="cb24-4" data-line-number="4"><span class="kw">escaped_table</span>(<span class="kw"><a href="../reference/codebook_table.html">codebook_table</a></span>(df))</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -310,23 +258,6 @@
 <td align="left">ResponseSet</td>
 </tr></tbody>
 </table>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="cf">if</span> (show_missing_values) {</a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(missing_values, item_name, wrap_at)</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3">}</a></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(item_info)) {</a>
-<a class="sourceLine" id="cb26-2" data-line-number="2">  <span class="co"># don't show choices again, if they're basically same thing as value labels</span></a>
-<a class="sourceLine" id="cb26-3" data-line-number="3">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(choices) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.null</span>(item_info<span class="op">$</span>choices) <span class="op">&amp;&amp;</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="st">    </span><span class="kw">all</span>(<span class="kw">names</span>(<span class="kw">na.omit</span>(choices)) <span class="op">==</span><span class="st"> </span>item_info<span class="op">$</span>choices) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb26-5" data-line-number="5"><span class="st">    </span><span class="kw">all</span>(<span class="kw">na.omit</span>(choices) <span class="op">==</span><span class="st"> </span><span class="kw">names</span>(item_info<span class="op">$</span>choices))) {</a>
-<a class="sourceLine" id="cb26-6" data-line-number="6">    item_info<span class="op">$</span>choices &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb26-7" data-line-number="7">  }</a>
-<a class="sourceLine" id="cb26-8" data-line-number="8">  item_info<span class="op">$</span>label_parsed &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb26-9" data-line-number="9"><span class="st">    </span>item_info<span class="op">$</span>choice_list &lt;-<span class="st"> </span>item_info<span class="op">$</span>study_id &lt;-<span class="st"> </span>item_info<span class="op">$</span>id &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb26-10" data-line-number="10">  pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(item_info)</a>
-<a class="sourceLine" id="cb26-11" data-line-number="11">}</a></code></pre></div>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(choices) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">length</span>(choices) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">length</span>(choices) <span class="op">&lt;</span><span class="st"> </span><span class="dv">30</span>) {</a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">    pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(<span class="kw">as.list</span>(choices))</a>
-<a class="sourceLine" id="cb27-3" data-line-number="3">}</a></code></pre></div>
 </div>
 </div>
 <div id="Q7" class="section level3 tabset">
@@ -336,77 +267,12 @@
 <div id="Q7_distribution" class="section level4">
 <h4 class="hasAnchor">
 <a href="#Q7_distribution" class="anchor"></a>Distribution</h4>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">show_missing_values &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_labels.html">has_labels</a></span>(item)) {</a>
-<a class="sourceLine" id="cb28-3" data-line-number="3">  missing_values &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
-<a class="sourceLine" id="cb28-4" data-line-number="4">  <span class="kw">attributes</span>(missing_values) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
-<a class="sourceLine" id="cb28-5" data-line-number="5">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)) {</a>
-<a class="sourceLine" id="cb28-6" data-line-number="6">    <span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels[<span class="kw">is.na</span>(<span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels)]</a>
-<a class="sourceLine" id="cb28-7" data-line-number="7">    <span class="kw">attributes</span>(item)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)<span class="op">$</span>labels[<span class="op">!</span><span class="kw">is.na</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)]</a>
-<a class="sourceLine" id="cb28-8" data-line-number="8">  }</a>
-<a class="sourceLine" id="cb28-9" data-line-number="9">  <span class="cf">if</span> (<span class="kw">is.numeric</span>(item)) {</a>
-<a class="sourceLine" id="cb28-10" data-line-number="10">    show_missing_values &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/tagged_na">na_tag</a></span>(missing_values))) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb28-11" data-line-number="11">    item &lt;-<span class="st"> </span>haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item)</a>
-<a class="sourceLine" id="cb28-12" data-line-number="12">  }</a>
-<a class="sourceLine" id="cb28-13" data-line-number="13">  <span class="cf">if</span> (<span class="kw">length</span>(item_attributes<span class="op">$</span>labels) <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">is.numeric</span>(item)) {</a>
-<a class="sourceLine" id="cb28-14" data-line-number="14">    item &lt;-<span class="st"> </span>haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_labels">zap_labels</a></span>(item)</a>
-<a class="sourceLine" id="cb28-15" data-line-number="15">  }</a>
-<a class="sourceLine" id="cb28-16" data-line-number="16">}</a>
-<a class="sourceLine" id="cb28-17" data-line-number="17">item_nomiss &lt;-<span class="st"> </span>item[<span class="op">!</span><span class="kw">is.na</span>(item)]</a>
-<a class="sourceLine" id="cb28-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb28-19" data-line-number="19"><span class="co"># unnest mc_multiple and so on</span></a>
-<a class="sourceLine" id="cb28-20" data-line-number="20"><span class="cf">if</span> (</a>
-<a class="sourceLine" id="cb28-21" data-line-number="21">  <span class="kw">is.character</span>(item_nomiss) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb28-22" data-line-number="22"><span class="st">  </span>stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/str_detect">str_detect</a></span>(item_nomiss, stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">fixed</a></span>(<span class="st">", "</span>)) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb28-23" data-line-number="23"><span class="st">  </span>(<span class="kw">exists</span>(<span class="st">"type"</span>, item_info) <span class="op">&amp;&amp;</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb28-24" data-line-number="24"><span class="st">    </span>stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/str_detect">str_detect</a></span>(item_info<span class="op">$</span>type, <span class="dt">pattern =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">fixed</a></span>(<span class="st">"multiple"</span>)))</a>
-<a class="sourceLine" id="cb28-25" data-line-number="25">  ) {</a>
-<a class="sourceLine" id="cb28-26" data-line-number="26">  item_nomiss &lt;-<span class="st"> </span><span class="kw">unlist</span>(stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/str_split">str_split</a></span>(item_nomiss, <span class="dt">pattern =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">fixed</a></span>(<span class="st">", "</span>)))</a>
-<a class="sourceLine" id="cb28-27" data-line-number="27">}</a>
-<a class="sourceLine" id="cb28-28" data-line-number="28"><span class="kw">attributes</span>(item_nomiss) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
-<a class="sourceLine" id="cb28-29" data-line-number="29"></a>
-<a class="sourceLine" id="cb28-30" data-line-number="30">old_height &lt;-<span class="st"> </span>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">"fig.height"</span>)</a>
-<a class="sourceLine" id="cb28-31" data-line-number="31">non_missing_choices &lt;-<span class="st"> </span>item_attributes[[<span class="st">"labels"</span>]]</a>
-<a class="sourceLine" id="cb28-32" data-line-number="32">many_labels &lt;-<span class="st"> </span><span class="kw">length</span>(non_missing_choices) <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span></a>
-<a class="sourceLine" id="cb28-33" data-line-number="33">go_vertical &lt;-<span class="st"> </span><span class="op">!</span><span class="kw">is.numeric</span>(item_nomiss) <span class="op">||</span><span class="st"> </span>many_labels</a>
-<a class="sourceLine" id="cb28-34" data-line-number="34"><span class="cf">if</span> ( go_vertical ) {</a>
-<a class="sourceLine" id="cb28-35" data-line-number="35">  <span class="co"># numeric items are plotted horizontally (because that's what usually expected)</span></a>
-<a class="sourceLine" id="cb28-36" data-line-number="36">  <span class="co"># categorical items are plotted vertically because we can use the screen real estate better this way</span></a>
-<a class="sourceLine" id="cb28-37" data-line-number="37"></a>
-<a class="sourceLine" id="cb28-38" data-line-number="38">    <span class="cf">if</span> (<span class="kw">is.null</span>(choices) <span class="op">||</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb28-39" data-line-number="39"><span class="st">        </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span>(item_nomiss) <span class="op">&gt;</span><span class="st"> </span><span class="kw">length</span>(non_missing_choices)) {</a>
-<a class="sourceLine" id="cb28-40" data-line-number="40">        non_missing_choices &lt;-<span class="st"> </span><span class="kw">unique</span>(item_nomiss)</a>
-<a class="sourceLine" id="cb28-41" data-line-number="41">        <span class="kw">names</span>(non_missing_choices) &lt;-<span class="st"> </span>non_missing_choices</a>
-<a class="sourceLine" id="cb28-42" data-line-number="42">    }</a>
-<a class="sourceLine" id="cb28-43" data-line-number="43">  choice_multiplier &lt;-<span class="st"> </span>old_height<span class="op">/</span><span class="fl">6.5</span></a>
-<a class="sourceLine" id="cb28-44" data-line-number="44">    new_height &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>choice_multiplier <span class="op">*</span><span class="st"> </span><span class="kw">length</span>(non_missing_choices)</a>
-<a class="sourceLine" id="cb28-45" data-line-number="45">    new_height &lt;-<span class="st"> </span><span class="kw">ifelse</span>(new_height <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>, <span class="dv">20</span>, new_height)</a>
-<a class="sourceLine" id="cb28-46" data-line-number="46">    new_height &lt;-<span class="st"> </span><span class="kw">ifelse</span>(new_height <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>, <span class="dv">1</span>, new_height)</a>
-<a class="sourceLine" id="cb28-47" data-line-number="47">    knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> new_height)</a>
-<a class="sourceLine" id="cb28-48" data-line-number="48">}</a>
-<a class="sourceLine" id="cb28-49" data-line-number="49"></a>
-<a class="sourceLine" id="cb28-50" data-line-number="50">wrap_at &lt;-<span class="st"> </span>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">"fig.width"</span>) <span class="op">*</span><span class="st"> </span><span class="dv">10</span></a></code></pre></div>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="co"># todo: if there are free-text choices mingled in with the pre-defined ones, don't show</span></a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"><span class="co"># todo: show rare items if they are pre-defined</span></a>
-<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="co"># todo: bin rare responses into "other category"</span></a>
-<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="cf">if</span> (<span class="op">!</span><span class="kw">length</span>(item_nomiss)) {</a>
-<a class="sourceLine" id="cb29-5" data-line-number="5">  <span class="kw">cat</span>(<span class="st">"No non-missing values to show."</span>)</a>
-<a class="sourceLine" id="cb29-6" data-line-number="6">} <span class="cf">else</span> <span class="cf">if</span> (<span class="kw">is.numeric</span>(item_nomiss) <span class="op">||</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span>(item_nomiss) <span class="op">&lt;</span><span class="st"> </span><span class="dv">20</span>) {</a>
-<a class="sourceLine" id="cb29-7" data-line-number="7">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(item_nomiss, item_name, wrap_at, go_vertical)</a>
-<a class="sourceLine" id="cb29-8" data-line-number="8">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb29-9" data-line-number="9">    <span class="kw">cat</span>(dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span>(item_nomiss), <span class="st">" unique, categorical values, so not shown."</span>)</a>
-<a class="sourceLine" id="cb29-10" data-line-number="10">}</a></code></pre></div>
 <p><img src="codebook_qualtrics_files/figure-html/Q7_distribution-1.png" width="700"></p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> old_height)</a></code></pre></div>
 <p>0 missing values.</p>
 </div>
 <div id="Q7_summary" class="section level4">
 <h4 class="hasAnchor">
 <a href="#Q7_summary" class="anchor"></a>Summary statistics</h4>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"><span class="kw">attributes</span>(item) &lt;-<span class="st"> </span>item_attributes</a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">df =<span class="st"> </span><span class="kw">data.frame</span>(item, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="kw">names</span>(df) =<span class="st"> </span>html_item_name</a>
-<a class="sourceLine" id="cb31-4" data-line-number="4"><span class="kw">escaped_table</span>(<span class="kw"><a href="../reference/codebook_table.html">codebook_table</a></span>(df))</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -445,24 +311,10 @@
 <td align="left">Q7</td>
 </tr></tbody>
 </table>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="cf">if</span> (show_missing_values) {</a>
-<a class="sourceLine" id="cb32-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(missing_values, item_name, wrap_at)</a>
-<a class="sourceLine" id="cb32-3" data-line-number="3">}</a></code></pre></div>
 </div>
 <div id="Q7_item" class="section level4">
 <h4 class="hasAnchor">
 <a href="#Q7_item" class="anchor"></a>Item</h4>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(item_info)) {</a>
-<a class="sourceLine" id="cb33-2" data-line-number="2">  <span class="co"># don't show choices again, if they're basically same thing as value labels</span></a>
-<a class="sourceLine" id="cb33-3" data-line-number="3">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(choices) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.null</span>(item_info<span class="op">$</span>choices) <span class="op">&amp;&amp;</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb33-4" data-line-number="4"><span class="st">    </span><span class="kw">all</span>(<span class="kw">names</span>(<span class="kw">na.omit</span>(choices)) <span class="op">==</span><span class="st"> </span>item_info<span class="op">$</span>choices) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb33-5" data-line-number="5"><span class="st">    </span><span class="kw">all</span>(<span class="kw">na.omit</span>(choices) <span class="op">==</span><span class="st"> </span><span class="kw">names</span>(item_info<span class="op">$</span>choices))) {</a>
-<a class="sourceLine" id="cb33-6" data-line-number="6">    item_info<span class="op">$</span>choices &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb33-7" data-line-number="7">  }</a>
-<a class="sourceLine" id="cb33-8" data-line-number="8">  item_info<span class="op">$</span>label_parsed &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb33-9" data-line-number="9"><span class="st">    </span>item_info<span class="op">$</span>choice_list &lt;-<span class="st"> </span>item_info<span class="op">$</span>study_id &lt;-<span class="st"> </span>item_info<span class="op">$</span>id &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb33-10" data-line-number="10">  pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(item_info)</a>
-<a class="sourceLine" id="cb33-11" data-line-number="11">}</a></code></pre></div>
 <ul>
 <li>
 <p><strong>questionType</strong>:</p>
@@ -558,9 +410,7 @@
 </ul>
 </li>
 </ul>
-<!-- end of list --><div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(choices) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">length</span>(choices) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">length</span>(choices) <span class="op">&lt;</span><span class="st"> </span><span class="dv">30</span>) {</a>
-<a class="sourceLine" id="cb41-2" data-line-number="2">    pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(<span class="kw">as.list</span>(choices))</a>
-<a class="sourceLine" id="cb41-3" data-line-number="3">}</a></code></pre></div>
+<!-- end of list -->
 </div>
 </div>
 <div id="Q10" class="section level3 tabset">
@@ -570,77 +420,12 @@
 <div id="Q10_distribution" class="section level4">
 <h4 class="hasAnchor">
 <a href="#Q10_distribution" class="anchor"></a>Distribution</h4>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">show_missing_values &lt;-<span class="st"> </span><span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="cf">if</span> (<span class="kw"><a href="../reference/has_labels.html">has_labels</a></span>(item)) {</a>
-<a class="sourceLine" id="cb42-3" data-line-number="3">  missing_values &lt;-<span class="st"> </span>item[<span class="kw">is.na</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item))]</a>
-<a class="sourceLine" id="cb42-4" data-line-number="4">  <span class="kw">attributes</span>(missing_values) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
-<a class="sourceLine" id="cb42-5" data-line-number="5">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)) {</a>
-<a class="sourceLine" id="cb42-6" data-line-number="6">    <span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels[<span class="kw">is.na</span>(<span class="kw">attributes</span>(missing_values)<span class="op">$</span>labels)]</a>
-<a class="sourceLine" id="cb42-7" data-line-number="7">    <span class="kw">attributes</span>(item)<span class="op">$</span>labels &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)<span class="op">$</span>labels[<span class="op">!</span><span class="kw">is.na</span>(<span class="kw">attributes</span>(item)<span class="op">$</span>labels)]</a>
-<a class="sourceLine" id="cb42-8" data-line-number="8">  }</a>
-<a class="sourceLine" id="cb42-9" data-line-number="9">  <span class="cf">if</span> (<span class="kw">is.numeric</span>(item)) {</a>
-<a class="sourceLine" id="cb42-10" data-line-number="10">    show_missing_values &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unique</span>(haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/tagged_na">na_tag</a></span>(missing_values))) <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb42-11" data-line-number="11">    item &lt;-<span class="st"> </span>haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_missing">zap_missing</a></span>(item)</a>
-<a class="sourceLine" id="cb42-12" data-line-number="12">  }</a>
-<a class="sourceLine" id="cb42-13" data-line-number="13">  <span class="cf">if</span> (<span class="kw">length</span>(item_attributes<span class="op">$</span>labels) <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">is.numeric</span>(item)) {</a>
-<a class="sourceLine" id="cb42-14" data-line-number="14">    item &lt;-<span class="st"> </span>haven<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/haven/topics/zap_labels">zap_labels</a></span>(item)</a>
-<a class="sourceLine" id="cb42-15" data-line-number="15">  }</a>
-<a class="sourceLine" id="cb42-16" data-line-number="16">}</a>
-<a class="sourceLine" id="cb42-17" data-line-number="17">item_nomiss &lt;-<span class="st"> </span>item[<span class="op">!</span><span class="kw">is.na</span>(item)]</a>
-<a class="sourceLine" id="cb42-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb42-19" data-line-number="19"><span class="co"># unnest mc_multiple and so on</span></a>
-<a class="sourceLine" id="cb42-20" data-line-number="20"><span class="cf">if</span> (</a>
-<a class="sourceLine" id="cb42-21" data-line-number="21">  <span class="kw">is.character</span>(item_nomiss) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb42-22" data-line-number="22"><span class="st">  </span>stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/str_detect">str_detect</a></span>(item_nomiss, stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">fixed</a></span>(<span class="st">", "</span>)) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb42-23" data-line-number="23"><span class="st">  </span>(<span class="kw">exists</span>(<span class="st">"type"</span>, item_info) <span class="op">&amp;&amp;</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb42-24" data-line-number="24"><span class="st">    </span>stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/str_detect">str_detect</a></span>(item_info<span class="op">$</span>type, <span class="dt">pattern =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">fixed</a></span>(<span class="st">"multiple"</span>)))</a>
-<a class="sourceLine" id="cb42-25" data-line-number="25">  ) {</a>
-<a class="sourceLine" id="cb42-26" data-line-number="26">  item_nomiss &lt;-<span class="st"> </span><span class="kw">unlist</span>(stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/str_split">str_split</a></span>(item_nomiss, <span class="dt">pattern =</span> stringr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/stringr/topics/modifiers">fixed</a></span>(<span class="st">", "</span>)))</a>
-<a class="sourceLine" id="cb42-27" data-line-number="27">}</a>
-<a class="sourceLine" id="cb42-28" data-line-number="28"><span class="kw">attributes</span>(item_nomiss) &lt;-<span class="st"> </span><span class="kw">attributes</span>(item)</a>
-<a class="sourceLine" id="cb42-29" data-line-number="29"></a>
-<a class="sourceLine" id="cb42-30" data-line-number="30">old_height &lt;-<span class="st"> </span>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">"fig.height"</span>)</a>
-<a class="sourceLine" id="cb42-31" data-line-number="31">non_missing_choices &lt;-<span class="st"> </span>item_attributes[[<span class="st">"labels"</span>]]</a>
-<a class="sourceLine" id="cb42-32" data-line-number="32">many_labels &lt;-<span class="st"> </span><span class="kw">length</span>(non_missing_choices) <span class="op">&gt;</span><span class="st"> </span><span class="dv">7</span></a>
-<a class="sourceLine" id="cb42-33" data-line-number="33">go_vertical &lt;-<span class="st"> </span><span class="op">!</span><span class="kw">is.numeric</span>(item_nomiss) <span class="op">||</span><span class="st"> </span>many_labels</a>
-<a class="sourceLine" id="cb42-34" data-line-number="34"><span class="cf">if</span> ( go_vertical ) {</a>
-<a class="sourceLine" id="cb42-35" data-line-number="35">  <span class="co"># numeric items are plotted horizontally (because that's what usually expected)</span></a>
-<a class="sourceLine" id="cb42-36" data-line-number="36">  <span class="co"># categorical items are plotted vertically because we can use the screen real estate better this way</span></a>
-<a class="sourceLine" id="cb42-37" data-line-number="37"></a>
-<a class="sourceLine" id="cb42-38" data-line-number="38">    <span class="cf">if</span> (<span class="kw">is.null</span>(choices) <span class="op">||</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb42-39" data-line-number="39"><span class="st">        </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span>(item_nomiss) <span class="op">&gt;</span><span class="st"> </span><span class="kw">length</span>(non_missing_choices)) {</a>
-<a class="sourceLine" id="cb42-40" data-line-number="40">        non_missing_choices &lt;-<span class="st"> </span><span class="kw">unique</span>(item_nomiss)</a>
-<a class="sourceLine" id="cb42-41" data-line-number="41">        <span class="kw">names</span>(non_missing_choices) &lt;-<span class="st"> </span>non_missing_choices</a>
-<a class="sourceLine" id="cb42-42" data-line-number="42">    }</a>
-<a class="sourceLine" id="cb42-43" data-line-number="43">  choice_multiplier &lt;-<span class="st"> </span>old_height<span class="op">/</span><span class="fl">6.5</span></a>
-<a class="sourceLine" id="cb42-44" data-line-number="44">    new_height &lt;-<span class="st"> </span><span class="dv">2</span> <span class="op">+</span><span class="st"> </span>choice_multiplier <span class="op">*</span><span class="st"> </span><span class="kw">length</span>(non_missing_choices)</a>
-<a class="sourceLine" id="cb42-45" data-line-number="45">    new_height &lt;-<span class="st"> </span><span class="kw">ifelse</span>(new_height <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>, <span class="dv">20</span>, new_height)</a>
-<a class="sourceLine" id="cb42-46" data-line-number="46">    new_height &lt;-<span class="st"> </span><span class="kw">ifelse</span>(new_height <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>, <span class="dv">1</span>, new_height)</a>
-<a class="sourceLine" id="cb42-47" data-line-number="47">    knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> new_height)</a>
-<a class="sourceLine" id="cb42-48" data-line-number="48">}</a>
-<a class="sourceLine" id="cb42-49" data-line-number="49"></a>
-<a class="sourceLine" id="cb42-50" data-line-number="50">wrap_at &lt;-<span class="st"> </span>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">"fig.width"</span>) <span class="op">*</span><span class="st"> </span><span class="dv">10</span></a></code></pre></div>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="co"># todo: if there are free-text choices mingled in with the pre-defined ones, don't show</span></a>
-<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="co"># todo: show rare items if they are pre-defined</span></a>
-<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="co"># todo: bin rare responses into "other category"</span></a>
-<a class="sourceLine" id="cb43-4" data-line-number="4"><span class="cf">if</span> (<span class="op">!</span><span class="kw">length</span>(item_nomiss)) {</a>
-<a class="sourceLine" id="cb43-5" data-line-number="5">  <span class="kw">cat</span>(<span class="st">"No non-missing values to show."</span>)</a>
-<a class="sourceLine" id="cb43-6" data-line-number="6">} <span class="cf">else</span> <span class="cf">if</span> (<span class="kw">is.numeric</span>(item_nomiss) <span class="op">||</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span>(item_nomiss) <span class="op">&lt;</span><span class="st"> </span><span class="dv">20</span>) {</a>
-<a class="sourceLine" id="cb43-7" data-line-number="7">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(item_nomiss, item_name, wrap_at, go_vertical)</a>
-<a class="sourceLine" id="cb43-8" data-line-number="8">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb43-9" data-line-number="9">    <span class="kw">cat</span>(dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span>(item_nomiss), <span class="st">" unique, categorical values, so not shown."</span>)</a>
-<a class="sourceLine" id="cb43-10" data-line-number="10">}</a></code></pre></div>
 <p><img src="codebook_qualtrics_files/figure-html/Q10_distribution-1.png" width="700"></p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">fig.height =</span> old_height)</a></code></pre></div>
 <p>0 missing values.</p>
 </div>
 <div id="Q10_summary" class="section level4">
 <h4 class="hasAnchor">
 <a href="#Q10_summary" class="anchor"></a>Summary statistics</h4>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">attributes</span>(item) &lt;-<span class="st"> </span>item_attributes</a>
-<a class="sourceLine" id="cb45-2" data-line-number="2">df =<span class="st"> </span><span class="kw">data.frame</span>(item, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="kw">names</span>(df) =<span class="st"> </span>html_item_name</a>
-<a class="sourceLine" id="cb45-4" data-line-number="4"><span class="kw">escaped_table</span>(<span class="kw"><a href="../reference/codebook_table.html">codebook_table</a></span>(df))</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -679,24 +464,10 @@
 <td align="left">Q10</td>
 </tr></tbody>
 </table>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="cf">if</span> (show_missing_values) {</a>
-<a class="sourceLine" id="cb46-2" data-line-number="2">  <span class="kw"><a href="../reference/plot_labelled.html">plot_labelled</a></span>(missing_values, item_name, wrap_at)</a>
-<a class="sourceLine" id="cb46-3" data-line-number="3">}</a></code></pre></div>
 </div>
 <div id="Q10_item" class="section level4">
 <h4 class="hasAnchor">
 <a href="#Q10_item" class="anchor"></a>Item</h4>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(item_info)) {</a>
-<a class="sourceLine" id="cb47-2" data-line-number="2">  <span class="co"># don't show choices again, if they're basically same thing as value labels</span></a>
-<a class="sourceLine" id="cb47-3" data-line-number="3">  <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(choices) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.null</span>(item_info<span class="op">$</span>choices) <span class="op">&amp;&amp;</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="st">    </span><span class="kw">all</span>(<span class="kw">names</span>(<span class="kw">na.omit</span>(choices)) <span class="op">==</span><span class="st"> </span>item_info<span class="op">$</span>choices) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb47-5" data-line-number="5"><span class="st">    </span><span class="kw">all</span>(<span class="kw">na.omit</span>(choices) <span class="op">==</span><span class="st"> </span><span class="kw">names</span>(item_info<span class="op">$</span>choices))) {</a>
-<a class="sourceLine" id="cb47-6" data-line-number="6">    item_info<span class="op">$</span>choices &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb47-7" data-line-number="7">  }</a>
-<a class="sourceLine" id="cb47-8" data-line-number="8">  item_info<span class="op">$</span>label_parsed &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb47-9" data-line-number="9"><span class="st">    </span>item_info<span class="op">$</span>choice_list &lt;-<span class="st"> </span>item_info<span class="op">$</span>study_id &lt;-<span class="st"> </span>item_info<span class="op">$</span>id &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb47-10" data-line-number="10">  pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(item_info)</a>
-<a class="sourceLine" id="cb47-11" data-line-number="11">}</a></code></pre></div>
 <ul>
 <li>
 <p><strong>questionType</strong>:</p>
@@ -792,10 +563,7 @@
 </ul>
 </li>
 </ul>
-<!-- end of list --><div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">is.null</span>(choices) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">length</span>(choices) <span class="op">&amp;&amp;</span><span class="st"> </span><span class="kw">length</span>(choices) <span class="op">&lt;</span><span class="st"> </span><span class="dv">30</span>) {</a>
-<a class="sourceLine" id="cb55-2" data-line-number="2">    pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(<span class="kw">as.list</span>(choices))</a>
-<a class="sourceLine" id="cb55-3" data-line-number="3">}</a></code></pre></div>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">missingness_report</a></code></pre></div>
+<!-- end of list -->
 </div>
 </div>
 </div>
@@ -803,65 +571,58 @@
 <h2 class="hasAnchor">
 <a href="#missingness-report" class="anchor"></a>Missingness report</h2>
 <p>Among those who finished the survey. Only variables that have missing values are shown.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="cf">if</span> (  <span class="kw">exists</span>(<span class="st">"ended"</span>, results) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="st">  </span><span class="kw">exists</span>(<span class="st">"expired"</span>, results)) {</a>
-<a class="sourceLine" id="cb57-3" data-line-number="3">  finisher_results &lt;-<span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(results, <span class="op">!</span><span class="kw">is.na</span>(.data<span class="op">$</span>ended))</a>
-<a class="sourceLine" id="cb57-4" data-line-number="4">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb57-5" data-line-number="5">  finisher_results &lt;-<span class="st"> </span>results</a>
-<a class="sourceLine" id="cb57-6" data-line-number="6">  <span class="kw">warning</span>(<span class="st">"Could not figure out who finished the surveys, because the "</span>,</a>
-<a class="sourceLine" id="cb57-7" data-line-number="7">          <span class="st">"variables expired and ended were missing."</span>)</a>
-<a class="sourceLine" id="cb57-8" data-line-number="8">}</a>
-<a class="sourceLine" id="cb57-9" data-line-number="9"><span class="cf">if</span> (<span class="kw">length</span>(md_pattern)) {</a>
-<a class="sourceLine" id="cb57-10" data-line-number="10">  pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/pander">pander</a></span>(md_pattern)</a>
-<a class="sourceLine" id="cb57-11" data-line-number="11">}</a></code></pre></div>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">items</a></code></pre></div>
+<pre><code>## Warning: Could not figure out who finished the surveys, because the
+## variables expired and ended were missing.</code></pre>
 </div>
 <div id="codebook-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#codebook-table" class="anchor"></a>Codebook table</h2>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">export_table</span>(metadata_table)</a></code></pre></div>
-<div id="htmlwidget-1e40e38c9d1c4edecf8c" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1e40e38c9d1c4edecf8c">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;,&quot;na&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#ResponseSet\">ResponseSet<\/a>","<a href=\"#Q7\">Q7<\/a>","<a href=\"#Q10\">Q10<\/a>"],[null,"MC","MC"],["character","factor","factor"],[null,"TRUE","TRUE"],[null,"1. Extremely reasonable,<br>2. Moderately reasonable,<br>3. Slightly reasonable,<br>4. Neither reasonable nor unreasonable,<br>5. Slightly unreasonable,<br>6. Moderately unreasonable,<br>7. Extremely unreasonable","1. Extremely helpful,<br>2. Moderately helpful,<br>3. Slightly helpful,<br>4. Neither helpful nor unhelpful,<br>5. Slightly unhelpful,<br>6. Moderately unhelpful,<br>7. Extremely unhelpful"],["0","0","0"],["2","2","2"],["2","2","2"],["0",null,null],["1","2","2"],[null,"Mod: 1, Sli: 1, Ext: 0, Nei: 0","Mod: 1, Ext: 1, Ext: 0, Sli: 0"],["20",null,null],["20",null,null],["ResponseSet",null,null],[null,"How reasonable or unreasonable is the cost of courses/tuition at this university?",null],[null,"SAVR","SAVR"],[null,"TX","TX"],[null,"How reasonable or unreasonable is the cost of courses/tuition at this university?","How helpful or unhelpful is the staff at the on-campus health center?"],[null,false,false],[null,"Q7","Q10"],[null,null,"How helpful or unhelpful is the staff at the on-campus health center?"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>type<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>empty<\/th>\n      <th>n_unique<\/th>\n      <th>top_counts<\/th>\n      <th>min<\/th>\n      <th>max<\/th>\n      <th>ResponseSet<\/th>\n      <th>Q7<\/th>\n      <th>selector<\/th>\n      <th>subSelector<\/th>\n      <th>questionText<\/th>\n      <th>doesForceResponse<\/th>\n      <th>questionName<\/th>\n      <th>Q10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">jsonld</a></code></pre></div>
-<script type="application/ld+json">
+<div id="htmlwidget-712df1f76dc87d395e46" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-712df1f76dc87d395e46">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;,&quot;na&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#ResponseSet\">ResponseSet<\/a>","<a href=\"#Q7\">Q7<\/a>","<a href=\"#Q10\">Q10<\/a>"],[null,"MC","MC"],["character","factor","factor"],[null,"TRUE","TRUE"],[null,"1. Extremely reasonable,<br>2. Moderately reasonable,<br>3. Slightly reasonable,<br>4. Neither reasonable nor unreasonable,<br>5. Slightly unreasonable,<br>6. Moderately unreasonable,<br>7. Extremely unreasonable","1. Extremely helpful,<br>2. Moderately helpful,<br>3. Slightly helpful,<br>4. Neither helpful nor unhelpful,<br>5. Slightly unhelpful,<br>6. Moderately unhelpful,<br>7. Extremely unhelpful"],["0","0","0"],["2","2","2"],["2","2","2"],["0",null,null],["1","2","2"],[null,"Mod: 1, Sli: 1, Ext: 0, Nei: 0","Mod: 1, Ext: 1, Ext: 0, Sli: 0"],["20",null,null],["20",null,null],["ResponseSet",null,null],[null,"How reasonable or unreasonable is the cost of courses/tuition at this university?",null],[null,"SAVR","SAVR"],[null,"TX","TX"],[null,"How reasonable or unreasonable is the cost of courses/tuition at this university?","How helpful or unhelpful is the staff at the on-campus health center?"],[null,false,false],[null,"Q7","Q10"],[null,null,"How helpful or unhelpful is the staff at the on-campus health center?"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>type<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>empty<\/th>\n      <th>n_unique<\/th>\n      <th>top_counts<\/th>\n      <th>min<\/th>\n      <th>max<\/th>\n      <th>ResponseSet<\/th>\n      <th>Q7<\/th>\n      <th>selector<\/th>\n      <th>subSelector<\/th>\n      <th>questionText<\/th>\n      <th>doesForceResponse<\/th>\n      <th>questionName<\/th>\n      <th>Q10<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
 {
-  "description": "The dataset has N=2 rows of\nwhich n=2 have no missings and a total of\n3 columns.\n\n<details><summary>Variable names<\/summary>ResponseSet, Q7, Q10<\/details>\n\nThis dataset was automatically described using the codebook R package.",
+  "name": "MOCK Qualtrics dataset",
+  "description": "a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package",
+  "identifier": "doi:10.5281/zenodo.1326520",
+  "datePublished": "2018-08-01",
+  "creator": {
+    "@type": "Person",
+    "givenName": "Ruben",
+    "familyName": "Arslan",
+    "email": "ruben.arslan@gmail.com",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "MPI Human Development, Berlin"
+    }
+  },
+  "url": "https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html",
+  "temporalCoverage": "2018",
+  "spatialCoverage": "Nowhere",
+  "keywords": ["ResponseSet", "Q7", "Q10"],
   "@context": "http://schema.org/",
   "@type": "Dataset",
-  "keywords": ["ResponseSet", "Q7", "Q10"],
   "variableMeasured": [
     {
       "name": "ResponseSet",
       "description": "ResponseSet",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
-      "levels": ["Extremely reasonable", "Moderately reasonable", "Slightly reasonable", "Neither reasonable nor unreasonable", "Slightly unreasonable", "Moderately unreasonable", "Extremely unreasonable"],
       "name": "Q7",
       "description": "How reasonable or unreasonable is the cost of courses/tuition at this university?",
+      "value": "1. Extremely reasonable,\n2. Moderately reasonable,\n3. Slightly reasonable,\n4. Neither reasonable nor unreasonable,\n5. Slightly unreasonable,\n6. Moderately unreasonable,\n7. Extremely unreasonable",
       "measurementTechnique": "self-report",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     },
     {
-      "levels": ["Extremely helpful", "Moderately helpful", "Slightly helpful", "Neither helpful nor unhelpful", "Slightly unhelpful", "Moderately unhelpful", "Extremely unhelpful"],
       "name": "Q10",
       "description": "How helpful or unhelpful is the staff at the on-campus health center?",
+      "value": "1. Extremely helpful,\n2. Moderately helpful,\n3. Slightly helpful,\n4. Neither helpful nor unhelpful,\n5. Slightly unhelpful,\n6. Moderately unhelpful,\n7. Extremely unhelpful",
       "measurementTechnique": "self-report",
-      "@context": {
-        "@vocab": "http://pending.schema.org/"
-      },
       "@type": "propertyValue"
     }
   ]
 }
-</script><div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span>knit_by_pkgdown) {</a>
-<a class="sourceLine" id="cb61-2" data-line-number="2">  codebook<span class="op">:::</span><span class="kw">escaped_table</span>(<span class="kw"><a href="../reference/codebook_table.html">codebook_table</a></span>(results))</a>
-<a class="sourceLine" id="cb61-3" data-line-number="3">}</a></code></pre></div>
+</script>
 </div>
   </div>
 
@@ -871,7 +632,7 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#load">Load</a></li>
-      <li><a href="#items">Items</a></li>
+      <li><a href="#variables">Variables</a></li>
       <li><a href="#missingness-report">Missingness report</a></li>
       <li><a href="#codebook-table">Codebook table</a></li>
       </ul>

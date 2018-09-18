@@ -33,13 +33,12 @@ The same information is also stored in a table, which you can export to various 
 Additionally, `codebook` can show you different kinds of (labelled) missing values, and show you common 
 missingness patterns.
 As _you_ cannot see, but _[search engines](https://toolbox.google.com/datasetsearch)_
-will, the `codebook` package also generates [JSON-LD](https://json-ld.org/) metadata for the [dataset](https://developers.google.com/search/docs/data-types/dataset). If you share
-your codebook as an HTML file online, this metadata should make it easier for others
-to find your data.
+will, the `codebook` package also generates [JSON-LD](https://json-ld.org/) metadata for the [dataset](https://developers.google.com/search/docs/data-types/dataset). If you share your codebook as an HTML file online, this metadata should make it easier for others
+to find your data. [See what Google sees here](https://search.google.com/structured-data/testing-tool#url=https%3A%2F%2Frubenarslan.github.io%2Fcodebook%2Farticles%2Fcodebook.html).
 
 ```{r}
 knit_by_pkgdown <- !is.null(knitr::opts_chunk$get("fig.retina"))
-knitr::opts_chunk$set(warning = TRUE, message = TRUE, error = TRUE, echo = FALSE)
+knitr::opts_chunk$set(warning = TRUE, message = TRUE, error = TRUE)
 pander::panderOptions("table.split.table", Inf)
 ggplot2::theme_set(ggplot2::theme_bw())
 
@@ -58,10 +57,22 @@ describe the data better. [Find out more](https://developers.google.com/search/d
 data_name(bfi) <- "MOCK Big Five Inventory dataset (German metadata demo)"
 data_description(bfi) <- "a small mock Big Five Inventory dataset"
 data_identifier(bfi) <- "doi:10.5281/zenodo.1326520"
+data_datePublished(bfi) <- "2016-06-01"
+data_creator(bfi) <- list(
+      "@type" = "Person",
+      givenName = "Ruben", familyName = "Arslan",
+      email = "ruben.arslan@gmail.com", 
+      affiliation = list("@type" = "Organization",
+        name = "MPI Human Development, Berlin"))
 data_citation(bfi) <- "Arslan (2016). Mock BFI data."
 data_url(bfi) <- "https://rubenarslan.github.io/codebook/articles/codebook.html"
 data_temporalCoverage(bfi) <- "2016" 
 data_spatialCoverage(bfi) <- "Goettingen, Germany" 
+```
+
+```{r}
+# We don't want to look at the code in the codebook.
+knitr::opts_chunk$set(warning = TRUE, message = TRUE, echo = FALSE)
 ```
 
 ```{r cb}

@@ -84,6 +84,27 @@ of Qualtrics than I have.
 Owing to a bug in pander, the deeply nested attribute structure is currently not shown
 as a nice list.
 
+```{r}
+data_name(results) <- "MOCK Qualtrics dataset"
+data_description(results) <- "a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package"
+data_identifier(results) <- "doi:10.5281/zenodo.1326520"
+data_datePublished(results) <- "2018-08-01"
+data_creator(results) <- list(
+      "@type" = "Person",
+      givenName = "Ruben", familyName = "Arslan",
+      email = "ruben.arslan@gmail.com", 
+      affiliation = list("@type" = "Organization",
+        name = "MPI Human Development, Berlin"))
+data_url(results) <- "https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html"
+data_temporalCoverage(results) <- "2018" 
+data_spatialCoverage(results) <- "Nowhere" 
+```
+
+```{r}
+# We don't want to look at the code in the codebook.
+knitr::opts_chunk$set(warning = TRUE, message = TRUE, echo = FALSE)
+```
+
 ```{r cb}
 codebook(results, survey_repetition = "single",
          metadata_table = knit_by_pkgdown, metadata_json = knit_by_pkgdown)

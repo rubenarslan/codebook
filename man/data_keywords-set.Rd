@@ -16,6 +16,8 @@ Add a character vector to to add keywords in preparation for JSON-LD
 metadata generation using \code{\link[=codebook]{codebook()}} or \code{\link[=metadata_list]{metadata_list()}}.
 }
 \examples{
+data('bfi')
 data_keywords(bfi) <- c("Big Five", "Personality", "Psychology")
+attributes(bfi)[[4]]
 
 }

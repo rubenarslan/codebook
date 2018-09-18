@@ -31,8 +31,7 @@ ggplot2::theme_set(ggplot2::theme_bw())
 data("bfi", package = 'psych')
 bfi <- bfi %>% tbl_df()
 data("bfi.dictionary", package = 'psych')
-bfi.dictionary$variable = rownames(bfi.dictionary)
-bfi.dictionary <- bfi.dictionary %>% tbl_df()
+bfi.dictionary <- tibble::rownames_to_column(bfi.dictionary, "variable")
 ```
 
 Let's start by getting an overview of our dataset
@@ -98,7 +97,7 @@ dict <- bfi.dictionary %>%
   select(variable, label, Keying)
 
 # turn the key-value data frame into  a list
-labels <- dict$label %>% as.character() %>% as.list() %>% 
+labels <- dict$label %>% as.list() %>% 
   purrr::set_names(dict$variable)
 
 # assign the list of labels to the bfi data frame
@@ -111,6 +110,15 @@ value_labels <- c("Very Inaccurate" = 1,
                   "Slightly Accurate" = 4,
                   "Moderately Accurate" = 5,
                   "Very Accurate" = 6)
+
+# dict <- dict %>% tbl_df()
+# dict$vals <- list(value_labels)
+# 
+# value_labels <- dict$vals %>% 
+#   purrr::set_names(dict$variable)
+# 
+# bfi <- set_value_labels(bfi,value_labels)
+# rep(value_labels, nrow(dict))
 
 add_likert_label <- function(x) {
   val_labels(x) <- value_labels
@@ -145,9 +153,30 @@ bfi$neuro <- aggregate_and_document_scale(bfi %>% select(starts_with("N")))
 ```
 
 ```{r}
-knitr::opts_chunk$set(warning = TRUE, message = TRUE, error = TRUE, echo = FALSE)
+data_name(bfi) <- "25 Personality items representing 5 factors"
+data_description(bfi) <- "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org) were included as part of the Synthetic Aperture Personality Assessment (SAPA) web based personality assessment project. The data from 2800 subjects are included here as a demonstration set for scale construction, factor analysis, and Item Response Theory analysis. Three additional demographic variables (sex, education, and age) are also included.
+
+The first 25 items are organized by five putative factors: Agreeableness, Conscientiousness, Extraversion, Neuroticism, and Opennness. The item data were collected using a 6 point response scale: 1 Very Inaccurate 2 Moderately Inaccurate 3 Slightly Inaccurate 4 Slightly Accurate 5 Moderately Accurate 6 Very Accurate
+
+To see an example of the data collection technique, visit https://SAPA-project.org or the International Cognitive Ability Resource at https://icar-project.com. The items given were sampled from the International Personality Item Pool of Lewis Goldberg using the sampling technique of SAPA. This is a sample data set taken from the much larger SAPA data bank."
+data_identifier(bfi) <- "https://cran.r-project.org/web/packages/psych/index.html"
+data_datePublished(bfi) <- "2010-01-01"
+data_creator(bfi) <- list(
+      "@type" = "Person",
+      givenName = "William", familyName = "Revelle",
+      email = "revelle@northwestern.edu", 
+      affiliation = list("@type" = "Organization",
+        name = "Northwestern University"))
+data_citation(bfi) <- "Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer."
+data_url(bfi) <- "https://cran.r-project.org/web/packages/psych/index.html"
+data_temporalCoverage(bfi) <- "Spring 2010" 
+data_spatialCoverage(bfi) <- "Online" 
 ```
 
+```{r}
+# We don't want to look at the code in the codebook.
+knitr::opts_chunk$set(warning = TRUE, message = TRUE, echo = FALSE)
+```
 
 Finally, we can generate our codebook.
 
