@@ -172,6 +172,8 @@ new_codebook_rmd <- function(filename = "codebook", template = "default") {
   rmd_file <- write_to_file(template, name = filename, ext = ".Rmd")
   if (rstudioapi::isAvailable()) {
     rstudioapi::navigateToFile(rmd_file)
+  } else if (interactive()) {
+    utils::file.edit(rmd_file)
   }
 }
 

@@ -84,20 +84,25 @@ codebook <- function(results, reliabilities = NULL,
       paste0(knitr::opts_chunk$get("cache.path"), "cb_", df_name, "_")
   )
 
-  if (!exists("name", attributes(results))) {
-    data_name(results) <- deparse(substitute(results))
+  meta <- metadata(results)
+  if (is.null(meta)) {
+    meta <- list()
   }
 
-  if (!exists("datePublished", attributes(results))) {
-    data_datePublished(results) <- Sys.Date()
+  if (!exists("name", meta)) {
+    metadata(results)$name <- deparse(substitute(results))
   }
 
-  if (!exists("description", attributes(results))) {
-    data_description(results) <- data_description_default(results)
+  if (!exists("datePublished", meta)) {
+    metadata(results)$datePublished <- Sys.Date()
   }
 
-  if (!exists("keywords", attributes(results))) {
-    data_keywords(results) <- names(results)
+  if (!exists("description", meta)) {
+    metadata(results)$description <- data_description_default(results)
+  }
+
+  if (!exists("keywords", meta)) {
+    metadata(results)$keywords <- names(results)
   }
 
   data_info <- codebook_data_info(results)
@@ -243,10 +248,10 @@ codebook_survey_overview <- function(results, survey_repetition = "single",
 #' @examples
 #' # will generate figures in a figure/ subdirectory
 #' data("bfi")
-#' data_name(bfi) <- "MOCK Big Five Inventory dataset (German metadata demo)"
-#' data_description(bfi) <- "a small mock Big Five Inventory dataset"
-#' data_citation(bfi) <- "doi:10.5281/zenodo.1326520"
-#' data_url(bfi) <-
+#' metadata(bfi)$name <- "MOCK Big Five Inventory dataset (German metadata demo)"
+#' metadata(bfi)$description <- "a small mock Big Five Inventory dataset"
+#' metadata(bfi)$citation <- "doi:10.5281/zenodo.1326520"
+#' metadata(bfi)$url <-
 #'    "https://rubenarslan.github.io/codebook/articles/codebook.html"
 #' codebook_data_info(bfi)
 codebook_data_info <- function(results, indent = "##") {
@@ -297,7 +302,7 @@ metadata_jsonld <- function(results) {
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), "metadata_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), "metadata_")
   )
-  metadata <- metadata_list(results)
+  jsonld_metadata <- metadata_list(results)
   asis_knit_child(require_file("_metadata_jsonld.Rmd"), options = options)
 }
 
@@ -433,7 +438,7 @@ codebook_component_single_item <- function(item, item_name, indent = '##') {
 #' codebook_table(bfi)
 codebook_table <- function(results) {
   skimmed <- skim_to_wide_labelled(results)
-  metadata <- metadata(results)
+  metadata <- gather_variable_metadata(results)
 
   metadata <- dplyr::left_join(metadata,
                                dplyr::rename(skimmed, data_type = .data$type),
@@ -455,7 +460,7 @@ codebook_table <- function(results) {
   dplyr::select_if(metadata, not_all_na )
 }
 
-metadata <- function(results) {
+gather_variable_metadata <- function(results) {
     metadata <- purrr::map_dfr(results, attribute_summary, .id = "name")
     stopifnot(nrow(metadata) == ncol(results))
     metadata
@@ -532,10 +537,10 @@ attribute_summary <- function(var) {
 #' md_list <- metadata_list(bfi)
 #' md_list$variableMeasured[[20]]
 metadata_list <- function(results, only_existing = TRUE) {
-  metadata <- attributes(results)
-  metadata$names <- NULL
-  metadata$row.names <- NULL
-  metadata$class <- NULL
+  metadata <- metadata(results)
+  if (is.null(metadata)) {
+    metadata <- list()
+  }
 
   if (!exists("@context", metadata)) {
     metadata[["@context"]] <- "http://schema.org/"
@@ -545,7 +550,8 @@ metadata_list <- function(results, only_existing = TRUE) {
     metadata[["@type"]] <- "Dataset"
   }
 
-  metadata$variableMeasured <- lapply(names(results), function(var) {
+  if (!exists("variableMeasured", metadata)) {
+    metadata$variableMeasured <- lapply(names(results), function(var) {
       x <- attributes(results[[var]])
       x$name <- var
 
@@ -620,25 +626,56 @@ metadata_list <- function(results, only_existing = TRUE) {
       }
 
       if (only_existing) {
-        if (exists("item", x)) {
-          x$item <- NULL
-        }
-        if (exists("scale_item_names", x)) {
-          x$scale_item_names <- NULL
-        }
-        if (exists("data_summary", x)) {
-          x$data_summary <- NULL
-        }
+        x <- x[intersect(names(x), legal_property_value_properties)]
       }
 
       x[["@type"]] <- "propertyValue"
       x
     })
+  }
 
+
+  if (only_existing) {
+    metadata <- metadata[intersect(names(metadata), legal_dataset_properties)]
+  }
 
   metadata
 }
 
+legal_dataset_properties <-
+  c("@type", "@context",
+    "distribution", "includedInDataCatalog", "issn", "measurementTechnique",
+    "variableMeasured", "about", "accessMode", "accessModeSufficient",
+    "accessibilityAPI", "accessibilityControl", "accessibilityFeature",
+    "accessibilityHazard", "accessibilitySummary", "accountablePerson",
+    "aggregateRating", "alternativeHeadline", "associatedMedia", "audience",
+    "audio", "author", "award", "character", "citation", "comment",
+    "commentCount", "contentLocation", "contentRating", "contentReferenceTime",
+    "contributor", "copyrightHolder", "copyrightYear", "correction", "creator",
+    "dateCreated", "dateModified", "datePublished", "discussionUrl", "editor",
+    "educationalAlignment", "educationalUse", "encoding", "encodingFormat",
+    "exampleOfWork", "expires", "funder", "genre", "hasPart", "headline",
+    "inLanguage", "interactionStatistic", "interactivityType",
+    "isAccessibleForFree", "isBasedOn", "isFamilyFriendly", "isPartOf",
+    "keywords", "learningResourceType", "license", "locationCreated",
+    "mainEntity", "material", "mentions", "offers", "position", "producer",
+    "provider", "publication", "publisher", "publisherImprint",
+    "publishingPrinciples", "recordedAt", "releasedEvent", "review",
+    "schemaVersion", "sdDatePublished", "sdLicense", "sdPublisher",
+    "sourceOrganization", "spatialCoverage", "sponsor", "temporalCoverage",
+    "text", "thumbnailUrl", "timeRequired", "translationOfWork",
+    "translator", "typicalAgeRange", "version", "video", "workExample",
+    "workTranslation", "additionalType", "alternateName", "description",
+    "disambiguatingDescription", "identifier", "image", "mainEntityOfPage",
+    "name", "potentialAction", "sameAs", "subjectOf", "url")
+
+legal_property_value_properties <-
+  c("@type", "@context",
+    "maxValue", "measurementTechnique", "minValue", "propertyID", "unitCode",
+    "unitText", "value", "valueReference", "additionalType", "alternateName",
+    "description", "disambiguatingDescription", "identifier", "image",
+    "mainEntityOfPage", "name", "potentialAction", "sameAs", "subjectOf",
+    "url", "additionalProperty", "exifData", "identifier", "valueReference")
 
 skim_to_wide_labelled <- function(x, ...) {
   x <- haven::zap_labels(x)

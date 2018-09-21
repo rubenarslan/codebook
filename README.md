@@ -86,17 +86,34 @@ install.packages("codebook")
 Or to get the latest development version:
 
 ``` r
-install.packages("devtools")
-devtools::install_github("rubenarslan/codebook")
+install.packages("remotes")
+remotes::install_github("rubenarslan/codebook")
+```
+
+Then run the following to get started:
+
+``` r
+library(codebook)
+new_codebook_rmd()
 ```
 
 ## Citation
 
-To cite the package
+To cite the package, you can cite the preprint, but to make your
+codebook traceable to the version of the package you used, you might
+also want to cite the archived package DOI.
+
+### Preprint
+
+> Arslan, R. C. (2018). How to automatically generate rich codebooks
+> from study metadata.
+> [doi:10.31234/osf.io/5qc6h](https://doi.org/10.31234/osf.io/5qc6h)
+
+### Zenodo
 
 > Arslan, R. C. (2018). Automatic codebooks from survey metadata (2018).
 > URL <https://github.com/rubenarslan/codebook>.
-> doi:[10.5281/zenodo.1205454](https://doi.org/10.5281/zenodo.1205454)
+> [![DOI](https://zenodo.org/badge/109252375.svg)](https://zenodo.org/badge/latestdoi/109252375)
 
 ### How to use
 
@@ -154,8 +171,8 @@ can leverage it fully. These functions help fix this.
 ```{r codebook}
 library(codebook) # load the package
 # omit the following lines, if your missing values are already properly labelled
-codebook_data <- detect_missings(codebook_data,
-    only_labelled_missings = TRUE, # only labelled values are autodetected as
+codebook_data <- detect_missing(codebook_data,
+    only_labelled = TRUE, # only labelled values are autodetected as
                                    # missing
     negative_values_are_missing = FALSE, # negative values are NOT missing values
     ninety_nine_problems = TRUE,   # 99/999 are missing values, if they

@@ -6,5 +6,5 @@ if (exists("testing")) {
 ```
 
 <script type="application/ld+json">
-`r jsonlite::toJSON(metadata, pretty = TRUE, auto_unbox = TRUE)`
+`r jsonlite::toJSON(jsonld_metadata, pretty = TRUE, auto_unbox = TRUE)`
 </script>

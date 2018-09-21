@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Print a <code><a href='http://www.rdocumentation.org/packages/stats/topics/cor.test'>stats::cor.test()</a></code> object for knitr — knit_print.htest • codebook</title>
+<title>Go from a named list to a key-value data frame or data dictionary and back — list_to_dict • codebook</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,9 +36,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Print a <code><a href='http://www.rdocumentation.org/packages/stats/topics/cor.test'>stats::cor.test()</a></code> object for knitr — knit_print.htest" />
+<meta property="og:title" content="Go from a named list to a key-value data frame or data dictionary and back — list_to_dict" />
 
-<meta property="og:description" content="Just prints the normal output of stats::cor.test()." />
+<meta property="og:description" content="Sometimes, you'll want to have variable labels in a data.frame, sometimes
+you'll have imported an existing data dictionary and will need to turn it
+into a list before setting labelled::var_label()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -136,58 +138,48 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Print a <code><a href='http://www.rdocumentation.org/packages/stats/topics/cor.test'>stats::cor.test()</a></code> object for knitr</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/psych_print.R'><code>R/psych_print.R</code></a></small>
-    <div class="hidden name"><code>knit_print.htest.Rd</code></div>
+    <h1>Go from a named list to a key-value data frame or data dictionary and back</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/create_metadata.R'><code>R/create_metadata.R</code></a></small>
+    <div class="hidden name"><code>list_to_dict.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Just prints the normal output of <code><a href='http://www.rdocumentation.org/packages/stats/topics/cor.test'>stats::cor.test()</a></code>.</p>
+    <p>Sometimes, you'll want to have variable labels in a data.frame, sometimes
+you'll have imported an existing data dictionary and will need to turn it
+into a list before setting <code><a href='http://www.rdocumentation.org/packages/labelled/topics/var_label'>labelled::var_label()</a></code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>knit_print.htest</span>(<span class='no'>x</span>, <span class='kw'>indent</span> <span class='kw'>=</span> <span class='st'>"#####"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>list_to_dict</span>(<span class='no'>named_list</span>)
+
+<span class='fu'>dict_to_list</span>(<span class='no'>dict</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>a psych alpha object</p></td>
+      <th>named_list</th>
+      <td><p>a named list with one element each (names being variable names, elements being labels)</p></td>
     </tr>
     <tr>
-      <th>indent</th>
-      <td><p>add # to this to make the headings in the components lower-level. defaults to beginning at h5</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>ignored</p></td>
+      <th>dict</th>
+      <td><p>a data frame with the variable names in the first and the labels in the second column. If they are named variable and label, they can also be in a different order.</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/knitr/topics/knit_print'>knit_print</a></span>(<span class='fu'>cor.test</span>(<span class='fu'>rnorm</span>(<span class='fl'>100</span>), <span class='fu'>rnorm</span>(<span class='fl'>100</span>)))</div><div class='output co'>#&gt; 
+    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='st'>'bfi'</span>)
+<span class='no'>labels</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='http://www.rdocumentation.org/packages/labelled/topics/var_label'>var_label</a></span>(<span class='no'>bfi</span>)
+<span class='fu'>head</span>(<span class='no'>labels</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt; $A1
+#&gt; NULL
 #&gt; 
-#&gt; 
-#&gt; ```
-#&gt; 
-#&gt; 	Pearson's product-moment correlation
-#&gt; 
-#&gt; data:  rnorm(100) and rnorm(100)
-#&gt; t = -1.2783, df = 98, p-value = 0.2042
-#&gt; alternative hypothesis: true correlation is not equal to 0
-#&gt; 95 percent confidence interval:
-#&gt;  -0.31652398  0.07011384
-#&gt; sample estimates:
-#&gt;       cor 
-#&gt; -0.128068 
-#&gt; 
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; </div><div class='input'>
+#&gt; $A2
+#&gt; NULL
+#&gt; </div><div class='input'><span class='no'>dict</span> <span class='kw'>&lt;-</span> <span class='fu'>list_to_dict</span>(<span class='no'>labels</span>)</div><div class='output co'>#&gt; <span class='error'>Error: `by` can't contain join column `variable` which is missing from RHS</span></div><div class='input'><span class='fu'>head</span>(<span class='no'>dict</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in head(dict, 2): object 'dict' not found</span></div><div class='input'><span class='fu'>head</span>(<span class='fu'>dict_to_list</span>(<span class='fu'>list_to_dict</span>(<span class='no'>labels</span>)), <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='error'>Error: `by` can't contain join column `variable` which is missing from RHS</span></div><div class='input'>
+
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -56,32 +56,55 @@ aggregate_and_document_scale <- function(items, fun = rowMeans, stem = NULL) {
   new_scale
 }
 
-#' Add description to a dataset
+#' Add metadata to a dataset
 #'
-#' Add a single character vector to describe a data frame in preparation for JSON-LD
+#' Use this function to describe a data frame in preparation for JSON-LD
 #' metadata generation using [codebook()] or [metadata_list()].
 #'
 #' @param data the data frame
-#' @param value the description
+#' @param value the metadata attribute
 #' @export
 #' @examples
 #' data('bfi')
-#' data_description(bfi) <- "a small mock Big Five Inventory dataset"
-#' attributes(bfi)[[4]]
+#' metadata(bfi)$name <- "MOCK Big Five Inventory dataset (German metadata demo)"
+#' metadata(bfi)$description <- "a small mock Big Five Inventory dataset"
+#' metadata(bfi)$identifier <- "doi:10.5281/zenodo.1326520"
+#' metadata(bfi)$datePublished <- "2016-06-01"
+#' metadata(bfi)$creator <- list(
+#'   "@type" = "Person",
+#'   givenName = "Ruben", familyName = "Arslan",
+#'   email = "ruben.arslan@gmail.com",
+#'   affiliation = list("@type" = "Organization",
+#'                      name = "MPI Human Development, Berlin"))
+#' metadata(bfi)$citation <- "Arslan (2016). Mock BFI data."
+#' metadata(bfi)$url <-
+#'   "https://rubenarslan.github.io/codebook/articles/codebook.html"
+#' metadata(bfi)$temporalCoverage <- "2016"
+#' metadata(bfi)$spatialCoverage <- "Goettingen, Germany"
+#' metadata(bfi)$keywords <- c("Personality", "Psychology")
+#' metadata(bfi)
 #'
-`data_description<-` <- function(data, value) {
-  UseMethod("data_description<-")
+metadata <- function(data) {
+UseMethod("metadata")
+}
+
+#' @rdname metadata
+#' @export
+`metadata<-` <- function(data, value) {
+  UseMethod("metadata<-")
 }
 
 #' @export
-`data_description<-.data.frame` <- function(data, value) {
-  if ((!is.character(value) & !is.null(value)) | length(value) >
-      1)
-    stop("`value` should be a single character string or NULL",
-         call. = FALSE, domain = "R-codebook")
-  attributes(data)$description <- value
+`metadata<-.data.frame` <- function(data, value) {
+  attributes(data)$metadata <- value
   data
 }
+
+#' @export
+metadata.data.frame <- function(data) {
+  attr(data, 'metadata', exact = TRUE)
+}
+
 
 #' Data description default
 #'
@@ -111,241 +134,43 @@ data_description_default <- function(data) {
     variable_names = paste(recursive_escape(colnames(data)), collapse = ", "))
 }
 
-
-#' Give a name to a dataset
+#' Go from a named list to a key-value data frame or data dictionary and back
 #'
-#' Add a single character vector to name a data frame in preparation for JSON-LD
-#' metadata generation using [codebook()] or [metadata_list()].
+#' Sometimes, you'll want to have variable labels in a data.frame, sometimes
+#' you'll have imported an existing data dictionary and will need to turn it
+#' into a list before setting [labelled::var_label()].
 #'
-#' @param data the data frame
-#' @param value the name
+#' @param named_list a named list with one element each (names being variable names, elements being labels)
+#' @param dict a data frame with the variable names in the first and the labels in the second column. If they are named variable and label, they can also be in a different order.
 #' @export
 #' @examples
 #' data('bfi')
-#' data_name(bfi) <- "a small mock Big Five Inventory dataset"
-#' attributes(bfi)[[4]]
+#' labels <- var_label(bfi)
+#' head(labels, 2)
+#' dict <- list_to_dict(labels)
+#' head(dict, 2)
+#' head(dict_to_list(list_to_dict(labels)), 2)
 #'
-`data_name<-` <- function(data, value) {
-  UseMethod("data_name<-")
+#'
+#'
+list_to_dict <- function(named_list) {
+  dplyr::left_join(
+  tibble::data_frame(variable = names(named_list)),
+  tidyr::gather(
+    tibble::as_data_frame(
+      purrr::compact(named_list)),
+    "variable", "label"), by = "variable")
 }
 
+#' @rdname list_to_dict
 #' @export
-`data_name<-.data.frame` <- function(data, value) {
-  if ((!is.character(value) & !is.null(value)) | length(value) >
-      1)
-    stop("`value` should be a single character string or NULL",
-         call. = FALSE, domain = "R-codebook")
-  attributes(data)$name <- value
-  data
-}
-
-
-#' Add an URL to a dataset
-#'
-#' Add a URL where the dataset description can be found in preparation for
-#' JSON-LD metadata generation using [codebook()] or [metadata_list()].
-#'
-#' @param data the data frame
-#' @param value the URL
-#' @export
-#' @examples
-#' data('bfi')
-#' data_url(bfi) <- "https://rubenarslan.github.io/codebook/articles/codebook.html"
-#' attributes(bfi)[[4]]
-#'
-`data_url<-` <- function(data, value) {
-  UseMethod("data_url<-")
-}
-
-#' @export
-`data_url<-.data.frame` <- function(data, value) {
-  if ((!is.character(value) & !is.null(value)) | length(value) >
-      1)
-    stop("`value` should be a single character string or NULL",
-         call. = FALSE, domain = "R-codebook")
-  attributes(data)$url <- value
-  data
-}
-
-
-#' Add citation information to a dataset
-#'
-#' Add a single character vector or a list to give citation information for
-#' JSON-LD metadata generation using [codebook()] or [metadata_list()].
-#'
-#' @param data the data frame
-#' @param value the citation information
-#' @export
-#' @examples
-#' data('bfi')
-#' data_citation(bfi) <- "Arslan (2018). Mock BFI data."
-#' attributes(bfi)[[4]]
-#'
-`data_citation<-` <- function(data, value) {
-  UseMethod("data_citation<-")
-}
-
-#' @export
-`data_citation<-.data.frame` <- function(data, value) {
-  if (!((is.character(value) | is.null(value) | is.list(value))))
-    stop("`value` should be a single character string, a list, or NULL",
-         call. = FALSE, domain = "R-codebook")
-  attributes(data)$citation <- value
-  data
-}
-
-
-#' Add identifier to a dataset
-#'
-#' Add a single character vector or a list to give an identifier for the dataset,
-#' such as a DOI.
-#'
-#' @param data the data frame
-#' @param value the identifier
-#' @export
-#' @examples
-#' data('bfi')
-#' data_identifier(bfi) <- "doi:10.5281/zenodo.1326520"
-#' attributes(bfi)[[4]]
-#'
-`data_identifier<-` <- function(data, value) {
-  UseMethod("data_identifier<-")
-}
-
-#' @export
-`data_identifier<-.data.frame` <- function(data, value) {
-  if (!((is.character(value) | is.null(value) | is.list(value))))
-    stop("`value` should be a single character string, a list, or NULL",
-         call. = FALSE, domain = "R-codebook")
-  attributes(data)$identifier <- value
-  data
-}
-
-#' Add temporal coverage information to a dataset
-#'
-#' Add a single character vector or a list to give temporal coverage the dataset
-#' if it has a temporal extent for JSON-LD metadata generation, e.g., the period
-#' of data collection.
-#'
-#' @param data the data frame
-#' @param value the temporal coverage information
-#' @export
-#' @examples
-#' data('bfi')
-#' data_temporalCoverage(bfi) <- "2017"
-#' attributes(bfi)[[4]]
-#'
-`data_temporalCoverage<-` <- function(data, value) {
-  UseMethod("data_temporalCoverage<-")
-}
-
-#' @export
-`data_temporalCoverage<-.data.frame` <- function(data, value) {
-  if (!((is.character(value) | is.null(value) | is.list(value))))
-    stop("`value` should be a single character string, a list, or NULL",
-         call. = FALSE, domain = "R-codebook")
-  attributes(data)$temporalCoverage <- value
-  data
-}
-
-
-#' Add spatial coverage information to a dataset
-#'
-#' Add a single character vector or a list to give spatial coverage the dataset
-#' if it has a spatial extent for JSON-LD metadata generation, e.g., the place
-#' where data was collected.
-#'
-#' @param data the data frame
-#' @param value the spatial coverage information
-#' @export
-#' @examples
-#' data('bfi')
-#' data_spatialCoverage(bfi) <- "Goettingen, Germany"
-#' attributes(bfi)[[4]]
-#'
-`data_spatialCoverage<-` <- function(data, value) {
-  UseMethod("data_spatialCoverage<-")
-}
-
-#' @export
-`data_spatialCoverage<-.data.frame` <- function(data, value) {
-  if (!((is.character(value) | is.null(value) | is.list(value))))
-    stop("`value` should be a single character string, a list, or NULL",
-         call. = FALSE, domain = "R-codebook")
-  attributes(data)$spatialCoverage <- value
-  data
-}
-
-#' Add keywords to a dataset
-#'
-#' Add a character vector to to add keywords in preparation for JSON-LD
-#' metadata generation using [codebook()] or [metadata_list()].
-#'
-#' @param data the data frame
-#' @param value the keywords
-#' @export
-#' @examples
-#' data('bfi')
-#' data_keywords(bfi) <- c("Big Five", "Personality", "Psychology")
-#' attributes(bfi)[[4]]
-#'
-`data_keywords<-` <- function(data, value) {
-  UseMethod("data_keywords<-")
-}
-
-#' @export
-`data_keywords<-.data.frame` <- function(data, value) {
-  if (!((is.character(value) | is.null(value))))
-    stop("`value` should be a character vector or NULL",
-         call. = FALSE, domain = "R-codebook")
-  attributes(data)$keywords <- value
-  data
-}
-
-#' Add published date
-#'
-#' Add a character vector to to add keywords in preparation for JSON-LD
-#' metadata generation using [codebook()] or [metadata_list()].
-#'
-#' @param data the data frame
-#' @param value the keywords
-#' @export
-#' @examples
-#' data('bfi')
-#' data_datePublished(bfi) <- Sys.time()
-#' attributes(bfi)[[4]]
-#'
-`data_datePublished<-` <- function(data, value) {
-  UseMethod("data_datePublished<-")
-}
-
-#' @export
-`data_datePublished<-.data.frame` <- function(data, value) {
-  attributes(data)$datePublished <- format(as.Date(value))
-  data
-}
-
-
-
-#' Add creator
-#'
-#' Add a character vector to to add keywords in preparation for JSON-LD
-#' metadata generation using [codebook()] or [metadata_list()].
-#'
-#' @param data the data frame
-#' @param value the keywords
-#' @export
-#' @examples
-#' data('bfi')
-#' data_creator(bfi) <- Sys.time()
-#' attributes(bfi)[[4]]
-#'
-`data_creator<-` <- function(data, value) {
-  UseMethod("data_creator<-")
-}
-
-#' @export
-`data_creator<-.data.frame` <- function(data, value) {
-  attributes(data)$creator <- value
-  data
+dict_to_list <- function(dict) {
+  if (all(c("variable", "label") %in% names(dict))) {
+    dict <- dict[, c("variable", "label")]
+  }
+  labels <- unlist(dict[,2])
+  names(labels) <- unlist(dict[,1])
+  labels <- as.list(labels)
+  labels[is.na(labels)] <- list(NULL)
+  labels
 }

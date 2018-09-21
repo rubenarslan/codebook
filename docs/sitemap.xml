@@ -43,37 +43,7 @@
     <loc>https://rubenarslan.github.io/codebook/reference/compute_reliabilities.html</loc>
   </url>
   <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/data_citation-set.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/data_creator-set.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/data_datePublished-set.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/data_description-set.html</loc>
-  </url>
-  <url>
     <loc>https://rubenarslan.github.io/codebook/reference/data_description_default.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/data_identifier-set.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/data_keywords-set.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/data_name-set.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/data_spatialCoverage-set.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/data_temporalCoverage-set.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/data_url-set.html</loc>
   </url>
   <url>
     <loc>https://rubenarslan.github.io/codebook/reference/detect_missing.html</loc>
@@ -112,10 +82,16 @@
     <loc>https://rubenarslan.github.io/codebook/reference/likert_from_items.html</loc>
   </url>
   <url>
+    <loc>https://rubenarslan.github.io/codebook/reference/list_to_dict.html</loc>
+  </url>
+  <url>
     <loc>https://rubenarslan.github.io/codebook/reference/load_data_and_render_codebook.html</loc>
   </url>
   <url>
     <loc>https://rubenarslan.github.io/codebook/reference/md_pattern.html</loc>
+  </url>
+  <url>
+    <loc>https://rubenarslan.github.io/codebook/reference/metadata.html</loc>
   </url>
   <url>
     <loc>https://rubenarslan.github.io/codebook/reference/metadata_jsonld.html</loc>

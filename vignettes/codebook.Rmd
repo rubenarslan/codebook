@@ -38,7 +38,7 @@ to find your data. [See what Google sees here](https://search.google.com/structu
 
 ```{r}
 knit_by_pkgdown <- !is.null(knitr::opts_chunk$get("fig.retina"))
-knitr::opts_chunk$set(warning = TRUE, message = TRUE, error = TRUE)
+knitr::opts_chunk$set(warning = TRUE, message = TRUE, error = FALSE)
 pander::panderOptions("table.split.table", Inf)
 ggplot2::theme_set(ggplot2::theme_bw())
 
@@ -54,20 +54,20 @@ to sensible values. However, there is a number of attributes you can set to
 describe the data better. [Find out more](https://developers.google.com/search/docs/data-types/dataset).
 
 ```{r}
-data_name(bfi) <- "MOCK Big Five Inventory dataset (German metadata demo)"
-data_description(bfi) <- "a small mock Big Five Inventory dataset"
-data_identifier(bfi) <- "doi:10.5281/zenodo.1326520"
-data_datePublished(bfi) <- "2016-06-01"
-data_creator(bfi) <- list(
+metadata(bfi)$name <- "MOCK Big Five Inventory dataset (German metadata demo)"
+metadata(bfi)$description <- "a small mock Big Five Inventory dataset"
+metadata(bfi)$identifier <- "doi:10.5281/zenodo.1326520"
+metadata(bfi)$datePublished <- "2016-06-01"
+metadata(bfi)$creator <- list(
       "@type" = "Person",
       givenName = "Ruben", familyName = "Arslan",
       email = "ruben.arslan@gmail.com", 
       affiliation = list("@type" = "Organization",
         name = "MPI Human Development, Berlin"))
-data_citation(bfi) <- "Arslan (2016). Mock BFI data."
-data_url(bfi) <- "https://rubenarslan.github.io/codebook/articles/codebook.html"
-data_temporalCoverage(bfi) <- "2016" 
-data_spatialCoverage(bfi) <- "Goettingen, Germany" 
+metadata(bfi)$citation <- "Arslan (2016). Mock BFI data."
+metadata(bfi)$url <- "https://rubenarslan.github.io/codebook/articles/codebook.html"
+metadata(bfi)$temporalCoverage <- "2016" 
+metadata(bfi)$spatialCoverage <- "Goettingen, Germany" 
 ```
 
 ```{r}

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3.9001</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
       <h1>Codebook example with SPSS dataset</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2018-09-18</h4>
+            <h4 class="date">2018-09-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook_sav.Rmd"><code>vignettes/codebook_sav.Rmd</code></a></small>
       <div class="hidden name"><code>codebook_sav.Rmd</code></div>
@@ -131,55 +131,71 @@
 <a class="sourceLine" id="cb2-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span>knit_by_pkgdown) {</a>
 <a class="sourceLine" id="cb2-3" data-line-number="3">  darktriad &lt;-<span class="st"> </span>darktriad <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb2-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(DG, sex, relStat, education, NPI_avg)</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">}</a></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">data_name</span>(darktriad) &lt;-<span class="st"> "How alluring are dark personalities? The Dark Triad and attractiveness in speed dating"</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">data_description</span>(darktriad) &lt;-<span class="st"> "The data to this speed dating study comes in two different formats: Personwise (one record for each individual) and dyadic (pairwise; one record for each date). The respective SPSS files are named </span><span class="ch">\"</span><span class="st">DarkTriadDate_person.sav</span><span class="ch">\"</span><span class="st"> and </span><span class="ch">\"</span><span class="st">DarkTriadDate_dyad.sav</span><span class="ch">\"</span><span class="st">.</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7">dict &lt;-<span class="st"> </span>darktriad <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/var_label">var_label</a></span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">as_data_frame</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>tidyr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tidyr/topics/gather">gather</a></span>(variable, label) <span class="op">%&gt;%</span><span class="st"> </span>knitr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="dt">format =</span> <span class="st">"markdown"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.character</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">paste0</span>(<span class="dt">collapse =</span> <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(darktriad)<span class="op">$</span>name &lt;-<span class="st"> "How alluring are dark personalities? The Dark Triad and attractiveness in speed dating"</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(darktriad)<span class="op">$</span>description &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">"The data to this speed dating study comes in two different formats: Personwise (one record for each individual) and dyadic (pairwise; one record for each date). The respective SPSS files are named </span><span class="ch">\"</span><span class="st">DarkTriadDate_person.sav</span><span class="ch">\"</span><span class="st"> and </span><span class="ch">\"</span><span class="st">DarkTriadDate_dyad.sav</span><span class="ch">\"</span><span class="st">.</span></a>
 <a class="sourceLine" id="cb3-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">The personwise datafile contains individual differences variables and perceiver and target effects according to the social relations model. These are centered marginal means that were calculated according to the formulae provided by Kenny, Kashy, and Cook (2006). These effects are not (!) based on multilevel analyses.</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">All rating variables (i.e., actual choice, friendship, short-term relationship etc.) were corrected for prior acquaintance, which means that dates wih prior acquaintance were excluded (set to missing) on a dyadic basis.</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="st">Variables are labeled in SPSS. Here is a list of important abbreviations, prefixes and suffixes:</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="st">_acq = acquaintance (i.e., variables with this suffix are controlled for prior acquaintance)</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="st">_avg = average</span></a>
-<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="st">_rat = rating variable</span></a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="st">_z = z-standardized score</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="st">BC = booty call</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="st">DG = dating group (three groups in this study)</span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="st">FIPI = five item personality inventory</span></a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="st">FS = friendship</span></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="st">FWB = friends-with-benefits</span></a>
-<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="st">Int = Intelligence</span></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="st">Like = Likeability</span></a>
-<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="st">LTR = long-term relationship</span></a>
-<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="st">MACHIV = mach-iv machiavellianism questionnaire</span></a>
-<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="st">N, E, O, A, C = Big5</span></a>
-<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="st">NPI = narcissistic personality inventory</span></a>
-<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="st">ONS = one night stand</span></a>
-<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="st">P = perceiver</span></a>
-<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="st">PA = physical attractiveness</span></a>
-<a class="sourceLine" id="cb3-29" data-line-number="29"><span class="st">PercEff = perceiver effect</span></a>
-<a class="sourceLine" id="cb3-30" data-line-number="30"><span class="st">SD = speed dating</span></a>
-<a class="sourceLine" id="cb3-31" data-line-number="31"><span class="st">SRM = social relations model</span></a>
-<a class="sourceLine" id="cb3-32" data-line-number="32"><span class="st">SRP = self-report psychopathy scale</span></a>
-<a class="sourceLine" id="cb3-33" data-line-number="33"><span class="st">STR = short-term relationship</span></a>
-<a class="sourceLine" id="cb3-34" data-line-number="34"><span class="st">T = target</span></a>
-<a class="sourceLine" id="cb3-35" data-line-number="35"><span class="st">TargEff = target effect</span></a>
-<a class="sourceLine" id="cb3-36" data-line-number="36"><span class="st">"</span></a>
-<a class="sourceLine" id="cb3-37" data-line-number="37"><span class="kw">data_identifier</span>(darktriad) &lt;-<span class="st"> "https://osf.io/jvk3u/"</span></a>
-<a class="sourceLine" id="cb3-38" data-line-number="38"><span class="kw">data_datePublished</span>(darktriad) &lt;-<span class="st"> "2015-10-07"</span></a>
-<a class="sourceLine" id="cb3-39" data-line-number="39"><span class="kw">data_creator</span>(darktriad) &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb3-40" data-line-number="40">      <span class="st">"@type"</span> =<span class="st"> "Person"</span>,</a>
-<a class="sourceLine" id="cb3-41" data-line-number="41">      <span class="dt">givenName =</span> <span class="st">"Emanuel"</span>, <span class="dt">familyName =</span> <span class="st">"Jauk"</span>,</a>
-<a class="sourceLine" id="cb3-42" data-line-number="42">      <span class="dt">email =</span> <span class="st">"emanuel.jauk@uni‐graz.at"</span>, </a>
-<a class="sourceLine" id="cb3-43" data-line-number="43">      <span class="dt">affiliation =</span> <span class="kw">list</span>(<span class="st">"@type"</span> =<span class="st"> "Organization"</span>,</a>
-<a class="sourceLine" id="cb3-44" data-line-number="44">        <span class="dt">name =</span> <span class="st">"Karl‐Franzens‐Universität Graz, Austria"</span>))</a>
-<a class="sourceLine" id="cb3-45" data-line-number="45"><span class="kw">data_citation</span>(darktriad) &lt;-<span class="st"> "Jauk, E., Neubauer, A. C., Mairunteregger, T., Pemp, S., Sieber, K. P., &amp; Rauthmann, J. F. (2016). How alluring are dark personalities? The Dark Triad and attractiveness in speed dating. European Journal of Personality, 30(2), 125-138."</span></a>
-<a class="sourceLine" id="cb3-46" data-line-number="46"><span class="kw">data_url</span>(darktriad) &lt;-<span class="st"> "https://osf.io/j4fcb/"</span></a>
-<a class="sourceLine" id="cb3-47" data-line-number="47"><span class="kw">data_temporalCoverage</span>(darktriad) &lt;-<span class="st"> "2015"</span> </a>
-<a class="sourceLine" id="cb3-48" data-line-number="48"><span class="kw">data_spatialCoverage</span>(darktriad) &lt;-<span class="st"> "Graz, Austria"</span> </a></code></pre></div>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">## Download link</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">[Open Science Framework](https://osf.io/j4fcb/download)</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="st">## Personwise datafile </span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="st">The personwise datafile contains individual differences variables and perceiver and target effects according to the social relations model. These are centered marginal means that were calculated according to the formulae provided by Kenny, Kashy, and Cook (2006). These effects are not (!) based on multilevel analyses.</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="st">## Preprocessing</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="st">All rating variables (i.e., actual choice, friendship, short-term relationship etc.) were corrected for prior acquaintance, which means that dates wih prior acquaintance were excluded (set to missing) on a dyadic basis.</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="st">Variables are labeled in SPSS. </span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="st">## A list of important abbreviations, prefixes and suffixes:</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="st">* _acq = acquaintance (i.e., variables with this suffix are controlled for prior * acquaintance)</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="st">* avg = average</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="st">* _rat = rating variable</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="st">* _z = z-standardized score</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="st">* BC = booty call</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="st">* DG = dating group (three groups in this study)</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="st">* FIPI = five item personality inventory</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="st">* FS = friendship</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="st">* FWB = friends-with-benefits</span></a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="st">* Int = Intelligence</span></a>
+<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="st">* Like = Likeability</span></a>
+<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="st">* LTR = long-term relationship</span></a>
+<a class="sourceLine" id="cb3-29" data-line-number="29"><span class="st">* MACHIV = mach-iv machiavellianism questionnaire</span></a>
+<a class="sourceLine" id="cb3-30" data-line-number="30"><span class="st">* N, E, O, A, C = Big5</span></a>
+<a class="sourceLine" id="cb3-31" data-line-number="31"><span class="st">* NPI = narcissistic personality inventory</span></a>
+<a class="sourceLine" id="cb3-32" data-line-number="32"><span class="st">* ONS = one night stand</span></a>
+<a class="sourceLine" id="cb3-33" data-line-number="33"><span class="st">* P = perceiver</span></a>
+<a class="sourceLine" id="cb3-34" data-line-number="34"><span class="st">* PA = physical attractiveness</span></a>
+<a class="sourceLine" id="cb3-35" data-line-number="35"><span class="st">* PercEff = perceiver effect</span></a>
+<a class="sourceLine" id="cb3-36" data-line-number="36"><span class="st">* SD = speed dating</span></a>
+<a class="sourceLine" id="cb3-37" data-line-number="37"><span class="st">* SRM = social relations model</span></a>
+<a class="sourceLine" id="cb3-38" data-line-number="38"><span class="st">* SRP = self-report psychopathy scale</span></a>
+<a class="sourceLine" id="cb3-39" data-line-number="39"><span class="st">* STR = short-term relationship</span></a>
+<a class="sourceLine" id="cb3-40" data-line-number="40"><span class="st">* T = target</span></a>
+<a class="sourceLine" id="cb3-41" data-line-number="41"><span class="st">* TargEff = target effect</span></a>
+<a class="sourceLine" id="cb3-42" data-line-number="42"></a>
+<a class="sourceLine" id="cb3-43" data-line-number="43"></a>
+<a class="sourceLine" id="cb3-44" data-line-number="44"><span class="st">"</span>, dict)</a>
+<a class="sourceLine" id="cb3-45" data-line-number="45"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(darktriad)<span class="op">$</span>identifier &lt;-<span class="st"> "https://osf.io/jvk3u/"</span></a>
+<a class="sourceLine" id="cb3-46" data-line-number="46"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(darktriad)<span class="op">$</span>datePublished &lt;-<span class="st"> "2015-10-07"</span></a>
+<a class="sourceLine" id="cb3-47" data-line-number="47"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(darktriad)<span class="op">$</span>creator &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb3-48" data-line-number="48">      <span class="st">"@type"</span> =<span class="st"> "Person"</span>,</a>
+<a class="sourceLine" id="cb3-49" data-line-number="49">      <span class="dt">givenName =</span> <span class="st">"Emanuel"</span>, <span class="dt">familyName =</span> <span class="st">"Jauk"</span>,</a>
+<a class="sourceLine" id="cb3-50" data-line-number="50">      <span class="dt">email =</span> <span class="st">"emanuel.jauk@uni‐graz.at"</span>, </a>
+<a class="sourceLine" id="cb3-51" data-line-number="51">      <span class="dt">affiliation =</span> <span class="kw">list</span>(<span class="st">"@type"</span> =<span class="st"> "Organization"</span>,</a>
+<a class="sourceLine" id="cb3-52" data-line-number="52">        <span class="dt">name =</span> <span class="st">"Karl‐Franzens‐Universität Graz, Austria"</span>))</a>
+<a class="sourceLine" id="cb3-53" data-line-number="53"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(darktriad)<span class="op">$</span>citation &lt;-<span class="st"> "Jauk, E., Neubauer, A. C., Mairunteregger, T., Pemp, S., Sieber, K. P., &amp; Rauthmann, J. F. (2016). How alluring are dark personalities? The Dark Triad and attractiveness in speed dating. European Journal of Personality, 30(2), 125-138."</span></a>
+<a class="sourceLine" id="cb3-54" data-line-number="54"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(darktriad)<span class="op">$</span>url &lt;-<span class="st"> "https://osf.io/j4fcb/"</span></a>
+<a class="sourceLine" id="cb3-55" data-line-number="55"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(darktriad)<span class="op">$</span>temporalCoverage &lt;-<span class="st"> "2015"</span> </a>
+<a class="sourceLine" id="cb3-56" data-line-number="56"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(darktriad)<span class="op">$</span>spatialCoverage &lt;-<span class="st"> "Graz, Austria"</span> </a>
+<a class="sourceLine" id="cb3-57" data-line-number="57"><span class="kw">attributes</span>(darktriad)<span class="op">$</span>distribution =<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb3-58" data-line-number="58">  <span class="kw">list</span>(<span class="st">"@type"</span> =<span class="st"> "DataDownload"</span>,</a>
+<a class="sourceLine" id="cb3-59" data-line-number="59">       <span class="st">"requiresSubscription"</span> =<span class="st"> "http://schema.org/True"</span>,</a>
+<a class="sourceLine" id="cb3-60" data-line-number="60">       <span class="st">"encodingFormat"</span> =<span class="st"> "https://www.loc.gov/preservation/digital/formats/fdd/fdd000469.shtml"</span>,</a>
+<a class="sourceLine" id="cb3-61" data-line-number="61">       <span class="dt">contentUrl =</span> <span class="st">"https://osf.io/j4fcb/download"</span>)</a>
+<a class="sourceLine" id="cb3-62" data-line-number="62">)</a></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># We don't want to look at the code in the codebook.</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">TRUE</span>, <span class="dt">message =</span> <span class="ot">TRUE</span>, <span class="dt">echo =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Now, we can immediately generate a codebook.</p>
@@ -191,10 +207,306 @@
 <a href="#description" class="anchor"></a>Description</h4>
 <p><strong>Dataset name</strong>: How alluring are dark personalities? The Dark Triad and attractiveness in speed dating</p>
 <p>The data to this speed dating study comes in two different formats: Personwise (one record for each individual) and dyadic (pairwise; one record for each date). The respective SPSS files are named “DarkTriadDate_person.sav” and “DarkTriadDate_dyad.sav”.</p>
+</div>
+</div>
+<div id="download-link" class="section level2">
+<h2 class="hasAnchor">
+<a href="#download-link" class="anchor"></a>Download link</h2>
+<p><a href="https://osf.io/j4fcb/download">Open Science Framework</a></p>
+</div>
+<div id="personwise-datafile" class="section level2">
+<h2 class="hasAnchor">
+<a href="#personwise-datafile" class="anchor"></a>Personwise datafile</h2>
 <p>The personwise datafile contains individual differences variables and perceiver and target effects according to the social relations model. These are centered marginal means that were calculated according to the formulae provided by Kenny, Kashy, and Cook (2006). These effects are not (!) based on multilevel analyses.</p>
+</div>
+<div id="preprocessing" class="section level2">
+<h2 class="hasAnchor">
+<a href="#preprocessing" class="anchor"></a>Preprocessing</h2>
 <p>All rating variables (i.e., actual choice, friendship, short-term relationship etc.) were corrected for prior acquaintance, which means that dates wih prior acquaintance were excluded (set to missing) on a dyadic basis.</p>
-<p>Variables are labeled in SPSS. Here is a list of important abbreviations, prefixes and suffixes:</p>
-<p>_acq = acquaintance (i.e., variables with this suffix are controlled for prior acquaintance) _avg = average _rat = rating variable _z = z-standardized score BC = booty call DG = dating group (three groups in this study) FIPI = five item personality inventory FS = friendship FWB = friends-with-benefits Int = Intelligence Like = Likeability LTR = long-term relationship MACHIV = mach-iv machiavellianism questionnaire N, E, O, A, C = Big5 NPI = narcissistic personality inventory ONS = one night stand P = perceiver PA = physical attractiveness PercEff = perceiver effect SD = speed dating SRM = social relations model SRP = self-report psychopathy scale STR = short-term relationship T = target TargEff = target effect</p>
+<p>Variables are labeled in SPSS.</p>
+</div>
+<div id="a-list-of-important-abbreviations-prefixes-and-suffixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#a-list-of-important-abbreviations-prefixes-and-suffixes" class="anchor"></a>A list of important abbreviations, prefixes and suffixes:</h2>
+<ul>
+<li>_acq = acquaintance (i.e., variables with this suffix are controlled for prior * acquaintance)</li>
+<li>avg = average</li>
+<li>_rat = rating variable</li>
+<li>_z = z-standardized score</li>
+<li>BC = booty call</li>
+<li>DG = dating group (three groups in this study)</li>
+<li>FIPI = five item personality inventory</li>
+<li>FS = friendship</li>
+<li>FWB = friends-with-benefits</li>
+<li>Int = Intelligence</li>
+<li>Like = Likeability</li>
+<li>LTR = long-term relationship</li>
+<li>MACHIV = mach-iv machiavellianism questionnaire</li>
+<li>N, E, O, A, C = Big5</li>
+<li>NPI = narcissistic personality inventory</li>
+<li>ONS = one night stand</li>
+<li>P = perceiver</li>
+<li>PA = physical attractiveness</li>
+<li>PercEff = perceiver effect</li>
+<li>SD = speed dating</li>
+<li>SRM = social relations model</li>
+<li>SRP = self-report psychopathy scale</li>
+<li>STR = short-term relationship</li>
+<li>T = target</li>
+<li>TargEff = target effect</li>
+</ul>
+<table class="table">
+<colgroup>
+<col width="31%">
+<col width="68%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">variable</th>
+<th align="left">label</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">SD_Code</td>
+<td align="left">speed dating code</td>
+</tr>
+<tr class="even">
+<td align="left">DG</td>
+<td align="left">dating group</td>
+</tr>
+<tr class="odd">
+<td align="left">DG_size</td>
+<td align="left">dating group size</td>
+</tr>
+<tr class="even">
+<td align="left">DG_size_acq</td>
+<td align="left">dating group size, corrected for prior acquaintance</td>
+</tr>
+<tr class="odd">
+<td align="left">age</td>
+<td align="left">age</td>
+</tr>
+<tr class="even">
+<td align="left">sex</td>
+<td align="left">sex</td>
+</tr>
+<tr class="odd">
+<td align="left">height</td>
+<td align="left">height</td>
+</tr>
+<tr class="even">
+<td align="left">weight</td>
+<td align="left">weight</td>
+</tr>
+<tr class="odd">
+<td align="left">relStat</td>
+<td align="left">relationship status</td>
+</tr>
+<tr class="even">
+<td align="left">relStat_other</td>
+<td align="left">other relationship status</td>
+</tr>
+<tr class="odd">
+<td align="left">education</td>
+<td align="left">highest educational attainment</td>
+</tr>
+<tr class="even">
+<td align="left">contracept</td>
+<td align="left">hormonal contraception</td>
+</tr>
+<tr class="odd">
+<td align="left">date</td>
+<td align="left">past experience with speed dating</td>
+</tr>
+<tr class="even">
+<td align="left">NPI_avg</td>
+<td align="left">narcissistic personality inventory - average</td>
+</tr>
+<tr class="odd">
+<td align="left">SRP_avg</td>
+<td align="left">self-report psychopathy scale - average</td>
+</tr>
+<tr class="even">
+<td align="left">MACHIV_avg</td>
+<td align="left">mach-iv - average</td>
+</tr>
+<tr class="odd">
+<td align="left">BFI_N_avg</td>
+<td align="left">big five inventory: neuroticism - average</td>
+</tr>
+<tr class="even">
+<td align="left">BFI_E_avg</td>
+<td align="left">big five inventory: extraversion - average</td>
+</tr>
+<tr class="odd">
+<td align="left">BFI_O_avg</td>
+<td align="left">big five inventory: openness - average</td>
+</tr>
+<tr class="even">
+<td align="left">BFI_A_avg</td>
+<td align="left">big five inventory: agreeableness - average</td>
+</tr>
+<tr class="odd">
+<td align="left">BFI_C_avg</td>
+<td align="left">big five inventory: conscientiousness - average</td>
+</tr>
+<tr class="even">
+<td align="left">PA_R1</td>
+<td align="left">physical attractiveness - rater1(f)</td>
+</tr>
+<tr class="odd">
+<td align="left">PA_R2</td>
+<td align="left">physical attractiveness - rater2(f)</td>
+</tr>
+<tr class="even">
+<td align="left">PA_R3</td>
+<td align="left">physical attractiveness - rater3(m)</td>
+</tr>
+<tr class="odd">
+<td align="left">PA_R4</td>
+<td align="left">physical attractiveness - rater4(m)</td>
+</tr>
+<tr class="even">
+<td align="left">PA_avg</td>
+<td align="left">physical attractiveness - average</td>
+</tr>
+<tr class="odd">
+<td align="left">BMI</td>
+<td align="left">body mass index</td>
+</tr>
+<tr class="even">
+<td align="left">SOI_R_B_avg</td>
+<td align="left">sociosexual orientation inventory revised: behavior - average</td>
+</tr>
+<tr class="odd">
+<td align="left">SOI_R_A_avg</td>
+<td align="left">sociosexual orientation inventory revised: attitude - average</td>
+</tr>
+<tr class="even">
+<td align="left">SOI_R_D_avg</td>
+<td align="left">sociosexual orientation inventory revised: desire - average</td>
+</tr>
+<tr class="odd">
+<td align="left">TargEff__choice_relFrequ_acq</td>
+<td align="left">SRM target effect: actual choice</td>
+</tr>
+<tr class="even">
+<td align="left">TargEff__FS_avg_acq</td>
+<td align="left">SRM target effect: friendship</td>
+</tr>
+<tr class="odd">
+<td align="left">TargEff__ONS_avg_acq</td>
+<td align="left">SRM target effect: one night stand</td>
+</tr>
+<tr class="even">
+<td align="left">TargEff__BC_avg_acq</td>
+<td align="left">SRM target effect: booty call</td>
+</tr>
+<tr class="odd">
+<td align="left">TargEff__FWB_avg_acq</td>
+<td align="left">SRM target effect: friends-with-benefits</td>
+</tr>
+<tr class="even">
+<td align="left">TargEff__STR_avg_acq</td>
+<td align="left">SRM target effect: short-term relationship (aggregated)</td>
+</tr>
+<tr class="odd">
+<td align="left">TargEff__LTR_avg_acq</td>
+<td align="left">SRM target effect: long-term relationship</td>
+</tr>
+<tr class="even">
+<td align="left">TargEff__PA_avg_acq</td>
+<td align="left">SRM target effect: physical attractiveness</td>
+</tr>
+<tr class="odd">
+<td align="left">TargEff__Like_avg_acq</td>
+<td align="left">SRM target effect: likeability</td>
+</tr>
+<tr class="even">
+<td align="left">TargEff__Int_avg_acq</td>
+<td align="left">SRM target effect: intelligence</td>
+</tr>
+<tr class="odd">
+<td align="left">TargEff__FIPI_N_avg_acq</td>
+<td align="left">SRM target effect: neuroticism</td>
+</tr>
+<tr class="even">
+<td align="left">TargEff__FIPI_E_avg_acq</td>
+<td align="left">SRM target effect: extraversion</td>
+</tr>
+<tr class="odd">
+<td align="left">TargEff__FIPI_O_avg_acq</td>
+<td align="left">SRM target effect: openness</td>
+</tr>
+<tr class="even">
+<td align="left">TargEff__FIPI_A_avg_acq</td>
+<td align="left">SRM target effect: agreeableness</td>
+</tr>
+<tr class="odd">
+<td align="left">TargEff__FIPI_C_avg_acq</td>
+<td align="left">SRM target effect: conscientiousness</td>
+</tr>
+<tr class="even">
+<td align="left">PercEff__choice_relFrequ_acq</td>
+<td align="left">SRM perceiver effect: actual choice</td>
+</tr>
+<tr class="odd">
+<td align="left">PercEff__FS_avg_acq</td>
+<td align="left">SRM perceiver effect: friendship</td>
+</tr>
+<tr class="even">
+<td align="left">PercEff__ONS_avg_acq</td>
+<td align="left">SRM perceiver effect: one night stand</td>
+</tr>
+<tr class="odd">
+<td align="left">PercEff__BC_avg_acq</td>
+<td align="left">SRM perceiver effect: booty call</td>
+</tr>
+<tr class="even">
+<td align="left">PercEff__FWB_avg_acq</td>
+<td align="left">SRM perceiver effect: friends-with-benefits</td>
+</tr>
+<tr class="odd">
+<td align="left">PercEff__STR_avg_acq</td>
+<td align="left">SRM perceiver effect: short-term relationship (aggregated)</td>
+</tr>
+<tr class="even">
+<td align="left">PercEff__LTR_avg_acq</td>
+<td align="left">SRM perceiver effect: long-term relationship</td>
+</tr>
+<tr class="odd">
+<td align="left">PercEff__PA_avg_acq</td>
+<td align="left">SRM perceiver effect: physical attractiveness</td>
+</tr>
+<tr class="even">
+<td align="left">PercEff__Like_avg_acq</td>
+<td align="left">SRM perceiver effect: likeability</td>
+</tr>
+<tr class="odd">
+<td align="left">PercEff__Int_avg_acq</td>
+<td align="left">SRM perceiver effect: intelligence</td>
+</tr>
+<tr class="even">
+<td align="left">PercEff__FIPI_N_avg_acq</td>
+<td align="left">SRM perceiver effect: neuroticism</td>
+</tr>
+<tr class="odd">
+<td align="left">PercEff__FIPI_E_avg_acq</td>
+<td align="left">SRM perceiver effect: extraversion</td>
+</tr>
+<tr class="even">
+<td align="left">PercEff__FIPI_O_avg_acq</td>
+<td align="left">SRM perceiver effect: openness</td>
+</tr>
+<tr class="odd">
+<td align="left">PercEff__FIPI_A_avg_acq</td>
+<td align="left">SRM perceiver effect: agreeableness</td>
+</tr>
+<tr class="even">
+<td align="left">PercEff__FIPI_C_avg_acq</td>
+<td align="left">SRM perceiver effect: conscientiousness</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>
 <strong>Temporal Coverage</strong>: 2015</li>
@@ -231,8 +543,11 @@
 </ul>
 </li>
 </ul>
+<!-- end of list --><ul>
+<li>
+<strong>keywords</strong>: <em>SD_Code</em>, <em>DG</em>, <em>DG_size</em>, <em>DG_size_acq</em>, <em>age</em>, <em>sex</em>, <em>height</em>, <em>weight</em>, <em>relStat</em>, <em>relStat_other</em>, <em>education</em>, <em>contracept</em>, <em>date</em>, <em>NPI_avg</em>, <em>SRP_avg</em>, <em>MACHIV_avg</em>, <em>BFI_N_avg</em>, <em>BFI_E_avg</em>, <em>BFI_O_avg</em>, <em>BFI_A_avg</em>, <em>BFI_C_avg</em>, <em>PA_R1</em>, <em>PA_R2</em>, <em>PA_R3</em>, <em>PA_R4</em>, <em>PA_avg</em>, <em>BMI</em>, <em>SOI_R_B_avg</em>, <em>SOI_R_A_avg</em>, <em>SOI_R_D_avg</em>, _TargEff__choice_relFrequ_acq_, _TargEff__FS_avg_acq_, _TargEff__ONS_avg_acq_, _TargEff__BC_avg_acq_, _TargEff__FWB_avg_acq_, _TargEff__STR_avg_acq_, _TargEff__LTR_avg_acq_, _TargEff__PA_avg_acq_, _TargEff__Like_avg_acq_, _TargEff__Int_avg_acq_, _TargEff__FIPI_N_avg_acq_, _TargEff__FIPI_E_avg_acq_, _TargEff__FIPI_O_avg_acq_, _TargEff__FIPI_A_avg_acq_, _TargEff__FIPI_C_avg_acq_, _PercEff__choice_relFrequ_acq_, _PercEff__FS_avg_acq_, _PercEff__ONS_avg_acq_, _PercEff__BC_avg_acq_, _PercEff__FWB_avg_acq_, _PercEff__STR_avg_acq_, _PercEff__LTR_avg_acq_, _PercEff__PA_avg_acq_, _PercEff__Like_avg_acq_, _PercEff__Int_avg_acq_, _PercEff__FIPI_N_avg_acq_, _PercEff__FIPI_E_avg_acq_, _PercEff__FIPI_O_avg_acq_, _PercEff__FIPI_A_avg_acq_ and _PercEff__FIPI_C_avg_acq_</li>
+</ul>
 <!-- end of list -->
-</div>
 </div>
 <div id="variables" class="section level2">
 <h2 class="hasAnchor">
@@ -3491,14 +3806,14 @@
 <p>Among those who finished the survey. Only variables that have missing values are shown.</p>
 <pre><code>## Warning: Could not figure out who finished the surveys, because the
 ## variables expired and ended were missing.</code></pre>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="37%">
+<col width="35%">
 <col width="11%">
 <col width="13%">
-<col width="15%">
+<col width="14%">
 <col width="12%">
-<col width="9%">
+<col width="12%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">description</th>
@@ -3555,11 +3870,11 @@
 <div id="codebook-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#codebook-table" class="anchor"></a>Codebook table</h2>
-<div id="htmlwidget-10e5e8c4ea7faa125c63" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-10e5e8c4ea7faa125c63">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"5\" data-max=\"34\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#SD_Code\">SD_Code<\/a>","<a href=\"#DG\">DG<\/a>","<a href=\"#DG_size\">DG_size<\/a>","<a href=\"#DG_size_acq\">DG_size_acq<\/a>","<a href=\"#age\">age<\/a>","<a href=\"#sex\">sex<\/a>","<a href=\"#height\">height<\/a>","<a href=\"#weight\">weight<\/a>","<a href=\"#relStat\">relStat<\/a>","<a href=\"#relStat_other\">relStat_other<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#contracept\">contracept<\/a>","<a href=\"#date\">date<\/a>","<a href=\"#NPI_avg\">NPI_avg<\/a>","<a href=\"#SRP_avg\">SRP_avg<\/a>","<a href=\"#MACHIV_avg\">MACHIV_avg<\/a>","<a href=\"#BFI_N_avg\">BFI_N_avg<\/a>","<a href=\"#BFI_E_avg\">BFI_E_avg<\/a>","<a href=\"#BFI_O_avg\">BFI_O_avg<\/a>","<a href=\"#BFI_A_avg\">BFI_A_avg<\/a>","<a href=\"#BFI_C_avg\">BFI_C_avg<\/a>","<a href=\"#PA_R1\">PA_R1<\/a>","<a href=\"#PA_R2\">PA_R2<\/a>","<a href=\"#PA_R3\">PA_R3<\/a>","<a href=\"#PA_R4\">PA_R4<\/a>","<a href=\"#PA_avg\">PA_avg<\/a>","<a href=\"#BMI\">BMI<\/a>","<a href=\"#SOI_R_B_avg\">SOI_R_B_avg<\/a>","<a href=\"#SOI_R_A_avg\">SOI_R_A_avg<\/a>","<a href=\"#SOI_R_D_avg\">SOI_R_D_avg<\/a>","<a href=\"#TargEff__choice_relFrequ_acq\">TargEff__choice_relFrequ_acq<\/a>","<a href=\"#TargEff__FS_avg_acq\">TargEff__FS_avg_acq<\/a>","<a href=\"#TargEff__ONS_avg_acq\">TargEff__ONS_avg_acq<\/a>","<a href=\"#TargEff__BC_avg_acq\">TargEff__BC_avg_acq<\/a>","<a href=\"#TargEff__FWB_avg_acq\">TargEff__FWB_avg_acq<\/a>","<a href=\"#TargEff__STR_avg_acq\">TargEff__STR_avg_acq<\/a>","<a href=\"#TargEff__LTR_avg_acq\">TargEff__LTR_avg_acq<\/a>","<a href=\"#TargEff__PA_avg_acq\">TargEff__PA_avg_acq<\/a>","<a href=\"#TargEff__Like_avg_acq\">TargEff__Like_avg_acq<\/a>","<a href=\"#TargEff__Int_avg_acq\">TargEff__Int_avg_acq<\/a>","<a href=\"#TargEff__FIPI_N_avg_acq\">TargEff__FIPI_N_avg_acq<\/a>","<a href=\"#TargEff__FIPI_E_avg_acq\">TargEff__FIPI_E_avg_acq<\/a>","<a href=\"#TargEff__FIPI_O_avg_acq\">TargEff__FIPI_O_avg_acq<\/a>","<a href=\"#TargEff__FIPI_A_avg_acq\">TargEff__FIPI_A_avg_acq<\/a>","<a href=\"#TargEff__FIPI_C_avg_acq\">TargEff__FIPI_C_avg_acq<\/a>","<a href=\"#PercEff__choice_relFrequ_acq\">PercEff__choice_relFrequ_acq<\/a>","<a href=\"#PercEff__FS_avg_acq\">PercEff__FS_avg_acq<\/a>","<a href=\"#PercEff__ONS_avg_acq\">PercEff__ONS_avg_acq<\/a>","<a href=\"#PercEff__BC_avg_acq\">PercEff__BC_avg_acq<\/a>","<a href=\"#PercEff__FWB_avg_acq\">PercEff__FWB_avg_acq<\/a>","<a href=\"#PercEff__STR_avg_acq\">PercEff__STR_avg_acq<\/a>","<a href=\"#PercEff__LTR_avg_acq\">PercEff__LTR_avg_acq<\/a>","<a href=\"#PercEff__PA_avg_acq\">PercEff__PA_avg_acq<\/a>","<a href=\"#PercEff__Like_avg_acq\">PercEff__Like_avg_acq<\/a>","<a href=\"#PercEff__Int_avg_acq\">PercEff__Int_avg_acq<\/a>","<a href=\"#PercEff__FIPI_N_avg_acq\">PercEff__FIPI_N_avg_acq<\/a>","<a href=\"#PercEff__FIPI_E_avg_acq\">PercEff__FIPI_E_avg_acq<\/a>","<a href=\"#PercEff__FIPI_O_avg_acq\">PercEff__FIPI_O_avg_acq<\/a>","<a href=\"#PercEff__FIPI_A_avg_acq\">PercEff__FIPI_A_avg_acq<\/a>","<a href=\"#PercEff__FIPI_C_avg_acq\">PercEff__FIPI_C_avg_acq<\/a>"],["speed dating code","dating group","dating group size","dating group size, corrected for prior acquaintance","age","sex","height","weight","relationship status","other relationship status","highest educational attainment","hormonal contraception","past experience with speed dating","narcissistic personality inventory - average","self-report psychopathy scale - average","mach-iv - average","big five inventory: neuroticism - average","big five inventory: extraversion - average","big five inventory: openness - average","big five inventory: agreeableness - average","big five inventory: conscientiousness - average","physical attractiveness - rater1(f)","physical attractiveness - rater2(f)","physical attractiveness - rater3(m)","physical attractiveness - rater4(m)","physical attractiveness - average","body mass index","sociosexual orientation inventory revised: behavior - average","sociosexual orientation inventory revised: attitude - average","sociosexual orientation inventory revised: desire - average","SRM target effect: actual choice","SRM target effect: friendship","SRM target effect: one night stand","SRM target effect: booty call","SRM target effect: friends-with-benefits","SRM target effect: short-term relationship (aggregated)","SRM target effect: long-term relationship","SRM target effect: physical attractiveness","SRM target effect: likeability","SRM target effect: intelligence","SRM target effect: neuroticism","SRM target effect: extraversion","SRM target effect: openness","SRM target effect: agreeableness","SRM target effect: conscientiousness","SRM perceiver effect: actual choice","SRM perceiver effect: friendship","SRM perceiver effect: one night stand","SRM perceiver effect: booty call","SRM perceiver effect: friends-with-benefits","SRM perceiver effect: short-term relationship (aggregated)","SRM perceiver effect: long-term relationship","SRM perceiver effect: physical attractiveness","SRM perceiver effect: likeability","SRM perceiver effect: intelligence","SRM perceiver effect: neuroticism","SRM perceiver effect: extraversion","SRM perceiver effect: openness","SRM perceiver effect: agreeableness","SRM perceiver effect: conscientiousness"],["numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","character","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric"],[null,null,null,null,null,"1. female,<br>2. male",null,null,"1. single,<br>2. in a relationship,<br>3. living separately / divorced",null,"1. nine years schooling only,<br>2. professional training,<br>3. vocational school,<br>4. university-entrance diploma,<br>5. academic degree","1. yes,<br>2. no","1. yes,<br>2. no",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["0","0","0","0","0","0","0","0","1","0","1","44","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],["90","90","90","90","90","90","90","90","89","90","89","46","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90"],["90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90"],[null,null,null,null,null,null,null,null,null,"89",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,"2",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,"0",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,"25",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["   172.63   ","     2.03   ","    15.36   ","    14.22   ","    22.87   ","     1.49   ","   174.54   ","    68.91   ","     1.09   ",null,"     4.17   ","     1.65   ","     1.9    ","     2.61   ","     2.06   ","     2.75   ","     2.79   ","     3.72   ","     4.07   ","     3.2    ","     3.35   ","     3.63   ","     4.7    ","     3.16   ","     4.14   ","     3.91   ","    22.55   ","     3.63   ","     6.48   ","     5.11   ","     1.8e-05","     2.5e-05","     2.2e-05","    -4.1e-05","    -2.8e-05","    -1.6e-05","    -1.7e-05","    -2.6e-05","     4.4e-05","     2.5e-05","     1.6e-05","    -1.4e-05","     5.2e-06","    -4.5e-05","    -3.9e-05"," 4e-05      ","    -3.7e-05","     1.6e-05","    -1.2e-05","-1e-05      ","    -2.4e-06","-2e-06      ","    -3.4e-05","     3.6e-05","    -3.9e-05","     3.2e-05","    -4.4e-05","    -1.9e-06"," 4e-05      ","     4.3e-05"],["52.26"," 0.77"," 2.89"," 2.94"," 3.09"," 0.5 "," 9.26","11.28"," 0.32",null," 0.38"," 0.48"," 0.3 "," 0.35"," 0.37"," 0.67"," 0.93"," 0.8 "," 0.76"," 0.69"," 0.77"," 1.13"," 1.22"," 1.51"," 1.63"," 1.14"," 2.75"," 2.11"," 2.1 "," 2.09"," 0.26"," 0.67"," 1.42"," 1.33"," 1.24"," 1.32"," 0.94"," 1.18"," 0.71"," 0.46"," 0.72"," 0.85"," 0.65"," 0.58"," 0.58"," 0.23"," 0.96"," 1.38"," 1.29"," 1.27"," 1.26"," 1.08"," 1.18"," 0.94"," 0.97"," 0.87"," 0.73"," 0.67"," 0.86"," 0.7 "],["101   ","  1   "," 11   ","  7   "," 18   ","  1   ","156   "," 46   ","  1   ",null,"  4   ","  1   ","  1   ","  1.7 ","  1.35","  1.39","  1   ","  1   ","  1   ","  1.5 ","  1.75","  1   ","  2   ","  1   ","  1   ","  1.75"," 17.96","  1   ","  1.67","  1   "," -0.39"," -1.53"," -1.98"," -1.63"," -1.63"," -1.72"," -1.4 "," -2.22"," -1.59"," -1.24"," -1.67"," -2.4 "," -1.52"," -1.62"," -1.8 "," -0.38"," -2.71"," -1.96"," -1.81"," -1.82"," -1.8 "," -1.6 "," -2.52"," -2.5 "," -2.36"," -2.25"," -1.56"," -2.17"," -2.17"," -2.2 "],["123.25","  1   "," 13   "," 12   "," 21   ","  1   ","168   "," 60   ","  1   ",null,"  4   ","  1   ","  2   ","  2.42","  1.82","  2.33","  2   ","  3.25","  3.75","  2.75","  2.75","  3   ","  4   ","  2   ","  3   ","  3   "," 20.44","  2   ","  5   ","  3.67"," -0.21"," -0.45"," -1.29"," -1.15"," -1.11"," -1.21"," -0.73"," -0.88"," -0.44"," -0.33"," -0.53"," -0.5 "," -0.37"," -0.29"," -0.35"," -0.17"," -0.53"," -1.18"," -1.16"," -1.03"," -1.03"," -0.9 "," -0.95"," -0.42"," -0.53"," -0.47"," -0.49"," -0.5 "," -0.59"," -0.51"],["145.5    ","  2      "," 15      "," 14      "," 22      ","  1      ","173.5    "," 70      ","  1      ",null,"  4      ","  2      ","  2      ","  2.6    ","  2.06   ","  2.72   ","  2.75   ","  3.75   ","  4.25   ","  3.25   ","  3.5    ","  4      ","  5      ","  3      ","  4      ","  3.75   "," 22.65   ","  3      ","  6.83   ","  5.33   "," -0.0056 "," -0.065  "," -0.22   "," -0.13   "," -0.16   "," -0.23   "," -0.066  ","  0.22   ","  0.092  "," -0.0082 "," -0.093  ","  0.00083"," -0.032  ","  0.076  ","  0.03   "," -0.016  ","  0.096  "," -0.23   "," -0.24   "," -0.24   "," -0.3    "," -0.16   ","  0.16   ","  0.063  ","  0.043  ","  0.12   ","  0.12   ","  0.064  "," -0.046  "," -0.0029 "],["223.75","  3   "," 18   "," 17   "," 25   ","  2   ","180   "," 76   ","  1   ",null,"  4   ","  2   ","  2   ","  2.82","  2.3 ","  3.17","  3.5 ","  4.25","  4.75","  3.75","  4   ","  4   ","  5   ","  4   ","  5.75","  4.75"," 24.45","  5   ","  8.33","  6.67","  0.17","  0.57","  0.96","  0.88","  0.79","  0.99","  0.52","  0.86","  0.5 ","  0.31","  0.55","  0.64","  0.39","  0.39","  0.28","  0.12","  0.59","  1.09","  1.08","  0.87","  1.03","  0.6 ","  0.97","  0.62","  0.58","  0.67","  0.51","  0.48","  0.51","  0.49"],["246   ","  3   "," 19   "," 19   "," 32   ","  2   ","196   ","106   ","  3   ",null,"  5   ","  2   ","  2   ","  3.65","  3.5 ","  4.83","  4.75","  5   ","  5   ","  4.75","  4.75","  7   ","  7   ","  7   ","  7   ","  6.5 "," 30.64","  8.67","  9   ","  9   ","  0.61","  1.25","  3.11","  3.3 ","  3.23","  3.21","  3.33","  2.52","  1.69","  1.01","  1.79","  1.66","  1.56","  1.26","  1.43","  0.62","  2.5 ","  3.03","  2.77","  2.97","  2.83","  2.68","  2.53","  2.08","  2.03","  2.49","  1.71","  1.47","  1.73","  1.56"],["▇▇▃▁▁▃▇▇","▆▁▁▇▁▁▁▆","▆▆▅▆▁▁▇▇","▁▂▆▇▃▇▃▇","▃▇▆▅▂▂▁▁","▇▁▁▁▁▁▁▇","▂▅▇▇▇▅▃▁","▂▆▃▇▃▂▁▁","▇▁▁▁▁▁▁▁",null,"▇▁▁▁▁▁▁▂","▅▁▁▁▁▁▁▇","▁▁▁▁▁▁▁▇","▁▂▃▇▆▂▁▁","▃▆▇▇▁▂▁▁","▃▂▇▇▅▂▁▁","▃▅▇▇▇▆▃▂","▁▁▂▅▅▇▃▅","▁▁▁▂▂▇▇▇","▁▃▃▇▇▇▅▁","▂▅▁▃▃▇▂▂","▁▂▆▇▁▂▁▁","▁▅▁▅▇▁▃▂","▆▆▇▆▁▅▂▁","▁▆▇▃▁▆▆▂","▂▆▆▅▃▇▂▁","▅▇▅▆▅▃▁▁","▇▇▅▃▅▂▁▂","▁▂▂▅▂▅▃▇","▅▅▃▇▆▇▆▂","▇▇▅▇▆▅▂▂","▂▃▃▇▇▃▅▃","▇▆▅▅▃▃▃▂","▇▅▃▃▂▂▁▁","▇▃▅▃▃▂▁▁","▇▅▅▃▃▂▁▁","▇▆▇▆▃▁▁▁","▅▅▅▅▇▇▂▁","▃▂▃▇▇▆▂▁","▁▂▂▇▇▅▃▂","▁▃▇▇▆▅▂▂","▁▁▂▆▇▇▇▂","▂▃▃▇▇▃▅▁","▁▁▂▃▇▆▃▁","▁▁▂▃▇▆▁▁","▃▅▇▇▃▂▂▁","▁▁▃▇▇▅▂▁","▇▆▆▃▅▅▂▂","▇▅▆▃▃▃▂▂","▇▅▇▃▅▂▃▁","▇▆▇▃▅▅▂▂","▇▆▆▇▃▅▁▂","▂▃▆▅▇▆▅▁","▁▁▂▃▇▅▂▁","▁▂▃▇▇▇▂▃","▁▂▃▇▇▆▁▁","▃▂▆▃▇▇▁▁","▁▁▂▆▇▇▅▂","▁▁▅▇▆▆▃▃","▁▁▃▆▇▆▅▂"],["F8.0","F8.0","F8.0","F8.0","F3.0","F1.0","F3.0","F3.0","F8.0","A234","F1.0","F1.0","F1.0","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2"],[null,null,null,11,5,5,5,5,10,5,5,5,5,10,10,12,11,11,11,11,11,14,null,null,null,19,10,16,17,15,34,29,21,28,30,13,27,28,31,29,28,28,28,31,29,34,29,21,28,30,14,27,28,31,29,28,28,28,31,29]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>value_labels<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>empty<\/th>\n      <th>n_unique<\/th>\n      <th>min<\/th>\n      <th>max<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n      <th>format.spss<\/th>\n      <th>display_width<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":20}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
+<div id="htmlwidget-499d0e861ffa31f5392e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-499d0e861ffa31f5392e">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"5\" data-max=\"34\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#SD_Code\">SD_Code<\/a>","<a href=\"#DG\">DG<\/a>","<a href=\"#DG_size\">DG_size<\/a>","<a href=\"#DG_size_acq\">DG_size_acq<\/a>","<a href=\"#age\">age<\/a>","<a href=\"#sex\">sex<\/a>","<a href=\"#height\">height<\/a>","<a href=\"#weight\">weight<\/a>","<a href=\"#relStat\">relStat<\/a>","<a href=\"#relStat_other\">relStat_other<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#contracept\">contracept<\/a>","<a href=\"#date\">date<\/a>","<a href=\"#NPI_avg\">NPI_avg<\/a>","<a href=\"#SRP_avg\">SRP_avg<\/a>","<a href=\"#MACHIV_avg\">MACHIV_avg<\/a>","<a href=\"#BFI_N_avg\">BFI_N_avg<\/a>","<a href=\"#BFI_E_avg\">BFI_E_avg<\/a>","<a href=\"#BFI_O_avg\">BFI_O_avg<\/a>","<a href=\"#BFI_A_avg\">BFI_A_avg<\/a>","<a href=\"#BFI_C_avg\">BFI_C_avg<\/a>","<a href=\"#PA_R1\">PA_R1<\/a>","<a href=\"#PA_R2\">PA_R2<\/a>","<a href=\"#PA_R3\">PA_R3<\/a>","<a href=\"#PA_R4\">PA_R4<\/a>","<a href=\"#PA_avg\">PA_avg<\/a>","<a href=\"#BMI\">BMI<\/a>","<a href=\"#SOI_R_B_avg\">SOI_R_B_avg<\/a>","<a href=\"#SOI_R_A_avg\">SOI_R_A_avg<\/a>","<a href=\"#SOI_R_D_avg\">SOI_R_D_avg<\/a>","<a href=\"#TargEff__choice_relFrequ_acq\">TargEff__choice_relFrequ_acq<\/a>","<a href=\"#TargEff__FS_avg_acq\">TargEff__FS_avg_acq<\/a>","<a href=\"#TargEff__ONS_avg_acq\">TargEff__ONS_avg_acq<\/a>","<a href=\"#TargEff__BC_avg_acq\">TargEff__BC_avg_acq<\/a>","<a href=\"#TargEff__FWB_avg_acq\">TargEff__FWB_avg_acq<\/a>","<a href=\"#TargEff__STR_avg_acq\">TargEff__STR_avg_acq<\/a>","<a href=\"#TargEff__LTR_avg_acq\">TargEff__LTR_avg_acq<\/a>","<a href=\"#TargEff__PA_avg_acq\">TargEff__PA_avg_acq<\/a>","<a href=\"#TargEff__Like_avg_acq\">TargEff__Like_avg_acq<\/a>","<a href=\"#TargEff__Int_avg_acq\">TargEff__Int_avg_acq<\/a>","<a href=\"#TargEff__FIPI_N_avg_acq\">TargEff__FIPI_N_avg_acq<\/a>","<a href=\"#TargEff__FIPI_E_avg_acq\">TargEff__FIPI_E_avg_acq<\/a>","<a href=\"#TargEff__FIPI_O_avg_acq\">TargEff__FIPI_O_avg_acq<\/a>","<a href=\"#TargEff__FIPI_A_avg_acq\">TargEff__FIPI_A_avg_acq<\/a>","<a href=\"#TargEff__FIPI_C_avg_acq\">TargEff__FIPI_C_avg_acq<\/a>","<a href=\"#PercEff__choice_relFrequ_acq\">PercEff__choice_relFrequ_acq<\/a>","<a href=\"#PercEff__FS_avg_acq\">PercEff__FS_avg_acq<\/a>","<a href=\"#PercEff__ONS_avg_acq\">PercEff__ONS_avg_acq<\/a>","<a href=\"#PercEff__BC_avg_acq\">PercEff__BC_avg_acq<\/a>","<a href=\"#PercEff__FWB_avg_acq\">PercEff__FWB_avg_acq<\/a>","<a href=\"#PercEff__STR_avg_acq\">PercEff__STR_avg_acq<\/a>","<a href=\"#PercEff__LTR_avg_acq\">PercEff__LTR_avg_acq<\/a>","<a href=\"#PercEff__PA_avg_acq\">PercEff__PA_avg_acq<\/a>","<a href=\"#PercEff__Like_avg_acq\">PercEff__Like_avg_acq<\/a>","<a href=\"#PercEff__Int_avg_acq\">PercEff__Int_avg_acq<\/a>","<a href=\"#PercEff__FIPI_N_avg_acq\">PercEff__FIPI_N_avg_acq<\/a>","<a href=\"#PercEff__FIPI_E_avg_acq\">PercEff__FIPI_E_avg_acq<\/a>","<a href=\"#PercEff__FIPI_O_avg_acq\">PercEff__FIPI_O_avg_acq<\/a>","<a href=\"#PercEff__FIPI_A_avg_acq\">PercEff__FIPI_A_avg_acq<\/a>","<a href=\"#PercEff__FIPI_C_avg_acq\">PercEff__FIPI_C_avg_acq<\/a>"],["speed dating code","dating group","dating group size","dating group size, corrected for prior acquaintance","age","sex","height","weight","relationship status","other relationship status","highest educational attainment","hormonal contraception","past experience with speed dating","narcissistic personality inventory - average","self-report psychopathy scale - average","mach-iv - average","big five inventory: neuroticism - average","big five inventory: extraversion - average","big five inventory: openness - average","big five inventory: agreeableness - average","big five inventory: conscientiousness - average","physical attractiveness - rater1(f)","physical attractiveness - rater2(f)","physical attractiveness - rater3(m)","physical attractiveness - rater4(m)","physical attractiveness - average","body mass index","sociosexual orientation inventory revised: behavior - average","sociosexual orientation inventory revised: attitude - average","sociosexual orientation inventory revised: desire - average","SRM target effect: actual choice","SRM target effect: friendship","SRM target effect: one night stand","SRM target effect: booty call","SRM target effect: friends-with-benefits","SRM target effect: short-term relationship (aggregated)","SRM target effect: long-term relationship","SRM target effect: physical attractiveness","SRM target effect: likeability","SRM target effect: intelligence","SRM target effect: neuroticism","SRM target effect: extraversion","SRM target effect: openness","SRM target effect: agreeableness","SRM target effect: conscientiousness","SRM perceiver effect: actual choice","SRM perceiver effect: friendship","SRM perceiver effect: one night stand","SRM perceiver effect: booty call","SRM perceiver effect: friends-with-benefits","SRM perceiver effect: short-term relationship (aggregated)","SRM perceiver effect: long-term relationship","SRM perceiver effect: physical attractiveness","SRM perceiver effect: likeability","SRM perceiver effect: intelligence","SRM perceiver effect: neuroticism","SRM perceiver effect: extraversion","SRM perceiver effect: openness","SRM perceiver effect: agreeableness","SRM perceiver effect: conscientiousness"],["numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","character","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric"],[null,null,null,null,null,"1. female,<br>2. male",null,null,"1. single,<br>2. in a relationship,<br>3. living separately / divorced",null,"1. nine years schooling only,<br>2. professional training,<br>3. vocational school,<br>4. university-entrance diploma,<br>5. academic degree","1. yes,<br>2. no","1. yes,<br>2. no",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["0","0","0","0","0","0","0","0","1","0","1","44","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],["90","90","90","90","90","90","90","90","89","90","89","46","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90"],["90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90","90"],[null,null,null,null,null,null,null,null,null,"89",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,"2",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,"0",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,"25",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["   172.63   ","     2.03   ","    15.36   ","    14.22   ","    22.87   ","     1.49   ","   174.54   ","    68.91   ","     1.09   ",null,"     4.17   ","     1.65   ","     1.9    ","     2.61   ","     2.06   ","     2.75   ","     2.79   ","     3.72   ","     4.07   ","     3.2    ","     3.35   ","     3.63   ","     4.7    ","     3.16   ","     4.14   ","     3.91   ","    22.55   ","     3.63   ","     6.48   ","     5.11   ","     1.8e-05","     2.5e-05","     2.2e-05","    -4.1e-05","    -2.8e-05","    -1.6e-05","    -1.7e-05","    -2.6e-05","     4.4e-05","     2.5e-05","     1.6e-05","    -1.4e-05","     5.2e-06","    -4.5e-05","    -3.9e-05"," 4e-05      ","    -3.7e-05","     1.6e-05","    -1.2e-05","-1e-05      ","    -2.4e-06","-2e-06      ","    -3.4e-05","     3.6e-05","    -3.9e-05","     3.2e-05","    -4.4e-05","    -1.9e-06"," 4e-05      ","     4.3e-05"],["52.26"," 0.77"," 2.89"," 2.94"," 3.09"," 0.5 "," 9.26","11.28"," 0.32",null," 0.38"," 0.48"," 0.3 "," 0.35"," 0.37"," 0.67"," 0.93"," 0.8 "," 0.76"," 0.69"," 0.77"," 1.13"," 1.22"," 1.51"," 1.63"," 1.14"," 2.75"," 2.11"," 2.1 "," 2.09"," 0.26"," 0.67"," 1.42"," 1.33"," 1.24"," 1.32"," 0.94"," 1.18"," 0.71"," 0.46"," 0.72"," 0.85"," 0.65"," 0.58"," 0.58"," 0.23"," 0.96"," 1.38"," 1.29"," 1.27"," 1.26"," 1.08"," 1.18"," 0.94"," 0.97"," 0.87"," 0.73"," 0.67"," 0.86"," 0.7 "],["101   ","  1   "," 11   ","  7   "," 18   ","  1   ","156   "," 46   ","  1   ",null,"  4   ","  1   ","  1   ","  1.7 ","  1.35","  1.39","  1   ","  1   ","  1   ","  1.5 ","  1.75","  1   ","  2   ","  1   ","  1   ","  1.75"," 17.96","  1   ","  1.67","  1   "," -0.39"," -1.53"," -1.98"," -1.63"," -1.63"," -1.72"," -1.4 "," -2.22"," -1.59"," -1.24"," -1.67"," -2.4 "," -1.52"," -1.62"," -1.8 "," -0.38"," -2.71"," -1.96"," -1.81"," -1.82"," -1.8 "," -1.6 "," -2.52"," -2.5 "," -2.36"," -2.25"," -1.56"," -2.17"," -2.17"," -2.2 "],["123.25","  1   "," 13   "," 12   "," 21   ","  1   ","168   "," 60   ","  1   ",null,"  4   ","  1   ","  2   ","  2.42","  1.82","  2.33","  2   ","  3.25","  3.75","  2.75","  2.75","  3   ","  4   ","  2   ","  3   ","  3   "," 20.44","  2   ","  5   ","  3.67"," -0.21"," -0.45"," -1.29"," -1.15"," -1.11"," -1.21"," -0.73"," -0.88"," -0.44"," -0.33"," -0.53"," -0.5 "," -0.37"," -0.29"," -0.35"," -0.17"," -0.53"," -1.18"," -1.16"," -1.03"," -1.03"," -0.9 "," -0.95"," -0.42"," -0.53"," -0.47"," -0.49"," -0.5 "," -0.59"," -0.51"],["145.5    ","  2      "," 15      "," 14      "," 22      ","  1      ","173.5    "," 70      ","  1      ",null,"  4      ","  2      ","  2      ","  2.6    ","  2.06   ","  2.72   ","  2.75   ","  3.75   ","  4.25   ","  3.25   ","  3.5    ","  4      ","  5      ","  3      ","  4      ","  3.75   "," 22.65   ","  3      ","  6.83   ","  5.33   "," -0.0056 "," -0.065  "," -0.22   "," -0.13   "," -0.16   "," -0.23   "," -0.066  ","  0.22   ","  0.092  "," -0.0082 "," -0.093  ","  0.00083"," -0.032  ","  0.076  ","  0.03   "," -0.016  ","  0.096  "," -0.23   "," -0.24   "," -0.24   "," -0.3    "," -0.16   ","  0.16   ","  0.063  ","  0.043  ","  0.12   ","  0.12   ","  0.064  "," -0.046  "," -0.0029 "],["223.75","  3   "," 18   "," 17   "," 25   ","  2   ","180   "," 76   ","  1   ",null,"  4   ","  2   ","  2   ","  2.82","  2.3 ","  3.17","  3.5 ","  4.25","  4.75","  3.75","  4   ","  4   ","  5   ","  4   ","  5.75","  4.75"," 24.45","  5   ","  8.33","  6.67","  0.17","  0.57","  0.96","  0.88","  0.79","  0.99","  0.52","  0.86","  0.5 ","  0.31","  0.55","  0.64","  0.39","  0.39","  0.28","  0.12","  0.59","  1.09","  1.08","  0.87","  1.03","  0.6 ","  0.97","  0.62","  0.58","  0.67","  0.51","  0.48","  0.51","  0.49"],["246   ","  3   "," 19   "," 19   "," 32   ","  2   ","196   ","106   ","  3   ",null,"  5   ","  2   ","  2   ","  3.65","  3.5 ","  4.83","  4.75","  5   ","  5   ","  4.75","  4.75","  7   ","  7   ","  7   ","  7   ","  6.5 "," 30.64","  8.67","  9   ","  9   ","  0.61","  1.25","  3.11","  3.3 ","  3.23","  3.21","  3.33","  2.52","  1.69","  1.01","  1.79","  1.66","  1.56","  1.26","  1.43","  0.62","  2.5 ","  3.03","  2.77","  2.97","  2.83","  2.68","  2.53","  2.08","  2.03","  2.49","  1.71","  1.47","  1.73","  1.56"],["▇▇▃▁▁▃▇▇","▆▁▁▇▁▁▁▆","▆▆▅▆▁▁▇▇","▁▂▆▇▃▇▃▇","▃▇▆▅▂▂▁▁","▇▁▁▁▁▁▁▇","▂▅▇▇▇▅▃▁","▂▆▃▇▃▂▁▁","▇▁▁▁▁▁▁▁",null,"▇▁▁▁▁▁▁▂","▅▁▁▁▁▁▁▇","▁▁▁▁▁▁▁▇","▁▂▃▇▆▂▁▁","▃▆▇▇▁▂▁▁","▃▂▇▇▅▂▁▁","▃▅▇▇▇▆▃▂","▁▁▂▅▅▇▃▅","▁▁▁▂▂▇▇▇","▁▃▃▇▇▇▅▁","▂▅▁▃▃▇▂▂","▁▂▆▇▁▂▁▁","▁▅▁▅▇▁▃▂","▆▆▇▆▁▅▂▁","▁▆▇▃▁▆▆▂","▂▆▆▅▃▇▂▁","▅▇▅▆▅▃▁▁","▇▇▅▃▅▂▁▂","▁▂▂▅▂▅▃▇","▅▅▃▇▆▇▆▂","▇▇▅▇▆▅▂▂","▂▃▃▇▇▃▅▃","▇▆▅▅▃▃▃▂","▇▅▃▃▂▂▁▁","▇▃▅▃▃▂▁▁","▇▅▅▃▃▂▁▁","▇▆▇▆▃▁▁▁","▅▅▅▅▇▇▂▁","▃▂▃▇▇▆▂▁","▁▂▂▇▇▅▃▂","▁▃▇▇▆▅▂▂","▁▁▂▆▇▇▇▂","▂▃▃▇▇▃▅▁","▁▁▂▃▇▆▃▁","▁▁▂▃▇▆▁▁","▃▅▇▇▃▂▂▁","▁▁▃▇▇▅▂▁","▇▆▆▃▅▅▂▂","▇▅▆▃▃▃▂▂","▇▅▇▃▅▂▃▁","▇▆▇▃▅▅▂▂","▇▆▆▇▃▅▁▂","▂▃▆▅▇▆▅▁","▁▁▂▃▇▅▂▁","▁▂▃▇▇▇▂▃","▁▂▃▇▇▆▁▁","▃▂▆▃▇▇▁▁","▁▁▂▆▇▇▅▂","▁▁▅▇▆▆▃▃","▁▁▃▆▇▆▅▂"],["F8.0","F8.0","F8.0","F8.0","F3.0","F1.0","F3.0","F3.0","F8.0","A234","F1.0","F1.0","F1.0","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2","F8.2"],[null,null,null,11,5,5,5,5,10,5,5,5,5,10,10,12,11,11,11,11,11,14,null,null,null,19,10,16,17,15,34,29,21,28,30,13,27,28,31,29,28,28,28,31,29,34,29,21,28,30,14,27,28,31,29,28,28,28,31,29]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>value_labels<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>empty<\/th>\n      <th>n_unique<\/th>\n      <th>min<\/th>\n      <th>max<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n      <th>format.spss<\/th>\n      <th>display_width<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":20}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
 {
   "name": "How alluring are dark personalities? The Dark Triad and attractiveness in speed dating",
-  "description": "The data to this speed dating study comes in two different formats: Personwise (one record for each individual) and dyadic (pairwise; one record for each date). The respective SPSS files are named \"DarkTriadDate_person.sav\" and \"DarkTriadDate_dyad.sav\".\n\nThe personwise datafile contains individual differences variables and perceiver and target effects according to the social relations model. These are centered marginal means that were calculated according to the formulae provided by Kenny, Kashy, and Cook (2006). These effects are not (!) based on multilevel analyses.\n\nAll rating variables (i.e., actual choice, friendship, short-term relationship etc.) were corrected for prior acquaintance, which means that dates wih prior acquaintance were excluded (set to missing) on a dyadic basis.\n\n\nVariables are labeled in SPSS. Here is a list of important abbreviations, prefixes and suffixes:\n\n_acq = acquaintance (i.e., variables with this suffix are controlled for prior acquaintance)\n_avg = average\n_rat = rating variable\n_z = z-standardized score\nBC = booty call\nDG = dating group (three groups in this study)\nFIPI = five item personality inventory\nFS = friendship\nFWB = friends-with-benefits\nInt = Intelligence\nLike = Likeability\nLTR = long-term relationship\nMACHIV = mach-iv machiavellianism questionnaire\nN, E, O, A, C = Big5\nNPI = narcissistic personality inventory\nONS = one night stand\nP = perceiver\nPA = physical attractiveness\nPercEff = perceiver effect\nSD = speed dating\nSRM = social relations model\nSRP = self-report psychopathy scale\nSTR = short-term relationship\nT = target\nTargEff = target effect\n",
+  "description": "The data to this speed dating study comes in two different formats: Personwise (one record for each individual) and dyadic (pairwise; one record for each date). The respective SPSS files are named \"DarkTriadDate_person.sav\" and \"DarkTriadDate_dyad.sav\".\n\n## Download link\n[Open Science Framework](https://osf.io/j4fcb/download)\n\n## Personwise datafile \nThe personwise datafile contains individual differences variables and perceiver and target effects according to the social relations model. These are centered marginal means that were calculated according to the formulae provided by Kenny, Kashy, and Cook (2006). These effects are not (!) based on multilevel analyses.\n\n## Preprocessing\nAll rating variables (i.e., actual choice, friendship, short-term relationship etc.) were corrected for prior acquaintance, which means that dates wih prior acquaintance were excluded (set to missing) on a dyadic basis.\n\nVariables are labeled in SPSS. \n\n## A list of important abbreviations, prefixes and suffixes:\n\n* _acq = acquaintance (i.e., variables with this suffix are controlled for prior * acquaintance)\n* avg = average\n* _rat = rating variable\n* _z = z-standardized score\n* BC = booty call\n* DG = dating group (three groups in this study)\n* FIPI = five item personality inventory\n* FS = friendship\n* FWB = friends-with-benefits\n* Int = Intelligence\n* Like = Likeability\n* LTR = long-term relationship\n* MACHIV = mach-iv machiavellianism questionnaire\n* N, E, O, A, C = Big5\n* NPI = narcissistic personality inventory\n* ONS = one night stand\n* P = perceiver\n* PA = physical attractiveness\n* PercEff = perceiver effect\n* SD = speed dating\n* SRM = social relations model\n* SRP = self-report psychopathy scale\n* STR = short-term relationship\n* T = target\n* TargEff = target effect\n\n\n|variable                     |label                                                         |\n|:----------------------------|:-------------------------------------------------------------|\n|SD_Code                      |speed dating code                                             |\n|DG                           |dating group                                                  |\n|DG_size                      |dating group size                                             |\n|DG_size_acq                  |dating group size, corrected for prior acquaintance           |\n|age                          |age                                                           |\n|sex                          |sex                                                           |\n|height                       |height                                                        |\n|weight                       |weight                                                        |\n|relStat                      |relationship status                                           |\n|relStat_other                |other relationship status                                     |\n|education                    |highest educational attainment                                |\n|contracept                   |hormonal contraception                                        |\n|date                         |past experience with speed dating                             |\n|NPI_avg                      |narcissistic personality inventory - average                  |\n|SRP_avg                      |self-report psychopathy scale - average                       |\n|MACHIV_avg                   |mach-iv - average                                             |\n|BFI_N_avg                    |big five inventory: neuroticism - average                     |\n|BFI_E_avg                    |big five inventory: extraversion - average                    |\n|BFI_O_avg                    |big five inventory: openness - average                        |\n|BFI_A_avg                    |big five inventory: agreeableness - average                   |\n|BFI_C_avg                    |big five inventory: conscientiousness - average               |\n|PA_R1                        |physical attractiveness - rater1(f)                           |\n|PA_R2                        |physical attractiveness - rater2(f)                           |\n|PA_R3                        |physical attractiveness - rater3(m)                           |\n|PA_R4                        |physical attractiveness - rater4(m)                           |\n|PA_avg                       |physical attractiveness - average                             |\n|BMI                          |body mass index                                               |\n|SOI_R_B_avg                  |sociosexual orientation inventory revised: behavior - average |\n|SOI_R_A_avg                  |sociosexual orientation inventory revised: attitude - average |\n|SOI_R_D_avg                  |sociosexual orientation inventory revised: desire - average   |\n|TargEff__choice_relFrequ_acq |SRM target effect: actual choice                              |\n|TargEff__FS_avg_acq          |SRM target effect: friendship                                 |\n|TargEff__ONS_avg_acq         |SRM target effect: one night stand                            |\n|TargEff__BC_avg_acq          |SRM target effect: booty call                                 |\n|TargEff__FWB_avg_acq         |SRM target effect: friends-with-benefits                      |\n|TargEff__STR_avg_acq         |SRM target effect: short-term relationship (aggregated)       |\n|TargEff__LTR_avg_acq         |SRM target effect: long-term relationship                     |\n|TargEff__PA_avg_acq          |SRM target effect: physical attractiveness                    |\n|TargEff__Like_avg_acq        |SRM target effect: likeability                                |\n|TargEff__Int_avg_acq         |SRM target effect: intelligence                               |\n|TargEff__FIPI_N_avg_acq      |SRM target effect: neuroticism                                |\n|TargEff__FIPI_E_avg_acq      |SRM target effect: extraversion                               |\n|TargEff__FIPI_O_avg_acq      |SRM target effect: openness                                   |\n|TargEff__FIPI_A_avg_acq      |SRM target effect: agreeableness                              |\n|TargEff__FIPI_C_avg_acq      |SRM target effect: conscientiousness                          |\n|PercEff__choice_relFrequ_acq |SRM perceiver effect: actual choice                           |\n|PercEff__FS_avg_acq          |SRM perceiver effect: friendship                              |\n|PercEff__ONS_avg_acq         |SRM perceiver effect: one night stand                         |\n|PercEff__BC_avg_acq          |SRM perceiver effect: booty call                              |\n|PercEff__FWB_avg_acq         |SRM perceiver effect: friends-with-benefits                   |\n|PercEff__STR_avg_acq         |SRM perceiver effect: short-term relationship (aggregated)    |\n|PercEff__LTR_avg_acq         |SRM perceiver effect: long-term relationship                  |\n|PercEff__PA_avg_acq          |SRM perceiver effect: physical attractiveness                 |\n|PercEff__Like_avg_acq        |SRM perceiver effect: likeability                             |\n|PercEff__Int_avg_acq         |SRM perceiver effect: intelligence                            |\n|PercEff__FIPI_N_avg_acq      |SRM perceiver effect: neuroticism                             |\n|PercEff__FIPI_E_avg_acq      |SRM perceiver effect: extraversion                            |\n|PercEff__FIPI_O_avg_acq      |SRM perceiver effect: openness                                |\n|PercEff__FIPI_A_avg_acq      |SRM perceiver effect: agreeableness                           |\n|PercEff__FIPI_C_avg_acq      |SRM perceiver effect: conscientiousness                       |",
   "identifier": "https://osf.io/jvk3u/",
   "datePublished": "2015-10-07",
   "creator": {
@@ -3581,40 +3896,31 @@
   "@type": "Dataset",
   "variableMeasured": [
     {
-      "format.spss": "F8.0",
       "name": "SD_Code",
       "description": "speed dating code",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.0",
       "name": "DG",
       "description": "dating group",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.0",
       "name": "DG_size",
       "description": "dating group size",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.0",
-      "display_width": 11,
       "name": "DG_size_acq",
       "description": "dating group size, corrected for prior acquaintance",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F3.0",
-      "display_width": 5,
       "name": "age",
       "description": "age",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F1.0",
-      "display_width": 5,
       "name": "sex",
       "description": "sex",
       "value": "1. female,\n2. male",
@@ -3623,22 +3929,16 @@
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F3.0",
-      "display_width": 5,
       "name": "height",
       "description": "height",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F3.0",
-      "display_width": 5,
       "name": "weight",
       "description": "weight",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.0",
-      "display_width": 10,
       "name": "relStat",
       "description": "relationship status",
       "value": "1. single,\n2. in a relationship,\n3. living separately / divorced",
@@ -3647,15 +3947,11 @@
       "@type": "propertyValue"
     },
     {
-      "format.spss": "A234",
-      "display_width": 5,
       "name": "relStat_other",
       "description": "other relationship status",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F1.0",
-      "display_width": 5,
       "name": "education",
       "description": "highest educational attainment",
       "value": "1. nine years schooling only,\n2. professional training,\n3. vocational school,\n4. university-entrance diploma,\n5. academic degree",
@@ -3664,8 +3960,6 @@
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F1.0",
-      "display_width": 5,
       "name": "contracept",
       "description": "hormonal contraception",
       "value": "1. yes,\n2. no",
@@ -3674,8 +3968,6 @@
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F1.0",
-      "display_width": 5,
       "name": "date",
       "description": "past experience with speed dating",
       "value": "1. yes,\n2. no",
@@ -3684,327 +3976,236 @@
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 10,
       "name": "NPI_avg",
       "description": "narcissistic personality inventory - average",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 10,
       "name": "SRP_avg",
       "description": "self-report psychopathy scale - average",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 12,
       "name": "MACHIV_avg",
       "description": "mach-iv - average",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 11,
       "name": "BFI_N_avg",
       "description": "big five inventory: neuroticism - average",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 11,
       "name": "BFI_E_avg",
       "description": "big five inventory: extraversion - average",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 11,
       "name": "BFI_O_avg",
       "description": "big five inventory: openness - average",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 11,
       "name": "BFI_A_avg",
       "description": "big five inventory: agreeableness - average",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 11,
       "name": "BFI_C_avg",
       "description": "big five inventory: conscientiousness - average",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 14,
       "name": "PA_R1",
       "description": "physical attractiveness - rater1(f)",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
       "name": "PA_R2",
       "description": "physical attractiveness - rater2(f)",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
       "name": "PA_R3",
       "description": "physical attractiveness - rater3(m)",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
       "name": "PA_R4",
       "description": "physical attractiveness - rater4(m)",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 19,
       "name": "PA_avg",
       "description": "physical attractiveness - average",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 10,
       "name": "BMI",
       "description": "body mass index",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 16,
       "name": "SOI_R_B_avg",
       "description": "sociosexual orientation inventory revised: behavior - average",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 17,
       "name": "SOI_R_A_avg",
       "description": "sociosexual orientation inventory revised: attitude - average",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 15,
       "name": "SOI_R_D_avg",
       "description": "sociosexual orientation inventory revised: desire - average",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 34,
       "name": "TargEff__choice_relFrequ_acq",
       "description": "SRM target effect: actual choice",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 29,
       "name": "TargEff__FS_avg_acq",
       "description": "SRM target effect: friendship",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 21,
       "name": "TargEff__ONS_avg_acq",
       "description": "SRM target effect: one night stand",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 28,
       "name": "TargEff__BC_avg_acq",
       "description": "SRM target effect: booty call",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 30,
       "name": "TargEff__FWB_avg_acq",
       "description": "SRM target effect: friends-with-benefits",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 13,
       "name": "TargEff__STR_avg_acq",
       "description": "SRM target effect: short-term relationship (aggregated)",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 27,
       "name": "TargEff__LTR_avg_acq",
       "description": "SRM target effect: long-term relationship",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 28,
       "name": "TargEff__PA_avg_acq",
       "description": "SRM target effect: physical attractiveness",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 31,
       "name": "TargEff__Like_avg_acq",
       "description": "SRM target effect: likeability",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 29,
       "name": "TargEff__Int_avg_acq",
       "description": "SRM target effect: intelligence",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 28,
       "name": "TargEff__FIPI_N_avg_acq",
       "description": "SRM target effect: neuroticism",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 28,
       "name": "TargEff__FIPI_E_avg_acq",
       "description": "SRM target effect: extraversion",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 28,
       "name": "TargEff__FIPI_O_avg_acq",
       "description": "SRM target effect: openness",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 31,
       "name": "TargEff__FIPI_A_avg_acq",
       "description": "SRM target effect: agreeableness",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 29,
       "name": "TargEff__FIPI_C_avg_acq",
       "description": "SRM target effect: conscientiousness",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 34,
       "name": "PercEff__choice_relFrequ_acq",
       "description": "SRM perceiver effect: actual choice",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 29,
       "name": "PercEff__FS_avg_acq",
       "description": "SRM perceiver effect: friendship",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 21,
       "name": "PercEff__ONS_avg_acq",
       "description": "SRM perceiver effect: one night stand",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 28,
       "name": "PercEff__BC_avg_acq",
       "description": "SRM perceiver effect: booty call",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 30,
       "name": "PercEff__FWB_avg_acq",
       "description": "SRM perceiver effect: friends-with-benefits",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 14,
       "name": "PercEff__STR_avg_acq",
       "description": "SRM perceiver effect: short-term relationship (aggregated)",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 27,
       "name": "PercEff__LTR_avg_acq",
       "description": "SRM perceiver effect: long-term relationship",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 28,
       "name": "PercEff__PA_avg_acq",
       "description": "SRM perceiver effect: physical attractiveness",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 31,
       "name": "PercEff__Like_avg_acq",
       "description": "SRM perceiver effect: likeability",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 29,
       "name": "PercEff__Int_avg_acq",
       "description": "SRM perceiver effect: intelligence",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 28,
       "name": "PercEff__FIPI_N_avg_acq",
       "description": "SRM perceiver effect: neuroticism",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 28,
       "name": "PercEff__FIPI_E_avg_acq",
       "description": "SRM perceiver effect: extraversion",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 28,
       "name": "PercEff__FIPI_O_avg_acq",
       "description": "SRM perceiver effect: openness",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 31,
       "name": "PercEff__FIPI_A_avg_acq",
       "description": "SRM perceiver effect: agreeableness",
       "@type": "propertyValue"
     },
     {
-      "format.spss": "F8.2",
-      "display_width": 29,
       "name": "PercEff__FIPI_C_avg_acq",
       "description": "SRM perceiver effect: conscientiousness",
       "@type": "propertyValue"
@@ -4020,7 +4221,11 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#variables">Variables</a></li>
+<li><a href="#download-link">Download link</a></li>
+      <li><a href="#personwise-datafile">Personwise datafile</a></li>
+      <li><a href="#preprocessing">Preprocessing</a></li>
+      <li><a href="#a-list-of-important-abbreviations-prefixes-and-suffixes">A list of important abbreviations, prefixes and suffixes:</a></li>
+      <li><a href="#variables">Variables</a></li>
       <li><a href="#missingness-report">Missingness report</a></li>
       <li><a href="#codebook-table">Codebook table</a></li>
       </ul>

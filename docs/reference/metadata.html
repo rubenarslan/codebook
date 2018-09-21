@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Print a <code><a href='http://www.rdocumentation.org/packages/stats/topics/cor.test'>stats::cor.test()</a></code> object for knitr — knit_print.htest • codebook</title>
+<title>Add metadata to a dataset — metadata • codebook</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,9 +36,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Print a <code><a href='http://www.rdocumentation.org/packages/stats/topics/cor.test'>stats::cor.test()</a></code> object for knitr — knit_print.htest" />
+<meta property="og:title" content="Add metadata to a dataset — metadata" />
 
-<meta property="og:description" content="Just prints the normal output of stats::cor.test()." />
+<meta property="og:description" content="Use this function to describe a data frame in preparation for JSON-LD
+metadata generation using codebook() or metadata_list()." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -136,57 +137,102 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Print a <code><a href='http://www.rdocumentation.org/packages/stats/topics/cor.test'>stats::cor.test()</a></code> object for knitr</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/psych_print.R'><code>R/psych_print.R</code></a></small>
-    <div class="hidden name"><code>knit_print.htest.Rd</code></div>
+    <h1>Add metadata to a dataset</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/create_metadata.R'><code>R/create_metadata.R</code></a></small>
+    <div class="hidden name"><code>metadata.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Just prints the normal output of <code><a href='http://www.rdocumentation.org/packages/stats/topics/cor.test'>stats::cor.test()</a></code>.</p>
+    <p>Use this function to describe a data frame in preparation for JSON-LD
+metadata generation using <code><a href='codebook.html'>codebook()</a></code> or <code><a href='metadata_list.html'>metadata_list()</a></code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>knit_print.htest</span>(<span class='no'>x</span>, <span class='kw'>indent</span> <span class='kw'>=</span> <span class='st'>"#####"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>metadata</span>(<span class='no'>data</span>)
+
+<span class='fu'>metadata</span>(<span class='no'>data</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>a psych alpha object</p></td>
+      <th>data</th>
+      <td><p>the data frame</p></td>
     </tr>
     <tr>
-      <th>indent</th>
-      <td><p>add # to this to make the headings in the components lower-level. defaults to beginning at h5</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>ignored</p></td>
+      <th>value</th>
+      <td><p>the metadata attribute</p></td>
     </tr>
     </table>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/knitr/topics/knit_print'>knit_print</a></span>(<span class='fu'>cor.test</span>(<span class='fu'>rnorm</span>(<span class='fl'>100</span>), <span class='fu'>rnorm</span>(<span class='fl'>100</span>)))</div><div class='output co'>#&gt; 
+    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='st'>'bfi'</span>)
+<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>name</span> <span class='kw'>&lt;-</span> <span class='st'>"MOCK Big Five Inventory dataset (German metadata demo)"</span>
+<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>description</span> <span class='kw'>&lt;-</span> <span class='st'>"a small mock Big Five Inventory dataset"</span>
+<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>identifier</span> <span class='kw'>&lt;-</span> <span class='st'>"doi:10.5281/zenodo.1326520"</span>
+<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>datePublished</span> <span class='kw'>&lt;-</span> <span class='st'>"2016-06-01"</span>
+<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>creator</span> <span class='kw'>&lt;-</span> <span class='fu'>list</span>(
+  <span class='st'>"@type"</span> <span class='kw'>=</span> <span class='st'>"Person"</span>,
+  <span class='kw'>givenName</span> <span class='kw'>=</span> <span class='st'>"Ruben"</span>, <span class='kw'>familyName</span> <span class='kw'>=</span> <span class='st'>"Arslan"</span>,
+  <span class='kw'>email</span> <span class='kw'>=</span> <span class='st'>"ruben.arslan@gmail.com"</span>,
+  <span class='kw'>affiliation</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='st'>"@type"</span> <span class='kw'>=</span> <span class='st'>"Organization"</span>,
+                     <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"MPI Human Development, Berlin"</span>))
+<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>citation</span> <span class='kw'>&lt;-</span> <span class='st'>"Arslan (2016). Mock BFI data."</span>
+<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>url</span> <span class='kw'>&lt;-</span>
+  <span class='st'>"https://rubenarslan.github.io/codebook/articles/codebook.html"</span>
+<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>temporalCoverage</span> <span class='kw'>&lt;-</span> <span class='st'>"2016"</span>
+<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>spatialCoverage</span> <span class='kw'>&lt;-</span> <span class='st'>"Goettingen, Germany"</span>
+<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>keywords</span> <span class='kw'>&lt;-</span> <span class='fu'>c</span>(<span class='st'>"Personality"</span>, <span class='st'>"Psychology"</span>)
+<span class='fu'>metadata</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; $name
+#&gt; [1] "MOCK Big Five Inventory dataset (German metadata demo)"
+#&gt; 
+#&gt; $description
+#&gt; [1] "a small mock Big Five Inventory dataset"
+#&gt; 
+#&gt; $identifier
+#&gt; [1] "doi:10.5281/zenodo.1326520"
+#&gt; 
+#&gt; $datePublished
+#&gt; [1] "2016-06-01"
+#&gt; 
+#&gt; $creator
+#&gt; $creator$`@type`
+#&gt; [1] "Person"
+#&gt; 
+#&gt; $creator$givenName
+#&gt; [1] "Ruben"
+#&gt; 
+#&gt; $creator$familyName
+#&gt; [1] "Arslan"
+#&gt; 
+#&gt; $creator$email
+#&gt; [1] "ruben.arslan@gmail.com"
+#&gt; 
+#&gt; $creator$affiliation
+#&gt; $creator$affiliation$`@type`
+#&gt; [1] "Organization"
+#&gt; 
+#&gt; $creator$affiliation$name
+#&gt; [1] "MPI Human Development, Berlin"
 #&gt; 
 #&gt; 
-#&gt; ```
 #&gt; 
-#&gt; 	Pearson's product-moment correlation
+#&gt; $citation
+#&gt; [1] "Arslan (2016). Mock BFI data."
 #&gt; 
-#&gt; data:  rnorm(100) and rnorm(100)
-#&gt; t = -1.2783, df = 98, p-value = 0.2042
-#&gt; alternative hypothesis: true correlation is not equal to 0
-#&gt; 95 percent confidence interval:
-#&gt;  -0.31652398  0.07011384
-#&gt; sample estimates:
-#&gt;       cor 
-#&gt; -0.128068 
+#&gt; $url
+#&gt; [1] "https://rubenarslan.github.io/codebook/articles/codebook.html"
 #&gt; 
-#&gt; ```
+#&gt; $temporalCoverage
+#&gt; [1] "2016"
 #&gt; 
+#&gt; $spatialCoverage
+#&gt; [1] "Goettingen, Germany"
 #&gt; 
+#&gt; $keywords
+#&gt; [1] "Personality" "Psychology" 
 #&gt; </div><div class='input'>
 </div></pre>
   </div>

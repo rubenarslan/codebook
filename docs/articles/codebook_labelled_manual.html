@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3.9001</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
       <h1>Codebook example with manual labelling</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2018-09-18</h4>
+            <h4 class="date">2018-09-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook_labelled_manual.Rmd"><code>vignettes/codebook_labelled_manual.Rmd</code></a></small>
       <div class="hidden name"><code>codebook_labelled_manual.Rmd</code></div>
@@ -338,24 +338,24 @@
 <a class="sourceLine" id="cb16-3" data-line-number="3">bfi<span class="op">$</span>open &lt;-<span class="st"> </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>(bfi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"O"</span>)))</a>
 <a class="sourceLine" id="cb16-4" data-line-number="4">bfi<span class="op">$</span>agree &lt;-<span class="st"> </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>(bfi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"A"</span>, <span class="dt">ignore.case =</span> F)))</a>
 <a class="sourceLine" id="cb16-5" data-line-number="5">bfi<span class="op">$</span>neuro &lt;-<span class="st"> </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>(bfi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"N"</span>)))</a></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">data_name</span>(bfi) &lt;-<span class="st"> "25 Personality items representing 5 factors"</span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">data_description</span>(bfi) &lt;-<span class="st"> "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org) were included as part of the Synthetic Aperture Personality Assessment (SAPA) web based personality assessment project. The data from 2800 subjects are included here as a demonstration set for scale construction, factor analysis, and Item Response Theory analysis. Three additional demographic variables (sex, education, and age) are also included.</span></a>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>name &lt;-<span class="st"> "25 Personality items representing 5 factors"</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>description &lt;-<span class="st"> "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org) were included as part of the Synthetic Aperture Personality Assessment (SAPA) web based personality assessment project. The data from 2800 subjects are included here as a demonstration set for scale construction, factor analysis, and Item Response Theory analysis. Three additional demographic variables (sex, education, and age) are also included.</span></a>
 <a class="sourceLine" id="cb17-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb17-4" data-line-number="4"><span class="st">The first 25 items are organized by five putative factors: Agreeableness, Conscientiousness, Extraversion, Neuroticism, and Opennness. The item data were collected using a 6 point response scale: 1 Very Inaccurate 2 Moderately Inaccurate 3 Slightly Inaccurate 4 Slightly Accurate 5 Moderately Accurate 6 Very Accurate</span></a>
 <a class="sourceLine" id="cb17-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb17-6" data-line-number="6"><span class="st">To see an example of the data collection technique, visit https://SAPA-project.org or the International Cognitive Ability Resource at https://icar-project.com. The items given were sampled from the International Personality Item Pool of Lewis Goldberg using the sampling technique of SAPA. This is a sample data set taken from the much larger SAPA data bank."</span></a>
-<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="kw">data_identifier</span>(bfi) &lt;-<span class="st"> "https://cran.r-project.org/web/packages/psych/index.html"</span></a>
-<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="kw">data_datePublished</span>(bfi) &lt;-<span class="st"> "2010-01-01"</span></a>
-<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="kw">data_creator</span>(bfi) &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>identifier &lt;-<span class="st"> "https://cran.r-project.org/web/packages/psych/index.html"</span></a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>datePublished &lt;-<span class="st"> "2010-01-01"</span></a>
+<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>creator &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
 <a class="sourceLine" id="cb17-10" data-line-number="10">      <span class="st">"@type"</span> =<span class="st"> "Person"</span>,</a>
 <a class="sourceLine" id="cb17-11" data-line-number="11">      <span class="dt">givenName =</span> <span class="st">"William"</span>, <span class="dt">familyName =</span> <span class="st">"Revelle"</span>,</a>
 <a class="sourceLine" id="cb17-12" data-line-number="12">      <span class="dt">email =</span> <span class="st">"revelle@northwestern.edu"</span>, </a>
 <a class="sourceLine" id="cb17-13" data-line-number="13">      <span class="dt">affiliation =</span> <span class="kw">list</span>(<span class="st">"@type"</span> =<span class="st"> "Organization"</span>,</a>
 <a class="sourceLine" id="cb17-14" data-line-number="14">        <span class="dt">name =</span> <span class="st">"Northwestern University"</span>))</a>
-<a class="sourceLine" id="cb17-15" data-line-number="15"><span class="kw">data_citation</span>(bfi) &lt;-<span class="st"> "Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer."</span></a>
-<a class="sourceLine" id="cb17-16" data-line-number="16"><span class="kw">data_url</span>(bfi) &lt;-<span class="st"> "https://cran.r-project.org/web/packages/psych/index.html"</span></a>
-<a class="sourceLine" id="cb17-17" data-line-number="17"><span class="kw">data_temporalCoverage</span>(bfi) &lt;-<span class="st"> "Spring 2010"</span> </a>
-<a class="sourceLine" id="cb17-18" data-line-number="18"><span class="kw">data_spatialCoverage</span>(bfi) &lt;-<span class="st"> "Online"</span> </a></code></pre></div>
+<a class="sourceLine" id="cb17-15" data-line-number="15"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>citation &lt;-<span class="st"> "Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer."</span></a>
+<a class="sourceLine" id="cb17-16" data-line-number="16"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>url &lt;-<span class="st"> "https://cran.r-project.org/web/packages/psych/index.html"</span></a>
+<a class="sourceLine" id="cb17-17" data-line-number="17"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>temporalCoverage &lt;-<span class="st"> "Spring 2010"</span> </a>
+<a class="sourceLine" id="cb17-18" data-line-number="18"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>spatialCoverage &lt;-<span class="st"> "Online"</span> </a></code></pre></div>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="co"># We don't want to look at the code in the codebook.</span></a>
 <a class="sourceLine" id="cb18-2" data-line-number="2">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">TRUE</span>, <span class="dt">message =</span> <span class="ot">TRUE</span>, <span class="dt">echo =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p>Finally, we can generate our codebook.</p>
@@ -404,6 +404,11 @@
 <li>
 <strong>name</strong>: Northwestern University</li>
 </ul>
+</li>
+</ul>
+<!-- end of list --><ul>
+<li>
+<strong>keywords</strong>: <em>A1R</em>, <em>A2</em>, <em>A3</em>, <em>A4</em>, <em>A5</em>, <em>C1</em>, <em>C2</em>, <em>C3</em>, <em>C4R</em>, <em>C5R</em>, <em>E1R</em>, <em>E2R</em>, <em>E3</em>, <em>E4</em>, <em>E5</em>, <em>N1R</em>, <em>N2R</em>, <em>N3R</em>, <em>N4R</em>, <em>N5R</em>, <em>O1</em>, <em>O2R</em>, <em>O3</em>, <em>O4</em>, <em>O5R</em>, <em>gender</em>, <em>education</em>, <em>age</em>, <em>consc</em>, <em>extra</em>, <em>open</em>, <em>agree</em> and <em>neuro</em>
 </li>
 </ul>
 <!-- end of list -->
@@ -611,11 +616,11 @@
 <div id="confidence-interval" class="section level5">
 <h5 class="hasAnchor">
 <a href="#confidence-interval" class="anchor"></a>95% Confidence Interval</h5>
-<table style="width:39%;" class="table">
+<table style="width:43%;" class="table">
 <colgroup>
 <col width="12%">
 <col width="15%">
-<col width="11%">
+<col width="15%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">lower</th>
@@ -630,15 +635,15 @@
 </table>
 <table class="table">
 <colgroup>
-<col width="13%">
-<col width="13%">
+<col width="12%">
+<col width="12%">
 <col width="10%">
-<col width="13%">
+<col width="12%">
 <col width="8%">
 <col width="11%">
 <col width="8%">
 <col width="9%">
-<col width="10%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">raw_alpha</th>
@@ -677,7 +682,7 @@
 <col width="8%">
 <col width="11%">
 <col width="11%">
-<col width="8%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -839,7 +844,7 @@
 <col width="11%">
 <col width="11%">
 <col width="11%">
-<col width="12%">
+<col width="14%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -1009,11 +1014,11 @@
 <div id="confidence-interval-1" class="section level5">
 <h5 class="hasAnchor">
 <a href="#confidence-interval-1" class="anchor"></a>95% Confidence Interval</h5>
-<table style="width:38%;" class="table">
+<table style="width:42%;" class="table">
 <colgroup>
 <col width="11%">
 <col width="15%">
-<col width="11%">
+<col width="15%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">lower</th>
@@ -1026,17 +1031,17 @@
 <td align="center">0.7755</td>
 </tr></tbody>
 </table>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
 <col width="13%">
 <col width="13%">
 <col width="10%">
 <col width="13%">
 <col width="8%">
-<col width="12%">
+<col width="11%">
 <col width="8%">
 <col width="8%">
-<col width="10%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">raw_alpha</th>
@@ -1075,7 +1080,7 @@
 <col width="8%">
 <col width="11%">
 <col width="11%">
-<col width="8%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -1228,16 +1233,16 @@
 <div id="non-missing-response-frequency-for-each-item-1" class="section level5">
 <h5 class="hasAnchor">
 <a href="#non-missing-response-frequency-for-each-item-1" class="anchor"></a>Non missing response frequency for each item</h5>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
-<col width="13%">
-<col width="13%">
-<col width="13%">
+<col width="12%">
+<col width="12%">
+<col width="12%">
 <col width="11%">
 <col width="11%">
 <col width="11%">
 <col width="11%">
-<col width="13%">
+<col width="14%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -1407,11 +1412,11 @@
 <div id="confidence-interval-2" class="section level5">
 <h5 class="hasAnchor">
 <a href="#confidence-interval-2" class="anchor"></a>95% Confidence Interval</h5>
-<table style="width:39%;" class="table">
+<table style="width:43%;" class="table">
 <colgroup>
 <col width="12%">
 <col width="15%">
-<col width="11%">
+<col width="15%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">lower</th>
@@ -1424,7 +1429,7 @@
 <td align="center">0.6234</td>
 </tr></tbody>
 </table>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
 <col width="13%">
 <col width="13%">
@@ -1434,7 +1439,7 @@
 <col width="10%">
 <col width="8%">
 <col width="9%">
-<col width="10%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">raw_alpha</th>
@@ -1473,7 +1478,7 @@
 <col width="8%">
 <col width="11%">
 <col width="11%">
-<col width="8%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -1626,16 +1631,16 @@
 <div id="non-missing-response-frequency-for-each-item-2" class="section level5">
 <h5 class="hasAnchor">
 <a href="#non-missing-response-frequency-for-each-item-2" class="anchor"></a>Non missing response frequency for each item</h5>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
 <col width="12%">
-<col width="14%">
+<col width="13%">
 <col width="12%">
 <col width="12%">
 <col width="11%">
 <col width="11%">
 <col width="11%">
-<col width="12%">
+<col width="13%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -1805,11 +1810,11 @@
 <div id="confidence-interval-3" class="section level5">
 <h5 class="hasAnchor">
 <a href="#confidence-interval-3" class="anchor"></a>95% Confidence Interval</h5>
-<table style="width:39%;" class="table">
+<table style="width:43%;" class="table">
 <colgroup>
 <col width="12%">
 <col width="15%">
-<col width="11%">
+<col width="15%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">lower</th>
@@ -1824,15 +1829,15 @@
 </table>
 <table class="table">
 <colgroup>
-<col width="13%">
-<col width="13%">
+<col width="12%">
+<col width="12%">
 <col width="10%">
-<col width="13%">
+<col width="12%">
 <col width="8%">
 <col width="11%">
 <col width="8%">
 <col width="9%">
-<col width="10%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">raw_alpha</th>
@@ -1871,7 +1876,7 @@
 <col width="8%">
 <col width="11%">
 <col width="11%">
-<col width="8%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -2033,7 +2038,7 @@
 <col width="11%">
 <col width="11%">
 <col width="11%">
-<col width="12%">
+<col width="14%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -2203,11 +2208,11 @@
 <div id="confidence-interval-4" class="section level5">
 <h5 class="hasAnchor">
 <a href="#confidence-interval-4" class="anchor"></a>95% Confidence Interval</h5>
-<table style="width:36%;" class="table">
+<table style="width:38%;" class="table">
 <colgroup>
 <col width="11%">
 <col width="15%">
-<col width="9%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">lower</th>
@@ -2220,17 +2225,17 @@
 <td align="center">0.825</td>
 </tr></tbody>
 </table>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
 <col width="13%">
 <col width="13%">
 <col width="10%">
 <col width="13%">
 <col width="8%">
-<col width="12%">
+<col width="11%">
 <col width="8%">
 <col width="8%">
-<col width="10%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">raw_alpha</th>
@@ -2269,7 +2274,7 @@
 <col width="8%">
 <col width="11%">
 <col width="11%">
-<col width="8%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -2422,16 +2427,16 @@
 <div id="non-missing-response-frequency-for-each-item-4" class="section level5">
 <h5 class="hasAnchor">
 <a href="#non-missing-response-frequency-for-each-item-4" class="anchor"></a>Non missing response frequency for each item</h5>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
 <col width="13%">
 <col width="13%">
-<col width="12%">
-<col width="12%">
-<col width="12%">
-<col width="12%">
-<col width="12%">
-<col width="13%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="14%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -2613,14 +2618,14 @@
 <col width="2%">
 <col width="2%">
 <col width="2%">
-<col width="3%">
+<col width="2%">
 <col width="3%">
 <col width="3%">
 <col width="3%">
 <col width="3%">
 <col width="5%">
 <col width="4%">
-<col width="3%">
+<col width="4%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">description</th>
@@ -2804,8 +2809,8 @@
 <div id="codebook-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#codebook-table" class="anchor"></a>Codebook table</h2>
-<div id="htmlwidget-190642c717ddc4fe1721" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-190642c717ddc4fe1721">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#A1R\">A1R<\/a>","<a href=\"#A2\">A2<\/a>","<a href=\"#A3\">A3<\/a>","<a href=\"#A4\">A4<\/a>","<a href=\"#A5\">A5<\/a>","<a href=\"#C1\">C1<\/a>","<a href=\"#C2\">C2<\/a>","<a href=\"#C3\">C3<\/a>","<a href=\"#C4R\">C4R<\/a>","<a href=\"#C5R\">C5R<\/a>","<a href=\"#E1R\">E1R<\/a>","<a href=\"#E2R\">E2R<\/a>","<a href=\"#E3\">E3<\/a>","<a href=\"#E4\">E4<\/a>","<a href=\"#E5\">E5<\/a>","<a href=\"#N1R\">N1R<\/a>","<a href=\"#N2R\">N2R<\/a>","<a href=\"#N3R\">N3R<\/a>","<a href=\"#N4R\">N4R<\/a>","<a href=\"#N5R\">N5R<\/a>","<a href=\"#O1\">O1<\/a>","<a href=\"#O2R\">O2R<\/a>","<a href=\"#O3\">O3<\/a>","<a href=\"#O4\">O4<\/a>","<a href=\"#O5R\">O5R<\/a>","<a href=\"#gender\">gender<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#age\">age<\/a>","<a href=\"#consc\">consc<\/a>","<a href=\"#extra\">extra<\/a>","<a href=\"#open\">open<\/a>","<a href=\"#agree\">agree<\/a>","<a href=\"#neuro\">neuro<\/a>"],["Agreeableness: Am indifferent to the feelings of others.","Agreeableness: Inquire about others' well-being.","Agreeableness: Know how to comfort others.","Agreeableness: Love children.","Agreeableness: Make people feel at ease.","Conscientiousness: Am exacting in my work.","Conscientiousness: Continue until everything is perfect.","Conscientiousness: Do things according to a plan.","Conscientiousness: Do things in a half-way manner.","Conscientiousness: Waste my time.","Extraversion: Don't talk a lot.","Extraversion: Find it difficult to approach others.","Extraversion: Know how to captivate people.","Extraversion: Make friends easily.","Extraversion: Take charge.","Emotional Stability: Get angry easily.","Emotional Stability: Get irritated easily.","Emotional Stability: Have frequent mood swings.","Emotional Stability: Often feel blue.","Emotional Stability: Panic easily.","Openness: Am full of ideas.","Openness: Avoid difficult reading material.","Openness: Carry the conversation to a higher level.","Openness: Spend time reflecting on things.","Openness: Will not probe deeply into a subject.","Self-reported gender","Highest degree","age in years","5 C items aggregated by rowMeans","5 E items aggregated by rowMeans","5 O items aggregated by rowMeans","5 A items aggregated by rowMeans","5 N items aggregated by rowMeans"],["labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","numeric","labelled","integer","numeric","numeric","numeric","numeric","numeric"],["FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE",null,"FALSE",null,null,null,null,null,null],["6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. male,<br>2. female","1. in high school,<br>2. finished high school,<br>3. some college,<br>4. college graduate,<br>5. graduate degree",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"C1, C2, C3, C4R, C5R","E1R, E2R, E3, E4, E5","O1, O2R, O3, O4, O5R","A1R, A2, A3, A4, A5","N1R, N2R, N3R, N4R, N5R"],["16","27","26","19","16","21","24","20","26","16","23","16","25","9","21","22","21","11","36","29","22","0","28","14","20","0","223","0","93","87","74","91","106"],["2784","2773","2774","2781","2784","2779","2776","2780","2774","2784","2777","2784","2775","2791","2779","2778","2779","2789","2764","2771","2778","2800","2772","2786","2780","2800","2577","2800","2707","2713","2726","2709","2694"],["2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800"],["6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6",null,"5",null,null,null,null,null,null],["6: 922, 5: 818, 4: 402, 3: 337","5: 1023, 6: 873, 4: 553, 3: 151","5: 986, 6: 755, 4: 564, 3: 207","6: 1147, 5: 654, 4: 451, 2: 215","5: 973, 6: 695, 4: 617, 3: 254","5: 1018, 4: 655, 6: 597, 3: 275","5: 962, 4: 643, 6: 550, 3: 296","5: 942, 4: 741, 6: 472, 3: 293","5: 794, 6: 769, 4: 472, 3: 448","3: 614, 5: 567, 6: 504, 2: 466","6: 663, 5: 652, 3: 450, 4: 404","5: 670, 3: 599, 6: 533, 2: 385","4: 826, 5: 743, 3: 412, 6: 352","5: 942, 6: 726, 4: 450, 3: 271","5: 940, 4: 619, 6: 616, 3: 288","5: 654, 6: 654, 3: 515, 4: 427","3: 709, 5: 535, 2: 510, 4: 411","5: 638, 3: 591, 6: 499, 2: 439","5: 655, 3: 608, 6: 472, 4: 401","5: 660, 6: 654, 3: 507, 4: 382","5: 925, 6: 912, 4: 606, 3: 210","6: 805, 5: 717, 3: 435, 4: 388","5: 943, 4: 775, 6: 541, 3: 292","6: 1084, 5: 887, 4: 481, 3: 154","5: 883, 6: 746, 4: 526, 3: 364",null,"3: 1249, 5: 418, 4: 394, 2: 292",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1.67",null,"28.78","4.26","4.14","4.59","4.64","3.84"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"0.47",null,"11.13","0.95","1.06","0.81","0.9 ","1.19"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1  ",null,"3","1  ","1  ","1.2","1  ","1  "],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1  ",null,"20","3.6","3.4","4  ","4.2","3  "],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2  ",null,"26","4.4","4.2","4.6","4.8","4  "],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2  ",null,"35","5  ","5  ","5.2","5.4","4.8"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2",null,"86","6","6","6","6","6"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"▃▁▁▁▁▁▁▇",null,"▁▇▆▃▂▁▁▁","▁▁▂▅▇▇▇▅","▁▁▃▅▇▇▇▆","▁▁▁▂▇▇▇▅","▁▁▁▂▃▆▇▇","▂▃▆▇▇▇▇▅"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>scale_item_names<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>n_unique<\/th>\n      <th>top_counts<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
+<div id="htmlwidget-0a16115bb2576b7526e7" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0a16115bb2576b7526e7">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#A1R\">A1R<\/a>","<a href=\"#A2\">A2<\/a>","<a href=\"#A3\">A3<\/a>","<a href=\"#A4\">A4<\/a>","<a href=\"#A5\">A5<\/a>","<a href=\"#C1\">C1<\/a>","<a href=\"#C2\">C2<\/a>","<a href=\"#C3\">C3<\/a>","<a href=\"#C4R\">C4R<\/a>","<a href=\"#C5R\">C5R<\/a>","<a href=\"#E1R\">E1R<\/a>","<a href=\"#E2R\">E2R<\/a>","<a href=\"#E3\">E3<\/a>","<a href=\"#E4\">E4<\/a>","<a href=\"#E5\">E5<\/a>","<a href=\"#N1R\">N1R<\/a>","<a href=\"#N2R\">N2R<\/a>","<a href=\"#N3R\">N3R<\/a>","<a href=\"#N4R\">N4R<\/a>","<a href=\"#N5R\">N5R<\/a>","<a href=\"#O1\">O1<\/a>","<a href=\"#O2R\">O2R<\/a>","<a href=\"#O3\">O3<\/a>","<a href=\"#O4\">O4<\/a>","<a href=\"#O5R\">O5R<\/a>","<a href=\"#gender\">gender<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#age\">age<\/a>","<a href=\"#consc\">consc<\/a>","<a href=\"#extra\">extra<\/a>","<a href=\"#open\">open<\/a>","<a href=\"#agree\">agree<\/a>","<a href=\"#neuro\">neuro<\/a>"],["Agreeableness: Am indifferent to the feelings of others.","Agreeableness: Inquire about others' well-being.","Agreeableness: Know how to comfort others.","Agreeableness: Love children.","Agreeableness: Make people feel at ease.","Conscientiousness: Am exacting in my work.","Conscientiousness: Continue until everything is perfect.","Conscientiousness: Do things according to a plan.","Conscientiousness: Do things in a half-way manner.","Conscientiousness: Waste my time.","Extraversion: Don't talk a lot.","Extraversion: Find it difficult to approach others.","Extraversion: Know how to captivate people.","Extraversion: Make friends easily.","Extraversion: Take charge.","Emotional Stability: Get angry easily.","Emotional Stability: Get irritated easily.","Emotional Stability: Have frequent mood swings.","Emotional Stability: Often feel blue.","Emotional Stability: Panic easily.","Openness: Am full of ideas.","Openness: Avoid difficult reading material.","Openness: Carry the conversation to a higher level.","Openness: Spend time reflecting on things.","Openness: Will not probe deeply into a subject.","Self-reported gender","Highest degree","age in years","5 C items aggregated by rowMeans","5 E items aggregated by rowMeans","5 O items aggregated by rowMeans","5 A items aggregated by rowMeans","5 N items aggregated by rowMeans"],["labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","numeric","labelled","integer","numeric","numeric","numeric","numeric","numeric"],["FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE",null,"FALSE",null,null,null,null,null,null],["6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. male,<br>2. female","1. in high school,<br>2. finished high school,<br>3. some college,<br>4. college graduate,<br>5. graduate degree",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"C1, C2, C3, C4R, C5R","E1R, E2R, E3, E4, E5","O1, O2R, O3, O4, O5R","A1R, A2, A3, A4, A5","N1R, N2R, N3R, N4R, N5R"],["16","27","26","19","16","21","24","20","26","16","23","16","25","9","21","22","21","11","36","29","22","0","28","14","20","0","223","0","93","87","74","91","106"],["2784","2773","2774","2781","2784","2779","2776","2780","2774","2784","2777","2784","2775","2791","2779","2778","2779","2789","2764","2771","2778","2800","2772","2786","2780","2800","2577","2800","2707","2713","2726","2709","2694"],["2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800"],["6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6",null,"5",null,null,null,null,null,null],["6: 922, 5: 818, 4: 402, 3: 337","5: 1023, 6: 873, 4: 553, 3: 151","5: 986, 6: 755, 4: 564, 3: 207","6: 1147, 5: 654, 4: 451, 2: 215","5: 973, 6: 695, 4: 617, 3: 254","5: 1018, 4: 655, 6: 597, 3: 275","5: 962, 4: 643, 6: 550, 3: 296","5: 942, 4: 741, 6: 472, 3: 293","5: 794, 6: 769, 4: 472, 3: 448","3: 614, 5: 567, 6: 504, 2: 466","6: 663, 5: 652, 3: 450, 4: 404","5: 670, 3: 599, 6: 533, 2: 385","4: 826, 5: 743, 3: 412, 6: 352","5: 942, 6: 726, 4: 450, 3: 271","5: 940, 4: 619, 6: 616, 3: 288","5: 654, 6: 654, 3: 515, 4: 427","3: 709, 5: 535, 2: 510, 4: 411","5: 638, 3: 591, 6: 499, 2: 439","5: 655, 3: 608, 6: 472, 4: 401","5: 660, 6: 654, 3: 507, 4: 382","5: 925, 6: 912, 4: 606, 3: 210","6: 805, 5: 717, 3: 435, 4: 388","5: 943, 4: 775, 6: 541, 3: 292","6: 1084, 5: 887, 4: 481, 3: 154","5: 883, 6: 746, 4: 526, 3: 364",null,"3: 1249, 5: 418, 4: 394, 2: 292",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1.67",null,"28.78","4.26","4.14","4.59","4.64","3.84"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"0.47",null,"11.13","0.95","1.06","0.81","0.9 ","1.19"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1  ",null,"3","1  ","1  ","1.2","1  ","1  "],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1  ",null,"20","3.6","3.4","4  ","4.2","3  "],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2  ",null,"26","4.4","4.2","4.6","4.8","4  "],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2  ",null,"35","5  ","5  ","5.2","5.4","4.8"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2",null,"86","6","6","6","6","6"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"▃▁▁▁▁▁▁▇",null,"▁▇▆▃▂▁▁▁","▁▁▂▅▇▇▇▅","▁▁▃▅▇▇▇▆","▁▁▁▂▇▇▇▅","▁▁▁▂▃▆▇▇","▂▃▆▇▇▇▇▅"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>scale_item_names<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>n_unique<\/th>\n      <th>top_counts<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
 {
   "name": "25 Personality items representing 5 factors",
   "description": "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org) were included as part of the Synthetic Aperture Personality Assessment (SAPA) web based personality assessment project. The data from 2800 subjects are included here as a demonstration set for scale construction, factor analysis, and Item Response Theory analysis. Three additional demographic variables (sex, education, and age) are also included.\n\nThe first 25 items are organized by five putative factors: Agreeableness, Conscientiousness, Extraversion, Neuroticism, and Opennness. The item data were collected using a 6 point response scale: 1 Very Inaccurate 2 Moderately Inaccurate 3 Slightly Inaccurate 4 Slightly Accurate 5 Moderately Accurate 6 Very Accurate\n\nTo see an example of the data collection technique, visit https://SAPA-project.org or the International Cognitive Ability Resource at https://icar-project.com. The items given were sampled from the International Personality Item Pool of Lewis Goldberg using the sampling technique of SAPA. This is a sample data set taken from the much larger SAPA data bank.",

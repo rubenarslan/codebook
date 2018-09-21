@@ -17,10 +17,10 @@ A readout of the metadata for this dataset, with some defaults set
 \examples{
 # will generate figures in a figure/ subdirectory
 data("bfi")
-data_name(bfi) <- "MOCK Big Five Inventory dataset (German metadata demo)"
-data_description(bfi) <- "a small mock Big Five Inventory dataset"
-data_citation(bfi) <- "doi:10.5281/zenodo.1326520"
-data_url(bfi) <-
+metadata(bfi)$name <- "MOCK Big Five Inventory dataset (German metadata demo)"
+metadata(bfi)$description <- "a small mock Big Five Inventory dataset"
+metadata(bfi)$citation <- "doi:10.5281/zenodo.1326520"
+metadata(bfi)$url <-
    "https://rubenarslan.github.io/codebook/articles/codebook.html"
 codebook_data_info(bfi)
 }

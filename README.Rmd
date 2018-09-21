@@ -65,8 +65,15 @@ install.packages("codebook")
 Or to get the latest development version:
 
 ```r
-install.packages("devtools")
-devtools::install_github("rubenarslan/codebook")
+install.packages("remotes")
+remotes::install_github("rubenarslan/codebook")
+```
+
+Then run the following to get started:
+
+```r
+library(codebook)
+new_codebook_rmd()
 ```
 
 ## Citation

@@ -85,19 +85,19 @@ Owing to a bug in pander, the deeply nested attribute structure is currently not
 as a nice list.
 
 ```{r}
-data_name(results) <- "MOCK Qualtrics dataset"
-data_description(results) <- "a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package"
-data_identifier(results) <- "doi:10.5281/zenodo.1326520"
-data_datePublished(results) <- "2018-08-01"
-data_creator(results) <- list(
+metadata(results)$name <- "MOCK Qualtrics dataset"
+metadata(results)$description <- "a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package"
+metadata(results)$identifier <- "doi:10.5281/zenodo.1326520"
+metadata(results)$datePublished <- "2018-08-01"
+metadata(results)$creator <- list(
       "@type" = "Person",
       givenName = "Ruben", familyName = "Arslan",
       email = "ruben.arslan@gmail.com", 
       affiliation = list("@type" = "Organization",
         name = "MPI Human Development, Berlin"))
-data_url(results) <- "https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html"
-data_temporalCoverage(results) <- "2018" 
-data_spatialCoverage(results) <- "Nowhere" 
+metadata(results)$url <- "https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html"
+metadata(results)$temporalCoverage <- "2018" 
+metadata(results)$spatialCoverage <- "Nowhere" 
 ```
 
 ```{r}

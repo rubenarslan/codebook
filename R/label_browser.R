@@ -51,7 +51,7 @@ label_browser_static <- function(data = NULL, viewer = rstudioapi::viewer) {
     }
   }
 
-    labels <- metadata(data)
+    labels <- gather_variable_metadata(data)
     cols <- intersect(names(labels), c("name", "label", "value_labels"))
     labels <- labels[, cols, drop = FALSE]
     labels <- dplyr::mutate_if(labels, is.character, htmltools::htmlEscape)
@@ -169,7 +169,7 @@ codebook_browser <- function(
       data <- get(dataString, envir = .GlobalEnv)
 
       if (labels_only) {
-        labels <- metadata(data)
+        labels <- gather_variable_metadata(data)
         cols <- intersect(names(labels), c("name", "label", "value_labels"))
         labels <- labels[, cols, drop = FALSE]
       } else {
@@ -250,3 +250,5 @@ errorMessage <- function(type, message) {
     class = "error_message"
   )
 }
+
+

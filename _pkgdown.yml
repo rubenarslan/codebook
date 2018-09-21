@@ -9,6 +9,7 @@ reference:
   desc: Functions to generate (parts of) the codebook
   contents:
   - '`codebook`'
+  - '`new_codebook_rmd`'
   - '`codebook_table`'
   - '`codebook_items`'
   - '`codebook_missingness`'
@@ -31,15 +32,7 @@ reference:
   - '`reverse_labelled_values`'
   - '`has_label`'
   - '`has_labels`'
-  - '`data_name<-`'
-  - '`data_description<-`'
-  - '`data_description_default`'
-  - '`data_url<-`'
-  - '`data_identifier<-`'
-  - '`data_spatialCoverage<-`'
-  - '`data_temporalCoverage<-`'
-  - '`data_keywords<-`'
-  - '`data_citation<-`'
+  - '`metadata<-`'
 - title: Prepare data for non-codebook stuff
   desc: Functions to remove attributes that might confuse other packages
   contents:

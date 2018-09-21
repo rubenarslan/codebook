@@ -2,12 +2,11 @@
 if (exists("testing")) {
 	indent = '#' # ugly hack so _regression_summary can be "spun" (variables included via `r ` have to be available)
 	results = data("bfi")
-	attributes(results)$description <- data_description_default(bfi)
+	metadata(results)$description <- data_description_default(bfi)
 }
 
-meta <- attributes(results)
+meta <- metadata(results)
 description <- meta$description
-meta <- meta[setdiff(names(meta), c("row.names", "names", "class"))]
 meta <- recursive_escape(meta)
 ```
 
@@ -15,7 +14,7 @@ meta <- recursive_escape(meta)
 
 `r indent`## Description
 ```{r results='asis'}
-if (is_attribute_set("name", results)) {
+if (exists("name", meta)) {
   glue::glue(
     "__Dataset name__: {name}",
     .envir = meta)
@@ -27,42 +26,42 @@ cat(description)
 ```
 
 ```{r results='asis', echo = FALSE}
-if (is_attribute_set("temporalCoverage", results)) {
+if (exists("temporalCoverage", meta)) {
   glue::glue(
     "- __Temporal Coverage__: {temporalCoverage}",
     .envir = meta)
 }
 ```
 ```{r results='asis', echo = FALSE}
-if (is_attribute_set("spatialCoverage", results)) {
+if (exists("spatialCoverage", meta)) {
   glue::glue(
     "- __Spatial Coverage__: {spatialCoverage}",
     .envir = meta)
 }
 ```
 ```{r results='asis', echo = FALSE}
-if (is_attribute_set("citation", results)) {
+if (exists("citation", meta)) {
   glue::glue(
     "- __Citation__: {citation}",
     .envir = meta)
 }
 ```
 ```{r results='asis', echo = FALSE}
-if (is_attribute_set("url", results)) {
+if (exists("url", meta)) {
   glue::glue(
     "- __URL__: [{url}]({url})",
     .envir = meta)
 }
 ```
 ```{r results='asis', echo = FALSE}
-if (is_attribute_set("identifier", results)) {
+if (exists("identifier", meta)) {
   glue::glue(
     "- __Identifier__: {identifier}",
     .envir = meta)
 }
 ```
 ```{r results='asis', echo = FALSE}
-if (is_attribute_set("datePublished", results)) {
+if (exists("datePublished", meta)) {
   glue::glue(
     "- __Date published__: {datePublished}",
     .envir = meta)
@@ -70,8 +69,17 @@ if (is_attribute_set("datePublished", results)) {
 ```
 
 ```{r results='asis', echo = FALSE}
-if (is_attribute_set("creator", results)) {
+if (exists("creator", meta)) {
   cat("__Creator__:")
   pander::pander(meta$creator)
 }
 ```
+
+```{r}
+meta <- meta[setdiff(names(meta),
+                     c("creator", "datePublished", "identifier",
+                       "url", "citation", "spatialCoverage", 
+                       "temporalCoverage", "description", "name"))]
+pander::pander(meta)
+```
+

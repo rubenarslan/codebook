@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3.9001</span>
       </span>
     </div>
 
@@ -109,7 +109,7 @@
       <h1>Codebook example with nested scales</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2018-09-18</h4>
+            <h4 class="date">2018-09-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook_nested_scale.Rmd"><code>vignettes/codebook_nested_scale.Rmd</code></a></small>
       <div class="hidden name"><code>codebook_nested_scale.Rmd</code></div>
@@ -148,20 +148,20 @@
 <p>To keep things short, we omit the alpha scale.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">bfi &lt;-<span class="st"> </span>bfi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(beta, <span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"BFIK_extra"</span>), <span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"BFIK_open"</span>))</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span>knit_by_pkgdown) knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">data_name</span>(bfi) &lt;-<span class="st"> "MOCK Big Five Inventory dataset (German metadata demo)"</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">data_description</span>(bfi) &lt;-<span class="st"> "a small mock Big Five Inventory dataset"</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw">data_identifier</span>(bfi) &lt;-<span class="st"> "doi:10.5281/zenodo.1326520"</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw">data_datePublished</span>(bfi) &lt;-<span class="st"> "2016-06-01"</span></a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw">data_creator</span>(bfi) &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>name &lt;-<span class="st"> "MOCK Big Five Inventory dataset (German metadata demo)"</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>description &lt;-<span class="st"> "a small mock Big Five Inventory dataset"</span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>identifier &lt;-<span class="st"> "doi:10.5281/zenodo.1326520"</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>datePublished &lt;-<span class="st"> "2016-06-01"</span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>creator &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
 <a class="sourceLine" id="cb8-6" data-line-number="6">      <span class="st">"@type"</span> =<span class="st"> "Person"</span>,</a>
 <a class="sourceLine" id="cb8-7" data-line-number="7">      <span class="dt">givenName =</span> <span class="st">"Ruben"</span>, <span class="dt">familyName =</span> <span class="st">"Arslan"</span>,</a>
 <a class="sourceLine" id="cb8-8" data-line-number="8">      <span class="dt">email =</span> <span class="st">"ruben.arslan@gmail.com"</span>, </a>
 <a class="sourceLine" id="cb8-9" data-line-number="9">      <span class="dt">affiliation =</span> <span class="kw">list</span>(<span class="st">"@type"</span> =<span class="st"> "Organization"</span>,</a>
 <a class="sourceLine" id="cb8-10" data-line-number="10">        <span class="dt">name =</span> <span class="st">"MPI Human Development, Berlin"</span>))</a>
-<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="kw">data_citation</span>(bfi) &lt;-<span class="st"> "Arslan (2016). Mock BFI data."</span></a>
-<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="kw">data_url</span>(bfi) &lt;-<span class="st"> "https://rubenarslan.github.io/codebook/articles/codebook.html"</span></a>
-<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="kw">data_temporalCoverage</span>(bfi) &lt;-<span class="st"> "2016"</span> </a>
-<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="kw">data_spatialCoverage</span>(bfi) &lt;-<span class="st"> "Goettingen, Germany"</span> </a></code></pre></div>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>citation &lt;-<span class="st"> "Arslan (2016). Mock BFI data."</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>url &lt;-<span class="st"> "https://rubenarslan.github.io/codebook/articles/codebook.html"</span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>temporalCoverage &lt;-<span class="st"> "2016"</span> </a>
+<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>spatialCoverage &lt;-<span class="st"> "Goettingen, Germany"</span> </a></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># We don't want to look at the code in the codebook.</span></a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">TRUE</span>, <span class="dt">message =</span> <span class="ot">TRUE</span>, <span class="dt">echo =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## Warning in psych::alpha(as.data.frame(results[, scale_item_names]), title = scale_name, : Some items were negatively correlated with the total scale and probably 
@@ -216,6 +216,11 @@
 </ul>
 </li>
 </ul>
+<!-- end of list --><ul>
+<li>
+<strong>keywords</strong>: <em>beta</em>, <em>BFIK_extra_2</em>, <em>BFIK_extra_3R</em>, <em>BFIK_extra_4</em>, <em>BFIK_extra_1R</em>, <em>BFIK_extra</em>, <em>BFIK_open_2</em>, <em>BFIK_open_1</em>, <em>BFIK_open_4</em>, <em>BFIK_open_3</em> and <em>BFIK_open</em>
+</li>
+</ul>
 <!-- end of list -->
 </div>
 </div>
@@ -244,11 +249,11 @@
 <div id="confidence-interval" class="section level5">
 <h5 class="hasAnchor">
 <a href="#confidence-interval" class="anchor"></a>95% Confidence Interval</h5>
-<table style="width:39%;" class="table">
+<table style="width:43%;" class="table">
 <colgroup>
 <col width="12%">
 <col width="15%">
-<col width="11%">
+<col width="15%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">lower</th>
@@ -261,7 +266,7 @@
 <td align="center">0.8712</td>
 </tr></tbody>
 </table>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
 <col width="13%">
 <col width="13%">
@@ -271,7 +276,7 @@
 <col width="10%">
 <col width="8%">
 <col width="9%">
-<col width="10%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">raw_alpha</th>
@@ -427,7 +432,7 @@
 <col width="12%">
 <col width="12%">
 <col width="10%">
-<col width="10%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -528,13 +533,13 @@
 <a href="#non-missing-response-frequency-for-each-item" class="anchor"></a>Non missing response frequency for each item</h5>
 <table class="table">
 <colgroup>
-<col width="27%">
-<col width="13%">
-<col width="13%">
-<col width="13%">
+<col width="25%">
 <col width="12%">
 <col width="12%">
-<col width="8%">
+<col width="12%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -797,11 +802,11 @@
 <div id="confidence-interval-1" class="section level5">
 <h5 class="hasAnchor">
 <a href="#confidence-interval-1" class="anchor"></a>95% Confidence Interval</h5>
-<table style="width:39%;" class="table">
+<table style="width:43%;" class="table">
 <colgroup>
 <col width="12%">
 <col width="15%">
-<col width="11%">
+<col width="15%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">lower</th>
@@ -824,7 +829,7 @@
 <col width="11%">
 <col width="8%">
 <col width="7%">
-<col width="11%">
+<col width="12%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">raw_alpha</th>
@@ -855,7 +860,7 @@
 <a href="#reliability-if-an-item-is-dropped-1" class="anchor"></a>Reliability if an item is dropped:</h5>
 <table class="table">
 <colgroup>
-<col width="19%">
+<col width="18%">
 <col width="11%">
 <col width="11%">
 <col width="9%">
@@ -863,7 +868,7 @@
 <col width="7%">
 <col width="10%">
 <col width="10%">
-<col width="7%">
+<col width="10%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -997,13 +1002,13 @@
 <a href="#non-missing-response-frequency-for-each-item-1" class="anchor"></a>Non missing response frequency for each item</h5>
 <table class="table">
 <colgroup>
-<col width="27%">
-<col width="13%">
-<col width="13%">
-<col width="13%">
+<col width="25%">
 <col width="12%">
 <col width="12%">
-<col width="8%">
+<col width="12%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -1166,11 +1171,11 @@
 <div id="confidence-interval-2" class="section level5">
 <h5 class="hasAnchor">
 <a href="#confidence-interval-2" class="anchor"></a>95% Confidence Interval</h5>
-<table style="width:39%;" class="table">
+<table style="width:43%;" class="table">
 <colgroup>
 <col width="12%">
 <col width="15%">
-<col width="11%">
+<col width="15%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">lower</th>
@@ -1187,13 +1192,13 @@
 <colgroup>
 <col width="13%">
 <col width="13%">
-<col width="11%">
+<col width="10%">
 <col width="13%">
 <col width="8%">
-<col width="10%">
+<col width="9%">
 <col width="8%">
-<col width="10%">
-<col width="11%">
+<col width="9%">
+<col width="12%">
 </colgroup>
 <thead><tr class="header">
 <th align="center">raw_alpha</th>
@@ -1224,7 +1229,7 @@
 <a href="#reliability-if-an-item-is-dropped-2" class="anchor"></a>Reliability if an item is dropped:</h5>
 <table style="width:100%;" class="table">
 <colgroup>
-<col width="17%">
+<col width="16%">
 <col width="11%">
 <col width="11%">
 <col width="9%">
@@ -1232,7 +1237,7 @@
 <col width="8%">
 <col width="10%">
 <col width="10%">
-<col width="7%">
+<col width="10%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -1298,14 +1303,14 @@
 <a href="#item-statistics-2" class="anchor"></a>Item statistics</h5>
 <table class="table">
 <colgroup>
-<col width="24%">
+<col width="23%">
 <col width="6%">
-<col width="12%">
-<col width="12%">
-<col width="12%">
-<col width="12%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
 <col width="10%">
-<col width="10%">
+<col width="11%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -1364,15 +1369,15 @@
 <div id="non-missing-response-frequency-for-each-item-2" class="section level5">
 <h5 class="hasAnchor">
 <a href="#non-missing-response-frequency-for-each-item-2" class="anchor"></a>Non missing response frequency for each item</h5>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="25%">
+<col width="24%">
 <col width="13%">
 <col width="13%">
 <col width="13%">
 <col width="12%">
 <col width="12%">
-<col width="8%">
+<col width="12%">
 </colgroup>
 <thead><tr class="header">
 <th align="center"> </th>
@@ -1524,8 +1529,8 @@
 <div id="codebook-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#codebook-table" class="anchor"></a>Codebook table</h2>
-<div id="htmlwidget-c885f4611185a09bb6f3" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c885f4611185a09bb6f3">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"4\" data-max=\"22\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#beta\">beta<\/a>","<a href=\"#BFIK_extra_2\">BFIK_extra_2<\/a>","<a href=\"#BFIK_extra_3R\">BFIK_extra_3R<\/a>","<a href=\"#BFIK_extra_4\">BFIK_extra_4<\/a>","<a href=\"#BFIK_extra_1R\">BFIK_extra_1R<\/a>","<a href=\"#BFIK_extra\">BFIK_extra<\/a>","<a href=\"#BFIK_open_2\">BFIK_open_2<\/a>","<a href=\"#BFIK_open_1\">BFIK_open_1<\/a>","<a href=\"#BFIK_open_4\">BFIK_open_4<\/a>","<a href=\"#BFIK_open_3\">BFIK_open_3<\/a>","<a href=\"#BFIK_open\">BFIK_open<\/a>"],["Beta: higher order personality factor (extra, open)","__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__","__Ich bin eher der \"stille Typ\", wortkarg.__","__Ich gehe aus mir heraus, bin gesellig.__","__Ich bin eher zurückhaltend, reserviert.__","4 BFIK_extra items averaged with aggregation_function","__Ich bin tiefsinnig, denke gerne über Sachen nach.__","__Ich bin vielseitig interessiert.__","__Ich schätze künstlerische und ästhetische Eindrücke.__","__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__","4 BFIK_open items averaged with aggregation_function"],[null,"rating_button","rating_button","rating_button","rating_button",null,"rating_button","rating_button","rating_button","rating_button",null],[null,5,5,5,5,null,5,5,5,5,null],["numeric","labelled","labelled","labelled","labelled","numeric","labelled","labelled","labelled","labelled","numeric"],[null,"FALSE","FALSE","FALSE","FALSE",null,"FALSE","FALSE","FALSE","FALSE",null],[null,"1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.",null,"1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.",null],[null,0,0,0,0,null,0,0,0,0,null],["BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R, BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3",null,null,null,null,"BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R",null,null,null,null,"BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3"],[null,6,14,20,21,null,4,8,19,22,null],["0","0","0","0","0","0","0","0","0","0","0"],["28","28","28","28","28","28","28","28","28","28","28"],["28","28","28","28","28","28","28","28","28","28","28"],[null,"4","5","5","5",null,"4","4","4","4",null],[null,"5: 13, 4: 11, 1: 2, 3: 2","4: 9, 5: 9, 3: 6, 1: 2","4: 11, 5: 9, 3: 4, 2: 3","4: 8, 5: 8, 3: 6, 2: 5",null,"4: 15, 5: 10, 3: 2, 2: 1","5: 16, 4: 8, 3: 3, 2: 1","5: 13, 4: 10, 3: 4, 1: 1","5: 14, 4: 8, 3: 4, 2: 2",null],["4.05",null,null,null,null,"3.85",null,null,null,null,"4.26"],["0.6 ",null,null,null,null,"1.01",null,null,null,null,"0.56"],["2.88",null,null,null,null,"1.5 ",null,null,null,null,"3   "],["3.59",null,null,null,null,"3.25",null,null,null,null,"3.94"],["4.25",null,null,null,null,"4.25",null,null,null,null,"4.25"],["4.5 ",null,null,null,null,"4.56",null,null,null,null,"4.75"],["4.88",null,null,null,null,"5   ",null,null,null,null,"5   "],["▃▂▃▃▂▆▇▃",null,null,null,null,"▂▁▂▃▁▃▇▇",null,null,null,null,"▃▂▂▁▇▃▇▂"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>type<\/th>\n      <th>type_options<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>optional<\/th>\n      <th>scale_item_names<\/th>\n      <th>item_order<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>n_unique<\/th>\n      <th>top_counts<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":[3,7,9]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
+<div id="htmlwidget-f4588720d7d4962054f2" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f4588720d7d4962054f2">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"4\" data-max=\"22\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#beta\">beta<\/a>","<a href=\"#BFIK_extra_2\">BFIK_extra_2<\/a>","<a href=\"#BFIK_extra_3R\">BFIK_extra_3R<\/a>","<a href=\"#BFIK_extra_4\">BFIK_extra_4<\/a>","<a href=\"#BFIK_extra_1R\">BFIK_extra_1R<\/a>","<a href=\"#BFIK_extra\">BFIK_extra<\/a>","<a href=\"#BFIK_open_2\">BFIK_open_2<\/a>","<a href=\"#BFIK_open_1\">BFIK_open_1<\/a>","<a href=\"#BFIK_open_4\">BFIK_open_4<\/a>","<a href=\"#BFIK_open_3\">BFIK_open_3<\/a>","<a href=\"#BFIK_open\">BFIK_open<\/a>"],["Beta: higher order personality factor (extra, open)","__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__","__Ich bin eher der \"stille Typ\", wortkarg.__","__Ich gehe aus mir heraus, bin gesellig.__","__Ich bin eher zurückhaltend, reserviert.__","4 BFIK_extra items averaged with aggregation_function","__Ich bin tiefsinnig, denke gerne über Sachen nach.__","__Ich bin vielseitig interessiert.__","__Ich schätze künstlerische und ästhetische Eindrücke.__","__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__","4 BFIK_open items averaged with aggregation_function"],[null,"rating_button","rating_button","rating_button","rating_button",null,"rating_button","rating_button","rating_button","rating_button",null],[null,5,5,5,5,null,5,5,5,5,null],["numeric","labelled","labelled","labelled","labelled","numeric","labelled","labelled","labelled","labelled","numeric"],[null,"FALSE","FALSE","FALSE","FALSE",null,"FALSE","FALSE","FALSE","FALSE",null],[null,"1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.",null,"1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.",null],[null,0,0,0,0,null,0,0,0,0,null],["BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R, BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3",null,null,null,null,"BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R",null,null,null,null,"BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3"],[null,6,14,20,21,null,4,8,19,22,null],["0","0","0","0","0","0","0","0","0","0","0"],["28","28","28","28","28","28","28","28","28","28","28"],["28","28","28","28","28","28","28","28","28","28","28"],[null,"4","5","5","5",null,"4","4","4","4",null],[null,"5: 13, 4: 11, 1: 2, 3: 2","4: 9, 5: 9, 3: 6, 1: 2","4: 11, 5: 9, 3: 4, 2: 3","4: 8, 5: 8, 3: 6, 2: 5",null,"4: 15, 5: 10, 3: 2, 2: 1","5: 16, 4: 8, 3: 3, 2: 1","5: 13, 4: 10, 3: 4, 1: 1","5: 14, 4: 8, 3: 4, 2: 2",null],["4.05",null,null,null,null,"3.85",null,null,null,null,"4.26"],["0.6 ",null,null,null,null,"1.01",null,null,null,null,"0.56"],["2.88",null,null,null,null,"1.5 ",null,null,null,null,"3   "],["3.59",null,null,null,null,"3.25",null,null,null,null,"3.94"],["4.25",null,null,null,null,"4.25",null,null,null,null,"4.25"],["4.5 ",null,null,null,null,"4.56",null,null,null,null,"4.75"],["4.88",null,null,null,null,"5   ",null,null,null,null,"5   "],["▃▂▃▃▂▆▇▃",null,null,null,null,"▂▁▂▃▁▃▇▇",null,null,null,null,"▃▂▂▁▇▃▇▂"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>type<\/th>\n      <th>type_options<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>optional<\/th>\n      <th>scale_item_names<\/th>\n      <th>item_order<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>n_unique<\/th>\n      <th>top_counts<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":[3,7,9]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
 {
   "name": "MOCK Big Five Inventory dataset (German metadata demo)",
   "description": "a small mock Big Five Inventory dataset",
