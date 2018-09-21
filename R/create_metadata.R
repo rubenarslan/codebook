@@ -15,6 +15,10 @@ labelled::var_label
 labelled::`var_label<-`
 
 
+#' @importFrom dplyr "%>%"
+#' @export
+dplyr::`%>%`
+
 #' Aggregate variables and remember which variables this were
 #'
 #' The resulting variables will have the attribute `scale_item_names` containing
@@ -173,4 +177,20 @@ dict_to_list <- function(dict) {
   labels <- as.list(labels)
   labels[is.na(labels)] <- list(NULL)
   labels
+}
+
+#' Append R to string, if it doesn't end in R already.
+#'
+#' Use this function to conveniently rename reverse-coded variables, so that
+#' they end in R.
+#'
+#' @param x a string
+#' @export
+#' @examples
+#' data('bfi')
+#' bfi %>% dplyr::select(BFIK_open_2,BFIK_agree_2) %>% dplyr::rename_at(1, add_R) %>% head()
+add_R <- function(x) {
+  ifelse(stringr::str_sub(x, -1, -1) == "R",
+          x,
+          paste0(x, "R"))
 }

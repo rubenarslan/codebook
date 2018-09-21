@@ -29,10 +29,14 @@ reference:
   - '`compute_reliabilities`'
   - '`rescue_attributes`'
   - '`aggregate_and_document_scale`'
+  - '`add_R`'
   - '`reverse_labelled_values`'
   - '`has_label`'
   - '`has_labels`'
-  - '`metadata<-`'
+  - '`metadata`'
+  - '`data_description_default`'
+  - '`list_to_dict`'
+
 - title: Prepare data for non-codebook stuff
   desc: Functions to remove attributes that might confuse other packages
   contents:

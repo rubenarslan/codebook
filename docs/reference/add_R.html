@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Objects exported from other packages — reexports • codebook</title>
+<title>Append R to string, if it doesn't end in R already. — add_R • codebook</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,17 +36,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Objects exported from other packages — reexports" />
+<meta property="og:title" content="Append R to string, if it doesn't end in R already. — add_R" />
 
-<meta property="og:description" content="These objects are imported from other packages. Follow the links
-below to see their documentation.
-
-  dplyr%&amp;gt;%" />
-
-<meta property="og:description" content="havenas_factor, zap_label" />
-
-<meta property="og:description" content="labelledvar_label, var_label&amp;lt;-
-" />
+<meta property="og:description" content="Use this function to conveniently rename reverse-coded variables, so that
+they end in R." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -144,32 +137,47 @@ below to see their documentation.
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Objects exported from other packages</h1>
+    <h1>Append R to string, if it doesn't end in R already.</h1>
     <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/create_metadata.R'><code>R/create_metadata.R</code></a></small>
-    <div class="hidden name"><code>reexports.Rd</code></div>
+    <div class="hidden name"><code>add_R.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>These objects are imported from other packages. Follow the links
-below to see their documentation.</p>
-<dl class='dl-horizontal'>
-  <dt>dplyr</dt><dd><p><code>%&gt;%</code></p></dd>
-
-    <dt>haven</dt><dd><p><code><a href='http://www.rdocumentation.org/packages/haven/topics/as_factor'>as_factor</a></code>, <code><a href='http://www.rdocumentation.org/packages/haven/topics/zap_label'>zap_label</a></code></p></dd>
-
-    <dt>labelled</dt><dd><p><code><a href='http://www.rdocumentation.org/packages/labelled/topics/var_label'>var_label</a></code>, <code>var_label&lt;-</code></p></dd>
-</dl>
+    <p>Use this function to conveniently rename reverse-coded variables, so that
+they end in R.</p>
     
     </div>
 
-        
+    <pre class="usage"><span class='fu'>add_R</span>(<span class='no'>x</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>a string</p></td>
+    </tr>
+    </table>
+    
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>data</span>(<span class='st'>'bfi'</span>)
+<span class='no'>bfi</span> <span class='kw'>%&gt;%</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>BFIK_open_2</span>,<span class='no'>BFIK_agree_2</span>) <span class='kw'>%&gt;%</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='http://dplyr.tidyverse.org/reference/select_all.html'>rename_at</a></span>(<span class='fl'>1</span>, <span class='no'>add_R</span>) <span class='kw'>%&gt;%</span> <span class='fu'>head</span>()</div><div class='output co'>#&gt;   BFIK_open_2R BFIK_agree_2
+#&gt; 1            5            5
+#&gt; 2            4            4
+#&gt; 3            5            5
+#&gt; 4            4            4
+#&gt; 5            4            4
+#&gt; 6            4            4</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-                </ul>
+      <li><a href="#arguments">Arguments</a></li>
+            
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

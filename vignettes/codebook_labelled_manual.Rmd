@@ -31,7 +31,8 @@ ggplot2::theme_set(ggplot2::theme_bw())
 data("bfi", package = 'psych')
 bfi <- bfi %>% tbl_df()
 data("bfi.dictionary", package = 'psych')
-bfi.dictionary <- tibble::rownames_to_column(bfi.dictionary, "variable")
+bfi.dictionary <- tibble::rownames_to_column(bfi.dictionary, "variable") %>% 
+  tbl_df()
 ```
 
 Let's start by getting an overview of our dataset
@@ -90,59 +91,84 @@ a simple integer to a labelled class).
 This is all pretty tedious, and we have the data we need in a nice dictionary 
 already. With a few easy steps, we can transform it.
 
+First, we take only the personality items. We did the rest already.
 ```{r}
 dict <- bfi.dictionary %>% 
-  filter(! variable %in% c("gender", "education", "age")) %>% # we did those already
+  filter(!variable %in% c("gender", "education", "age")) %>% # we did those already
   mutate(label = paste0(Big6, ": ", Item)) %>% # make sure we name the construct in the label
   select(variable, label, Keying)
+```
 
-# turn the key-value data frame into  a list
-labels <- dict$label %>% as.list() %>% 
-  purrr::set_names(dict$variable)
+Now, we turn this data.frame with variable and label columns into a named list and assign it as variable labels.
+```{r}
+var_label(bfi) <- dict_to_list(dict)
+```
 
-# assign the list of labels to the bfi data frame
-var_label(bfi) <- labels
 
-# assign value labels to all likert items
+Now, we want to assign value labels to all likert items. First, we need to define
+a named vector.
+```{r}
 value_labels <- c("Very Inaccurate" = 1, 
                   "Moderately Inaccurate" = 2, 
                   "Slightly Inaccurate" = 3,
                   "Slightly Accurate" = 4,
                   "Moderately Accurate" = 5,
                   "Very Accurate" = 6)
+```
 
-# dict <- dict %>% tbl_df()
-# dict$vals <- list(value_labels)
-# 
-# value_labels <- dict$vals %>% 
-#   purrr::set_names(dict$variable)
-# 
-# bfi <- set_value_labels(bfi,value_labels)
-# rep(value_labels, nrow(dict))
-
+We're going to be using these labels many times, so let's 
+put the step of assigning them into a function.
+```{r}
 add_likert_label <- function(x) {
   val_labels(x) <- value_labels
   x
 }
-
-bfi <- bfi %>% 
-  mutate_at(dict %>% pull(variable), 
-                         add_likert_label)
-
-# reverse underlying values for the reverse-keyed items
-bfi <- bfi %>% 
-  mutate_at(dict %>% filter(Keying == -1) %>% pull(variable), 
-    reverse_labelled_values) %>% 
-  rename_at(dict %>% filter(Keying == -1) %>% pull(variable), 
-    ~ paste0(.,"R"))
-
-attributes(bfi$A1R)
 ```
+
+
+Now, for all personality items (we get them from our data dictionary),
+we assign these value labels.
+
+```{r}
+personality_items <- dict %>% pull(variable)
+bfi <- bfi %>% 
+  mutate_at(personality_items, 
+                         add_likert_label)
+```
+
+
+However, some of our items are reverse-coded. This information is contained
+in the `Keying` variable in our data dictionary. We'll use it to rename the
+variables to end with the letter R.
+
+```{r}
+# reverse underlying values for the reverse-keyed items
+reverse_coded_items <- dict %>% filter(Keying == -1) %>% pull(variable)
+
+bfi <- bfi %>% 
+  rename_at(reverse_coded_items, add_R)
+```
+
+Next, we can conveniently call the `reverse_labelled_values` function
+on all variables ending with a number and R.
+```{r}
+head(bfi$A1R, 3)
+labelled::val_labels(bfi$A1R)
+bfi <- bfi %>% 
+  mutate_at(
+    vars(matches("[0-9]_?R$")), # only for variables that end in 1R 2_R 3R etc
+    reverse_labelled_values)
+labelled::val_labels(bfi$A1R)
+head(bfi$A1R, 3)
+```
+
+As you can see, the underlying numeric values have changed, but the labels
+are still the way the participant answered them.
 
 ## Aggregating scales
 
-Now, we can form scale aggregates. The `codebook` function `aggregate_and_document_scale`
-does this for us and automatically sets the correct attributes.
+Now, we can form scale aggregates. The `codebook` function `aggregate_and_document_scale` does this for us and automatically sets the correct attributes. For some `select` calls her,e we have to set `ignore.case` to FALSE,
+or it would match the `age` and `education` variables.
 
 ```{r}
 bfi$consc <- aggregate_and_document_scale(bfi %>% select(starts_with("C")))
@@ -151,6 +177,10 @@ bfi$open <- aggregate_and_document_scale(bfi %>% select(starts_with("O")))
 bfi$agree <- aggregate_and_document_scale(bfi %>% select(starts_with("A", ignore.case = F)))
 bfi$neuro <- aggregate_and_document_scale(bfi %>% select(starts_with("N")))
 ```
+
+
+Last, we can assign some metadata to the dataset itself. We might want
+to give it a meaningful name and description, for example.
 
 ```{r}
 metadata(bfi)$name <- "25 Personality items representing 5 factors"

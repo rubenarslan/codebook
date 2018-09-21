@@ -51,18 +51,18 @@ dict <- darktriad %>% var_label() %>% as_data_frame() %>% tidyr::gather(variable
 metadata(darktriad)$name <- "How alluring are dark personalities? The Dark Triad and attractiveness in speed dating"
 metadata(darktriad)$description <- paste0("The data to this speed dating study comes in two different formats: Personwise (one record for each individual) and dyadic (pairwise; one record for each date). The respective SPSS files are named \"DarkTriadDate_person.sav\" and \"DarkTriadDate_dyad.sav\".
 
-## Download link
+### Download link
 [Open Science Framework](https://osf.io/j4fcb/download)
 
-## Personwise datafile 
+### Personwise datafile 
 The personwise datafile contains individual differences variables and perceiver and target effects according to the social relations model. These are centered marginal means that were calculated according to the formulae provided by Kenny, Kashy, and Cook (2006). These effects are not (!) based on multilevel analyses.
 
-## Preprocessing
+### Preprocessing
 All rating variables (i.e., actual choice, friendship, short-term relationship etc.) were corrected for prior acquaintance, which means that dates wih prior acquaintance were excluded (set to missing) on a dyadic basis.
 
 Variables are labeled in SPSS. 
 
-## A list of important abbreviations, prefixes and suffixes:
+### A list of important abbreviations, prefixes and suffixes:
 
 * _acq = acquaintance (i.e., variables with this suffix are controlled for prior * acquaintance)
 * avg = average
@@ -104,7 +104,7 @@ metadata(darktriad)$citation <- "Jauk, E., Neubauer, A. C., Mairunteregger, T., 
 metadata(darktriad)$url <- "https://osf.io/j4fcb/"
 metadata(darktriad)$temporalCoverage <- "2015" 
 metadata(darktriad)$spatialCoverage <- "Graz, Austria" 
-attributes(darktriad)$distribution = list(
+metadata(darktriad)$distribution = list(
   list("@type" = "DataDownload",
        "requiresSubscription" = "http://schema.org/True",
        "encodingFormat" = "https://www.loc.gov/preservation/digital/formats/fdd/fdd000469.shtml",
