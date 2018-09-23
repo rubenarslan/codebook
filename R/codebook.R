@@ -205,6 +205,10 @@ codebook_survey_overview <- function(results, survey_repetition = "single",
   stopifnot(exists("modified", results))
   stopifnot(exists("expired", results))
   stopifnot(exists("ended", results))
+  stopifnot(is(results$created, "POSIXct"))
+  stopifnot(is(results$modified, "POSIXct"))
+  stopifnot(is(results$expired, "POSIXct"))
+  stopifnot(is(results$ended, "POSIXct"))
 
   users <- dplyr::n_distinct(results$session)
   finished_users <- dplyr::n_distinct(results[!is.na(results$ended),]$session)
@@ -519,7 +523,7 @@ attribute_summary <- function(var) {
   if (ncol(x) == 0) {
     x <- data.frame(label = NA_character_, stringsAsFactors = FALSE)
   }
-  x
+  dplyr::mutate_all(x, as.character)
 }
 
 

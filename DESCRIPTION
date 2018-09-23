@@ -7,7 +7,7 @@ Description: Easily automate the following tasks to describe data frames:
   To do so, the package relies on 'rmarkdown' partials, so you can generate HTML, PDF, and Word documents. Codebooks
   are also available as tables (CSV, Excel, etc.).
   The metadata and codebooks are also available at your fingertips via RStudio Addins.
-Version: 0.6.3.9001
+Version: 0.6.3.9002
 Authors@R: person("Ruben", "Arslan", email = "ruben.arslan@gmail.com", role = c("aut", "cre"))
 Depends: R (>= 3.0.1)
 URL: https://github.com/rubenarslan/codebook
