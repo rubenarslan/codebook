@@ -2,7 +2,7 @@ $(function(){
 
   function urlExists(url, callback){
     $.ajax({
-      type: 'HEAD',
+      type: 'GET',
       url: url,
       success: function(){
         callback(true);
