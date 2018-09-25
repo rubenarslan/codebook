@@ -118,7 +118,7 @@ codebook_data = detect_scales(codebook_data)
 
 
 # Does your dataset have a name that is not reflected in the file name?
-data_name(codebook_data) <- "My Awesome Dataset"
+metadata(codebook_data)$name <- "My Awesome Dataset"
 
 codebook(codebook_data)
 ```
