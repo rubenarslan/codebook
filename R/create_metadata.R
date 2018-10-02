@@ -125,17 +125,15 @@ metadata.data.frame <- function(data) {
 data_description_default <- function(data) {
   stopifnot(is.data.frame(data))
   glue::glue(
-    "The dataset has N={n_observations} rows of
-    which n={n_completecases} have no missings and a total of
-    {n_variables} columns.
-
-    <details><summary>Variable names</summary>{variable_names}</details>
-
-    This dataset was automatically described using the codebook R package.",
+    "
+    ## Dimensions
+    The dataset has N={n_observations} rows and {n_variables} columns.
+    {n_completecases} rows have no missing values on any column.
+    ",
     n_observations = nrow(data),
     n_completecases = sum(stats::complete.cases(data)),
-    n_variables = ncol(data),
-    variable_names = paste(recursive_escape(colnames(data)), collapse = ", "))
+    n_variables = ncol(data)
+  )
 }
 
 #' Go from a named list to a key-value data frame or data dictionary and back

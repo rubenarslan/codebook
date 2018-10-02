@@ -640,6 +640,21 @@ metadata_list <- function(results, only_existing = TRUE) {
 
 
   if (only_existing) {
+    dict <- codebook_table(results)
+    dict <- knitr::kable(dict, format = "markdown")
+    dict <- paste0(as.character(dict), collapse = "\n")
+    metadata$description <- paste0(metadata$description, "\n\n\n",
+      glue::glue(
+      "
+    ## Table of variables
+    This table contains variable names, labels, their central tendencies and other attributes.
+
+    {dict}
+
+    ### Note
+    This dataset was automatically described using the codebook R package.
+    ",
+      dict = dict))
     metadata <- metadata[intersect(names(metadata), legal_dataset_properties)]
   }
 
