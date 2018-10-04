@@ -42,8 +42,6 @@ if (!knit_by_pkgdown) {
   darktriad <- darktriad %>%
   select(DG, sex, relStat, education, NPI_avg)
 }
-
-dict <- darktriad %>% var_label() %>% as_data_frame() %>% tidyr::gather(variable, label) %>% knitr::kable(format = "markdown") %>% as.character() %>% paste0(collapse = "\n")
 ```
 
 
@@ -91,7 +89,7 @@ Variables are labeled in SPSS.
 * TargEff = target effect
 
 
-", dict)
+")
 metadata(darktriad)$identifier <- "https://osf.io/jvk3u/"
 metadata(darktriad)$datePublished <- "2015-10-07"
 metadata(darktriad)$creator <- list(
