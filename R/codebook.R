@@ -653,7 +653,7 @@ metadata_list <- function(results, only_existing = TRUE) {
     {dict}
 
     ### Note
-    This dataset was automatically described using the codebook R package.
+    This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/).
     ",
       dict = dict))
     metadata <- metadata[intersect(names(metadata), legal_dataset_properties)]
