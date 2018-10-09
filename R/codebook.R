@@ -642,6 +642,7 @@ metadata_list <- function(results, only_existing = TRUE) {
   if (only_existing) {
     dict <- codebook_table(results)
     dict <- knitr::kable(dict, format = "markdown")
+    dict <- stringr::str_replace_all(dict, "\n", " - ")
     dict <- paste0(as.character(dict), collapse = "\n")
     metadata$description <- paste0(metadata$description, "\n\n\n",
       glue::glue(

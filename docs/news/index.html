@@ -64,7 +64,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3.9004</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.7.0</span>
       </span>
     </div>
 
@@ -137,15 +137,18 @@
       <small>Source: <a href='https://github.com/rubenarslan/codebook/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="codebook-0-6-3-9000" class="section level1">
+    <div id="codebook-0-7-0" class="section level1">
 <h1 class="page-header">
-<a href="#codebook-0-6-3-9000" class="anchor"></a>codebook 0.6.3.9000<small> Unreleased </small>
+<a href="#codebook-0-7-0" class="anchor"></a>codebook 0.7.0<small> Unreleased </small>
 </h1>
 <div id="additions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#additions" class="anchor"></a>Additions</h2>
 <ul>
 <li>Function <code>new_codebook_rmd</code> creates a new file in your working directory with a codebook template.</li>
+<li>Function <code>metadata</code> can be used to set dataset-level metadata before rendering a codebook (valid attributes will carry over to JSON-LD representation)</li>
+<li>Compliance with Google Dataset Search, see <a href="https://toolbox.google.com/datasetsearch/search?query=site%3Arubenarslan.github.io">examples</a>
+</li>
 </ul>
 </div>
 <div id="changes" class="section level2">
@@ -154,14 +157,9 @@
 <ul>
 <li>removed <code>zap_label</code> because haven 2.0.0 has this function</li>
 <li>added several functions to add JSON-LD compliant metadata and to show it in the codebook</li>
-<li>removed some non-standard attributes from the JSON-LD metadata in the hope</li>
-</ul>
-</div>
-<div id="bugfixes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bugfixes" class="anchor"></a>Bugfixes</h2>
-<ul>
-<li>work with haven’s changed class names</li>
+<li>removed some non-standard attributes from the JSON-LD metadata so that datasets will be indexed in Google Dataset Search</li>
+<li>work with haven 2.0.0’s changed class names</li>
+<li>play nice with <code>userfriendlyscience::makeScales</code> attributes</li>
 </ul>
 </div>
 </div>
@@ -192,9 +190,9 @@
 <li>removed unnecessary <code>readr</code> dependency.</li>
 </ul>
 </div>
-<div id="bugfixes-1" class="section level2">
+<div id="bugfixes" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-1" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>summarising factors in a table</li>
 <li>turning off components of the codebook without empty strings being echoed</li>
@@ -298,7 +296,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#codebook-0-6-3-9000">0.6.3.9000</a></li>
+        <li><a href="#codebook-0-7-0">0.7.0</a></li>
         <li><a href="#codebook-0-6-3">0.6.3</a></li>
         <li><a href="#codebook-0-6-2">0.6.2</a></li>
         <li><a href="#codebook-0-5-9">0.5.9</a></li>
