@@ -39,7 +39,7 @@ detect_missing <- function(data, only_labelled = TRUE,
           stringr::str_match(names(labels), "\\[([0-9-]+)\\]")[, 2])
         potentially_untagged <- numeric_representations[is.na(labels)]
         potential_tags <- labels[is.na(labels)]
-        if (!all(is.na(haven::na_tag(data[[var]]))) &&
+        if (is.double(data[[var]]) && !all(is.na(haven::na_tag(data[[var]]))) &&
             length(intersect(potentially_untagged, data[[var]]))) {
           warning("Missing values were already tagged in ", var, ". Although",
                   "there were further potential missing values as indicated by",
@@ -362,3 +362,6 @@ reverse_labelled_values <- function(x) {
   }
 }
 
+separate_out_missings <- function(x) {
+
+}

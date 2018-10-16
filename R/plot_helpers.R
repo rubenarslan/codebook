@@ -53,7 +53,8 @@ likert_from_items <- function(items) {
 #' data("bfi", package = "codebook")
 #' plot_labelled(bfi$BFIK_open_1)
 plot_labelled <- function(item, item_name = NULL,
-                          wrap_at = 50, go_vertical = FALSE) {
+                          wrap_at = 70, go_vertical = FALSE) {
+  wrap_at_ticks <- ceiling(wrap_at * 0.21)
   if (is.null(item_name)) {
     item_name <- deparse(substitute(item))
   }
@@ -68,7 +69,7 @@ plot_labelled <- function(item, item_name = NULL,
 
   item_nomiss <- haven::zap_missing(item)
   nonmissing_unique_values <- length(unique(item_nomiss))
-    nonmissing_choices <- attributes(item_nomiss)[["labels"]]
+  nonmissing_choices <- attributes(item_nomiss)[["labels"]]
 
   if (all(is.na(item_nomiss))) {
     if (has_labels(item)) {
@@ -93,8 +94,8 @@ plot_labelled <- function(item, item_name = NULL,
     label_how <- "both"
     if (length(choices)) {
       # wrap
-      names(attributes(item)[["labels"]]) <-
-        stringr::str_wrap(names(choices), 20)
+      names(nonmissing_choices) <-
+        stringr::str_wrap(names(nonmissing_choices), wrap_at_ticks)
       choices <- attributes(item)[["labels"]]
 
       # don't duplicate [1]/1: in front
@@ -156,14 +157,19 @@ plot_labelled <- function(item, item_name = NULL,
       ggplot2::xlab("values") +
       ggplot2::expand_limits(x = levels(item))
   } else if (is.character(item)) {
-    item <- stringr::str_wrap(as.character(item), 15)
+    item <- stringr::str_wrap(as.character(item), wrap_at_ticks)
 
     dist_plot <- ggplot2::ggplot(mapping = ggplot2::aes(x = item)) +
       ggplot2::geom_bar() +
       ggplot2::xlab("values")
   } else if (is.numeric(item)) {
+    if (length(unique(item)) < 40) {
+      bar_geom <- ggplot2::geom_bar(na.rm = TRUE)
+    } else {
+      bar_geom <- ggplot2::geom_histogram(bins = 30, na.rm = TRUE)
+    }
     dist_plot <- ggplot2::ggplot(mapping = ggplot2::aes(x = item_nomiss)) +
-      ggplot2::geom_histogram(bins = 30, na.rm = TRUE) +
+      bar_geom +
       ggplot2::scale_x_continuous("values")
   } else {
     dist_plot <- ggplot2::qplot(item) + ggplot2::xlab("values")

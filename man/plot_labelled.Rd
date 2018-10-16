@@ -4,7 +4,7 @@
 \alias{plot_labelled}
 \title{Plot labelled vector}
 \usage{
-plot_labelled(item, item_name = NULL, wrap_at = 50,
+plot_labelled(item, item_name = NULL, wrap_at = 70,
   go_vertical = FALSE)
 }
 \arguments{

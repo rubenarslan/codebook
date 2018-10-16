@@ -191,7 +191,7 @@
 #&gt;     attributes(missing_values)$labels &lt;- attributes(missing_values)$labels[is.na(attributes(missing_values)$labels)]
 #&gt;     attributes(item)$labels &lt;- attributes(item)$labels[!is.na(attributes(item)$labels)]
 #&gt;   }
-#&gt;   if (is.numeric(item)) {
+#&gt;   if (is.double(item)) {
 #&gt;     show_missing_values &lt;- length(unique(haven::na_tag(missing_values))) &gt; 1
 #&gt;     item &lt;- haven::zap_missing(item)
 #&gt;   }

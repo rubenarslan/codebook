@@ -30,7 +30,7 @@ if (has_labels(item)) {
     attributes(missing_values)$labels <- attributes(missing_values)$labels[is.na(attributes(missing_values)$labels)]
     attributes(item)$labels <- attributes(item)$labels[!is.na(attributes(item)$labels)]
   }
-  if (is.numeric(item)) {
+  if (is.double(item)) {
     show_missing_values <- length(unique(haven::na_tag(missing_values))) > 1
     item <- haven::zap_missing(item)
   }

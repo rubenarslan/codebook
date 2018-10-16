@@ -15,6 +15,7 @@ with a codebook template.
   will be indexed in Google Dataset Search
 - work with haven 2.0.0's changed class names
 - play nice with `userfriendlyscience::makeScales` attributes
+- improved binning and wrapping in `plot_labelled`
 
 # codebook 0.6.3
 ## Additions

@@ -237,7 +237,7 @@
 #&gt;   dist_plot &lt;- dist_plot +
 #&gt;     	ggplot2::scale_x_continuous("values", 
 #&gt; 	                            breaks = breaks, 
-#&gt; 	                            labels = stringr::str_wrap(unlist(choices), 15)) +
+#&gt; 	                            labels = stringr::str_wrap(unlist(choices), ceiling(wrap_at * 0.21))) +
 #&gt;       ggplot2::expand_limits(x = range(breaks)))
 #&gt;   
 #&gt; }

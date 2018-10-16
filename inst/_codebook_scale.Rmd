@@ -55,7 +55,7 @@ if (length(breaks)) {
   dist_plot <- dist_plot +
     	ggplot2::scale_x_continuous("values", 
 	                            breaks = breaks, 
-	                            labels = stringr::str_wrap(unlist(choices), 15)) +
+	                            labels = stringr::str_wrap(unlist(choices), ceiling(wrap_at * 0.21))) +
       ggplot2::expand_limits(x = range(breaks)))
   
 }
