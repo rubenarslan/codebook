@@ -1,0 +1,121 @@
+---
+title: "Codebook"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    code_folding: 'hide'
+    self_contained: true
+  pdf_document:
+    toc: yes
+    toc_depth: 4
+    latex_engine: xelatex
+---
+
+
+```{r setup}
+knitr::opts_chunk$set(
+  warning = TRUE, # show warnings during codebook generation
+  message = TRUE, # show messages during codebook generation
+  error = TRUE, # do not interrupt codebook generation in case of errors,
+                # usually better for debugging
+  echo = TRUE  # show R code
+)
+ggplot2::theme_set(ggplot2::theme_bw())
+pander::panderOptions("table.split.table", Inf)
+```
+
+```{r libraries, include=FALSE}
+
+library(codebook)
+library(tidyverse)
+library(labelled)
+
+```
+
+
+```{r}
+knit_by_pkgdown <- !is.null(knitr::opts_chunk$get("fig.retina"))
+pander::panderOptions("table.split.table", Inf)
+ggplot2::theme_set(ggplot2::theme_bw())
+knitr::opts_chunk$set(warning = TRUE, message = TRUE, error = TRUE, echo = TRUE)
+
+intergroup_dating <- rio::import("https://osf.io/btzku/download", "sav")
+
+```
+
+
+```{r}
+metadata(intergroup_dating)$name <- "An evolutionary perspective on intergroup dating bias"
+
+metadata(intergroup_dating)$description <- paste0("
+
+
+### Download link
+[Open Science Framework](https://osf.io/btzku/download)
+
+")
+
+
+metadata(intergroup_dating)$identifier <- "https://osf.io/6bwmq/"
+metadata(intergroup_dating)$datePublished <- "2018-01-24"
+metadata(intergroup_dating)$contributors <- list(
+      "Samantha Brindley "," Melissa Marie McDonald "," Lisa Welling "," Virgil Zeigler-Hill ")
+metadata(intergroup_dating)$citation <- " Samantha Brindley, Melissa M. McDonald, Lisa L. M. Welling & Virgil Zeigler-Hill (2018) An evolutionary perspective on intergroup dating bias, Comprehensive Results in Social Psychology, 3:1, 28-55, DOI: 10.1080/23743603.2018.1436939 "
+metadata(intergroup_dating)$url <- "https://osf.io/btzku/"
+metadata(intergroup_dating)$temporalCoverage <- "2018" 
+
+metadata(intergroup_dating)$distribution = list(
+  list("@type" = "DataDownload",
+       "requiresSubscription" = "http://schema.org/True",
+       "encodingFormat" = "https://www.loc.gov/preservation/digital/formats/fdd/fdd000469.shtml",
+       contentUrl = "https://osf.io/btzku/download")
+)
+```
+
+
+```{r prepare_codebook}
+
+
+codebook_data <- intergroup_dating
+
+val_labels(codebook_data$citizen) <- c("Yes" = 1, "No" = 2)
+val_labels(codebook_data$education) <- c("1" = 1,
+   "2" = 2, "3" = 3,  "4" = 4,  "5" = 5, "6" = 6, "7" = 7)
+val_labels(codebook_data$MC1nationalitycorrect) <- c("wrong" = 0, "right" = 1)
+val_labels(codebook_data$MC2incomecorrect) <- c("wrong" = 0, "right" = 1)
+val_labels(codebook_data$MC3hobbiescorrect) <- c("wrong" = 0, "right" = 1)
+
+
+codebook_data$risk_and_fear <- codebook_data %>% select(BehVig1:BehVig7, BehVig8r, BehVig9:BehVig25, BehVig26r:BehVig30r) %>% aggregate_and_document_scale()
+
+codebook_data$mate_value <- codebook_data %>% select(matevalue1:matevalue5) %>% aggregate_and_document_scale()
+
+dict <- rio::import("https://osf.io/uq98j/download", "xlsx")
+# 
+# var_label(codebook_data) <- dict %>% select(Variable, Label) %>% dict_to_list()
+
+# omit the following lines, if your missing values are already properly labelled
+codebook_data <- detect_missing(codebook_data,
+    only_labelled = TRUE, # only labelled values are autodetected as
+                                   # missing
+    negative_values_are_missing = FALSE, # negative values are missing values
+    ninety_nine_problems = TRUE,   # 99/999 are missing values, if they
+                                   # are more than 5 MAD from the median
+    )
+
+# If you are not using formr, the codebook package needs to guess which items
+# form a scale. The following line finds item aggregates with names like this:
+# scale = scale_1 + scale_2R + scale_3R
+# identifying these aggregates allows the codebook function to
+# automatically compute reliabilities.
+# However, it will not reverse items automatically.
+codebook_data <- detect_scales(codebook_data)
+```
+
+
+
+```{r codebook}
+codebook(codebook_data)
+```

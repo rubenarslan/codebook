@@ -109,11 +109,16 @@ detect_missing <- function(data, only_labelled = TRUE,
             names(labels) <- "autodetected unlabelled missing"
           }
           data[[var]] <- haven::labelled_spss(data[[var]],
+                                 label = attr(data[[var]], "label", TRUE),
                                  labels = labels,
                                  na_values = potential_missing_values,
-                                 na_range = attributes(data[[var]])$na_range)
+                                 na_range = attr(data[[var]], "na_range", TRUE)
+                                 )
         } else if (haven::is.labelled(data[[var]])) {
-            data[[var]] <- haven::labelled(with_tagged_na, labels = labels)
+            data[[var]] <- haven::labelled(with_tagged_na,
+                                  label = attr(data[[var]], "label", TRUE),
+                                  labels = labels
+                                  )
         } else {
             data[[var]] <- with_tagged_na
         }

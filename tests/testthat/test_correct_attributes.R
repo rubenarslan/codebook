@@ -134,6 +134,35 @@ test_that("we can also keep labelled_spss", {
   expect_identical(haven::na_tag(num[, 1][[1]]), haven::na_tag(num[, 4][[1]]) )
 })
 
+
+test_that("don't accidentally zap variable labels", {
+  data("bfi", package = "codebook")
+  bfi$shouldkeep <- structure(c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+              0, 0, 0, 0, 0, 0, 0, NA, NA, NA, 0, NA),
+            label = "Test labelled",
+            format.spss = "F8.0", class = "haven_labelled",
+            labels = c(keep = 0, drop = 1))
+  labels <- var_label(bfi)
+  bfi2 <- detect_missing(bfi, use_labelled_spss = FALSE, vars = "shouldkeep")
+  expect_identical(labels, var_label(bfi2))
+  bfi2 <- detect_missing(bfi, use_labelled_spss = FALSE)
+  expect_identical(labels, var_label(bfi2))
+  expect_identical(bfi, bfi2)
+  bfi2 <- detect_missing(bfi, negative_values_are_missing = TRUE)
+  expect_identical(labels, var_label(bfi2))
+  bfi2 <- detect_missing(bfi, negative_values_are_missing = FALSE,
+                        only_labelled = FALSE)
+  expect_identical(labels, var_label(bfi2))
+  bfi2 <- detect_missing(bfi, negative_values_are_missing = FALSE,
+                        learn_from_labels = FALSE,
+                        missing = 0, use_labelled_spss = TRUE)
+  expect_identical(labels, var_label(bfi2))
+  bfi2 <- detect_missing(bfi, use_labelled_spss = TRUE)
+  expect_identical(labels, var_label(bfi2))
+  expect_failure(expect_identical(bfi, bfi2))
+})
+
+
 test_that("related items of form scale_1r are detected", {
   bfi <- data.frame(matrix(data = rnorm(500), ncol = 5))
   names(bfi) <- c("bfi_e1", "bfi_e2R", "bfi_e3", "bfi_n1", "bfi_n2")
