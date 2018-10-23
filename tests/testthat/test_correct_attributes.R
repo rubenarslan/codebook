@@ -298,3 +298,4 @@ test_that("reverse labelled values", {
   expect_equal(reversed[[4]], 4)
   expect_equal(reversed[[9]], 3)
 })
+

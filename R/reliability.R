@@ -32,9 +32,9 @@ compute_reliabilities <- function(results, survey_repetition = "single") {
           id_vars <- intersect(id_vars, vars)
           scale_info$scale_item_names <- unname(scale_info$scale_item_names)
           items <- dplyr::select(results,
-              rlang::UQS(rlang::quos(id_vars)),
-              rlang::UQ(rlang::quo(var)),
-              rlang::UQS(rlang::quos(scale_info$scale_item_names)))
+              !!! rlang::quos(id_vars),
+              !! rlang::quo(var),
+              !!! rlang::quos(scale_info$scale_item_names))
           compute_appropriate_reliability(var, scale_info,
                                           items,
                                           survey_repetition)
@@ -67,7 +67,7 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
         dplyr::mutate(
           dplyr::group_by(results, .data$session),
           Time = dplyr::row_number(.data$created)), .data$session, .data$Time,
-        rlang::UQ(rlang::quo(scale_name)) ),
+        !!rlang::quo(scale_name) ),
       key = .data$Time, value = !!dplyr::quo(scale_name), sep = "_")
     list(
       internal_consistency_T1 =
@@ -90,7 +90,7 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
       dplyr::group_by(results, .data$session),
       day_number = as.numeric(.data$created - min(.data$created), unit = 'days')
       ), .data$session, .data$day_number,
-      rlang::UQS(rlang::quos(scale_item_names)) ),
+      !!!rlang::quos(scale_item_names) ),
       "variable", "value", -.data$session, -.data$day_number)
 
     list(

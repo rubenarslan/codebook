@@ -130,7 +130,7 @@ codebook <- function(results, reliabilities = NULL,
       items_contained_in_scales <- c(items_contained_in_scales,
                                      scale_info$scale_item_names, var)
       items <- dplyr::select(results,
-                  rlang::UQS(rlang::quos(scale_info$scale_item_names)))
+                  !!!(rlang::quos(scale_info$scale_item_names)))
       scales_items[[var]] %<-% {tryCatch({
         codebook_component_scale(
           scale = scale, scale_name = var,
@@ -460,7 +460,7 @@ codebook_table <- function(results) {
               setdiff(names(metadata), order)), # include other cols
                c("choice_list"))
 
-  metadata <- dplyr::select(metadata,  rlang::UQS(rlang::quos(cols)))
+  metadata <- dplyr::select(metadata,  !!!rlang::quos(cols))
   dplyr::select_if(metadata, not_all_na )
 }
 

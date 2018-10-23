@@ -359,7 +359,7 @@ reverse_labelled_values <- function(x) {
     possible_replies <- sort(possible_replies)
     recode_replies <- stats::setNames(
       as.list(possible_replies), rev(possible_replies))
-    new_x <- dplyr::recode(as.numeric(x), rlang::UQS(recode_replies))
+    new_x <- dplyr::recode(as.numeric(x), !!!recode_replies)
 
     attributes(new_x) <- attributes(x)
     attributes(new_x)$labels <- stats::setNames(rev(values), labels)

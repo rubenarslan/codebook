@@ -59,7 +59,15 @@ likert_items <- dict %>% filter(Big6 != "") %>% pull(variable)
 
 codebook_data <- codebook_data %>% mutate_at(likert_items,  add_likert_labels)
 
-codebook_data$extraversion <- codebook_data %>% select(E1:E5) %>% aggregate_and_document_scale()
+reversed_items <- dict %>% filter(Keying == -1) %>% pull(variable)
+
+codebook_data <- codebook_data %>% 
+  rename_at(reversed_items,  add_R) %>% 
+  mutate_at(vars(matches("\\dR$")), reverse_labelled_values)
+
+codebook_data$extraversion <- codebook_data %>% 
+  select(E1R:E5) %>% 
+  aggregate_and_document_scale()
 
 # omit the following lines, if your missing values are already properly labelled
 codebook_data <- detect_missing(codebook_data,
