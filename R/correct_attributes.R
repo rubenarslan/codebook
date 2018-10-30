@@ -331,17 +331,21 @@ reverse_labelled_values <- function(x) {
     labels <- attributes(x)$levels
     x <- as.numeric(x)
   }
+  missing_labels <- labels[is.na(values)]
+  missing_values <- values[is.na(values)]
+  labels <- labels[!is.na(values)]
+  values <- values[!is.na(values)]
   if (
-    sum(!is.na(values)) == 0 ||
-    (any(x > max(values, na.rm = TRUE) |
-          x < min(values, na.rm = TRUE), na.rm = TRUE))) {
+    length(values) == 0 ||
+    (any(x > max(values) |
+          x < min(values), na.rm = TRUE))) {
     warning(deparse(substitute(x)), ": There are values outside the ",
             "labelled range. Reversion will only work if both the minimum ",
             "and maximum of the range are part of the responses.")
   }
   if (length(values) < length(unique(x)) ) {
     # if only some values have labels (e.g. extremes), make sure we include all
-    possible_replies <- union(values, unique(x))
+    possible_replies <- union(values, unique(x[!is.na(x)]))
   } else {
     possible_replies <- values
   }
@@ -349,8 +353,7 @@ reverse_labelled_values <- function(x) {
     warning(deparse(substitute(x)), " is not numeric and cannot be reversed.")
     x
   } else {
-    range <- min(possible_replies, na.rm = TRUE):max(possible_replies,
-                                                     na.rm = TRUE)
+    range <- min(possible_replies):max(possible_replies)
     if (length(possible_replies) <
         length(range)) {
       possible_replies <- range
@@ -362,7 +365,9 @@ reverse_labelled_values <- function(x) {
     new_x <- dplyr::recode(as.numeric(x), !!!recode_replies)
 
     attributes(new_x) <- attributes(x)
-    attributes(new_x)$labels <- stats::setNames(rev(values), labels)
+    attributes(new_x)$labels <- stats::setNames(
+      c(rev(values), missing_values),
+      c(labels, missing_labels))
     new_x
   }
 }

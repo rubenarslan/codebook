@@ -1,25 +1,29 @@
 ---
-title: "Codebook"
+title: "Codebook tutorial"
+author: "Ruben Arslan"
+date: "`r Sys.Date()`"
 output:
-  html_document:
-    toc: true
-    toc_depth: 4
-    toc_float: true
-    code_folding: 'hide'
-    self_contained: true
+  html_vignette:
+    fig_width: 7
+    fig_height: 6
   pdf_document:
     toc: yes
     toc_depth: 4
     latex_engine: xelatex
+vignette: >
+  %\VignetteIndexEntry{Example with SPSS dataset}
+  \%VignetteKeyword{manual}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
-Here, we're just setting a few options.
+Using the codebook package locally in RStudio
 
 ```{r setup}
 knitr::opts_chunk$set(
   warning = TRUE, # show warnings during codebook generation
   message = TRUE, # show messages during codebook generation
-  error = TRUE, # do not interrupt codebook generation in case of errors,
+  error = FALSE, # do not interrupt codebook generation in case of errors,
                 # usually better for debugging
   echo = TRUE  # show R code
 )
@@ -27,15 +31,67 @@ ggplot2::theme_set(ggplot2::theme_bw())
 pander::panderOptions("table.split.table", Inf)
 ```
 
-Now, we're preparing our data for the codebook.
+## Loading data
+
+So, let us load some data. In this Tutorial, I will walk you through by using the "bfi" dataset made available in the psych package (Revelle et al. 2010; Revelle et al. 2016; Goldberg and Others 1999). The bfi dataset is already very well-documented in the psych R package, but using the codebook, we can add automatically computed reliabilities, graphs, and machine-readable metadata to the mix. The dataset is already available in R, but this will not usually be the case. Therefore, I have uploaded it to the Open Science Framework where you can also find many other publicly available datasets. A new package in R, rio (Chan and Leeper 2018), makes loading data from websites as easy as loading local data. You can import the dataset directly from the Open Science Framework by writing
 
 ```{r prepare_codebook}
 library(codebook)
-library(labelled)
-library(tidyverse)
 codebook_data <- rio::import("https://osf.io/s87kd/download", "csv")
-dict <- rio::import("https://osf.io/cs678/download", "csv")
+```
 
+Rmarkdown documents have to be reproducible and self-contained. Therefore, it is not enough for a dataset to be loaded locally, you have to load the dataset at the beginning of the document. We can also use the document interactively, although this will not work so well for the codebook package. To see how this works, execute the line you just added by pressing Command + Enter (if you are on a Mac) or Ctrl + Enter (on other platforms).
+Did it work? RStudio has a nice data viewer you can use to check. In the environment tab on the top right, you should see "codebook_data". Click that row. A spreadsheet view of the dataset opens in RStudio. As you can see, it is pretty uninformative. Just long columns of numbers with variable names like A4. Are we talking aggressiveness, agreeableness, or the German industrial norm for paper size? The lack of useful metadata is palpable. What can the codebook package do with this? Click the Knit button again. This time, it will take longer. Once the result is shown in the viewer tab, scroll through it. You can see that a few warnings let us know that the package saw items that might form part of a scale, but there was no aggregated scale. You will also see graphs of the distribution for each item and summary statistics.
+
+## Adding and changing metadata
+### Variable labels
+The last codebook we generated could already be useful if the variables had meaningful names and self-explanatory values. Yet, this is not often the case. What we need is more metadata: labels for variables and values, a dataset description, and so on. The codebook package can use metadata that are stored in R attributes. So, what are attributes and how do metadata get there? Attributes in R are most commonly used to store the type of a variable. A datetime in R is just a number with two attributes (a time zone and a class). However, these attributes can just as easily store other metadata. The Hmisc (Harrell, 2018), haven (Wickham & Miller, 2018), and rio (Chan & Leeper, 2018) packages, for example, use them to store labels. The haven and rio packages set these attributes when importing data from SPSS or Stata files. However, it is also easily possible to add metadata ourselves:
+
+```{r}
+attributes(codebook_data$C5)$label <- "Waste my time."
+```
+
+
+Here, we assigned a new label to a variable. Because it is inconvenient to write the above repeatedly, the labelled package (Larmarange, 2018) adds a few convenience functions. Load the labelled package, by writing the following in your codebook.rmd.
+
+Now, let us label the C5 item.
+
+```{r}
+library(labelled)
+var_label(codebook_data$C5) <- "Waste my time."
+```
+
+We can also label values in this manner:
+
+```{r}
+val_labels(codebook_data$C1) <- c("Very Inaccurate" = 1, "Very Accurate" = 6)
+```
+
+Write these labelling commands before renaming the bfi dataset and click "Knit" again. As you can now, see in the viewer pane, the C1 variable has gained a label at the top and the lowest and highest values on the X axis are now labelled too. If the prospect of adding such labels for every single variable in this way seems tedious, do not worry. Many researchers already have a codebook in the form of a spreadsheet and want to import this. The bfi dataset in the psych package is a good example of this, because it comes with a tabular dictionary. On the line after loading the bfi data, type the following to import the data dictionary.
+
+```{r}
+dict <- rio::import("https://osf.io/cs678/download", "csv")
+```
+
+To see what you just loaded, click the "dict" row in the environment tab in the top right panel. As you can see, the dictionary has information on the constructs on which this item loads and on the direction with which it should load on the construct. Let us now make these metadata usable by the codebook package. We will often need to slightly reshape data to help us do this. To make this easier, we will use the suite of packages called the tidyverse. Load them by typing the following.
+
+
+```{r}
+library(dplyr)
+```
+
+Now, we want to use the variable labels that are already in the dictionary. Because we want to label many variables at once, we need a list of variable labels. Instead of assigning one label to one variable as above, we assign many labels to the whole dataset from a named list. Here, each element of the list is one item that we want to label.
+
+```{r}
+var_label(codebook_data) <- list(
+		C5 = "Waste my time.", 
+		C1 = "Am exacting in my work."
+)
+```
+
+But we already have a list of variables and labels in our data dictionary that we can use, so we do not have to tediously write out this list. We have to slightly reshape it though, because right now, it is in the form of a rectangular data frame, not a named list. To do so, we use a convenience function from the codebook function called dict_to_list. This function expects to receive a data frame with two columns, the first should be the variable names, the second the variable labels. To select these columns, we use the select function from the tidyverse packages. We also use a special operator, called a pipe, which looks like this %>%. It allows us to write R code from left to right, passing along the thing we are working on. This allows us to read the code below almost like an English sentence. We take the dict dataset, then we select the variable and label columns, then we use the dict_to_list function. We assign the result of this operation to become the variable labels of codebook_data. Add the following line after importing the dictionary.
+
+```{r}
 var_label(codebook_data) <- dict %>% select(variable, label) %>% dict_to_list()
 
 val_labels(codebook_data$gender) <- c("male" = 1, "female" = 2)
@@ -46,12 +102,12 @@ val_labels(codebook_data$education) <- c("in high school" = 1,
               "graduate degree" = 5)
     		
 add_likert_labels <- function(x) {
-  val_labels(x) <- c("Very Inaccurate" = 1L, 
-                  "Moderately Inaccurate" = 2L, 
-                  "Slightly Inaccurate" = 3L,
-                  "Slightly Accurate" = 4L,
-                  "Moderately Accurate" = 5L,
-                  "Very Accurate" = 6L)
+  val_labels(x) <- c("Very Inaccurate" = 1, 
+                  "Moderately Inaccurate" = 2, 
+                  "Slightly Inaccurate" = 3,
+                  "Slightly Accurate" = 4,
+                  "Moderately Accurate" = 5,
+                  "Very Accurate" = 6)
   x
 }
 
@@ -69,6 +125,24 @@ codebook_data$extraversion <- codebook_data %>%
   select(E1R:E5) %>% 
   aggregate_and_document_scale()
 
+codebook_data$openness <- codebook_data %>% 
+  select(O1:O5R) %>% 
+  aggregate_and_document_scale()
+
+codebook_data$conscientiousness <- codebook_data %>% 
+  select(C1:C5R) %>% 
+  aggregate_and_document_scale()
+
+codebook_data$agreeableness <- codebook_data %>% 
+  select(A1R:A5) %>% 
+  aggregate_and_document_scale()
+
+codebook_data$neuroticism <- codebook_data %>% 
+  select(N1R:N5R) %>% 
+  aggregate_and_document_scale()
+
+codebook_data$plasticity <- codebook_data %>% select(E1R:E5, O1:O5R) %>% aggregate_and_document_scale() 
+
 # omit the following lines, if your missing values are already properly labelled
 codebook_data <- detect_missing(codebook_data,
     only_labelled = TRUE, # only labelled values are autodetected as
@@ -85,11 +159,25 @@ codebook_data <- detect_missing(codebook_data,
 # automatically compute reliabilities.
 # However, it will not reverse items automatically.
 codebook_data <- detect_scales(codebook_data)
+
+knitr::opts_chunk$set(
+  echo = FALSE  # show R code
+)
 ```
 
 
 Create codebook
 
 ```{r codebook}
+metadata(codebook_data)$name <- "25 Personality items representing 5 factors"
+metadata(codebook_data)$description <- "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org)[...]"
+metadata(codebook_data)$identifier <- "https://dx.doi.org/10.17605/OSF.IO/K39BG"
+metadata(codebook_data)$creator <- "William Revelle"
+metadata(codebook_data)$citation <- "Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer."
+metadata(codebook_data)$url <- "https://cran.r-project.org/web/packages/psych/index.html"
+metadata(codebook_data)$datePublished <- "2010-01-01"
+metadata(codebook_data)$temporalCoverage <- "Spring 2010" 
+metadata(codebook_data)$spatialCoverage <- "Online" 
+
 codebook(codebook_data)
 ```

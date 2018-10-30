@@ -1,4 +1,4 @@
-# codebook 0.7.1
+# codebook 0.7.2
 
 ## Additions
 - Function `new_codebook_rmd` creates a new file in your working directory
@@ -19,6 +19,7 @@ with a codebook template.
 
 ## Bugfixes
 - `detect_missing` reset variable label with the new haven version (only between 0.6.3.9000 and 0.7.0)
+- `reverse_labelled_values` mislabelled values, if there were labelled missing values (numbers were correct)
 
 # codebook 0.6.3
 ## Additions

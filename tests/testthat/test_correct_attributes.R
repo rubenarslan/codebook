@@ -297,5 +297,29 @@ test_that("reverse labelled values", {
   expect_equal(reversed[[1]], 5)
   expect_equal(reversed[[4]], 4)
   expect_equal(reversed[[9]], 3)
+
+
+  x <- haven::labelled(c(rep(1:3, each = 3), NA_real_), c(Bad = 1, Good = 5,
+                                             Missing = NA_real_))
+  expect_silent(reversed <- reverse_labelled_values(x))
+  expect_identical(attributes(reversed)$labels, c(Bad = 5, Good = 1,
+                                                  Missing = NA_real_))
+  expect_equal(reversed[[1]], 5)
+  expect_equal(reversed[[4]], 4)
+  expect_equal(reversed[[9]], 3)
+
+  x <- haven::labelled(c(rep(1:3, each = 3), NA_real_), c(Bad = 1, Ugh = 2,
+                                             Meh = 3, Mhh = 4,
+                                             Good = 5,
+                                             Missing = NA_real_))
+  expect_silent(reversed <- reverse_labelled_values(x))
+  expect_identical(attributes(reversed)$labels, c(Bad = 5, Ugh = 4,
+                                                  Meh = 3, Mhh = 2,
+                                                  Good = 1,
+                                                  Missing = NA_real_))
+  expect_equal(reversed[[1]], 5)
+  expect_equal(reversed[[4]], 4)
+  expect_equal(reversed[[9]], 3)
+
 })
 
