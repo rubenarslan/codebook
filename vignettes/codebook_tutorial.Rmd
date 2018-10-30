@@ -17,6 +17,11 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+<style>
+body {
+text-align: justify}
+</style>
+
 Using the codebook package locally in RStudio
 
 ```{r setup}
@@ -41,6 +46,7 @@ codebook_data <- rio::import("https://osf.io/s87kd/download", "csv")
 ```
 
 Rmarkdown documents have to be reproducible and self-contained. Therefore, it is not enough for a dataset to be loaded locally, you have to load the dataset at the beginning of the document. We can also use the document interactively, although this will not work so well for the codebook package. To see how this works, execute the line you just added by pressing Command + Enter (if you are on a Mac) or Ctrl + Enter (on other platforms).
+
 Did it work? RStudio has a nice data viewer you can use to check. In the environment tab on the top right, you should see "codebook_data". Click that row. A spreadsheet view of the dataset opens in RStudio. As you can see, it is pretty uninformative. Just long columns of numbers with variable names like A4. Are we talking aggressiveness, agreeableness, or the German industrial norm for paper size? The lack of useful metadata is palpable. What can the codebook package do with this? Click the Knit button again. This time, it will take longer. Once the result is shown in the viewer tab, scroll through it. You can see that a few warnings let us know that the package saw items that might form part of a scale, but there was no aggregated scale. You will also see graphs of the distribution for each item and summary statistics.
 
 ## Adding and changing metadata
@@ -67,7 +73,7 @@ We can also label values in this manner:
 val_labels(codebook_data$C1) <- c("Very Inaccurate" = 1, "Very Accurate" = 6)
 ```
 
-Write these labelling commands before renaming the bfi dataset and click "Knit" again. As you can now, see in the viewer pane, the C1 variable has gained a label at the top and the lowest and highest values on the X axis are now labelled too. If the prospect of adding such labels for every single variable in this way seems tedious, do not worry. Many researchers already have a codebook in the form of a spreadsheet and want to import this. The bfi dataset in the psych package is a good example of this, because it comes with a tabular dictionary. On the line after loading the bfi data, type the following to import the data dictionary.
+Write these labelling commands after loading the dataset and click "Knit" again. As you can now see in the viewer pane, the C1 variable has gained a label at the top and the lowest and highest values on the X axis are now labelled too. If the prospect of adding such labels for every single variable in this way seems tedious, do not worry. Many researchers already have a codebook in the form of a spreadsheet and want to import this. The bfi dataset in the psych package is a good example of this, because it comes with a tabular dictionary. On the line after loading the bfi data, type the following to import the data dictionary.
 
 ```{r}
 dict <- rio::import("https://osf.io/cs678/download", "csv")
@@ -76,7 +82,7 @@ dict <- rio::import("https://osf.io/cs678/download", "csv")
 To see what you just loaded, click the "dict" row in the environment tab in the top right panel. As you can see, the dictionary has information on the constructs on which this item loads and on the direction with which it should load on the construct. Let us now make these metadata usable by the codebook package. We will often need to slightly reshape data to help us do this. To make this easier, we will use the suite of packages called the tidyverse. Load them by typing the following.
 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(dplyr)
 ```
 
@@ -93,14 +99,30 @@ But we already have a list of variables and labels in our data dictionary that w
 
 ```{r}
 var_label(codebook_data) <- dict %>% select(variable, label) %>% dict_to_list()
+```
 
+Did it work? Click codebook_data in the Environment tab again. You should see the variable labels below the variable names now. You can also click Knit again, and you will see that your codebook now contains the variable labels. They are both part of the plots and part of the codebook table at the end. You cannot see this, but they are also part of the metadata that can be found using, for example, Google Dataset Search.
+
+### Value labels
+
+So far, so good. But, you may have noticed that education is simply a number. Are these years of education? The average is 3, so that does not seem likely. No, these are actually levels of education. In the dict data frame, you can see, that there are are value labels for the levels of this variable. However, these levels of education are abbreviated, and you can probably imagine that it would be hard for an automated program to understand how these map to the values in our dataset. So, let us try to do a little better. We again use a function from the labelled package, but this time it is not var_label, but val_labels. And unlike var_label, it expects not just one label, but a named vector, with a name for each value that you want to label. You do not need to label all. Named vectors are created using the c() function. Add the following lines right after the last one.
+
+```{r}
 val_labels(codebook_data$gender) <- c("male" = 1, "female" = 2)
 val_labels(codebook_data$education) <- c("in high school" = 1,
    "finished high school" = 2,
               "some college" = 3, 
 			   "college graduate" = 4, 
               "graduate degree" = 5)
-    		
+```
+
+Did it work? Click the Knit button to find out. If it worked, the bars in the graphs for education and gender should now be labelled.
+
+
+Now, on to the many Likert items. They all have the same value labels. We could assign them the same way as we did for gender and education, tediously repeating the lines for each variable, but the lazy programmer prefers a function for such situations. Creating a function is actually really simple. Just pick a name, ideally one to remember it by – I went with add_likert_labels and assign the keyword function followed by two different kinds of parentheses. The first, normal parentheses surround the variable x. The x here is a placeholder for the many variables we plan to use this function for in the next step. Next, we open curly braces to show that we now intend to write out what we plan to do with said variable x. Then, inside the curly braces, we use the val_labels function from above and assign a named vector.
+
+
+```{r}
 add_likert_labels <- function(x) {
   val_labels(x) <- c("Very Inaccurate" = 1, 
                   "Moderately Inaccurate" = 2, 
@@ -110,21 +132,64 @@ add_likert_labels <- function(x) {
                   "Very Accurate" = 6)
   x
 }
+```
 
+A function is just a tool, we have not used it yet. We want to use it only on the Likert items, so we now need a list of them. An easy way is to subset the dict dataframe to only take those variables that are part of the Big6. To do so, we use the filter and pull functions from the dplyr package.
+
+
+```{r}
 likert_items <- dict %>% filter(Big6 != "") %>% pull(variable)
+```
 
+Now, we want to apply our new function to these items. We again use a function from the dplyr package, called mutate_at. It expects a list of variables and a function to apply to each. We have both! So, we now add value labels to all likert items in the codebook_data.
+
+
+```{r}
 codebook_data <- codebook_data %>% mutate_at(likert_items,  add_likert_labels)
+```
 
+Did it work? Click Knit again. Now, all items should also have value labels. However, this is pretty repetitive. Can we group the items by the factor that they are supposed to load on? And while we are at it, how can the metadata on keying that is in our dictionary become part of the dataset?
+
+### Adding scales
+
+The codebook package relies on a simple convention to be able to summarise psychological scales, such as the Big Five dimension extraversion, which are aggregates across several items. You probably aggregated scales before. Below, we assign a new variable, extraversion, to the result of selecting all extraversion items in the data and passing them to the aggregate_and_document_scale function. This function takes the mean of its inputs, and assigns a label to the result, so that we can still tell which variables it is an aggregate of.
+
+First we need to reverse items which negatively load on the Extraversion factor, such as "Don't talk a lot.". To do so, I suggest to follow a simple convention already when coming up with names for your items, namely the format scale_numberR (e.g., bfi_extra_1R for a reverse-coded extraversion item, bfi_neuro_2 for a neuroticism item). That way, the analyst always knows how an item relates to a scale. In the data we just imported, this information is encoded in our data dictionary. Let us rename the reverse-coded items, so that we cannot forget about it. Start by grabbing all items with a negative keying from our dictionary with the following lines.
+
+```{r}
 reversed_items <- dict %>% filter(Keying == -1) %>% pull(variable)
+```
 
+You can see in your environment tab that the names A1, C4, C5, and so on, are now stored in the reversed_items vector. We can now refer to this vector using the rename_at function which applies a function to all variables we list. Here, we use the super simple function add_R which does exactly what its name says.
+
+
+```{r}
 codebook_data <- codebook_data %>% 
-  rename_at(reversed_items,  add_R) %>% 
-  mutate_at(vars(matches("\\dR$")), reverse_labelled_values)
+  rename_at(reversed_items,  add_R)
+```
 
+Click codebook_data in the environment tab, and you will see that some variables have been renamed to A1R, C4R, C5R, and so on. Now, it could be ambiguous whether the suffix R means "should be reversed before aggregation" or "has already been reversed". With the help of metadata in the form of labelled values, there is no potential for confusion. We can reverse the underlying values, but keep the value labels right. So, if somebody responded "Very Accurate" that stays the case, but the underlying value will switch from 6 to 1 for a reversed item. Because you usually import data, where this has not yet been done, the codebook package makes it easy to bring the data into this shape. A command using dplyr functions and the reverse_labelled_values function can easily remedy this. 
+
+
+```{r}
+codebook_data <- codebook_data %>% 
+    mutate_at(vars(matches("\\dR$")), reverse_labelled_values)
+
+```
+
+All this statement does is find variable names which end with a number (\d is the regular expression codeword for a number) and R and reverse them.
+
+
+With the next lines we assign extraversion to the result of selecting all extraversion items in the data and passing them to the aggregate_and_document_scale function
+```{r}
 codebook_data$extraversion <- codebook_data %>% 
   select(E1R:E5) %>% 
   aggregate_and_document_scale()
+```
 
+Try knitting! Adding further scales is really easy, just repeat the above line while changing the name of the scale and the items. 
+
+```{r}
 codebook_data$openness <- codebook_data %>% 
   select(O1:O5R) %>% 
   aggregate_and_document_scale()
@@ -140,9 +205,17 @@ codebook_data$agreeableness <- codebook_data %>%
 codebook_data$neuroticism <- codebook_data %>% 
   select(N1R:N5R) %>% 
   aggregate_and_document_scale()
+```
 
-codebook_data$plasticity <- codebook_data %>% select(E1R:E5, O1:O5R) %>% aggregate_and_document_scale() 
+Adding scales that integrate smaller scales is easy too. The data dictionary mentions the Giant Three. Let us add one, Plasticity, which subsumes Extraversion and Openness. 
 
+```{r}
+codebook_data$plasticity <- codebook_data %>% select(E1R:E5, O1:O5R) %>% aggregate_and_document_scale()
+```
+
+By the way, writing E1R:E5 only works if the items are all in order in your dataset. But maybe you mixed items across constructs, then you will need a different way to select them. You can simply list all items, writing select(E1R, E2R, E3, E4, E5). This can get tedious when listing many items. Another solution is to write select(starts_with("E")). This is pretty elegant, but it will not work, because we would try to average education with extraversion items (both start with E). This is why we should try to give items descriptive stems such as extraversion_ or bfik_extra. With longer stems like these, confusion is unlikely and we can refer to groups of items by their stems. If you have already named your item in such a sparse fashion, another solution is to use a regular expression, as we saw above. In our scenario, select(matches("^E\\dR?$")) would work.
+
+```{r, echo = FALSE, warning = FALSE}
 # omit the following lines, if your missing values are already properly labelled
 codebook_data <- detect_missing(codebook_data,
     only_labelled = TRUE, # only labelled values are autodetected as
@@ -160,15 +233,55 @@ codebook_data <- detect_missing(codebook_data,
 # However, it will not reverse items automatically.
 codebook_data <- detect_scales(codebook_data)
 
-knitr::opts_chunk$set(
-  echo = FALSE  # show R code
-)
+
 ```
 
 
-Create codebook
+## Metadata about the entire dataset
 
-```{r codebook}
+Lastly, you might want to sign your work and add a few descriptive words about the entire dataset. You could simply edit the rmarkdown document to add a description, but unfortunately, this information will not become part of the machine-readable metadata. Metadata (or attributes) of the dataset are a lot less persistent than metadata about variables. Hence, you should add it right before calling the codebook function. Enter the following lines above the call codebook(codebook_data). Adding metadata about the dataset is very simple. We simply wrap the metadata function around codebook_data and assign a value to a field. The fields name and description are required. If you do not edit them, they will be automatically generated based on the data frame name and its contents. To overwrite them, use the following commands.
+
+
+```{r , eval = FALSE}
+metadata(codebook_data)$name <- "25 Personality items representing 5 factors"
+metadata(codebook_data)$description <- "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org)[...]"
+```
+
+It's also good practice to give datasets a canonical identifier. This way, if a dataset is described in multiple locations, we know it's the same dataset. Here, I could have simply used the URL of the R package from which I took the package, but URLs can change. Instead, I generated a persistent document object identifier (DOI) on the OSF. and specified it here.
+
+
+```{r , eval = FALSE}
+metadata(codebook_data)$identifier <- "https://dx.doi.org/10.17605/OSF.IO/K39BG"
+```
+
+Of course, it's also a good idea to let others know who they can contact about the dataset, how to cite it, and where to find more information. That's why I set the attributes creator, citation, and url below.
+
+
+```{r , eval = FALSE}
+metadata(codebook_data)$creator <- "William Revelle"
+metadata(codebook_data)$citation <- "Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer."
+metadata(codebook_data)$url <- "https://cran.r-project.org/web/packages/psych/index.html"
+```
+
+Lastly, it is useful to note when and where the data was collected, and when it was published. Ideally, you would make more specific information available here, but this is all I know about the BFI dataset.
+
+
+```{r , eval = FALSE}
+metadata(codebook_data)$datePublished <- "2010-01-01"
+metadata(codebook_data)$temporalCoverage <- "Spring 2010" 
+metadata(codebook_data)$spatialCoverage <- "Online"
+
+
+```
+
+These attributes are documented in more depth on https://schema.org/Dataset. You can also add attributes that are not documented there, but they will not become part of the machine-readable metadata. Click Knit again. In the viewer tab, you can see that the metadata section of the codebook has been populated with your additions.
+
+```{r , echo=FALSE}
+
+knitr::opts_chunk$set(
+  echo = FALSE  # show R code
+)
+
 metadata(codebook_data)$name <- "25 Personality items representing 5 factors"
 metadata(codebook_data)$description <- "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org)[...]"
 metadata(codebook_data)$identifier <- "https://dx.doi.org/10.17605/OSF.IO/K39BG"
@@ -179,5 +292,15 @@ metadata(codebook_data)$datePublished <- "2010-01-01"
 metadata(codebook_data)$temporalCoverage <- "Spring 2010" 
 metadata(codebook_data)$spatialCoverage <- "Online" 
 
+
+```
+
+
+## Releasing the codebook publicly
+
+Now, you might want to share your codebook with others. In the project folder you created in the beginning, there now is a codebook.html file. You can email it to collaborators, or you can upload it to the OSF file storage. However, if you want Google Dataset Search to index your dataset, this is not good enough. The OSF will not render your HTML files for security reasons and Google will not index the content of your emails (at least not publicly). For those who are familiar with Github or who already have their own website, uploading the html file to their own website should be easy. For those who want to learn about Github Pages, there are several guides available. The very simplest way to publish the html for the codebook that I could find is the following. Rename the codebook.html to index.html. Sign up on netlify.com. After creating an account, you can drag and drop the folder containing the codebook to the netlify web page (make sure it does not contain anything you do not want to share, such as the raw data). Netlify will upload the files and create a random URL like estranged-amardillo.netlify.com. You can change this to say something more meaningful like bfi-study.netlify.com in the settings. Now, visit the URL to see that everything is working. The last step is to publicly share a link to the codebook, so that search engines can find out that it exists. You could tweet the link with the hashtag #codebook, and it also makes sense to add a link from the repository where you are sharing the raw data or the related study's supplementary material. I added a link to the bfi-study codebook on the OSF (https://osf.io/k39bg/), where I had also shared the data. That was it! Depending on the speed of the search engine crawler, the dataset should be findable on Google Dataset Search within 3 days to 3 weeks. 
+
+```{r , echo = FALSE, warning = FALSE}
 codebook(codebook_data)
+
 ```
