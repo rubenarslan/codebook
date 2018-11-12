@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.7.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.7.3</span>
       </span>
     </div>
 
@@ -99,7 +99,8 @@
 <!--/.navbar -->
 
       
-      </header><script src="codebook_tutorial_files/htmlwidgets-1.3/htmlwidgets.js"></script><script src="codebook_tutorial_files/jquery-1.12.4/jquery.min.js"></script><link href="codebook_tutorial_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+      </header><link href="codebook_tutorial_files/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="codebook_tutorial_files/pagedtable-1.1/js/pagedtable.js"></script><script src="codebook_tutorial_files/htmlwidgets-1.3/htmlwidgets.js"></script><script src="codebook_tutorial_files/jquery-1.12.4/jquery.min.js"></script><link href="codebook_tutorial_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
 <script src="codebook_tutorial_files/datatables-binding-0.4/datatables.js"></script><link href="codebook_tutorial_files/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="codebook_tutorial_files/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="codebook_tutorial_files/dt-core-1.10.16/js/jquery.dataTables.min.js"></script><script src="codebook_tutorial_files/jszip-1.10.16/jszip.min.js"></script><script src="codebook_tutorial_files/pdfmake-1.10.16/pdfmake.min.js"></script><script src="codebook_tutorial_files/pdfmake-1.10.16/vfs_fonts.js"></script><link href="codebook_tutorial_files/dt-ext-buttons-1.10.16/css/buttons.dataTables.min.css" rel="stylesheet">
@@ -112,7 +113,7 @@
       <h1>Codebook tutorial</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2018-10-30</h4>
+            <h4 class="date">2018-11-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook_tutorial.Rmd"><code>vignettes/codebook_tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>codebook_tutorial.Rmd</code></div>
@@ -129,11 +130,11 @@ text-align: justify}
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">  <span class="dt">warning =</span> <span class="ot">TRUE</span>, <span class="co"># show warnings during codebook generation</span></a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">  <span class="dt">message =</span> <span class="ot">TRUE</span>, <span class="co"># show messages during codebook generation</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">error =</span> <span class="ot">FALSE</span>, <span class="co"># do not interrupt codebook generation in case of errors,</span></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">  <span class="dt">error =</span> <span class="ot">TRUE</span>, <span class="co"># do not interrupt codebook generation in case of errors,</span></a>
 <a class="sourceLine" id="cb1-5" data-line-number="5">                <span class="co"># usually better for debugging</span></a>
 <a class="sourceLine" id="cb1-6" data-line-number="6">  <span class="dt">echo =</span> <span class="ot">TRUE</span>  <span class="co"># show R code</span></a>
 <a class="sourceLine" id="cb1-7" data-line-number="7">)</a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme_get">theme_set</a></span>(ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>())</a>
+<a class="sourceLine" id="cb1-8" data-line-number="8">ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/theme_get.html">theme_set</a></span>(ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>())</a>
 <a class="sourceLine" id="cb1-9" data-line-number="9">pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/panderOptions">panderOptions</a></span>(<span class="st">"table.split.table"</span>, <span class="ot">Inf</span>)</a></code></pre></div>
 <div id="loading-data" class="section level2">
 <h2 class="hasAnchor">
@@ -154,48 +155,54 @@ text-align: justify}
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">attributes</span>(codebook_data<span class="op">$</span>C5)<span class="op">$</span>label &lt;-<span class="st"> "Waste my time."</span></a></code></pre></div>
 <p>Here, we assigned a new label to a variable. Because it is inconvenient to write the above repeatedly, the labelled package (Larmarange, 2018) adds a few convenience functions. Load the labelled package, by writing the following in your codebook.rmd.</p>
 <p>Now, let us label the C5 item.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(labelled)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/var_label">var_label</a></span>(codebook_data<span class="op">$</span>C5) &lt;-<span class="st"> "Waste my time."</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(labelled)</a></code></pre></div>
+<pre><code>## 
+## LABELLED 2.0.0: BREAKING CHANGE
+## 
+## Following version 2.0.0 of `haven`, `labelled()` and `labelled_spss()` now produce objects with class 'haven_labelled' and 'haven_labelled_spss', due to conflict between the previous 'labelled' class and the 'labelled' class used by `Hmisc`.
+## 
+## A new function `update_labelled()` could be used to convert data imported with an older version of `haven`/`labelled` to the new classes.</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/var_label">var_label</a></span>(codebook_data<span class="op">$</span>C5) &lt;-<span class="st"> "Waste my time."</span></a></code></pre></div>
 <p>We can also label values in this manner:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/val_labels">val_labels</a></span>(codebook_data<span class="op">$</span>C1) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"Very Inaccurate"</span> =<span class="st"> </span><span class="dv">1</span>, <span class="st">"Very Accurate"</span> =<span class="st"> </span><span class="dv">6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/val_labels">val_labels</a></span>(codebook_data<span class="op">$</span>C1) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"Very Inaccurate"</span> =<span class="st"> </span><span class="dv">1</span>, <span class="st">"Very Accurate"</span> =<span class="st"> </span><span class="dv">6</span>)</a></code></pre></div>
 <p>Write these labelling commands after loading the dataset and click “Knit” again. As you can now see in the viewer pane, the C1 variable has gained a label at the top and the lowest and highest values on the X axis are now labelled too. If the prospect of adding such labels for every single variable in this way seems tedious, do not worry. Many researchers already have a codebook in the form of a spreadsheet and want to import this. The bfi dataset in the psych package is a good example of this, because it comes with a tabular dictionary. On the line after loading the bfi data, type the following to import the data dictionary.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">dict &lt;-<span class="st"> </span>rio<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rio/topics/import">import</a></span>(<span class="st">"https://osf.io/cs678/download"</span>, <span class="st">"csv"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">dict &lt;-<span class="st"> </span>rio<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rio/topics/import">import</a></span>(<span class="st">"https://osf.io/cs678/download"</span>, <span class="st">"csv"</span>)</a></code></pre></div>
 <p>To see what you just loaded, click the “dict” row in the environment tab in the top right panel. As you can see, the dictionary has information on the constructs on which this item loads and on the direction with which it should load on the construct. Let us now make these metadata usable by the codebook package. We will often need to slightly reshape data to help us do this. To make this easier, we will use the suite of packages called the tidyverse. Load them by typing the following.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a></code></pre></div>
 <p>Now, we want to use the variable labels that are already in the dictionary. Because we want to label many variables at once, we need a list of variable labels. Instead of assigning one label to one variable as above, we assign many labels to the whole dataset from a named list. Here, each element of the list is one item that we want to label.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/var_label">var_label</a></span>(codebook_data) &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">        <span class="dt">C5 =</span> <span class="st">"Waste my time."</span>, </a>
-<a class="sourceLine" id="cb8-3" data-line-number="3">        <span class="dt">C1 =</span> <span class="st">"Am exacting in my work."</span></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/var_label">var_label</a></span>(codebook_data) &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">        <span class="dt">C5 =</span> <span class="st">"Waste my time."</span>, </a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">        <span class="dt">C1 =</span> <span class="st">"Am exacting in my work."</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4">)</a></code></pre></div>
 <p>But we already have a list of variables and labels in our data dictionary that we can use, so we do not have to tediously write out this list. We have to slightly reshape it though, because right now, it is in the form of a rectangular data frame, not a named list. To do so, we use a convenience function from the codebook function called dict_to_list. This function expects to receive a data frame with two columns, the first should be the variable names, the second the variable labels. To select these columns, we use the select function from the tidyverse packages. We also use a special operator, called a pipe, which looks like this %&gt;%. It allows us to write R code from left to right, passing along the thing we are working on. This allows us to read the code below almost like an English sentence. We take the dict dataset, then we select the variable and label columns, then we use the dict_to_list function. We assign the result of this operation to become the variable labels of codebook_data. Add the following line after importing the dictionary.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/var_label">var_label</a></span>(codebook_data) &lt;-<span class="st"> </span>dict <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(variable, label) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/list_to_dict.html">dict_to_list</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/var_label">var_label</a></span>(codebook_data) &lt;-<span class="st"> </span>dict <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(variable, label) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/list_to_dict.html">dict_to_list</a></span>()</a></code></pre></div>
 <p>Did it work? Click codebook_data in the Environment tab again. You should see the variable labels below the variable names now. You can also click Knit again, and you will see that your codebook now contains the variable labels. They are both part of the plots and part of the codebook table at the end. You cannot see this, but they are also part of the metadata that can be found using, for example, Google Dataset Search.</p>
 </div>
 <div id="value-labels" class="section level3">
 <h3 class="hasAnchor">
 <a href="#value-labels" class="anchor"></a>Value labels</h3>
 <p>So far, so good. But, you may have noticed that education is simply a number. Are these years of education? The average is 3, so that does not seem likely. No, these are actually levels of education. In the dict data frame, you can see, that there are are value labels for the levels of this variable. However, these levels of education are abbreviated, and you can probably imagine that it would be hard for an automated program to understand how these map to the values in our dataset. So, let us try to do a little better. We again use a function from the labelled package, but this time it is not var_label, but val_labels. And unlike var_label, it expects not just one label, but a named vector, with a name for each value that you want to label. You do not need to label all. Named vectors are created using the c() function. Add the following lines right after the last one.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/val_labels">val_labels</a></span>(codebook_data<span class="op">$</span>gender) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"male"</span> =<span class="st"> </span><span class="dv">1</span>, <span class="st">"female"</span> =<span class="st"> </span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/val_labels">val_labels</a></span>(codebook_data<span class="op">$</span>education) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"in high school"</span> =<span class="st"> </span><span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">   <span class="st">"finished high school"</span> =<span class="st"> </span><span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">              <span class="st">"some college"</span> =<span class="st"> </span><span class="dv">3</span>, </a>
-<a class="sourceLine" id="cb10-5" data-line-number="5">               <span class="st">"college graduate"</span> =<span class="st"> </span><span class="dv">4</span>, </a>
-<a class="sourceLine" id="cb10-6" data-line-number="6">              <span class="st">"graduate degree"</span> =<span class="st"> </span><span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/val_labels">val_labels</a></span>(codebook_data<span class="op">$</span>gender) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"male"</span> =<span class="st"> </span><span class="dv">1</span>, <span class="st">"female"</span> =<span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/val_labels">val_labels</a></span>(codebook_data<span class="op">$</span>education) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"in high school"</span> =<span class="st"> </span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">   <span class="st">"finished high school"</span> =<span class="st"> </span><span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">              <span class="st">"some college"</span> =<span class="st"> </span><span class="dv">3</span>, </a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">               <span class="st">"college graduate"</span> =<span class="st"> </span><span class="dv">4</span>, </a>
+<a class="sourceLine" id="cb12-6" data-line-number="6">              <span class="st">"graduate degree"</span> =<span class="st"> </span><span class="dv">5</span>)</a></code></pre></div>
 <p>Did it work? Click the Knit button to find out. If it worked, the bars in the graphs for education and gender should now be labelled.</p>
 <p>Now, on to the many Likert items. They all have the same value labels. We could assign them the same way as we did for gender and education, tediously repeating the lines for each variable, but the lazy programmer prefers a function for such situations. Creating a function is actually really simple. Just pick a name, ideally one to remember it by – I went with add_likert_labels and assign the keyword function followed by two different kinds of parentheses. The first, normal parentheses surround the variable x. The x here is a placeholder for the many variables we plan to use this function for in the next step. Next, we open curly braces to show that we now intend to write out what we plan to do with said variable x. Then, inside the curly braces, we use the val_labels function from above and assign a named vector.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">add_likert_labels &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">  <span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/val_labels">val_labels</a></span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"Very Inaccurate"</span> =<span class="st"> </span><span class="dv">1</span>, </a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">                  <span class="st">"Moderately Inaccurate"</span> =<span class="st"> </span><span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">                  <span class="st">"Slightly Inaccurate"</span> =<span class="st"> </span><span class="dv">3</span>,</a>
-<a class="sourceLine" id="cb11-5" data-line-number="5">                  <span class="st">"Slightly Accurate"</span> =<span class="st"> </span><span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb11-6" data-line-number="6">                  <span class="st">"Moderately Accurate"</span> =<span class="st"> </span><span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb11-7" data-line-number="7">                  <span class="st">"Very Accurate"</span> =<span class="st"> </span><span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb11-8" data-line-number="8">  x</a>
-<a class="sourceLine" id="cb11-9" data-line-number="9">}</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">add_likert_labels &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">  <span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/val_labels">val_labels</a></span>(x) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"Very Inaccurate"</span> =<span class="st"> </span><span class="dv">1</span>, </a>
+<a class="sourceLine" id="cb13-3" data-line-number="3">                  <span class="st">"Moderately Inaccurate"</span> =<span class="st"> </span><span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb13-4" data-line-number="4">                  <span class="st">"Slightly Inaccurate"</span> =<span class="st"> </span><span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb13-5" data-line-number="5">                  <span class="st">"Slightly Accurate"</span> =<span class="st"> </span><span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb13-6" data-line-number="6">                  <span class="st">"Moderately Accurate"</span> =<span class="st"> </span><span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb13-7" data-line-number="7">                  <span class="st">"Very Accurate"</span> =<span class="st"> </span><span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb13-8" data-line-number="8">  x</a>
+<a class="sourceLine" id="cb13-9" data-line-number="9">}</a></code></pre></div>
 <p>A function is just a tool, we have not used it yet. We want to use it only on the Likert items, so we now need a list of them. An easy way is to subset the dict dataframe to only take those variables that are part of the Big6. To do so, we use the filter and pull functions from the dplyr package.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">likert_items &lt;-<span class="st"> </span>dict <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(Big6 <span class="op">!=</span><span class="st"> ""</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(variable)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">likert_items &lt;-<span class="st"> </span>dict <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(Big6 <span class="op">!=</span><span class="st"> ""</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(variable)</a></code></pre></div>
 <p>Now, we want to apply our new function to these items. We again use a function from the dplyr package, called mutate_at. It expects a list of variables and a function to apply to each. We have both! So, we now add value labels to all likert items in the codebook_data.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">codebook_data &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise_all.html">mutate_at</a></span>(likert_items,  add_likert_labels)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">codebook_data &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise_all.html">mutate_at</a></span>(likert_items,  add_likert_labels)</a></code></pre></div>
 <p>Did it work? Click Knit again. Now, all items should also have value labels. However, this is pretty repetitive. Can we group the items by the factor that they are supposed to load on? And while we are at it, how can the metadata on keying that is in our dictionary become part of the dataset?</p>
 </div>
 <div id="adding-scales" class="section level3">
@@ -203,60 +210,70 @@ text-align: justify}
 <a href="#adding-scales" class="anchor"></a>Adding scales</h3>
 <p>The codebook package relies on a simple convention to be able to summarise psychological scales, such as the Big Five dimension extraversion, which are aggregates across several items. You probably aggregated scales before. Below, we assign a new variable, extraversion, to the result of selecting all extraversion items in the data and passing them to the aggregate_and_document_scale function. This function takes the mean of its inputs, and assigns a label to the result, so that we can still tell which variables it is an aggregate of.</p>
 <p>First we need to reverse items which negatively load on the Extraversion factor, such as “Don’t talk a lot.”. To do so, I suggest to follow a simple convention already when coming up with names for your items, namely the format scale_numberR (e.g., bfi_extra_1R for a reverse-coded extraversion item, bfi_neuro_2 for a neuroticism item). That way, the analyst always knows how an item relates to a scale. In the data we just imported, this information is encoded in our data dictionary. Let us rename the reverse-coded items, so that we cannot forget about it. Start by grabbing all items with a negative keying from our dictionary with the following lines.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">reversed_items &lt;-<span class="st"> </span>dict <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(Keying <span class="op">==</span><span class="st"> </span><span class="dv">-1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(variable)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">reversed_items &lt;-<span class="st"> </span>dict <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(Keying <span class="op">==</span><span class="st"> </span><span class="dv">-1</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/pull.html">pull</a></span>(variable)</a></code></pre></div>
 <p>You can see in your environment tab that the names A1, C4, C5, and so on, are now stored in the reversed_items vector. We can now refer to this vector using the rename_at function which applies a function to all variables we list. Here, we use the super simple function add_R which does exactly what its name says.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">codebook_data &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select_all.html">rename_at</a></span>(reversed_items,  add_R)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">codebook_data &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select_all.html">rename_at</a></span>(reversed_items,  add_R)</a></code></pre></div>
 <p>Click codebook_data in the environment tab, and you will see that some variables have been renamed to A1R, C4R, C5R, and so on. Now, it could be ambiguous whether the suffix R means “should be reversed before aggregation” or “has already been reversed”. With the help of metadata in the form of labelled values, there is no potential for confusion. We can reverse the underlying values, but keep the value labels right. So, if somebody responded “Very Accurate” that stays the case, but the underlying value will switch from 6 to 1 for a reversed item. Because you usually import data, where this has not yet been done, the codebook package makes it easy to bring the data into this shape. A command using dplyr functions and the reverse_labelled_values function can easily remedy this.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">codebook_data &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise_all.html">mutate_at</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/vars.html">vars</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">matches</a></span>(<span class="st">"</span><span class="ch">\\</span><span class="st">dR$"</span>)), reverse_labelled_values)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">codebook_data &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="st">    </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/summarise_all.html">mutate_at</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/vars.html">vars</a></span>(<span class="kw"><a href="http://dplyr.tidyverse.org/reference/reexports.html">matches</a></span>(<span class="st">"</span><span class="ch">\\</span><span class="st">dR$"</span>)), reverse_labelled_values)</a></code></pre></div>
 <p>All this statement does is find variable names which end with a number (is the regular expression codeword for a number) and R and reverse them.</p>
 <p>With the next lines we assign extraversion to the result of selecting all extraversion items in the data and passing them to the aggregate_and_document_scale function</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">codebook_data<span class="op">$</span>extraversion &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(E1R<span class="op">:</span>E5) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">codebook_data<span class="op">$</span>extraversion &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(E1R<span class="op">:</span>E5) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>()</a></code></pre></div>
 <p>Try knitting! Adding further scales is really easy, just repeat the above line while changing the name of the scale and the items.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">codebook_data<span class="op">$</span>openness &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(O1<span class="op">:</span>O5R) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>()</a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb18-5" data-line-number="5">codebook_data<span class="op">$</span>conscientiousness &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(C1<span class="op">:</span>C5R) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>()</a>
-<a class="sourceLine" id="cb18-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb18-9" data-line-number="9">codebook_data<span class="op">$</span>agreeableness &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(A1R<span class="op">:</span>A5) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>()</a>
-<a class="sourceLine" id="cb18-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb18-13" data-line-number="13">codebook_data<span class="op">$</span>neuroticism &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-14" data-line-number="14"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(N1R<span class="op">:</span>N5R) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb18-15" data-line-number="15"><span class="st">  </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">codebook_data<span class="op">$</span>openness &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(O1<span class="op">:</span>O5R) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>()</a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5">codebook_data<span class="op">$</span>conscientiousness &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(C1<span class="op">:</span>C5R) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>()</a>
+<a class="sourceLine" id="cb20-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb20-9" data-line-number="9">codebook_data<span class="op">$</span>agreeableness &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-10" data-line-number="10"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(A1R<span class="op">:</span>A5) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-11" data-line-number="11"><span class="st">  </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>()</a>
+<a class="sourceLine" id="cb20-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb20-13" data-line-number="13">codebook_data<span class="op">$</span>neuroticism &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-14" data-line-number="14"><span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(N1R<span class="op">:</span>N5R) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb20-15" data-line-number="15"><span class="st">  </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>()</a></code></pre></div>
 <p>Adding scales that integrate smaller scales is easy too. The data dictionary mentions the Giant Three. Let us add one, Plasticity, which subsumes Extraversion and Openness.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">codebook_data<span class="op">$</span>plasticity &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(E1R<span class="op">:</span>E5, O1<span class="op">:</span>O5R) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>()</a></code></pre></div>
-<p>By the way, writing E1R:E5 only works if the items are all in order in your dataset. But maybe you mixed items across constructs, then you will need a different way to select them. You can simply list all items, writing select(E1R, E2R, E3, E4, E5). This can get tedious when listing many items. Another solution is to write select(starts_with(“E”)). This is pretty elegant, but it will not work, because we would try to average education with extraversion items (both start with E). This is why we should try to give items descriptive stems such as extraversion_ or bfik_extra. With longer stems like these, confusion is unlikely and we can refer to groups of items by their stems. If you have already named your item in such a sparse fashion, another solution is to use a regular expression, as we saw above. In our scenario, select(matches(“^E\dR?$”)) would work.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">codebook_data<span class="op">$</span>plasticity &lt;-<span class="st"> </span>codebook_data <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/select.html">select</a></span>(E1R<span class="op">:</span>E5, O1<span class="op">:</span>O5R) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="../reference/aggregate_and_document_scale.html">aggregate_and_document_scale</a></span>()</a></code></pre></div>
+<p>By the way, writing <code>E1R:E5</code> only works if the items are all in order in your dataset. But maybe you mixed items across constructs, then you will need a different way to select them. You can simply list all items, writing <code><a href="http://dplyr.tidyverse.org/reference/select.html">select(E1R, E2R, E3, E4, E5)</a></code>. This can get tedious when listing many items. Another solution is to write <code><a href="http://dplyr.tidyverse.org/reference/select.html">select(starts_with("E"))</a></code>. This is pretty elegant, but it will not work, because we would try to average education with extraversion items (both start with E). This is why we should try to give items descriptive stems such as extraversion_ or bfik_extra. With longer stems like these, confusion is unlikely and we can refer to groups of items by their stems. If you have already named your item in such a sparse fashion, another solution is to use a regular expression, as we saw above. In our scenario, <code><a href="http://dplyr.tidyverse.org/reference/select.html">select(matches("^E\\dR?$"))</a></code> would work.</p>
 </div>
 </div>
 <div id="metadata-about-the-entire-dataset" class="section level2">
 <h2 class="hasAnchor">
 <a href="#metadata-about-the-entire-dataset" class="anchor"></a>Metadata about the entire dataset</h2>
 <p>Lastly, you might want to sign your work and add a few descriptive words about the entire dataset. You could simply edit the rmarkdown document to add a description, but unfortunately, this information will not become part of the machine-readable metadata. Metadata (or attributes) of the dataset are a lot less persistent than metadata about variables. Hence, you should add it right before calling the codebook function. Enter the following lines above the call codebook(codebook_data). Adding metadata about the dataset is very simple. We simply wrap the metadata function around codebook_data and assign a value to a field. The fields name and description are required. If you do not edit them, they will be automatically generated based on the data frame name and its contents. To overwrite them, use the following commands.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>name &lt;-<span class="st"> "25 Personality items representing 5 factors"</span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>description &lt;-<span class="st"> "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org)[...]"</span></a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>name &lt;-<span class="st"> "25 Personality items representing 5 factors"</span></a>
+<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>description &lt;-<span class="st"> "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org)[...]"</span></a></code></pre></div>
 <p>It’s also good practice to give datasets a canonical identifier. This way, if a dataset is described in multiple locations, we know it’s the same dataset. Here, I could have simply used the URL of the R package from which I took the package, but URLs can change. Instead, I generated a persistent document object identifier (DOI) on the OSF. and specified it here.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>identifier &lt;-<span class="st"> "https://dx.doi.org/10.17605/OSF.IO/K39BG"</span></a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>identifier &lt;-<span class="st"> "https://dx.doi.org/10.17605/OSF.IO/K39BG"</span></a></code></pre></div>
 <p>Of course, it’s also a good idea to let others know who they can contact about the dataset, how to cite it, and where to find more information. That’s why I set the attributes creator, citation, and url below.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>creator &lt;-<span class="st"> "William Revelle"</span></a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>citation &lt;-<span class="st"> "Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer."</span></a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>url &lt;-<span class="st"> "https://cran.r-project.org/web/packages/psych/index.html"</span></a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>creator &lt;-<span class="st"> "William Revelle"</span></a>
+<a class="sourceLine" id="cb24-2" data-line-number="2"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>citation &lt;-<span class="st"> "Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer."</span></a>
+<a class="sourceLine" id="cb24-3" data-line-number="3"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>url &lt;-<span class="st"> "https://cran.r-project.org/web/packages/psych/index.html"</span></a></code></pre></div>
 <p>Lastly, it is useful to note when and where the data was collected, and when it was published. Ideally, you would make more specific information available here, but this is all I know about the BFI dataset.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>datePublished &lt;-<span class="st"> "2010-01-01"</span></a>
-<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>temporalCoverage &lt;-<span class="st"> "Spring 2010"</span> </a>
-<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>spatialCoverage &lt;-<span class="st"> "Online"</span></a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>datePublished &lt;-<span class="st"> "2010-01-01"</span></a>
+<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>temporalCoverage &lt;-<span class="st"> "Spring 2010"</span> </a>
+<a class="sourceLine" id="cb25-3" data-line-number="3"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(codebook_data)<span class="op">$</span>spatialCoverage &lt;-<span class="st"> "Online"</span></a></code></pre></div>
 <p>These attributes are documented in more depth on <a href="https://schema.org/Dataset" class="uri">https://schema.org/Dataset</a>. You can also add attributes that are not documented there, but they will not become part of the machine-readable metadata. Click Knit again. In the viewer tab, you can see that the metadata section of the codebook has been populated with your additions.</p>
+</div>
+<div id="exporting-and-sharing-the-data-with-metadata" class="section level2">
+<h2 class="hasAnchor">
+<a href="#exporting-and-sharing-the-data-with-metadata" class="anchor"></a>Exporting and sharing the data with metadata</h2>
+<p>Having added all the variable-level metadata, you might want to reuse the marked-up data elsewhere, share it with collaborators or the public. You can most easily export it using the rio package (Chan and Leeper 2018), which permits embedding the variable metadata in the dataset file for those formats that support it. The only way to keep all metadata in one file is by staying in R:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">rio<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rio/topics/export">export</a></span>(codebook_data, <span class="st">"bfi.rds"</span>) <span class="co"># to R data structure file</span></a></code></pre></div>
+<p>The variable-level metadata can also be transferred to SPSS and Stata files. Please note that this export is based on reverse-engineering the SPSS and Stata file structure, so the resulting files should be tested before sharing.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">rio<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rio/topics/export">export</a></span>(codebook_data, <span class="st">"bfi.sav"</span>) <span class="co"># to SPSS file</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">rio<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rio/topics/export">export</a></span>(codebook_data, <span class="st">"bfi.dta"</span>) <span class="co"># to Stata file</span></a></code></pre></div>
 </div>
 <div id="releasing-the-codebook-publicly" class="section level2">
 <h2 class="hasAnchor">
 <a href="#releasing-the-codebook-publicly" class="anchor"></a>Releasing the codebook publicly</h2>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">FALSE</span>) <span class="co"># don't print codebook code</span></a></code></pre></div>
 <p>Now, you might want to share your codebook with others. In the project folder you created in the beginning, there now is a codebook.html file. You can email it to collaborators, or you can upload it to the OSF file storage. However, if you want Google Dataset Search to index your dataset, this is not good enough. The OSF will not render your HTML files for security reasons and Google will not index the content of your emails (at least not publicly). For those who are familiar with Github or who already have their own website, uploading the html file to their own website should be easy. For those who want to learn about Github Pages, there are several guides available. The very simplest way to publish the html for the codebook that I could find is the following. Rename the codebook.html to index.html. Sign up on netlify.com. After creating an account, you can drag and drop the folder containing the codebook to the netlify web page (make sure it does not contain anything you do not want to share, such as the raw data). Netlify will upload the files and create a random URL like estranged-amardillo.netlify.com. You can change this to say something more meaningful like bfi-study.netlify.com in the settings. Now, visit the URL to see that everything is working. The last step is to publicly share a link to the codebook, so that search engines can find out that it exists. You could tweet the link with the hashtag #codebook, and it also makes sense to add a link from the repository where you are sharing the raw data or the related study’s supplementary material. I added a link to the bfi-study codebook on the OSF (<a href="https://osf.io/k39bg/" class="uri">https://osf.io/k39bg/</a>), where I had also shared the data. That was it! Depending on the speed of the search engine crawler, the dataset should be findable on Google Dataset Search within 3 days to 3 weeks.</p>
 <div id="metadata" class="section level3">
 <h3 class="hasAnchor">
@@ -264,24 +281,17 @@ text-align: justify}
 <div id="description" class="section level4">
 <h4 class="hasAnchor">
 <a href="#description" class="anchor"></a>Description</h4>
-<p><strong>Dataset name</strong>: 25 Personality items representing 5 factors</p>
-<p>25 personality self report items taken from the International Personality Item Pool (ipip.ori.org)[…]</p>
+<p><strong>Dataset name</strong>: codebook_data</p>
+</div>
+</div>
+</div>
+<div id="dimensions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#dimensions" class="anchor"></a>Dimensions</h2>
+<p>The dataset has N=2800 rows and 34 columns. 2236 rows have no missing values on any column.</p>
 <ul>
 <li>
-<strong>Temporal Coverage</strong>: Spring 2010</li>
-<li>
-<strong>Spatial Coverage</strong>: Online</li>
-<li>
-<strong>Citation</strong>: Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer.</li>
-<li>
-<strong>URL</strong>: <a href="https://cran.r-project.org/web/packages/psych/index.html" class="uri">https://cran.r-project.org/web/packages/psych/index.html</a>
-</li>
-<li>
-<strong>Identifier</strong>: <a href="https://dx.doi.org/10.17605/OSF.IO/K39BG" class="uri">https://dx.doi.org/10.17605/OSF.IO/K39BG</a>
-</li>
-<li><p><strong>Date published</strong>: 2010-01-01</p></li>
-<li>
-<p><strong>Creator</strong>:William Revelle</p>
+<p><strong>Date published</strong>: 2018-11-12</p>
 <ul>
 <li>
 <strong>keywords</strong>: <em>A1R</em>, <em>A2</em>, <em>A3</em>, <em>A4</em>, <em>A5</em>, <em>C1</em>, <em>C2</em>, <em>C3</em>, <em>C4R</em>, <em>C5R</em>, <em>E1R</em>, <em>E2R</em>, <em>E3</em>, <em>E4</em>, <em>E5</em>, <em>N1R</em>, <em>N2R</em>, <em>N3R</em>, <em>N4R</em>, <em>N5R</em>, <em>O1</em>, <em>O2R</em>, <em>O3</em>, <em>O4</em>, <em>O5R</em>, <em>gender</em>, <em>education</em>, <em>age</em>, <em>extraversion</em>, <em>openness</em>, <em>conscientiousness</em>, <em>agreeableness</em>, <em>neuroticism</em> and <em>plasticity</em>
@@ -290,8 +300,6 @@ text-align: justify}
 </li>
 </ul>
 <!-- end of list -->
-</div>
-</div>
 </div>
 <div id="variables" class="section level2">
 <h2 class="hasAnchor">
@@ -314,25 +322,35 @@ text-align: justify}
 <th align="left">name</th>
 <th align="left">label</th>
 <th align="left">data_type</th>
-<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">n_unique</th>
-<th align="left">top_counts</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="left">gender</td>
 <td align="left">gender</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. male,<br>2. female</td>
 <td align="left">0</td>
 <td align="left">2800</td>
 <td align="left">2800</td>
+<td align="left">1.67</td>
+<td align="left">0.47</td>
+<td align="left">1</td>
+<td align="left">1</td>
 <td align="left">2</td>
-<td align="left">2: 1881, 1: 919, NA: 0</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">▃▁▁▁▁▁▁▇</td>
 </tr></tbody>
 </table>
 </div>
@@ -368,25 +386,35 @@ text-align: justify}
 <th align="left">name</th>
 <th align="left">label</th>
 <th align="left">data_type</th>
-<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">n_unique</th>
-<th align="left">top_counts</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody><tr class="odd">
 <td align="left">education</td>
 <td align="left">education</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. in high school,<br>2. finished high school,<br>3. some college,<br>4. college graduate,<br>5. graduate degree</td>
 <td align="left">223</td>
 <td align="left">2577</td>
 <td align="left">2800</td>
+<td align="left">3.19</td>
+<td align="left">1.11</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">4</td>
 <td align="left">5</td>
-<td align="left">3: 1249, 5: 418, 4: 394, 2: 292</td>
+<td align="left">▂▂▁▇▁▂▁▃</td>
 </tr></tbody>
 </table>
 </div>
@@ -787,74 +815,104 @@ text-align: justify}
 <th align="left">name</th>
 <th align="left">label</th>
 <th align="left">data_type</th>
-<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">n_unique</th>
-<th align="left">top_counts</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">E1R</td>
 <td align="left">Don’t talk a lot.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">23</td>
 <td align="left">2777</td>
 <td align="left">2800</td>
+<td align="left">4.03</td>
+<td align="left">1.63</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6: 663, 5: 652, 3: 450, 4: 404</td>
+<td align="left">▃▅▁▆▅▁▇▇</td>
 </tr>
 <tr class="even">
 <td align="left">E2R</td>
 <td align="left">Find it difficult to approach others.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">16</td>
 <td align="left">2784</td>
 <td align="left">2800</td>
+<td align="left">3.86</td>
+<td align="left">1.61</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 670, 3: 599, 6: 533, 2: 385</td>
+<td align="left">▃▅▁▇▅▁▇▆</td>
 </tr>
 <tr class="odd">
 <td align="left">E3</td>
 <td align="left">Know how to captivate people.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">25</td>
 <td align="left">2775</td>
 <td align="left">2800</td>
+<td align="left">4</td>
+<td align="left">1.35</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">4: 826, 5: 743, 3: 412, 6: 352</td>
+<td align="left">▂▃▁▃▇▁▇▃</td>
 </tr>
 <tr class="even">
 <td align="left">E4</td>
 <td align="left">Make friends easily.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">9</td>
 <td align="left">2791</td>
 <td align="left">2800</td>
+<td align="left">4.42</td>
+<td align="left">1.46</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 942, 6: 726, 4: 450, 3: 271</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▂▃▁▇▆</td>
 </tr>
 <tr class="odd">
 <td align="left">E5</td>
 <td align="left">Take charge.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">21</td>
 <td align="left">2779</td>
 <td align="left">2800</td>
+<td align="left">4.42</td>
+<td align="left">1.33</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 940, 4: 619, 6: 616, 3: 288</td>
+<td align="left">▁▂▁▂▅▁▇▅</td>
 </tr>
 </tbody>
 </table>
@@ -1185,74 +1243,104 @@ text-align: justify}
 <th align="left">name</th>
 <th align="left">label</th>
 <th align="left">data_type</th>
-<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">n_unique</th>
-<th align="left">top_counts</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">O1</td>
 <td align="left">Am full of ideas.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">22</td>
 <td align="left">2778</td>
 <td align="left">2800</td>
+<td align="left">4.82</td>
+<td align="left">1.13</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 925, 6: 912, 4: 606, 3: 210</td>
+<td align="left">6</td>
+<td align="left">▁▁▁▂▅▁▇▇</td>
 </tr>
 <tr class="even">
 <td align="left">O2R</td>
 <td align="left">Avoid difficult reading material.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">0</td>
 <td align="left">2800</td>
 <td align="left">2800</td>
+<td align="left">4.29</td>
+<td align="left">1.57</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6: 805, 5: 717, 3: 435, 4: 388</td>
+<td align="left">6</td>
+<td align="left">▂▃▁▅▃▁▇▇</td>
 </tr>
 <tr class="odd">
 <td align="left">O3</td>
 <td align="left">Carry the conversation to a higher level.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">28</td>
 <td align="left">2772</td>
 <td align="left">2800</td>
+<td align="left">4.44</td>
+<td align="left">1.22</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 943, 4: 775, 6: 541, 3: 292</td>
+<td align="left">▁▁▁▂▆▁▇▅</td>
 </tr>
 <tr class="even">
 <td align="left">O4</td>
 <td align="left">Spend time reflecting on things.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">14</td>
 <td align="left">2786</td>
 <td align="left">2800</td>
+<td align="left">4.89</td>
+<td align="left">1.22</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6: 1084, 5: 887, 4: 481, 3: 154</td>
+<td align="left">6</td>
+<td align="left">▁▁▁▁▃▁▆▇</td>
 </tr>
 <tr class="odd">
 <td align="left">O5R</td>
 <td align="left">Will not probe deeply into a subject.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">20</td>
 <td align="left">2780</td>
 <td align="left">2800</td>
+<td align="left">4.51</td>
+<td align="left">1.33</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 883, 6: 746, 4: 526, 3: 364</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▃▅▁▇▇</td>
 </tr>
 </tbody>
 </table>
@@ -1583,74 +1671,104 @@ text-align: justify}
 <th align="left">name</th>
 <th align="left">label</th>
 <th align="left">data_type</th>
-<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">n_unique</th>
-<th align="left">top_counts</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">C1</td>
 <td align="left">Am exacting in my work.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">21</td>
 <td align="left">2779</td>
 <td align="left">2800</td>
+<td align="left">4.5</td>
+<td align="left">1.24</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 1018, 4: 655, 6: 597, 3: 275</td>
+<td align="left">▁▁▁▂▅▁▇▅</td>
 </tr>
 <tr class="even">
 <td align="left">C2</td>
 <td align="left">Continue until everything is perfect.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">24</td>
 <td align="left">2776</td>
 <td align="left">2800</td>
+<td align="left">4.37</td>
+<td align="left">1.32</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 962, 4: 643, 6: 550, 3: 296</td>
+<td align="left">▁▂▁▂▆▁▇▅</td>
 </tr>
 <tr class="odd">
 <td align="left">C3</td>
 <td align="left">Do things according to a plan.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">20</td>
 <td align="left">2780</td>
 <td align="left">2800</td>
+<td align="left">4.3</td>
+<td align="left">1.29</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 942, 4: 741, 6: 472, 3: 293</td>
+<td align="left">▁▂▁▂▆▁▇▅</td>
 </tr>
 <tr class="even">
 <td align="left">C4R</td>
 <td align="left">Do things in a half-way manner.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">26</td>
 <td align="left">2774</td>
 <td align="left">2800</td>
+<td align="left">4.45</td>
+<td align="left">1.38</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 794, 6: 769, 4: 472, 3: 448</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▅▅▁▇▇</td>
 </tr>
 <tr class="odd">
 <td align="left">C5R</td>
 <td align="left">Waste my time.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">16</td>
 <td align="left">2784</td>
 <td align="left">2800</td>
+<td align="left">3.7</td>
+<td align="left">1.63</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">3: 614, 5: 567, 6: 504, 2: 466</td>
+<td align="left">▃▆▁▇▅▁▇▆</td>
 </tr>
 </tbody>
 </table>
@@ -1981,74 +2099,104 @@ text-align: justify}
 <th align="left">name</th>
 <th align="left">label</th>
 <th align="left">data_type</th>
-<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">n_unique</th>
-<th align="left">top_counts</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">A1R</td>
 <td align="left">Am indifferent to the feelings of others.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">16</td>
 <td align="left">2784</td>
 <td align="left">2800</td>
+<td align="left">4.59</td>
+<td align="left">1.41</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6: 922, 5: 818, 4: 402, 3: 337</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▃▃▁▇▇</td>
 </tr>
 <tr class="even">
 <td align="left">A2</td>
 <td align="left">Inquire about others’ well-being.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">27</td>
 <td align="left">2773</td>
 <td align="left">2800</td>
+<td align="left">4.8</td>
+<td align="left">1.17</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 1023, 6: 873, 4: 553, 3: 151</td>
+<td align="left">6</td>
+<td align="left">▁▁▁▁▅▁▇▇</td>
 </tr>
 <tr class="odd">
 <td align="left">A3</td>
 <td align="left">Know how to comfort others.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">26</td>
 <td align="left">2774</td>
 <td align="left">2800</td>
+<td align="left">4.6</td>
+<td align="left">1.3</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 986, 6: 755, 4: 564, 3: 207</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▂▅▁▇▆</td>
 </tr>
 <tr class="even">
 <td align="left">A4</td>
 <td align="left">Love children.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">19</td>
 <td align="left">2781</td>
 <td align="left">2800</td>
+<td align="left">4.7</td>
+<td align="left">1.48</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6: 1147, 5: 654, 4: 451, 2: 215</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▁▃▁▅▇</td>
 </tr>
 <tr class="odd">
 <td align="left">A5</td>
 <td align="left">Make people feel at ease.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">16</td>
 <td align="left">2784</td>
 <td align="left">2800</td>
+<td align="left">4.56</td>
+<td align="left">1.26</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 973, 6: 695, 4: 617, 3: 254</td>
+<td align="left">▁▂▁▂▅▁▇▆</td>
 </tr>
 </tbody>
 </table>
@@ -2379,74 +2527,104 @@ text-align: justify}
 <th align="left">name</th>
 <th align="left">label</th>
 <th align="left">data_type</th>
-<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">n_unique</th>
-<th align="left">top_counts</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">N1R</td>
 <td align="left">Get angry easily.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">22</td>
 <td align="left">2778</td>
 <td align="left">2800</td>
+<td align="left">4.07</td>
+<td align="left">1.57</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 654, 6: 654, 3: 515, 4: 427</td>
+<td align="left">▂▅▁▆▅▁▇▇</td>
 </tr>
 <tr class="even">
 <td align="left">N2R</td>
 <td align="left">Get irritated easily.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">21</td>
 <td align="left">2779</td>
 <td align="left">2800</td>
+<td align="left">3.49</td>
+<td align="left">1.53</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">3: 709, 5: 535, 2: 510, 4: 411</td>
+<td align="left">▃▆▁▇▅▁▆▃</td>
 </tr>
 <tr class="odd">
 <td align="left">N3R</td>
 <td align="left">Have frequent mood swings.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">11</td>
 <td align="left">2789</td>
 <td align="left">2800</td>
+<td align="left">3.78</td>
+<td align="left">1.6</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 638, 3: 591, 6: 499, 2: 439</td>
+<td align="left">▃▆▁▇▅▁▇▆</td>
 </tr>
 <tr class="even">
 <td align="left">N4R</td>
 <td align="left">Often feel blue.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">36</td>
 <td align="left">2764</td>
 <td align="left">2800</td>
+<td align="left">3.81</td>
+<td align="left">1.57</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 655, 3: 608, 6: 472, 4: 401</td>
+<td align="left">▃▅▁▇▅▁▇▆</td>
 </tr>
 <tr class="odd">
 <td align="left">N5R</td>
 <td align="left">Panic easily.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">29</td>
 <td align="left">2771</td>
 <td align="left">2800</td>
+<td align="left">4.03</td>
+<td align="left">1.62</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 660, 6: 654, 3: 507, 4: 382</td>
+<td align="left">▃▃▁▆▅▁▇▇</td>
 </tr>
 </tbody>
 </table>
@@ -2932,134 +3110,189 @@ text-align: justify}
 <th align="left">name</th>
 <th align="left">label</th>
 <th align="left">data_type</th>
-<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">n_unique</th>
-<th align="left">top_counts</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">E1R</td>
 <td align="left">Don’t talk a lot.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">23</td>
 <td align="left">2777</td>
 <td align="left">2800</td>
+<td align="left">4.03</td>
+<td align="left">1.63</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6: 663, 5: 652, 3: 450, 4: 404</td>
+<td align="left">▃▅▁▆▅▁▇▇</td>
 </tr>
 <tr class="even">
 <td align="left">E2R</td>
 <td align="left">Find it difficult to approach others.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">16</td>
 <td align="left">2784</td>
 <td align="left">2800</td>
+<td align="left">3.86</td>
+<td align="left">1.61</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 670, 3: 599, 6: 533, 2: 385</td>
+<td align="left">▃▅▁▇▅▁▇▆</td>
 </tr>
 <tr class="odd">
 <td align="left">E3</td>
 <td align="left">Know how to captivate people.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">25</td>
 <td align="left">2775</td>
 <td align="left">2800</td>
+<td align="left">4</td>
+<td align="left">1.35</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">4: 826, 5: 743, 3: 412, 6: 352</td>
+<td align="left">▂▃▁▃▇▁▇▃</td>
 </tr>
 <tr class="even">
 <td align="left">E4</td>
 <td align="left">Make friends easily.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">9</td>
 <td align="left">2791</td>
 <td align="left">2800</td>
+<td align="left">4.42</td>
+<td align="left">1.46</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 942, 6: 726, 4: 450, 3: 271</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▂▃▁▇▆</td>
 </tr>
 <tr class="odd">
 <td align="left">E5</td>
 <td align="left">Take charge.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">21</td>
 <td align="left">2779</td>
 <td align="left">2800</td>
+<td align="left">4.42</td>
+<td align="left">1.33</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 940, 4: 619, 6: 616, 3: 288</td>
+<td align="left">▁▂▁▂▅▁▇▅</td>
 </tr>
 <tr class="even">
 <td align="left">O1</td>
 <td align="left">Am full of ideas.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">22</td>
 <td align="left">2778</td>
 <td align="left">2800</td>
+<td align="left">4.82</td>
+<td align="left">1.13</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 925, 6: 912, 4: 606, 3: 210</td>
+<td align="left">6</td>
+<td align="left">▁▁▁▂▅▁▇▇</td>
 </tr>
 <tr class="odd">
 <td align="left">O2R</td>
 <td align="left">Avoid difficult reading material.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">0</td>
 <td align="left">2800</td>
 <td align="left">2800</td>
+<td align="left">4.29</td>
+<td align="left">1.57</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6: 805, 5: 717, 3: 435, 4: 388</td>
+<td align="left">6</td>
+<td align="left">▂▃▁▅▃▁▇▇</td>
 </tr>
 <tr class="even">
 <td align="left">O3</td>
 <td align="left">Carry the conversation to a higher level.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">28</td>
 <td align="left">2772</td>
 <td align="left">2800</td>
+<td align="left">4.44</td>
+<td align="left">1.22</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 943, 4: 775, 6: 541, 3: 292</td>
+<td align="left">▁▁▁▂▆▁▇▅</td>
 </tr>
 <tr class="odd">
 <td align="left">O4</td>
 <td align="left">Spend time reflecting on things.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">integer</td>
 <td align="left">1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate</td>
 <td align="left">14</td>
 <td align="left">2786</td>
 <td align="left">2800</td>
+<td align="left">4.89</td>
+<td align="left">1.22</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">6: 1084, 5: 887, 4: 481, 3: 154</td>
+<td align="left">6</td>
+<td align="left">▁▁▁▁▃▁▆▇</td>
 </tr>
 <tr class="even">
 <td align="left">O5R</td>
 <td align="left">Will not probe deeply into a subject.</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate</td>
 <td align="left">20</td>
 <td align="left">2780</td>
 <td align="left">2800</td>
+<td align="left">4.51</td>
+<td align="left">1.33</td>
+<td align="left">1</td>
+<td align="left">4</td>
+<td align="left">5</td>
 <td align="left">6</td>
-<td align="left">5: 883, 6: 746, 4: 526, 3: 364</td>
+<td align="left">6</td>
+<td align="left">▁▂▁▃▅▁▇▇</td>
 </tr>
 </tbody>
 </table>
@@ -3072,242 +3305,21 @@ text-align: justify}
 <p>Among those who finished the survey. Only variables that have missing values are shown.</p>
 <pre><code>## Warning: Could not figure out who finished the surveys, because the
 ## variables expired and ended were missing.</code></pre>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="11%">
-<col width="1%">
-<col width="2%">
-<col width="1%">
-<col width="2%">
-<col width="1%">
-<col width="2%">
-<col width="2%">
-<col width="1%">
-<col width="1%">
-<col width="2%">
-<col width="1%">
-<col width="1%">
-<col width="2%">
-<col width="2%">
-<col width="1%">
-<col width="2%">
-<col width="1%">
-<col width="1%">
-<col width="1%">
-<col width="2%">
-<col width="1%">
-<col width="1%">
-<col width="2%">
-<col width="2%">
-<col width="3%">
-<col width="5%">
-<col width="5%">
-<col width="6%">
-<col width="4%">
-<col width="4%">
-<col width="4%">
-<col width="3%">
-<col width="3%">
-</colgroup>
-<thead><tr class="header">
-<th align="center">description</th>
-<th align="center">E4</th>
-<th align="center">N3R</th>
-<th align="center">O4</th>
-<th align="center">A1R</th>
-<th align="center">A5</th>
-<th align="center">C5R</th>
-<th align="center">E2R</th>
-<th align="center">A4</th>
-<th align="center">C3</th>
-<th align="center">O5R</th>
-<th align="center">C1</th>
-<th align="center">E5</th>
-<th align="center">N2R</th>
-<th align="center">N1R</th>
-<th align="center">O1</th>
-<th align="center">E1R</th>
-<th align="center">C2</th>
-<th align="center">E3</th>
-<th align="center">A3</th>
-<th align="center">C4R</th>
-<th align="center">A2</th>
-<th align="center">O3</th>
-<th align="center">N5R</th>
-<th align="center">N4R</th>
-<th align="center">openness</th>
-<th align="center">extraversion</th>
-<th align="center">agreeableness</th>
-<th align="center">conscientiousness</th>
-<th align="center">neuroticism</th>
-<th align="center">plasticity</th>
-<th align="center">education</th>
-<th align="center">var_miss</th>
-<th align="center">n_miss</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="center">Missing values in 0 variables</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">2236</td>
-</tr>
-<tr class="even">
-<td align="center">Missing values per variable</td>
-<td align="center">9</td>
-<td align="center">11</td>
-<td align="center">14</td>
-<td align="center">16</td>
-<td align="center">16</td>
-<td align="center">16</td>
-<td align="center">16</td>
-<td align="center">19</td>
-<td align="center">20</td>
-<td align="center">20</td>
-<td align="center">21</td>
-<td align="center">21</td>
-<td align="center">21</td>
-<td align="center">22</td>
-<td align="center">22</td>
-<td align="center">23</td>
-<td align="center">24</td>
-<td align="center">25</td>
-<td align="center">26</td>
-<td align="center">26</td>
-<td align="center">27</td>
-<td align="center">28</td>
-<td align="center">29</td>
-<td align="center">36</td>
-<td align="center">74</td>
-<td align="center">87</td>
-<td align="center">91</td>
-<td align="center">93</td>
-<td align="center">106</td>
-<td align="center">149</td>
-<td align="center">223</td>
-<td align="center">1331</td>
-<td align="center">1331</td>
-</tr>
-<tr class="odd">
-<td align="center">Missing values in 1 variables</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">200</td>
-</tr>
-<tr class="even">
-<td align="center">99 other, less frequent patterns</td>
-<td align="center">95</td>
-<td align="center">92</td>
-<td align="center">93</td>
-<td align="center">90</td>
-<td align="center">93</td>
-<td align="center">93</td>
-<td align="center">92</td>
-<td align="center">87</td>
-<td align="center">87</td>
-<td align="center">88</td>
-<td align="center">93</td>
-<td align="center">94</td>
-<td align="center">92</td>
-<td align="center">89</td>
-<td align="center">90</td>
-<td align="center">91</td>
-<td align="center">86</td>
-<td align="center">87</td>
-<td align="center">87</td>
-<td align="center">87</td>
-<td align="center">87</td>
-<td align="center">83</td>
-<td align="center">86</td>
-<td align="center">87</td>
-<td align="center">65</td>
-<td align="center">68</td>
-<td align="center">59</td>
-<td align="center">61</td>
-<td align="center">61</td>
-<td align="center">45</td>
-<td align="center">80</td>
-<td align="center">481</td>
-<td align="center">364</td>
-</tr>
-</tbody>
-</table>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["description"],"name":[1],"type":["chr"],"align":["left"]},{"label":["E4"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["N3R"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["O4"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["A1R"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["A5"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["C5R"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["E2R"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["A4"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["C3"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["O5R"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["C1"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["E5"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["N2R"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["N1R"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["O1"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["E1R"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["C2"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["E3"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["A3"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["C4R"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["A2"],"name":[22],"type":["dbl"],"align":["right"]},{"label":["O3"],"name":[23],"type":["dbl"],"align":["right"]},{"label":["N5R"],"name":[24],"type":["dbl"],"align":["right"]},{"label":["N4R"],"name":[25],"type":["dbl"],"align":["right"]},{"label":["openness"],"name":[26],"type":["dbl"],"align":["right"]},{"label":["extraversion"],"name":[27],"type":["dbl"],"align":["right"]},{"label":["agreeableness"],"name":[28],"type":["dbl"],"align":["right"]},{"label":["conscientiousness"],"name":[29],"type":["dbl"],"align":["right"]},{"label":["neuroticism"],"name":[30],"type":["dbl"],"align":["right"]},{"label":["plasticity"],"name":[31],"type":["dbl"],"align":["right"]},{"label":["education"],"name":[32],"type":["dbl"],"align":["right"]},{"label":["var_miss"],"name":[33],"type":["dbl"],"align":["right"]},{"label":["n_miss"],"name":[34],"type":["dbl"],"align":["right"]}],"data":[{"1":"Missing values in 0 variables","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1","10":"1","11":"1","12":"1","13":"1","14":"1","15":"1","16":"1","17":"1","18":"1","19":"1","20":"1","21":"1","22":"1","23":"1","24":"1","25":"1","26":"1","27":"1","28":"1","29":"1","30":"1","31":"1","32":"1","33":"0","34":"2236"},{"1":"Missing values per variable","2":"9","3":"11","4":"14","5":"16","6":"16","7":"16","8":"16","9":"19","10":"20","11":"20","12":"21","13":"21","14":"21","15":"22","16":"22","17":"23","18":"24","19":"25","20":"26","21":"26","22":"27","23":"28","24":"29","25":"36","26":"74","27":"87","28":"91","29":"93","30":"106","31":"149","32":"223","33":"1331","34":"1331"},{"1":"Missing values in 1 variables","2":"1","3":"1","4":"1","5":"1","6":"1","7":"1","8":"1","9":"1","10":"1","11":"1","12":"1","13":"1","14":"1","15":"1","16":"1","17":"1","18":"1","19":"1","20":"1","21":"1","22":"1","23":"1","24":"1","25":"1","26":"1","27":"1","28":"1","29":"1","30":"1","31":"1","32":"0","33":"1","34":"200"},{"1":"99 other, less frequent patterns","2":"95","3":"92","4":"93","5":"90","6":"93","7":"93","8":"92","9":"87","10":"87","11":"88","12":"93","13":"94","14":"92","15":"89","16":"90","17":"91","18":"86","19":"87","20":"87","21":"87","22":"87","23":"83","24":"86","25":"87","26":"65","27":"68","28":"59","29":"61","30":"61","31":"45","32":"80","33":"481","34":"364"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 <div id="codebook-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#codebook-table" class="anchor"></a>Codebook table</h2>
-<div id="htmlwidget-ac63a62b712a6d76853c" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ac63a62b712a6d76853c">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#A1R\">A1R<\/a>","<a href=\"#A2\">A2<\/a>","<a href=\"#A3\">A3<\/a>","<a href=\"#A4\">A4<\/a>","<a href=\"#A5\">A5<\/a>","<a href=\"#C1\">C1<\/a>","<a href=\"#C2\">C2<\/a>","<a href=\"#C3\">C3<\/a>","<a href=\"#C4R\">C4R<\/a>","<a href=\"#C5R\">C5R<\/a>","<a href=\"#E1R\">E1R<\/a>","<a href=\"#E2R\">E2R<\/a>","<a href=\"#E3\">E3<\/a>","<a href=\"#E4\">E4<\/a>","<a href=\"#E5\">E5<\/a>","<a href=\"#N1R\">N1R<\/a>","<a href=\"#N2R\">N2R<\/a>","<a href=\"#N3R\">N3R<\/a>","<a href=\"#N4R\">N4R<\/a>","<a href=\"#N5R\">N5R<\/a>","<a href=\"#O1\">O1<\/a>","<a href=\"#O2R\">O2R<\/a>","<a href=\"#O3\">O3<\/a>","<a href=\"#O4\">O4<\/a>","<a href=\"#O5R\">O5R<\/a>","<a href=\"#gender\">gender<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#age\">age<\/a>","<a href=\"#extraversion\">extraversion<\/a>","<a href=\"#openness\">openness<\/a>","<a href=\"#conscientiousness\">conscientiousness<\/a>","<a href=\"#agreeableness\">agreeableness<\/a>","<a href=\"#neuroticism\">neuroticism<\/a>","<a href=\"#plasticity\">plasticity<\/a>"],["Am indifferent to the feelings of others.","Inquire about others' well-being.","Know how to comfort others.","Love children.","Make people feel at ease.","Am exacting in my work.","Continue until everything is perfect.","Do things according to a plan.","Do things in a half-way manner.","Waste my time.","Don't talk a lot.","Find it difficult to approach others.","Know how to captivate people.","Make friends easily.","Take charge.","Get angry easily.","Get irritated easily.","Have frequent mood swings.","Often feel blue.","Panic easily.","Am full of ideas.","Avoid difficult reading material.","Carry the conversation to a higher level.","Spend time reflecting on things.","Will not probe deeply into a subject.","gender","education","age","5 E items aggregated by rowMeans","5 O items aggregated by rowMeans","5 C items aggregated by rowMeans","5 A items aggregated by rowMeans","5 N items aggregated by rowMeans","10  items aggregated by rowMeans"],["labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","integer","numeric","numeric","numeric","numeric","numeric","numeric"],["FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE",null,null,null,null,null,null,null],["6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. male,<br>2. female","1. in high school,<br>2. finished high school,<br>3. some college,<br>4. college graduate,<br>5. graduate degree",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"E1R, E2R, E3, E4, E5","O1, O2R, O3, O4, O5R","C1, C2, C3, C4R, C5R","A1R, A2, A3, A4, A5","N1R, N2R, N3R, N4R, N5R","E1R, E2R, E3, E4, E5, O1, O2R, O3, O4, O5R"],["16","27","26","19","16","21","24","20","26","16","23","16","25","9","21","22","21","11","36","29","22","0","28","14","20","0","223","0","87","74","93","91","106","149"],["2784","2773","2774","2781","2784","2779","2776","2780","2774","2784","2777","2784","2775","2791","2779","2778","2779","2789","2764","2771","2778","2800","2772","2786","2780","2800","2577","2800","2713","2726","2707","2709","2694","2651"],["2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800"],["6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","2","5",null,null,null,null,null,null,null],["6: 922, 5: 818, 4: 402, 3: 337","5: 1023, 6: 873, 4: 553, 3: 151","5: 986, 6: 755, 4: 564, 3: 207","6: 1147, 5: 654, 4: 451, 2: 215","5: 973, 6: 695, 4: 617, 3: 254","5: 1018, 4: 655, 6: 597, 3: 275","5: 962, 4: 643, 6: 550, 3: 296","5: 942, 4: 741, 6: 472, 3: 293","5: 794, 6: 769, 4: 472, 3: 448","3: 614, 5: 567, 6: 504, 2: 466","6: 663, 5: 652, 3: 450, 4: 404","5: 670, 3: 599, 6: 533, 2: 385","4: 826, 5: 743, 3: 412, 6: 352","5: 942, 6: 726, 4: 450, 3: 271","5: 940, 4: 619, 6: 616, 3: 288","5: 654, 6: 654, 3: 515, 4: 427","3: 709, 5: 535, 2: 510, 4: 411","5: 638, 3: 591, 6: 499, 2: 439","5: 655, 3: 608, 6: 472, 4: 401","5: 660, 6: 654, 3: 507, 4: 382","5: 925, 6: 912, 4: 606, 3: 210","6: 805, 5: 717, 3: 435, 4: 388","5: 943, 4: 775, 6: 541, 3: 292","6: 1084, 5: 887, 4: 481, 3: 154","5: 883, 6: 746, 4: 526, 3: 364","2: 1881, 1: 919, NA: 0","3: 1249, 5: 418, 4: 394, 2: 292",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"28.78","4.14","4.59","4.26","4.64","3.84","4.37"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"11.13","1.06","0.81","0.95","0.9 ","1.19","0.73"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"3","1  ","1.2","1  ","1  ","1  ","1.7"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"20","3.4","4  ","3.6","4.2","3  ","3.9"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"26","4.2","4.6","4.4","4.8","4  ","4.4"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"35","5  ","5.2","5  ","5.4","4.8","4.9"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"86","6","6","6","6","6","6"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"▁▇▆▃▂▁▁▁","▁▁▃▅▇▇▇▆","▁▁▁▂▇▇▇▅","▁▁▂▅▇▇▇▅","▁▁▁▂▃▆▇▇","▂▃▆▇▇▇▇▅","▁▁▂▃▆▇▅▂"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>scale_item_names<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>n_unique<\/th>\n      <th>top_counts<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
+<div id="htmlwidget-b5da243badb789fc4ffe" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b5da243badb789fc4ffe">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#A1R\">A1R<\/a>","<a href=\"#A2\">A2<\/a>","<a href=\"#A3\">A3<\/a>","<a href=\"#A4\">A4<\/a>","<a href=\"#A5\">A5<\/a>","<a href=\"#C1\">C1<\/a>","<a href=\"#C2\">C2<\/a>","<a href=\"#C3\">C3<\/a>","<a href=\"#C4R\">C4R<\/a>","<a href=\"#C5R\">C5R<\/a>","<a href=\"#E1R\">E1R<\/a>","<a href=\"#E2R\">E2R<\/a>","<a href=\"#E3\">E3<\/a>","<a href=\"#E4\">E4<\/a>","<a href=\"#E5\">E5<\/a>","<a href=\"#N1R\">N1R<\/a>","<a href=\"#N2R\">N2R<\/a>","<a href=\"#N3R\">N3R<\/a>","<a href=\"#N4R\">N4R<\/a>","<a href=\"#N5R\">N5R<\/a>","<a href=\"#O1\">O1<\/a>","<a href=\"#O2R\">O2R<\/a>","<a href=\"#O3\">O3<\/a>","<a href=\"#O4\">O4<\/a>","<a href=\"#O5R\">O5R<\/a>","<a href=\"#gender\">gender<\/a>","<a href=\"#education\">education<\/a>","<a href=\"#age\">age<\/a>","<a href=\"#extraversion\">extraversion<\/a>","<a href=\"#openness\">openness<\/a>","<a href=\"#conscientiousness\">conscientiousness<\/a>","<a href=\"#agreeableness\">agreeableness<\/a>","<a href=\"#neuroticism\">neuroticism<\/a>","<a href=\"#plasticity\">plasticity<\/a>"],["Am indifferent to the feelings of others.","Inquire about others' well-being.","Know how to comfort others.","Love children.","Make people feel at ease.","Am exacting in my work.","Continue until everything is perfect.","Do things according to a plan.","Do things in a half-way manner.","Waste my time.","Don't talk a lot.","Find it difficult to approach others.","Know how to captivate people.","Make friends easily.","Take charge.","Get angry easily.","Get irritated easily.","Have frequent mood swings.","Often feel blue.","Panic easily.","Am full of ideas.","Avoid difficult reading material.","Carry the conversation to a higher level.","Spend time reflecting on things.","Will not probe deeply into a subject.","gender","education","age","5 E items aggregated by rowMeans","5 O items aggregated by rowMeans","5 C items aggregated by rowMeans","5 A items aggregated by rowMeans","5 N items aggregated by rowMeans","10  items aggregated by rowMeans"],["numeric","integer","integer","integer","integer","integer","integer","integer","numeric","numeric","numeric","numeric","integer","integer","integer","numeric","numeric","numeric","numeric","numeric","integer","numeric","integer","integer","numeric","integer","integer","integer","numeric","numeric","numeric","numeric","numeric","numeric"],["6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","1. Very Inaccurate,<br>2. Moderately Inaccurate,<br>3. Slightly Inaccurate,<br>4. Slightly Accurate,<br>5. Moderately Accurate,<br>6. Very Accurate","6. Very Inaccurate,<br>5. Moderately Inaccurate,<br>4. Slightly Inaccurate,<br>3. Slightly Accurate,<br>2. Moderately Accurate,<br>1. Very Accurate","1. male,<br>2. female","1. in high school,<br>2. finished high school,<br>3. some college,<br>4. college graduate,<br>5. graduate degree",null,null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"E1R, E2R, E3, E4, E5","O1, O2R, O3, O4, O5R","C1, C2, C3, C4R, C5R","A1R, A2, A3, A4, A5","N1R, N2R, N3R, N4R, N5R","E1R, E2R, E3, E4, E5, O1, O2R, O3, O4, O5R"],["16","27","26","19","16","21","24","20","26","16","23","16","25","9","21","22","21","11","36","29","22","0","28","14","20","0","223","0","87","74","93","91","106","149"],["2784","2773","2774","2781","2784","2779","2776","2780","2774","2784","2777","2784","2775","2791","2779","2778","2779","2789","2764","2771","2778","2800","2772","2786","2780","2800","2577","2800","2713","2726","2707","2709","2694","2651"],["2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800","2800"],["4.59"," 4.8 "," 4.6 "," 4.7 "," 4.56"," 4.5 "," 4.37"," 4.3 ","4.45","3.7 ","4.03","3.86"," 4   "," 4.42"," 4.42","4.07","3.49","3.78","3.81","4.03"," 4.82","4.29"," 4.44"," 4.89","4.51"," 1.67"," 3.19","28.78","4.14","4.59","4.26","4.64","3.84","4.37"],["1.41"," 1.17"," 1.3 "," 1.48"," 1.26"," 1.24"," 1.32"," 1.29","1.38","1.63","1.63","1.61"," 1.35"," 1.46"," 1.33","1.57","1.53","1.6 ","1.57","1.62"," 1.13","1.57"," 1.22"," 1.22","1.33"," 0.47"," 1.11","11.13","1.06","0.81","0.95","0.9 ","1.19","0.73"],["1  ","1","1","1","1","1","1","1","1  ","1  ","1  ","1  ","1","1","1","1  ","1  ","1  ","1  ","1  ","1","1  ","1","1","1  ","1","1","3","1  ","1.2","1  ","1  ","1  ","1.7"],["4  ","4","4","4","4","4","4","4","3  ","2  ","3  ","3  ","3","4","4","3  ","2  ","3  ","3  ","3  ","4","3  ","4","4","4  ","1","3","20","3.4","4  ","3.6","4.2","3  ","3.9"],["5  ","5","5","5","5","5","5","5","5  ","4  ","4  ","4  ","4","5","5","4  ","3  ","4  ","4  ","4  ","5","5  ","5","5","5  ","2","3","26","4.2","4.6","4.4","4.8","4  ","4.4"],["6  ","6","6","6","5","5","5","5","6  ","5  ","5  ","5  ","5","6","5","5  ","5  ","5  ","5  ","5  ","6","6  ","5","6","6  ","2","4","35","5  ","5.2","5  ","5.4","4.8","4.9"],["6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","6","2","5","86","6","6","6","6","6","6"],["▁▂▁▃▃▁▇▇","▁▁▁▁▅▁▇▇","▁▂▁▂▅▁▇▆","▁▂▁▁▃▁▅▇","▁▂▁▂▅▁▇▆","▁▁▁▂▅▁▇▅","▁▂▁▂▆▁▇▅","▁▂▁▂▆▁▇▅","▁▂▁▅▅▁▇▇","▃▆▁▇▅▁▇▆","▃▅▁▆▅▁▇▇","▃▅▁▇▅▁▇▆","▂▃▁▃▇▁▇▃","▁▂▁▂▃▁▇▆","▁▂▁▂▅▁▇▅","▂▅▁▆▅▁▇▇","▃▆▁▇▅▁▆▃","▃▆▁▇▅▁▇▆","▃▅▁▇▅▁▇▆","▃▃▁▆▅▁▇▇","▁▁▁▂▅▁▇▇","▂▃▁▅▃▁▇▇","▁▁▁▂▆▁▇▅","▁▁▁▁▃▁▆▇","▁▂▁▃▅▁▇▇","▃▁▁▁▁▁▁▇","▂▂▁▇▁▂▁▃","▁▇▆▃▂▁▁▁","▁▁▃▅▇▇▇▆","▁▁▁▂▇▇▇▅","▁▁▂▅▇▇▇▅","▁▁▁▂▃▆▇▇","▂▃▆▇▇▇▇▅","▁▁▂▃▆▇▅▂"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>data_type<\/th>\n      <th>value_labels<\/th>\n      <th>scale_item_names<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
 {
-  "name": "25 Personality items representing 5 factors",
-  "description": "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org)[...]\n\n\n## Table of variables\nThis table contains variable names, labels, their central tendencies and other attributes.\n\n|name              |label                                     |data_type |ordered |value_labels                                                                                                                         |scale_item_names                           |missing |complete |n    |n_unique |top_counts                      |mean  |sd    |p0  |p25 |p50 |p75 |p100 |hist     |\n|:-----------------|:-----------------------------------------|:---------|:-------|:------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------|:-------|:--------|:----|:--------|:-------------------------------|:-----|:-----|:---|:---|:---|:---|:----|:--------|\n|A1R               |Am indifferent to the feelings of others. |labelled  |FALSE   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |16      |2784     |2800 |6        |6: 922, 5: 818, 4: 402, 3: 337  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|A2                |Inquire about others' well-being.         |labelled  |FALSE   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |27      |2773     |2800 |6        |5: 1023, 6: 873, 4: 553, 3: 151 |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|A3                |Know how to comfort others.               |labelled  |FALSE   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |26      |2774     |2800 |6        |5: 986, 6: 755, 4: 564, 3: 207  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|A4                |Love children.                            |labelled  |FALSE   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |19      |2781     |2800 |6        |6: 1147, 5: 654, 4: 451, 2: 215 |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|A5                |Make people feel at ease.                 |labelled  |FALSE   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |16      |2784     |2800 |6        |5: 973, 6: 695, 4: 617, 3: 254  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|C1                |Am exacting in my work.                   |labelled  |FALSE   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |21      |2779     |2800 |6        |5: 1018, 4: 655, 6: 597, 3: 275 |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|C2                |Continue until everything is perfect.     |labelled  |FALSE   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |24      |2776     |2800 |6        |5: 962, 4: 643, 6: 550, 3: 296  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|C3                |Do things according to a plan.            |labelled  |FALSE   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |20      |2780     |2800 |6        |5: 942, 4: 741, 6: 472, 3: 293  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|C4R               |Do things in a half-way manner.           |labelled  |FALSE   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |26      |2774     |2800 |6        |5: 794, 6: 769, 4: 472, 3: 448  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|C5R               |Waste my time.                            |labelled  |FALSE   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |16      |2784     |2800 |6        |3: 614, 5: 567, 6: 504, 2: 466  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|E1R               |Don't talk a lot.                         |labelled  |FALSE   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |23      |2777     |2800 |6        |6: 663, 5: 652, 3: 450, 4: 404  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|E2R               |Find it difficult to approach others.     |labelled  |FALSE   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |16      |2784     |2800 |6        |5: 670, 3: 599, 6: 533, 2: 385  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|E3                |Know how to captivate people.             |labelled  |FALSE   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |25      |2775     |2800 |6        |4: 826, 5: 743, 3: 412, 6: 352  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|E4                |Make friends easily.                      |labelled  |FALSE   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |9       |2791     |2800 |6        |5: 942, 6: 726, 4: 450, 3: 271  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|E5                |Take charge.                              |labelled  |FALSE   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |21      |2779     |2800 |6        |5: 940, 4: 619, 6: 616, 3: 288  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|N1R               |Get angry easily.                         |labelled  |FALSE   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |22      |2778     |2800 |6        |5: 654, 6: 654, 3: 515, 4: 427  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|N2R               |Get irritated easily.                     |labelled  |FALSE   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |21      |2779     |2800 |6        |3: 709, 5: 535, 2: 510, 4: 411  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|N3R               |Have frequent mood swings.                |labelled  |FALSE   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |11      |2789     |2800 |6        |5: 638, 3: 591, 6: 499, 2: 439  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|N4R               |Often feel blue.                          |labelled  |FALSE   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |36      |2764     |2800 |6        |5: 655, 3: 608, 6: 472, 4: 401  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|N5R               |Panic easily.                             |labelled  |FALSE   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |29      |2771     |2800 |6        |5: 660, 6: 654, 3: 507, 4: 382  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|O1                |Am full of ideas.                         |labelled  |FALSE   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |22      |2778     |2800 |6        |5: 925, 6: 912, 4: 606, 3: 210  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|O2R               |Avoid difficult reading material.         |labelled  |FALSE   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |0       |2800     |2800 |6        |6: 805, 5: 717, 3: 435, 4: 388  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|O3                |Carry the conversation to a higher level. |labelled  |FALSE   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |28      |2772     |2800 |6        |5: 943, 4: 775, 6: 541, 3: 292  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|O4                |Spend time reflecting on things.          |labelled  |FALSE   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |14      |2786     |2800 |6        |6: 1084, 5: 887, 4: 481, 3: 154 |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|O5R               |Will not probe deeply into a subject.     |labelled  |FALSE   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |20      |2780     |2800 |6        |5: 883, 6: 746, 4: 526, 3: 364  |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|gender            |gender                                    |labelled  |FALSE   |1. male, - 2. female                                                                                                                   |NA                                         |0       |2800     |2800 |2        |2: 1881, 1: 919, NA: 0          |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|education         |education                                 |labelled  |FALSE   |1. in high school, - 2. finished high school, - 3. some college, - 4. college graduate, - 5. graduate degree                                 |NA                                         |223     |2577     |2800 |5        |3: 1249, 5: 418, 4: 394, 2: 292 |NA    |NA    |NA  |NA  |NA  |NA  |NA   |NA       |\n|age               |age                                       |integer   |NA      |NA                                                                                                                                   |NA                                         |0       |2800     |2800 |NA       |NA                              |28.78 |11.13 |3   |20  |26  |35  |86   |▁▇▆▃▂▁▁▁ |\n|extraversion      |5 E items aggregated by rowMeans          |numeric   |NA      |NA                                                                                                                                   |E1R, E2R, E3, E4, E5                       |87      |2713     |2800 |NA       |NA                              |4.14  |1.06  |1   |3.4 |4.2 |5   |6    |▁▁▃▅▇▇▇▆ |\n|openness          |5 O items aggregated by rowMeans          |numeric   |NA      |NA                                                                                                                                   |O1, O2R, O3, O4, O5R                       |74      |2726     |2800 |NA       |NA                              |4.59  |0.81  |1.2 |4   |4.6 |5.2 |6    |▁▁▁▂▇▇▇▅ |\n|conscientiousness |5 C items aggregated by rowMeans          |numeric   |NA      |NA                                                                                                                                   |C1, C2, C3, C4R, C5R                       |93      |2707     |2800 |NA       |NA                              |4.26  |0.95  |1   |3.6 |4.4 |5   |6    |▁▁▂▅▇▇▇▅ |\n|agreeableness     |5 A items aggregated by rowMeans          |numeric   |NA      |NA                                                                                                                                   |A1R, A2, A3, A4, A5                        |91      |2709     |2800 |NA       |NA                              |4.64  |0.9   |1   |4.2 |4.8 |5.4 |6    |▁▁▁▂▃▆▇▇ |\n|neuroticism       |5 N items aggregated by rowMeans          |numeric   |NA      |NA                                                                                                                                   |N1R, N2R, N3R, N4R, N5R                    |106     |2694     |2800 |NA       |NA                              |3.84  |1.19  |1   |3   |4   |4.8 |6    |▂▃▆▇▇▇▇▅ |\n|plasticity        |10  items aggregated by rowMeans          |numeric   |NA      |NA                                                                                                                                   |E1R, E2R, E3, E4, E5, O1, O2R, O3, O4, O5R |149     |2651     |2800 |NA       |NA                              |4.37  |0.73  |1.7 |3.9 |4.4 |4.9 |6    |▁▁▂▃▆▇▅▂ |\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/).",
-  "identifier": "https://dx.doi.org/10.17605/OSF.IO/K39BG",
-  "creator": "William Revelle",
-  "citation": "Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer.",
-  "url": "https://cran.r-project.org/web/packages/psych/index.html",
-  "datePublished": "2010-01-01",
-  "temporalCoverage": "Spring 2010",
-  "spatialCoverage": "Online",
+  "name": "codebook_data",
+  "datePublished": "2018-11-12",
+  "description": "## Dimensions\nThe dataset has N=2800 rows and 34 columns.\n2236 rows have no missing values on any column.\n\n\n## Table of variables\nThis table contains variable names, labels, their central tendencies and other attributes.\n\n|name              |label                                     |data_type |value_labels                                                                                                                         |scale_item_names                           |missing |complete |n    |mean  |sd    |p0  |p25 |p50 |p75 |p100 |hist     |\n|:-----------------|:-----------------------------------------|:---------|:------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------|:-------|:--------|:----|:-----|:-----|:---|:---|:---|:---|:----|:--------|\n|A1R               |Am indifferent to the feelings of others. |numeric   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |16      |2784     |2800 |4.59  |1.41  |1   |4   |5   |6   |6    |▁▂▁▃▃▁▇▇ |\n|A2                |Inquire about others' well-being.         |integer   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |27      |2773     |2800 |4.8   |1.17  |1   |4   |5   |6   |6    |▁▁▁▁▅▁▇▇ |\n|A3                |Know how to comfort others.               |integer   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |26      |2774     |2800 |4.6   |1.3   |1   |4   |5   |6   |6    |▁▂▁▂▅▁▇▆ |\n|A4                |Love children.                            |integer   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |19      |2781     |2800 |4.7   |1.48  |1   |4   |5   |6   |6    |▁▂▁▁▃▁▅▇ |\n|A5                |Make people feel at ease.                 |integer   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |16      |2784     |2800 |4.56  |1.26  |1   |4   |5   |5   |6    |▁▂▁▂▅▁▇▆ |\n|C1                |Am exacting in my work.                   |integer   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |21      |2779     |2800 |4.5   |1.24  |1   |4   |5   |5   |6    |▁▁▁▂▅▁▇▅ |\n|C2                |Continue until everything is perfect.     |integer   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |24      |2776     |2800 |4.37  |1.32  |1   |4   |5   |5   |6    |▁▂▁▂▆▁▇▅ |\n|C3                |Do things according to a plan.            |integer   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |20      |2780     |2800 |4.3   |1.29  |1   |4   |5   |5   |6    |▁▂▁▂▆▁▇▅ |\n|C4R               |Do things in a half-way manner.           |numeric   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |26      |2774     |2800 |4.45  |1.38  |1   |3   |5   |6   |6    |▁▂▁▅▅▁▇▇ |\n|C5R               |Waste my time.                            |numeric   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |16      |2784     |2800 |3.7   |1.63  |1   |2   |4   |5   |6    |▃▆▁▇▅▁▇▆ |\n|E1R               |Don't talk a lot.                         |numeric   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |23      |2777     |2800 |4.03  |1.63  |1   |3   |4   |5   |6    |▃▅▁▆▅▁▇▇ |\n|E2R               |Find it difficult to approach others.     |numeric   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |16      |2784     |2800 |3.86  |1.61  |1   |3   |4   |5   |6    |▃▅▁▇▅▁▇▆ |\n|E3                |Know how to captivate people.             |integer   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |25      |2775     |2800 |4     |1.35  |1   |3   |4   |5   |6    |▂▃▁▃▇▁▇▃ |\n|E4                |Make friends easily.                      |integer   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |9       |2791     |2800 |4.42  |1.46  |1   |4   |5   |6   |6    |▁▂▁▂▃▁▇▆ |\n|E5                |Take charge.                              |integer   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |21      |2779     |2800 |4.42  |1.33  |1   |4   |5   |5   |6    |▁▂▁▂▅▁▇▅ |\n|N1R               |Get angry easily.                         |numeric   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |22      |2778     |2800 |4.07  |1.57  |1   |3   |4   |5   |6    |▂▅▁▆▅▁▇▇ |\n|N2R               |Get irritated easily.                     |numeric   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |21      |2779     |2800 |3.49  |1.53  |1   |2   |3   |5   |6    |▃▆▁▇▅▁▆▃ |\n|N3R               |Have frequent mood swings.                |numeric   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |11      |2789     |2800 |3.78  |1.6   |1   |3   |4   |5   |6    |▃▆▁▇▅▁▇▆ |\n|N4R               |Often feel blue.                          |numeric   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |36      |2764     |2800 |3.81  |1.57  |1   |3   |4   |5   |6    |▃▅▁▇▅▁▇▆ |\n|N5R               |Panic easily.                             |numeric   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |29      |2771     |2800 |4.03  |1.62  |1   |3   |4   |5   |6    |▃▃▁▆▅▁▇▇ |\n|O1                |Am full of ideas.                         |integer   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |22      |2778     |2800 |4.82  |1.13  |1   |4   |5   |6   |6    |▁▁▁▂▅▁▇▇ |\n|O2R               |Avoid difficult reading material.         |numeric   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |0       |2800     |2800 |4.29  |1.57  |1   |3   |5   |6   |6    |▂▃▁▅▃▁▇▇ |\n|O3                |Carry the conversation to a higher level. |integer   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |28      |2772     |2800 |4.44  |1.22  |1   |4   |5   |5   |6    |▁▁▁▂▆▁▇▅ |\n|O4                |Spend time reflecting on things.          |integer   |1. Very Inaccurate, - 2. Moderately Inaccurate, - 3. Slightly Inaccurate, - 4. Slightly Accurate, - 5. Moderately Accurate, - 6. Very Accurate |NA                                         |14      |2786     |2800 |4.89  |1.22  |1   |4   |5   |6   |6    |▁▁▁▁▃▁▆▇ |\n|O5R               |Will not probe deeply into a subject.     |numeric   |6. Very Inaccurate, - 5. Moderately Inaccurate, - 4. Slightly Inaccurate, - 3. Slightly Accurate, - 2. Moderately Accurate, - 1. Very Accurate |NA                                         |20      |2780     |2800 |4.51  |1.33  |1   |4   |5   |6   |6    |▁▂▁▃▅▁▇▇ |\n|gender            |gender                                    |integer   |1. male, - 2. female                                                                                                                   |NA                                         |0       |2800     |2800 |1.67  |0.47  |1   |1   |2   |2   |2    |▃▁▁▁▁▁▁▇ |\n|education         |education                                 |integer   |1. in high school, - 2. finished high school, - 3. some college, - 4. college graduate, - 5. graduate degree                                 |NA                                         |223     |2577     |2800 |3.19  |1.11  |1   |3   |3   |4   |5    |▂▂▁▇▁▂▁▃ |\n|age               |age                                       |integer   |NA                                                                                                                                   |NA                                         |0       |2800     |2800 |28.78 |11.13 |3   |20  |26  |35  |86   |▁▇▆▃▂▁▁▁ |\n|extraversion      |5 E items aggregated by rowMeans          |numeric   |NA                                                                                                                                   |E1R, E2R, E3, E4, E5                       |87      |2713     |2800 |4.14  |1.06  |1   |3.4 |4.2 |5   |6    |▁▁▃▅▇▇▇▆ |\n|openness          |5 O items aggregated by rowMeans          |numeric   |NA                                                                                                                                   |O1, O2R, O3, O4, O5R                       |74      |2726     |2800 |4.59  |0.81  |1.2 |4   |4.6 |5.2 |6    |▁▁▁▂▇▇▇▅ |\n|conscientiousness |5 C items aggregated by rowMeans          |numeric   |NA                                                                                                                                   |C1, C2, C3, C4R, C5R                       |93      |2707     |2800 |4.26  |0.95  |1   |3.6 |4.4 |5   |6    |▁▁▂▅▇▇▇▅ |\n|agreeableness     |5 A items aggregated by rowMeans          |numeric   |NA                                                                                                                                   |A1R, A2, A3, A4, A5                        |91      |2709     |2800 |4.64  |0.9   |1   |4.2 |4.8 |5.4 |6    |▁▁▁▂▃▆▇▇ |\n|neuroticism       |5 N items aggregated by rowMeans          |numeric   |NA                                                                                                                                   |N1R, N2R, N3R, N4R, N5R                    |106     |2694     |2800 |3.84  |1.19  |1   |3   |4   |4.8 |6    |▂▃▆▇▇▇▇▅ |\n|plasticity        |10  items aggregated by rowMeans          |numeric   |NA                                                                                                                                   |E1R, E2R, E3, E4, E5, O1, O2R, O3, O4, O5R |149     |2651     |2800 |4.37  |0.73  |1.7 |3.9 |4.4 |4.9 |6    |▁▁▂▃▆▇▅▂ |\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/).",
   "keywords": ["A1R", "A2", "A3", "A4", "A5", "C1", "C2", "C3", "C4R", "C5R", "E1R", "E2R", "E3", "E4", "E5", "N1R", "N2R", "N3R", "N4R", "N5R", "O1", "O2R", "O3", "O4", "O5R", "gender", "education", "age", "extraversion", "openness", "conscientiousness", "agreeableness", "neuroticism", "plasticity"],
   "@context": "http://schema.org/",
   "@type": "Dataset",
@@ -3577,7 +3589,9 @@ text-align: justify}
 <li><a href="#loading-data">Loading data</a></li>
       <li><a href="#adding-and-changing-metadata">Adding and changing metadata</a></li>
       <li><a href="#metadata-about-the-entire-dataset">Metadata about the entire dataset</a></li>
+      <li><a href="#exporting-and-sharing-the-data-with-metadata">Exporting and sharing the data with metadata</a></li>
       <li><a href="#releasing-the-codebook-publicly">Releasing the codebook publicly</a></li>
+      <li><a href="#dimensions">Dimensions</a></li>
       <li><a href="#variables">Variables</a></li>
       <li><a href="#missingness-report">Missingness report</a></li>
       <li><a href="#codebook-table">Codebook table</a></li>

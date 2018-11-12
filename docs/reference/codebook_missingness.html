@@ -67,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.7.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.7.3</span>
       </span>
     </div>
 
@@ -178,27 +178,26 @@
 #&gt; 
 #&gt; 
 #&gt; ```r
-#&gt; if (  exists("ended", results) &amp;&amp;
-#&gt;   exists("expired", results)) {
-#&gt;   finisher_results &lt;- dplyr::filter(results, !is.na(.data$ended))
-#&gt; } else {
-#&gt;   finisher_results &lt;- results
+#&gt; if (!exists("ended", results) ||
+#&gt;   !exists("expired", results)) {
 #&gt;   warning("Could not figure out who finished the surveys, because the ",
 #&gt;           "variables expired and ended were missing.")
 #&gt; }
 #&gt; if (length(md_pattern)) {
-#&gt;   pander::pander(md_pattern)
+#&gt;   if (knitr::is_html_output()) {
+#&gt;     rmarkdown::paged_table(md_pattern, options = list(rows.print = 10))
+#&gt;   } else {
+#&gt;     knitr::kable(md_pattern)
+#&gt;   }
 #&gt; }
 #&gt; ```
 #&gt; 
 #&gt; 
-#&gt; -------------------------------------------------------------
-#&gt;           description            expired   var_miss   n_miss 
-#&gt; ------------------------------- --------- ---------- --------
-#&gt;  Missing values in 1 variables      0         1         28   
 #&gt; 
-#&gt;   Missing values per variable      28         28        28   
-#&gt; -------------------------------------------------------------</div></pre>
+#&gt; |description                   | expired| var_miss| n_miss|
+#&gt; |:-----------------------------|-------:|--------:|------:|
+#&gt; |Missing values in 1 variables |       0|        1|     28|
+#&gt; |Missing values per variable   |      28|       28|     28|</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

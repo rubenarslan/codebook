@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.7.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.7.3</span>
       </span>
     </div>
 
@@ -99,7 +99,8 @@
 <!--/.navbar -->
 
       
-      </header><script src="codebook_files/htmlwidgets-1.3/htmlwidgets.js"></script><script src="codebook_files/jquery-1.12.4/jquery.min.js"></script><link href="codebook_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+      </header><link href="codebook_files/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
+<script src="codebook_files/pagedtable-1.1/js/pagedtable.js"></script><script src="codebook_files/htmlwidgets-1.3/htmlwidgets.js"></script><script src="codebook_files/jquery-1.12.4/jquery.min.js"></script><link href="codebook_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
 <script src="codebook_files/datatables-binding-0.4/datatables.js"></script><link href="codebook_files/dt-core-1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="codebook_files/dt-core-1.10.16/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="codebook_files/dt-core-1.10.16/js/jquery.dataTables.min.js"></script><script src="codebook_files/jszip-1.10.16/jszip.min.js"></script><script src="codebook_files/pdfmake-1.10.16/pdfmake.min.js"></script><script src="codebook_files/pdfmake-1.10.16/vfs_fonts.js"></script><link href="codebook_files/dt-ext-buttons-1.10.16/css/buttons.dataTables.min.css" rel="stylesheet">
@@ -112,7 +113,7 @@
       <h1>Codebook example formr</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2018-10-30</h4>
+            <h4 class="date">2018-11-12</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook.Rmd"><code>vignettes/codebook.Rmd</code></a></small>
       <div class="hidden name"><code>codebook.Rmd</code></div>
@@ -126,30 +127,36 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">knit_by_pkgdown &lt;-<span class="st"> </span><span class="op">!</span><span class="kw">is.null</span>(knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">"fig.retina"</span>))</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">TRUE</span>, <span class="dt">message =</span> <span class="ot">TRUE</span>, <span class="dt">error =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">pander<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/pander/topics/panderOptions">panderOptions</a></span>(<span class="st">"table.split.table"</span>, <span class="ot">Inf</span>)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme_get">theme_set</a></span>(ggplot2<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>())</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/theme_get.html">theme_set</a></span>(ggplot2<span class="op">::</span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>())</a>
 <a class="sourceLine" id="cb1-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">library</span>(codebook)</a>
 <a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw">data</span>(<span class="st">"bfi"</span>, <span class="dt">package =</span> <span class="st">'codebook'</span>)</a>
 <a class="sourceLine" id="cb1-8" data-line-number="8">bfi<span class="op">$</span>age &lt;-<span class="st"> </span><span class="kw">rpois</span>(<span class="kw">nrow</span>(bfi), <span class="dv">30</span>)</a>
-<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="kw">library</span>(labelled)</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/var_label">var_label</a></span>(bfi<span class="op">$</span>age) &lt;-<span class="st"> "Alter"</span></a></code></pre></div>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="kw">library</span>(labelled)</a></code></pre></div>
+<pre><code>## 
+## LABELLED 2.0.0: BREAKING CHANGE
+## 
+## Following version 2.0.0 of `haven`, `labelled()` and `labelled_spss()` now produce objects with class 'haven_labelled' and 'haven_labelled_spss', due to conflict between the previous 'labelled' class and the 'labelled' class used by `Hmisc`.
+## 
+## A new function `update_labelled()` could be used to convert data imported with an older version of `haven`/`labelled` to the new classes.</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/labelled/topics/var_label">var_label</a></span>(bfi<span class="op">$</span>age) &lt;-<span class="st"> "Alter"</span></a></code></pre></div>
 <p>By default, we only set the required metadata attributes <code>name</code> and <code>description</code> to sensible values. However, there is a number of attributes you can set to describe the data better. <a href="https://developers.google.com/search/docs/data-types/dataset">Find out more</a>.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>name &lt;-<span class="st"> "MOCK Big Five Inventory dataset (German metadata demo)"</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>description &lt;-<span class="st"> "a small mock Big Five Inventory dataset"</span></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>identifier &lt;-<span class="st"> "doi:10.5281/zenodo.1326520"</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>datePublished &lt;-<span class="st"> "2016-06-01"</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>creator &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">      <span class="st">"@type"</span> =<span class="st"> "Person"</span>,</a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">      <span class="dt">givenName =</span> <span class="st">"Ruben"</span>, <span class="dt">familyName =</span> <span class="st">"Arslan"</span>,</a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">      <span class="dt">email =</span> <span class="st">"ruben.arslan@gmail.com"</span>, </a>
-<a class="sourceLine" id="cb2-9" data-line-number="9">      <span class="dt">affiliation =</span> <span class="kw">list</span>(<span class="st">"@type"</span> =<span class="st"> "Organization"</span>,</a>
-<a class="sourceLine" id="cb2-10" data-line-number="10">        <span class="dt">name =</span> <span class="st">"MPI Human Development, Berlin"</span>))</a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>citation &lt;-<span class="st"> "Arslan (2016). Mock BFI data."</span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>url &lt;-<span class="st"> "https://rubenarslan.github.io/codebook/articles/codebook.html"</span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>temporalCoverage &lt;-<span class="st"> "2016"</span> </a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>spatialCoverage &lt;-<span class="st"> "Goettingen, Germany"</span> </a></code></pre></div>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># We don't want to look at the code in the codebook.</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">TRUE</span>, <span class="dt">message =</span> <span class="ot">TRUE</span>, <span class="dt">echo =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>name &lt;-<span class="st"> "MOCK Big Five Inventory dataset (German metadata demo)"</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>description &lt;-<span class="st"> "a small mock Big Five Inventory dataset"</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>identifier &lt;-<span class="st"> "doi:10.5281/zenodo.1326520"</span></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>datePublished &lt;-<span class="st"> "2016-06-01"</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>creator &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">      <span class="st">"@type"</span> =<span class="st"> "Person"</span>,</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">      <span class="dt">givenName =</span> <span class="st">"Ruben"</span>, <span class="dt">familyName =</span> <span class="st">"Arslan"</span>,</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">      <span class="dt">email =</span> <span class="st">"ruben.arslan@gmail.com"</span>, </a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">      <span class="dt">affiliation =</span> <span class="kw">list</span>(<span class="st">"@type"</span> =<span class="st"> "Organization"</span>,</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">        <span class="dt">name =</span> <span class="st">"MPI Human Development, Berlin"</span>))</a>
+<a class="sourceLine" id="cb4-11" data-line-number="11"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>citation &lt;-<span class="st"> "Arslan (2016). Mock BFI data."</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>url &lt;-<span class="st"> "https://rubenarslan.github.io/codebook/articles/codebook.html"</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>temporalCoverage &lt;-<span class="st"> "2016"</span> </a>
+<a class="sourceLine" id="cb4-14" data-line-number="14"><span class="kw"><a href="../reference/metadata.html">metadata</a></span>(bfi)<span class="op">$</span>spatialCoverage &lt;-<span class="st"> "Goettingen, Germany"</span> </a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># We don't want to look at the code in the codebook.</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">TRUE</span>, <span class="dt">message =</span> <span class="ot">TRUE</span>, <span class="dt">echo =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <div id="metadata" class="section level3">
 <h3 class="hasAnchor">
 <a href="#metadata" class="anchor"></a>Metadata</h3>
@@ -512,15 +519,20 @@
 <th align="left">type</th>
 <th align="left">type_options</th>
 <th align="left">data_type</th>
-<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">optional</th>
 <th align="left">item_order</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">n_unique</th>
-<th align="left">top_counts</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -528,64 +540,84 @@
 <td align="left"><strong>Ich kann mich schroff und abweisend anderen gegenüber verhalten.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">5</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">2.93</td>
+<td align="left">1.18</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">4</td>
 <td align="left">5</td>
-<td align="left">2: 11, 4: 7, 3: 5, 5: 3</td>
+<td align="left">▂▇▁▃▁▅▁▂</td>
 </tr>
 <tr class="even">
 <td align="left">BFIK_agree_1R</td>
 <td align="left"><strong>Ich neige dazu, andere zu kritisieren.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">7</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">3</td>
+<td align="left">0.94</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">3</td>
 <td align="left">4</td>
-<td align="left">2: 11, 4: 9, 3: 7, 5: 1</td>
+<td align="left">5</td>
+<td align="left">▇▁▅▁▁▆▁▁</td>
 </tr>
 <tr class="odd">
 <td align="left">BFIK_agree_3R</td>
 <td align="left"><strong>Ich kann mich kalt und distanziert verhalten.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">13</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">3.04</td>
+<td align="left">1.29</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">4</td>
 <td align="left">5</td>
-<td align="left">2: 9, 4: 8, 3: 4, 5: 4</td>
+<td align="left">▂▇▁▃▁▇▁▃</td>
 </tr>
 <tr class="even">
 <td align="left">BFIK_agree_2</td>
 <td align="left"><strong>Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">17</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">3.5</td>
+<td align="left">1.26</td>
+<td align="left">1</td>
+<td align="left">2.75</td>
+<td align="left">4</td>
+<td align="left">4.25</td>
 <td align="left">5</td>
-<td align="left">4: 9, 5: 7, 2: 5, 3: 5</td>
+<td align="left">▂▅▁▅▁▇▁▆</td>
 </tr>
 </tbody>
 </table>
@@ -881,15 +913,20 @@
 <th align="left">type</th>
 <th align="left">type_options</th>
 <th align="left">data_type</th>
-<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">optional</th>
 <th align="left">item_order</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">n_unique</th>
-<th align="left">top_counts</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -897,64 +934,84 @@
 <td align="left"><strong>Ich bin tiefsinnig, denke gerne über Sachen nach.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">4</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">4.21</td>
+<td align="left">0.74</td>
+<td align="left">2</td>
 <td align="left">4</td>
-<td align="left">4: 15, 5: 10, 3: 2, 2: 1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">▁▁▁▁▁▇▁▅</td>
 </tr>
 <tr class="even">
 <td align="left">BFIK_open_1</td>
 <td align="left"><strong>Ich bin vielseitig interessiert.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">8</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">4.39</td>
+<td align="left">0.83</td>
+<td align="left">2</td>
 <td align="left">4</td>
-<td align="left">5: 16, 4: 8, 3: 3, 2: 1</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">▁▁▂▁▁▃▁▇</td>
 </tr>
 <tr class="odd">
 <td align="left">BFIK_open_4</td>
 <td align="left"><strong>Ich schätze künstlerische und ästhetische Eindrücke.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">19</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">4.21</td>
+<td align="left">0.96</td>
+<td align="left">1</td>
 <td align="left">4</td>
-<td align="left">5: 13, 4: 10, 3: 4, 1: 1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">▁▁▁▂▁▆▁▇</td>
 </tr>
 <tr class="even">
 <td align="left">BFIK_open_3</td>
 <td align="left"><strong>Ich habe eine aktive Vorstellungskraft, bin phantasievoll.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">22</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">4.21</td>
+<td align="left">0.96</td>
+<td align="left">2</td>
 <td align="left">4</td>
-<td align="left">5: 14, 4: 8, 3: 4, 2: 2</td>
+<td align="left">4.5</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">▁▁▂▁▁▅▁▇</td>
 </tr>
 </tbody>
 </table>
@@ -1250,15 +1307,20 @@
 <th align="left">type</th>
 <th align="left">type_options</th>
 <th align="left">data_type</th>
-<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">optional</th>
 <th align="left">item_order</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">n_unique</th>
-<th align="left">top_counts</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -1266,64 +1328,84 @@
 <td align="left"><strong>Ich bin tüchtig und arbeite flott.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">10</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">3.5</td>
+<td align="left">1.04</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">4</td>
 <td align="left">5</td>
-<td align="left">4: 12, 3: 7, 2: 4, 5: 4</td>
+<td align="left">▁▂▁▅▁▇▁▂</td>
 </tr>
 <tr class="even">
 <td align="left">BFIK_consc_4</td>
 <td align="left"><strong>Ich mache Pläne und führe sie auch durch.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">11</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">3.86</td>
+<td align="left">0.76</td>
+<td align="left">2</td>
+<td align="left">3</td>
 <td align="left">4</td>
-<td align="left">4: 15, 3: 7, 5: 5, 2: 1</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">▁▁▃▁▁▇▁▂</td>
 </tr>
 <tr class="odd">
 <td align="left">BFIK_consc_2R</td>
 <td align="left"><strong>Ich bin bequem, neige zur Faulheit.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">12</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">3.18</td>
+<td align="left">1.31</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">4</td>
+<td align="left">4</td>
 <td align="left">5</td>
-<td align="left">4: 12, 1: 5, 3: 5, 2: 3</td>
+<td align="left">▃▂▁▃▁▇▁▂</td>
 </tr>
 <tr class="even">
 <td align="left">BFIK_consc_1</td>
 <td align="left"><strong>Ich erledige Aufgaben gründlich.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">18</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">4.07</td>
+<td align="left">0.9</td>
+<td align="left">2</td>
 <td align="left">4</td>
-<td align="left">4: 12, 5: 10, 3: 4, 2: 2</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">▁▁▂▁▁▇▁▇</td>
 </tr>
 </tbody>
 </table>
@@ -1619,15 +1701,20 @@
 <th align="left">type</th>
 <th align="left">type_options</th>
 <th align="left">data_type</th>
-<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">optional</th>
 <th align="left">item_order</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">n_unique</th>
-<th align="left">top_counts</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -1635,64 +1722,84 @@
 <td align="left"><strong>Ich bin begeisterungsfähig und kann andere leicht mitreißen.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">6</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">4.18</td>
+<td align="left">1.09</td>
+<td align="left">1</td>
 <td align="left">4</td>
-<td align="left">5: 13, 4: 11, 1: 2, 3: 2</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5</td>
+<td align="left">▁▁▁▁▁▇▁▇</td>
 </tr>
 <tr class="even">
 <td align="left">BFIK_extra_3R</td>
 <td align="left"><strong>Ich bin eher der “stille Typ”, wortkarg.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">14</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">3.75</td>
+<td align="left">1.21</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
 <td align="left">5</td>
-<td align="left">4: 9, 5: 9, 3: 6, 1: 2</td>
+<td align="left">5</td>
+<td align="left">▂▂▁▅▁▇▁▇</td>
 </tr>
 <tr class="odd">
 <td align="left">BFIK_extra_4</td>
 <td align="left"><strong>Ich gehe aus mir heraus, bin gesellig.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">20</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">3.86</td>
+<td align="left">1.11</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
 <td align="left">5</td>
-<td align="left">4: 11, 5: 9, 3: 4, 2: 3</td>
+<td align="left">5</td>
+<td align="left">▁▂▁▃▁▇▁▆</td>
 </tr>
 <tr class="even">
 <td align="left">BFIK_extra_1R</td>
 <td align="left"><strong>Ich bin eher zurückhaltend, reserviert.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">21</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">3.61</td>
+<td align="left">1.2</td>
+<td align="left">1</td>
+<td align="left">3</td>
+<td align="left">4</td>
 <td align="left">5</td>
-<td align="left">4: 8, 5: 8, 3: 6, 2: 5</td>
+<td align="left">5</td>
+<td align="left">▁▅▁▆▁▇▁▇</td>
 </tr>
 </tbody>
 </table>
@@ -1958,15 +2065,20 @@
 <th align="left">type</th>
 <th align="left">type_options</th>
 <th align="left">data_type</th>
-<th align="left">ordered</th>
 <th align="left">value_labels</th>
 <th align="left">optional</th>
 <th align="left">item_order</th>
 <th align="left">missing</th>
 <th align="left">complete</th>
 <th align="left">n</th>
-<th align="left">n_unique</th>
-<th align="left">top_counts</th>
+<th align="left">mean</th>
+<th align="left">sd</th>
+<th align="left">p0</th>
+<th align="left">p25</th>
+<th align="left">p50</th>
+<th align="left">p75</th>
+<th align="left">p100</th>
+<th align="left">hist</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -1974,48 +2086,63 @@
 <td align="left"><strong>Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">9</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">3.11</td>
+<td align="left">0.88</td>
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">3</td>
 <td align="left">4</td>
-<td align="left">3: 10, 4: 9, 2: 8, 5: 1</td>
+<td align="left">5</td>
+<td align="left">▆▁▇▁▁▇▁▁</td>
 </tr>
 <tr class="even">
 <td align="left">BFIK_neuro_3</td>
 <td align="left"><strong>Ich mache mir viele Sorgen.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">15</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">3.07</td>
+<td align="left">1.27</td>
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">4</td>
 <td align="left">5</td>
-<td align="left">3: 8, 2: 7, 4: 5, 5: 5</td>
+<td align="left">▃▇▁▇▁▅▁▅</td>
 </tr>
 <tr class="odd">
 <td align="left">BFIK_neuro_4</td>
 <td align="left"><strong>Ich werde leicht nervös und unsicher.</strong></td>
 <td align="left">rating_button</td>
 <td align="left">5</td>
-<td align="left">labelled</td>
-<td align="left">FALSE</td>
+<td align="left">numeric</td>
 <td align="left">1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.</td>
 <td align="left">0</td>
 <td align="left">16</td>
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
+<td align="left">2.5</td>
+<td align="left">1.2</td>
+<td align="left">1</td>
+<td align="left">1.75</td>
+<td align="left">2</td>
 <td align="left">4</td>
-<td align="left">2: 9, 4: 9, 1: 7, 3: 3</td>
+<td align="left">4</td>
+<td align="left">▆▁▇▁▁▂▁▇</td>
 </tr>
 </tbody>
 </table>
@@ -2058,14 +2185,14 @@
 <td align="left">0</td>
 <td align="left">28</td>
 <td align="left">28</td>
-<td align="left">30.71</td>
-<td align="left">6.31</td>
-<td align="left">22</td>
+<td align="left">30.25</td>
+<td align="left">6.94</td>
+<td align="left">18</td>
 <td align="left">24.75</td>
-<td align="left">30.5</td>
-<td align="left">35.25</td>
-<td align="left">44</td>
-<td align="left">▇▃▅▅▃▃▃▁</td>
+<td align="left">30</td>
+<td align="left">34.75</td>
+<td align="left">45</td>
+<td align="left">▆▅▆▇▇▆▂▃</td>
 </tr></tbody>
 </table>
 </div>
@@ -2075,43 +2202,20 @@
 <h2 class="hasAnchor">
 <a href="#missingness-report" class="anchor"></a>Missingness report</h2>
 <p>Among those who finished the survey. Only variables that have missing values are shown.</p>
-<table style="width:89%;" class="table">
-<colgroup>
-<col width="44%">
-<col width="13%">
-<col width="15%">
-<col width="15%">
-</colgroup>
-<thead><tr class="header">
-<th align="center">description</th>
-<th align="center">expired</th>
-<th align="center">var_miss</th>
-<th align="center">n_miss</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="center">Missing values in 1 variables</td>
-<td align="center">0</td>
-<td align="center">1</td>
-<td align="center">28</td>
-</tr>
-<tr class="even">
-<td align="center">Missing values per variable</td>
-<td align="center">28</td>
-<td align="center">28</td>
-<td align="center">28</td>
-</tr>
-</tbody>
-</table>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["description"],"name":[1],"type":["chr"],"align":["left"]},{"label":["expired"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["var_miss"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["n_miss"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Missing values in 1 variables","2":"0","3":"1","4":"28"},{"1":"Missing values per variable","2":"28","3":"28","4":"28"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 </div>
 <div id="codebook-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#codebook-table" class="anchor"></a>Codebook table</h2>
-<div id="htmlwidget-c96d2da1261c10617641" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c96d2da1261c10617641">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#session\">session<\/a>","<a href=\"#created\">created<\/a>","<a href=\"#modified\">modified<\/a>","<a href=\"#ended\">ended<\/a>","<a href=\"#expired\">expired<\/a>","<a href=\"#BFIK_open_2\">BFIK_open_2<\/a>","<a href=\"#BFIK_agree_4R\">BFIK_agree_4R<\/a>","<a href=\"#BFIK_extra_2\">BFIK_extra_2<\/a>","<a href=\"#BFIK_agree_1R\">BFIK_agree_1R<\/a>","<a href=\"#BFIK_open_1\">BFIK_open_1<\/a>","<a href=\"#BFIK_neuro_2R\">BFIK_neuro_2R<\/a>","<a href=\"#BFIK_consc_3\">BFIK_consc_3<\/a>","<a href=\"#BFIK_consc_4\">BFIK_consc_4<\/a>","<a href=\"#BFIK_consc_2R\">BFIK_consc_2R<\/a>","<a href=\"#BFIK_agree_3R\">BFIK_agree_3R<\/a>","<a href=\"#BFIK_extra_3R\">BFIK_extra_3R<\/a>","<a href=\"#BFIK_neuro_3\">BFIK_neuro_3<\/a>","<a href=\"#BFIK_neuro_4\">BFIK_neuro_4<\/a>","<a href=\"#BFIK_agree_2\">BFIK_agree_2<\/a>","<a href=\"#BFIK_consc_1\">BFIK_consc_1<\/a>","<a href=\"#BFIK_open_4\">BFIK_open_4<\/a>","<a href=\"#BFIK_extra_4\">BFIK_extra_4<\/a>","<a href=\"#BFIK_extra_1R\">BFIK_extra_1R<\/a>","<a href=\"#BFIK_open_3\">BFIK_open_3<\/a>","<a href=\"#BFIK_agree\">BFIK_agree<\/a>","<a href=\"#BFIK_open\">BFIK_open<\/a>","<a href=\"#BFIK_consc\">BFIK_consc<\/a>","<a href=\"#BFIK_extra\">BFIK_extra<\/a>","<a href=\"#BFIK_neuro\">BFIK_neuro<\/a>","<a href=\"#age\">age<\/a>"],[null,"user first opened survey","user last edited survey","user finished survey",null,"__Ich bin tiefsinnig, denke gerne über Sachen nach.__","__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__","__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__","__Ich neige dazu, andere zu kritisieren.__","__Ich bin vielseitig interessiert.__","__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__","__Ich bin tüchtig und arbeite flott.__","__Ich mache Pläne und führe sie auch durch.__","__Ich bin bequem, neige zur Faulheit.__","__Ich kann mich kalt und distanziert verhalten.__","__Ich bin eher der \"stille Typ\", wortkarg.__","__Ich mache mir viele Sorgen.__","__Ich werde leicht nervös und unsicher.__","__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__","__Ich erledige Aufgaben gründlich.__","__Ich schätze künstlerische und ästhetische Eindrücke.__","__Ich gehe aus mir heraus, bin gesellig.__","__Ich bin eher zurückhaltend, reserviert.__","__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__","4 BFIK_agree items averaged with aggregation_function","4 BFIK_open items averaged with aggregation_function","4 BFIK_consc items averaged with aggregation_function","4 BFIK_extra items averaged with aggregation_function","3 BFIK_neuro items averaged with aggregation_function","Alter"],[null,null,null,null,null,"rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button",null,null,null,null,null,null],[null,null,null,null,null,"5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5",null,null,null,null,null,null],["character","POSIXct","POSIXct","POSIXct","logical","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","labelled","numeric","numeric","numeric","numeric","numeric","integer"],[null,null,null,null,null,"FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE","FALSE",null,null,null,null,null,null],[null,null,null,null,null,"1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.",null,null,null,null,null,null],[null,null,null,null,null,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"BFIK_agree_4R, BFIK_agree_1R, BFIK_agree_3R, BFIK_agree_2","BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3","BFIK_consc_3, BFIK_consc_4, BFIK_consc_2R, BFIK_consc_1","BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R","BFIK_neuro_2R, BFIK_neuro_3, BFIK_neuro_4",null],[null,null,null,null,null,"4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22",null,null,null,null,null,null],["0","0","0","0","28","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],["28","28","28","28","0","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28"],["28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28"],["0",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["28","28","28","28",null,"4","5","4","4","4","4","5","4","5","5","5","5","4","5","4","4","5","5","4",null,null,null,null,null,null],[null,null,null,null,null,"4: 15, 5: 10, 3: 2, 2: 1","2: 11, 4: 7, 3: 5, 5: 3","5: 13, 4: 11, 1: 2, 3: 2","2: 11, 4: 9, 3: 7, 5: 1","5: 16, 4: 8, 3: 3, 2: 1","3: 10, 4: 9, 2: 8, 5: 1","4: 12, 3: 7, 2: 4, 5: 4","4: 15, 3: 7, 5: 5, 2: 1","4: 12, 1: 5, 3: 5, 2: 3","2: 9, 4: 8, 3: 4, 5: 4","4: 9, 5: 9, 3: 6, 1: 2","3: 8, 2: 7, 4: 5, 5: 5","2: 9, 4: 9, 1: 7, 3: 3","4: 9, 5: 7, 2: 5, 3: 5","4: 12, 5: 10, 3: 4, 2: 2","5: 13, 4: 10, 3: 4, 1: 1","4: 11, 5: 9, 3: 4, 2: 3","4: 8, 5: 8, 3: 6, 2: 5","5: 14, 4: 8, 3: 4, 2: 2",null,null,null,null,null,null],[null,null,null,null,"28",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,"2016-07-08","2016-07-08","2016-07-08",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["64","2016-07-08","2016-07-08","2016-07-08",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["64","2016-11-02","2016-11-02","2016-11-02",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,"NaN",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"3.12","4.26","3.65","3.85","2.89","30.71"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"0.93","0.56","0.79","1.01","0.93","6.31"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"1.5 ","3   ","2   ","1.5 ","1.33","22"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"2.25","3.94","3.12","3.25","2   ","24.75"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"3   ","4.25","3.75","4.25","2.83","30.5"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"4   ","4.75","4.25","4.56","3.42","35.25"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"4.75","5   ","5   ","5   ","4.33","44"],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"▂▇▂▇▃▁▅▅","▃▂▂▁▇▃▇▂","▂▃▁▃▃▇▂▂","▂▁▂▃▁▃▇▇","▅▅▂▅▃▅▁▇","▇▃▅▅▃▃▃▁"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>type<\/th>\n      <th>type_options<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>optional<\/th>\n      <th>scale_item_names<\/th>\n      <th>item_order<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>empty<\/th>\n      <th>n_unique<\/th>\n      <th>top_counts<\/th>\n      <th>count<\/th>\n      <th>median<\/th>\n      <th>min<\/th>\n      <th>max<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
+<div id="htmlwidget-e58423c6101ca49fd1a3" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e58423c6101ca49fd1a3">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#session\">session<\/a>","<a href=\"#created\">created<\/a>","<a href=\"#modified\">modified<\/a>","<a href=\"#ended\">ended<\/a>","<a href=\"#expired\">expired<\/a>","<a href=\"#BFIK_open_2\">BFIK_open_2<\/a>","<a href=\"#BFIK_agree_4R\">BFIK_agree_4R<\/a>","<a href=\"#BFIK_extra_2\">BFIK_extra_2<\/a>","<a href=\"#BFIK_agree_1R\">BFIK_agree_1R<\/a>","<a href=\"#BFIK_open_1\">BFIK_open_1<\/a>","<a href=\"#BFIK_neuro_2R\">BFIK_neuro_2R<\/a>","<a href=\"#BFIK_consc_3\">BFIK_consc_3<\/a>","<a href=\"#BFIK_consc_4\">BFIK_consc_4<\/a>","<a href=\"#BFIK_consc_2R\">BFIK_consc_2R<\/a>","<a href=\"#BFIK_agree_3R\">BFIK_agree_3R<\/a>","<a href=\"#BFIK_extra_3R\">BFIK_extra_3R<\/a>","<a href=\"#BFIK_neuro_3\">BFIK_neuro_3<\/a>","<a href=\"#BFIK_neuro_4\">BFIK_neuro_4<\/a>","<a href=\"#BFIK_agree_2\">BFIK_agree_2<\/a>","<a href=\"#BFIK_consc_1\">BFIK_consc_1<\/a>","<a href=\"#BFIK_open_4\">BFIK_open_4<\/a>","<a href=\"#BFIK_extra_4\">BFIK_extra_4<\/a>","<a href=\"#BFIK_extra_1R\">BFIK_extra_1R<\/a>","<a href=\"#BFIK_open_3\">BFIK_open_3<\/a>","<a href=\"#BFIK_agree\">BFIK_agree<\/a>","<a href=\"#BFIK_open\">BFIK_open<\/a>","<a href=\"#BFIK_consc\">BFIK_consc<\/a>","<a href=\"#BFIK_extra\">BFIK_extra<\/a>","<a href=\"#BFIK_neuro\">BFIK_neuro<\/a>","<a href=\"#age\">age<\/a>"],[null,"user first opened survey","user last edited survey","user finished survey",null,"__Ich bin tiefsinnig, denke gerne über Sachen nach.__","__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__","__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__","__Ich neige dazu, andere zu kritisieren.__","__Ich bin vielseitig interessiert.__","__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__","__Ich bin tüchtig und arbeite flott.__","__Ich mache Pläne und führe sie auch durch.__","__Ich bin bequem, neige zur Faulheit.__","__Ich kann mich kalt und distanziert verhalten.__","__Ich bin eher der \"stille Typ\", wortkarg.__","__Ich mache mir viele Sorgen.__","__Ich werde leicht nervös und unsicher.__","__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__","__Ich erledige Aufgaben gründlich.__","__Ich schätze künstlerische und ästhetische Eindrücke.__","__Ich gehe aus mir heraus, bin gesellig.__","__Ich bin eher zurückhaltend, reserviert.__","__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__","4 BFIK_agree items averaged with aggregation_function","4 BFIK_open items averaged with aggregation_function","4 BFIK_consc items averaged with aggregation_function","4 BFIK_extra items averaged with aggregation_function","3 BFIK_neuro items averaged with aggregation_function","Alter"],[null,null,null,null,null,"rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button",null,null,null,null,null,null],[null,null,null,null,null,"5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5",null,null,null,null,null,null],["character","POSIXct","POSIXct","POSIXct","logical","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","numeric","integer"],[null,null,null,null,null,"1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.",null,null,null,null,null,null],[null,null,null,null,null,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"BFIK_agree_4R, BFIK_agree_1R, BFIK_agree_3R, BFIK_agree_2","BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3","BFIK_consc_3, BFIK_consc_4, BFIK_consc_2R, BFIK_consc_1","BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R","BFIK_neuro_2R, BFIK_neuro_3, BFIK_neuro_4",null],[null,null,null,null,null,"4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22",null,null,null,null,null,null],["0","0","0","0","28","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0"],["28","28","28","28","0","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28"],["28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28","28"],["0",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["28","28","28","28",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,"28",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,"2016-07-08","2016-07-08","2016-07-08",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["64","2016-07-08","2016-07-08","2016-07-08",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["64","2016-11-02","2016-11-02","2016-11-02",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,"NaN","4.21","2.93","4.18","3   ","4.39","3.11","3.5 ","3.86","3.18","3.04","3.75","3.07","2.5 ","3.5 ","4.07","4.21","3.86","3.61","4.21","3.12","4.26","3.65","3.85","2.89","30.25"],[null,null,null,null,null,"0.74","1.18","1.09","0.94","0.83","0.88","1.04","0.76","1.31","1.29","1.21","1.27","1.2 ","1.26","0.9 ","0.96","1.11","1.2 ","0.96","0.93","0.56","0.79","1.01","0.93","6.94"],[null,null,null,null,null,"2   ","1   ","1   ","2   ","2   ","2   ","1   ","2   ","1   ","1   ","1   ","1   ","1   ","1   ","2   ","1   ","1   ","1   ","2   ","1.5 ","3   ","2   ","1.5 ","1.33","18"],[null,null,null,null,null,"4   ","2   ","4   ","2   ","4   ","2   ","3   ","3   ","2   ","2   ","3   ","2   ","1.75","2.75","4   ","4   ","3   ","3   ","4   ","2.25","3.94","3.12","3.25","2   ","24.75"],[null,null,null,null,null,"4   ","3   ","4   ","3   ","5   ","3   ","4   ","4   ","4   ","3   ","4   ","3   ","2   ","4   ","4   ","4   ","4   ","4   ","4.5 ","3   ","4.25","3.75","4.25","2.83","30"],[null,null,null,null,null,"5   ","4   ","5   ","4   ","5   ","4   ","4   ","4   ","4   ","4   ","5   ","4   ","4   ","4.25","5   ","5   ","5   ","5   ","5   ","4   ","4.75","4.25","4.56","3.42","34.75"],[null,null,null,null,null,"5   ","5   ","5   ","5   ","5   ","5   ","5   ","5   ","5   ","5   ","5   ","5   ","4   ","5   ","5   ","5   ","5   ","5   ","5   ","4.75","5   ","5   ","5   ","4.33","45"],[null,null,null,null,null,"▁▁▁▁▁▇▁▅","▂▇▁▃▁▅▁▂","▁▁▁▁▁▇▁▇","▇▁▅▁▁▆▁▁","▁▁▂▁▁▃▁▇","▆▁▇▁▁▇▁▁","▁▂▁▅▁▇▁▂","▁▁▃▁▁▇▁▂","▃▂▁▃▁▇▁▂","▂▇▁▃▁▇▁▃","▂▂▁▅▁▇▁▇","▃▇▁▇▁▅▁▅","▆▁▇▁▁▂▁▇","▂▅▁▅▁▇▁▆","▁▁▂▁▁▇▁▇","▁▁▁▂▁▆▁▇","▁▂▁▃▁▇▁▆","▁▅▁▆▁▇▁▇","▁▁▂▁▁▅▁▇","▂▇▂▇▃▁▅▅","▃▂▂▁▇▃▇▂","▂▃▁▃▃▇▂▂","▂▁▂▃▁▃▇▇","▅▅▂▅▃▅▁▇","▆▅▆▇▇▆▂▃"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>type<\/th>\n      <th>type_options<\/th>\n      <th>data_type<\/th>\n      <th>value_labels<\/th>\n      <th>optional<\/th>\n      <th>scale_item_names<\/th>\n      <th>item_order<\/th>\n      <th>missing<\/th>\n      <th>complete<\/th>\n      <th>n<\/th>\n      <th>empty<\/th>\n      <th>n_unique<\/th>\n      <th>count<\/th>\n      <th>median<\/th>\n      <th>min<\/th>\n      <th>max<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>p0<\/th>\n      <th>p25<\/th>\n      <th>p50<\/th>\n      <th>p75<\/th>\n      <th>p100<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
 {
   "name": "MOCK Big Five Inventory dataset (German metadata demo)",
-  "description": "a small mock Big Five Inventory dataset\n\n\n## Table of variables\nThis table contains variable names, labels, their central tendencies and other attributes.\n\n|name          |label                                                                      |type          |type_options |data_type |ordered |value_labels                                                                                                                 |optional |scale_item_names                                          |item_order |missing |complete |n  |empty |n_unique |top_counts               |count |median     |min        |max        |mean  |sd   |p0   |p25   |p50  |p75   |p100 |hist     |\n|:-------------|:--------------------------------------------------------------------------|:-------------|:------------|:---------|:-------|:----------------------------------------------------------------------------------------------------------------------------|:--------|:---------------------------------------------------------|:----------|:-------|:--------|:--|:-----|:--------|:------------------------|:-----|:----------|:----------|:----------|:-----|:----|:----|:-----|:----|:-----|:----|:--------|\n|session       |NA                                                                         |NA            |NA           |character |NA      |NA                                                                                                                           |NA       |NA                                                        |NA         |0       |28       |28 |0     |28       |NA                       |NA    |NA         |64         |64         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|created       |user first opened survey                                                   |NA            |NA           |POSIXct   |NA      |NA                                                                                                                           |NA       |NA                                                        |NA         |0       |28       |28 |NA    |28       |NA                       |NA    |2016-07-08 |2016-07-08 |2016-11-02 |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|modified      |user last edited survey                                                    |NA            |NA           |POSIXct   |NA      |NA                                                                                                                           |NA       |NA                                                        |NA         |0       |28       |28 |NA    |28       |NA                       |NA    |2016-07-08 |2016-07-08 |2016-11-02 |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|ended         |user finished survey                                                       |NA            |NA           |POSIXct   |NA      |NA                                                                                                                           |NA       |NA                                                        |NA         |0       |28       |28 |NA    |28       |NA                       |NA    |2016-07-08 |2016-07-08 |2016-11-02 |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|expired       |NA                                                                         |NA            |NA           |logical   |NA      |NA                                                                                                                           |NA       |NA                                                        |NA         |28      |0        |28 |NA    |NA       |NA                       |28    |NA         |NA         |NA         |NaN   |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_open_2   |__Ich bin tiefsinnig, denke gerne über Sachen nach.__                      |rating_button |5            |labelled  |FALSE   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |4          |0       |28       |28 |NA    |4        |4: 15, 5: 10, 3: 2, 2: 1 |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_agree_4R |__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__       |rating_button |5            |labelled  |FALSE   |5. 1: Trifft überhaupt nicht zu, - 4. 2, - 3. 3, - 2. 4, - 1. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |5          |0       |28       |28 |NA    |5        |2: 11, 4: 7, 3: 5, 5: 3  |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_extra_2  |__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__           |rating_button |5            |labelled  |FALSE   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |6          |0       |28       |28 |NA    |4        |5: 13, 4: 11, 1: 2, 3: 2 |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_agree_1R |__Ich neige dazu, andere zu kritisieren.__                                 |rating_button |5            |labelled  |FALSE   |5. 1: Trifft überhaupt nicht zu, - 4. 2, - 3. 3, - 2. 4, - 1. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |7          |0       |28       |28 |NA    |4        |2: 11, 4: 9, 3: 7, 5: 1  |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_open_1   |__Ich bin vielseitig interessiert.__                                       |rating_button |5            |labelled  |FALSE   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |8          |0       |28       |28 |NA    |4        |5: 16, 4: 8, 3: 3, 2: 1  |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_neuro_2R |__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__ |rating_button |5            |labelled  |FALSE   |5. 1: Trifft überhaupt nicht zu, - 4. 2, - 3. 3, - 2. 4, - 1. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |9          |0       |28       |28 |NA    |4        |3: 10, 4: 9, 2: 8, 5: 1  |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_consc_3  |__Ich bin tüchtig und arbeite flott.__                                     |rating_button |5            |labelled  |FALSE   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |10         |0       |28       |28 |NA    |5        |4: 12, 3: 7, 2: 4, 5: 4  |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_consc_4  |__Ich mache Pläne und führe sie auch durch.__                              |rating_button |5            |labelled  |FALSE   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |11         |0       |28       |28 |NA    |4        |4: 15, 3: 7, 5: 5, 2: 1  |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_consc_2R |__Ich bin bequem, neige zur Faulheit.__                                    |rating_button |5            |labelled  |FALSE   |5. 1: Trifft überhaupt nicht zu, - 4. 2, - 3. 3, - 2. 4, - 1. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |12         |0       |28       |28 |NA    |5        |4: 12, 1: 5, 3: 5, 2: 3  |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_agree_3R |__Ich kann mich kalt und distanziert verhalten.__                          |rating_button |5            |labelled  |FALSE   |5. 1: Trifft überhaupt nicht zu, - 4. 2, - 3. 3, - 2. 4, - 1. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |13         |0       |28       |28 |NA    |5        |2: 9, 4: 8, 3: 4, 5: 4   |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_extra_3R |__Ich bin eher der \"stille Typ\", wortkarg.__                               |rating_button |5            |labelled  |FALSE   |5. 1: Trifft überhaupt nicht zu, - 4. 2, - 3. 3, - 2. 4, - 1. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |14         |0       |28       |28 |NA    |5        |4: 9, 5: 9, 3: 6, 1: 2   |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_neuro_3  |__Ich mache mir viele Sorgen.__                                            |rating_button |5            |labelled  |FALSE   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |15         |0       |28       |28 |NA    |5        |3: 8, 2: 7, 4: 5, 5: 5   |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_neuro_4  |__Ich werde leicht nervös und unsicher.__                                  |rating_button |5            |labelled  |FALSE   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |16         |0       |28       |28 |NA    |4        |2: 9, 4: 9, 1: 7, 3: 3   |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_agree_2  |__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__  |rating_button |5            |labelled  |FALSE   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |17         |0       |28       |28 |NA    |5        |4: 9, 5: 7, 2: 5, 3: 5   |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_consc_1  |__Ich erledige Aufgaben gründlich.__                                       |rating_button |5            |labelled  |FALSE   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |18         |0       |28       |28 |NA    |4        |4: 12, 5: 10, 3: 4, 2: 2 |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_open_4   |__Ich schätze künstlerische und ästhetische Eindrücke.__                   |rating_button |5            |labelled  |FALSE   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |19         |0       |28       |28 |NA    |4        |5: 13, 4: 10, 3: 4, 1: 1 |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_extra_4  |__Ich gehe aus mir heraus, bin gesellig.__                                 |rating_button |5            |labelled  |FALSE   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |20         |0       |28       |28 |NA    |5        |4: 11, 5: 9, 3: 4, 2: 3  |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_extra_1R |__Ich bin eher zurückhaltend, reserviert.__                                |rating_button |5            |labelled  |FALSE   |5. 1: Trifft überhaupt nicht zu, - 4. 2, - 3. 3, - 2. 4, - 1. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |21         |0       |28       |28 |NA    |5        |4: 8, 5: 8, 3: 6, 2: 5   |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_open_3   |__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__             |rating_button |5            |labelled  |FALSE   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |22         |0       |28       |28 |NA    |4        |5: 14, 4: 8, 3: 4, 2: 2  |NA    |NA         |NA         |NA         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_agree    |4 BFIK_agree items averaged with aggregation_function                      |NA            |NA           |numeric   |NA      |NA                                                                                                                           |NA       |BFIK_agree_4R, BFIK_agree_1R, BFIK_agree_3R, BFIK_agree_2 |NA         |0       |28       |28 |NA    |NA       |NA                       |NA    |NA         |NA         |NA         |3.12  |0.93 |1.5  |2.25  |3    |4     |4.75 |▂▇▂▇▃▁▅▅ |\n|BFIK_open     |4 BFIK_open items averaged with aggregation_function                       |NA            |NA           |numeric   |NA      |NA                                                                                                                           |NA       |BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3        |NA         |0       |28       |28 |NA    |NA       |NA                       |NA    |NA         |NA         |NA         |4.26  |0.56 |3    |3.94  |4.25 |4.75  |5    |▃▂▂▁▇▃▇▂ |\n|BFIK_consc    |4 BFIK_consc items averaged with aggregation_function                      |NA            |NA           |numeric   |NA      |NA                                                                                                                           |NA       |BFIK_consc_3, BFIK_consc_4, BFIK_consc_2R, BFIK_consc_1   |NA         |0       |28       |28 |NA    |NA       |NA                       |NA    |NA         |NA         |NA         |3.65  |0.79 |2    |3.12  |3.75 |4.25  |5    |▂▃▁▃▃▇▂▂ |\n|BFIK_extra    |4 BFIK_extra items averaged with aggregation_function                      |NA            |NA           |numeric   |NA      |NA                                                                                                                           |NA       |BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R  |NA         |0       |28       |28 |NA    |NA       |NA                       |NA    |NA         |NA         |NA         |3.85  |1.01 |1.5  |3.25  |4.25 |4.56  |5    |▂▁▂▃▁▃▇▇ |\n|BFIK_neuro    |3 BFIK_neuro items averaged with aggregation_function                      |NA            |NA           |numeric   |NA      |NA                                                                                                                           |NA       |BFIK_neuro_2R, BFIK_neuro_3, BFIK_neuro_4                 |NA         |0       |28       |28 |NA    |NA       |NA                       |NA    |NA         |NA         |NA         |2.89  |0.93 |1.33 |2     |2.83 |3.42  |4.33 |▅▅▂▅▃▅▁▇ |\n|age           |Alter                                                                      |NA            |NA           |integer   |NA      |NA                                                                                                                           |NA       |NA                                                        |NA         |0       |28       |28 |NA    |NA       |NA                       |NA    |NA         |NA         |NA         |30.71 |6.31 |22   |24.75 |30.5 |35.25 |44   |▇▃▅▅▃▃▃▁ |\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/).",
+  "description": "a small mock Big Five Inventory dataset\n\n\n## Table of variables\nThis table contains variable names, labels, their central tendencies and other attributes.\n\n|name          |label                                                                      |type          |type_options |data_type |value_labels                                                                                                                 |optional |scale_item_names                                          |item_order |missing |complete |n  |empty |n_unique |count |median     |min        |max        |mean  |sd   |p0   |p25   |p50  |p75   |p100 |hist     |\n|:-------------|:--------------------------------------------------------------------------|:-------------|:------------|:---------|:----------------------------------------------------------------------------------------------------------------------------|:--------|:---------------------------------------------------------|:----------|:-------|:--------|:--|:-----|:--------|:-----|:----------|:----------|:----------|:-----|:----|:----|:-----|:----|:-----|:----|:--------|\n|session       |NA                                                                         |NA            |NA           |character |NA                                                                                                                           |NA       |NA                                                        |NA         |0       |28       |28 |0     |28       |NA    |NA         |64         |64         |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|created       |user first opened survey                                                   |NA            |NA           |POSIXct   |NA                                                                                                                           |NA       |NA                                                        |NA         |0       |28       |28 |NA    |28       |NA    |2016-07-08 |2016-07-08 |2016-11-02 |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|modified      |user last edited survey                                                    |NA            |NA           |POSIXct   |NA                                                                                                                           |NA       |NA                                                        |NA         |0       |28       |28 |NA    |28       |NA    |2016-07-08 |2016-07-08 |2016-11-02 |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|ended         |user finished survey                                                       |NA            |NA           |POSIXct   |NA                                                                                                                           |NA       |NA                                                        |NA         |0       |28       |28 |NA    |28       |NA    |2016-07-08 |2016-07-08 |2016-11-02 |NA    |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|expired       |NA                                                                         |NA            |NA           |logical   |NA                                                                                                                           |NA       |NA                                                        |NA         |28      |0        |28 |NA    |NA       |28    |NA         |NA         |NA         |NaN   |NA   |NA   |NA    |NA   |NA    |NA   |NA       |\n|BFIK_open_2   |__Ich bin tiefsinnig, denke gerne über Sachen nach.__                      |rating_button |5            |numeric   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |4          |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |4.21  |0.74 |2    |4     |4    |5     |5    |▁▁▁▁▁▇▁▅ |\n|BFIK_agree_4R |__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__       |rating_button |5            |numeric   |5. 1: Trifft überhaupt nicht zu, - 4. 2, - 3. 3, - 2. 4, - 1. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |5          |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |2.93  |1.18 |1    |2     |3    |4     |5    |▂▇▁▃▁▅▁▂ |\n|BFIK_extra_2  |__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__           |rating_button |5            |numeric   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |6          |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |4.18  |1.09 |1    |4     |4    |5     |5    |▁▁▁▁▁▇▁▇ |\n|BFIK_agree_1R |__Ich neige dazu, andere zu kritisieren.__                                 |rating_button |5            |numeric   |5. 1: Trifft überhaupt nicht zu, - 4. 2, - 3. 3, - 2. 4, - 1. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |7          |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |3     |0.94 |2    |2     |3    |4     |5    |▇▁▅▁▁▆▁▁ |\n|BFIK_open_1   |__Ich bin vielseitig interessiert.__                                       |rating_button |5            |numeric   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |8          |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |4.39  |0.83 |2    |4     |5    |5     |5    |▁▁▂▁▁▃▁▇ |\n|BFIK_neuro_2R |__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__ |rating_button |5            |numeric   |5. 1: Trifft überhaupt nicht zu, - 4. 2, - 3. 3, - 2. 4, - 1. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |9          |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |3.11  |0.88 |2    |2     |3    |4     |5    |▆▁▇▁▁▇▁▁ |\n|BFIK_consc_3  |__Ich bin tüchtig und arbeite flott.__                                     |rating_button |5            |numeric   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |10         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |3.5   |1.04 |1    |3     |4    |4     |5    |▁▂▁▅▁▇▁▂ |\n|BFIK_consc_4  |__Ich mache Pläne und führe sie auch durch.__                              |rating_button |5            |numeric   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |11         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |3.86  |0.76 |2    |3     |4    |4     |5    |▁▁▃▁▁▇▁▂ |\n|BFIK_consc_2R |__Ich bin bequem, neige zur Faulheit.__                                    |rating_button |5            |numeric   |5. 1: Trifft überhaupt nicht zu, - 4. 2, - 3. 3, - 2. 4, - 1. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |12         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |3.18  |1.31 |1    |2     |4    |4     |5    |▃▂▁▃▁▇▁▂ |\n|BFIK_agree_3R |__Ich kann mich kalt und distanziert verhalten.__                          |rating_button |5            |numeric   |5. 1: Trifft überhaupt nicht zu, - 4. 2, - 3. 3, - 2. 4, - 1. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |13         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |3.04  |1.29 |1    |2     |3    |4     |5    |▂▇▁▃▁▇▁▃ |\n|BFIK_extra_3R |__Ich bin eher der \"stille Typ\", wortkarg.__                               |rating_button |5            |numeric   |5. 1: Trifft überhaupt nicht zu, - 4. 2, - 3. 3, - 2. 4, - 1. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |14         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |3.75  |1.21 |1    |3     |4    |5     |5    |▂▂▁▅▁▇▁▇ |\n|BFIK_neuro_3  |__Ich mache mir viele Sorgen.__                                            |rating_button |5            |numeric   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |15         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |3.07  |1.27 |1    |2     |3    |4     |5    |▃▇▁▇▁▅▁▅ |\n|BFIK_neuro_4  |__Ich werde leicht nervös und unsicher.__                                  |rating_button |5            |numeric   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |16         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |2.5   |1.2  |1    |1.75  |2    |4     |4    |▆▁▇▁▁▂▁▇ |\n|BFIK_agree_2  |__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__  |rating_button |5            |numeric   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |17         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |3.5   |1.26 |1    |2.75  |4    |4.25  |5    |▂▅▁▅▁▇▁▆ |\n|BFIK_consc_1  |__Ich erledige Aufgaben gründlich.__                                       |rating_button |5            |numeric   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |18         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |4.07  |0.9  |2    |4     |4    |5     |5    |▁▁▂▁▁▇▁▇ |\n|BFIK_open_4   |__Ich schätze künstlerische und ästhetische Eindrücke.__                   |rating_button |5            |numeric   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |19         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |4.21  |0.96 |1    |4     |4    |5     |5    |▁▁▁▂▁▆▁▇ |\n|BFIK_extra_4  |__Ich gehe aus mir heraus, bin gesellig.__                                 |rating_button |5            |numeric   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |20         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |3.86  |1.11 |1    |3     |4    |5     |5    |▁▂▁▃▁▇▁▆ |\n|BFIK_extra_1R |__Ich bin eher zurückhaltend, reserviert.__                                |rating_button |5            |numeric   |5. 1: Trifft überhaupt nicht zu, - 4. 2, - 3. 3, - 2. 4, - 1. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |21         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |3.61  |1.2  |1    |3     |4    |5     |5    |▁▅▁▆▁▇▁▇ |\n|BFIK_open_3   |__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__             |rating_button |5            |numeric   |1. 1: Trifft überhaupt nicht zu, - 2. 2, - 3. 3, - 4. 4, - 5. 5: Trifft voll und ganz zu, - NA. Item was never rendered for this user. |0        |NA                                                        |22         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |4.21  |0.96 |2    |4     |4.5  |5     |5    |▁▁▂▁▁▅▁▇ |\n|BFIK_agree    |4 BFIK_agree items averaged with aggregation_function                      |NA            |NA           |numeric   |NA                                                                                                                           |NA       |BFIK_agree_4R, BFIK_agree_1R, BFIK_agree_3R, BFIK_agree_2 |NA         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |3.12  |0.93 |1.5  |2.25  |3    |4     |4.75 |▂▇▂▇▃▁▅▅ |\n|BFIK_open     |4 BFIK_open items averaged with aggregation_function                       |NA            |NA           |numeric   |NA                                                                                                                           |NA       |BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3        |NA         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |4.26  |0.56 |3    |3.94  |4.25 |4.75  |5    |▃▂▂▁▇▃▇▂ |\n|BFIK_consc    |4 BFIK_consc items averaged with aggregation_function                      |NA            |NA           |numeric   |NA                                                                                                                           |NA       |BFIK_consc_3, BFIK_consc_4, BFIK_consc_2R, BFIK_consc_1   |NA         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |3.65  |0.79 |2    |3.12  |3.75 |4.25  |5    |▂▃▁▃▃▇▂▂ |\n|BFIK_extra    |4 BFIK_extra items averaged with aggregation_function                      |NA            |NA           |numeric   |NA                                                                                                                           |NA       |BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R  |NA         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |3.85  |1.01 |1.5  |3.25  |4.25 |4.56  |5    |▂▁▂▃▁▃▇▇ |\n|BFIK_neuro    |3 BFIK_neuro items averaged with aggregation_function                      |NA            |NA           |numeric   |NA                                                                                                                           |NA       |BFIK_neuro_2R, BFIK_neuro_3, BFIK_neuro_4                 |NA         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |2.89  |0.93 |1.33 |2     |2.83 |3.42  |4.33 |▅▅▂▅▃▅▁▇ |\n|age           |Alter                                                                      |NA            |NA           |integer   |NA                                                                                                                           |NA       |NA                                                        |NA         |0       |28       |28 |NA    |NA       |NA    |NA         |NA         |NA         |30.25 |6.94 |18   |24.75 |30   |34.75 |45   |▆▅▆▇▇▆▂▃ |\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/).",
   "identifier": "doi:10.5281/zenodo.1326520",
   "datePublished": "2016-06-01",
   "creator": {
