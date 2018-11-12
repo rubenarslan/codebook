@@ -15,6 +15,23 @@ labelled::var_label
 labelled::`var_label<-`
 
 
+#' @importFrom labelled val_label
+#' @export
+labelled::val_label
+
+#' @importFrom labelled val_label<-
+#' @export
+labelled::`val_label<-`
+
+
+#' @importFrom labelled val_labels
+#' @export
+labelled::val_labels
+
+#' @importFrom labelled val_labels<-
+#' @export
+labelled::`val_labels<-`
+
 #' @importFrom dplyr "%>%"
 #' @export
 dplyr::`%>%`

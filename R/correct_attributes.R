@@ -75,11 +75,15 @@ detect_missing <- function(data, only_labelled = TRUE,
             potential_missing_values %in% labels]
           # add labelled missing_values that don't exist for completeness
           potential_missing_values <- union(potential_missing_values,
-            setdiff(labels, data[[var]]))
+            setdiff(labels[is.na(labels)], data[[var]]))
         }
         potential_missing_values <- sort(potential_missing_values)
         with_tagged_na <- data[[var]]
-        free_na_tags <- setdiff( letters, haven::na_tag(with_tagged_na))
+        if (is.double(data[[var]])) {
+          free_na_tags <- setdiff( letters, haven::na_tag(with_tagged_na))
+        } else {
+          free_na_tags <- letters
+        }
 
         for (i in seq_along(potential_missing_values)) {
           miss <- potential_missing_values[i]
@@ -91,11 +95,15 @@ detect_missing <- function(data, only_labelled = TRUE,
             new_miss <- potential_missing_values[i]
           }
           that_label <- which(labels == miss)
-          if (!use_labelled_spss) {
+          if (length(which(with_tagged_na == miss)) &&
+              is.double(data[[var]]) && !use_labelled_spss) {
               with_tagged_na[
                 which(with_tagged_na == miss)] <- haven::tagged_na(new_miss)
+          } else if (is.integer(data[[var]])) {
+            warning("Cannot label missings for integers in variable ", var)
           }
-          if (length(that_label) && !use_labelled_spss) {
+          if (is.double(data[[var]]) && length(that_label) &&
+              !use_labelled_spss) {
             labels[that_label] <- haven::tagged_na(new_miss)
             names(labels)[that_label] <- paste0("[",
                                   potential_missing_values[i],

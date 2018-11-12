@@ -28,7 +28,7 @@ Using the codebook package locally in RStudio
 knitr::opts_chunk$set(
   warning = TRUE, # show warnings during codebook generation
   message = TRUE, # show messages during codebook generation
-  error = FALSE, # do not interrupt codebook generation in case of errors,
+  error = TRUE, # do not interrupt codebook generation in case of errors,
                 # usually better for debugging
   echo = TRUE  # show R code
 )
@@ -213,7 +213,7 @@ Adding scales that integrate smaller scales is easy too. The data dictionary men
 codebook_data$plasticity <- codebook_data %>% select(E1R:E5, O1:O5R) %>% aggregate_and_document_scale()
 ```
 
-By the way, writing E1R:E5 only works if the items are all in order in your dataset. But maybe you mixed items across constructs, then you will need a different way to select them. You can simply list all items, writing select(E1R, E2R, E3, E4, E5). This can get tedious when listing many items. Another solution is to write select(starts_with("E")). This is pretty elegant, but it will not work, because we would try to average education with extraversion items (both start with E). This is why we should try to give items descriptive stems such as extraversion_ or bfik_extra. With longer stems like these, confusion is unlikely and we can refer to groups of items by their stems. If you have already named your item in such a sparse fashion, another solution is to use a regular expression, as we saw above. In our scenario, select(matches("^E\\dR?$")) would work.
+By the way, writing `E1R:E5` only works if the items are all in order in your dataset. But maybe you mixed items across constructs, then you will need a different way to select them. You can simply list all items, writing `select(E1R, E2R, E3, E4, E5)`. This can get tedious when listing many items. Another solution is to write `select(starts_with("E"))`. This is pretty elegant, but it will not work, because we would try to average education with extraversion items (both start with E). This is why we should try to give items descriptive stems such as extraversion_ or bfik_extra. With longer stems like these, confusion is unlikely and we can refer to groups of items by their stems. If you have already named your item in such a sparse fashion, another solution is to use a regular expression, as we saw above. In our scenario, `select(matches("^E\\dR?$"))` would work.
 
 ```{r, echo = FALSE, warning = FALSE}
 # omit the following lines, if your missing values are already properly labelled
@@ -276,31 +276,29 @@ metadata(codebook_data)$spatialCoverage <- "Online"
 
 These attributes are documented in more depth on https://schema.org/Dataset. You can also add attributes that are not documented there, but they will not become part of the machine-readable metadata. Click Knit again. In the viewer tab, you can see that the metadata section of the codebook has been populated with your additions.
 
-```{r , echo=FALSE}
 
-knitr::opts_chunk$set(
-  echo = FALSE  # show R code
-)
+## Exporting and sharing the data with metadata
+Having added all the variable-level metadata, you might want to reuse the marked-up data elsewhere, share it with collaborators or the public. You can most easily export it using the rio package (Chan and Leeper 2018), which permits embedding the variable metadata in the dataset file for those formats that support it. The only way to keep all metadata in one file is by staying in R:
 
-metadata(codebook_data)$name <- "25 Personality items representing 5 factors"
-metadata(codebook_data)$description <- "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org)[...]"
-metadata(codebook_data)$identifier <- "https://dx.doi.org/10.17605/OSF.IO/K39BG"
-metadata(codebook_data)$creator <- "William Revelle"
-metadata(codebook_data)$citation <- "Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer."
-metadata(codebook_data)$url <- "https://cran.r-project.org/web/packages/psych/index.html"
-metadata(codebook_data)$datePublished <- "2010-01-01"
-metadata(codebook_data)$temporalCoverage <- "Spring 2010" 
-metadata(codebook_data)$spatialCoverage <- "Online" 
-
-
+```{r eval=FALSE}
+rio::export(codebook_data, "bfi.rds") # to R data structure file
 ```
 
+The variable-level metadata can also be transferred to SPSS and Stata files. Please note that this export is based on reverse-engineering the SPSS and Stata file structure, so the resulting files should be tested before sharing.
+
+```{r eval=FALSE}
+rio::export(codebook_data, "bfi.sav") # to SPSS file
+rio::export(codebook_data, "bfi.dta") # to Stata file
+```
 
 ## Releasing the codebook publicly
 
+```{r}
+knitr::opts_chunk$set(echo = FALSE) # don't print codebook code
+```
+
 Now, you might want to share your codebook with others. In the project folder you created in the beginning, there now is a codebook.html file. You can email it to collaborators, or you can upload it to the OSF file storage. However, if you want Google Dataset Search to index your dataset, this is not good enough. The OSF will not render your HTML files for security reasons and Google will not index the content of your emails (at least not publicly). For those who are familiar with Github or who already have their own website, uploading the html file to their own website should be easy. For those who want to learn about Github Pages, there are several guides available. The very simplest way to publish the html for the codebook that I could find is the following. Rename the codebook.html to index.html. Sign up on netlify.com. After creating an account, you can drag and drop the folder containing the codebook to the netlify web page (make sure it does not contain anything you do not want to share, such as the raw data). Netlify will upload the files and create a random URL like estranged-amardillo.netlify.com. You can change this to say something more meaningful like bfi-study.netlify.com in the settings. Now, visit the URL to see that everything is working. The last step is to publicly share a link to the codebook, so that search engines can find out that it exists. You could tweet the link with the hashtag #codebook, and it also makes sense to add a link from the repository where you are sharing the raw data or the related study's supplementary material. I added a link to the bfi-study codebook on the OSF (https://osf.io/k39bg/), where I had also shared the data. That was it! Depending on the speed of the search engine crawler, the dataset should be findable on Google Dataset Search within 3 days to 3 weeks. 
 
-```{r , echo = FALSE, warning = FALSE}
+```{r echo = FALSE, warning = FALSE}
 codebook(codebook_data)
-
 ```

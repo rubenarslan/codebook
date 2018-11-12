@@ -1,5 +1,7 @@
 context("Test codebook")
 
+knitr::opts_chunk$set(error = FALSE)
+
 test_that("codebook generation", {
   data("bfi", package = 'codebook')
   library(dplyr)
@@ -269,10 +271,10 @@ test_that("codebook table generation", {
   bfi$age <- 1:nrow(bfi)
   expect_silent(cb <- codebook_table(bfi))
   expect_identical(names(cb),
-    c("name", "label", "type", "type_options", "data_type", "ordered",
+    c("name", "label", "type", "type_options", "data_type",
       "value_labels", "optional", "scale_item_names", "item_order",
       "missing", "complete", "n",  "empty", "n_unique",
-      "top_counts", "count", "median", "min", "max", "mean", "sd",
+       "count", "median", "min", "max", "mean", "sd",
       "p0", "p25", "p50", "p75", "p100", "hist"))
   expect_equal(nrow(cb), ncol(bfi))
   expect_identical(cb$name, names(bfi))
@@ -284,14 +286,14 @@ test_that("codebook table generation, no attributes", {
   bfi <- bfi %>% select(-starts_with("BFIK_extra"),
                         -starts_with("BFIK_agree"),
                         -starts_with("BFIK_open"))
-  bfi <- head(bfi) # drops attributes
+  bfi <- bfi %>% head() %>% haven::zap_label() %>% haven::zap_labels()
+  # drops attributes
   bfi$age <- 1:nrow(bfi)
   expect_silent(cb <- codebook_table(bfi))
-  # weird diff between
-  # expect_identical(names(cb),
-  #                  c("name", "data_type", "missing", "complete", "n", "empty",
-  #                    "n_unique","count", "median", "min", "max", "mean", "sd",
-  #                    "p0", "p25", "p50", "p75", "p100", "hist"))
+  expect_identical(names(cb),
+                   c("name", "data_type", "missing", "complete", "n", "empty",
+                     "n_unique","count", "median", "min", "max", "mean", "sd",
+                     "p0", "p25", "p50", "p75", "p100", "hist"))
   expect_equal(nrow(cb), ncol(bfi))
   expect_identical(cb$name, names(bfi))
 })

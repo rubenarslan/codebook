@@ -16,15 +16,16 @@ if (exists("testing")) {
 Among those who finished the survey. Only variables that have missing values are shown.
 
 ```{r missingness_all_setup}
-if (  exists("ended", results) &&
-  exists("expired", results)) {
-  finisher_results <- dplyr::filter(results, !is.na(.data$ended))
-} else {
-  finisher_results <- results
+if (!exists("ended", results) ||
+  !exists("expired", results)) {
   warning("Could not figure out who finished the surveys, because the ",
           "variables expired and ended were missing.")
 }
 if (length(md_pattern)) {
-  pander::pander(md_pattern)
+  if (knitr::is_html_output()) {
+    rmarkdown::paged_table(md_pattern, options = list(rows.print = 10))
+  } else {
+    knitr::kable(md_pattern)
+  }
 }
 ```

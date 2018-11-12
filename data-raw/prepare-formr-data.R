@@ -9,3 +9,4 @@ compute_alphas = FALSE, plot_likert = FALSE, quiet = TRUE)
 
 bfi = dplyr::filter(results, !is.na(ended))
 devtools::use_data(bfi, overwrite = TRUE)
+
