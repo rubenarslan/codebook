@@ -143,7 +143,6 @@ data_description_default <- function(data) {
   stopifnot(is.data.frame(data))
   glue::glue(
     "
-    ## Dimensions
     The dataset has N={n_observations} rows and {n_variables} columns.
     {n_completecases} rows have no missing values on any column.
     ",
