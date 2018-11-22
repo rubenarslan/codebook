@@ -3,7 +3,7 @@
 \name{reverse_labelled_values}
 \alias{reverse_labelled_values}
 \title{Reverse labelled values
-reverse the underlying valus for a numeric \code{\link[haven:labelled]{haven::labelled()}} vector while keeping the labels correct}
+reverse the underlying values for a numeric \code{\link[haven:labelled]{haven::labelled()}} vector while keeping the labels correct}
 \usage{
 reverse_labelled_values(x)
 }
@@ -15,7 +15,7 @@ return the labelled vector with the underlying values having been reversed
 }
 \description{
 Reverse labelled values
-reverse the underlying valus for a numeric \code{\link[haven:labelled]{haven::labelled()}} vector while keeping the labels correct
+reverse the underlying values for a numeric \code{\link[haven:labelled]{haven::labelled()}} vector while keeping the labels correct
 }
 \examples{
 x <- haven::labelled(rep(1:3, each = 3), c(Bad = 1, Good = 5))

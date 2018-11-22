@@ -31,7 +31,7 @@ is the same, irrespective of whether scales already exist. We use the same
 mock BFI dataset from the main vignette here.
 
 Here, we use the function `aggregate_and_document_scale` to build the "alpha"
-scale. We assign `alpha` to a new colum in the data frame and we pass the constituent
+scale. We assign `alpha` to a new column in the data frame and we pass the constituent
 items as a data.frame to the function on the right-hand side. Because alpha
 relates to emotional stability, not neuroticism, we reverse the neuroticism
 items before averaging them with the rest.

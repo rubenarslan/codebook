@@ -11,6 +11,46 @@ require_package <- function(package) {
   invisible(TRUE)
 }
 
+# taken from mice to reduce dependencies
+# https://github.com/stefvanbuuren/mice
+md.pattern <- function(x, plot = FALSE)
+{
+  if (plot != FALSE) {
+    stop("Please use the original mice::md.pattern function for plots.")
+  }
+  if (!(is.matrix(x) || is.data.frame(x)))
+    stop("Data should be a matrix or dataframe")
+  if (ncol(x) < 2)
+    stop("Data should have at least two columns")
+  R <- is.na(x)
+  nmis <- colSums(R)
+  R <- matrix(R[, order(nmis)], dim(x))
+  pat <- apply(R, 1, function(x) paste(as.numeric(x), collapse = ""))
+  sortR <- matrix(R[order(pat), ], dim(x))
+  if (nrow(x) == 1) {
+    mpat <- is.na(x)
+  }
+  else {
+    mpat <- sortR[!duplicated(sortR), ]
+  }
+  if (all(!is.na(x))) {
+    cat(" /\\     /\\\n{  `---'  }\n{  O   O  }\n==>  V <==")
+    cat("  No need for mice. This data set is completely observed.\n")
+    cat(" \\  \\|/  /\n  `-----'\n\n")
+    mpat <- t(as.matrix(mpat, byrow = TRUE))
+    rownames(mpat) <- table(pat)
+  }
+  else {
+    if (is.null(dim(mpat))) {
+      mpat <- t(as.matrix(mpat))
+    }
+    rownames(mpat) <- table(pat)
+  }
+  r <- cbind(abs(mpat - 1), rowSums(mpat))
+  r <- rbind(r, c(nmis[order(nmis)], sum(nmis)))
+  r
+}
+
 
 #' Missing data patterns
 #'
@@ -22,9 +62,9 @@ require_package <- function(package) {
 #' @param min_freq minimum number of rows to have this missingness pattern
 #' @export
 #' @examples
-#' data("nhanes", package = "mice")
-#' md_pattern(nhanes)
-#' md_pattern(nhanes, omit_complete = FALSE, min_freq = 0.2)
+#' data("bfi", package = 'psych')
+#' md_pattern(bfi)
+#' md_pattern(bfi, omit_complete = FALSE, min_freq = 0.2)
 md_pattern <- function(data, omit_complete = TRUE, min_freq = 0.01) {
   if (sum(is.na(data)) == 0) {
     message("No missing values.")
@@ -33,7 +73,7 @@ md_pattern <- function(data, omit_complete = TRUE, min_freq = 0.01) {
       # mice::md.pattern coerces character/factor to NA
       data[[i]] <- as.numeric(as.factor(data[[i]]))
     }
-    md_pattern <- mice::md.pattern(data, plot = FALSE)
+    md_pattern <- md.pattern(data, plot = FALSE)
     n_miss <- rownames(md_pattern)
     if (is.null(n_miss)) {
       n_miss <- rep(0, nrow(md_pattern))

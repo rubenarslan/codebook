@@ -320,7 +320,7 @@ zap_labelled.haven_labelled_spss <- function(x) {
 
 
 #' Reverse labelled values
-#' reverse the underlying valus for a numeric [haven::labelled()] vector while keeping the labels correct
+#' reverse the underlying values for a numeric [haven::labelled()] vector while keeping the labels correct
 #'
 #' @param x a labelled vector
 #' @return return the labelled vector with the underlying values having been reversed

@@ -189,7 +189,7 @@ metadata(bfi)$description <- "25 personality self report items taken from the In
 The first 25 items are organized by five putative factors: Agreeableness, Conscientiousness, Extraversion, Neuroticism, and Opennness. The item data were collected using a 6 point response scale: 1 Very Inaccurate 2 Moderately Inaccurate 3 Slightly Inaccurate 4 Slightly Accurate 5 Moderately Accurate 6 Very Accurate
 
 To see an example of the data collection technique, visit https://SAPA-project.org or the International Cognitive Ability Resource at https://icar-project.com. The items given were sampled from the International Personality Item Pool of Lewis Goldberg using the sampling technique of SAPA. This is a sample data set taken from the much larger SAPA data bank."
-metadata(bfi)$identifier <- "https://cran.r-project.org/web/packages/psych/index.html"
+metadata(bfi)$identifier <- "https://CRAN.R-project.org/package=psych"
 metadata(bfi)$datePublished <- "2010-01-01"
 metadata(bfi)$creator <- list(
       "@type" = "Person",
@@ -198,7 +198,7 @@ metadata(bfi)$creator <- list(
       affiliation = list("@type" = "Organization",
         name = "Northwestern University"))
 metadata(bfi)$citation <- "Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer."
-metadata(bfi)$url <- "https://cran.r-project.org/web/packages/psych/index.html"
+metadata(bfi)$url <- "https://CRAN.R-project.org/package=psych"
 metadata(bfi)$temporalCoverage <- "Spring 2010" 
 metadata(bfi)$spatialCoverage <- "Online" 
 ```

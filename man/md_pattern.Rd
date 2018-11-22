@@ -18,7 +18,7 @@ Generate missingness patterns using \code{\link[mice:md.pattern]{mice::md.patter
 with options to reduce the complexity of the output.
 }
 \examples{
-data("nhanes", package = "mice")
-md_pattern(nhanes)
-md_pattern(nhanes, omit_complete = FALSE, min_freq = 0.2)
+data("bfi", package = 'psych')
+md_pattern(bfi)
+md_pattern(bfi, omit_complete = FALSE, min_freq = 0.2)
 }

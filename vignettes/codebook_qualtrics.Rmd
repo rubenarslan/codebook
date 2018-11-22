@@ -35,7 +35,7 @@ results <- readRDS(system.file("extdata", "ryan.rds", package = "codebook"))
 metadata_ex <- readRDS(system.file("extdata", "metadata.rds", package = "codebook"))
 ```
 
-Now, we want the metadata not to be just independet of the data frame.
+Now, we want the metadata not to be just independent of the data frame.
 It's easier to change metadata if it is in the form of a list at the 
 dataset level, so let's use `rio::gather_attrs` for that.
 

@@ -1,4 +1,4 @@
-# codebook 0.7.2
+# codebook 0.7.4
 
 ## Additions
 - Function `new_codebook_rmd` creates a new file in your working directory
@@ -16,9 +16,10 @@ with a codebook template.
 - work with haven 2.0.0's changed class names
 - play nice with `userfriendlyscience::makeScales` attributes
 - improved binning and wrapping in `plot_labelled`
+- removed the mice dependency to reduce the number of dependencies
 
 ## Bugfixes
-- `detect_missing` reset variable label with the new haven version (only between 0.6.3.9000 and 0.7.0)
+- `detect_missing` reset variable label with the new haven version (only between 0.6.3.9000 and 0.7.0, never on CRAN)
 - `reverse_labelled_values` mislabelled values, if there were labelled missing values (numbers were correct)
 
 # codebook 0.6.3
