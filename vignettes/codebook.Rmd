@@ -44,6 +44,7 @@ ggplot2::theme_set(ggplot2::theme_bw())
 
 library(codebook)
 data("bfi", package = 'codebook')
+set.seed(1)
 bfi$age <- rpois(nrow(bfi), 30)
 library(labelled)
 var_label(bfi$age) <- "Alter"

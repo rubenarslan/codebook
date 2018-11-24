@@ -7,3 +7,4 @@ tests/test_codebook_*
 tests/test_codebook.html
 inst/doc
 figure/
+revdep

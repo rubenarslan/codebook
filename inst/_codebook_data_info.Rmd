@@ -55,6 +55,11 @@ if (exists("url", meta)) {
 ```
 ```{r results='asis', echo = FALSE}
 if (exists("identifier", meta)) {
+  if (stringr::str_detect(meta$identifier, "^doi:")) {
+    meta$identifier <- paste0('<a href="https://dx.doi.org/', 
+      stringr::str_match(meta$identifier, "^doi:(.+)")[,2], '">', 
+      meta$identifier, '</a>')
+  }
   glue::glue(
     "- __Identifier__: {identifier}",
     .envir = meta)
