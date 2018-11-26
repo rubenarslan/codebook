@@ -177,7 +177,7 @@ codebook_data <- codebook_data %>%
 
 ```
 
-All this statement does is find variable names which end with a number (\d is the regular expression codeword for a number) and R and reverse them.
+All this statement does is find variable names which end with a number (`\d` is the regular expression codeword for a number) and R and reverse them.
 
 
 With the next lines we assign extraversion to the result of selecting all extraversion items in the data and passing them to the aggregate_and_document_scale function
