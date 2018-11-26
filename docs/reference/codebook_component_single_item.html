@@ -209,9 +209,10 @@
 #&gt; # unnest mc_multiple and so on
 #&gt; if (
 #&gt;   is.character(item_nomiss) &amp;&amp;
-#&gt;   stringr::str_detect(item_nomiss, stringr::fixed(", ")) &amp;&amp;
+#&gt;   any(stringr::str_detect(item_nomiss, stringr::fixed(", "))) &amp;&amp;
 #&gt;   (exists("type", item_info) &amp;&amp; 
-#&gt;     stringr::str_detect(item_info$type, pattern = stringr::fixed("multiple")))
+#&gt;     any(stringr::str_detect(item_info$type, 
+#&gt;                             pattern = stringr::fixed("multiple"))))
 #&gt;   ) {
 #&gt;   item_nomiss &lt;- unlist(stringr::str_split(item_nomiss, pattern = stringr::fixed(", ")))
 #&gt; }
