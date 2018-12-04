@@ -1,3 +1,7 @@
+# codebook 0.7.5
+## Bugfixes
+- import/export knit_print generic from knitr
+
 # codebook 0.7.4
 
 ## Additions
