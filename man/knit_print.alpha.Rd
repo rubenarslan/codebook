@@ -4,7 +4,7 @@
 \alias{knit_print.alpha}
 \title{Pretty-print a Cronbach's alpha object}
 \usage{
-knit_print.alpha(x, indent = "#####", ...)
+\method{knit_print}{alpha}(x, indent = "#####", ...)
 }
 \arguments{
 \item{x}{a psych alpha object}

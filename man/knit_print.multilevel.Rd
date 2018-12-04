@@ -4,7 +4,7 @@
 \alias{knit_print.multilevel}
 \title{Print a \code{\link[psych:multilevel.reliability]{psych::multilevel.reliability()}} object for knitr}
 \usage{
-knit_print.multilevel(x, indent = "#####", ...)
+\method{knit_print}{multilevel}(x, indent = "#####", ...)
 }
 \arguments{
 \item{x}{a psych alpha object}

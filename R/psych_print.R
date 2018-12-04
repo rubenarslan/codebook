@@ -1,3 +1,8 @@
+#' @importFrom knitr knit_print
+#' @export
+knitr::knit_print
+
+
 #' Pretty-print a Cronbach's alpha object
 #'
 #' Turn a [psych::alpha()] object into HTML tables.

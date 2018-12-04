@@ -4,7 +4,7 @@
 \alias{knit_print.htest}
 \title{Print a \code{\link[stats:cor.test]{stats::cor.test()}} object for knitr}
 \usage{
-knit_print.htest(x, indent = "#####", ...)
+\method{knit_print}{htest}(x, indent = "#####", ...)
 }
 \arguments{
 \item{x}{a psych alpha object}
