@@ -37,6 +37,7 @@ likert_from_items <- function(items) {
   likert::likert(as.data.frame(items))
 }
 
+
 #' Plot labelled vector
 #'
 #' Plot a labelled vector, making use of the variable name, label and value

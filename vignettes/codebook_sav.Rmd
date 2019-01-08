@@ -7,7 +7,7 @@ output:
     fig_width: 7
     fig_height: 6
 vignette: >
-  %\VignetteIndexEntry{Example with SPSS dataset}
+  %\VignetteIndexEntry{SPSS dataset with metadata}
   \%VignetteKeyword{manual}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}

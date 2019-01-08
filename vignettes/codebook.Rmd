@@ -1,5 +1,5 @@
 ---
-title: "Codebook example formr"
+title: "Codebook example with formr.org data"
 author: "Ruben Arslan"
 date: "`r Sys.Date()`"
 output:
@@ -13,7 +13,7 @@ output:
     fig_height: 7
     fig_retina: null
 vignette: >
-  %\VignetteIndexEntry{Example with metadata from formr.org}
+  %\VignetteIndexEntry{Using formr.org data and metadata}
   \%VignetteKeyword{codebook}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}

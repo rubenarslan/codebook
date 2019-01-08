@@ -6,12 +6,8 @@ output:
   html_vignette:
     fig_width: 7
     fig_height: 6
-  pdf_document:
-    toc: yes
-    toc_depth: 4
-    latex_engine: xelatex
 vignette: >
-  %\VignetteIndexEntry{Example with SPSS dataset}
+  %\VignetteIndexEntry{Tutorial}
   \%VignetteKeyword{manual}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
@@ -22,9 +18,13 @@ body {
 text-align: justify}
 </style>
 
+This is the practical part of a tutorial manuscript for this package, which you 
+can find in full [on PsyArXiv](https://psyarxiv.com/5qc6h/).
+
 Using the codebook package locally in RStudio
 
-```{r setup}
+```{r message = FALSE}
+knit_by_pkgdown <- !is.null(knitr::opts_chunk$get("fig.retina"))
 knitr::opts_chunk$set(
   warning = TRUE, # show warnings during codebook generation
   message = TRUE, # show messages during codebook generation
@@ -299,6 +299,20 @@ knitr::opts_chunk$set(echo = FALSE) # don't print codebook code
 
 Now, you might want to share your codebook with others. In the project folder you created in the beginning, there now is a codebook.html file. You can email it to collaborators, or you can upload it to the OSF file storage. However, if you want Google Dataset Search to index your dataset, this is not good enough. The OSF will not render your HTML files for security reasons and Google will not index the content of your emails (at least not publicly). For those who are familiar with Github or who already have their own website, uploading the html file to their own website should be easy. For those who want to learn about Github Pages, there are several guides available. The very simplest way to publish the html for the codebook that I could find is the following. Rename the codebook.html to index.html. Sign up on netlify.com. After creating an account, you can drag and drop the folder containing the codebook to the netlify web page (make sure it does not contain anything you do not want to share, such as the raw data). Netlify will upload the files and create a random URL like estranged-amardillo.netlify.com. You can change this to say something more meaningful like bfi-study.netlify.com in the settings. Now, visit the URL to see that everything is working. The last step is to publicly share a link to the codebook, so that search engines can find out that it exists. You could tweet the link with the hashtag #codebook, and it also makes sense to add a link from the repository where you are sharing the raw data or the related study's supplementary material. I added a link to the bfi-study codebook on the OSF (https://osf.io/k39bg/), where I had also shared the data. That was it! Depending on the speed of the search engine crawler, the dataset should be findable on Google Dataset Search within 3 days to 3 weeks. 
 
-```{r echo = FALSE, warning = FALSE}
-codebook(codebook_data)
+To see the resulting codebook, open the "Example with manual labelling" vignette.
+
+## The Codebook
+
+```{r cb}
+codebook(codebook_data, survey_repetition = "single", indent = "##",
+         metadata_table = knit_by_pkgdown, metadata_json = knit_by_pkgdown)
+```
+
+
+`r ifelse(knit_by_pkgdown, '', '### Codebook table')`
+
+```{r}
+if (!knit_by_pkgdown) {
+  codebook:::escaped_table(codebook_table(codebook_data))
+}
 ```

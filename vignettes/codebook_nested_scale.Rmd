@@ -7,7 +7,7 @@ output:
     fig_width: 7
     fig_height: 6
 vignette: >
-  %\VignetteIndexEntry{Example with nested scales}
+  %\VignetteIndexEntry{Nested scales}
   \%VignetteKeyword{nested}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}

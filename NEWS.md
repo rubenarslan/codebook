@@ -1,3 +1,7 @@
+# codebook 0.7.6
+## Bugfixes
+- changed vignette titles (one was duplicated)
+
 # codebook 0.7.5
 ## Bugfixes
 - import/export knit_print generic from knitr

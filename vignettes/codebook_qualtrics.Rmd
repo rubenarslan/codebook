@@ -7,7 +7,7 @@ output:
     fig_width: 7
     fig_height: 6
 vignette: >
-  %\VignetteIndexEntry{Example with Qualtrics dataset}
+  %\VignetteIndexEntry{Qualtrics data and metadata}
   \%VignetteKeyword{qualtrics}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
