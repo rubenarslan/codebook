@@ -82,4 +82,12 @@ test_that("has_label(s)", {
                          class = "factor"))
   expect_equal(as_factor(x), as_factor(zap_labelled(x)))
   expect_equal(as_factor(x, "both"), as_factor(zap_labelled(x), "both"))
+
+  x <- haven::labelled(letters[1:5], c(Bad = "a", Good = "e"))
+  expect_equal(as_factor(x),
+               structure(1:5, .Label = c("Bad", "b", "c", "d", "Good"),
+                         class = "factor"))
+  expect_equal(as_factor(x), as_factor(zap_labelled(x)))
+  expect_equal(as_factor(x, levels = "both"),
+               as_factor(zap_labelled(x), levels = "both"))
 })

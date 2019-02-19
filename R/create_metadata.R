@@ -2,6 +2,27 @@
 #' @export
 haven::as_factor
 
+#' @export
+as_factor.numeric <- function(x, ...) {
+  if (has_labels(x)) {
+    class(x) = c("haven_labelled", class(x))
+    haven::as_factor(x, ...)
+  } else {
+    haven::as_factor(x, ...)
+  }
+}
+
+#' @export
+as_factor.character <- function(x, ...) {
+  if (has_labels(x)) {
+    class(x) = c("haven_labelled", class(x))
+    haven::as_factor(x, ...)
+  } else {
+    haven::as_factor(x, ...)
+  }
+}
+
+
 #' @importFrom haven zap_label
 #' @export
 haven::zap_label

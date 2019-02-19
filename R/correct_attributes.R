@@ -318,6 +318,10 @@ zap_labelled.haven_labelled_spss <- function(x) {
   }
 }
 
+#' @export
+zap_labelled.default <- function(x) {
+  x
+}
 
 #' Reverse labelled values
 #' reverse the underlying values for a numeric [haven::labelled()] vector while keeping the labels correct
@@ -380,6 +384,3 @@ reverse_labelled_values <- function(x) {
   }
 }
 
-separate_out_missings <- function(x) {
-
-}
