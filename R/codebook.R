@@ -18,6 +18,8 @@ no_md <- function() {
 #' @param results a data frame, ideally with attributes set on variables
 #' @param reliabilities a named list with one entry per scale and one or several printable reliability computations for this scale. if NULL, computed on-the-fly using compute_reliabilities
 #' @param survey_repetition defaults to "auto" which is to try to determine the level of repetition from the "session" and "created" variables. Other values are: single, repeated_once, repeated_many
+#' @param detailed_variables whether to print a graph and summary for each variable
+#' @param detailed_scales whether to print a graph and summary for each scale
 #' @param survey_overview whether to print an overview of survey entries, durations (depends on presence of columns session, created, modified, ended, expired)
 #' @param missingness_report whether to print a missingness report. Turn off if this gets too complicated and you need a custom solution (e.g. in case of random missings).
 #' @param metadata_table whether to print a metadata table/tabular codebook.
@@ -35,6 +37,8 @@ no_md <- function() {
 #' md <- codebook(bfi, survey_repetition = "single", metadata_table = FALSE)
 codebook <- function(results, reliabilities = NULL,
     survey_repetition = c('auto', 'single', 'repeated_once', 'repeated_many'),
+    detailed_variables = TRUE,
+    detailed_scales = TRUE,
     survey_overview = TRUE,
     missingness_report = TRUE, metadata_table = TRUE,
     metadata_json = TRUE, indent = '#') {
@@ -42,13 +46,8 @@ codebook <- function(results, reliabilities = NULL,
   # todo: factor out the repetition detection stuff
   survey_repetition <- match.arg(survey_repetition)
   if (survey_repetition == "auto") {
-    if (!(exists("session", results) &&
-      exists("created", results) &&
-      exists("ended", results))) {
+    if (!is_formr_survey(results)) {
       survey_repetition <- 'single'
-      warning("The variables session, created, ended have to be defined for ",
-              "automatic survey repetition detection to work. Set to no ",
-              "repetition by default.")
     } else {
       users <- dplyr::n_distinct(results$session)
       rows_per_user <- nrow(results)/users
@@ -107,12 +106,7 @@ codebook <- function(results, reliabilities = NULL,
 
   data_info <- codebook_data_info(results)
 
-  if (survey_overview &&
-        exists("session", results) &&
-        exists("created", results) &&
-        exists("ended", results) &&
-        exists("expired", results) &&
-        exists("modified", results)) {
+  if (survey_overview && is_formr_survey(results)) {
     survey_overview <- codebook_survey_overview(results, survey_repetition)
   } else {
     survey_overview <- no_md()
@@ -187,6 +181,31 @@ codebook <- function(results, reliabilities = NULL,
   asis_knit_child(require_file("_codebook.Rmd"), options = options)
 }
 
+#' Compact Codebook
+#'
+#' Generate only the tabular codebook and the machine-readable JSON-LD metadata.
+#'
+#' @param results the data frame
+#'
+#' @export
+#' @examples
+#' # will generate figures in a figure/ subdirectory
+#' old_base_dir <- knitr::opts_knit$get("base.dir")
+#' knitr::opts_knit$set(base.dir = tempdir())
+#' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
+#' data("bfi")
+#' bfi <- bfi[, c("BFIK_open_1", "BFIK_open_1")]
+#' compact_codebook(bfi)
+compact_codebook <- function(results) {
+  codebook(results, reliabilities = list(),
+            survey_repetition = 'single',
+                       detailed_variables = FALSE,
+                       detailed_scales = FALSE,
+                       survey_overview = FALSE,
+                       missingness_report = FALSE, metadata_table = TRUE,
+                       metadata_json = TRUE, indent = '#')
+}
+
 
 #' Codebook survey overview
 #'
@@ -200,6 +219,9 @@ codebook <- function(results, reliabilities = NULL,
 #' @export
 #' @examples
 #' # will generate figures in a figure/ subdirectory
+#' old_base_dir <- knitr::opts_knit$get("base.dir")
+#' knitr::opts_knit$set(base.dir = tempdir())
+#' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
 #' data("bfi")
 #' codebook_survey_overview(bfi)
 codebook_survey_overview <- function(results, survey_repetition = "single",
@@ -648,6 +670,7 @@ metadata_list <- function(results, only_existing = TRUE) {
     dict <- knitr::kable(dict, format = "markdown")
     dict <- stringr::str_replace_all(dict, "\n", " - ")
     dict <- paste0(as.character(dict), collapse = "\n")
+    version <- as.character(utils::packageVersion("codebook"))
     metadata$description <- paste0(metadata$description, "\n\n\n",
       glue::glue(
       "
@@ -657,9 +680,10 @@ metadata_list <- function(results, only_existing = TRUE) {
     {dict}
 
     ### Note
-    This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/).
+    This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version {version}).
     ",
-      dict = dict))
+      dict = dict,
+      version = version))
     metadata <- metadata[intersect(names(metadata), legal_dataset_properties)]
   }
 
@@ -703,10 +727,6 @@ legal_property_value_properties <-
 
 skim_to_wide_labelled <- function(x, ...) {
   x <- haven::zap_labels(x)
-  suppressMessages(
-    skimr::skim_with(labelled = skimr::get_skimmers()$factor,
-                     labelled_spss = skimr::get_skimmers()$factor)
-  )
   on.exit(skimr::skim_with_defaults())
   skimr::skim_to_wide(x, ...)
 }

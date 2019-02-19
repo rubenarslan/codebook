@@ -17,7 +17,7 @@ test_that("codebook generation", {
   on.exit(setwd(wd))
   expect_silent(md <- codebook(bfi, metadata_table = FALSE))
   figs <- list.files(paste0(dir, "/figure"))
-  expect_equal(length(figs), 8)
+  expect_equal(length(figs), 9)
   expect_match(md, "Scale: BFIK_neuro")
   expect_match(md, "Scale: BFIK_consc")
   expect_match(md, "Missing values per variable")

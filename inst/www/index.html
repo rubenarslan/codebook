@@ -20,7 +20,7 @@
     <h3>Codebook generator</h3>
   </div>
   <div class="col-md-4">
-    <label>SPSS/Stata/RDS File: <input type="file" id="file"></label>
+    <label><abbr title="SPSS data format">.sav</abbr>/<abbr title="Stata data format">.dta</abbr>/<abbr title="R data structure">.rds</abbr>/<abbr title="Click more information to see other supported formats">other</abbr> data file: <input type="file" id="file"></label>
   </div>
   <div class="col-md-3">
     <button id="make_codebook" type="button" class="btn btn-success">Generate codebook!</button>
@@ -51,10 +51,10 @@
         The following <strong>file formats</strong> are supported, among others: .sav (SPSS), .dta (Stata), .rds (R), .rdata (R), .por, .xpt, .csv, .tsv, .csv2. All are read using <a href="https://github.com/leeper/rio">rio</a>, which means you can also upload zipped files, see rio docs for more information.
       </p>
       <p>
-        The codebook package uses variable and value labels, as well as labelled missing values to make sense of the data. You can upload files without such metadata, but the resulting codebook will be less useful. You'll get the most mileage out of this package by using data collected with <a href="https://formr.org">formr.org</a> and imported using the <a href="https://github.com/rubenarslan/formr">formr R package</a>.
+        The codebook package uses variable and value labels, as well as labelled missing values to make sense of the data. You can upload files without such metadata (e.g., .csv), but the resulting codebook will be less useful. You'll get the most mileage out of this package by using data collected with <a href="https://formr.org">formr.org</a> and imported using the <a href="https://github.com/rubenarslan/formr">formr R package</a>.
         </p>
       <p>
-        If you prefer a PDF over HTML (but remember, PDF are much less readable for machines and hard to read on mobile devices), just remove the html_document block below.
+        If you prefer a PDF over HTML (but remember, PDFs are much less readable for machines and hard to read on mobile devices), just remove the html_document block below.
       </p>
       <p>
         The webapp sets reasonable defaults and it is possible to edit the text and the R code to improve the resulting codebook. However, the webapp does not store edits, is not as interactive as working in R, and it requires the user to upload the dataset to a server. This is not permissible for certain restricted-use datasets. Moreover, for very large datasets, you may get an error message, because the server limits the resources you can use. If one wants to document large, private, or many datasets, or if you first need to add the metadata, it is easier to install the codebook package locally.
@@ -100,7 +100,7 @@ We collected the following data.
 
 ```{r codebook}
 # omit the following lines, if your missing values are already properly labelled
-codebook_data = detect_missing(codebook_data,
+codebook_data &lt;- detect_missing(codebook_data,
     only_labelled = TRUE, # only labelled values are autodetected as
                                    # missing
     negative_values_are_missing = FALSE, # negative values are missing values
@@ -114,11 +114,12 @@ codebook_data = detect_missing(codebook_data,
 # identifying these aggregates allows the codebook function to
 # automatically compute reliabilities.
 # However, it will not reverse items automatically.
-codebook_data = detect_scales(codebook_data)
+codebook_data &lt;- detect_scales(codebook_data)
 
 
 # Does your dataset have a name that is not reflected in the file name?
-metadata(codebook_data)$name <- "My Awesome Dataset"
+# Uncomment the line below and change the name
+# metadata(codebook_data)$name &lt;- "My Awesome Dataset"
 
 codebook(codebook_data)
 ```

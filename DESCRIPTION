@@ -1,12 +1,17 @@
 Package: codebook
-Title: Automatic Codebooks from Survey Metadata Encoded in Attributes
-Description: Easily automate the following tasks to describe data frames: 
-  summarise the distributions of scales and items graphically and using descriptive statistics,
-  compute reliabilities (internal consistencies, retest, multilevel) for psychological scales, 
-  combine this information with metadata (such as item labels and labelled values) that is derived from R attributes.
-  To do so, the package relies on 'rmarkdown' partials, so you can generate HTML, PDF, and Word documents. Codebooks
-  are also available as tables (CSV, Excel, etc.).
-  The metadata and codebooks are also available at your fingertips via RStudio Addins.
+Title: Automatic Codebooks from Metadata Encoded in Dataset Attributes
+Description: Easily automate the following tasks to describe data frames:
+		Summarise the distributions, and labelled missings of variables graphically
+		and using descriptive statistics.
+		For surveys, compute and summarise reliabilities (internal consistencies, 
+		retest, multilevel) for psychological scales.
+		Combine this information with metadata (such as item labels and labelled 
+		values) that is derived from R attributes.
+		To do so, the package relies on 'rmarkdown' partials, so you can generate 
+		HTML, PDF, and Word documents. 
+		Codebooks are also available as tables (CSV, Excel, etc.) and in JSON-LD, so
+		that search engines can find your data and index the metadata.
+		The metadata are also available at your fingertips via RStudio Addins.
 Version: 0.7.6.9000
 Authors@R: person("Ruben", "Arslan", email = "ruben.arslan@gmail.com", role = c("aut", "cre"))
 Depends: R (>= 3.0.1)
@@ -43,7 +48,9 @@ Imports:
     shiny (>= 0.13),
     miniUI (>= 0.1.1),
     rstudioapi (>= 0.5),
-    glue
+    glue,
+    lubridate,
+    userfriendlyscience
 Suggests:
   testthat,
   shinytest,

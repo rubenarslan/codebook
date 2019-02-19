@@ -251,3 +251,38 @@ as_factor.default <- function(x,
 is_attribute_set <- function(attribute, data) {
   !is.null(attr(data, attribute, exact = TRUE))
 }
+
+
+is_formr_survey <- function(results) {
+  exists("session", results) &&
+  exists("created", results) &&
+  exists("modified", results) &&
+  exists("ended", results) &&
+  exists("expired", results)
+}
+
+
+could_disclose_unique_values <- function(x) {
+  disclosing <- FALSE
+  if (!is.numeric(x)) {
+      if (stats::median(table(x)) == 1) {
+      disclosing <- TRUE # most values are unique
+    } else {
+      if (is.factor(x)) { # factors have defined levels, so unlikely to disclose
+        if (dplyr::n_distinct(x) > 40) {
+          disclosing <- TRUE
+        }
+      } else if (dplyr::n_distinct(x) > 20) {
+        disclosing <- TRUE # too many different values, might contain free text
+      }
+    }
+  }
+  disclosing
+}
+
+
+is_numeric_or_time_var <- function(x) {
+  is.numeric(x) ||
+    lubridate::is.instant(x) ||
+    lubridate::is.timespan(x)
+}

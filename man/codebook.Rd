@@ -5,7 +5,8 @@
 \title{Generate rmarkdown codebook}
 \usage{
 codebook(results, reliabilities = NULL, survey_repetition = c("auto",
-  "single", "repeated_once", "repeated_many"), survey_overview = TRUE,
+  "single", "repeated_once", "repeated_many"), detailed_variables = TRUE,
+  detailed_scales = TRUE, survey_overview = TRUE,
   missingness_report = TRUE, metadata_table = TRUE,
   metadata_json = TRUE, indent = "#")
 }
@@ -15,6 +16,10 @@ codebook(results, reliabilities = NULL, survey_repetition = c("auto",
 \item{reliabilities}{a named list with one entry per scale and one or several printable reliability computations for this scale. if NULL, computed on-the-fly using compute_reliabilities}
 
 \item{survey_repetition}{defaults to "auto" which is to try to determine the level of repetition from the "session" and "created" variables. Other values are: single, repeated_once, repeated_many}
+
+\item{detailed_variables}{whether to print a graph and summary for each variable}
+
+\item{detailed_scales}{whether to print a graph and summary for each scale}
 
 \item{survey_overview}{whether to print an overview of survey entries, durations (depends on presence of columns session, created, modified, ended, expired)}
 

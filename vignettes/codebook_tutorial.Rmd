@@ -242,7 +242,7 @@ codebook_data <- detect_scales(codebook_data)
 Lastly, you might want to sign your work and add a few descriptive words about the entire dataset. You could simply edit the rmarkdown document to add a description, but unfortunately, this information will not become part of the machine-readable metadata. Metadata (or attributes) of the dataset are a lot less persistent than metadata about variables. Hence, you should add it right before calling the codebook function. Enter the following lines above the call codebook(codebook_data). Adding metadata about the dataset is very simple. We simply wrap the metadata function around codebook_data and assign a value to a field. The fields name and description are required. If you do not edit them, they will be automatically generated based on the data frame name and its contents. To overwrite them, use the following commands.
 
 
-```{r , eval = FALSE}
+```{r}
 metadata(codebook_data)$name <- "25 Personality items representing 5 factors"
 metadata(codebook_data)$description <- "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org)[...]"
 ```
@@ -250,14 +250,14 @@ metadata(codebook_data)$description <- "25 personality self report items taken f
 It's also good practice to give datasets a canonical identifier. This way, if a dataset is described in multiple locations, we know it's the same dataset. Here, I could have simply used the URL of the R package from which I took the package, but URLs can change. Instead, I generated a persistent document object identifier (DOI) on the OSF. and specified it here.
 
 
-```{r , eval = FALSE}
+```{r}
 metadata(codebook_data)$identifier <- "https://dx.doi.org/10.17605/OSF.IO/K39BG"
 ```
 
 Of course, it's also a good idea to let others know who they can contact about the dataset, how to cite it, and where to find more information. That's why I set the attributes creator, citation, and url below.
 
 
-```{r , eval = FALSE}
+```{r}
 metadata(codebook_data)$creator <- "William Revelle"
 metadata(codebook_data)$citation <- "Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer."
 metadata(codebook_data)$url <- "https://cran.r-project.org/web/packages/psych/index.html"
@@ -266,7 +266,7 @@ metadata(codebook_data)$url <- "https://cran.r-project.org/web/packages/psych/in
 Lastly, it is useful to note when and where the data was collected, and when it was published. Ideally, you would make more specific information available here, but this is all I know about the BFI dataset.
 
 
-```{r , eval = FALSE}
+```{r}
 metadata(codebook_data)$datePublished <- "2010-01-01"
 metadata(codebook_data)$temporalCoverage <- "Spring 2010" 
 metadata(codebook_data)$spatialCoverage <- "Online"

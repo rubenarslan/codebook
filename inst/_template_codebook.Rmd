@@ -31,6 +31,13 @@ Now, we're preparing our data for the codebook.
 
 ```{r prepare_codebook}
 library(codebook)
+codebook_data <- codebook::bfi
+# to import an SPSS file from the same folder uncomment and edit the line below
+# codebook_data <- rio::import("mydata.sav")
+# for Stata
+# codebook_data <- rio::import("mydata.dta")
+# for CSV
+# codebook_data <- rio::import("mydata.csv")
 
 # omit the following lines, if your missing values are already properly labelled
 codebook_data <- detect_missing(codebook_data,

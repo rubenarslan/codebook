@@ -20,6 +20,9 @@ needed to respond (if those data are available).
 }
 \examples{
 # will generate figures in a figure/ subdirectory
+old_base_dir <- knitr::opts_knit$get("base.dir")
+knitr::opts_knit$set(base.dir = tempdir())
+on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
 data("bfi")
 codebook_survey_overview(bfi)
 }

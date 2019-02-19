@@ -48,13 +48,15 @@ likert_from_items <- function(items) {
 #' @param item_name item name, defaults to name of first argument
 #' @param wrap_at the subtitle (the label) will be wrapped at this number of characters
 #' @param go_vertical defaults to FALSE. Whether to show choices on the Y axis instead.
+#' @param trans defaults to "identity" passed to [ggplot2::scale_x_continuous()]
 #'
 #' @export
 #' @examples
 #' data("bfi", package = "codebook")
 #' plot_labelled(bfi$BFIK_open_1)
 plot_labelled <- function(item, item_name = NULL,
-                          wrap_at = 70, go_vertical = FALSE) {
+                          wrap_at = 70, go_vertical = FALSE,
+                          trans = "identity") {
   wrap_at_ticks <- ceiling(wrap_at * 0.21)
   if (is.null(item_name)) {
     item_name <- deparse(substitute(item))
@@ -117,7 +119,8 @@ plot_labelled <- function(item, item_name = NULL,
         dist_plot <- ggplot2::ggplot(mapping = ggplot2::aes(x = item)) +
           ggplot2::geom_bar(na.rm = TRUE) +
           ggplot2::scale_x_continuous("values", breaks = nonmissing_choices,
-                                    labels = names(nonmissing_choices)) +
+                                    labels = names(nonmissing_choices),
+                                    trans = trans) +
           ggplot2::expand_limits(x = range(nonmissing_choices))
       } else {
         if (nonmissing_unique_values <= 10) {
@@ -137,7 +140,7 @@ plot_labelled <- function(item, item_name = NULL,
         dist_plot <- ggplot2::ggplot(mapping = ggplot2::aes(x = item_nomiss)) +
           ggplot2::geom_histogram(bins = bins, na.rm = TRUE) +
           ggplot2::scale_x_continuous("values", breaks = breaks,
-                                      labels = names(breaks)) +
+                                      labels = names(breaks), trans = trans) +
           ggplot2::expand_limits(x = range(breaks))
       }
     } else if (type == "character") {
@@ -145,6 +148,8 @@ plot_labelled <- function(item, item_name = NULL,
         label_how <- "both"
       }
       item <- as_factor(item, levels = label_how)
+
+      item <- stringr::str_wrap(item, wrap_at_ticks)
 
       dist_plot <- ggplot2::ggplot(mapping = ggplot2::aes(x = item)) +
         ggplot2::geom_bar() +
@@ -171,7 +176,7 @@ plot_labelled <- function(item, item_name = NULL,
     }
     dist_plot <- ggplot2::ggplot(mapping = ggplot2::aes(x = item_nomiss)) +
       bar_geom +
-      ggplot2::scale_x_continuous("values")
+      ggplot2::scale_x_continuous("values", trans = trans)
   } else {
     dist_plot <- ggplot2::qplot(item) + ggplot2::xlab("values")
   }
