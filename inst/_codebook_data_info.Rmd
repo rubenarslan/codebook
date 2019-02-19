@@ -25,6 +25,9 @@ if (exists("name", meta)) {
 cat(description)
 ```
 
+<details>
+<summary title="Expand this section to see some additional metadata in a structured format that is useful for search engines">Metadata for search engines</summary>
+
 ```{r results='asis', echo = FALSE}
 if (exists("temporalCoverage", meta)) {
   glue::glue(
@@ -88,3 +91,4 @@ meta <- meta[setdiff(names(meta),
 pander::pander(meta)
 ```
 
+</details>
