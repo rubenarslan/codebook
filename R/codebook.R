@@ -122,37 +122,42 @@ codebook <- function(results, reliabilities = NULL,
   vars <- names(results)
   items_contained_in_scales <- c()
   `%<-%` <- future::`%<-%`
-  for (i in seq_along(vars)) {
-    var <- vars[i]
-    scale <- results[[ var ]]
-    scale_info <- attributes(scale)
-    if ( !is.null(scale_info) && exists("scale_item_names", scale_info)) {
-      items_contained_in_scales <- c(items_contained_in_scales,
-                                     scale_info$scale_item_names, var)
-      items <- dplyr::select(results,
-                  !!!(rlang::quos(scale_info$scale_item_names)))
-      scales_items[[var]] %<-% {tryCatch({
-        codebook_component_scale(
-          scale = scale, scale_name = var,
-          items = items,
-          reliabilities = reliabilities[[var]], indent = indent) },
-      error = function(e) stop("Could not summarise scale ", var, ". ", e)) }
+
+  if (detailed_scales) {
+    for (i in seq_along(vars)) {
+      var <- vars[i]
+      scale <- results[[ var ]]
+      scale_info <- attributes(scale)
+      if ( !is.null(scale_info) && exists("scale_item_names", scale_info)) {
+        items_contained_in_scales <- c(items_contained_in_scales,
+                                       scale_info$scale_item_names, var)
+        items <- dplyr::select(results,
+                    !!!scale_info$scale_item_names)
+        scales_items[[var]] %<-% {tryCatch({
+          codebook_component_scale(
+            scale = scale, scale_name = var,
+            items = items,
+            reliabilities = reliabilities[[var]], indent = indent) },
+        error = function(e) stop("Could not summarise scale ", var, ". ", e)) }
+      }
     }
   }
 
-  dont_show_these <- c(items_contained_in_scales,
-                       c("session", "created", "modified", "expired", "ended"))
-  for (i in seq_along(vars)) {
-    var <- vars[i]
-    item <- results[[ var ]]
-    if (var %in% dont_show_these) {
-      next # don't do scales again
-    } else {
-      scales_items[[var]] %<-% {tryCatch({
-                      codebook_component_single_item( item = item,
-                              item_name = var, indent = indent ) },
-      error = function(e) stop("Could not summarise item ", var, ". ", e)) }
+  if (detailed_variables) {
+    dont_show_these <- c(items_contained_in_scales,
+                         c("session", "created", "modified", "expired", "ended"))
+    for (i in seq_along(vars)) {
+      var <- vars[i]
+      item <- results[[ var ]]
+      if (var %in% dont_show_these) {
+        next # don't do scales again
+      } else {
+        scales_items[[var]] %<-% {tryCatch({
+                        codebook_component_single_item( item = item,
+                                item_name = var, indent = indent ) },
+        error = function(e) stop("Could not summarise item ", var, ". ", e)) }
 
+      }
     }
   }
 
@@ -177,7 +182,6 @@ codebook <- function(results, reliabilities = NULL,
   } else {
     jsonld <- no_md()
   }
-
 
 
   asis_knit_child(require_file("_codebook.Rmd"), options = options)
@@ -460,7 +464,7 @@ codebook_table <- function(results) {
               setdiff(names(metadata), order)), # include other cols
                c("choice_list"))
 
-  metadata <- dplyr::select(metadata,  !!!rlang::quos(cols))
+  metadata <- dplyr::select(metadata,  !!!cols)
   dplyr::select_if(metadata, not_all_na )
 }
 

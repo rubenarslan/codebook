@@ -1,5 +1,16 @@
 context("Miscellaneous functions")
 
+
+test_that("Doesnt disclose unique values", {
+  set.seed(1)
+  expect_true(could_disclose_unique_values(letters))
+  expect_false(could_disclose_unique_values(rnorm(1000)))
+  expect_true(could_disclose_unique_values(rep(letters, each = 2)))
+  expect_false(could_disclose_unique_values(as.factor(rep(letters, each = 2))))
+  expect_true(could_disclose_unique_values(letters[1:6]))
+})
+
+
 test_that("Can print codebook table", {
   data("nhanes", package = "mice")
   expect_silent(codebook:::export_table(codebook_table(nhanes)))
