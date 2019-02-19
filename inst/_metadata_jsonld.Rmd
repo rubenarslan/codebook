@@ -2,9 +2,20 @@
 if (exists("testing")) {
 	indent = '#' # ugly hack so _regression_summary can be "spun" (variables included via `r ` have to be available)
 	results = data.frame()
+	jsonld_metadata <- list(test = 1)
 }
+json <- jsonlite::toJSON(jsonld_metadata, pretty = TRUE, auto_unbox = TRUE)
 ```
 
 <script type="application/ld+json">
-`r jsonlite::toJSON(jsonld_metadata, pretty = TRUE, auto_unbox = TRUE)`
+`r json`
 </script>
+
+<details><summary>JSON-LD metadata</summary>
+The following JSON-LD can be found by search engines, if you share this codebook
+publicly on the web.
+
+```json
+`r json``
+```
+</details>
