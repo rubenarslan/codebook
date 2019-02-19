@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.6.9000</span>
       </span>
     </div>
 
@@ -94,12 +94,6 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/codebook_labelled_manual.html">Codebook example with manual labelling</a>
-    </li>
-    <li>
-      <a href="../articles/codebook_nested_scale.html">Codebook example with nested scales</a>
-    </li>
     <li>
       <a href="../articles/codebook_qualtrics.html">Codebook example with Qualtrics dataset</a>
     </li>
@@ -210,6 +204,7 @@
 #&gt; if (
 #&gt;   is.character(item_nomiss) &amp;&amp;
 #&gt;   any(stringr::str_detect(item_nomiss, stringr::fixed(", "))) &amp;&amp;
+#&gt;   !is.null(item_info) &amp;&amp;
 #&gt;   (exists("type", item_info) &amp;&amp; 
 #&gt;     any(stringr::str_detect(item_info$type, 
 #&gt;                             pattern = stringr::fixed("multiple"))))
@@ -221,7 +216,8 @@
 #&gt; old_height &lt;- knitr::opts_chunk$get("fig.height")
 #&gt; non_missing_choices &lt;- item_attributes[["labels"]]
 #&gt; many_labels &lt;- length(non_missing_choices) &gt; 7
-#&gt; go_vertical &lt;- !is.numeric(item_nomiss) || many_labels
+#&gt; go_vertical &lt;- !is_numeric_or_time_var(item_nomiss) || many_labels
+#&gt;   
 #&gt; if ( go_vertical ) {
 #&gt;   # numeric items are plotted horizontally (because that's what usually expected)
 #&gt;   # categorical items are plotted vertically because we can use the screen real estate better this way
@@ -235,6 +231,9 @@
 #&gt; 	new_height &lt;- 2 + choice_multiplier * length(non_missing_choices)
 #&gt; 	new_height &lt;- ifelse(new_height &gt; 20, 20, new_height)
 #&gt; 	new_height &lt;- ifelse(new_height &lt; 1, 1, new_height)
+#&gt; 	if(could_disclose_unique_values(item_nomiss) &amp;&amp; is.character(item_nomiss)) {
+#&gt; 	  new_height &lt;- old_height
+#&gt; 	}
 #&gt; 	knitr::opts_chunk$set(fig.height = new_height)
 #&gt; }
 #&gt; 
@@ -247,10 +246,17 @@
 #&gt; # todo: bin rare responses into "other category"
 #&gt; if (!length(item_nomiss)) {
 #&gt;   cat("No non-missing values to show.")
-#&gt; } else if (is.numeric(item_nomiss) || dplyr::n_distinct(item_nomiss) &lt; 20) {
+#&gt; } else if (!could_disclose_unique_values(item_nomiss)) {
 #&gt;   plot_labelled(item_nomiss, item_name, wrap_at, go_vertical)
 #&gt; } else {
-#&gt; 	cat(dplyr::n_distinct(item_nomiss), " unique, categorical values, so not shown.")
+#&gt;   if (is.character(item_nomiss)) {
+#&gt;       char_count &lt;- stringr::str_count(item_nomiss)
+#&gt;       attributes(char_count)$label &lt;- item_label
+#&gt;       plot_labelled(char_count, 
+#&gt;                     item_name, wrap_at, FALSE, trans = "log1p")
+#&gt;   } else {
+#&gt; 	  cat(dplyr::n_distinct(item_nomiss), " unique, categorical values, so not shown.")
+#&gt;   }
 #&gt; }
 #&gt; ```
 #&gt; 

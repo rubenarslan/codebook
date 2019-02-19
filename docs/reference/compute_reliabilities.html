@@ -76,7 +76,7 @@ If you do plan to do that, you can pass the results of this operation to the cod
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.6.9000</span>
       </span>
     </div>
 
@@ -101,12 +101,6 @@ If you do plan to do that, you can pass the results of this operation to the cod
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/codebook_labelled_manual.html">Codebook example with manual labelling</a>
-    </li>
-    <li>
-      <a href="../articles/codebook_nested_scale.html">Codebook example with nested scales</a>
-    </li>
     <li>
       <a href="../articles/codebook_qualtrics.html">Codebook example with Qualtrics dataset</a>
     </li>
@@ -184,6 +178,7 @@ If you do plan to do that, you can pass the results of this operation to the cod
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>"bfi"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"codebook"</span>)
+  <span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='no'>bfi</span> <span class='kw'>%&gt;%</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(-<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>starts_with</a></span>(<span class='st'>"BFIK_agree"</span>))
 <span class='no'>reliabilities</span> <span class='kw'>&lt;-</span> <span class='fu'>compute_reliabilities</span>(<span class='no'>bfi</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

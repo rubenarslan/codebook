@@ -71,7 +71,7 @@ vectors, but provides little benefit." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.6.9000</span>
       </span>
     </div>
 
@@ -96,12 +96,6 @@ vectors, but provides little benefit." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/codebook_labelled_manual.html">Codebook example with manual labelling</a>
-    </li>
-    <li>
-      <a href="../articles/codebook_nested_scale.html">Codebook example with nested scales</a>
-    </li>
     <li>
       <a href="../articles/codebook_qualtrics.html">Codebook example with Qualtrics dataset</a>
     </li>
@@ -157,7 +151,7 @@ vectors, but provides little benefit.</p>
     </div>
 
     <pre class="usage"><span class='fu'>plot_labelled</span>(<span class='no'>item</span>, <span class='kw'>item_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>wrap_at</span> <span class='kw'>=</span> <span class='fl'>70</span>,
-  <span class='kw'>go_vertical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>go_vertical</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>trans</span> <span class='kw'>=</span> <span class='st'>"identity"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,6 +171,10 @@ vectors, but provides little benefit.</p>
     <tr>
       <th>go_vertical</th>
       <td><p>defaults to FALSE. Whether to show choices on the Y axis instead.</p></td>
+    </tr>
+    <tr>
+      <th>trans</th>
+      <td><p>defaults to "identity" passed to <code><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>ggplot2::scale_x_continuous()</a></code></p></td>
     </tr>
     </table>
     

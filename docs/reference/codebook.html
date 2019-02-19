@@ -76,7 +76,7 @@ codebook will become part of the document you are generating." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.6.9000</span>
       </span>
     </div>
 
@@ -101,12 +101,6 @@ codebook will become part of the document you are generating." />
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/codebook_labelled_manual.html">Codebook example with manual labelling</a>
-    </li>
-    <li>
-      <a href="../articles/codebook_nested_scale.html">Codebook example with nested scales</a>
-    </li>
     <li>
       <a href="../articles/codebook_qualtrics.html">Codebook example with Qualtrics dataset</a>
     </li>
@@ -167,7 +161,8 @@ codebook will become part of the document you are generating.</p>
     </div>
 
     <pre class="usage"><span class='fu'>codebook</span>(<span class='no'>results</span>, <span class='kw'>reliabilities</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>survey_repetition</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"auto"</span>,
-  <span class='st'>"single"</span>, <span class='st'>"repeated_once"</span>, <span class='st'>"repeated_many"</span>), <span class='kw'>survey_overview</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='st'>"single"</span>, <span class='st'>"repeated_once"</span>, <span class='st'>"repeated_many"</span>), <span class='kw'>detailed_variables</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>detailed_scales</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>survey_overview</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>missingness_report</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>metadata_table</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>metadata_json</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>indent</span> <span class='kw'>=</span> <span class='st'>"#"</span>)</pre>
     
@@ -185,6 +180,14 @@ codebook will become part of the document you are generating.</p>
     <tr>
       <th>survey_repetition</th>
       <td><p>defaults to "auto" which is to try to determine the level of repetition from the "session" and "created" variables. Other values are: single, repeated_once, repeated_many</p></td>
+    </tr>
+    <tr>
+      <th>detailed_variables</th>
+      <td><p>whether to print a graph and summary for each variable</p></td>
+    </tr>
+    <tr>
+      <th>detailed_scales</th>
+      <td><p>whether to print a graph and summary for each scale</p></td>
     </tr>
     <tr>
       <th>survey_overview</th>

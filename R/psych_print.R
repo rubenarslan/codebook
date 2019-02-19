@@ -40,6 +40,25 @@ knit_print.multilevel <- function(x, indent = '#####', ...) {
 }
 
 
+
+#' Print a [userfriendlyscience::scaleDiagnosis()] object for knitr
+#'
+#' Just prints the normal output of [userfriendlyscience::scaleDiagnosis()].
+#'
+#' @param x a scaleDiagnosis object
+#' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h5
+#' @param ... ignored
+#'
+#' @export
+#' @examples
+#' example("mlr", "psych")
+#' knitr::knit_print(mg)
+#'
+knit_print.scaleDiagnosis <- function(x, indent = '#####', ...) {
+  asis_knit_child(require_file("_knit_print_scaleDiagnosis.Rmd"))
+}
+
+
 #' Print a [stats::cor.test()] object for knitr
 #'
 #' Just prints the normal output of [stats::cor.test()].

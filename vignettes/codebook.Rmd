@@ -36,7 +36,7 @@ As _you_ cannot see, but _[search engines](https://toolbox.google.com/datasetsea
 will, the `codebook` package also generates [JSON-LD](https://json-ld.org/) metadata for the [dataset](https://developers.google.com/search/docs/data-types/dataset). If you share your codebook as an HTML file online, this metadata should make it easier for others
 to find your data. [See what Google sees here](https://search.google.com/structured-data/testing-tool#url=https%3A%2F%2Frubenarslan.github.io%2Fcodebook%2Farticles%2Fcodebook.html).
 
-```{r}
+```{r warning=FALSE,message=FALSE}
 knit_by_pkgdown <- !is.null(knitr::opts_chunk$get("fig.retina"))
 knitr::opts_chunk$set(warning = TRUE, message = TRUE, error = FALSE)
 pander::panderOptions("table.split.table", Inf)
@@ -44,6 +44,12 @@ ggplot2::theme_set(ggplot2::theme_bw())
 
 library(codebook)
 data("bfi", package = 'codebook')
+if (!knit_by_pkgdown) {
+  library(dplyr)
+    bfi <- bfi %>% select(-starts_with("BFIK_extra"),
+                        -starts_with("BFIK_open"),
+                        -starts_with("BFIK_consc"))
+}
 set.seed(1)
 bfi$age <- rpois(nrow(bfi), 30)
 library(labelled)

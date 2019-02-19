@@ -15,6 +15,7 @@
 #' @export
 #' @examples
 #' data("bfi", package = "codebook")
+#'   bfi <- bfi %>% dplyr::select(dplyr::starts_with("BFIK_agree"))
 #' reliabilities <- compute_reliabilities(bfi)
 
 compute_reliabilities <- function(results, survey_repetition = "single") {
@@ -27,18 +28,29 @@ compute_reliabilities <- function(results, survey_repetition = "single") {
     scale_info <- attributes(results[[var]])
     if (!is.null(scale_info) && exists("scale_item_names", scale_info)) {
       reliabilities[[ var ]] %<-% {
+        id_vars <- c("session", "created")
+        id_vars <- intersect(id_vars, vars)
+        scale_info$scale_item_names <- unname(scale_info$scale_item_names)
+        items <- dplyr::select(results,
+                               !!!id_vars,
+                               !!var,
+                               !!!scale_info$scale_item_names)
+
         tryCatch({
-          id_vars <- c("session", "created")
-          id_vars <- intersect(id_vars, vars)
-          scale_info$scale_item_names <- unname(scale_info$scale_item_names)
-          items <- dplyr::select(results,
-              !!!id_vars,
-              !!var,
-              !!!scale_info$scale_item_names)
           compute_appropriate_reliability(var, scale_info,
                                           items,
-                                          survey_repetition)
-        }, error = function(e) warning(e))
+                                          survey_repetition, ci = TRUE)
+        }, error = function(e) {
+          tryCatch({
+            compute_appropriate_reliability(var, scale_info,
+                                          items,
+                                          survey_repetition, ci = FALSE)
+          }, error = function(e) {
+            warning(e)
+            NULL
+          })
+
+        })
       }
     }
   }
@@ -47,38 +59,48 @@ compute_reliabilities <- function(results, survey_repetition = "single") {
 
 
 compute_appropriate_reliability <- function(scale_name, scale_info,
-                                            results, survey_repetition) {
+                                            results, survey_repetition,
+                                            ci = TRUE,
+  give_me_alpha_even_if_its_strictly_inferior = FALSE) {
   scale_item_names <- scale_info$scale_item_names
+  if (give_me_alpha_even_if_its_strictly_inferior) {
+    internal_consistency <- function(data, scale_name) {
+      psych::alpha(as.data.frame(data),
+                   title = scale_name, check.keys = FALSE)
+    }
+  } else {
+    internal_consistency <- function(data, scale_name) {
+      suppressWarnings(
+        userfriendlyscience::scaleDiagnosis(data,
+          scaleReliability.ci = ci))
+    }
+  }
+
   if (survey_repetition == 'single') {
-    list(
-      internal_consistency =
-        psych::alpha(as.data.frame(results[, scale_item_names]),
-          title = scale_name, check.keys = FALSE)
-    )
+      list(
+        internal_consistency =
+          internal_consistency(results[, scale_item_names], scale_name)
+      )
   } else if (survey_repetition == 'repeated_once') {
-    id_vars <- c("session", "created")
+    id_vars <- c("session")
     if ( !all(id_vars %in% names(results))) {
-      stop("For now, the variables session and created have to be defined for ",
-           "multilevel reliability computation to work.")
+      stop("For now, the variable session has to index the user ID and earlier ",
+           "rows need to reflect the earlier measurement occasion, so that ",
+           "retest statistics can be computed")
     }
 
-    wide <- tidyr::spread(
-      dplyr::select(
-        dplyr::mutate(
-          dplyr::group_by(results, .data$session),
-          Time = dplyr::row_number(.data$created)), .data$session, .data$Time,
-        !!scale_name ),
-      key = .data$Time, value = !!scale_name, sep = "_")
+    t1_items <- results[!duplicated(results$session),
+                        scale_item_names]
+    t2_items <- results[duplicated(results$session),
+                        scale_item_names]
+
     list(
       internal_consistency_T1 =
-        psych::alpha(as.data.frame(results[!duplicated(results$session),
-          scale_item_names]), title = paste( scale_name, "Time 1"),
-          check.keys = FALSE),
+        internal_consistency(t1_items, paste( scale_name, "Time 1")),
       internal_consistency_T2 =
-        psych::alpha(as.data.frame(results[duplicated(results$session),
-          scale_item_names]), title = paste( scale_name, "Time 2"),
-          check.keys = FALSE),
-      retest_reliability = stats::cor.test(wide$Time_1, wide$Time_2)
+        internal_consistency(t2_items, paste( scale_name, "Time 2")),
+      retest_reliability = userfriendlyscience::testRetestReliability(
+        testDat = t1_items, retestDat = t2_items)
     )
   } else if (survey_repetition == 'repeated_many') {
     id_vars <- c("session", "created")
@@ -110,6 +132,20 @@ pull_reliability <- function(rels) {
     paste0("Cronbach's \u03B1 [95% CI] = ", round(x$total$raw_alpha, 2), " [",
            round(x$total$raw_alpha - 1.96 * x$total$ase, 2), ";",
            round(x$total$raw_alpha + 1.96 * x$total$ase, 2), "]")
+  } else if (length(rels) == 1 && "scaleDiagnosis" %in% class(rels[[1]])) {
+    coefs <- rels[[1]]$scaleReliability$output$dat
+    if (exists("omega.ordinal.ci.lo", coefs)) {
+      paste0("\u03C9<sub>ordinal</sub> [95% CI] = ", round(coefs$omega.ordinal, 2), " [",
+             round(coefs$omega.ordinal.ci.lo, 2), ";",
+             round(coefs$omega.ordinal.ci.hi, 2), "]")
+    } else if (exists("omega.ci.lo", coefs)) {
+      paste0("\u03C9<sub>total</sub> [95% CI] = ", round(coefs$omega, 2), " [",
+             round(coefs$omega.ci.lo, 2), ";",
+             round(coefs$omega.ci.hi, 2), "]")
+    } else if (exists("omega", coefs)) {
+      paste0("\u03C9<sub>total</sub> [95% CI] = ", round(coefs$omega, 2),
+             " [not computed]")
+    }
   } else {
     "See details tab"
   }

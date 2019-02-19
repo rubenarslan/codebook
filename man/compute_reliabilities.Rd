@@ -23,5 +23,6 @@ If you do plan to do that, you can pass the results of this operation to the cod
 }
 \examples{
 data("bfi", package = "codebook")
+  bfi <- bfi \%>\% dplyr::select(dplyr::starts_with("BFIK_agree"))
 reliabilities <- compute_reliabilities(bfi)
 }

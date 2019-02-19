@@ -5,20 +5,25 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Automatic Codebooks from Survey Metadata Encoded in Attributes • codebook</title>
+<title>Automatic Codebooks from Metadata Encoded in Dataset Attributes • codebook</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><!-- docsearch --><script src="docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="docsearch.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Automatic Codebooks from Survey Metadata Encoded in Attributes">
-<meta property="og:description" content="Easily automate the following tasks to describe data frames: 
-  summarise the distributions of scales and items graphically and using descriptive statistics,
-  compute reliabilities (internal consistencies, retest, multilevel) for psychological scales, 
-  combine this information with metadata (such as item labels and labelled values) that is derived from R attributes.
-  To do so, the package relies on 'rmarkdown' partials, so you can generate HTML, PDF, and Word documents. Codebooks
-  are also available as tables (CSV, Excel, etc.).
-  The metadata and codebooks are also available at your fingertips via RStudio Addins.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Automatic Codebooks from Metadata Encoded in Dataset Attributes">
+<meta property="og:description" content="Easily automate the following tasks to describe data frames:
+		Summarise the distributions, and labelled missings of variables graphically
+		and using descriptive statistics.
+		For surveys, compute and summarise reliabilities (internal consistencies, 
+		retest, multilevel) for psychological scales.
+		Combine this information with metadata (such as item labels and labelled 
+		values) that is derived from R attributes.
+		To do so, the package relies on 'rmarkdown' partials, so you can generate 
+		HTML, PDF, and Word documents. 
+		Codebooks are also available as tables (CSV, Excel, etc.) and in JSON-LD, so
+		that search engines can find your data and index the metadata.
+		The metadata are also available at your fingertips via RStudio Addins.">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -38,7 +43,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.6.9000</span>
       </span>
     </div>
 
@@ -64,12 +69,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/codebook_labelled_manual.html">Codebook example with manual labelling</a>
-    </li>
-    <li>
-      <a href="articles/codebook_nested_scale.html">Codebook example with nested scales</a>
-    </li>
-    <li>
       <a href="articles/codebook_qualtrics.html">Codebook example with Qualtrics dataset</a>
     </li>
     <li>
@@ -117,11 +116,12 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#codebook" class="anchor"></a>codebook</h1></div>
 <p><a href="https://travis-ci.org/rubenarslan/codebook"><img src="https://travis-ci.org/rubenarslan/codebook.svg?branch=master" alt="Travis-CI Build Status"></a> <a href="https://cran.r-project.org/package=codebook"><img src="http://www.r-pkg.org/badges/version-ago/codebook" alt="CRAN status"></a> <img src="https://cranlogs.r-pkg.org/badges/grand-total/codebook" alt="Downloads"><a href="https://codecov.io/gh/rubenarslan/codebook"><img src="https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://zenodo.org/badge/latestdoi/109252375"><img src="https://zenodo.org/badge/109252375.svg" alt="DOI"></a></p>
-<p><em>Automatic Codebooks from Survey Metadata Encoded in Attributes</em></p>
+<p><em>Automatic Codebooks from Metadata Encoded in Dataset Attributes</em></p>
 <div id="description" class="section level2">
 <h2 class="hasAnchor">
 <a href="#description" class="anchor"></a>Description</h2>
-<p>Easily automate the following tasks to describe data frames: computing reliabilities (internal consistencies, retest, multilevel) for psychological scales, summarise the distributions of scales and items graphically and using descriptive statistics, combine this information with metadata (such as item labels and labelled values) that is derived from R attributes. To do so, the package relies on ‘rmarkdown’ partials, so you can generate HTML, PDF, and Word documents. Codebooks are also available as tables (CSV, Excel, etc.).</p>
+<p>Easily automate the following tasks to describe data frames: - summarise the distributions, and labelled missings of variables graphically and using descriptive statistics - for surveys, compute and summarise reliabilities (internal consistencies, retest, multilevel) for psychological scales, - combine this information with metadata (such as item labels and labelled values) that is derived from R attributes.</p>
+<p>To do so, the package relies on ‘rmarkdown’ partials, so you can generate HTML, PDF, and Word documents. Codebooks are also available as tables (CSV, Excel, etc.) and in JSON-LD, so that search engines can find your data and index the metadata.</p>
 </div>
 <div id="generate-markdown-codebooks-from-the-attributes-of-the-variables-in-your-data-frame" class="section level2">
 <h2 class="hasAnchor">
