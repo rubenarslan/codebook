@@ -260,7 +260,7 @@ Of course, it's also a good idea to let others know who they can contact about t
 ```{r}
 metadata(codebook_data)$creator <- "William Revelle"
 metadata(codebook_data)$citation <- "Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer."
-metadata(codebook_data)$url <- "https://cran.r-project.org/web/packages/psych/index.html"
+metadata(codebook_data)$url <- "https://CRAN.R-project.org/package=psych"
 ```
 
 Lastly, it is useful to note when and where the data was collected, and when it was published. Ideally, you would make more specific information available here, but this is all I know about the BFI dataset.

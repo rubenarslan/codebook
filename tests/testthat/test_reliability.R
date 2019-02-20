@@ -36,7 +36,7 @@ test_that("Retest reliabilities can be computed", {
   bfi2 <- rescue_attributes(bfi2, bfi)
   expect_silent(rels <- compute_reliabilities(bfi2,
                                     survey_repetition = "repeated_once"))
-  expect_equal(length(rels), 2)
+  expect_equal(length(rels), 1)
   expect_equal(length(rels$BFIK_agree), 3)
   expect_identical(names(rels$BFIK_agree), c("internal_consistency_T1",
                                              "internal_consistency_T2",

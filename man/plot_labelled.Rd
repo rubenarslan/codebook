@@ -5,7 +5,7 @@
 \title{Plot labelled vector}
 \usage{
 plot_labelled(item, item_name = NULL, wrap_at = 70,
-  go_vertical = FALSE, trans = "identity")
+  go_vertical = FALSE, trans = "identity", x_axis_label = "values")
 }
 \arguments{
 \item{item}{a vector}
@@ -17,6 +17,8 @@ plot_labelled(item, item_name = NULL, wrap_at = 70,
 \item{go_vertical}{defaults to FALSE. Whether to show choices on the Y axis instead.}
 
 \item{trans}{defaults to "identity" passed to \code{\link[ggplot2:scale_x_continuous]{ggplot2::scale_x_continuous()}}}
+
+\item{x_axis_label}{defaults to "values"}
 }
 \description{
 Plot a labelled vector, making use of the variable name, label and value

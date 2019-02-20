@@ -93,7 +93,7 @@ if (!length(item_nomiss)) {
       char_count <- stringr::str_count(item_nomiss)
       attributes(char_count)$label <- item_label
       plot_labelled(char_count, 
-                    item_name, wrap_at, FALSE, trans = "log1p")
+                    item_name, wrap_at, FALSE, trans = "log1p", "characters")
   } else {
 	  cat(dplyr::n_distinct(item_nomiss), " unique, categorical values, so not shown.")
   }
