@@ -1,3 +1,17 @@
+# codebook 0.8.0
+## Changes
+- removed three vignettes
+- calculate reliability using `userfriendlyscience` instead of Cronbach's Alpha and correlations
+- make it easier to generate compact codebooks
+- hide machine-readable metadata in details tags (toggle to view)
+- plot number of characters for character variables
+- update explanations in web app slightly
+- reduce survey-specific language
+
+## Bugfixes
+- make it less likely that unique/private values are disclosed (e.g., free text)
+- no longer error 
+
 # codebook 0.7.6
 ## Bugfixes
 - changed vignette titles (one was duplicated)

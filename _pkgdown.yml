@@ -9,6 +9,7 @@ reference:
   desc: Functions to generate (parts of) the codebook
   contents:
   - '`codebook`'
+  - '`compact_codebook`'
   - '`new_codebook_rmd`'
   - '`codebook_table`'
   - '`codebook_items`'
@@ -57,6 +58,7 @@ reference:
   - '`knit_print.alpha`'
   - '`knit_print.htest`'
   - '`knit_print.multilevel`'
+  - '`knit_print.scaleDiagnosis`'
   - '`likert_from_items`'
   - '`plot_labelled`'
 - title: formr-data specific helpers

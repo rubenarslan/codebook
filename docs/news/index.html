@@ -92,12 +92,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/codebook_labelled_manual.html">Codebook example with manual labelling</a>
-    </li>
-    <li>
-      <a href="../articles/codebook_nested_scale.html">Codebook example with nested scales</a>
-    </li>
-    <li>
       <a href="../articles/codebook_qualtrics.html">Codebook example with Qualtrics dataset</a>
     </li>
     <li>
@@ -142,13 +136,39 @@
       <small>Source: <a href='https://github.com/rubenarslan/codebook/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="codebook-0-8-0" class="section level1">
+<h1 class="page-header">
+<a href="#codebook-0-8-0" class="anchor"></a>codebook 0.8.0<small> Unreleased </small>
+</h1>
+<div id="changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#changes" class="anchor"></a>Changes</h2>
+<ul>
+<li>removed three vignettes</li>
+<li>calculate reliability using <code>userfriendlyscience</code> instead of Cronbach’s Alpha and correlations</li>
+<li>make it easier to generate compact codebooks</li>
+<li>hide machine-readable metadata in details tags (toggle to view)</li>
+<li>plot number of characters for character variables</li>
+<li>update explanations in web app slightly</li>
+<li>reduce survey-specific language</li>
+</ul>
+</div>
+<div id="bugfixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bugfixes" class="anchor"></a>Bugfixes</h2>
+<ul>
+<li>make it less likely that unique/private values are disclosed (e.g., free text)</li>
+<li>no longer error</li>
+</ul>
+</div>
+</div>
     <div id="codebook-0-7-6" class="section level1">
 <h1 class="page-header">
 <a href="#codebook-0-7-6" class="anchor"></a>codebook 0.7.6<small> 2019-01-08 </small>
 </h1>
-<div id="bugfixes" class="section level2">
+<div id="bugfixes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-1" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>changed vignette titles (one was duplicated)</li>
 </ul>
@@ -158,9 +178,9 @@
 <h1 class="page-header">
 <a href="#codebook-0-7-5" class="anchor"></a>codebook 0.7.5<small> 2018-12-04 </small>
 </h1>
-<div id="bugfixes-1" class="section level2">
+<div id="bugfixes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-1" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-2" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>import/export knit_print generic from knitr</li>
 </ul>
@@ -180,9 +200,9 @@
 </li>
 </ul>
 </div>
-<div id="changes" class="section level2">
+<div id="changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#changes" class="anchor"></a>Changes</h2>
+<a href="#changes-1" class="anchor"></a>Changes</h2>
 <ul>
 <li>removed <code>zap_label</code> because haven 2.0.0 has this function</li>
 <li>added several functions to add JSON-LD compliant metadata and to show it in the codebook</li>
@@ -194,9 +214,9 @@
 <li>removed the mice dependency to reduce the number of dependencies</li>
 </ul>
 </div>
-<div id="bugfixes-2" class="section level2">
+<div id="bugfixes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-2" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-3" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>
 <code>detect_missing</code> reset variable label with the new haven version (only between 0.6.3.9000 and 0.7.0, never on CRAN)</li>
@@ -224,17 +244,17 @@
 <li>Default method for haven::as_factor when labelled class is absent</li>
 </ul>
 </div>
-<div id="changes-1" class="section level2">
+<div id="changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#changes-1" class="anchor"></a>Changes</h2>
+<a href="#changes-2" class="anchor"></a>Changes</h2>
 <ul>
 <li>Changed the scale summary, so that Likert plots and distributions are shown on the first tab. Reliability now hidden under “Reliability details”.</li>
 <li>removed unnecessary <code>readr</code> dependency.</li>
 </ul>
 </div>
-<div id="bugfixes-3" class="section level2">
+<div id="bugfixes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-3" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-4" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>summarising factors in a table</li>
 <li>turning off components of the codebook without empty strings being echoed</li>
@@ -338,6 +358,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#codebook-0-8-0">0.8.0</a></li>
         <li><a href="#codebook-0-7-6">0.7.6</a></li>
         <li><a href="#codebook-0-7-5">0.7.5</a></li>
         <li><a href="#codebook-0-7-4">0.7.4</a></li>

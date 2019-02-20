@@ -108,7 +108,7 @@
       <h1>Codebook example with formr.org data</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2019-02-19</h4>
+            <h4 class="date">2019-02-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook.Rmd"><code>vignettes/codebook.Rmd</code></a></small>
       <div class="hidden name"><code>codebook.Rmd</code></div>
@@ -128,9 +128,9 @@
 <a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"bfi"</span>, <span class="dt">package =</span> <span class="st">'codebook'</span>)</a>
 <a class="sourceLine" id="cb1-8" data-line-number="8"><span class="cf">if</span> (<span class="op">!</span>knit_by_pkgdown) {</a>
 <a class="sourceLine" id="cb1-9" data-line-number="9">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">    bfi &lt;-<span class="st"> </span>bfi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"BFIK_extra"</span>),</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">                        <span class="op">-</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"BFIK_open"</span>),</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">                        <span class="op">-</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"BFIK_consc"</span>))</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">    bfi &lt;-<span class="st"> </span>bfi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/select">select</a></span>(<span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/reexports">starts_with</a></span>(<span class="st">"BFIK_extra"</span>),</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">                        <span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/reexports">starts_with</a></span>(<span class="st">"BFIK_open"</span>),</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">                        <span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/reexports">starts_with</a></span>(<span class="st">"BFIK_consc"</span>))</a>
 <a class="sourceLine" id="cb1-13" data-line-number="13">}</a>
 <a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb1-15" data-line-number="15">bfi<span class="op">$</span>age &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">rpois</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(bfi), <span class="dv">30</span>)</a>
