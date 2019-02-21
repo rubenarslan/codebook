@@ -2,9 +2,6 @@
 * Mainly fixes a few bugs and unclear language as pointed out by users
 * Also becomes a bit more robust
 * Sorry for the short interval between submissions, last one was minor to fix a duplicated vignette
-* Travis CI could not build because it could not install the dependency gsl from
-source, but this worked in all other test environments, so I think it will right itself
-once CRAN builds gsl
 
 ## Test environments
 * local OS X install, R 3.5.2
