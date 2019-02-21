@@ -207,9 +207,11 @@
 #&gt; ```
 #&gt; 
 #&gt; ```r
-#&gt; likert_plot &lt;- likert_from_items(items)
-#&gt; if (!is.null(likert_plot)) {
-#&gt;   graphics::plot(likert_plot)
+#&gt; if (dplyr::n_distinct(na.omit(unlist(items))) &lt; 12) {
+#&gt;   likert_plot &lt;- likert_from_items(items)
+#&gt;   if (!is.null(likert_plot)) {
+#&gt;     graphics::plot(likert_plot)
+#&gt;   }
 #&gt; }
 #&gt; ```
 #&gt; 

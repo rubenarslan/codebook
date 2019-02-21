@@ -1,8 +1,10 @@
 ## Submission
-* This is only to fix a duplicated vignette title.
+* Mainly fixes a few bugs and unclear language as pointed out by users
+* Also becomes a bit more robust
+* Sorry for the short interval between submissions, last one was minor to fix a duplicated vignette
 
 ## Test environments
-* local OS X install, R 3.5.1
+* local OS X install, R 3.5.2
 * Ubuntu 14.04 (on travis-ci), R-oldrel, R-release, R-devel
 * Rhub
   * Windows Server 2008 R2 SP1, R-devel, 32/64 bit

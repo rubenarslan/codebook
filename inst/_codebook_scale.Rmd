@@ -33,7 +33,7 @@ new_height <- ifelse(is.na(new_height) | is.nan(new_height),
 knitr::opts_chunk$set(fig.height = new_height)
 ```
 ```{r likert}
-if (dplyr::n_distinct(items) < 12) {
+if (dplyr::n_distinct(na.omit(unlist(items))) < 12) {
   likert_plot <- likert_from_items(items)
   if (!is.null(likert_plot)) {
     graphics::plot(likert_plot)

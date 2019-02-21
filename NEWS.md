@@ -10,7 +10,6 @@
 
 ## Bugfixes
 - make it less likely that unique/private values are disclosed (e.g., free text)
-- no longer error 
 
 # codebook 0.7.6
 ## Bugfixes

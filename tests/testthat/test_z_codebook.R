@@ -232,7 +232,7 @@ test_that("Codebook with multilevel reliability", {
   on.exit(setwd(wd))
   expect_warning(md <- codebook(bfi3, metadata_table = FALSE))
   figs <- list.files(paste0(dir, "/figure"))
-  expect_equal(length(figs), 5)
+  expect_equal(length(figs), 4)
   expect_match(md, "Scale: BFIK_neuro")
   expect_match(md, "Missing values per variable")
   expect_match(md, "168 completed rows")
