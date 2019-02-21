@@ -253,7 +253,7 @@
 #&gt;       char_count &lt;- stringr::str_count(item_nomiss)
 #&gt;       attributes(char_count)$label &lt;- item_label
 #&gt;       plot_labelled(char_count, 
-#&gt;                     item_name, wrap_at, FALSE, trans = "log1p")
+#&gt;                     item_name, wrap_at, FALSE, trans = "log1p", "characters")
 #&gt;   } else {
 #&gt; 	  cat(dplyr::n_distinct(item_nomiss), " unique, categorical values, so not shown.")
 #&gt;   }

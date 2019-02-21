@@ -6,8 +6,8 @@ if (exists("testing")) {
   scale_name <- safe_name <- "bla"
 	scale <- 1:10
 	reliabilities <- list()
-	items <- list()
-	scale_info <- list(scale_item_names = c("item1", "item2", "item3R"))
+	items <- data.frame(bla1 = 1:10, bla2 = 1:10, bla3R = 10:1)
+	scale_info <- list(scale_item_names = c("bla1", "bla2", "bla3R"))
 }
 html_scale_name <- recursive_escape(scale_name)
 names(items) <- recursive_escape(names(items))
@@ -33,9 +33,11 @@ new_height <- ifelse(is.na(new_height) | is.nan(new_height),
 knitr::opts_chunk$set(fig.height = new_height)
 ```
 ```{r likert}
-likert_plot <- likert_from_items(items)
-if (!is.null(likert_plot)) {
-  graphics::plot(likert_plot)
+if (dplyr::n_distinct(items) < 12) {
+  likert_plot <- likert_from_items(items)
+  if (!is.null(likert_plot)) {
+    graphics::plot(likert_plot)
+  }
 }
 knitr::opts_chunk$set(fig.height = old_height)
 ```

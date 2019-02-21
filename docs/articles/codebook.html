@@ -108,7 +108,7 @@
       <h1>Codebook example with formr.org data</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2019-02-20</h4>
+            <h4 class="date">2019-02-21</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook.Rmd"><code>vignettes/codebook.Rmd</code></a></small>
       <div class="hidden name"><code>codebook.Rmd</code></div>
@@ -128,9 +128,9 @@
 <a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"bfi"</span>, <span class="dt">package =</span> <span class="st">'codebook'</span>)</a>
 <a class="sourceLine" id="cb1-8" data-line-number="8"><span class="cf">if</span> (<span class="op">!</span>knit_by_pkgdown) {</a>
 <a class="sourceLine" id="cb1-9" data-line-number="9">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">    bfi &lt;-<span class="st"> </span>bfi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/select">select</a></span>(<span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/reexports">starts_with</a></span>(<span class="st">"BFIK_extra"</span>),</a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">                        <span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/reexports">starts_with</a></span>(<span class="st">"BFIK_open"</span>),</a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">                        <span class="op">-</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/reexports">starts_with</a></span>(<span class="st">"BFIK_consc"</span>))</a>
+<a class="sourceLine" id="cb1-10" data-line-number="10">    bfi &lt;-<span class="st"> </span>bfi <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="op">-</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"BFIK_extra"</span>),</a>
+<a class="sourceLine" id="cb1-11" data-line-number="11">                        <span class="op">-</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"BFIK_open"</span>),</a>
+<a class="sourceLine" id="cb1-12" data-line-number="12">                        <span class="op">-</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/reexports.html">starts_with</a></span>(<span class="st">"BFIK_consc"</span>))</a>
 <a class="sourceLine" id="cb1-13" data-line-number="13">}</a>
 <a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb1-15" data-line-number="15">bfi<span class="op">$</span>age &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Poisson">rpois</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(bfi), <span class="dv">30</span>)</a>
@@ -245,51 +245,52 @@
 <h5 class="hasAnchor">
 <a href="#reliability-indices" class="anchor"></a>Reliability Indices</h5>
 <table class="table">
+<colgroup>
+<col width="31%">
+<col width="15%">
+</colgroup>
 <thead><tr class="header">
-<th align="left">Index</th>
-<th align="right">Estimate</th>
+<th align="center">Index</th>
+<th align="center">Estimate</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Omega</td>
-<td align="right">0.8193185</td>
+<td align="center">Omega</td>
+<td align="center">0.8193</td>
 </tr>
 <tr class="even">
-<td align="left">Omega Psych Tot</td>
-<td align="right">0.8877774</td>
+<td align="center">Omega Psych Tot</td>
+<td align="center">0.8878</td>
 </tr>
 <tr class="odd">
-<td align="left">Omega Psych H</td>
-<td align="right">0.7664417</td>
+<td align="center">Omega Psych H</td>
+<td align="center">0.7664</td>
 </tr>
 <tr class="even">
-<td align="left">Omega Ordinal</td>
-<td align="right">0.6050411</td>
+<td align="center">Omega Ordinal</td>
+<td align="center">0.605</td>
 </tr>
 <tr class="odd">
-<td align="left">Cronbach Alpha</td>
-<td align="right">0.8005842</td>
+<td align="center">Cronbach Alpha</td>
+<td align="center">0.8006</td>
 </tr>
 <tr class="even">
-<td align="left">Greatest Lower Bound</td>
-<td align="right">0.8857841</td>
+<td align="center">Greatest Lower Bound</td>
+<td align="center">0.8858</td>
 </tr>
 <tr class="odd">
-<td align="left">Alpha Ordinal</td>
-<td align="right">0.5878656</td>
+<td align="center">Alpha Ordinal</td>
+<td align="center">0.5879</td>
 </tr>
 </tbody>
 </table>
+<p>Positive correlations: 6 out of 6 (100%)</p>
 </div>
 <div id="scatter-matrix" class="section level5">
 <h5 class="hasAnchor">
 <a href="#scatter-matrix" class="anchor"></a>Scatter matrix</h5>
 <p><img src="codebook_files/figure-html/BFIK_agree_unnamed-chunk-4-5-1.png" width="700"></p>
 <details><p><summary>Detailed output</summary></p>
-<div id="information-about-this-analysis" class="section level6">
-<h6>Information about this analysis:</h6>
-<p>Observations: 28</p>
-<p>Positive correlations: 6 out of 6 (100%)</p>
 <pre><code>## 
 ## Information about this analysis:
 ## 
@@ -343,8 +344,6 @@
 ## BFIK_agree_1R    -1.37 0.18
 ## BFIK_agree_3R    -1.35 0.24
 ## BFIK_agree_2     -1.03 0.24</code></pre>
-
-</div>
 </details>
 </div>
 </div>
@@ -481,43 +480,44 @@
 <h5 class="hasAnchor">
 <a href="#reliability-indices-1" class="anchor"></a>Reliability Indices</h5>
 <table class="table">
+<colgroup>
+<col width="31%">
+<col width="15%">
+</colgroup>
 <thead><tr class="header">
-<th align="left">Index</th>
-<th align="right">Estimate</th>
+<th align="center">Index</th>
+<th align="center">Estimate</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Omega</td>
-<td align="right">166.8485132</td>
+<td align="center">Omega</td>
+<td align="center">166.8</td>
 </tr>
 <tr class="even">
-<td align="left">Omega Psych Tot</td>
-<td align="right">0.4603442</td>
+<td align="center">Omega Psych Tot</td>
+<td align="center">0.4603</td>
 </tr>
 <tr class="odd">
-<td align="left">Omega Psych H</td>
-<td align="right">0.2492785</td>
+<td align="center">Omega Psych H</td>
+<td align="center">0.2493</td>
 </tr>
 <tr class="even">
-<td align="left">Cronbach Alpha</td>
-<td align="right">0.5270752</td>
+<td align="center">Cronbach Alpha</td>
+<td align="center">0.5271</td>
 </tr>
 <tr class="odd">
-<td align="left">Greatest Lower Bound</td>
-<td align="right">0.7231332</td>
+<td align="center">Greatest Lower Bound</td>
+<td align="center">0.7231</td>
 </tr>
 </tbody>
 </table>
+<p>Positive correlations: 5 out of 6 (83%)</p>
 </div>
 <div id="scatter-matrix-1" class="section level5">
 <h5 class="hasAnchor">
 <a href="#scatter-matrix-1" class="anchor"></a>Scatter matrix</h5>
 <p><img src="codebook_files/figure-html/BFIK_open_unnamed-chunk-4-5-1.png" width="700"></p>
 <details><p><summary>Detailed output</summary></p>
-<div id="information-about-this-analysis-1" class="section level6">
-<h6>Information about this analysis:</h6>
-<p>Observations: 28</p>
-<p>Positive correlations: 5 out of 6 (83%)</p>
 <pre><code>## 
 ## Information about this analysis:
 ## 
@@ -566,8 +566,6 @@
 ## BFIK_open_1     0.47 0.16
 ## BFIK_open_4     2.13 0.18
 ## BFIK_open_3    -0.35 0.18</code></pre>
-
-</div>
 </details>
 </div>
 </div>
@@ -704,51 +702,52 @@
 <h5 class="hasAnchor">
 <a href="#reliability-indices-2" class="anchor"></a>Reliability Indices</h5>
 <table class="table">
+<colgroup>
+<col width="31%">
+<col width="15%">
+</colgroup>
 <thead><tr class="header">
-<th align="left">Index</th>
-<th align="right">Estimate</th>
+<th align="center">Index</th>
+<th align="center">Estimate</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Omega</td>
-<td align="right">0.8119803</td>
+<td align="center">Omega</td>
+<td align="center">0.812</td>
 </tr>
 <tr class="even">
-<td align="left">Omega Psych Tot</td>
-<td align="right">0.3688189</td>
+<td align="center">Omega Psych Tot</td>
+<td align="center">0.3688</td>
 </tr>
 <tr class="odd">
-<td align="left">Omega Psych H</td>
-<td align="right">0.2444382</td>
+<td align="center">Omega Psych H</td>
+<td align="center">0.2444</td>
 </tr>
 <tr class="even">
-<td align="left">Omega Ordinal</td>
-<td align="right">0.6076884</td>
+<td align="center">Omega Ordinal</td>
+<td align="center">0.6077</td>
 </tr>
 <tr class="odd">
-<td align="left">Cronbach Alpha</td>
-<td align="right">0.7796983</td>
+<td align="center">Cronbach Alpha</td>
+<td align="center">0.7797</td>
 </tr>
 <tr class="even">
-<td align="left">Greatest Lower Bound</td>
-<td align="right">0.9017587</td>
+<td align="center">Greatest Lower Bound</td>
+<td align="center">0.9018</td>
 </tr>
 <tr class="odd">
-<td align="left">Alpha Ordinal</td>
-<td align="right">0.5935372</td>
+<td align="center">Alpha Ordinal</td>
+<td align="center">0.5935</td>
 </tr>
 </tbody>
 </table>
+<p>Positive correlations: 6 out of 6 (100%)</p>
 </div>
 <div id="scatter-matrix-2" class="section level5">
 <h5 class="hasAnchor">
 <a href="#scatter-matrix-2" class="anchor"></a>Scatter matrix</h5>
 <p><img src="codebook_files/figure-html/BFIK_consc_unnamed-chunk-4-5-1.png" width="700"></p>
 <details><p><summary>Detailed output</summary></p>
-<div id="information-about-this-analysis-2" class="section level6">
-<h6>Information about this analysis:</h6>
-<p>Observations: 28</p>
-<p>Positive correlations: 6 out of 6 (100%)</p>
 <pre><code>## 
 ## Information about this analysis:
 ## 
@@ -802,8 +801,6 @@
 ## BFIK_consc_4     -0.35 0.14
 ## BFIK_consc_2R    -1.08 0.25
 ## BFIK_consc_1     -0.30 0.17</code></pre>
-
-</div>
 </details>
 </div>
 </div>
@@ -940,51 +937,52 @@
 <h5 class="hasAnchor">
 <a href="#reliability-indices-3" class="anchor"></a>Reliability Indices</h5>
 <table class="table">
+<colgroup>
+<col width="31%">
+<col width="15%">
+</colgroup>
 <thead><tr class="header">
-<th align="left">Index</th>
-<th align="right">Estimate</th>
+<th align="center">Index</th>
+<th align="center">Estimate</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Omega</td>
-<td align="right">0.9022973</td>
+<td align="center">Omega</td>
+<td align="center">0.9023</td>
 </tr>
 <tr class="even">
-<td align="left">Omega Psych Tot</td>
-<td align="right">0.9589016</td>
+<td align="center">Omega Psych Tot</td>
+<td align="center">0.9589</td>
 </tr>
 <tr class="odd">
-<td align="left">Omega Psych H</td>
-<td align="right">0.8394687</td>
+<td align="center">Omega Psych H</td>
+<td align="center">0.8395</td>
 </tr>
 <tr class="even">
-<td align="left">Omega Ordinal</td>
-<td align="right">0.7750403</td>
+<td align="center">Omega Ordinal</td>
+<td align="center">0.775</td>
 </tr>
 <tr class="odd">
-<td align="left">Cronbach Alpha</td>
-<td align="right">0.8992625</td>
+<td align="center">Cronbach Alpha</td>
+<td align="center">0.8993</td>
 </tr>
 <tr class="even">
-<td align="left">Greatest Lower Bound</td>
-<td align="right">0.9580502</td>
+<td align="center">Greatest Lower Bound</td>
+<td align="center">0.9581</td>
 </tr>
 <tr class="odd">
-<td align="left">Alpha Ordinal</td>
-<td align="right">0.7744083</td>
+<td align="center">Alpha Ordinal</td>
+<td align="center">0.7744</td>
 </tr>
 </tbody>
 </table>
+<p>Positive correlations: 6 out of 6 (100%)</p>
 </div>
 <div id="scatter-matrix-3" class="section level5">
 <h5 class="hasAnchor">
 <a href="#scatter-matrix-3" class="anchor"></a>Scatter matrix</h5>
 <p><img src="codebook_files/figure-html/BFIK_extra_unnamed-chunk-4-5-1.png" width="700"></p>
 <details><p><summary>Detailed output</summary></p>
-<div id="information-about-this-analysis-3" class="section level6">
-<h6>Information about this analysis:</h6>
-<p>Observations: 28</p>
-<p>Positive correlations: 6 out of 6 (100%)</p>
 <pre><code>## 
 ## Information about this analysis:
 ## 
@@ -1038,8 +1036,6 @@
 ## BFIK_extra_3R    -0.35 0.23
 ## BFIK_extra_4     -0.21 0.21
 ## BFIK_extra_1R    -1.07 0.23</code></pre>
-
-</div>
 </details>
 </div>
 </div>
@@ -1176,51 +1172,52 @@
 <h5 class="hasAnchor">
 <a href="#reliability-indices-4" class="anchor"></a>Reliability Indices</h5>
 <table class="table">
+<colgroup>
+<col width="31%">
+<col width="15%">
+</colgroup>
 <thead><tr class="header">
-<th align="left">Index</th>
-<th align="right">Estimate</th>
+<th align="center">Index</th>
+<th align="center">Estimate</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Omega</td>
-<td align="right">0.8190766</td>
+<td align="center">Omega</td>
+<td align="center">0.8191</td>
 </tr>
 <tr class="even">
-<td align="left">Omega Psych Tot</td>
-<td align="right">0.7954463</td>
+<td align="center">Omega Psych Tot</td>
+<td align="center">0.7954</td>
 </tr>
 <tr class="odd">
-<td align="left">Omega Psych H</td>
-<td align="right">0.0319067</td>
+<td align="center">Omega Psych H</td>
+<td align="center">0.03191</td>
 </tr>
 <tr class="even">
-<td align="left">Omega Ordinal</td>
-<td align="right">0.6649580</td>
+<td align="center">Omega Ordinal</td>
+<td align="center">0.665</td>
 </tr>
 <tr class="odd">
-<td align="left">Cronbach Alpha</td>
-<td align="right">0.7537326</td>
+<td align="center">Cronbach Alpha</td>
+<td align="center">0.7537</td>
 </tr>
 <tr class="even">
-<td align="left">Greatest Lower Bound</td>
-<td align="right">0.8345039</td>
+<td align="center">Greatest Lower Bound</td>
+<td align="center">0.8345</td>
 </tr>
 <tr class="odd">
-<td align="left">Alpha Ordinal</td>
-<td align="right">0.6023071</td>
+<td align="center">Alpha Ordinal</td>
+<td align="center">0.6023</td>
 </tr>
 </tbody>
 </table>
+<p>Positive correlations: 3 out of 3 (100%)</p>
 </div>
 <div id="scatter-matrix-4" class="section level5">
 <h5 class="hasAnchor">
 <a href="#scatter-matrix-4" class="anchor"></a>Scatter matrix</h5>
 <p><img src="codebook_files/figure-html/BFIK_neuro_unnamed-chunk-4-5-1.png" width="700"></p>
 <details><p><summary>Detailed output</summary></p>
-<div id="information-about-this-analysis-4" class="section level6">
-<h6>Information about this analysis:</h6>
-<p>Observations: 28</p>
-<p>Positive correlations: 3 out of 3 (100%)</p>
 <pre><code>## 
 ## Information about this analysis:
 ## 
@@ -1271,8 +1268,6 @@
 ## BFIK_neuro_2R    -1.14 0.17
 ## BFIK_neuro_3     -1.14 0.24
 ## BFIK_neuro_4     -1.60 0.23</code></pre>
-
-</div>
 </details>
 </div>
 </div>

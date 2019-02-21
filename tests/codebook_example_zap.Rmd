@@ -34,6 +34,13 @@ bfi2[,1:5] <- bfi[,1:5]
 bfi <- bfi2
 bfi$age <- 1:nrow(bfi)
 bfi$abode <- rep("my happy place", times = nrow(bfi))
+latent <- rnorm(nrow(bfi))
+bfi$normal1 <- latent + rnorm(nrow(bfi))
+bfi$normal2 <- latent + rnorm(nrow(bfi))
+bfi$normal3 <- latent + rnorm(nrow(bfi))
+bfi$normal4 <- latent + rnorm(nrow(bfi))
+bfi$normal <- bfi %>% dplyr::select(dplyr::starts_with("normal")) %>% rowMeans()
+
 var_label(bfi$abode) <- "Where do you live?"
 bfi$uniq_id <- as.character(1:nrow(bfi))
 var_label(bfi$uniq_id) <- "Unique ID"
