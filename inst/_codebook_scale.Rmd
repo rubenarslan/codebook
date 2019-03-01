@@ -43,8 +43,6 @@ knitr::opts_chunk$set(fig.height = old_height)
 ```
 
 ```{r setup_distribution}
-binwidth <- mean(diff(sort(unique(scale))))
-
 wrap_at <- knitr::opts_chunk$get("fig.width") * 10
 ```
 ```{r distribution}
