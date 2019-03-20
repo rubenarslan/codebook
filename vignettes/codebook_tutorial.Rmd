@@ -222,7 +222,7 @@ In order to let others know who they can contact about the dataset, how to cite 
 
 ```{r}
 metadata(codebook_data)$creator <- "William Revelle"
-metadata(codebook_data)$citation <- "Revelle, W., Wilt, J., and Rosenthal, A. (2010) Individual Differences in Cognition: New Methods for examining the Personality-Cognition Link In Gruszka, A. and Matthews, G. and Szymura, B. (Eds.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer."
+metadata(codebook_data)$citation <- "Revelle, W., Wilt, J., & Rosenthal, A. (2010). Individual differences in cognition: New methods for examining the personality-cognition link. In A. Gruszka, G. Matthews, & B. Szymura (Eds.), Handbook of individual differences in cognition: Attention, memory, and executive control (pp. 27–49). New York, NY: Springer."
 metadata(codebook_data)$url <- "https://CRAN.R-project.org/package=psych"
 ```
 

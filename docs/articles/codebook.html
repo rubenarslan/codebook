@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.0.9000</span>
       </span>
     </div>
 
@@ -108,7 +108,7 @@
       <h1>Codebook example with formr.org data</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2019-03-01</h4>
+            <h4 class="date">2019-03-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook.Rmd"><code>vignettes/codebook.Rmd</code></a></small>
       <div class="hidden name"><code>codebook.Rmd</code></div>
@@ -122,7 +122,7 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">knit_by_pkgdown &lt;-<span class="st"> </span><span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/NULL">is.null</a></span>(knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/get">get</a></span>(<span class="st">"fig.retina"</span>))</a>
 <a class="sourceLine" id="cb1-2" data-line-number="2">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">TRUE</span>, <span class="dt">message =</span> <span class="ot">TRUE</span>, <span class="dt">error =</span> <span class="ot">FALSE</span>)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">pander<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/pander/topics/panderOptions">panderOptions</a></span>(<span class="st">"table.split.table"</span>, <span class="ot">Inf</span>)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html">theme_set</a></span>(ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>())</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4">ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/theme_get">theme_set</a></span>(ggplot2<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_bw</a></span>())</a>
 <a class="sourceLine" id="cb1-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(codebook)</a>
 <a class="sourceLine" id="cb1-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"bfi"</span>, <span class="dt">package =</span> <span class="st">'codebook'</span>)</a>
