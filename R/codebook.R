@@ -73,6 +73,8 @@ codebook <- function(results, reliabilities = NULL,
   }
 
   df_name <- deparse(substitute(results))
+  df_name <- safe_name(df_name)
+
   old_opt <- options('knitr.duplicate.label')$knitr.duplicate.label
   options(knitr.duplicate.label = 'allow')
   on.exit(options(knitr.duplicate.label = old_opt))
