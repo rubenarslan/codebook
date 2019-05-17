@@ -20,3 +20,6 @@ paper.bib
 paper.md
 man/figures/codebook_addin.gif
 revdep
+^renv$
+.Rprofile
+renv.lock

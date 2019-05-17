@@ -10,21 +10,24 @@ test_that("Doesnt disclose unique values", {
   expect_true(could_disclose_unique_values(letters[1:6]))
 })
 
+nhanes <- structure(list(age = c(1, 2, 1, 3, 1, 3, 1, 1, 2, 2, 1, 2, 3,
+                                 2, 1, 1, 3, 2, 1, 3, 1, 1, 1, 3, 2),
+                         bmi = c(NA, 22.7, NA, NA, 20.4, NA, 22.5, 30.1, 22, NA,
+                                 NA, NA, 21.7, 28.7, 29.6, NA, 27.2, 26.3, 35.3,
+                                 25.5, NA, 33.2, 27.5, 24.9, 27.4),
+                         hyp = c(NA, 1, 1, NA, 1, NA, 1, 1, 1, NA, NA, NA, 1, 2,
+                                 1, NA, 2, 2, 1, 2, NA, 1, 1, 1, 1),
+                         chl = c(NA, 187, 187, NA, 113, 184, 118, 187, 238, NA,
+                                 NA, NA, 206, 204, NA, NA, 284, 199, 218, NA,
+                                 NA, 229, 131, NA, 186)),
+                    class = "data.frame", row.names = as.character(1:25))
 
 test_that("Can print codebook table", {
-  data("nhanes", package = "mice")
   expect_silent(codebook:::export_table(codebook_table(nhanes)))
   expect_output(pander::pander(codebook_table(nhanes)), "data_type")
 })
 
-test_that("Can print codebook table", {
-  data("nhanes", package = "mice")
-  expect_silent(codebook:::export_table(codebook_table(nhanes)))
-})
-
 test_that("Missing values are computed properly", {
-  data("nhanes", package = "mice")
-
   expect_silent(mdp <- md_pattern(nhanes))
   expect_equal(mdp$n_miss[1], 27)
   expect_equal(nrow(mdp), 6)

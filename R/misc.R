@@ -54,7 +54,7 @@ md.pattern <- function(x, plot = FALSE)
 
 #' Missing data patterns
 #'
-#' Generate missingness patterns using [mice::md.pattern()],
+#' Generate missingness patterns using a function borrowed from mice,
 #' with options to reduce the complexity of the output.
 #'
 #' @param data the dataset

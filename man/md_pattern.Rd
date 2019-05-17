@@ -14,7 +14,7 @@ md_pattern(data, omit_complete = TRUE, min_freq = 0.01)
 \item{min_freq}{minimum number of rows to have this missingness pattern}
 }
 \description{
-Generate missingness patterns using \code{\link[mice:md.pattern]{mice::md.pattern()}},
+Generate missingness patterns using a function borrowed from mice,
 with options to reduce the complexity of the output.
 }
 \examples{

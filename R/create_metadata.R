@@ -194,9 +194,9 @@ data_description_default <- function(data) {
 #'
 list_to_dict <- function(named_list) {
   dplyr::left_join(
-  tibble::data_frame(variable = names(named_list)),
+  tibble::tibble(variable = names(named_list)),
   tidyr::gather(
-    tibble::as_data_frame(
+    tibble::as_tibble(
       purrr::compact(named_list)),
     "variable", "label"), by = "variable")
 }
