@@ -42,11 +42,14 @@ compute_reliabilities <- function(results, survey_repetition = "single") {
                                           survey_repetition, ci = TRUE)
         }, error = function(e) {
           tryCatch({
+            warning("Reliability CIs could not be computed for ", var)
+            warning(conditionMessage(e))
             compute_appropriate_reliability(var, scale_info,
                                           items,
                                           survey_repetition, ci = FALSE)
           }, error = function(e) {
-            warning(e)
+            warning("Reliability could not be computed for ", var)
+            warning(conditionMessage(e))
             NULL
           })
 

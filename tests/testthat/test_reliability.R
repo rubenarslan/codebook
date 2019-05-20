@@ -6,7 +6,7 @@ test_that("Internal consistencies can be computed", {
   library(dplyr)
   bfi <- bfi %>% select(-starts_with("BFIK_extra"),
                         -starts_with("BFIK_neuro"),
-                        -starts_with("BFIK_consc"))
+                        -starts_with("BFIK_open"))
   expect_silent(rels <- compute_reliabilities(bfi))
   expect_equal(length(rels), 2)
   expect_equal(length(rels$BFIK_agree), 1)
@@ -83,4 +83,12 @@ test_that("Multilevel reliabilities can be computed", {
                "See details tab")
 
   expect_equal(round(rels$BFIK_agree$multilevel_reliability$Rcn,3), 0)
+})
+
+test_that("Nonconvergence warnings are caught", {
+  data("bfi", package = "codebook")
+  library(dplyr)
+  bfi <- bfi %>% select(starts_with("BFIK_open"))
+  expect_warning(compute_reliabilities(bfi),
+                 "Reliability CIs could not be computed for BFIK_open")
 })

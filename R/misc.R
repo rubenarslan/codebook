@@ -34,9 +34,9 @@ md.pattern <- function(x, plot = FALSE)
     mpat <- sortR[!duplicated(sortR), ]
   }
   if (all(!is.na(x))) {
-    cat(" /\\     /\\\n{  `---'  }\n{  O   O  }\n==>  V <==")
-    cat("  No need for mice. This data set is completely observed.\n")
-    cat(" \\  \\|/  /\n  `-----'\n\n")
+    message(" /\\     /\\\n{  `---'  }\n{  O   O  }\n==>  V <==")
+    message("  No need for mice. This data set is completely observed.\n")
+    message(" \\  \\|/  /\n  `-----'\n\n")
     mpat <- t(as.matrix(mpat, byrow = TRUE))
     rownames(mpat) <- table(pat)
   }
@@ -73,7 +73,7 @@ md_pattern <- function(data, omit_complete = TRUE, min_freq = 0.01) {
       # mice::md.pattern coerces character/factor to NA
       data[[i]] <- as.numeric(as.factor(data[[i]]))
     }
-    md_pattern <- md.pattern(data, plot = FALSE)
+    md_pattern <- suppressMessages(md.pattern(data, plot = FALSE))
     n_miss <- rownames(md_pattern)
     if (is.null(n_miss)) {
       n_miss <- rep(0, nrow(md_pattern))
@@ -84,7 +84,7 @@ md_pattern <- function(data, omit_complete = TRUE, min_freq = 0.01) {
       missing_by_var <- md_pattern[nrow(md_pattern), ]
       md_pattern <- md_pattern[, missing_by_var > 0]
     }
-    md_pattern <- tibble::as.tibble(md_pattern)
+    md_pattern <- tibble::as_tibble(md_pattern)
     stopifnot(!exists("n_miss", md_pattern))
     md_pattern$n_miss <- as.numeric(n_miss)
     md_pattern$n_miss[nrow(md_pattern)] <-

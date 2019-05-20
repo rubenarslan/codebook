@@ -31,11 +31,17 @@ test_that("Missing values are computed properly", {
   expect_silent(mdp <- md_pattern(nhanes))
   expect_equal(mdp$n_miss[1], 27)
   expect_equal(nrow(mdp), 6)
+})
+
+test_that("Missing values are computed properly, omit complete", {
   expect_silent(mdp <- md_pattern(nhanes,
                         omit_complete = FALSE, min_freq = 0.2))
   expect_equal(mdp$n_miss[1], 27)
   expect_equal(mdp$n_miss[4], 5)
   expect_equal(nrow(mdp), 4)
+})
+
+test_that("Missing values are computed properly, degenerate cases", {
   expect_message(mdp <- md_pattern(data.frame()), "No missing")
   expect_message(mdp <- md_pattern(data.frame(x = 1, y = 1)), "No missing")
   expect_null(mdp)
