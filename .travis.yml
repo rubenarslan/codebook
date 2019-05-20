@@ -1,7 +1,7 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
+dist: xenial
 language: R
-sudo: false
 cache: packages
 warnings_are_errors: true
 
@@ -10,7 +10,56 @@ r_packages:
 
 r_github_packages:
   - jimhester/covr
-  - rubenarslan/formr
+
+matrix:
+  include:
+    - os: linux
+      dist: xenial
+      sudo: required
+
+      r_binary_packages:
+        - stringi
+        - magrittr
+        - curl
+        - jsonlite
+        - Rcpp
+        - bindrcpp
+        - RcppEigen
+        - rpf
+        - openssl
+        - rlang
+        - igraph
+        - utf8
+        - gss
+        - haven
+        - XML
+        - data.table
+        - matrixStats
+        - rgl
+        - dplyr
+        - purrr
+        - tidyr
+        - readr
+        - minqa
+        - mvtnorm
+        - nloptr
+        - SparseM
+        - lme4
+        - httpuv
+        - markdown
+        - OpenMx
+        - sem
+        - readxl
+        - openxlsx
+        - pander
+        - minpack.lm
+        - StanHeaders
+    - os: osx
+      osx_image: xcode9.2
+    - os: osx
+      osx_image: xcode7.3
+      r_build_args: '--no-build-vignettes'
+      r_check_args: '--ignore-vignettes --no-examples'
 
 addons:
   apt:
@@ -21,3 +70,8 @@ addons:
 
 after_success:
   - Rscript -e 'library(covr); codecov()'
+
+
+repos:
+  CRAN: https://cloud.r-project.org
+  ropensci: http://packages.ropensci.org
