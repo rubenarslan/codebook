@@ -90,6 +90,12 @@ Version=1.1-2
 Source=CRAN
 Hash=e12d9efbd8540624beb948405e496adf
 
+[R/Package/RCurl]
+Package=RCurl
+Version=1.95-4.12
+Source=CRAN
+Hash=6187bb03ed85df8493b52297710c2416
+
 [R/Package/Rcpp]
 Package=Rcpp
 Version=1.0.1
@@ -174,6 +180,12 @@ Version=0.1-3
 Source=CRAN
 Hash=9e74499ff4cb4233042ed2d5c662423e
 
+[R/Package/bitops]
+Package=bitops
+Version=1.0-6
+Source=CRAN
+Hash=5b877c0d718e2324ce03d906f493c464
+
 [R/Package/boot]
 Package=boot
 Version=1.3-22
@@ -242,9 +254,9 @@ Hash=afd8566b455c379ddc9aba5f1c370fd9
 
 [R/Package/codebook]
 Package=codebook
-Version=0.8.0.9000
+Version=0.8.1
 Source=unknown
-Hash=e47c53af92a01b9eb7a75b4f14ff4c78
+Hash=5c0970fd144977657968486b03121ef0
 
 [R/Package/codetools]
 Package=codetools
@@ -467,6 +479,12 @@ Package=haven
 Version=2.1.0
 Source=CRAN
 Hash=26765998f1edb9ce9aa4ce6e51091832
+
+[R/Package/highlight]
+Package=highlight
+Version=0.4.7.2
+Source=CRAN
+Hash=fc70a91a8d19f5ddd2d51316d6c33708
 
 [R/Package/highr]
 Package=highr
@@ -720,6 +738,12 @@ Version=4.1.0
 Source=CRAN
 Hash=b2e4997e1f0fed83e7a1ae1bc0f162e4
 
+[R/Package/packrat]
+Package=packrat
+Version=0.5.0
+Source=CRAN
+Hash=3b771733a0e4160d25551f10c4b88943
+
 [R/Package/pander]
 Package=pander
 Version=0.6.3
@@ -767,6 +791,12 @@ Package=pkgconfig
 Version=2.0.2
 Source=CRAN
 Hash=cb8f27ad9e671904636c04acd56131f0
+
+[R/Package/pkgdown]
+Package=pkgdown
+Version=1.3.0
+Source=CRAN
+Hash=cf48254e69cc47977ded57363aaa46e8
 
 [R/Package/pkgload]
 Package=pkgload
@@ -852,6 +882,12 @@ Version=5.38
 Source=CRAN
 Hash=39285e710279c92ee7a6b55aec1a3ad3
 
+[R/Package/rappdirs]
+Package=rappdirs
+Version=0.3.1
+Source=CRAN
+Hash=48312ab82b6c1602b83211ee500f783d
+
 [R/Package/rcmdcheck]
 Package=rcmdcheck
 Version=1.3.3
@@ -912,6 +948,12 @@ Version=0.15.3
 Source=CRAN
 Hash=7df90eeb1c5f75f2d359185ba6fa84d9
 
+[R/Package/rhub]
+Package=rhub
+Version=1.1.1
+Source=CRAN
+Hash=54895031bf3627186766dfe370954013
+
 [R/Package/rio]
 Package=rio
 Version=0.5.16
@@ -947,6 +989,12 @@ Package=rprojroot
 Version=1.3-2
 Source=CRAN
 Hash=e6c60a758ed15027bf9ba44701d2e01d
+
+[R/Package/rsconnect]
+Package=rsconnect
+Version=0.8.13
+Source=CRAN
+Hash=f437eac1384130b8beee4f6d02e78bf6
 
 [R/Package/rstudioapi]
 Package=rstudioapi
@@ -1104,6 +1152,12 @@ Version=1.1.4
 Source=CRAN
 Hash=6399c80981358af7b39c217c72f22785
 
+[R/Package/uuid]
+Package=uuid
+Version=0.1-2
+Source=CRAN
+Hash=277fab2e985d591298ea1fa400e884d8
+
 [R/Package/vctrs]
 Package=vctrs
 Version=0.1.0
@@ -1145,6 +1199,12 @@ Package=whisker
 Version=0.3-2
 Source=CRAN
 Hash=cf13162701dd6681e36c1ea115deb545
+
+[R/Package/whoami]
+Package=whoami
+Version=1.3.0
+Source=CRAN
+Hash=02826713bd3c584da35602997bdc033a
 
 [R/Package/withr]
 Package=withr
