@@ -1,3 +1,10 @@
+# codebook 0.8.1
+## Bugfixes
+- When errors occurred in the reliability computation, codebook would fail hard. It now fails with a warning
+and continues.
+- When variables of the same name existed in two datasets described in the same document, figures were overwritten.
+  This is no longer the case, paths are dataset-name-prefixed now. Datasets are made "safe" for paths.
+
 # codebook 0.8.0
 ## Changes
 - removed three vignettes

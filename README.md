@@ -11,19 +11,22 @@ status](http://www.r-pkg.org/badges/version-ago/codebook)](https://cran.r-projec
 [![codecov](https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg)](https://codecov.io/gh/rubenarslan/codebook)
 [![DOI](https://zenodo.org/badge/109252375.svg)](https://zenodo.org/badge/latestdoi/109252375)
 
-*Automatic Codebooks from Survey Metadata Encoded in Attributes*
+*Automatic Codebooks from Metadata Encoded in Dataset Attributes*
 
 ## Description
 
-Easily automate the following tasks to describe data frames: computing
+Easily automate the following tasks to describe data frames: - summarise
+the distributions, and labelled missings of variables graphically and
+using descriptive statistics - for surveys, compute and summarise
 reliabilities (internal consistencies, retest, multilevel) for
-psychological scales, summarise the distributions of scales and items
-graphically and using descriptive statistics, combine this information
-with metadata (such as item labels and labelled values) that is derived
-from R attributes. To do so, the package relies on ‘rmarkdown’ partials,
-so you can generate HTML, PDF, and Word documents. Codebooks are also
-available as tables (CSV, Excel,
-etc.).
+psychological scales, - combine this information with metadata (such as
+item labels and labelled values) that is derived from R attributes.
+
+To do so, the package relies on ‘rmarkdown’ partials, so you can
+generate HTML, PDF, and Word documents. Codebooks are also available as
+tables (CSV, Excel, etc.) and in JSON-LD, so that search engines can
+find your data and index the
+metadata.
 
 ## Generate markdown codebooks from the attributes of the variables in your data frame
 
@@ -99,15 +102,18 @@ new_codebook_rmd()
 
 ## Citation
 
-To cite the package, you can cite the preprint, but to make your
-codebook traceable to the version of the package you used, you might
-also want to cite the archived package DOI.
+To cite the package, you can cite the paper (currently only the preprint
+is available to read), but to make your codebook traceable to the
+version of the package you used, you might also want to cite the
+archived package DOI.
 
-### Preprint
+### Paper
 
-> Arslan, R. C. (2018). How to automatically generate rich codebooks
-> from study metadata.
-> [doi:10.31234/osf.io/5qc6h](https://doi.org/10.31234/osf.io/5qc6h)
+> Arslan, R. C. (in press). How to automatically document data with the
+> codebook package to facilitate data re-use. Advances in Methods and
+> Practices in Psychological Science.
+> [doi:10.1177/2515245919838783](https://doi.org/10.1177/2515245919838783)
+> [Open Access Preprint](https://doi.org/10.31234/osf.io/5qc6h)
 
 ### Zenodo
 
