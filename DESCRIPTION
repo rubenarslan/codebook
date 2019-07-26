@@ -50,7 +50,8 @@ Imports:
     rstudioapi (>= 0.5),
     glue,
     lubridate,
-    userfriendlyscience
+    userfriendlyscience,
+    rmdpartials
 Suggests:
   testthat,
   shinytest,

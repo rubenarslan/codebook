@@ -17,7 +17,7 @@ knitr::knit_print
 #' knitr::knit_print(a4)
 #'
 knit_print.alpha <- function(x, indent = '#####', ...) {
-  asis_knit_child(require_file("_knit_print_psych.Rmd"))
+  rmdpartials::partial(require_file("_knit_print_psych.Rmd"))
 }
 
 #' Print a [psych::multilevel.reliability()] object for knitr
@@ -55,7 +55,7 @@ knit_print.multilevel <- function(x, indent = '#####', ...) {
 #' knitr::knit_print(mg)
 #'
 knit_print.scaleDiagnosis <- function(x, indent = '#####', ...) {
-  asis_knit_child(require_file("_knit_print_scaleDiagnosis.Rmd"))
+  rmdpartials::partial(require_file("_knit_print_scaleDiagnosis.Rmd"))
 }
 
 

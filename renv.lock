@@ -256,7 +256,7 @@ Hash=2995606773b2dd8847807bde3dd6b9f5
 Package=codebook
 Version=0.8.1
 Source=unknown
-Hash=5c0970fd144977657968486b03121ef0
+Hash=2a71aeee655bf59a04954dd91b089ab0
 
 [R/Package/codetools]
 Package=codetools
@@ -971,6 +971,18 @@ Package=rmarkdown
 Version=1.14
 Source=CRAN
 Hash=648725e2a5d30050f822544a2d792b83
+
+[R/Package/rmdpartials]
+Package=rmdpartials
+Version=0.2.0
+Source=GitHub
+RemoteType=github
+RemoteHost=api.github.com
+RemoteRepo=rmdpartials
+RemoteUsername=rubenarslan
+RemoteRef=master
+RemoteSha=814dc66c4521b89156f784f8fb1142b64f8c52cd
+Hash=be70ee1079c0dd865f4037dc0db8d9d6
 
 [R/Package/roxygen2]
 Package=roxygen2

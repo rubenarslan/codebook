@@ -20,4 +20,5 @@ overwritten. The .Rmd file has some useful defaults set for creating codebooks.
 \dontrun{
 new_codebook_rmd()
 }
+
 }

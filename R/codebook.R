@@ -182,7 +182,7 @@ codebook <- function(results, reliabilities = NULL,
   }
 
 
-  asis_knit_child(require_file("_codebook.Rmd"), options = options)
+  rmdpartials::partial(require_file("_codebook.Rmd"), options = options)
 }
 
 #' Compact Codebook
@@ -267,7 +267,7 @@ codebook_survey_overview <- function(results, survey_repetition = "single",
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), "overview_")
   )
-  asis_knit_child(require_file("_codebook_survey_overview.Rmd"),
+  rmdpartials::partial(require_file("_codebook_survey_overview.Rmd"),
                   options = options)
 }
 
@@ -293,7 +293,7 @@ codebook_data_info <- function(results, indent = "##") {
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), "data_info_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), "data_info_")
   )
-  asis_knit_child(require_file("_codebook_data_info.Rmd"),
+  rmdpartials::partial(require_file("_codebook_data_info.Rmd"),
                   options = options)
 }
 
@@ -316,7 +316,7 @@ codebook_missingness <- function(results, indent = "##") {
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), "overview_")
   )
   md_pattern <- md_pattern(results)
-  asis_knit_child(require_file("_codebook_missingness.Rmd"), options = options)
+  rmdpartials::partial(require_file("_codebook_missingness.Rmd"), options = options)
 }
 
 
@@ -337,7 +337,7 @@ metadata_jsonld <- function(results) {
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), "metadata_")
   )
   jsonld_metadata <- metadata_list(results)
-  asis_knit_child(require_file("_metadata_jsonld.Rmd"), options = options)
+  rmdpartials::partial(require_file("_metadata_jsonld.Rmd"), options = options)
 }
 
 
@@ -383,7 +383,7 @@ codebook_items <- function(results, indent = "##") {
       metadata_table$label, "\n", "<br>")
   }
 
-  asis_knit_child(require_file("_codebook_items.Rmd"), options = options)
+  rmdpartials::partial(require_file("_codebook_items.Rmd"), options = options)
 }
 
 escaped_table <- function(metadata_table) {
@@ -432,7 +432,7 @@ codebook_component_scale <- function(scale, scale_name, items, reliabilities,
   options(knitr.duplicate.label = 'allow')
   on.exit(options(knitr.duplicate.label = old_opt))
 
-  asis_knit_child(require_file("_codebook_scale.Rmd"), options = options)
+  rmdpartials::partial(require_file("_codebook_scale.Rmd"), options = options)
 }
 
 #' Codebook component for single items
@@ -456,7 +456,7 @@ codebook_component_single_item <- function(item, item_name, indent = '##') {
     fig.path = paste0(knitr::opts_chunk$get("fig.path"), safe_name, "_"),
     cache.path = paste0(knitr::opts_chunk$get("cache.path"), safe_name, "_")
   )
-  asis_knit_child(require_file("_codebook_item.Rmd"), options = options)
+  rmdpartials::partial(require_file("_codebook_item.Rmd"), options = options)
 }
 
 #' Codebook metadata table
