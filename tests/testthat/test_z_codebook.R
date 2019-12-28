@@ -11,11 +11,9 @@ test_that("codebook generation", {
   bfi$age <- 1:nrow(bfi)
   bfi$abode <- rep("my happy place", times = nrow(bfi))
   bfi$uniq_id <- as.character(1:nrow(bfi))
-  wd <- getwd()
-  dir <- tempdir()
-  setwd(dir)
-  on.exit(setwd(wd))
   expect_silent(md <- codebook(bfi, metadata_table = FALSE))
+  dir_knit <- attributes(md)$knit_meta$output.dir
+  figs <- list.files(paste0(dir_knit, "/index_files/figure-html/"))
   figs <- list.files(paste0(dir, "/figure"))
   expect_equal(length(figs), 11)
   expect_match(md, "Scale: BFIK_neuro")

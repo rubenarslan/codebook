@@ -462,7 +462,7 @@ codebook_component_single_item <- function(item, item_name, indent = '##') {
 #' Codebook metadata table
 #'
 #' will generate a table combining metadata from variable attributes
-#' with data summaries generated using [skimr::skim_to_wide()]
+#' with data summaries generated using [skimr::skim()]
 #'
 #' @param results a data frame, ideally with attributes set on variables
 #'
@@ -731,7 +731,6 @@ legal_property_value_properties <-
 
 skim_to_wide_labelled <- function(x, ...) {
   x <- haven::zap_labels(x)
-  on.exit(skimr::skim_with_defaults())
   skimr::skim_to_wide(x, ...)
 }
 
