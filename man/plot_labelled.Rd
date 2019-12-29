@@ -4,8 +4,14 @@
 \alias{plot_labelled}
 \title{Plot labelled vector}
 \usage{
-plot_labelled(item, item_name = NULL, wrap_at = 70,
-  go_vertical = FALSE, trans = "identity", x_axis_label = "values")
+plot_labelled(
+  item,
+  item_name = NULL,
+  wrap_at = 70,
+  go_vertical = FALSE,
+  trans = "identity",
+  x_axis_label = "values"
+)
 }
 \arguments{
 \item{item}{a vector}

@@ -138,7 +138,6 @@ detect_missing <- function(data, only_labelled = TRUE,
 #' @describeIn detect_missing Deprecated version
 #' @param only_labelled_missings passed to [detect_missing()]
 #' @param ... passed to [detect_missing()]
-#' @inheritParams detect_missing
 #' @export
 detect_missings <- function(data, only_labelled_missings = TRUE,
                            ...) {

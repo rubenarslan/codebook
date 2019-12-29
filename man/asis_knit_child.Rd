@@ -4,8 +4,15 @@
 \alias{asis_knit_child}
 \title{Knit a child document and output as is (render markup)}
 \usage{
-asis_knit_child(input = NULL, text = NULL, ..., quiet = TRUE,
-  options = NULL, envir = parent.frame(), use_strings = TRUE)
+asis_knit_child(
+  input = NULL,
+  text = NULL,
+  ...,
+  quiet = TRUE,
+  options = NULL,
+  envir = parent.frame(),
+  use_strings = TRUE
+)
 }
 \arguments{
 \item{input}{if you specify a file path here, it will be read in before being passed to knitr (to avoid a working directory mess)}

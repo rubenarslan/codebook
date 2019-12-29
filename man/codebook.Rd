@@ -4,11 +4,18 @@
 \alias{codebook}
 \title{Generate rmarkdown codebook}
 \usage{
-codebook(results, reliabilities = NULL, survey_repetition = c("auto",
-  "single", "repeated_once", "repeated_many"), detailed_variables = TRUE,
-  detailed_scales = TRUE, survey_overview = TRUE,
-  missingness_report = TRUE, metadata_table = TRUE,
-  metadata_json = TRUE, indent = "#")
+codebook(
+  results,
+  reliabilities = NULL,
+  survey_repetition = c("auto", "single", "repeated_once", "repeated_many"),
+  detailed_variables = TRUE,
+  detailed_scales = TRUE,
+  survey_overview = TRUE,
+  missingness_report = TRUE,
+  metadata_table = TRUE,
+  metadata_json = TRUE,
+  indent = "#"
+)
 }
 \arguments{
 \item{results}{a data frame, ideally with attributes set on variables}

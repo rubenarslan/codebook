@@ -1,3 +1,4 @@
+^renv\.lock$
 ^Meta$
 ^doc$
 ^CRAN-RELEASE$
@@ -20,6 +21,4 @@ paper.bib
 paper.md
 man/figures/codebook_addin.gif
 revdep
-^renv$
-.Rprofile
-renv.lock
+renv

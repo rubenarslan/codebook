@@ -26,6 +26,6 @@ below to see their documentation.
 
   \item{knitr}{\code{\link[knitr]{knit_print}}}
 
-  \item{labelled}{\code{\link[labelled]{var_label}}, \code{\link[labelled]{var_label<-}}, \code{\link[labelled]{val_label}}, \code{\link[labelled]{val_label<-}}, \code{\link[labelled]{val_labels}}, \code{\link[labelled]{val_labels<-}}}
+  \item{labelled}{\code{\link[labelled]{val_label}}, \code{\link[labelled]{val_label<-}}, \code{\link[labelled]{val_labels}}, \code{\link[labelled]{val_labels<-}}, \code{\link[labelled]{var_label}}, \code{\link[labelled]{var_label<-}}}
 }}
 

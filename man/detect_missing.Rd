@@ -5,10 +5,17 @@
 \alias{detect_missings}
 \title{Detect missing values}
 \usage{
-detect_missing(data, only_labelled = TRUE,
-  negative_values_are_missing = TRUE, ninety_nine_problems = TRUE,
-  learn_from_labels = TRUE, missing = c(), non_missing = c(),
-  vars = names(data), use_labelled_spss = FALSE)
+detect_missing(
+  data,
+  only_labelled = TRUE,
+  negative_values_are_missing = TRUE,
+  ninety_nine_problems = TRUE,
+  learn_from_labels = TRUE,
+  missing = c(),
+  non_missing = c(),
+  vars = names(data),
+  use_labelled_spss = FALSE
+)
 
 detect_missings(data, only_labelled_missings = TRUE, ...)
 }
@@ -21,7 +28,7 @@ detect_missings(data, only_labelled_missings = TRUE, ...)
 
 \item{ninety_nine_problems}{SPSS users often store values as 99/999, should we do this for values with 5*MAD of the median}
 
-\item{learn_from_labels}{if there are labels for missing values of the form \code{[-1] no answer}, set -1 in the data to the corresponding tagged missing}
+\item{learn_from_labels}{if there are labels for missing values of the form \verb{[-1] no answer}, set -1 in the data to the corresponding tagged missing}
 
 \item{missing}{also set these values to missing (or enforce for 99/999 within 5*MAD)}
 

@@ -198,7 +198,7 @@ codebook <- function(results, reliabilities = NULL,
 #' knitr::opts_knit$set(base.dir = tempdir())
 #' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
 #' data("bfi")
-#' bfi <- bfi[, c("BFIK_open_1", "BFIK_open_1")]
+#' bfi <- bfi[, c("BFIK_open_1", "BFIK_open_2")]
 #' compact_codebook(bfi)
 compact_codebook <- function(results) {
   codebook(results, reliabilities = list(),
@@ -459,104 +459,6 @@ codebook_component_single_item <- function(item, item_name, indent = '##') {
   asis_knit_child(require_file("_codebook_item.Rmd"), options = options)
 }
 
-#' Codebook metadata table
-#'
-#' will generate a table combining metadata from variable attributes
-#' with data summaries generated using [skimr::skim_to_wide()]
-#'
-#' @param results a data frame, ideally with attributes set on variables
-#'
-#' @export
-#' @examples
-#' data("bfi")
-#' codebook_table(bfi)
-codebook_table <- function(results) {
-  skimmed <- skim_to_wide_labelled(results)
-  metadata <- gather_variable_metadata(results)
-
-  metadata <- dplyr::left_join(metadata,
-                               dplyr::rename(skimmed, data_type = .data$type),
-                               by = c("name" = "variable"))
-  order <- c("name", "label", "type", "type_options", "data_type", "ordered",
-            "value_labels",  "optional", "showif",
-            "scale_item_names",
-            "value", "item_order", "block_order", "class",
-            "missing", "complete", "n",  "empty", "n_unique",
-            "top_counts", "count", "median", "min", "max",
-            "mean", "sd", "p0", "p25", "p50", "p75", "p100", "hist")
-  not_all_na <- function(x) { !all(is.na(x)) && !is.null(unlist(x)) }
-  cols <- setdiff(union(
-               intersect(order, names(metadata)), # order
-              setdiff(names(metadata), order)), # include other cols
-               c("choice_list"))
-
-  metadata <- dplyr::select(metadata,  !!!cols)
-  dplyr::select_if(metadata, not_all_na )
-}
-
-gather_variable_metadata <- function(results) {
-    metadata <- purrr::map_dfr(results, attribute_summary, .id = "name")
-    stopifnot(nrow(metadata) == ncol(results))
-    metadata
-}
-
-attribute_summary <- function(var) {
-  x <- attributes(var)
-  if (is.null(x)) {
-    return(data.frame(label = NA_character_, stringsAsFactors = FALSE))
-  }
-  if (exists("class", x)) {
-    x$class <- NULL
-  }
-  if (exists("tzone", x)) {
-    x$tzone <- NULL
-  }
-  if (exists("label", x)) {
-    if (exists("item", x)) {
-      if (exists("label", x$item)) {
-        x$item$label <- NULL
-      }
-      if (exists("label_parsed", x$item)) {
-        x$item$label_parsed <- NULL
-      }
-    }
-  }
-  if (exists("levels", x)) {
-    x$value_labels <- paste(paste0(seq_len(length(x$levels)), ". ", x$levels),
-                              collapse = ",\n")
-    x$levels <- NULL
-    # remove extremely deep qualtrics choices attributes
-    if (exists("item", x) && exists("choices", x$item)
-        && exists("variableName", x$item$choices[[1]])) {
-      x$item$choices <- NULL
-    }
-  } else if (exists("labels", x)) {
-    if (!is.null(names(x$labels))) {
-      x$value_labels <- paste(paste0(x$labels, ". ", names(x$labels)),
-                              collapse = ",\n")
-    } else {
-      x$value_labels <- paste(x$labels, collapse = ",\n")
-    }
-    x$labels <- NULL
-    if (exists("item", x) && exists("choices", x$item)) {
-      x$item$choices <- NULL
-    }
-  }
-
-  if (exists("item", x) && exists("name", x$item)) {
-    x$item$name <- NULL
-  }
-  if (exists("scale_item_names", x)) {
-    x$scale_item_names <- paste(x$scale_item_names, collapse = ", ")
-  }
-  x <- purrr::flatten_dfr(purrr::flatten(x))
-  if (ncol(x) == 0) {
-    x <- data.frame(label = NA_character_, stringsAsFactors = FALSE)
-  }
-  dplyr::mutate_all(x, as.character)
-}
-
-
 #' Metadata from dataframe
 #'
 #' Returns a list containing variable metadata (attributes) and data summaries.
@@ -728,11 +630,3 @@ legal_property_value_properties <-
     "description", "disambiguatingDescription", "identifier", "image",
     "mainEntityOfPage", "name", "potentialAction", "sameAs", "subjectOf",
     "url", "additionalProperty", "exifData", "identifier", "valueReference")
-
-skim_to_wide_labelled <- function(x, ...) {
-  x <- haven::zap_labels(x)
-  on.exit(skimr::skim_with_defaults())
-  skimr::skim_to_wide(x, ...)
-}
-
-

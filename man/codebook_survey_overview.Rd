@@ -4,8 +4,7 @@
 \alias{codebook_survey_overview}
 \title{Codebook survey overview}
 \usage{
-codebook_survey_overview(results, survey_repetition = "single",
-  indent = "##")
+codebook_survey_overview(results, survey_repetition = "single", indent = "##")
 }
 \arguments{
 \item{results}{a data frame which has the following columns: session, created, modified, expired, ended}

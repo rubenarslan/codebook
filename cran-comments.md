@@ -1,5 +1,5 @@
 ## Submission
-* Bugfix release
+* Bugfix release to make compatible with skimr 2.0.0
 
 ## Test environments
 * local OS X install, R 3.5.2
