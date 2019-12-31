@@ -39,7 +39,7 @@
 <meta property="og:title" content="Codebook metadata table — codebook_table" />
 
 <meta property="og:description" content="will generate a table combining metadata from variable attributes
-with data summaries generated using skimr::skim_to_wide()" />
+with data summaries generated using skimr::skim()" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -70,7 +70,7 @@ with data summaries generated using skimr::skim_to_wide()" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
       </span>
     </div>
 
@@ -137,14 +137,14 @@ with data summaries generated using skimr::skim_to_wide()" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Codebook metadata table</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/codebook.R'><code>R/codebook.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/codebook_table.R'><code>R/codebook_table.R</code></a></small>
     <div class="hidden name"><code>codebook_table.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
     <p>will generate a table combining metadata from variable attributes
-with data summaries generated using <code><a href='https://www.rdocumentation.org/packages/skimr/topics/wide'>skimr::skim_to_wide()</a></code></p>
+with data summaries generated using <code><a href='https://docs.ropensci.org/skimr/reference/skim.html'>skimr::skim()</a></code></p>
     
     </div>
 
@@ -222,36 +222,36 @@ with data summaries generated using <code><a href='https://www.rdocumentation.or
 #&gt; 27                      4 BFIK_consc items averaged with aggregation_function
 #&gt; 28                      4 BFIK_extra items averaged with aggregation_function
 #&gt; 29                      3 BFIK_neuro items averaged with aggregation_function
-#&gt;             type type_options data_type
-#&gt; 1           &lt;NA&gt;         &lt;NA&gt; character
-#&gt; 2           &lt;NA&gt;         &lt;NA&gt;   POSIXct
-#&gt; 3           &lt;NA&gt;         &lt;NA&gt;   POSIXct
-#&gt; 4           &lt;NA&gt;         &lt;NA&gt;   POSIXct
-#&gt; 5           &lt;NA&gt;         &lt;NA&gt;   logical
-#&gt; 6  rating_button            5   numeric
-#&gt; 7  rating_button            5   numeric
-#&gt; 8  rating_button            5   numeric
-#&gt; 9  rating_button            5   numeric
-#&gt; 10 rating_button            5   numeric
-#&gt; 11 rating_button            5   numeric
-#&gt; 12 rating_button            5   numeric
-#&gt; 13 rating_button            5   numeric
-#&gt; 14 rating_button            5   numeric
-#&gt; 15 rating_button            5   numeric
-#&gt; 16 rating_button            5   numeric
-#&gt; 17 rating_button            5   numeric
-#&gt; 18 rating_button            5   numeric
-#&gt; 19 rating_button            5   numeric
-#&gt; 20 rating_button            5   numeric
-#&gt; 21 rating_button            5   numeric
-#&gt; 22 rating_button            5   numeric
-#&gt; 23 rating_button            5   numeric
-#&gt; 24 rating_button            5   numeric
-#&gt; 25          &lt;NA&gt;         &lt;NA&gt;   numeric
-#&gt; 26          &lt;NA&gt;         &lt;NA&gt;   numeric
-#&gt; 27          &lt;NA&gt;         &lt;NA&gt;   numeric
-#&gt; 28          &lt;NA&gt;         &lt;NA&gt;   numeric
-#&gt; 29          &lt;NA&gt;         &lt;NA&gt;   numeric
+#&gt;             type type_options      data_type
+#&gt; 1           &lt;NA&gt;         &lt;NA&gt;      character
+#&gt; 2           &lt;NA&gt;         &lt;NA&gt;        POSIXct
+#&gt; 3           &lt;NA&gt;         &lt;NA&gt;        POSIXct
+#&gt; 4           &lt;NA&gt;         &lt;NA&gt;        POSIXct
+#&gt; 5           &lt;NA&gt;         &lt;NA&gt;        logical
+#&gt; 6  rating_button            5 haven_labelled
+#&gt; 7  rating_button            5 haven_labelled
+#&gt; 8  rating_button            5 haven_labelled
+#&gt; 9  rating_button            5 haven_labelled
+#&gt; 10 rating_button            5 haven_labelled
+#&gt; 11 rating_button            5 haven_labelled
+#&gt; 12 rating_button            5 haven_labelled
+#&gt; 13 rating_button            5 haven_labelled
+#&gt; 14 rating_button            5 haven_labelled
+#&gt; 15 rating_button            5 haven_labelled
+#&gt; 16 rating_button            5 haven_labelled
+#&gt; 17 rating_button            5 haven_labelled
+#&gt; 18 rating_button            5 haven_labelled
+#&gt; 19 rating_button            5 haven_labelled
+#&gt; 20 rating_button            5 haven_labelled
+#&gt; 21 rating_button            5 haven_labelled
+#&gt; 22 rating_button            5 haven_labelled
+#&gt; 23 rating_button            5 haven_labelled
+#&gt; 24 rating_button            5 haven_labelled
+#&gt; 25          &lt;NA&gt;         &lt;NA&gt;        numeric
+#&gt; 26          &lt;NA&gt;         &lt;NA&gt;        numeric
+#&gt; 27          &lt;NA&gt;         &lt;NA&gt;        numeric
+#&gt; 28          &lt;NA&gt;         &lt;NA&gt;        numeric
+#&gt; 29          &lt;NA&gt;         &lt;NA&gt;        numeric
 #&gt;                                                                                                                         value_labels
 #&gt; 1                                                                                                                               &lt;NA&gt;
 #&gt; 2                                                                                                                               &lt;NA&gt;
@@ -312,66 +312,96 @@ with data summaries generated using <code><a href='https://www.rdocumentation.or
 #&gt; 27     &lt;NA&gt;   BFIK_consc_3, BFIK_consc_4, BFIK_consc_2R, BFIK_consc_1
 #&gt; 28     &lt;NA&gt;  BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R
 #&gt; 29     &lt;NA&gt;                 BFIK_neuro_2R, BFIK_neuro_3, BFIK_neuro_4
-#&gt;    item_order missing complete  n empty n_unique count     median        min
-#&gt; 1        &lt;NA&gt;       0       28 28     0       28  &lt;NA&gt;       &lt;NA&gt;         64
-#&gt; 2        &lt;NA&gt;       0       28 28  &lt;NA&gt;       28  &lt;NA&gt; 2016-07-08 2016-07-08
-#&gt; 3        &lt;NA&gt;       0       28 28  &lt;NA&gt;       28  &lt;NA&gt; 2016-07-08 2016-07-08
-#&gt; 4        &lt;NA&gt;       0       28 28  &lt;NA&gt;       28  &lt;NA&gt; 2016-07-08 2016-07-08
-#&gt; 5        &lt;NA&gt;      28        0 28  &lt;NA&gt;     &lt;NA&gt;    28       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 6           4       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 7           5       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 8           6       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 9           7       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 10          8       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 11          9       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 12         10       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 13         11       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 14         12       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 15         13       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 16         14       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 17         15       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 18         16       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 19         17       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 20         18       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 21         19       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 22         20       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 23         21       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 24         22       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 25       &lt;NA&gt;       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 26       &lt;NA&gt;       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 27       &lt;NA&gt;       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 28       &lt;NA&gt;       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt; 29       &lt;NA&gt;       0       28 28  &lt;NA&gt;     &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;       &lt;NA&gt;
-#&gt;           max mean   sd   p0  p25  p50  p75 p100     hist
-#&gt; 1          64 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 2  2016-11-02 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 3  2016-11-02 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 4  2016-11-02 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 5        &lt;NA&gt;  NaN &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;     &lt;NA&gt;
-#&gt; 6        &lt;NA&gt; 4.21 0.74 2    4    4    5    5    ▁▁▁▁▁▇▁▅
-#&gt; 7        &lt;NA&gt; 2.93 1.18 1    2    3    4    5    ▂▇▁▃▁▅▁▂
-#&gt; 8        &lt;NA&gt; 4.18 1.09 1    4    4    5    5    ▁▁▁▁▁▇▁▇
-#&gt; 9        &lt;NA&gt; 3    0.94 2    2    3    4    5    ▇▁▅▁▁▆▁▁
-#&gt; 10       &lt;NA&gt; 4.39 0.83 2    4    5    5    5    ▁▁▂▁▁▃▁▇
-#&gt; 11       &lt;NA&gt; 3.11 0.88 2    2    3    4    5    ▆▁▇▁▁▇▁▁
-#&gt; 12       &lt;NA&gt; 3.5  1.04 1    3    4    4    5    ▁▂▁▅▁▇▁▂
-#&gt; 13       &lt;NA&gt; 3.86 0.76 2    3    4    4    5    ▁▁▃▁▁▇▁▂
-#&gt; 14       &lt;NA&gt; 3.18 1.31 1    2    4    4    5    ▃▂▁▃▁▇▁▂
-#&gt; 15       &lt;NA&gt; 3.04 1.29 1    2    3    4    5    ▂▇▁▃▁▇▁▃
-#&gt; 16       &lt;NA&gt; 3.75 1.21 1    3    4    5    5    ▂▂▁▅▁▇▁▇
-#&gt; 17       &lt;NA&gt; 3.07 1.27 1    2    3    4    5    ▃▇▁▇▁▅▁▅
-#&gt; 18       &lt;NA&gt; 2.5  1.2  1    1.75 2    4    4    ▆▁▇▁▁▂▁▇
-#&gt; 19       &lt;NA&gt; 3.5  1.26 1    2.75 4    4.25 5    ▂▅▁▅▁▇▁▆
-#&gt; 20       &lt;NA&gt; 4.07 0.9  2    4    4    5    5    ▁▁▂▁▁▇▁▇
-#&gt; 21       &lt;NA&gt; 4.21 0.96 1    4    4    5    5    ▁▁▁▂▁▆▁▇
-#&gt; 22       &lt;NA&gt; 3.86 1.11 1    3    4    5    5    ▁▂▁▃▁▇▁▆
-#&gt; 23       &lt;NA&gt; 3.61 1.2  1    3    4    5    5    ▁▅▁▆▁▇▁▇
-#&gt; 24       &lt;NA&gt; 4.21 0.96 2    4    4.5  5    5    ▁▁▂▁▁▅▁▇
-#&gt; 25       &lt;NA&gt; 3.12 0.93 1.5  2.25 3    4    4.75 ▂▇▂▇▃▁▅▅
-#&gt; 26       &lt;NA&gt; 4.26 0.56 3    3.94 4.25 4.75 5    ▃▂▂▁▇▃▇▂
-#&gt; 27       &lt;NA&gt; 3.65 0.79 2    3.12 3.75 4.25 5    ▂▃▁▃▃▇▂▂
-#&gt; 28       &lt;NA&gt; 3.85 1.01 1.5  3.25 4.25 4.56 5    ▂▁▂▃▁▃▇▇
-#&gt; 29       &lt;NA&gt; 2.89 0.93 1.33 2    2.83 3.42 4.33 ▅▅▂▅▃▅▁▇</div></pre>
+#&gt;    item_order n_missing complete_rate n_unique empty count                 min
+#&gt; 1        &lt;NA&gt;         0             1       28     0  &lt;NA&gt;                  64
+#&gt; 2        &lt;NA&gt;         0             1       28    NA  &lt;NA&gt; 2016-07-08 09:54:16
+#&gt; 3        &lt;NA&gt;         0             1       28    NA  &lt;NA&gt; 2016-07-08 09:55:43
+#&gt; 4        &lt;NA&gt;         0             1       28    NA  &lt;NA&gt; 2016-07-08 09:55:43
+#&gt; 5        &lt;NA&gt;        28             0       NA    NA    :                 &lt;NA&gt;
+#&gt; 6           4         0             1       NA    NA  &lt;NA&gt;                   2
+#&gt; 7           5         0             1       NA    NA  &lt;NA&gt;                   1
+#&gt; 8           6         0             1       NA    NA  &lt;NA&gt;                   1
+#&gt; 9           7         0             1       NA    NA  &lt;NA&gt;                   2
+#&gt; 10          8         0             1       NA    NA  &lt;NA&gt;                   2
+#&gt; 11          9         0             1       NA    NA  &lt;NA&gt;                   2
+#&gt; 12         10         0             1       NA    NA  &lt;NA&gt;                   1
+#&gt; 13         11         0             1       NA    NA  &lt;NA&gt;                   2
+#&gt; 14         12         0             1       NA    NA  &lt;NA&gt;                   1
+#&gt; 15         13         0             1       NA    NA  &lt;NA&gt;                   1
+#&gt; 16         14         0             1       NA    NA  &lt;NA&gt;                   1
+#&gt; 17         15         0             1       NA    NA  &lt;NA&gt;                   1
+#&gt; 18         16         0             1       NA    NA  &lt;NA&gt;                   1
+#&gt; 19         17         0             1       NA    NA  &lt;NA&gt;                   1
+#&gt; 20         18         0             1       NA    NA  &lt;NA&gt;                   2
+#&gt; 21         19         0             1       NA    NA  &lt;NA&gt;                   1
+#&gt; 22         20         0             1       NA    NA  &lt;NA&gt;                   1
+#&gt; 23         21         0             1       NA    NA  &lt;NA&gt;                   1
+#&gt; 24         22         0             1       NA    NA  &lt;NA&gt;                   2
+#&gt; 25       &lt;NA&gt;         0             1       NA    NA  &lt;NA&gt;                 1.5
+#&gt; 26       &lt;NA&gt;         0             1       NA    NA  &lt;NA&gt;                 3.0
+#&gt; 27       &lt;NA&gt;         0             1       NA    NA  &lt;NA&gt;                 2.0
+#&gt; 28       &lt;NA&gt;         0             1       NA    NA  &lt;NA&gt;                 1.5
+#&gt; 29       &lt;NA&gt;         0             1       NA    NA  &lt;NA&gt;                 1.3
+#&gt;                 median                 max     mean        sd whitespace
+#&gt; 1                 &lt;NA&gt;                  64       NA        NA          0
+#&gt; 2  2016-07-08 12:47:07 2016-11-02 21:19:50       NA        NA         NA
+#&gt; 3  2016-07-08 14:23:22 2016-11-02 21:21:53       NA        NA         NA
+#&gt; 4  2016-07-08 14:23:22 2016-11-02 21:21:53       NA        NA         NA
+#&gt; 5                 &lt;NA&gt;                &lt;NA&gt;      NaN        NA         NA
+#&gt; 6                  4.0                   5 4.214286 0.7382232         NA
+#&gt; 7                  3.0                   5 2.928571 1.1841100         NA
+#&gt; 8                  4.0                   5 4.178571 1.0904831         NA
+#&gt; 9                  3.0                   5 3.000000 0.9428090         NA
+#&gt; 10                 5.0                   5 4.392857 0.8317445         NA
+#&gt; 11                 3.0                   5 3.107143 0.8751417         NA
+#&gt; 12                 4.0                   5 3.500000 1.0363755         NA
+#&gt; 13                 4.0                   5 3.857143 0.7559289         NA
+#&gt; 14                 4.0                   5 3.178571 1.3067792         NA
+#&gt; 15                 3.0                   5 3.035714 1.2904820         NA
+#&gt; 16                 4.0                   5 3.750000 1.2056964         NA
+#&gt; 17                 3.0                   5 3.071429 1.2744954         NA
+#&gt; 18                 2.0                   4 2.500000 1.2018504         NA
+#&gt; 19                 4.0                   5 3.500000 1.2619796         NA
+#&gt; 20                 4.0                   5 4.071429 0.8997354         NA
+#&gt; 21                 4.0                   5 4.214286 0.9567361         NA
+#&gt; 22                 4.0                   5 3.857143 1.1126973         NA
+#&gt; 23                 4.0                   5 3.607143 1.1968875         NA
+#&gt; 24                 4.5                   5 4.214286 0.9567361         NA
+#&gt; 25                 3.0                 4.8 3.116071 0.9316506         NA
+#&gt; 26                 4.2                 5.0 4.258929 0.5630692         NA
+#&gt; 27                 3.8                 5.0 3.651786 0.7915622         NA
+#&gt; 28                 4.2                 5.0 3.848214 1.0099947         NA
+#&gt; 29                 2.8                 4.3 2.892857 0.9254231         NA
+#&gt;    n_value_labels     hist
+#&gt; 1              NA     &lt;NA&gt;
+#&gt; 2              NA     &lt;NA&gt;
+#&gt; 3              NA     &lt;NA&gt;
+#&gt; 4              NA     &lt;NA&gt;
+#&gt; 5              NA     &lt;NA&gt;
+#&gt; 6               6 ▁▁▁▁▁▇▁▅
+#&gt; 7               6 ▂▇▁▃▁▅▁▂
+#&gt; 8               6 ▁▁▁▁▁▇▁▇
+#&gt; 9               6 ▇▁▅▁▁▆▁▁
+#&gt; 10              6 ▁▁▂▁▁▃▁▇
+#&gt; 11              6 ▆▁▇▁▁▇▁▁
+#&gt; 12              6 ▁▂▁▅▁▇▁▂
+#&gt; 13              6 ▁▁▃▁▁▇▁▂
+#&gt; 14              6 ▃▂▁▃▁▇▁▂
+#&gt; 15              6 ▂▇▁▃▁▇▁▃
+#&gt; 16              6 ▂▂▁▅▁▇▁▇
+#&gt; 17              6 ▃▇▁▇▁▅▁▅
+#&gt; 18              6 ▆▁▇▁▁▂▁▇
+#&gt; 19              6 ▂▅▁▅▁▇▁▆
+#&gt; 20              6 ▁▁▂▁▁▇▁▇
+#&gt; 21              6 ▁▁▁▂▁▆▁▇
+#&gt; 22              6 ▁▂▁▃▁▇▁▆
+#&gt; 23              6 ▁▅▁▆▁▇▁▇
+#&gt; 24              6 ▁▁▂▁▁▅▁▇
+#&gt; 25             NA    ▂▇▅▅▃
+#&gt; 26             NA    ▂▃▁▇▇
+#&gt; 27             NA    ▂▃▇▇▃
+#&gt; 28             NA    ▂▂▃▅▇
+#&gt; 29             NA    ▅▇▇▆▇</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

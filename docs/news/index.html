@@ -66,7 +66,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
       </span>
     </div>
 
@@ -136,13 +136,25 @@
       <small>Source: <a href='https://github.com/rubenarslan/codebook/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="codebook-0-8-1" class="section level1">
+    <div id="codebook-0-8-2" class="section level1">
 <h1 class="page-header">
-<a href="#codebook-0-8-1" class="anchor"></a>codebook 0.8.1<small> Unreleased </small>
+<a href="#codebook-0-8-2" class="anchor"></a>codebook 0.8.2<small> Unreleased </small>
 </h1>
 <div id="bugfixes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bugfixes" class="anchor"></a>Bugfixes</h2>
+<ul>
+<li>compatibility with skimr 2.0.0</li>
+</ul>
+</div>
+</div>
+    <div id="codebook-0-8-1" class="section level1">
+<h1 class="page-header">
+<a href="#codebook-0-8-1" class="anchor"></a>codebook 0.8.1<small> 2019-05-21 </small>
+</h1>
+<div id="bugfixes-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bugfixes-1" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>When errors occurred in the reliability computation, codebook would fail hard. It now fails with a warning and continues.</li>
 <li>When variables of the same name existed in two datasets described in the same document, figures were overwritten. This is no longer the case, paths are dataset-name-prefixed now. Datasets are made “safe” for paths.</li>
@@ -166,9 +178,9 @@
 <li>reduce survey-specific language</li>
 </ul>
 </div>
-<div id="bugfixes-1" class="section level2">
+<div id="bugfixes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-1" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-2" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>make it less likely that unique/private values are disclosed (e.g., free text)</li>
 </ul>
@@ -178,9 +190,9 @@
 <h1 class="page-header">
 <a href="#codebook-0-7-6" class="anchor"></a>codebook 0.7.6<small> 2019-01-08 </small>
 </h1>
-<div id="bugfixes-2" class="section level2">
+<div id="bugfixes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-2" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-3" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>changed vignette titles (one was duplicated)</li>
 </ul>
@@ -190,9 +202,9 @@
 <h1 class="page-header">
 <a href="#codebook-0-7-5" class="anchor"></a>codebook 0.7.5<small> 2018-12-04 </small>
 </h1>
-<div id="bugfixes-3" class="section level2">
+<div id="bugfixes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-3" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-4" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>import/export knit_print generic from knitr</li>
 </ul>
@@ -226,9 +238,9 @@
 <li>removed the mice dependency to reduce the number of dependencies</li>
 </ul>
 </div>
-<div id="bugfixes-4" class="section level2">
+<div id="bugfixes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-4" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-5" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>
 <code>detect_missing</code> reset variable label with the new haven version (only between 0.6.3.9000 and 0.7.0, never on CRAN)</li>
@@ -264,9 +276,9 @@
 <li>removed unnecessary <code>readr</code> dependency.</li>
 </ul>
 </div>
-<div id="bugfixes-5" class="section level2">
+<div id="bugfixes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-5" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-6" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>summarising factors in a table</li>
 <li>turning off components of the codebook without empty strings being echoed</li>
@@ -370,6 +382,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#codebook-0-8-2">0.8.2</a></li>
         <li><a href="#codebook-0-8-1">0.8.1</a></li>
         <li><a href="#codebook-0-8-0">0.8.0</a></li>
         <li><a href="#codebook-0-7-6">0.7.6</a></li>

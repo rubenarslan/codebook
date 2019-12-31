@@ -71,7 +71,7 @@ Using different settings, you can also easily tag other missing values." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
       </span>
     </div>
 
@@ -150,10 +150,17 @@ Using different settings, you can also easily tag other missing values.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>detect_missing</span>(<span class='no'>data</span>, <span class='kw'>only_labelled</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>negative_values_are_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ninety_nine_problems</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>learn_from_labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>missing</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(), <span class='kw'>non_missing</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(),
-  <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>data</span>), <span class='kw'>use_labelled_spss</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="usage"><span class='fu'>detect_missing</span>(
+  <span class='no'>data</span>,
+  <span class='kw'>only_labelled</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>negative_values_are_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>ninety_nine_problems</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>learn_from_labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>missing</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(),
+  <span class='kw'>non_missing</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(),
+  <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/names'>names</a></span>(<span class='no'>data</span>),
+  <span class='kw'>use_labelled_spss</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)
 
 <span class='fu'>detect_missings</span>(<span class='no'>data</span>, <span class='kw'>only_labelled_missings</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
