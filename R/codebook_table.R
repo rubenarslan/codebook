@@ -14,6 +14,9 @@ codebook_table <- function(results) {
   skimmed <- skim_to_wide_labelled(results)
   metadata <- gather_variable_metadata(results)
 
+  if (!exists("label", metadata)) {
+    metadata$label <- NA_character_
+  }
   metadata <- dplyr::left_join(metadata,
                                skimmed,
                                by = c("name" = "skim_variable"))

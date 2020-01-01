@@ -572,22 +572,32 @@ metadata_list <- function(results, only_existing = TRUE) {
 
 
   if (only_existing) {
-    dict <- codebook_table(results)
+    dict <- codebook_table(results)[, c("name", "label", "n_missing")]
     dict <- knitr::kable(dict, format = "markdown")
     dict <- stringr::str_replace_all(dict, "\n", " - ")
     dict <- paste0(as.character(dict), collapse = "\n")
+    if (stringr::str_length(dict) > 4000) {
+      dict <- "[truncated]"
+    }
     version <- as.character(utils::packageVersion("codebook"))
-    metadata$description <- paste0(metadata$description, "\n\n\n",
-      glue::glue(
-      "
+    template <- "
     ## Table of variables
-    This table contains variable names, labels, their central tendencies and other attributes.
+    This table contains variable names, labels, and number of missing values.
+    See the complete codebook for more.
 
     {dict}
 
     ### Note
     This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version {version}).
-    ",
+    "
+
+    metadata$description <- stringr::str_sub(metadata$description,
+                                             1, 5000
+                                             - stringr::str_length(template)
+                                             - stringr::str_length(dict))
+    metadata$description <- paste0(metadata$description, "\n\n\n",
+      glue::glue(
+        template,
       dict = dict,
       version = version))
     metadata <- metadata[intersect(names(metadata), legal_dataset_properties)]
