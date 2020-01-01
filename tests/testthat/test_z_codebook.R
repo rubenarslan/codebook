@@ -114,9 +114,9 @@ test_that("Degenerate cases: Variables with only missing data work", {
   dir <- tempdir()
   setwd(dir)
   on.exit(setwd(wd))
-  expect_silent(md <- codebook(onlymiss, survey_repetition = "single",
+  expect_warning(md <- codebook(onlymiss, survey_repetition = "single",
                                missingness_report = FALSE,
-                               metadata_json = FALSE))
+                               metadata_json = FALSE), "non-missing")
 
   unlink(paste0(dir, "/figure"), recursive = TRUE)
 })
