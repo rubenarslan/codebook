@@ -32,6 +32,7 @@ reference:
   - '`aggregate_and_document_scale`'
   - '`add_R`'
   - '`reverse_labelled_values`'
+  - '`to_factor`'
   - '`has_label`'
   - '`has_labels`'
   - '`metadata`'
@@ -53,8 +54,8 @@ reference:
 - title: Methods
   desc: Various methods to print and plot objects
   contents:
-  - '`summary.labelled`'
-  - '`summary.labelled_spss`'
+  - '`summary.haven_labelled`'
+  - '`summary.haven_labelled_spss`'
   - '`knit_print.alpha`'
   - '`knit_print.htest`'
   - '`knit_print.multilevel`'

@@ -119,7 +119,7 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">knit_by_pkgdown &lt;-<span class="st"> </span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span>(knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw"><a href="https://rdrr.io/r/base/get.html">get</a></span>(<span class="st">"fig.retina"</span>))</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">FALSE</span>, <span class="dt">message =</span> <span class="ot">FALSE</span>, <span class="dt">error =</span> <span class="ot">TRUE</span>, <span class="dt">echo =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">FALSE</span>, <span class="dt">message =</span> <span class="ot">FALSE</span>, <span class="dt">error =</span> <span class="ot">FALSE</span>, <span class="dt">echo =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb1-3" data-line-number="3">pander<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/pander/man/panderOptions.html">panderOptions</a></span>(<span class="st">"table.split.table"</span>, <span class="ot">Inf</span>)</a>
 <a class="sourceLine" id="cb1-4" data-line-number="4">ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html">theme_set</a></span>(ggplot2<span class="op">::</span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>())</a>
 <a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(codebook)</a>
@@ -171,7 +171,503 @@
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># We don't want to look at the code in the codebook.</span></a>
 <a class="sourceLine" id="cb11-2" data-line-number="2">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">TRUE</span>, <span class="dt">message =</span> <span class="ot">TRUE</span>, <span class="dt">echo =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <pre><code>## No missing values.</code></pre>
-<pre><code>## Error: Can't find column `label` in `.data`.</code></pre>
+<div id="metadata" class="section level3">
+<h3 class="hasAnchor">
+<a href="#metadata" class="anchor"></a>Metadata</h3>
+<div id="description" class="section level4">
+<h4 class="hasAnchor">
+<a href="#description" class="anchor"></a>Description</h4>
+<p><strong>Dataset name</strong>: MOCK Qualtrics dataset</p>
+<p>a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package</p>
+<details><p><summary title="Expand this section to see some additional metadata in a structured format that is useful for search engines">Metadata for search engines</summary></p>
+<ul>
+<li>
+<strong>Temporal Coverage</strong>: 2018</li>
+<li><p><strong>Spatial Coverage</strong>: Nowhere</p></li>
+<li>
+<strong>URL</strong>: <a href="https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html">https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html</a>
+</li>
+<li>
+<strong>Identifier</strong>: <a href="https://dx.doi.org/10.5281/zenodo.1326520">doi:10.5281/zenodo.1326520</a>
+</li>
+<li><p><strong>Date published</strong>: 2018-08-01</p></li>
+<li>
+<p><strong>Creator</strong>:</p>
+<ul>
+<li>
+<strong><span class="citation">@type</span></strong>: Person</li>
+<li>
+<strong>givenName</strong>: Ruben</li>
+<li>
+<strong>familyName</strong>: Arslan</li>
+<li>
+<strong>email</strong>: <a href="mailto:ruben.arslan@gmail.com" class="email">ruben.arslan@gmail.com</a>
+</li>
+<li>
+<p><strong>affiliation</strong>:</p>
+<ul>
+<li>
+<strong><span class="citation">@type</span></strong>: Organization</li>
+<li>
+<strong>name</strong>: MPI Human Development, Berlin</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- end of list --><ul>
+<li>
+<strong>keywords</strong>: <em>ResponseSet</em>, <em>Q7</em> and <em>Q10</em>
+</li>
+</ul>
+<!-- end of list --></details>
+</div>
+</div>
+</div>
+<div id="variables" class="section level2">
+<h2 class="hasAnchor">
+<a href="#variables" class="anchor"></a>Variables</h2>
+<div id="ResponseSet" class="section level3 tabset">
+<h3 class="hasAnchor">
+<a href="#ResponseSet" class="anchor"></a>ResponseSet</h3>
+<p>ResponseSet</p>
+<div id="ResponseSet_distribution" class="section level4">
+<h4 class="hasAnchor">
+<a href="#ResponseSet_distribution" class="anchor"></a>Distribution</h4>
+<p><img src="codebook_qualtrics_files/figure-html/cb_results_ResponseSet_distribution-1.png" width="700"></p>
+<p>0 missing values.</p>
+</div>
+<div id="ResponseSet_summary" class="section level4">
+<h4 class="hasAnchor">
+<a href="#ResponseSet_summary" class="anchor"></a>Summary statistics</h4>
+<table class="table">
+<thead><tr class="header">
+<th align="left">name</th>
+<th align="left">label</th>
+<th align="left">data_type</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">n_unique</th>
+<th align="right">empty</th>
+<th align="left">min</th>
+<th align="left">max</th>
+<th align="right">whitespace</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">ResponseSet</td>
+<td align="left">ResponseSet</td>
+<td align="left">character</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="left">20</td>
+<td align="left">20</td>
+<td align="right">0</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+<div id="Q7" class="section level3 tabset">
+<h3 class="hasAnchor">
+<a href="#Q7" class="anchor"></a>Q7</h3>
+<p>How reasonable or unreasonable is the cost of courses/tuition at this university?</p>
+<div id="Q7_distribution" class="section level4">
+<h4 class="hasAnchor">
+<a href="#Q7_distribution" class="anchor"></a>Distribution</h4>
+<p><img src="codebook_qualtrics_files/figure-html/cb_results_Q7_distribution-1.png" width="700"></p>
+<p>0 missing values.</p>
+</div>
+<div id="Q7_summary" class="section level4">
+<h4 class="hasAnchor">
+<a href="#Q7_summary" class="anchor"></a>Summary statistics</h4>
+<table class="table">
+<thead><tr class="header">
+<th align="left">name</th>
+<th align="left">label</th>
+<th align="left">type</th>
+<th align="left">data_type</th>
+<th align="left">ordered</th>
+<th align="left">value_labels</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">n_unique</th>
+<th align="left">top_counts</th>
+<th align="left">selector</th>
+<th align="left">subSelector</th>
+<th align="left">questionText</th>
+<th align="left">doesForceResponse</th>
+<th align="left">questionName</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">Q7</td>
+<td align="left">How reasonable or unreasonable is the cost of courses/tuition at this university?</td>
+<td align="left">MC</td>
+<td align="left">factor</td>
+<td align="left">TRUE</td>
+<td align="left">1. Extremely reasonable,<br>2. Moderately reasonable,<br>3. Slightly reasonable,<br>4. Neither reasonable nor unreasonable,<br>5. Slightly unreasonable,<br>6. Moderately unreasonable,<br>7. Extremely unreasonable</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">Mod: 1, Sli: 1, Ext: 0, Nei: 0</td>
+<td align="left">SAVR</td>
+<td align="left">TX</td>
+<td align="left">How reasonable or unreasonable is the cost of courses/tuition at this university?</td>
+<td align="left">FALSE</td>
+<td align="left">Q7</td>
+</tr></tbody>
+</table>
+</div>
+<div id="Q7_item" class="section level4">
+<h4 class="hasAnchor">
+<a href="#Q7_item" class="anchor"></a>Item</h4>
+<ul>
+<li>
+<p><strong>questionType</strong>:</p>
+<ul>
+<li>
+<strong>type</strong>: MC</li>
+<li>
+<strong>selector</strong>: SAVR</li>
+<li>
+<strong>subSelector</strong>: TX</li>
+</ul>
+</li>
+<li>
+<strong>questionText</strong>: How reasonable or unreasonable is the cost of courses/tuition at this university?</li>
+<li>
+<strong>questionLabel</strong>:</li>
+<li>
+<p><strong>validation</strong>:</p>
+<ul>
+<li>
+<strong>doesForceResponse</strong>: <em>FALSE</em>
+</li>
+</ul>
+</li>
+<li>
+<strong>questionName</strong>: Q7</li>
+<li>
+<p><strong>choices</strong>:</p>
+<ul>
+<li>
+<p><strong>1</strong>:</p>
+<pre><code>  * **recode**: 1
+  * **description**: Extremely reasonable
+  * **choiceText**: Extremely reasonable
+  * **imageDescription**:
+  * **variableName**:
+  * **analyze**: _TRUE_</code></pre>
+</li>
+<li>
+<p><strong>2</strong>:</p>
+<pre><code>  * **recode**: 2
+  * **description**: Moderately reasonable
+  * **choiceText**: Moderately reasonable
+  * **imageDescription**:
+  * **variableName**:
+  * **analyze**: _TRUE_</code></pre>
+</li>
+<li>
+<p><strong>3</strong>:</p>
+<pre><code>  * **recode**: 3
+  * **description**: Slightly reasonable
+  * **choiceText**: Slightly reasonable
+  * **imageDescription**:
+  * **variableName**:
+  * **analyze**: _TRUE_</code></pre>
+</li>
+<li>
+<p><strong>4</strong>:</p>
+<pre><code>  * **recode**: 4
+  * **description**: Neither reasonable nor unreasonable
+  * **choiceText**: Neither reasonable nor unreasonable
+  * **imageDescription**:
+  * **variableName**:
+  * **analyze**: _TRUE_</code></pre>
+</li>
+<li>
+<p><strong>5</strong>:</p>
+<pre><code>  * **recode**: 5
+  * **description**: Slightly unreasonable
+  * **choiceText**: Slightly unreasonable
+  * **imageDescription**:
+  * **variableName**:
+  * **analyze**: _TRUE_</code></pre>
+</li>
+<li>
+<p><strong>6</strong>:</p>
+<pre><code>  * **recode**: 6
+  * **description**: Moderately unreasonable
+  * **choiceText**: Moderately unreasonable
+  * **imageDescription**:
+  * **variableName**:
+  * **analyze**: _TRUE_</code></pre>
+</li>
+<li>
+<p><strong>7</strong>:</p>
+<pre><code>  * **recode**: 7
+  * **description**: Extremely unreasonable
+  * **choiceText**: Extremely unreasonable
+  * **imageDescription**:
+  * **variableName**:
+  * **analyze**: _TRUE_</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<!-- end of list -->
+</div>
+</div>
+<div id="Q10" class="section level3 tabset">
+<h3 class="hasAnchor">
+<a href="#Q10" class="anchor"></a>Q10</h3>
+<p>How helpful or unhelpful is the staff at the on-campus health center?</p>
+<div id="Q10_distribution" class="section level4">
+<h4 class="hasAnchor">
+<a href="#Q10_distribution" class="anchor"></a>Distribution</h4>
+<p><img src="codebook_qualtrics_files/figure-html/cb_results_Q10_distribution-1.png" width="700"></p>
+<p>0 missing values.</p>
+</div>
+<div id="Q10_summary" class="section level4">
+<h4 class="hasAnchor">
+<a href="#Q10_summary" class="anchor"></a>Summary statistics</h4>
+<table class="table">
+<thead><tr class="header">
+<th align="left">name</th>
+<th align="left">label</th>
+<th align="left">type</th>
+<th align="left">data_type</th>
+<th align="left">ordered</th>
+<th align="left">value_labels</th>
+<th align="right">n_missing</th>
+<th align="right">complete_rate</th>
+<th align="right">n_unique</th>
+<th align="left">top_counts</th>
+<th align="left">selector</th>
+<th align="left">subSelector</th>
+<th align="left">questionText</th>
+<th align="left">doesForceResponse</th>
+<th align="left">questionName</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">Q10</td>
+<td align="left">How helpful or unhelpful is the staff at the on-campus health center?</td>
+<td align="left">MC</td>
+<td align="left">factor</td>
+<td align="left">TRUE</td>
+<td align="left">1. Extremely helpful,<br>2. Moderately helpful,<br>3. Slightly helpful,<br>4. Neither helpful nor unhelpful,<br>5. Slightly unhelpful,<br>6. Moderately unhelpful,<br>7. Extremely unhelpful</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">Mod: 1, Ext: 1, Ext: 0, Sli: 0</td>
+<td align="left">SAVR</td>
+<td align="left">TX</td>
+<td align="left">How helpful or unhelpful is the staff at the on-campus health center?</td>
+<td align="left">FALSE</td>
+<td align="left">Q10</td>
+</tr></tbody>
+</table>
+</div>
+<div id="Q10_item" class="section level4">
+<h4 class="hasAnchor">
+<a href="#Q10_item" class="anchor"></a>Item</h4>
+<ul>
+<li>
+<p><strong>questionType</strong>:</p>
+<ul>
+<li>
+<strong>type</strong>: MC</li>
+<li>
+<strong>selector</strong>: SAVR</li>
+<li>
+<strong>subSelector</strong>: TX</li>
+</ul>
+</li>
+<li>
+<strong>questionText</strong>: How helpful or unhelpful is the staff at the on-campus health center?</li>
+<li>
+<strong>questionLabel</strong>:</li>
+<li>
+<p><strong>validation</strong>:</p>
+<ul>
+<li>
+<strong>doesForceResponse</strong>: <em>FALSE</em>
+</li>
+</ul>
+</li>
+<li>
+<strong>questionName</strong>: Q10</li>
+<li>
+<p><strong>choices</strong>:</p>
+<ul>
+<li>
+<p><strong>1</strong>:</p>
+<pre><code>  * **recode**: 1
+  * **description**: Extremely helpful
+  * **choiceText**: Extremely helpful
+  * **imageDescription**:
+  * **variableName**:
+  * **analyze**: _TRUE_</code></pre>
+</li>
+<li>
+<p><strong>2</strong>:</p>
+<pre><code>  * **recode**: 2
+  * **description**: Moderately helpful
+  * **choiceText**: Moderately helpful
+  * **imageDescription**:
+  * **variableName**:
+  * **analyze**: _TRUE_</code></pre>
+</li>
+<li>
+<p><strong>3</strong>:</p>
+<pre><code>  * **recode**: 3
+  * **description**: Slightly helpful
+  * **choiceText**: Slightly helpful
+  * **imageDescription**:
+  * **variableName**:
+  * **analyze**: _TRUE_</code></pre>
+</li>
+<li>
+<p><strong>4</strong>:</p>
+<pre><code>  * **recode**: 4
+  * **description**: Neither helpful nor unhelpful
+  * **choiceText**: Neither helpful nor unhelpful
+  * **imageDescription**:
+  * **variableName**:
+  * **analyze**: _TRUE_</code></pre>
+</li>
+<li>
+<p><strong>5</strong>:</p>
+<pre><code>  * **recode**: 5
+  * **description**: Slightly unhelpful
+  * **choiceText**: Slightly unhelpful
+  * **imageDescription**:
+  * **variableName**:
+  * **analyze**: _TRUE_</code></pre>
+</li>
+<li>
+<p><strong>6</strong>:</p>
+<pre><code>  * **recode**: 6
+  * **description**: Moderately unhelpful
+  * **choiceText**: Moderately unhelpful
+  * **imageDescription**:
+  * **variableName**:
+  * **analyze**: _TRUE_</code></pre>
+</li>
+<li>
+<p><strong>7</strong>:</p>
+<pre><code>  * **recode**: 7
+  * **description**: Extremely unhelpful
+  * **choiceText**: Extremely unhelpful
+  * **imageDescription**:
+  * **variableName**:
+  * **analyze**: _TRUE_</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<!-- end of list -->
+</div>
+</div>
+</div>
+<div id="missingness-report" class="section level2">
+<h2 class="hasAnchor">
+<a href="#missingness-report" class="anchor"></a>Missingness report</h2>
+</div>
+<div id="codebook-table" class="section level2">
+<h2 class="hasAnchor">
+<a href="#codebook-table" class="anchor"></a>Codebook table</h2>
+<div id="htmlwidget-069de8dbbf21d86b9967" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-069de8dbbf21d86b9967">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;,&quot;na&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"1\" data-max=\"2\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#ResponseSet\">ResponseSet<\/a>","<a href=\"#Q7\">Q7<\/a>","<a href=\"#Q10\">Q10<\/a>"],[null,"MC","MC"],["character","factor","factor"],[null,true,true],[null,"1. Extremely reasonable,<br>2. Moderately reasonable,<br>3. Slightly reasonable,<br>4. Neither reasonable nor unreasonable,<br>5. Slightly unreasonable,<br>6. Moderately unreasonable,<br>7. Extremely unreasonable","1. Extremely helpful,<br>2. Moderately helpful,<br>3. Slightly helpful,<br>4. Neither helpful nor unhelpful,<br>5. Slightly unhelpful,<br>6. Moderately unhelpful,<br>7. Extremely unhelpful"],[0,0,0],[1,1,1],[1,2,2],[0,null,null],[null,"Mod: 1, Sli: 1, Ext: 0, Nei: 0","Mod: 1, Ext: 1, Ext: 0, Sli: 0"],["20",null,null],["20",null,null],[0,null,null],["ResponseSet",null,null],[null,"How reasonable or unreasonable is the cost of courses/tuition at this university?",null],[null,"SAVR","SAVR"],[null,"TX","TX"],[null,"How reasonable or unreasonable is the cost of courses/tuition at this university?","How helpful or unhelpful is the staff at the on-campus health center?"],[null,"FALSE","FALSE"],[null,"Q7","Q10"],[null,null,"How helpful or unhelpful is the staff at the on-campus health center?"],[null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>type<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>n_missing<\/th>\n      <th>complete_rate<\/th>\n      <th>n_unique<\/th>\n      <th>empty<\/th>\n      <th>top_counts<\/th>\n      <th>min<\/th>\n      <th>max<\/th>\n      <th>whitespace<\/th>\n      <th>ResponseSet<\/th>\n      <th>Q7<\/th>\n      <th>selector<\/th>\n      <th>subSelector<\/th>\n      <th>questionText<\/th>\n      <th>doesForceResponse<\/th>\n      <th>questionName<\/th>\n      <th>Q10<\/th>\n      <th>label<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":[5,6,7,8,12]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
+{
+  "name": "MOCK Qualtrics dataset",
+  "description": "a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name        |label | n_missing|\n|:-----------|:-----|---------:|\n|ResponseSet |NA    |         0|\n|Q7          |NA    |         0|\n|Q10         |NA    |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.8.2).",
+  "identifier": "doi:10.5281/zenodo.1326520",
+  "datePublished": "2018-08-01",
+  "creator": {
+    "@type": "Person",
+    "givenName": "Ruben",
+    "familyName": "Arslan",
+    "email": "ruben.arslan@gmail.com",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "MPI Human Development, Berlin"
+    }
+  },
+  "url": "https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html",
+  "temporalCoverage": "2018",
+  "spatialCoverage": "Nowhere",
+  "keywords": ["ResponseSet", "Q7", "Q10"],
+  "@context": "http://schema.org/",
+  "@type": "Dataset",
+  "variableMeasured": [
+    {
+      "name": "ResponseSet",
+      "description": "ResponseSet",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "Q7",
+      "description": "How reasonable or unreasonable is the cost of courses/tuition at this university?",
+      "value": "1. Extremely reasonable,\n2. Moderately reasonable,\n3. Slightly reasonable,\n4. Neither reasonable nor unreasonable,\n5. Slightly unreasonable,\n6. Moderately unreasonable,\n7. Extremely unreasonable",
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "Q10",
+      "description": "How helpful or unhelpful is the staff at the on-campus health center?",
+      "value": "1. Extremely helpful,\n2. Moderately helpful,\n3. Slightly helpful,\n4. Neither helpful nor unhelpful,\n5. Slightly unhelpful,\n6. Moderately unhelpful,\n7. Extremely unhelpful",
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    }
+  ]
+}
+</script><details><p><summary>JSON-LD metadata</summary> The following JSON-LD can be found by search engines, if you share this codebook publicly on the web.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode json"><code class="sourceCode json"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="fu">{</span></a>
+<a class="sourceLine" id="cb27-2" data-line-number="2">  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MOCK Qualtrics dataset"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-3" data-line-number="3">  <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package</span><span class="ch">\n\n\n</span><span class="st">## Table of variables</span><span class="ch">\n</span><span class="st">This table contains variable names, labels, and number of missing values.</span><span class="ch">\n</span><span class="st">See the complete codebook for more.</span><span class="ch">\n\n</span><span class="st">|name        |label | n_missing|</span><span class="ch">\n</span><span class="st">|:-----------|:-----|---------:|</span><span class="ch">\n</span><span class="st">|ResponseSet |NA    |         0|</span><span class="ch">\n</span><span class="st">|Q7          |NA    |         0|</span><span class="ch">\n</span><span class="st">|Q10         |NA    |         0|</span><span class="ch">\n\n</span><span class="st">### Note</span><span class="ch">\n</span><span class="st">This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.8.2)."</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-4" data-line-number="4">  <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"doi:10.5281/zenodo.1326520"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-5" data-line-number="5">  <span class="dt">"datePublished"</span><span class="fu">:</span> <span class="st">"2018-08-01"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-6" data-line-number="6">  <span class="dt">"creator"</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb27-7" data-line-number="7">    <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-8" data-line-number="8">    <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Ruben"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-9" data-line-number="9">    <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Arslan"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-10" data-line-number="10">    <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"ruben.arslan@gmail.com"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-11" data-line-number="11">    <span class="dt">"affiliation"</span><span class="fu">:</span> <span class="fu">{</span></a>
+<a class="sourceLine" id="cb27-12" data-line-number="12">      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-13" data-line-number="13">      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MPI Human Development, Berlin"</span></a>
+<a class="sourceLine" id="cb27-14" data-line-number="14">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb27-15" data-line-number="15">  <span class="fu">},</span></a>
+<a class="sourceLine" id="cb27-16" data-line-number="16">  <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-17" data-line-number="17">  <span class="dt">"temporalCoverage"</span><span class="fu">:</span> <span class="st">"2018"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-18" data-line-number="18">  <span class="dt">"spatialCoverage"</span><span class="fu">:</span> <span class="st">"Nowhere"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-19" data-line-number="19">  <span class="dt">"keywords"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"ResponseSet"</span><span class="ot">,</span> <span class="st">"Q7"</span><span class="ot">,</span> <span class="st">"Q10"</span><span class="ot">]</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-20" data-line-number="20">  <span class="dt">"@context"</span><span class="fu">:</span> <span class="st">"http://schema.org/"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-21" data-line-number="21">  <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Dataset"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-22" data-line-number="22">  <span class="dt">"variableMeasured"</span><span class="fu">:</span> <span class="ot">[</span></a>
+<a class="sourceLine" id="cb27-23" data-line-number="23">    <span class="fu">{</span></a>
+<a class="sourceLine" id="cb27-24" data-line-number="24">      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"ResponseSet"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-25" data-line-number="25">      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"ResponseSet"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-26" data-line-number="26">      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></a>
+<a class="sourceLine" id="cb27-27" data-line-number="27">    <span class="fu">}</span><span class="ot">,</span></a>
+<a class="sourceLine" id="cb27-28" data-line-number="28">    <span class="fu">{</span></a>
+<a class="sourceLine" id="cb27-29" data-line-number="29">      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Q7"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-30" data-line-number="30">      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"How reasonable or unreasonable is the cost of courses/tuition at this university?"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-31" data-line-number="31">      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. Extremely reasonable,</span><span class="ch">\n</span><span class="st">2. Moderately reasonable,</span><span class="ch">\n</span><span class="st">3. Slightly reasonable,</span><span class="ch">\n</span><span class="st">4. Neither reasonable nor unreasonable,</span><span class="ch">\n</span><span class="st">5. Slightly unreasonable,</span><span class="ch">\n</span><span class="st">6. Moderately unreasonable,</span><span class="ch">\n</span><span class="st">7. Extremely unreasonable"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-32" data-line-number="32">      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-33" data-line-number="33">      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></a>
+<a class="sourceLine" id="cb27-34" data-line-number="34">    <span class="fu">}</span><span class="ot">,</span></a>
+<a class="sourceLine" id="cb27-35" data-line-number="35">    <span class="fu">{</span></a>
+<a class="sourceLine" id="cb27-36" data-line-number="36">      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Q10"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-37" data-line-number="37">      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"How helpful or unhelpful is the staff at the on-campus health center?"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-38" data-line-number="38">      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. Extremely helpful,</span><span class="ch">\n</span><span class="st">2. Moderately helpful,</span><span class="ch">\n</span><span class="st">3. Slightly helpful,</span><span class="ch">\n</span><span class="st">4. Neither helpful nor unhelpful,</span><span class="ch">\n</span><span class="st">5. Slightly unhelpful,</span><span class="ch">\n</span><span class="st">6. Moderately unhelpful,</span><span class="ch">\n</span><span class="st">7. Extremely unhelpful"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-39" data-line-number="39">      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></a>
+<a class="sourceLine" id="cb27-40" data-line-number="40">      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></a>
+<a class="sourceLine" id="cb27-41" data-line-number="41">    <span class="fu">}</span></a>
+<a class="sourceLine" id="cb27-42" data-line-number="42">  <span class="ot">]</span></a>
+<a class="sourceLine" id="cb27-43" data-line-number="43"><span class="fu">}</span><span class="er">`</span></a></code></pre></div>
+</details>
 </div>
   </div>
 
@@ -182,6 +678,9 @@
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#load">Load</a></li>
+      <li><a href="#variables">Variables</a></li>
+      <li><a href="#missingness-report">Missingness report</a></li>
+      <li><a href="#codebook-table">Codebook table</a></li>
       </ul>
 </div>
       </div>

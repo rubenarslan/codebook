@@ -166,7 +166,257 @@ script tag.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"bfi"</span>)
-<span class='fu'>metadata_jsonld</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; <span class='error'>Error in `[.data.frame`(codebook_table(results), , c("name", "label",     "n_missing")): undefined columns selected</span></div></pre>
+<span class='fu'>metadata_jsonld</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; 
+#&gt; &lt;script type="application/ld+json"&gt;
+#&gt; {
+#&gt;   "@context": "http://schema.org/",
+#&gt;   "@type": "Dataset",
+#&gt;   "variableMeasured": [
+#&gt;     {
+#&gt;       "name": "A1",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "A2",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "A3",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "A4",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "A5",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "C1",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "C2",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "C3",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "C4",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "C5",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "E1",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "E2",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "E3",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "E4",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "E5",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "N1",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "N2",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "N3",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "N4",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "N5",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "O1",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "O2",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "O3",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "O4",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "O5",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "gender",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "education",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "age",
+#&gt;       "@type": "propertyValue"
+#&gt;     }
+#&gt;   ],
+#&gt;   "description": "\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name      |label | n_missing|\n|:---------|:-----|---------:|\n|A1        |NA    |        16|\n|A2        |NA    |        27|\n|A3        |NA    |        26|\n|A4        |NA    |        19|\n|A5        |NA    |        16|\n|C1        |NA    |        21|\n|C2        |NA    |        24|\n|C3        |NA    |        20|\n|C4        |NA    |        26|\n|C5        |NA    |        16|\n|E1        |NA    |        23|\n|E2        |NA    |        16|\n|E3        |NA    |        25|\n|E4        |NA    |         9|\n|E5        |NA    |        21|\n|N1        |NA    |        22|\n|N2        |NA    |        21|\n|N3        |NA    |        11|\n|N4        |NA    |        36|\n|N5        |NA    |        29|\n|O1        |NA    |        22|\n|O2        |NA    |         0|\n|O3        |NA    |        28|\n|O4        |NA    |        14|\n|O5        |NA    |        20|\n|gender    |NA    |         0|\n|education |NA    |       223|\n|age       |NA    |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.8.2)."
+#&gt; }
+#&gt; &lt;/script&gt;
+#&gt; 
+#&gt; &lt;details&gt;&lt;summary&gt;JSON-LD metadata&lt;/summary&gt;
+#&gt; The following JSON-LD can be found by search engines, if you share this codebook
+#&gt; publicly on the web.
+#&gt; 
+#&gt; ```json
+#&gt; {
+#&gt;   "@context": "http://schema.org/",
+#&gt;   "@type": "Dataset",
+#&gt;   "variableMeasured": [
+#&gt;     {
+#&gt;       "name": "A1",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "A2",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "A3",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "A4",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "A5",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "C1",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "C2",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "C3",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "C4",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "C5",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "E1",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "E2",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "E3",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "E4",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "E5",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "N1",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "N2",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "N3",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "N4",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "N5",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "O1",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "O2",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "O3",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "O4",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "O5",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "gender",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "education",
+#&gt;       "@type": "propertyValue"
+#&gt;     },
+#&gt;     {
+#&gt;       "name": "age",
+#&gt;       "@type": "propertyValue"
+#&gt;     }
+#&gt;   ],
+#&gt;   "description": "\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name      |label | n_missing|\n|:---------|:-----|---------:|\n|A1        |NA    |        16|\n|A2        |NA    |        27|\n|A3        |NA    |        26|\n|A4        |NA    |        19|\n|A5        |NA    |        16|\n|C1        |NA    |        21|\n|C2        |NA    |        24|\n|C3        |NA    |        20|\n|C4        |NA    |        26|\n|C5        |NA    |        16|\n|E1        |NA    |        23|\n|E2        |NA    |        16|\n|E3        |NA    |        25|\n|E4        |NA    |         9|\n|E5        |NA    |        21|\n|N1        |NA    |        22|\n|N2        |NA    |        21|\n|N3        |NA    |        11|\n|N4        |NA    |        36|\n|N5        |NA    |        29|\n|O1        |NA    |        22|\n|O2        |NA    |         0|\n|O3        |NA    |        28|\n|O4        |NA    |        14|\n|O5        |NA    |        20|\n|gender    |NA    |         0|\n|education |NA    |       223|\n|age       |NA    |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.8.2)."
+#&gt; }`
+#&gt; ```
+#&gt; &lt;/details&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
