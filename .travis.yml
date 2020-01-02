@@ -3,7 +3,7 @@
 dist: xenial
 language: R
 cache: packages
-warnings_are_errors: true
+warnings_are_errors: false
 
 r_packages:
   - covr
@@ -54,6 +54,33 @@ matrix:
         - pander
         - minpack.lm
         - StanHeaders
+        - quantreg
+        - skimr
+        - forcats
+        - userfriendlyscience
+        - ggplot2
+        - psych
+        - tidyselect
+        - pander
+        - DT
+        - jsonlite
+        - future
+        - htmltools
+        - labeling
+        - labelled
+        - rstudioapi
+        - shiny
+        - miniUI
+        - glue
+        - lubridate
+        - rio
+        - testthat
+        - shinytest
+        - lme4
+        - roxygen2
+        - renv
+        - webshot
+
 #    - os: osx
 #      osx_image: xcode9.2
 #    - os: osx
