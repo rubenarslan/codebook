@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rescue lost attributes — rescue_attributes • codebook</title>
+<title>Define skimmers for haven_labelled_spss variables — get_skimmers.haven_labelled_spss • codebook</title>
 
 
 <!-- jquery -->
@@ -41,10 +41,10 @@
 
 
 
-<meta property="og:title" content="Rescue lost attributes — rescue_attributes" />
-<meta property="og:description" content="You can use this function if some of your items have lost their attributes during wrangling
-Variables have to have the same name (Duh) and no attributes should be overwritten.
-But use with care. Similar to labelled::copy_labels()." />
+<meta property="og:title" content="Define skimmers for haven_labelled_spss variables — get_skimmers.haven_labelled_spss" />
+<meta property="og:description" content="Variables labelled using the haven_labelled_spss class are special
+because the underlying data can be numeric or character. This skimmers summarises
+both and leaves non-pertinent columns missings." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -143,29 +143,25 @@ But use with care. Similar to labelled::copy_labels()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Rescue lost attributes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/correct_attributes.R'><code>R/correct_attributes.R</code></a></small>
-    <div class="hidden name"><code>rescue_attributes.Rd</code></div>
+    <h1>Define skimmers for haven_labelled_spss variables</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/codebook_table.R'><code>R/codebook_table.R</code></a></small>
+    <div class="hidden name"><code>get_skimmers.haven_labelled_spss.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>You can use this function if some of your items have lost their attributes during wrangling
-Variables have to have the same name (Duh) and no attributes should be overwritten.
-But use with care. Similar to <code><a href='https://rdrr.io/pkg/labelled/man/copy_labels.html'>labelled::copy_labels()</a></code>.</p>
+    <p>Variables labelled using the haven_labelled_spss class are special
+because the underlying data can be numeric or character. This skimmers summarises
+both and leaves non-pertinent columns missings.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rescue_attributes</span>(<span class='no'>df_no_attributes</span>, <span class='no'>df_with_attributes</span>)</pre>
+    <pre class="usage"><span class='fu'>get_skimmers.haven_labelled_spss</span>(<span class='no'>column</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>df_no_attributes</th>
-      <td><p>the data frame with missing attributes</p></td>
-    </tr>
-    <tr>
-      <th>df_with_attributes</th>
-      <td><p>the data frame from which you want to restore attributes</p></td>
+      <th>column</th>
+      <td><p>the column to skim</p></td>
     </tr>
     </table>
 

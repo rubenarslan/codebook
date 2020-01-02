@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Rescue lost attributes — rescue_attributes • codebook</title>
+<title>Summary function for labelled vector — summary.haven_labelled • codebook</title>
 
 
 <!-- jquery -->
@@ -41,10 +41,8 @@
 
 
 
-<meta property="og:title" content="Rescue lost attributes — rescue_attributes" />
-<meta property="og:description" content="You can use this function if some of your items have lost their attributes during wrangling
-Variables have to have the same name (Duh) and no attributes should be overwritten.
-But use with care. Similar to labelled::copy_labels()." />
+<meta property="og:title" content="Summary function for labelled vector — summary.haven_labelled" />
+<meta property="og:description" content="Summary function for labelled vector" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -143,38 +141,90 @@ But use with care. Similar to labelled::copy_labels()." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Rescue lost attributes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/correct_attributes.R'><code>R/correct_attributes.R</code></a></small>
-    <div class="hidden name"><code>rescue_attributes.Rd</code></div>
+    <h1>Summary function for labelled vector</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/create_metadata.R'><code>R/create_metadata.R</code></a></small>
+    <div class="hidden name"><code>summary.haven_labelled.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>You can use this function if some of your items have lost their attributes during wrangling
-Variables have to have the same name (Duh) and no attributes should be overwritten.
-But use with care. Similar to <code><a href='https://rdrr.io/pkg/labelled/man/copy_labels.html'>labelled::copy_labels()</a></code>.</p>
+    <p>Summary function for labelled vector</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rescue_attributes</span>(<span class='no'>df_no_attributes</span>, <span class='no'>df_with_attributes</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for haven_labelled</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>df_no_attributes</th>
-      <td><p>the data frame with missing attributes</p></td>
+      <th>object</th>
+      <td><p>a labelled vector</p></td>
     </tr>
     <tr>
-      <th>df_with_attributes</th>
-      <td><p>the data frame from which you want to restore attributes</p></td>
+      <th>...</th>
+      <td><p>passed to summary.factor</p></td>
     </tr>
     </table>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/example.html'>example</a></span>(<span class='st'>"labelled"</span>, <span class='st'>"haven"</span>)</div><div class='output co'>#&gt; 
+#&gt; lablld&gt; s1 &lt;- labelled(c("M", "M", "F"), c(Male = "M", Female = "F"))
+#&gt; 
+#&gt; lablld&gt; s2 &lt;- labelled(c(1, 1, 2), c(Male = 1, Female = 2))
+#&gt; 
+#&gt; lablld&gt; s3 &lt;- labelled(c(1, 1, 2), c(Male = 1, Female = 2),
+#&gt; lablld+                label="Assigned sex at birth")
+#&gt; 
+#&gt; lablld&gt; # Unfortunately it's not possible to make as.factor work for labelled objects
+#&gt; lablld&gt; # so instead use as_factor. This works for all types of labelled vectors.
+#&gt; lablld&gt; as_factor(s1)
+#&gt; [1] Male   Male   Female
+#&gt; Levels: Female Male
+#&gt; 
+#&gt; lablld&gt; as_factor(s1, levels = "values")
+#&gt; [1] M M F
+#&gt; Levels: M F
+#&gt; 
+#&gt; lablld&gt; as_factor(s2)
+#&gt; [1] Male   Male   Female
+#&gt; Levels: Male Female
+#&gt; 
+#&gt; lablld&gt; # Other statistical software supports multiple types of missing values
+#&gt; lablld&gt; s3 &lt;- labelled(c("M", "M", "F", "X", "N/A"),
+#&gt; lablld+   c(Male = "M", Female = "F", Refused = "X", "Not applicable" = "N/A")
+#&gt; lablld+ )
+#&gt; 
+#&gt; lablld&gt; s3
+#&gt; &lt;Labelled character&gt;
+#&gt; [1] M   M   F   X   N/A
+#&gt; 
+#&gt; Labels:
+#&gt;  value          label
+#&gt;      M           Male
+#&gt;      F         Female
+#&gt;      X        Refused
+#&gt;    N/A Not applicable
+#&gt; 
+#&gt; lablld&gt; as_factor(s3)
+#&gt; [1] Male           Male           Female         Refused        Not applicable
+#&gt; Levels: Female Male Not applicable Refused
+#&gt; 
+#&gt; lablld&gt; # Often when you have a partially labelled numeric vector, labelled values
+#&gt; lablld&gt; # are special types of missing. Use zap_labels to replace labels with missing
+#&gt; lablld&gt; # values
+#&gt; lablld&gt; x &lt;- labelled(c(1, 2, 1, 2, 10, 9), c(Unknown = 9, Refused = 10))
+#&gt; 
+#&gt; lablld&gt; zap_labels(x)
+#&gt; [1]  1  2  1  2 10  9</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;            1            2  [9] Unknown [10] Refused 
+#&gt;            2            2            1            1 </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

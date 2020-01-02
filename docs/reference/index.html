@@ -8,21 +8,25 @@
 
 <title>Function reference • codebook</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -36,7 +40,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
+
 <meta property="og:title" content="Function reference" />
+
 
 
 
@@ -48,6 +54,7 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -74,7 +81,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -106,17 +113,16 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/rubenarslan/codebook">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -127,6 +133,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -404,15 +411,147 @@ reverse the underlying values for a numeric <code><a href='https://haven.tidyver
       <tr>
         
         <td>
-          <p><code><a href="summary.labelled.html">summary(<i>&lt;labelled&gt;</i>)</a></code> </p>
+          <p><code><a href="add_R.html">add_R()</a></code> </p>
         </td>
-        <td><p>Summary function for labelled vector</p></td>
+        <td><p>Append R to string, if it doesn't end in R already.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="summary.labelled_spss.html">summary(<i>&lt;labelled_spss&gt;</i>)</a></code> </p>
+          <p><code><a href="aggregate_and_document_scale.html">aggregate_and_document_scale()</a></code> </p>
         </td>
-        <td><p>Summary function for labelled_spss vector</p></td>
+        <td><p>Aggregate variables and remember which variables this were</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="asis_knit_child.html">asis_knit_child()</a></code> </p>
+        </td>
+        <td><p>Knit a child document and output as is (render markup)</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="bfi.html">bfi</a></code> </p>
+        </td>
+        <td><p>Mock BFI data</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="codebook.html">codebook()</a></code> </p>
+        </td>
+        <td><p>Generate rmarkdown codebook</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="codebook_browser.html">codebook_browser()</a></code> </p>
+        </td>
+        <td><p>Browse and search codebook</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="codebook_component_scale.html">codebook_component_scale()</a></code> </p>
+        </td>
+        <td><p>Codebook component for scales</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="codebook_component_single_item.html">codebook_component_single_item()</a></code> </p>
+        </td>
+        <td><p>Codebook component for single items</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="codebook_data_info.html">codebook_data_info()</a></code> </p>
+        </td>
+        <td><p>Codebook data info</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="codebook_items.html">codebook_items()</a></code> </p>
+        </td>
+        <td><p>Tabular codebook</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="codebook_missingness.html">codebook_missingness()</a></code> </p>
+        </td>
+        <td><p>Codebook missingness</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="codebook_survey_overview.html">codebook_survey_overview()</a></code> </p>
+        </td>
+        <td><p>Codebook survey overview</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="codebook_table.html">codebook_table()</a></code> </p>
+        </td>
+        <td><p>Codebook metadata table</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="compact_codebook.html">compact_codebook()</a></code> </p>
+        </td>
+        <td><p>Compact Codebook</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="compute_reliabilities.html">compute_reliabilities()</a></code> </p>
+        </td>
+        <td><p>Compute reliabilities</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="data_description_default.html">data_description_default()</a></code> </p>
+        </td>
+        <td><p>Data description default</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="detect_missing.html">detect_missing()</a></code> <code><a href="detect_missing.html">detect_missings()</a></code> </p>
+        </td>
+        <td><p>Detect missing values</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="detect_scales.html">detect_scales()</a></code> </p>
+        </td>
+        <td><p>Detect item scales</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="ended.html">ended()</a></code> </p>
+        </td>
+        <td><p>How many surveys were ended?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="expired.html">expired()</a></code> </p>
+        </td>
+        <td><p>How many surveys were expired?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_skimmers.haven_labelled.html">get_skimmers.haven_labelled()</a></code> </p>
+        </td>
+        <td><p>Define skimmers for haven_labelled variables</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_skimmers.haven_labelled_spss.html">get_skimmers.haven_labelled_spss()</a></code> </p>
+        </td>
+        <td><p>Define skimmers for haven_labelled_spss variables</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="has_label.html">has_label()</a></code> </p>
+        </td>
+        <td><p>Has label</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="has_labels.html">has_labels()</a></code> </p>
+        </td>
+        <td><p>Has labels</p></td>
       </tr><tr>
         
         <td>
@@ -424,19 +563,31 @@ reverse the underlying values for a numeric <code><a href='https://haven.tidyver
         <td>
           <p><code><a href="knit_print.htest.html">knit_print(<i>&lt;htest&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Print a <code><a href='https://www.rdocumentation.org/packages/stats/topics/cor.test'>stats::cor.test()</a></code> object for knitr</p></td>
+        <td><p>Print a <code><a href='https://rdrr.io/r/stats/cor.test.html'>stats::cor.test()</a></code> object for knitr</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="knit_print.multilevel.html">knit_print(<i>&lt;multilevel&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Print a <code><a href='https://www.rdocumentation.org/packages/psych/topics/multilevel.reliability'>psych::multilevel.reliability()</a></code> object for knitr</p></td>
+        <td><p>Print a <code><a href='https://rdrr.io/pkg/psych/man/multilevel.reliability.html'>psych::multilevel.reliability()</a></code> object for knitr</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="knit_print.scaleDiagnosis.html">knit_print(<i>&lt;scaleDiagnosis&gt;</i>)</a></code> </p>
         </td>
-        <td><p>Print a <code><a href='https://www.rdocumentation.org/packages/userfriendlyscience/topics/scaleDiagnosis'>userfriendlyscience::scaleDiagnosis()</a></code> object for knitr</p></td>
+        <td><p>Print a <code><a href='https://rdrr.io/pkg/userfriendlyscience/man/scaleDiagnosis.html'>userfriendlyscience::scaleDiagnosis()</a></code> object for knitr</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="label_browser.html">label_browser()</a></code> </p>
+        </td>
+        <td><p>Browse and search variable and value labels</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="label_browser_static.html">label_browser_static()</a></code> </p>
+        </td>
+        <td><p>Browse and search variable and value labels</p></td>
       </tr><tr>
         
         <td>
@@ -446,9 +597,112 @@ reverse the underlying values for a numeric <code><a href='https://haven.tidyver
       </tr><tr>
         
         <td>
+          <p><code><a href="list_to_dict.html">list_to_dict()</a></code> <code><a href="list_to_dict.html">dict_to_list()</a></code> </p>
+        </td>
+        <td><p>Go from a named list to a key-value data frame or data dictionary and back</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="load_data_and_render_codebook.html">load_data_and_render_codebook()</a></code> </p>
+        </td>
+        <td><p>Render codebook based on file</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="md_pattern.html">md_pattern()</a></code> </p>
+        </td>
+        <td><p>Missing data patterns</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metadata.html">metadata()</a></code> <code><a href="metadata.html">`metadata<-`()</a></code> </p>
+        </td>
+        <td><p>Add metadata to a dataset</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metadata_jsonld.html">metadata_jsonld()</a></code> </p>
+        </td>
+        <td><p>Metadata as JSON-LD</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metadata_list.html">metadata_list()</a></code> </p>
+        </td>
+        <td><p>Metadata from dataframe</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="modified.html">modified()</a></code> </p>
+        </td>
+        <td><p>How many surveys were modified?</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="new_codebook_rmd.html">new_codebook_rmd()</a></code> </p>
+        </td>
+        <td><p>Create a codebook rmarkdown document</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="paste.knit_asis.html">paste.knit_asis()</a></code> </p>
+        </td>
+        <td><p>Paste and output as is (render markup)</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="plot_labelled.html">plot_labelled()</a></code> </p>
         </td>
         <td><p>Plot labelled vector</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="print.knit_asis.html">print(<i>&lt;knit_asis&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Print new lines in <code>knit_asis</code> outputs</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rescue_attributes.html">rescue_attributes()</a></code> </p>
+        </td>
+        <td><p>Rescue lost attributes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="reverse_labelled_values.html">reverse_labelled_values()</a></code> </p>
+        </td>
+        <td><p>Reverse labelled values
+reverse the underlying values for a numeric <code><a href='https://haven.tidyverse.org/reference/labelled.html'>haven::labelled()</a></code> vector while keeping the labels correct</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="summary.haven_labelled.html">summary(<i>&lt;haven_labelled&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Summary function for labelled vector</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="summary.haven_labelled_spss.html">summary(<i>&lt;haven_labelled_spss&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Summary function for labelled_spss vector</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="to_factor.html">to_factor()</a></code> </p>
+        </td>
+        <td><p>To factor</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="zap_attributes.html">zap_attributes()</a></code> </p>
+        </td>
+        <td><p>Zap attributes</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="zap_labelled.html">zap_labelled()</a></code> </p>
+        </td>
+        <td><p>Zap labelled class</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -494,14 +748,16 @@ reverse the underlying values for a numeric <code><a href='https://haven.tidyver
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by Ruben Arslan.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
@@ -524,6 +780,8 @@ reverse the underlying values for a numeric <code><a href='https://haven.tidyver
 </script>
 
 
+
   </body>
 </html>
+
 
