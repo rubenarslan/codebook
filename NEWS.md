@@ -1,6 +1,7 @@
 # codebook 0.8.2
 ## Bugfixes
 - compatibility with skimr 2.0.0
+- compatibility with forcats 0.4.0
 
 # codebook 0.8.1
 ## Bugfixes

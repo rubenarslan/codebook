@@ -6,7 +6,7 @@ test_that("codebook skim", {
   bfi$alltrue <- T
   bfi$factor <- factor(1:nrow(bfi) > 10)
 
-  skim_codebook(bfi)
+  expect_silent(skim_codebook(bfi))
 })
 
 

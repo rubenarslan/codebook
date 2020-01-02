@@ -21,7 +21,7 @@ likert_from_items <- function(items) {
       labels <- names(attributes(items[[i]])$labels)
       names(attributes(items[[i]])$labels) <- stringr::str_wrap(labels,
                                                                 width = 15)
-      items[[i]] <- haven::as_factor(items[[i]])
+      items[[i]] <- to_factor(items[[i]])
     } else {
       items[[i]] <- factor(items[[i]], levels = unique(unlist(items)))
     }
@@ -78,7 +78,7 @@ plot_labelled <- function(item, item_name = NULL,
 
   if (all(is.na(item_nomiss))) {
     if (has_labels(item)) {
-      item <- as_factor(item, "both")
+      item <- to_factor(item, "both")
     } else {
       item <- factor(item, exclude = NULL)
     }
@@ -149,7 +149,7 @@ plot_labelled <- function(item, item_name = NULL,
       if (any(names(choices) != choices)) {
         label_how <- "both"
       }
-      item <- as_factor(item, levels = label_how)
+      item <- to_factor(item, levels = label_how)
 
       item <- stringr::str_wrap(item, wrap_at_ticks)
 

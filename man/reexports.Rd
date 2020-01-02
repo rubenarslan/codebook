@@ -22,7 +22,9 @@ below to see their documentation.
 \describe{
   \item{dplyr}{\code{\link[dplyr]{\%>\%}}}
 
-  \item{haven}{\code{\link[haven]{as_factor}}, \code{\link[haven]{zap_label}}}
+  \item{forcats}{\code{\link[forcats]{as_factor}}}
+
+  \item{haven}{\code{\link[haven]{zap_label}}}
 
   \item{knitr}{\code{\link[knitr]{knit_print}}}
 
