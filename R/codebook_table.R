@@ -143,6 +143,19 @@ get_skimmers.haven_labelled <- function(column) {
   )
 }
 
+#' Define skimmers for haven_labelled_spss variables
+#'
+#' Variables labelled using the haven_labelled_spss class are special
+#' because the underlying data can be numeric or character. This skimmers summarises
+#' both and leaves non-pertinent columns missings.
+#'
+#' @param column the column to skim
+#'
+#' @export
+get_skimmers.haven_labelled_spss <- function(column) {
+  get_skimmers.haven_labelled(column)
+}
+
 skim_codebook <- skimr::skim_with(
   numeric = skimr::sfl(
     min = skimr::get_one_default_skimmer("numeric")$p0,
