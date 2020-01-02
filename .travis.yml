@@ -55,9 +55,7 @@ matrix:
         - minpack.lm
         - StanHeaders
         - quantreg
-        - skimr
         - forcats
-        - userfriendlyscience
         - ggplot2
         - psych
         - tidyselect
@@ -75,7 +73,6 @@ matrix:
         - lubridate
         - rio
         - testthat
-        - shinytest
         - lme4
         - roxygen2
         - renv
