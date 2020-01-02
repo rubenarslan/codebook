@@ -14,9 +14,6 @@ codebook_table <- function(results) {
   skimmed <- skim_to_wide_labelled(results)
   metadata <- gather_variable_metadata(results)
 
-  if (!exists("label", metadata)) {
-    metadata$label <- NA_character_
-  }
   metadata <- dplyr::left_join(metadata,
                                skimmed,
                                by = c("name" = "skim_variable"))
@@ -34,7 +31,11 @@ codebook_table <- function(results) {
     c("choice_list"))
 
   metadata <- dplyr::select(metadata,  !!!cols)
-  dplyr::select_if(metadata, not_all_na )
+  metadata <- dplyr::select_if(metadata, not_all_na )
+  if (!exists("label", metadata)) {
+    metadata$label <- NA_character_
+  }
+  metadata
 }
 
 gather_variable_metadata <- function(results) {
