@@ -46,7 +46,8 @@ It is time to load some data. In this Tutorial, I will walk you through the proc
 library(codebook)
 codebook_data <- codebook::bfi
 ```
- with
+
+with
  
 ```{r}
 codebook_data <- rio::import("https://osf.io/s87kd/download", "csv")
