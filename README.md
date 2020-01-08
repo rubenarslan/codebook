@@ -202,4 +202,4 @@ codebook(codebook_data)
 ```
 ````
 
-## [Code of conduct for contributing](CONDUCT.md)
+## [Code of conduct for contributing](https://github.com/rubenarslan/codebook/blob/master/CONDUCT.md)

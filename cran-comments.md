@@ -1,5 +1,7 @@
 ## Submission
 * Bugfix release to make compatible with skimr 2.0.0
+* Sorry for taking so long, I'm on parental leave. I hope simply submitting a 
+fixed version is the right way to proceed (the package got archived).
 
 ## Test environments
 * local OS X install, R 3.5.2
