@@ -198,7 +198,7 @@ codebook <- function(results, reliabilities = NULL,
 #' knitr::opts_knit$set(base.dir = tempdir())
 #' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
 #' data("bfi")
-#' bfi <- bfi[, c("BFIK_open_1", "BFIK_open_1")]
+#' bfi <- bfi[, c("BFIK_open_1", "BFIK_open_2")]
 #' compact_codebook(bfi)
 compact_codebook <- function(results) {
   codebook(results, reliabilities = list(),
@@ -670,22 +670,32 @@ metadata_list <- function(results, only_existing = TRUE) {
 
 
   if (only_existing) {
-    dict <- codebook_table(results)
+    dict <- codebook_table(results)[, c("name", "label", "n_missing")]
     dict <- knitr::kable(dict, format = "markdown")
     dict <- stringr::str_replace_all(dict, "\n", " - ")
     dict <- paste0(as.character(dict), collapse = "\n")
+    if (stringr::str_length(dict) > 4000) {
+      dict <- "[truncated]"
+    }
     version <- as.character(utils::packageVersion("codebook"))
-    metadata$description <- paste0(metadata$description, "\n\n\n",
-      glue::glue(
-      "
+    template <- "
     ## Table of variables
-    This table contains variable names, labels, their central tendencies and other attributes.
+    This table contains variable names, labels, and number of missing values.
+    See the complete codebook for more.
 
     {dict}
 
     ### Note
     This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version {version}).
-    ",
+    "
+
+    metadata$description <- stringr::str_sub(metadata$description,
+                                             1, 5000
+                                             - stringr::str_length(template)
+                                             - stringr::str_length(dict))
+    metadata$description <- paste0(metadata$description, "\n\n\n",
+      glue::glue(
+        template,
       dict = dict,
       version = version))
     metadata <- metadata[intersect(names(metadata), legal_dataset_properties)]
@@ -728,10 +738,3 @@ legal_property_value_properties <-
     "description", "disambiguatingDescription", "identifier", "image",
     "mainEntityOfPage", "name", "potentialAction", "sameAs", "subjectOf",
     "url", "additionalProperty", "exifData", "identifier", "valueReference")
-
-skim_to_wide_labelled <- function(x, ...) {
-  x <- haven::zap_labels(x)
-  skimr::skim_to_wide(x, ...)
-}
-
-

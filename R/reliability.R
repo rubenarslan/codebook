@@ -93,9 +93,9 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
     }
 
     t1_items <- results[!duplicated(results$session),
-                        scale_item_names]
+                        scale_item_names, drop = FALSE]
     t2_items <- results[duplicated(results$session),
-                        scale_item_names]
+                        scale_item_names, drop = FALSE]
 
     list(
       internal_consistency_T1 =

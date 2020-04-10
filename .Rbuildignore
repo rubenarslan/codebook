@@ -24,3 +24,4 @@ revdep
 .Rprofile
 renv.lock
 ^renv\.lock$
+figure

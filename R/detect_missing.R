@@ -135,16 +135,3 @@ detect_missing <- function(data, only_labelled = TRUE,
   }
   data
 }
-#' @describeIn detect_missing Deprecated version
-#' @param only_labelled_missings passed to [detect_missing()]
-#' @param ... passed to [detect_missing()]
-#' @inheritParams detect_missing
-#' @export
-detect_missings <- function(data, only_labelled_missings = TRUE,
-                           ...) {
-  .Deprecated("detect_missing", package = "codebook", msg =
-                "We renamed this function so as not to incorrectly pluralise
-the word 'missing'.")
-  detect_missing(data, only_labelled = only_labelled_missings, ...)
-}
-

@@ -64,6 +64,12 @@
     <loc>https://rubenarslan.github.io/codebook/reference/expired.html</loc>
   </url>
   <url>
+    <loc>https://rubenarslan.github.io/codebook/reference/get_skimmers.haven_labelled.html</loc>
+  </url>
+  <url>
+    <loc>https://rubenarslan.github.io/codebook/reference/get_skimmers.haven_labelled_spss.html</loc>
+  </url>
+  <url>
     <loc>https://rubenarslan.github.io/codebook/reference/has_label.html</loc>
   </url>
   <url>
@@ -133,10 +139,13 @@
     <loc>https://rubenarslan.github.io/codebook/reference/reverse_labelled_values.html</loc>
   </url>
   <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/summary.labelled.html</loc>
+    <loc>https://rubenarslan.github.io/codebook/reference/summary.haven_labelled.html</loc>
   </url>
   <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/summary.labelled_spss.html</loc>
+    <loc>https://rubenarslan.github.io/codebook/reference/summary.haven_labelled_spss.html</loc>
+  </url>
+  <url>
+    <loc>https://rubenarslan.github.io/codebook/reference/to_factor.html</loc>
   </url>
   <url>
     <loc>https://rubenarslan.github.io/codebook/reference/zap_attributes.html</loc>

@@ -112,9 +112,9 @@ test_that("Degenerate cases: Variables with only missing data work", {
   dir <- tempdir()
   setwd(dir)
   on.exit(setwd(wd))
-  expect_silent(md <- codebook(onlymiss, survey_repetition = "single",
+  expect_warning(md <- codebook(onlymiss, survey_repetition = "single",
                                missingness_report = FALSE,
-                               metadata_json = FALSE))
+                               metadata_json = FALSE), "non-missing")
 
   unlink(paste0(dir, "/figure"), recursive = TRUE)
 })
@@ -261,39 +261,3 @@ codebook(codebook_data)
 
 })
 
-
-test_that("codebook table generation", {
-  data("bfi", package = 'codebook')
-  library(dplyr)
-  bfi <- bfi %>% select(-starts_with("BFIK_extra"),
-                        -starts_with("BFIK_agree"),
-                        -starts_with("BFIK_open"))
-  bfi$age <- 1:nrow(bfi)
-  expect_silent(cb <- codebook_table(bfi))
-  expect_identical(names(cb),
-    c("name", "label", "type", "type_options", "data_type",
-      "value_labels", "optional", "scale_item_names", "item_order",
-      "missing", "complete", "n",  "empty", "n_unique",
-       "count", "median", "min", "max", "mean", "sd",
-      "p0", "p25", "p50", "p75", "p100", "hist"))
-  expect_equal(nrow(cb), ncol(bfi))
-  expect_identical(cb$name, names(bfi))
-})
-
-test_that("codebook table generation, no attributes", {
-  data("bfi", package = 'codebook')
-  library(dplyr)
-  bfi <- bfi %>% select(-starts_with("BFIK_extra"),
-                        -starts_with("BFIK_agree"),
-                        -starts_with("BFIK_open"))
-  bfi <- bfi %>% head() %>% haven::zap_label() %>% haven::zap_labels()
-  # drops attributes
-  bfi$age <- 1:nrow(bfi)
-  expect_silent(cb <- codebook_table(bfi))
-  expect_identical(names(cb),
-                   c("name", "data_type", "missing", "complete", "n", "empty",
-                     "n_unique","count", "median", "min", "max", "mean", "sd",
-                     "p0", "p25", "p50", "p75", "p100", "hist"))
-  expect_equal(nrow(cb), ncol(bfi))
-  expect_identical(cb$name, names(bfi))
-})

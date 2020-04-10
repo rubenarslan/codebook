@@ -4,7 +4,9 @@
 \name{bfi}
 \alias{bfi}
 \title{Mock BFI data}
-\format{A data frame with 28 rows and 29 variables:}
+\format{
+A data frame with 28 rows and 29 variables:
+}
 \usage{
 bfi
 }

@@ -1,27 +1,99 @@
-#' @importFrom haven as_factor
+#' @importFrom forcats as_factor
 #' @export
-haven::as_factor
+forcats::as_factor
 
+#' Has label
+#'
+#'
+#' @param x a vector
+#'
 #' @export
-as_factor.numeric <- function(x, ...) {
-  if (has_labels(x)) {
+#' @examples
+#' example("labelled", "haven")
+#' has_label(x)
+has_label <- function(x) {
+  haven::is.labelled(x) ||
+    !is.null(attr(x, 'label')) ||
+    !is.null(attr(x, 'labels'))
+}
+
+#' Has labels
+#'
+#'
+#' @param x a vector
+#'
+#' @export
+#' @examples
+#' example("labelled", "haven")
+#' has_labels(x)
+has_labels <- function(x) {
+  haven::is.labelled(x) ||
+    !is.null(attr(x, 'labels'))
+}
+
+#' To factor
+#'
+#' Convert a labelled vector to a factor, even if it doesn't have the proper
+#' class, as long as it has the "labels" attribute.
+#' You can have this attribute without, for example, the haven_labelled class,
+#' when importing data with [rio::import()] for example.
+#'
+#' @param x a vector
+#' @param ... passed to [haven::as_factor()]
+#'
+#' @export
+#' @examples
+#' example("labelled", "haven")
+#' to_factor(x)
+#' to_factor(zap_labelled(x))
+#' to_factor(as_factor(x))
+#' to_factor(1:4)
+
+to_factor <- function(x, ...) {
+  if (haven::is.labelled(x)) {
+    forcats::as_factor(x, ...)
+  } else if (has_labels(x)) {
     class(x) = c("haven_labelled", class(x))
-    haven::as_factor(x, ...)
+    forcats::as_factor(x, ...)
+  } else if (is.factor(x)) {
+    x
+  } else if (utils::head(class(x),1) %in% c("numeric", "character")) {
+    class(x) = c("haven_labelled", class(x))
+    forcats::as_factor(x, ...)
   } else {
-    haven::as_factor(x, ...)
+    as.factor(x)
   }
 }
 
+#' Summary function for labelled vector
+#'
+#'
+#' @param object a labelled vector
+#' @param ... passed to summary.factor
+#'
 #' @export
-as_factor.character <- function(x, ...) {
-  if (has_labels(x)) {
-    class(x) = c("haven_labelled", class(x))
-    haven::as_factor(x, ...)
-  } else {
-    haven::as_factor(x, ...)
-  }
+#' @examples
+#' example("labelled", "haven")
+#' summary(x)
+#'
+summary.haven_labelled <- function(object, ...) {
+  summary(forcats::as_factor(object, levels = "both"), ...)
 }
 
+#' Summary function for labelled_spss vector
+#'
+#'
+#' @param object a labelled_spss vector
+#' @param ... passed to summary.factor
+#'
+#' @export
+#' @examples
+#' example("labelled", "haven")
+#' summary(x)
+#'
+summary.haven_labelled_spss <- function(object, ...) {
+  summary(forcats::as_factor(object, levels = "both"), ...)
+}
 
 #' @importFrom haven zap_label
 #' @export

@@ -8,21 +8,25 @@
 
 <title>Go from a named list to a key-value data frame or data dictionary and back — list_to_dict • codebook</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -36,12 +40,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Go from a named list to a key-value data frame or data dictionary and back — list_to_dict" />
 
+<meta property="og:title" content="Go from a named list to a key-value data frame or data dictionary and back — list_to_dict" />
 <meta property="og:description" content="Sometimes, you'll want to have variable labels in a data.frame, sometimes
 you'll have imported an existing data dictionary and will need to turn it
 into a list before setting labelled::var_label()." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -53,6 +58,7 @@ into a list before setting labelled::var_label()." />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -71,7 +77,7 @@ into a list before setting labelled::var_label()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
       </span>
     </div>
 
@@ -79,7 +85,7 @@ into a list before setting labelled::var_label()." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -111,17 +117,16 @@ into a list before setting labelled::var_label()." />
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/rubenarslan/codebook">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -132,6 +137,7 @@ into a list before setting labelled::var_label()." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -143,17 +149,15 @@ into a list before setting labelled::var_label()." />
     </div>
 
     <div class="ref-description">
-    
     <p>Sometimes, you'll want to have variable labels in a data.frame, sometimes
 you'll have imported an existing data dictionary and will need to turn it
-into a list before setting <code><a href='https://www.rdocumentation.org/packages/labelled/topics/var_label'>labelled::var_label()</a></code>.</p>
-    
+into a list before setting <code><a href='https://rdrr.io/pkg/labelled/man/var_label.html'>labelled::var_label()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>list_to_dict</span>(<span class='no'>named_list</span>)
 
 <span class='fu'>dict_to_list</span>(<span class='no'>dict</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -166,17 +170,17 @@ into a list before setting <code><a href='https://www.rdocumentation.org/package
       <td><p>a data frame with the variable names in the first and the labels in the second column. If they are named variable and label, they can also be in a different order.</p></td>
     </tr>
     </table>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/data'>data</a></span>(<span class='st'>'bfi'</span>)
-<span class='no'>labels</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/labelled/topics/var_label'>var_label</a></span>(<span class='no'>bfi</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>labels</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt; $A1
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>'bfi'</span>)
+<span class='no'>labels</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/labelled/man/var_label.html'>var_label</a></span>(<span class='no'>bfi</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>labels</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt; $A1
 #&gt; NULL
 #&gt; 
 #&gt; $A2
 #&gt; NULL
-#&gt; </div><div class='input'><span class='no'>dict</span> <span class='kw'>&lt;-</span> <span class='fu'>list_to_dict</span>(<span class='no'>labels</span>)</div><div class='output co'>#&gt; <span class='error'>Error: `by` can't contain join column `variable` which is missing from RHS</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>dict</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in head(dict, 2): object 'dict' not found</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='fu'>dict_to_list</span>(<span class='fu'>list_to_dict</span>(<span class='no'>labels</span>)), <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='error'>Error: `by` can't contain join column `variable` which is missing from RHS</span></div><div class='input'>
+#&gt; </div><div class='input'><span class='no'>dict</span> <span class='kw'>&lt;-</span> <span class='fu'>list_to_dict</span>(<span class='no'>labels</span>)</div><div class='output co'>#&gt; <span class='error'>Error: `by` can't contain join column `variable` which is missing from RHS</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dict</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in head(dict, 2): object 'dict' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>dict_to_list</span>(<span class='fu'>list_to_dict</span>(<span class='no'>labels</span>)), <span class='fl'>2</span>)</div><div class='output co'>#&gt; <span class='error'>Error: `by` can't contain join column `variable` which is missing from RHS</span></div><div class='input'>
 
 
 </div></pre>
@@ -185,12 +189,12 @@ into a list before setting <code><a href='https://www.rdocumentation.org/package
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
       <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -198,8 +202,9 @@ into a list before setting <code><a href='https://www.rdocumentation.org/package
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
@@ -222,6 +227,8 @@ into a list before setting <code><a href='https://www.rdocumentation.org/package
 </script>
 
 
+
   </body>
 </html>
+
 

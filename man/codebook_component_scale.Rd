@@ -4,8 +4,13 @@
 \alias{codebook_component_scale}
 \title{Codebook component for scales}
 \usage{
-codebook_component_scale(scale, scale_name, items, reliabilities,
-  indent = "##")
+codebook_component_scale(
+  scale,
+  scale_name,
+  items,
+  reliabilities,
+  indent = "##"
+)
 }
 \arguments{
 \item{scale}{a scale with attributes set}

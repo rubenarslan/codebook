@@ -12,7 +12,7 @@ Description: Easily automate the following tasks to describe data frames:
 		Codebooks are also available as tables (CSV, Excel, etc.) and in JSON-LD, so
 		that search engines can find your data and index the metadata.
 		The metadata are also available at your fingertips via RStudio Addins.
-Version: 0.8.1
+Version: 0.8.2
 Authors@R: person("Ruben", "Arslan", email = "ruben.arslan@gmail.com", role = c("aut", "cre"))
 Depends: R (>= 3.0.1)
 Language: en_GB
@@ -25,6 +25,7 @@ Imports:
 		graphics,
 		utils,
 		rmarkdown,
+		forcats (>= 0.4.0),
     ggplot2 (>= 2.0.0),
     stringr,
     psych,
@@ -33,8 +34,9 @@ Imports:
     rlang,
     dplyr,
     tidyr,
+    tidyselect,
     pander,
-    skimr (>= 1.0.2),
+    skimr (>= 2.0.0),
     DT,
     jsonlite,
     future,
@@ -56,9 +58,11 @@ Suggests:
   testthat,
   shinytest,
   lme4,
-  roxygen2
+  roxygen2,
+  renv,
+  webshot
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Roxygen: list(markdown = TRUE) 
 VignetteBuilder: knitr

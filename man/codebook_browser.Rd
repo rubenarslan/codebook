@@ -4,8 +4,12 @@
 \alias{codebook_browser}
 \title{Browse and search codebook}
 \usage{
-codebook_browser(data = NULL, labels_only = FALSE,
-  title = "Codebook metadata", viewer = rstudioapi::viewer)
+codebook_browser(
+  data = NULL,
+  labels_only = FALSE,
+  title = "Codebook metadata",
+  viewer = rstudioapi::viewer
+)
 }
 \arguments{
 \item{data}{the dataset to display. If left empty will try to use selected text in RStudio or offer a dropdown}

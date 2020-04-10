@@ -1,3 +1,8 @@
+# codebook 0.8.2
+## Bugfixes
+- compatibility with skimr 2.0.0
+- compatibility with forcats 0.4.0
+
 # codebook 0.8.1
 ## Bugfixes
 - When errors occurred in the reliability computation, codebook would fail hard. It now fails with a warning
