@@ -13,6 +13,7 @@
 #' @param non_missing don't set these values to missing
 #' @param vars only edit these variables
 #' @param use_labelled_spss the labelled_spss class has a few drawbacks. Since R can't store missing values like -1 and 99, we're replacing them with letters unless this option is enabled. If you prefer to keep your -1 etc, turn this on.
+#' @param coerce_integer_to_double By default, missing values in the columns of integers are not labelled. Let this parameter be `TRUE` if you want to coerce integer columns into double and label the missings values.
 #'
 #' @export
 #'
@@ -22,7 +23,8 @@ detect_missing <- function(data, only_labelled = TRUE,
                                     learn_from_labels = TRUE,
                                     missing = c(), non_missing = c(),
                                     vars = names(data),
-                                    use_labelled_spss = FALSE) {
+                                    use_labelled_spss = FALSE,
+                                    coerce_integer_to_double = FALSE) {
   for (i in seq_along(vars)) {
     var <- vars[i]
     if (is.numeric(data[[ var ]]) && any(!is.na(data[[ var ]]))) {
@@ -95,19 +97,18 @@ detect_missing <- function(data, only_labelled = TRUE,
             new_miss <- potential_missing_values[i]
           }
           that_label <- which(labels == miss)
-          if (length(which(with_tagged_na == miss)) &&
-              is.double(data[[var]]) && !use_labelled_spss) {
-              with_tagged_na[
-                which(with_tagged_na == miss)] <- haven::tagged_na(new_miss)
-          } else if (is.integer(data[[var]])) {
-            warning("Cannot label missings for integers in variable ", var)
+          if (length(which(with_tagged_na == miss)) && 
+            (coerce_integer_to_double | is.double(data[[var]])) && !use_labelled_spss) {
+            with_tagged_na[which(with_tagged_na == miss)] <- haven::tagged_na(new_miss)
+          } else if (!coerce_integer_to_double & is.integer(data[[var]])) {
+            warning("Cannot label missings for integers in variable ", 
+              var, " let coerce_integer_to_double = TRUE if you want to label misssings for integers.")
           }
-          if (is.double(data[[var]]) && length(that_label) &&
-              !use_labelled_spss) {
+          if ((coerce_integer_to_double | is.double(data[[var]])) &&
+            length(that_label) && !use_labelled_spss) {
             labels[that_label] <- haven::tagged_na(new_miss)
-            names(labels)[that_label] <- paste0("[",
-                                  potential_missing_values[i],
-                                      "] ", names(labels)[that_label])
+            names(labels)[that_label] <- paste0("[", 
+              potential_missing_values[i], "] ", names(labels)[that_label])
           }
         }
         if (use_labelled_spss) {
