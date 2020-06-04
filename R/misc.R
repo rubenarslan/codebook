@@ -96,7 +96,7 @@ md_pattern <- function(data, omit_complete = TRUE, min_freq = 0.01) {
     md_pattern <- md_pattern[, c(ncol(md_pattern), 1:(ncol(md_pattern) - 1))]
 
     other <- md_pattern[ md_pattern$n_miss / nrow(data) < min_freq, -1]
-    other_sums <- dplyr::summarise_all(other, dplyr::funs(sum))
+    other_sums <- dplyr::summarise_all(other, sum)
     md_pattern <- md_pattern[ md_pattern$n_miss / nrow(data) >= min_freq, ]
     md_pattern <- md_pattern[order(md_pattern$n_miss, decreasing = TRUE), ]
     if (other_sums$n_miss > 0) {

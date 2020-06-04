@@ -372,7 +372,7 @@ codebook_items <- function(results, indent = "##") {
   suppressWarnings(
     metadata_table <- dplyr::mutate_at(metadata_table, dplyr::vars(
     dplyr::one_of("label", "scale_item_names", "value_labels", "showif")),
-    dplyr::funs(recursive_escape)) )
+    recursive_escape) )
 
   if (exists("value_labels", metadata_table)) {
     metadata_table$value_labels <- stringr::str_replace_all(
