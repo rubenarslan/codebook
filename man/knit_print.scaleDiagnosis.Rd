@@ -4,7 +4,7 @@
 \alias{knit_print.scaleDiagnosis}
 \title{Print a \code{\link[userfriendlyscience:scaleDiagnosis]{userfriendlyscience::scaleDiagnosis()}} object for knitr}
 \usage{
-\method{knit_print}{scaleDiagnosis}(x, indent = "#####", ...)
+knit_print.scaleDiagnosis(x, indent = "#####", ...)
 }
 \arguments{
 \item{x}{a scaleDiagnosis object}

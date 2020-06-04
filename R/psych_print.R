@@ -1,8 +1,3 @@
-#' @importFrom knitr knit_print
-#' @export
-knitr::knit_print
-
-
 #' Print a [psych::multilevel.reliability()] object for knitr
 #'
 #' Just prints the normal output of [psych::multilevel.reliability()].
@@ -11,7 +6,7 @@ knitr::knit_print
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h5
 #' @param ... ignored
 #'
-#' @export
+#' @exportS3Method knitr::knit_print multilevel
 #' @examples
 #' example("mlr", "psych")
 #' knitr::knit_print(mg)
@@ -32,7 +27,7 @@ knit_print.multilevel <- function(x, indent = '#####', ...) {
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h5
 #' @param ... ignored
 #'
-#' @export
+#' @exportS3Method knitr::knit_print scaleDiagnosis
 #' @examples
 #' example("mlr", "psych")
 #' knitr::knit_print(mg)
@@ -50,7 +45,7 @@ knit_print.scaleDiagnosis <- function(x, indent = '#####', ...) {
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h5
 #' @param ... ignored
 #'
-#' @export
+#' @exportS3Method knitr::knit_print htest
 #' @examples
 #' knitr::knit_print(cor.test(rnorm(100), rnorm(100)))
 #'
