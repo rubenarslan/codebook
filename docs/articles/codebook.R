@@ -1,11 +1,11 @@
 ## ------------------------------------------------------------------------
 knitr::opts_chunk$set(warning = TRUE, message = TRUE, error = TRUE, echo = FALSE)
-pander::panderOptions("table.split.table", Inf)
+
 library(codebook)
 data("bfi", package = 'codebook')
 bfi$age <- rpois(nrow(bfi), 30)
 ggplot2::theme_set(ggplot2::theme_bw())
-pander::panderOptions("table.split.table", Inf)
+
 
 ## ----setup,eval=TRUE,echo=FALSE------------------------------------------
 if (exists("testing")) {
@@ -65,23 +65,23 @@ if (exists("testing")) {
 
 ## ------------------------------------------------------------------------
 if (!is.null(x$total$ase)) {
-  pander::pander(data.frame(lower = x$total$raw_alpha - 1.96 * x$total$ase, 
+  knitr::kable(data.frame(lower = x$total$raw_alpha - 1.96 * x$total$ase, 
              estimate = x$total$raw_alpha, 
              upper = x$total$raw_alpha + 1.96 * 
   x$total$ase))
 }
 
 ## ------------------------------------------------------------------------
-pander::pander(x$total)
+knitr::kable(x$total)
 
 ## ------------------------------------------------------------------------
-pander::pander(x$alpha.drop)
+knitr::kable(x$alpha.drop)
 
 ## ------------------------------------------------------------------------
-pander::pander(x$item.stats)
+knitr::kable(x$item.stats)
 
 ## ------------------------------------------------------------------------
-pander::pander(x$response.freq)
+knitr::kable(x$response.freq)
 
 ## ----reliability, results='asis'-----------------------------------------
 for (i in seq_along(reliabilities)) {
@@ -126,7 +126,7 @@ if (length(breaks)) {
 dist_plot
 
 ## ----summary-------------------------------------------------------------
-pander::pander(codebook_table(items))
+knitr::kable(codebook_table(items))
 
 ## ----setup,eval=TRUE,echo=FALSE------------------------------------------
 if (!exists("indent")) {
@@ -152,23 +152,23 @@ if (exists("testing")) {
 
 ## ------------------------------------------------------------------------
 if (!is.null(x$total$ase)) {
-  pander::pander(data.frame(lower = x$total$raw_alpha - 1.96 * x$total$ase, 
+  knitr::kable(data.frame(lower = x$total$raw_alpha - 1.96 * x$total$ase, 
              estimate = x$total$raw_alpha, 
              upper = x$total$raw_alpha + 1.96 * 
   x$total$ase))
 }
 
 ## ------------------------------------------------------------------------
-pander::pander(x$total)
+knitr::kable(x$total)
 
 ## ------------------------------------------------------------------------
-pander::pander(x$alpha.drop)
+knitr::kable(x$alpha.drop)
 
 ## ------------------------------------------------------------------------
-pander::pander(x$item.stats)
+knitr::kable(x$item.stats)
 
 ## ------------------------------------------------------------------------
-pander::pander(x$response.freq)
+knitr::kable(x$response.freq)
 
 ## ----reliability, results='asis'-----------------------------------------
 for (i in seq_along(reliabilities)) {
@@ -213,7 +213,7 @@ if (length(breaks)) {
 dist_plot
 
 ## ----summary-------------------------------------------------------------
-pander::pander(codebook_table(items))
+knitr::kable(codebook_table(items))
 
 ## ----setup,eval=TRUE,echo=FALSE------------------------------------------
 if (!exists("indent")) {
@@ -239,23 +239,23 @@ if (exists("testing")) {
 
 ## ------------------------------------------------------------------------
 if (!is.null(x$total$ase)) {
-  pander::pander(data.frame(lower = x$total$raw_alpha - 1.96 * x$total$ase, 
+  knitr::kable(data.frame(lower = x$total$raw_alpha - 1.96 * x$total$ase, 
              estimate = x$total$raw_alpha, 
              upper = x$total$raw_alpha + 1.96 * 
   x$total$ase))
 }
 
 ## ------------------------------------------------------------------------
-pander::pander(x$total)
+knitr::kable(x$total)
 
 ## ------------------------------------------------------------------------
-pander::pander(x$alpha.drop)
+knitr::kable(x$alpha.drop)
 
 ## ------------------------------------------------------------------------
-pander::pander(x$item.stats)
+knitr::kable(x$item.stats)
 
 ## ------------------------------------------------------------------------
-pander::pander(x$response.freq)
+knitr::kable(x$response.freq)
 
 ## ----reliability, results='asis'-----------------------------------------
 for (i in seq_along(reliabilities)) {
@@ -300,7 +300,7 @@ if (length(breaks)) {
 dist_plot
 
 ## ----summary-------------------------------------------------------------
-pander::pander(codebook_table(items))
+knitr::kable(codebook_table(items))
 
 ## ----setup,eval=TRUE,echo=FALSE------------------------------------------
 if (!exists("indent")) {
@@ -326,23 +326,23 @@ if (exists("testing")) {
 
 ## ------------------------------------------------------------------------
 if (!is.null(x$total$ase)) {
-  pander::pander(data.frame(lower = x$total$raw_alpha - 1.96 * x$total$ase, 
+  knitr::kable(data.frame(lower = x$total$raw_alpha - 1.96 * x$total$ase, 
              estimate = x$total$raw_alpha, 
              upper = x$total$raw_alpha + 1.96 * 
   x$total$ase))
 }
 
 ## ------------------------------------------------------------------------
-pander::pander(x$total)
+knitr::kable(x$total)
 
 ## ------------------------------------------------------------------------
-pander::pander(x$alpha.drop)
+knitr::kable(x$alpha.drop)
 
 ## ------------------------------------------------------------------------
-pander::pander(x$item.stats)
+knitr::kable(x$item.stats)
 
 ## ------------------------------------------------------------------------
-pander::pander(x$response.freq)
+knitr::kable(x$response.freq)
 
 ## ----reliability, results='asis'-----------------------------------------
 for (i in seq_along(reliabilities)) {
@@ -387,7 +387,7 @@ if (length(breaks)) {
 dist_plot
 
 ## ----summary-------------------------------------------------------------
-pander::pander(codebook_table(items))
+knitr::kable(codebook_table(items))
 
 ## ----setup,eval=TRUE,echo=FALSE------------------------------------------
 if (!exists("indent")) {
@@ -413,23 +413,23 @@ if (exists("testing")) {
 
 ## ------------------------------------------------------------------------
 if (!is.null(x$total$ase)) {
-  pander::pander(data.frame(lower = x$total$raw_alpha - 1.96 * x$total$ase, 
+  knitr::kable(data.frame(lower = x$total$raw_alpha - 1.96 * x$total$ase, 
              estimate = x$total$raw_alpha, 
              upper = x$total$raw_alpha + 1.96 * 
   x$total$ase))
 }
 
 ## ------------------------------------------------------------------------
-pander::pander(x$total)
+knitr::kable(x$total)
 
 ## ------------------------------------------------------------------------
-pander::pander(x$alpha.drop)
+knitr::kable(x$alpha.drop)
 
 ## ------------------------------------------------------------------------
-pander::pander(x$item.stats)
+knitr::kable(x$item.stats)
 
 ## ------------------------------------------------------------------------
-pander::pander(x$response.freq)
+knitr::kable(x$response.freq)
 
 ## ----reliability, results='asis'-----------------------------------------
 for (i in seq_along(reliabilities)) {
@@ -474,7 +474,7 @@ if (length(breaks)) {
 dist_plot
 
 ## ----summary-------------------------------------------------------------
-pander::pander(codebook_table(items))
+knitr::kable(codebook_table(items))
 
 ## ----setup,eval=TRUE,echo=FALSE------------------------------------------
 if (!exists("indent")) {
@@ -541,7 +541,7 @@ knitr::opts_chunk$set(fig.height = old_height)
 ## ----summary-------------------------------------------------------------
 df = data.frame(item)
 names(df) = item_name
-pander::pander(codebook_table(df))
+knitr::kable(codebook_table(df))
 
 ## ------------------------------------------------------------------------
 if (show_missings) {
@@ -552,12 +552,12 @@ if (show_missings) {
 if (!is.null(item_info)) {
   item_info$label_parsed <- item_info$choices <- 
     item_info$choice_list <- item_info$study_id <- item_info$id <- NULL
-  pander::pander(as.data.frame(t(item_info)))
+  knitr::kable(as.data.frame(t(item_info)))
 }
 
 ## ----choices-------------------------------------------------------------
 if (!is.null(choices) && length(choices) < 30) {
-	pander::pander(as.list(choices))
+	knitr::kable(as.list(choices))
 }
 
 ## ----setup,eval=TRUE,echo=FALSE------------------------------------------
@@ -581,7 +581,7 @@ if (  exists("ended", results) &&
           "variables expired and ended were missing.")
 }
 if (length(md_pattern)) {
-  pander::pander(md_pattern)
+  knitr::kable(md_pattern)
 }
 
 ## ----setup,eval=TRUE,echo=FALSE------------------------------------------

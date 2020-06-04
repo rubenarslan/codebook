@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
   echo = TRUE  # show R code
 )
 ggplot2::theme_set(ggplot2::theme_bw())
-pander::panderOptions("table.split.table", Inf)
+
 ```
 
 ```{r libraries, include=FALSE}
@@ -37,7 +37,7 @@ library(labelled)
 
 ```{r}
 knit_by_pkgdown <- !is.null(knitr::opts_chunk$get("fig.retina"))
-pander::panderOptions("table.split.table", Inf)
+
 ggplot2::theme_set(ggplot2::theme_bw())
 knitr::opts_chunk$set(warning = TRUE, message = TRUE, error = TRUE, echo = TRUE)
 

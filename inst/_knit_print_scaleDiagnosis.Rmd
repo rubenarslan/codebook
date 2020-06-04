@@ -41,7 +41,7 @@ coefs_with_cis <- coefs %>%
     dplyr::select(Index = .data$index, Estimate = .data$estimate)
 
 
-pander::pander(coefs_with_cis)
+knitr::kable(coefs_with_cis)
 ```
 
 Positive correlations: `r x$scaleReliability$intermediate$cor.pos` out of `r x$scaleReliability$intermediate$cor.total`  (`r round(100 * x$scaleReliability$intermediate$cor.proPos)`%)

@@ -130,7 +130,7 @@ if (!is.null(item_info)) {
   }
   item_info$label_parsed <- 
     item_info$choice_list <- item_info$study_id <- item_info$id <- NULL
-  pander::pander(item_info)
+  knitr::kable(item_info)
 }
 ```
 
@@ -138,7 +138,7 @@ if (!is.null(item_info)) {
 `r ifelse(!is.null(choices) && length(choices) && length(choices) < 30, paste0(indent, '### Value labels {#', safe_name, '_labels}'), '')`
 ```{r choices}
 if (!is.null(choices) && length(choices) && length(choices) < 30) {
-	pander::pander(as.list(choices))
+	knitr::kable(as.list(choices))
 }
 ```
 
