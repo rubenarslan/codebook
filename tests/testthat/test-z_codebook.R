@@ -2,7 +2,29 @@ context("Test codebook")
 
 knitr::opts_chunk$set(error = FALSE)
 
+setup_tmpdir <- function() {
+  test_dir <- tempfile("test_rmdpartials")
+  stopifnot(dir.create(test_dir))
+  setwd(test_dir)
+  test_dir <- getwd() # dumb trick to get a proper path without double slashes
+
+  test_dir
+}
+
+codebook_wrap <- function(character) {
+  knitr::knit(text = paste0("
+test0
+```{r}
+",character,"
+```
+"), quiet = TRUE)
+}
 test_that("codebook generation", {
+  dir <- setup_tmpdir()
+  on.exit({
+    unlink(test_dir, recursive = TRUE)
+  })
+
   data("bfi", package = 'codebook')
   library(dplyr)
   bfi <- bfi %>% select(-starts_with("BFIK_extra"),
@@ -11,10 +33,8 @@ test_that("codebook generation", {
   bfi$age <- 1:nrow(bfi)
   bfi$abode <- rep("my happy place", times = nrow(bfi))
   bfi$uniq_id <- as.character(1:nrow(bfi))
-  expect_silent(md <- codebook(bfi, metadata_table = FALSE))
-  dir_knit <- attributes(md)$knit_meta$output.dir
-  figs <- list.files(paste0(dir_knit, "/index_files/figure-html/"))
-  figs <- list.files(paste0(dir, "/figure"))
+  expect_silent(md <- codebook_wrap("codebook(bfi, metadata_table = FALSE)"))
+  figs <- list.files(paste0(dir, "/figure/"))
   expect_equal(length(figs), 11)
   expect_match(md, "Scale: BFIK_neuro")
   expect_match(md, "Scale: BFIK_consc")

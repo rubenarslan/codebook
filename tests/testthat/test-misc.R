@@ -24,7 +24,6 @@ nhanes <- structure(list(age = c(1, 2, 1, 3, 1, 3, 1, 1, 2, 2, 1, 2, 3,
 
 test_that("Can print codebook table", {
   expect_silent(codebook:::export_table(codebook_table(nhanes)))
-  expect_output(pander::pander(codebook_table(nhanes)), "data_type")
 })
 
 test_that("Missing values are computed properly", {

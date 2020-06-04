@@ -38,3 +38,4 @@ test_that("list to dict and back", {
   head(dict, 2)
   expect_equal(dict_to_list(list_to_dict(labels)), labels)
 })
+

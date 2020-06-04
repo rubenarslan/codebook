@@ -31,11 +31,14 @@ test_that("Retest reliabilities can be computed", {
                         -starts_with("BFIK_neuro"),
                         -starts_with("BFIK_open"),
                         -starts_with("BFIK_consc"))
-  expect_warning(bfi2 <- bind_rows(bfi, bfi %>%
+  expect_silent(bfi2 <- bind_rows(bfi, bfi %>%
                           mutate(created = created + lubridate::years(1))))
   bfi2 <- rescue_attributes(bfi2, bfi)
-  expect_silent(rels <- compute_reliabilities(bfi2,
-                                    survey_repetition = "repeated_once"))
+  # expect_silent(rels <- compute_reliabilities(bfi2,
+  #                                   survey_repetition = "repeated_once"))
+  # expect message until I know whether I can do away with ufs
+  expect_message(rels <- compute_reliabilities(bfi2,
+                                              survey_repetition = "repeated_once"))
   expect_equal(length(rels), 1)
   expect_equal(length(rels$BFIK_agree), 3)
   expect_identical(names(rels$BFIK_agree), c("internal_consistency_T1",
@@ -65,7 +68,7 @@ test_that("Multilevel reliabilities can be computed", {
                         -starts_with("BFIK_neuro"),
                         -starts_with("BFIK_consc"))
   fuzz <- function(x) { x + rnorm(length(x)) }
-  expect_warning(bfi3 <- bind_rows(bfi,
+  expect_silent(bfi3 <- bind_rows(bfi,
            bfi %>% mutate(created = created + lubridate::days(1)),
            bfi %>% mutate(created = created + lubridate::days(2)),
            bfi %>% mutate(created = created + lubridate::days(3)),
