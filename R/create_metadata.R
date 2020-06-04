@@ -65,36 +65,6 @@ to_factor <- function(x, ...) {
   }
 }
 
-#' Summary function for labelled vector
-#'
-#'
-#' @param object a labelled vector
-#' @param ... passed to summary.factor
-#'
-#' @export
-#' @examples
-#' example("labelled", "haven")
-#' summary(x)
-#'
-summary.haven_labelled <- function(object, ...) {
-  summary(forcats::as_factor(object, levels = "both"), ...)
-}
-
-#' Summary function for labelled_spss vector
-#'
-#'
-#' @param object a labelled_spss vector
-#' @param ... passed to summary.factor
-#'
-#' @export
-#' @examples
-#' example("labelled", "haven")
-#' summary(x)
-#'
-summary.haven_labelled_spss <- function(object, ...) {
-  summary(forcats::as_factor(object, levels = "both"), ...)
-}
-
 #' @importFrom haven zap_label
 #' @export
 haven::zap_label
