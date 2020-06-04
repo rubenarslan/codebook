@@ -3,23 +3,6 @@
 knitr::knit_print
 
 
-#' Pretty-print a Cronbach's alpha object
-#'
-#' Turn a [psych::alpha()] object into HTML tables.
-#'
-#' @param x a psych alpha object
-#' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h5
-#' @param ... ignored
-#'
-#' @export
-#' @examples
-#' example("alpha", "psych")
-#' knitr::knit_print(a4)
-#'
-knit_print.alpha <- function(x, indent = '#####', ...) {
-  rmdpartials::partial(require_file("_knit_print_psych.Rmd"))
-}
-
 #' Print a [psych::multilevel.reliability()] object for knitr
 #'
 #' Just prints the normal output of [psych::multilevel.reliability()].
