@@ -84,7 +84,8 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
                    title = scale_name, check.keys = FALSE)
     }
   } else {
-    if (!requireNamespace("userfriendlyscience", quietly = TRUE)) {
+    if (!suppressMessages(
+      requireNamespace("userfriendlyscience", quietly = TRUE))) {
       stop("Package \"userfriendlyscience\" needed to compute reliabilites.",
            call. = FALSE)
     }
@@ -102,7 +103,8 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
           internal_consistency(results[, scale_item_names], scale_name)
       )
   } else if (survey_repetition == 'repeated_once') {
-    if (!requireNamespace("userfriendlyscience", quietly = TRUE)) {
+    if (!suppressMessages(
+      requireNamespace("userfriendlyscience", quietly = TRUE))) {
       stop("Package \"userfriendlyscience\" needed to compute reliabilites.",
            call. = FALSE)
     }
