@@ -19,14 +19,22 @@
 #' reliabilities <- compute_reliabilities(bfi)
 
 compute_reliabilities <- function(results, survey_repetition = "single") {
+  if (requireNamespace("future", quietly = TRUE)) {
+    `%<-%` <- future::`%<-%`
+  }
+
   vars <- names(results)
-  `%<-%` <- future::`%<-%`
   reliabilities <- new.env()
 
   for (i in seq_along(vars)) {
     var <- vars[i]
     scale_info <- attributes(results[[var]])
     if (!is.null(scale_info) && exists("scale_item_names", scale_info)) {
+      if (!requireNamespace("future", quietly = TRUE)) {
+        stop("Package \"future\" needed to compute reliabilites.",
+             call. = FALSE)
+      }
+
       reliabilities[[ var ]] %<-% {
         id_vars <- c("session", "created")
         id_vars <- intersect(id_vars, vars)
@@ -68,10 +76,19 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
   scale_item_names <- scale_info$scale_item_names
   if (give_me_alpha_even_if_its_strictly_inferior) {
     internal_consistency <- function(data, scale_name) {
+      if (!requireNamespace("psych", quietly = TRUE)) {
+        stop("Package \"psych\" needed to compute reliabilites.",
+             call. = FALSE)
+      }
       psych::alpha(as.data.frame(data),
                    title = scale_name, check.keys = FALSE)
     }
   } else {
+    if (!requireNamespace("userfriendlyscience", quietly = TRUE)) {
+      stop("Package \"userfriendlyscience\" needed to compute reliabilites.",
+           call. = FALSE)
+    }
+
     internal_consistency <- function(data, scale_name) {
       suppressWarnings(
         userfriendlyscience::scaleDiagnosis(data,
@@ -85,6 +102,10 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
           internal_consistency(results[, scale_item_names], scale_name)
       )
   } else if (survey_repetition == 'repeated_once') {
+    if (!requireNamespace("userfriendlyscience", quietly = TRUE)) {
+      stop("Package \"userfriendlyscience\" needed to compute reliabilites.",
+           call. = FALSE)
+    }
     id_vars <- c("session")
     if ( !all(id_vars %in% names(results))) {
       stop("For now, the variable session has to index the user ID and earlier ",
@@ -106,6 +127,10 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
         testDat = t1_items, retestDat = t2_items)
     )
   } else if (survey_repetition == 'repeated_many') {
+    if (!requireNamespace("psych", quietly = TRUE)) {
+      stop("Package \"psych\" needed to compute multilevel reliabilites.",
+           call. = FALSE)
+    }
     id_vars <- c("session", "created")
     if ( !all(id_vars %in% names(results))) {
       stop("For now, the variables session and created have to be defined for ",
