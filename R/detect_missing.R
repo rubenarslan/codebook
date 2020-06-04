@@ -68,6 +68,7 @@ detect_missing <- function(data, only_labelled = TRUE,
       potential_missing_values <- union(
         setdiff(potential_missing_values, non_missing),
         missing)
+
       if ((!only_labelled || haven::is.labelled(data[[var]])) &&
           length(potential_missing_values) > 0) {
         if (only_labelled) {
@@ -95,19 +96,19 @@ detect_missing <- function(data, only_labelled = TRUE,
             new_miss <- potential_missing_values[i]
           }
           that_label <- which(labels == miss)
-          if (length(which(with_tagged_na == miss)) &&
-              is.double(data[[var]]) && !use_labelled_spss) {
-              with_tagged_na[
-                which(with_tagged_na == miss)] <- haven::tagged_na(new_miss)
-          } else if (is.integer(data[[var]])) {
-            warning("Cannot label missings for integers in variable ", var)
-          }
-          if (is.double(data[[var]]) && length(that_label) &&
-              !use_labelled_spss) {
-            labels[that_label] <- haven::tagged_na(new_miss)
-            names(labels)[that_label] <- paste0("[",
-                                  potential_missing_values[i],
-                                      "] ", names(labels)[that_label])
+          if (!use_labelled_spss && is.double(data[[var]])) {
+            if(length(which(with_tagged_na == miss))) {
+                with_tagged_na[
+                  which(with_tagged_na == miss)] <- haven::tagged_na(new_miss)
+            } else if (is.integer(data[[var]])) {
+              warning("Cannot label missings for integers in variable ", var)
+            }
+            if (length(that_label)) {
+              labels[that_label] <- haven::tagged_na(new_miss)
+              names(labels)[that_label] <- paste0("[",
+                                    potential_missing_values[i],
+                                        "] ", names(labels)[that_label])
+            }
           }
         }
         if (use_labelled_spss) {
@@ -123,10 +124,14 @@ detect_missing <- function(data, only_labelled = TRUE,
                                  na_range = attr(data[[var]], "na_range", TRUE)
                                  )
         } else if (haven::is.labelled(data[[var]])) {
+            attribs_old <- attributes(with_tagged_na)
             data[[var]] <- haven::labelled(with_tagged_na,
                                   label = attr(data[[var]], "label", TRUE),
                                   labels = labels
                                   )
+            lost_attrs <- setdiff(names(attribs_old),
+                                  names(attributes(data[[var]])))
+            attributes(data[[var]])[lost_attrs] <- attribs_old[lost_attrs]
         } else {
             data[[var]] <- with_tagged_na
         }
@@ -135,3 +140,4 @@ detect_missing <- function(data, only_labelled = TRUE,
   }
   data
 }
+
