@@ -27,7 +27,7 @@ zap_attributes <- function(x,
                       "label", "labels", "na_values", "na_range",
                       "display_width")) {
   stopifnot(xor(is.null(attributes), is.character(attributes)))
-  UseMethod("zap_attributes")
+  UseMethod("zap_attributes", x)
 }
 
 #' @export
@@ -57,7 +57,7 @@ zap_attributes.data.frame <- function(x, attributes = NULL) {
 #' @param x the data frame or variable
 #' @export
 zap_labelled <- function(x) {
-  UseMethod("zap_labelled")
+  UseMethod("zap_labelled", x)
 }
 
 #' @export
