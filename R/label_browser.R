@@ -23,9 +23,18 @@ find_dfs_in_environment <- function(env = .GlobalEnv) {
 #'
 label_browser_static <- function(data = NULL, viewer = rstudioapi::viewer) {
   # if data argument given, use it
+  if (!requireNamespace("DT", quietly = TRUE)) {
+    stop("Package \"DT\" needed to view labels.",
+         call. = FALSE)
+  }
+
     if (!is.null(data)) {
       df_name <- deparse(substitute(data))
   } else {
+    if (!requireNamespace("rstudioapi", quietly = TRUE)) {
+      stop("Package \"rstudioapi\" needed to view labels.",
+           call. = FALSE)
+    }
     if (rstudioapi::isAvailable()) {
       # if text is selected, use that
       context <- rstudioapi::getActiveDocumentContext()
@@ -108,6 +117,13 @@ codebook_browser <- function(
                              viewer = rstudioapi::viewer) {
 
   # if data argument given, use it
+  if (!requireNamespace("rstudioapi", quietly = TRUE) ||
+      !requireNamespace("shiny", quietly = TRUE) ||
+      !requireNamespace("miniUI", quietly = TRUE)) {
+    stop("Packages \"rstudioapi\", \"shiny\", and \"miniUI\" needed to
+         view labels.",
+         call. = FALSE)
+  }
   if (!is.null(data)) {
     df_name <- deparse(substitute(data))
   } else {

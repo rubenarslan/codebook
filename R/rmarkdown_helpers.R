@@ -11,6 +11,11 @@
 
 load_data_and_render_codebook <- function(file, text,
                                           remove_file = FALSE, ...) {
+  if (!requireNamespace("rio", quietly = TRUE)) {
+    stop("Package \"rio\" needed for this function to work. Please install it.",
+         call. = FALSE)
+  }
+
   codebook_data <- switch(tools::file_ext(file),
                           "rdata" = rio::import_list(file)[[1]],
                           "rda" = rio::import_list(file)[[1]],
@@ -39,8 +44,9 @@ write_to_file <- function(..., name = NULL, ext = ".Rmd") {
 }
 
 
-require_file <- function(file) {
-  system.file(file, package = 'codebook', mustWork = TRUE)
+require_file <- function(file, package = 'codebook') {
+  file <- gsub("^inst/", "", file)
+  system.file(file, package = package, mustWork = TRUE)
 }
 
 #' Create a codebook rmarkdown document
@@ -69,7 +75,8 @@ new_codebook_rmd <- function(filename = "codebook", template = "default") {
   template <- readLines(require_file("_template_codebook.Rmd"))
 
   rmd_file <- write_to_file(template, name = filename, ext = ".Rmd")
-  if (rstudioapi::isAvailable()) {
+  if (requireNamespace("rstudioapi", quietly = TRUE) &&
+      rstudioapi::isAvailable()) {
     rstudioapi::navigateToFile(rmd_file)
   } else if (interactive()) {
     utils::file.edit(rmd_file)
