@@ -207,6 +207,7 @@ coerce_skimmed_summary_to_character <- function(df) {
                        dplyr::vars(.data$min, .data$median, .data$max),
                      format_digits)
   }
+  class(df) <- "list"
   df
 }
 skim_to_wide_labelled <- function(x){
@@ -215,5 +216,6 @@ skim_to_wide_labelled <- function(x){
     skimr::partition(skim_codebook(x))
     ), .id = "data_type"
     )
+  results <- tibble::as_tibble(results)
   results
 }
