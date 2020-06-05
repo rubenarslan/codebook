@@ -14,10 +14,9 @@ Generate only the tabular codebook and the machine-readable JSON-LD metadata.
 }
 \examples{
 # will generate figures in a figure/ subdirectory
-old_base_dir <- knitr::opts_knit$get("base.dir")
-knitr::opts_knit$set(base.dir = tempdir())
-on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
+\dontrun{
 data("bfi")
 bfi <- bfi[, c("BFIK_open_1", "BFIK_open_2")]
 compact_codebook(bfi)
+}
 }

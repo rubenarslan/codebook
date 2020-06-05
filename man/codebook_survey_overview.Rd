@@ -18,10 +18,8 @@ An overview of the number of rows and groups, and of the durations participants
 needed to respond (if those data are available).
 }
 \examples{
-# will generate figures in a figure/ subdirectory
-old_base_dir <- knitr::opts_knit$get("base.dir")
-knitr::opts_knit$set(base.dir = tempdir())
-on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
+\dontrun{
 data("bfi")
 codebook_survey_overview(bfi)
+}
 }
