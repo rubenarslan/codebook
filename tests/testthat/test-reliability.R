@@ -7,7 +7,8 @@ test_that("Internal consistencies can be computed", {
   bfi <- bfi %>% select(-starts_with("BFIK_extra"),
                         -starts_with("BFIK_neuro"),
                         -starts_with("BFIK_open"))
-  expect_silent(rels <- compute_reliabilities(bfi))
+  # expect message until I know whether I can do away with ufs
+  expect_message(rels <- compute_reliabilities(bfi))
   expect_equal(length(rels), 2)
   expect_equal(length(rels$BFIK_agree), 1)
   expect_identical(names(rels$BFIK_agree), "internal_consistency")
@@ -34,10 +35,7 @@ test_that("Retest reliabilities can be computed", {
   expect_silent(bfi2 <- bind_rows(bfi, bfi %>%
                           mutate(created = created + lubridate::years(1))))
   bfi2 <- rescue_attributes(bfi2, bfi)
-  # expect_silent(rels <- compute_reliabilities(bfi2,
-  #                                   survey_repetition = "repeated_once"))
-  # expect message until I know whether I can do away with ufs
-  expect_message(rels <- compute_reliabilities(bfi2,
+  expect_silent(rels <- compute_reliabilities(bfi2,
                                               survey_repetition = "repeated_once"))
   expect_equal(length(rels), 1)
   expect_equal(length(rels$BFIK_agree), 3)
