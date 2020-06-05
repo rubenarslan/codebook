@@ -167,6 +167,7 @@ get_skimmers.haven_labelled_spss <- function(column) {
 #' @param data the dataset to skim
 #' @param ... passed to [skimr::skim()]
 #'
+#' @export
 #' @examples
 #' skim_codebook(bfi)
 skim_codebook <-  skimr::skim_with(

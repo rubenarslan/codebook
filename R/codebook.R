@@ -29,12 +29,11 @@ no_md <- function() {
 #' @export
 #' @examples
 #' # will generate figures in a temporary directory
-#' old_base_dir <- knitr::opts_knit$get("base.dir")
-#' knitr::opts_knit$set(base.dir = tempdir())
-#' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
+#' \dontrun{
 #' data("bfi")
 #' bfi <- bfi[, c("BFIK_open_1", "BFIK_open_1")]
 #' md <- codebook(bfi, survey_repetition = "single", metadata_table = FALSE)
+#' }
 codebook <- function(results, reliabilities = NULL,
     survey_repetition = c('auto', 'single', 'repeated_once', 'repeated_many'),
     detailed_variables = TRUE,
@@ -195,12 +194,11 @@ codebook <- function(results, reliabilities = NULL,
 #' @export
 #' @examples
 #' # will generate figures in a figure/ subdirectory
-#' old_base_dir <- knitr::opts_knit$get("base.dir")
-#' knitr::opts_knit$set(base.dir = tempdir())
-#' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
+#' \dontrun{
 #' data("bfi")
 #' bfi <- bfi[, c("BFIK_open_1", "BFIK_open_2")]
 #' compact_codebook(bfi)
+#' }
 compact_codebook <- function(results) {
   codebook(results, reliabilities = list(),
             survey_repetition = 'single',
@@ -223,12 +221,10 @@ compact_codebook <- function(results) {
 #'
 #' @export
 #' @examples
-#' # will generate figures in a figure/ subdirectory
-#' old_base_dir <- knitr::opts_knit$get("base.dir")
-#' knitr::opts_knit$set(base.dir = tempdir())
-#' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
+#' \dontrun{
 #' data("bfi")
 #' codebook_survey_overview(bfi)
+#' }
 codebook_survey_overview <- function(results, survey_repetition = "single",
                                      indent = "##") {
   stopifnot(exists("session", results))
@@ -395,13 +391,12 @@ escaped_table <- function(metadata_table) {
 #' @export
 #' @examples
 #' # will generate figures in a temporary directory
-#' old_base_dir <- knitr::opts_knit$get("base.dir")
-#' knitr::opts_knit$set(base.dir = tempdir())
-#' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
+#' \dontrun{
 #' data("bfi")
 #' bfi <- bfi[,c("BFIK_open", paste0("BFIK_open_", 1:4))]
 #' codebook_component_scale(bfi[,1], "BFIK_open", bfi[,-1],
 #'    reliabilities = list(BFIK_open = psych::alpha(bfi[,-1])))
+#' }
 codebook_component_scale <- function(scale,
                                      scale_name = deparse(substitute(scale)),
                                      items, reliabilities = list(),
@@ -430,12 +425,10 @@ codebook_component_scale <- function(scale,
 #'
 #' @export
 #' @examples
-#' # will generate figure in a temporary directory
-#' old_base_dir <- knitr::opts_knit$get("base.dir")
-#' knitr::opts_knit$set(base.dir = tempdir())
-#' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
+#' \dontrun{
 #' data("bfi")
 #' codebook_component_single_item(bfi$BFIK_open_1, "BFIK_open_1")
+#' }
 codebook_component_single_item <- function(item,
                                            item_name = deparse(substitute(item)), indent = '##') {
   safe_name <- paste0(
@@ -446,283 +439,3 @@ codebook_component_single_item <- function(item,
   rmdpartials::partial(require_file("inst/_codebook_item.Rmd"),
                        name = safe_name, render_preview = FALSE)
 }
-
-#' Codebook metadata table
-#'
-#' will generate a table combining metadata from variable attributes
-#' with data summaries generated using [skimr::skim()]
-#'
-#' @param results a data frame, ideally with attributes set on variables
-#'
-#' @export
-#' @examples
-#' data("bfi")
-#' codebook_table(bfi)
-codebook_table <- function(results) {
-  skimmed <- skim_to_wide_labelled(results)
-  metadata <- gather_variable_metadata(results)
-
-  metadata <- dplyr::left_join(metadata,
-                               dplyr::rename(skimmed, data_type = .data$type),
-                               by = c("name" = "variable"))
-  order <- c("name", "label", "type", "type_options", "data_type", "ordered",
-            "value_labels",  "optional", "showif",
-            "scale_item_names",
-            "value", "item_order", "block_order", "class",
-            "missing", "complete", "n",  "empty", "n_unique",
-            "top_counts", "count", "median", "min", "max",
-            "mean", "sd", "p0", "p25", "p50", "p75", "p100", "hist")
-  not_all_na <- function(x) { !all(is.na(x)) && !is.null(unlist(x)) }
-  cols <- setdiff(union(
-               intersect(order, names(metadata)), # order
-              setdiff(names(metadata), order)), # include other cols
-               c("choice_list"))
-
-  metadata <- dplyr::select(metadata,  !!!cols)
-  dplyr::select_if(metadata, not_all_na )
-}
-
-gather_variable_metadata <- function(results) {
-    metadata <- purrr::map_dfr(results, attribute_summary, .id = "name")
-    stopifnot(nrow(metadata) == ncol(results))
-    metadata
-}
-
-attribute_summary <- function(var) {
-  x <- attributes(var)
-  if (is.null(x)) {
-    return(data.frame(label = NA_character_, stringsAsFactors = FALSE))
-  }
-  if (exists("class", x)) {
-    x$class <- NULL
-  }
-  if (exists("tzone", x)) {
-    x$tzone <- NULL
-  }
-  if (exists("label", x)) {
-    if (exists("item", x)) {
-      if (exists("label", x$item)) {
-        x$item$label <- NULL
-      }
-      if (exists("label_parsed", x$item)) {
-        x$item$label_parsed <- NULL
-      }
-    }
-  }
-  if (exists("levels", x)) {
-    x$value_labels <- paste(paste0(seq_len(length(x$levels)), ". ", x$levels),
-                              collapse = ",\n")
-    x$levels <- NULL
-    # remove extremely deep qualtrics choices attributes
-    if (exists("item", x) && exists("choices", x$item)
-        && exists("variableName", x$item$choices[[1]])) {
-      x$item$choices <- NULL
-    }
-  } else if (exists("labels", x)) {
-    if (!is.null(names(x$labels))) {
-      x$value_labels <- paste(paste0(x$labels, ". ", names(x$labels)),
-                              collapse = ",\n")
-    } else {
-      x$value_labels <- paste(x$labels, collapse = ",\n")
-    }
-    x$labels <- NULL
-    if (exists("item", x) && exists("choices", x$item)) {
-      x$item$choices <- NULL
-    }
-  }
-
-  if (exists("item", x) && exists("name", x$item)) {
-    x$item$name <- NULL
-  }
-  if (exists("scale_item_names", x)) {
-    x$scale_item_names <- paste(x$scale_item_names, collapse = ", ")
-  }
-  x <- purrr::flatten_dfr(purrr::flatten(x))
-  if (ncol(x) == 0) {
-    x <- data.frame(label = NA_character_, stringsAsFactors = FALSE)
-  }
-  dplyr::mutate_all(x, as.character)
-}
-
-
-#' Metadata from dataframe
-#'
-#' Returns a list containing variable metadata (attributes) and data summaries.
-#'
-#' @param results a data frame, ideally with attributes set on variables
-#' @param only_existing whether to drop helpful metadata to comply with the list
-#' of currently defined schema.org properties
-#'
-#' @export
-#' @examples
-#' data("bfi")
-#' md_list <- metadata_list(bfi)
-#' md_list$variableMeasured[[20]]
-metadata_list <- function(results, only_existing = TRUE) {
-  metadata <- metadata(results)
-  if (is.null(metadata)) {
-    metadata <- list()
-  }
-
-  if (!exists("@context", metadata)) {
-    metadata[["@context"]] <- "http://schema.org/"
-  }
-
-  if (!exists("@type", metadata)) {
-    metadata[["@type"]] <- "Dataset"
-  }
-
-  if (!exists("variableMeasured", metadata)) {
-    metadata$variableMeasured <- lapply(names(results), function(var) {
-      x <- attributes(results[[var]])
-      x$name <- var
-
-      if (is.null(x)) {
-        x <- list()
-      } else {
-        if (exists("class", x)) {
-          x$class <- NULL
-        }
-        if (exists("tzone", x)) {
-          x$tzone <- NULL
-        }
-        if (exists("label", x)) {
-          x$description <- x$label
-          x$label <- NULL
-        }
-
-        if (exists("levels", x)) {
-          x$value <- paste(paste0(seq_len(length(x$levels)), ". ", x$levels),
-                                  collapse = ",\n")
-          x$levels <- NULL
-          # remove extremely deep qualtrics choices attributes
-          if (exists("item", x) && exists("choices", x$item)
-              && exists("variableName", x$item$choices[[1]])) {
-            x$item$choices <- NULL
-          }
-        } else if (exists("labels", x)) {
-          if (!is.null(names(x$labels))) {
-            x$value <- paste(paste0(x$labels, ". ", names(x$labels)),
-                                    collapse = ",\n")
-          } else {
-            x$value <- paste(x$labels, collapse = ",\n")
-          }
-          x$maxValue <- max(x$labels, na.rm = TRUE)
-          x$minValue <- min(x$labels, na.rm = TRUE)
-          x$labels <- NULL
-          if (exists("item", x) && exists("choices", x$item)) {
-            x$item$choices <- NULL
-          }
-        }
-        if (exists("item", x)) {
-          if (exists("type", x$item)) {
-            x$item$item_type <- x$item$type
-            x$item$type <- NULL
-          }
-          if (exists("choices", x$item)) {
-            x$item$choices[["@type"]] <-
-              "http://rubenarslan.github.io/codebook/ItemChoices"
-          }
-          x$measurementTechnique <- "self-report"
-          x$item[["@type"]] <- "http://rubenarslan.github.io/codebook/Item"
-        }
-      }
-      if (!only_existing) {
-
-        x$data_summary <- skim_to_wide_labelled(results[[var]])
-        x$data_summary$variable <- NULL
-        if (exists("type", x$data_summary)) {
-          if (!exists("value", x)) {
-            x$value <- switch(x$data_summary$type,
-                character = "text",
-                integer = "Number",
-                numeric = "Number",
-                factor = "StructuredValue",
-                labelled = "StructuredValue"
-            )
-          }
-          x$data_summary$type <- NULL
-        }
-        x$data_summary[["@type"]] <-
-          "http://rubenarslan.github.io/codebook/SummaryStatistics"
-      }
-
-      if (only_existing) {
-        x <- x[intersect(names(x), legal_property_value_properties)]
-      }
-
-      x[["@type"]] <- "propertyValue"
-      x
-    })
-  }
-
-
-  if (only_existing) {
-    dict <- codebook_table(results)[, c("name", "label", "n_missing")]
-    dict <- knitr::kable(dict, format = "markdown")
-    dict <- stringr::str_replace_all(dict, "\n", " - ")
-    dict <- paste0(as.character(dict), collapse = "\n")
-    if (stringr::str_length(dict) > 4000) {
-      dict <- "[truncated]"
-    }
-    version <- as.character(utils::packageVersion("codebook"))
-    template <- "
-    ## Table of variables
-    This table contains variable names, labels, and number of missing values.
-    See the complete codebook for more.
-
-    {dict}
-
-    ### Note
-    This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version {version}).
-    "
-
-    metadata$description <- stringr::str_sub(metadata$description,
-                                             1, 5000
-                                             - stringr::str_length(template)
-                                             - stringr::str_length(dict))
-    metadata$description <- paste0(metadata$description, "\n\n\n",
-      glue::glue(
-        template,
-      dict = dict,
-      version = version))
-    metadata <- metadata[intersect(names(metadata), legal_dataset_properties)]
-  }
-
-  metadata
-}
-
-legal_dataset_properties <-
-  c("@type", "@context",
-    "distribution", "includedInDataCatalog", "issn", "measurementTechnique",
-    "variableMeasured", "about", "accessMode", "accessModeSufficient",
-    "accessibilityAPI", "accessibilityControl", "accessibilityFeature",
-    "accessibilityHazard", "accessibilitySummary", "accountablePerson",
-    "aggregateRating", "alternativeHeadline", "associatedMedia", "audience",
-    "audio", "author", "award", "character", "citation", "comment",
-    "commentCount", "contentLocation", "contentRating", "contentReferenceTime",
-    "contributor", "copyrightHolder", "copyrightYear", "correction", "creator",
-    "dateCreated", "dateModified", "datePublished", "discussionUrl", "editor",
-    "educationalAlignment", "educationalUse", "encoding", "encodingFormat",
-    "exampleOfWork", "expires", "funder", "genre", "hasPart", "headline",
-    "inLanguage", "interactionStatistic", "interactivityType",
-    "isAccessibleForFree", "isBasedOn", "isFamilyFriendly", "isPartOf",
-    "keywords", "learningResourceType", "license", "locationCreated",
-    "mainEntity", "material", "mentions", "offers", "position", "producer",
-    "provider", "publication", "publisher", "publisherImprint",
-    "publishingPrinciples", "recordedAt", "releasedEvent", "review",
-    "schemaVersion", "sdDatePublished", "sdLicense", "sdPublisher",
-    "sourceOrganization", "spatialCoverage", "sponsor", "temporalCoverage",
-    "text", "thumbnailUrl", "timeRequired", "translationOfWork",
-    "translator", "typicalAgeRange", "version", "video", "workExample",
-    "workTranslation", "additionalType", "alternateName", "description",
-    "disambiguatingDescription", "identifier", "image", "mainEntityOfPage",
-    "name", "potentialAction", "sameAs", "subjectOf", "url")
-
-legal_property_value_properties <-
-  c("@type", "@context",
-    "maxValue", "measurementTechnique", "minValue", "propertyID", "unitCode",
-    "unitText", "value", "valueReference", "additionalType", "alternateName",
-    "description", "disambiguatingDescription", "identifier", "image",
-    "mainEntityOfPage", "name", "potentialAction", "sameAs", "subjectOf",
-    "url", "additionalProperty", "exifData", "identifier", "valueReference")
