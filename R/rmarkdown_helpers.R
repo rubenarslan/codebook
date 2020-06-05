@@ -15,6 +15,10 @@ load_data_and_render_codebook <- function(file, text,
     stop("Package \"rio\" needed for this function to work. Please install it.",
          call. = FALSE)
   }
+  if (!requireNamespace("rmarkdown", quietly = TRUE)) {
+    stop("Package \"rio\" needed for this function to work. Please install it.",
+         call. = FALSE)
+  }
 
   codebook_data <- switch(tools::file_ext(file),
                           "rdata" = rio::import_list(file)[[1]],

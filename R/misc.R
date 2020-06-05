@@ -165,14 +165,18 @@ modified <- function(survey, variable = "modified") {
 
 
 export_table <- function(df) {
-  DT::datatable(df, filter = "top", extensions = 'Buttons',
-                escape = FALSE,
-                rownames = FALSE,
-                options = list(
-                  dom = 'Bfrtip',
-                  buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
-                  pageLength = 200
-                ))
+  if(requireNamespace("DT", quietly = TRUE)) {
+    DT::datatable(df, filter = "top", extensions = 'Buttons',
+                  escape = FALSE,
+                  rownames = FALSE,
+                  options = list(
+                    dom = 'Bfrtip',
+                    buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
+                    pageLength = 200
+                  ))
+  } else {
+    knitr::kable(df)
+  }
 }
 
 is_attribute_set <- function(attribute, data) {
@@ -210,6 +214,6 @@ could_disclose_unique_values <- function(x) {
 
 is_numeric_or_time_var <- function(x) {
   is.numeric(x) ||
-    lubridate::is.instant(x) ||
-    lubridate::is.timespan(x)
+    inherits(x, c("POSIXt", "POSIXct", "POSIXlt", "Date")) ||
+    methods::is(x, "Timespan")
 }

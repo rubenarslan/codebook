@@ -12,9 +12,9 @@ Description: Easily automate the following tasks to describe data frames:
 		Codebooks are also available as tables (CSV, Excel, etc.) and in JSON-LD, so
 		that search engines can find your data and index the metadata.
 		The metadata are also available at your fingertips via RStudio Addins.
-Version: 0.8.2
+Version: 0.9.0
 Authors@R: person("Ruben", "Arslan", email = "ruben.arslan@gmail.com", role = c("aut", "cre"))
-Depends: R (>= 3.0.1)
+Depends: R (>= 3.2.0)
 Language: en_GB
 URL: https://github.com/rubenarslan/codebook
 BugReports: https://github.com/rubenarslan/codebook/issues
@@ -24,43 +24,42 @@ Imports:
 		methods,
 		graphics,
 		utils,
-		rmarkdown,
-		forcats (>= 0.4.0),
+    rmdpartials,
+    forcats (>= 0.4.0),
+    vctrs (>= 0.3.0),
     ggplot2 (>= 2.0.0),
     stringr,
-    psych,
-    likert,
-    knitr,
     rlang,
-    dplyr,
+    dplyr (>= 1.0.0),
     tidyr,
     tidyselect,
-    pander,
-    skimr (>= 2.0.0),
-    DT,
     jsonlite,
-    future,
-    haven (>= 2.0.0),
-    tibble,
+    haven (>= 2.3.0),
     purrr,
+    tibble,
+    glue,
+    likert,
+    knitr,
+    skimr (>= 2.1.0),
     htmltools,
     labeling,
-    labelled,
-    rio,
+    labelled
+Suggests:
+    testthat,
+    DT,
+    shinytest,
+    lme4,
+		rmarkdown,
+    rstudioapi (>= 0.5),
     shiny (>= 0.13),
     miniUI (>= 0.1.1),
-    rstudioapi (>= 0.5),
-    glue,
-    lubridate,
-    userfriendlyscience,
-    rmdpartials
-Suggests:
-  testthat,
-  shinytest,
-  lme4,
-  roxygen2,
-  renv,
-  webshot
+    roxygen2,
+    webshot,
+    rio,
+    psych,
+    future,
+    ufs,
+    userfriendlyscience
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.0

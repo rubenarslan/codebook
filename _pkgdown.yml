@@ -45,21 +45,11 @@ reference:
   - '`zap_attributes`'
   - '`zap_label`'
   - '`zap_labelled`'
-- title: Functions for rmarkdown partials
-  desc: Make rmarkdown partials whether in interactive mode or not
-  contents:
-  - '`asis_knit_child`'
-  - '`paste.knit_asis`'
-  - '`print.knit_asis`'
 - title: Methods
   desc: Various methods to print and plot objects
   contents:
-  - '`summary.haven_labelled`'
-  - '`summary.haven_labelled_spss`'
-  - '`knit_print.alpha`'
   - '`knit_print.htest`'
   - '`knit_print.multilevel`'
-  - '`knit_print.scaleDiagnosis`'
   - '`likert_from_items`'
   - '`plot_labelled`'
 - title: formr-data specific helpers
