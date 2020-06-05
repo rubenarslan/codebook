@@ -1,16 +1,14 @@
 citHeader("To cite codebook in publications use:")
 
-citEntry(entry = "misc",
-         title        = "How to automatically generate rich
-codebooks from study metadata.",
+citEntry(
+  entry    = "Article",
+         title        = "How to automatically document data with the codebook package to facilitate data re-use.",
          author       = personList(as.person("Ruben C. Arslan")),
-         year         = "2018",
-         doi          = "10.31234/osf.io/5qc6h",
-         publisher    = "PsyArxiv",
-         url          = "https://doi.org/10.31234/osf.io/5qc6h",
-         note         = "Software package",
-
-         textVersion  =
-           paste("Arslan, R. C. (2018). How to automatically generate rich",
-          "codebooks from study metadata. PsyArXiv. doi:10.31234/osf.io/5qc6h")
+         year         = "2019",
+         doi          = "10.1177/2515245919838783",
+         journal    = "Advances in Methods and Practices in Psychological Science",
+         url          = "https://doi.org/10.1177/2515245919838783",
+  volume   = "2",
+  number   = "2",
+  textVersion = paste("Arslan, R. C. (2019). How to automatically document data with the codebook package to facilitate data re-use. Advances in Methods and Practices in Psychological Science, 2(2), 169–187. https://doi.org/10.1177/2515245919838783" )
 )

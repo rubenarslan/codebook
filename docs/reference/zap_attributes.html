@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,7 +39,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -45,8 +49,11 @@
 <meta property="og:description" content="Modelled on haven::zap_labels(), but more encompassing. By default removes
 the following attributes:
 format.spss, format.sas, format.stata, label, labels, na_values, na_range,
+display_width
+Modelled on haven::zap_labels(), but more encompassing. By default removes
+the following attributes:
+format.spss, format.sas, format.stata, label, labels, na_values, na_range,
 display_width" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -64,7 +71,7 @@ display_width" />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -78,7 +85,7 @@ display_width" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
@@ -110,7 +117,7 @@ display_width" />
       <a href="../articles/codebook_sav.html">Codebook example with SPSS dataset</a>
     </li>
     <li>
-      <a href="../articles/codebook_tutorial.html">Codebook tutorial</a>
+      <a href="../articles/codebook_tutorial.html">Tutorial</a>
     </li>
   </ul>
 </li>
@@ -120,7 +127,7 @@ display_width" />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/rubenarslan/codebook">
+  <a href="https://github.com/rubenarslan/codebook/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -145,7 +152,7 @@ display_width" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Zap attributes</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/correct_attributes.R'><code>R/correct_attributes.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/correct_attributes.R'><code>R/correct_attributes.R</code></a>, <a href='https://github.com/rubenarslan/codebook/blob/master/R/zap_attributes.R'><code>R/zap_attributes.R</code></a></small>
     <div class="hidden name"><code>zap_attributes.Rd</code></div>
     </div>
 
@@ -154,9 +161,19 @@ display_width" />
 the following attributes:
 format.spss, format.sas, format.stata, label, labels, na_values, na_range,
 display_width</p>
+<p>Modelled on <code><a href='https://haven.tidyverse.org/reference/zap_labels.html'>haven::zap_labels()</a></code>, but more encompassing. By default removes
+the following attributes:
+format.spss, format.sas, format.stata, label, labels, na_values, na_range,
+display_width</p>
     </div>
 
     <pre class="usage"><span class='fu'>zap_attributes</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>attributes</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"format.spss"</span>, <span class='st'>"format.sas"</span>, <span class='st'>"format.stata"</span>, <span class='st'>"label"</span>, <span class='st'>"labels"</span>,
+    <span class='st'>"na_values"</span>, <span class='st'>"na_range"</span>, <span class='st'>"display_width"</span>)
+)
+
+<span class='fu'>zap_attributes</span>(
   <span class='no'>x</span>,
   <span class='kw'>attributes</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"format.spss"</span>, <span class='st'>"format.sas"</span>, <span class='st'>"format.stata"</span>, <span class='st'>"label"</span>, <span class='st'>"labels"</span>,
     <span class='st'>"na_values"</span>, <span class='st'>"na_range"</span>, <span class='st'>"display_width"</span>)
@@ -186,38 +203,63 @@ display_width</p>
 <span class='no'>bfi</span>$<span class='no'>bfi_e</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span>(<span class='no'>bfi</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>)])
 <span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='detect_scales.html'>detect_scales</a></span>(<span class='no'>bfi</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># create attributes</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>, <span class='st'>"label"</span>))</div><div class='output co'>#&gt; 'data.frame':	100 obs. of  4 variables:
-#&gt;  $ bfi_e1 : num  0.2154 0.1924 -0.0188 1.0782 1.7582 ...
-#&gt;  $ bfi_e2R: num  -0.5637 -1.4025 -2.3491 0.0793 1.2248 ...
-#&gt;  $ bfi_e3 : num  0.449 -0.258 -0.717 -0.225 0.26 ...
-#&gt;  $ bfi_e  : num  0.0335 -0.4892 -1.0282 0.3108 1.081 ...
-#&gt;   ..- attr(*, "scale_item_names")= chr  "bfi_e1" "bfi_e2R" "bfi_e3"</div><div class='input'><span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>$<span class='no'>bfi_e</span>)</div><div class='output co'>#&gt;   [1]  0.033521830 -0.489214026 -1.028169437  0.310835809  1.080984008
-#&gt;   [6]  0.186740025 -0.004104253  1.019459431 -1.151478960 -0.009786653
-#&gt;  [11]  0.198577688  0.684540653 -0.081271361 -0.006924049 -0.270495940
-#&gt;  [16] -0.127314812 -0.450675910 -0.255239133  0.111597528 -0.351254628
-#&gt;  [21] -0.477726076 -0.585710943 -0.727025190 -0.096506554 -0.305682265
-#&gt;  [26] -0.561809361  0.857179159  0.194983468 -0.067084362  0.130067596
-#&gt;  [31] -0.213378743 -0.091963570  0.561315920 -0.111306149 -0.361031207
-#&gt;  [36] -0.242367684  1.274835781 -0.127851633 -0.263910556 -0.274003693
-#&gt;  [41] -0.927901284  1.017808455 -0.886265267 -0.162162492  0.587376565
-#&gt;  [46] -0.754100468  0.566094969 -0.220948596  1.028583311 -0.582840080
-#&gt;  [51]  0.165262071  0.228629128 -0.629373066 -0.832428417 -0.235853871
-#&gt;  [56]  0.606029106  0.804578053 -0.193818382  0.065907277 -0.457479365
-#&gt;  [61] -0.138117281  0.989167581  0.133539814  0.155028258  0.409615917
-#&gt;  [66] -0.162410026  0.574497417  0.164201118 -0.887644905  0.541568698
-#&gt;  [71]  0.492000032 -0.155672293  0.594756415  1.154984921  1.832769460
-#&gt;  [76] -0.518284857 -1.357618880  0.659036881  0.218730756  0.292376303
-#&gt;  [81]  0.863148324  0.345660349 -0.249865799  0.327621845 -0.591421719
-#&gt;  [86]  0.276967302  0.576863456  0.789108084 -0.302243166  0.194340764
-#&gt;  [91]  0.212521642 -0.581899587 -0.058666692  1.178802069  0.885454676
-#&gt;  [96]  0.297452459 -0.760231667  0.514904431 -0.254481278  0.145778019</div></pre>
+#&gt;  $ bfi_e1 : num  0.3344 -0.0935 0.3041 -0.4765 -0.2413 ...
+#&gt;  $ bfi_e2R: num  0.0474 -0.2931 1.2076 0.032 0.1804 ...
+#&gt;  $ bfi_e3 : num  -0.156 0.1326 -0.9741 -1.2509 -0.0463 ...
+#&gt;  $ bfi_e  : num  0.0753 -0.0847 0.1792 -0.5652 -0.0358 ...
+#&gt;   ..- attr(*, "scale_item_names")= chr [1:3] "bfi_e1" "bfi_e2R" "bfi_e3"</div><div class='input'><span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>$<span class='no'>bfi_e</span>)</div><div class='output co'>#&gt;   [1]  0.07525824 -0.08467190  0.17920341 -0.56515194 -0.03575007  0.67956806
+#&gt;   [7]  0.08906709 -0.20736505  0.02915380 -0.27217204 -0.49861205  0.30144022
+#&gt;  [13] -0.18612561  0.23752950  0.33409137  0.50949940  0.58639856 -0.32443463
+#&gt;  [19] -0.70835558 -0.84769108  0.01095812 -0.40252494  1.25105729 -0.32445352
+#&gt;  [25]  0.35350786  0.52556235  0.11062672 -0.68219938 -0.05905051  0.57473227
+#&gt;  [31]  0.12002898 -0.78345151 -0.12808135  0.14255381  0.84025144  0.19959146
+#&gt;  [37]  0.28767763  0.33073081 -0.59459460  0.29721985 -0.75891379 -0.24025482
+#&gt;  [43] -0.07652361  0.36018250 -0.83832763  0.29193563  1.23445005  0.58765617
+#&gt;  [49]  0.07873832 -0.28023315  0.82365031  0.01398336  0.21833412 -0.88082873
+#&gt;  [55] -0.06152159  0.12961384 -0.03979823  0.43802249 -0.31334027  0.45064288
+#&gt;  [61]  0.24799972  0.42738769  0.44330623 -0.22424935  0.55473288  0.32161787
+#&gt;  [67]  0.26786411  1.21409288  1.80718065 -1.41483825 -0.52084690  0.42852874
+#&gt;  [73] -0.28885318 -0.13282287  0.26231051  0.33037732 -0.66239671 -0.41755859
+#&gt;  [79] -0.07060293  0.03819649 -0.01860240 -0.41380651  0.25683774  1.22431718
+#&gt;  [85]  0.65738486  0.34206506  0.53682910 -0.36566688  0.28020371 -0.05995920
+#&gt;  [91]  0.55770585  0.47785912 -0.52293270 -0.39808839  0.00767314  0.59391091
+#&gt;  [97]  1.43475255 -0.58553708 -0.28708600 -0.76909881</div><div class='input'><span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>300</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>3</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>bfi</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span>(<span class='no'>bfi</span>$<span class='no'>bfi_e1</span>)$<span class='no'>label</span> <span class='kw'>&lt;-</span> <span class='st'>"I am outgoing."</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span>(<span class='no'>bfi</span>$<span class='no'>bfi_e2R</span>)$<span class='no'>label</span> <span class='kw'>&lt;-</span> <span class='st'>"I prefer books to people."</span>
+<span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span>(<span class='no'>bfi</span>$<span class='no'>bfi_e3</span>)$<span class='no'>label</span> <span class='kw'>&lt;-</span> <span class='st'>"I love to party."</span>
+<span class='no'>bfi</span>$<span class='no'>bfi_e</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span>(<span class='no'>bfi</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>)])
+<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='detect_scales.html'>detect_scales</a></span>(<span class='no'>bfi</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># create attributes</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>, <span class='st'>"label"</span>))</div><div class='output co'>#&gt; 'data.frame':	100 obs. of  4 variables:
+#&gt;  $ bfi_e1 : num  1.069 2.316 -1.683 0.136 0.498 ...
+#&gt;  $ bfi_e2R: num  0.7809 0.0962 -1.5614 0.6984 0.0382 ...
+#&gt;  $ bfi_e3 : num  -0.165 0.714 0.237 -2.323 0.079 ...
+#&gt;  $ bfi_e  : num  0.562 1.042 -1.002 -0.496 0.205 ...
+#&gt;   ..- attr(*, "scale_item_names")= chr [1:3] "bfi_e1" "bfi_e2R" "bfi_e3"</div><div class='input'><span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>$<span class='no'>bfi_e</span>)</div><div class='output co'>#&gt;   [1]  0.561580620  1.042034999 -1.002338207 -0.496145591  0.205225932
+#&gt;   [6]  0.379772426  0.208553173  0.412893906  0.304109916 -0.945650118
+#&gt;  [11] -0.008017924  0.651085619 -0.871711513 -0.294710475 -0.697823350
+#&gt;  [16] -0.529538628  0.211329401  0.487400277 -0.314838025  0.043526901
+#&gt;  [21] -1.152729065 -0.018194958 -0.063599457  0.013964309 -0.753551007
+#&gt;  [26] -0.655816532 -0.512022990 -0.190647851  0.277659564  0.378920837
+#&gt;  [31] -0.197824551  0.808342103  0.946493563  1.079606631  0.122178108
+#&gt;  [36]  0.430969787 -1.245165971  0.219441518  0.249417273 -0.329070082
+#&gt;  [41]  0.124963870  0.956830861 -0.136243717 -0.310654153  0.027371055
+#&gt;  [46]  0.261709126  0.827576593 -0.006432413  0.830315362  1.097397698
+#&gt;  [51] -0.293880595 -0.405263317 -0.575008734  0.170581565 -1.076531358
+#&gt;  [56]  0.146606480 -0.459283260  0.015341140  0.601841070 -0.670842765
+#&gt;  [61]  0.990539104  0.322262779  0.069754442 -0.218544754 -0.311502921
+#&gt;  [66]  0.653587398  1.000972493 -0.193253260  0.301875853 -0.485793315
+#&gt;  [71] -0.227019090 -0.113706885  0.029466458 -0.133654157 -0.196002017
+#&gt;  [76]  0.076258566  0.149638325 -0.915820773 -0.221288433 -0.095374432
+#&gt;  [81]  0.610568499 -1.101587413 -0.011994837  0.007218683 -0.624257324
+#&gt;  [86]  0.184673556 -0.632182462  0.120862818  0.328131876  0.099513615
+#&gt;  [91]  0.139191784  0.623465425  0.109674695 -0.434760432  0.205093195
+#&gt;  [96] -0.258997291  0.605928376 -0.310752242 -0.415358034 -0.787893075</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -228,7 +270,7 @@ display_width</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

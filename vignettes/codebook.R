@@ -1,7 +1,6 @@
 ## ----warning=FALSE,message=FALSE----------------------------------------------
 knit_by_pkgdown <- !is.null(knitr::opts_chunk$get("fig.retina"))
 knitr::opts_chunk$set(warning = FALSE, message = TRUE, error = FALSE)
-pander::panderOptions("table.split.table", Inf)
 ggplot2::theme_set(ggplot2::theme_bw())
 
 library(codebook)
@@ -108,7 +107,7 @@ if (exists("datePublished", meta)) {
 ## ----results='asis', echo = FALSE---------------------------------------------
 if (exists("creator", meta)) {
   cat("- __Creator__:")
-  pander::pander(meta$creator)
+  knitr::kable(meta$creator)
 }
 
 ## -----------------------------------------------------------------------------
@@ -116,7 +115,7 @@ meta <- meta[setdiff(names(meta),
                      c("creator", "datePublished", "identifier",
                        "url", "citation", "spatialCoverage", 
                        "temporalCoverage", "description", "name"))]
-pander::pander(meta)
+knitr::kable(meta)
 
 ## ----setup,eval=TRUE,echo=FALSE-----------------------------------------------
 if (exists("testing")) {
@@ -244,7 +243,7 @@ coefs_with_cis <- coefs %>%
     dplyr::select(Index = .data$index, Estimate = .data$estimate)
 
 
-pander::pander(coefs_with_cis)
+knitr::kable(coefs_with_cis)
 
 ## -----------------------------------------------------------------------------
 print(x$scatterMatrix$output$scatterMatrix)
@@ -357,7 +356,7 @@ coefs_with_cis <- coefs %>%
     dplyr::select(Index = .data$index, Estimate = .data$estimate)
 
 
-pander::pander(coefs_with_cis)
+knitr::kable(coefs_with_cis)
 
 ## -----------------------------------------------------------------------------
 print(x$scatterMatrix$output$scatterMatrix)
@@ -495,12 +494,12 @@ if (!is.null(item_info)) {
   }
   item_info$label_parsed <- 
     item_info$choice_list <- item_info$study_id <- item_info$id <- NULL
-  pander::pander(item_info)
+  knitr::kable(item_info)
 }
 
 ## ----choices------------------------------------------------------------------
 if (!is.null(choices) && length(choices) && length(choices) < 30) {
-	pander::pander(as.list(choices))
+	knitr::kable(as.list(choices))
 }
 
 ## ----setup,eval=TRUE,echo=FALSE-----------------------------------------------

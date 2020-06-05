@@ -119,7 +119,7 @@ knitr::opts_chunk$set(
   echo = FALSE  # don't show the R code
 )
 ggplot2::theme_set(ggplot2::theme_bw())
-pander::panderOptions("table.split.table", Inf)
+
 ```
 
 Here, we import data from formr

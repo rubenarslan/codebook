@@ -1,5 +1,5 @@
 ---
-title: "Codebook tutorial"
+title: "Tutorial"
 author: "Ruben Arslan"
 date: "`r Sys.Date()`"
 output:
@@ -14,7 +14,11 @@ vignette: >
 ---
 
 This is the practical part of a tutorial manuscript for this package, which you 
-can find in full [on PsyArXiv](https://psyarxiv.com/5qc6h/).
+can find in full [on PsyArXiv](https://psyarxiv.com/5qc6h/) or if you prefer a copy-edited open access version it is published in [Advances in Methods and Practices in Psychological Science](https://doi.org/10.1177/2515245919838783).
+
+You can cite it, if you use the package in a publication:
+
+> Arslan, R. C. (2019). How to automatically document data with the codebook package to facilitate data re-use. Advances in Methods and Practices in Psychological Science, 2(2), 169–187. https://doi.org/10.1177/2515245919838783
 
 Using the codebook package locally in RStudio
 
@@ -28,7 +32,6 @@ knitr::opts_chunk$set(
   echo = TRUE  # show R code
 )
 ggplot2::theme_set(ggplot2::theme_bw())
-pander::panderOptions("table.split.table", Inf)
 ```
 
 ```{r include=FALSE, echo=FALSE}

@@ -109,41 +109,42 @@ attribute_summary <- function(var) {
 #'
 #' @param column the column to skim
 #'
-#' @export
+#' @exportS3Method skimr::get_skimmers haven_labelled
 get_skimmers.haven_labelled <- function(column) {
-  skimr::sfl(
-    skim_type = "haven_labelled",
-    mean = ~ ifelse(typeof(.) != "character",
-                     mean(., na.rm = TRUE),
-                     NA_real_),
-    sd = ~ ifelse(typeof(.) != "character",
-                    sd(., na.rm = TRUE),
-                    NA_real_),
-    min = ~ ifelse(typeof(.) != "character",
-                    min(., na.rm = TRUE),
-                    skimr::get_one_default_skimmer("character")$min(.)),
-    median = ~ ifelse(typeof(.) != "character",
-                   stats::median(., na.rm = TRUE),
-                   NA_real_),
-    max = ~ ifelse(typeof(.) != "character",
-                   max(., na.rm = TRUE),
-                   skimr::get_one_default_skimmer("character")$max(.)),
-    empty = ~ ifelse(typeof(.) != "character",
-                   NA_integer_,
-                   skimr::get_one_default_skimmer("character")$empty(.)),
-    n_unique = ~ ifelse(typeof(.) != "character",
-                     NA_integer_,
-                     skimr::get_one_default_skimmer("character")$n_unique(.)),
-    whitespace = ~ ifelse(typeof(.) != "character",
-                        NA_integer_,
-                        skimr::get_one_default_skimmer("character")$whitespace(.)),
-    n_value_labels = ~ length(labelled::val_labels(.)),
-    hist = ~ ifelse(typeof(.) != "character",
-                     skimr::inline_hist(.),
-                     NA_character_),
-  )
+  haven_labelled_sfl
 }
 
+haven_labelled_sfl <- skimr::sfl(
+  skim_type = "haven_labelled",
+  mean = ~ ifelse(typeof(.) != "character",
+                  mean(., na.rm = TRUE),
+                  NA_real_),
+  sd = ~ ifelse(typeof(.) != "character",
+                sd(., na.rm = TRUE),
+                NA_real_),
+  min = ~ ifelse(typeof(.) != "character",
+                 min(vctrs::vec_data(.), na.rm = TRUE),
+                 skimr::get_one_default_skimmer("character")$min(.)),
+  median = ~ ifelse(typeof(.) != "character",
+                    stats::median(., na.rm = TRUE),
+                    NA_real_),
+  max = ~ ifelse(typeof(.) != "character",
+                 max(vctrs::vec_data(.), na.rm = TRUE),
+                 skimr::get_one_default_skimmer("character")$max(.)),
+  empty = ~ ifelse(typeof(.) != "character",
+                   NA_integer_,
+                   skimr::get_one_default_skimmer("character")$empty(.)),
+  n_unique = ~ ifelse(typeof(.) != "character",
+                      NA_integer_,
+                      skimr::get_one_default_skimmer("character")$n_unique(.)),
+  whitespace = ~ ifelse(typeof(.) != "character",
+                        NA_integer_,
+                        skimr::get_one_default_skimmer("character")$whitespace(.)),
+  n_value_labels = ~ length(labelled::val_labels(.)),
+  hist = ~ ifelse(typeof(.) != "character",
+                  skimr::inline_hist(.),
+                  NA_character_),
+)
 #' Define skimmers for haven_labelled_spss variables
 #'
 #' Variables labelled using the haven_labelled_spss class are special
@@ -152,23 +153,37 @@ get_skimmers.haven_labelled <- function(column) {
 #'
 #' @param column the column to skim
 #'
-#' @export
+#' @exportS3Method skimr::get_skimmers haven_labelled_spss
 get_skimmers.haven_labelled_spss <- function(column) {
   get_skimmers.haven_labelled(column)
 }
 
-skim_codebook <- skimr::skim_with(
+#' Skim codebook
+#'
+#' Implements the regular functionality of [skimr::skim()] but renames the columns
+#' p0, p50, and p100 to min, median, and max respectively for numeric types to
+#' keep things consistent across type (and produce a narrower wide table).
+#'
+#' @param data the dataset to skim
+#' @param ... passed to [skimr::skim()]
+#'
+#' @export
+#' @examples
+#' skim_codebook(bfi)
+skim_codebook <-  skimr::skim_with(
+  haven_labelled = haven_labelled_sfl,
+  haven_labelled_spss = haven_labelled_sfl,
   numeric = skimr::sfl(
+    mean = skimr::get_one_default_skimmer("numeric")$mean,
+    sd = skimr::get_one_default_skimmer("numeric")$sd,
     min = skimr::get_one_default_skimmer("numeric")$p0,
     median = skimr::get_one_default_skimmer("numeric")$p50,
     max = skimr::get_one_default_skimmer("numeric")$p100,
-    p0 = NULL,
-    p25 = NULL,
-    p50 = NULL,
-    p75 = NULL,
-    p100 = NULL
-  )
+    hist = skimr::get_one_default_skimmer("numeric")$hist
+  ),
+  append = FALSE
 )
+
 coerce_skimmed_summary_to_character <- function(df) {
   format_digits <- function(x) {
     # format(x, digits = getOption("digits"))
@@ -207,13 +222,16 @@ coerce_skimmed_summary_to_character <- function(df) {
                        dplyr::vars(.data$min, .data$median, .data$max),
                      format_digits)
   }
+  class(df) <- "list"
   df
 }
+
 skim_to_wide_labelled <- function(x){
   results <- dplyr::bind_rows(
     coerce_skimmed_summary_to_character(
     skimr::partition(skim_codebook(x))
     ), .id = "data_type"
     )
+  results <- tibble::as_tibble(results)
   results
 }

@@ -8,5 +8,5 @@ results = formr::formr_post_process_results(items, results, item_displays = item
 compute_alphas = FALSE, plot_likert = FALSE, quiet = TRUE)
 
 bfi = dplyr::filter(results, !is.na(ended))
-devtools::use_data(bfi, overwrite = TRUE)
+usethis::use_data(bfi, overwrite = TRUE)
 

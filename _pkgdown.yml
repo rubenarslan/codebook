@@ -22,6 +22,7 @@ reference:
   - '`metadata_jsonld`'
   - '`metadata_list`'
   - '`load_data_and_render_codebook`'
+  - '`skim_codebook`'
 - title: Prepare data for codebook
   desc: Functions to annotate data to be more interpretable by the codebook functions
   contents:
@@ -45,23 +46,15 @@ reference:
   - '`zap_attributes`'
   - '`zap_label`'
   - '`zap_labelled`'
-- title: Functions for rmarkdown partials
-  desc: Make rmarkdown partials whether in interactive mode or not
-  contents:
-  - '`asis_knit_child`'
-  - '`paste.knit_asis`'
-  - '`print.knit_asis`'
 - title: Methods
   desc: Various methods to print and plot objects
   contents:
-  - '`summary.haven_labelled`'
-  - '`summary.haven_labelled_spss`'
-  - '`knit_print.alpha`'
   - '`knit_print.htest`'
   - '`knit_print.multilevel`'
-  - '`knit_print.scaleDiagnosis`'
   - '`likert_from_items`'
   - '`plot_labelled`'
+  - '`get_skimmers.haven_labelled`'
+  - '`get_skimmers.haven_labelled_spss`'
 - title: formr-data specific helpers
   desc: ~
   contents:

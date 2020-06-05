@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,7 +39,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -43,7 +47,6 @@
 
 <meta property="og:title" content="Codebook component for single items — codebook_component_single_item" />
 <meta property="og:description" content="Codebook component for single items" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -61,7 +64,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -75,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
@@ -107,7 +110,7 @@
       <a href="../articles/codebook_sav.html">Codebook example with SPSS dataset</a>
     </li>
     <li>
-      <a href="../articles/codebook_tutorial.html">Codebook tutorial</a>
+      <a href="../articles/codebook_tutorial.html">Tutorial</a>
     </li>
   </ul>
 </li>
@@ -117,7 +120,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/rubenarslan/codebook">
+  <a href="https://github.com/rubenarslan/codebook/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -150,7 +153,11 @@
     <p>Codebook component for single items</p>
     </div>
 
-    <pre class="usage"><span class='fu'>codebook_component_single_item</span>(<span class='no'>item</span>, <span class='no'>item_name</span>, <span class='kw'>indent</span> <span class='kw'>=</span> <span class='st'>"##"</span>)</pre>
+    <pre class="usage"><span class='fu'>codebook_component_single_item</span>(
+  <span class='no'>item</span>,
+  <span class='kw'>item_name</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/deparse.html'>deparse</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span>(<span class='no'>item</span>)),
+  <span class='kw'>indent</span> <span class='kw'>=</span> <span class='st'>"##"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -171,190 +178,15 @@
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># will generate figure in a temporary directory</span>
-<span class='no'>old_base_dir</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/knitr/man/opts_knit.html'>opts_knit</a></span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"base.dir"</span>)
-<span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/knitr/man/opts_knit.html'>opts_knit</a></span>$<span class='fu'>set</span>(<span class='kw'>base.dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-<span class='fu'><a href='https://rdrr.io/r/base/on.exit.html'>on.exit</a></span>(<span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/knitr/man/opts_knit.html'>opts_knit</a></span>$<span class='fu'>set</span>(<span class='kw'>base.dir</span> <span class='kw'>=</span> <span class='no'>old_base_dir</span>))
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"bfi"</span>)
-<span class='fu'>codebook_component_single_item</span>(<span class='no'>bfi</span>$<span class='no'>BFIK_open_1</span>, <span class='st'>"BFIK_open_1"</span>)</div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; 
-#&gt; #### BFIK_open_1 {#BFIK_open_1 .tabset}
-#&gt; 
-#&gt; __Ich bin vielseitig interessiert.__
-#&gt; 
-#&gt; ##### Distribution {#BFIK_open_1_distribution}
-#&gt; 
-#&gt; ```r
-#&gt; show_missing_values &lt;- FALSE
-#&gt; if (has_labels(item)) {
-#&gt;   missing_values &lt;- item[is.na(haven::zap_missing(item))]
-#&gt;   attributes(missing_values) &lt;- attributes(item)
-#&gt;   if (!is.null(attributes(item)$labels)) {
-#&gt;     attributes(missing_values)$labels &lt;- attributes(missing_values)$labels[is.na(attributes(missing_values)$labels)]
-#&gt;     attributes(item)$labels &lt;- attributes(item)$labels[!is.na(attributes(item)$labels)]
-#&gt;   }
-#&gt;   if (is.double(item)) {
-#&gt;     show_missing_values &lt;- length(unique(haven::na_tag(missing_values))) &gt; 1
-#&gt;     item &lt;- haven::zap_missing(item)
-#&gt;   }
-#&gt;   if (length(item_attributes$labels) == 0 &amp;&amp; is.numeric(item)) {
-#&gt;     item &lt;- haven::zap_labels(item)
-#&gt;   }
-#&gt; }
-#&gt; item_nomiss &lt;- item[!is.na(item)]
-#&gt; 
-#&gt; # unnest mc_multiple and so on
-#&gt; if (
-#&gt;   is.character(item_nomiss) &amp;&amp;
-#&gt;   any(stringr::str_detect(item_nomiss, stringr::fixed(", "))) &amp;&amp;
-#&gt;   !is.null(item_info) &amp;&amp;
-#&gt;   (exists("type", item_info) &amp;&amp; 
-#&gt;     any(stringr::str_detect(item_info$type, 
-#&gt;                             pattern = stringr::fixed("multiple"))))
-#&gt;   ) {
-#&gt;   item_nomiss &lt;- unlist(stringr::str_split(item_nomiss, pattern = stringr::fixed(", ")))
-#&gt; }
-#&gt; attributes(item_nomiss) &lt;- attributes(item)
-#&gt; 
-#&gt; old_height &lt;- knitr::opts_chunk$get("fig.height")
-#&gt; non_missing_choices &lt;- item_attributes[["labels"]]
-#&gt; many_labels &lt;- length(non_missing_choices) &gt; 7
-#&gt; go_vertical &lt;- !is_numeric_or_time_var(item_nomiss) || many_labels
-#&gt;   
-#&gt; if ( go_vertical ) {
-#&gt;   # numeric items are plotted horizontally (because that's what usually expected)
-#&gt;   # categorical items are plotted vertically because we can use the screen real estate better this way
-#&gt; 
-#&gt; 	if (is.null(choices) || 
-#&gt; 	    dplyr::n_distinct(item_nomiss) &gt; length(non_missing_choices)) {
-#&gt; 		non_missing_choices &lt;- unique(item_nomiss)
-#&gt; 		names(non_missing_choices) &lt;- non_missing_choices
-#&gt; 	}
-#&gt;   choice_multiplier &lt;- old_height/6.5
-#&gt; 	new_height &lt;- 2 + choice_multiplier * length(non_missing_choices)
-#&gt; 	new_height &lt;- ifelse(new_height &gt; 20, 20, new_height)
-#&gt; 	new_height &lt;- ifelse(new_height &lt; 1, 1, new_height)
-#&gt; 	if(could_disclose_unique_values(item_nomiss) &amp;&amp; is.character(item_nomiss)) {
-#&gt; 	  new_height &lt;- old_height
-#&gt; 	}
-#&gt; 	knitr::opts_chunk$set(fig.height = new_height)
-#&gt; }
-#&gt; 
-#&gt; wrap_at &lt;- knitr::opts_chunk$get("fig.width") * 10
-#&gt; ```
-#&gt; 
-#&gt; ```r
-#&gt; # todo: if there are free-text choices mingled in with the pre-defined ones, don't show
-#&gt; # todo: show rare items if they are pre-defined
-#&gt; # todo: bin rare responses into "other category"
-#&gt; if (!length(item_nomiss)) {
-#&gt;   cat("No non-missing values to show.")
-#&gt; } else if (!could_disclose_unique_values(item_nomiss)) {
-#&gt;   plot_labelled(item_nomiss, item_name, wrap_at, go_vertical)
-#&gt; } else {
-#&gt;   if (is.character(item_nomiss)) {
-#&gt;       char_count &lt;- stringr::str_count(item_nomiss)
-#&gt;       attributes(char_count)$label &lt;- item_label
-#&gt;       plot_labelled(char_count, 
-#&gt;                     item_name, wrap_at, FALSE, trans = "log1p", "characters")
-#&gt;   } else {
-#&gt; 	  cat(dplyr::n_distinct(item_nomiss), " unique, categorical values, so not shown.")
-#&gt;   }
-#&gt; }
-#&gt; ```
-#&gt; 
-#&gt; ![plot of chunk distribution](figure/cb_bfi_BFIK_open_1_distribution-1.png)
-#&gt; 
-#&gt; ```r
-#&gt; knitr::opts_chunk$set(fig.height = old_height)
-#&gt; ```
-#&gt; 
-#&gt; 0 missing values.
-#&gt; 
-#&gt; ##### Summary statistics {#BFIK_open_1_summary}
-#&gt; 
-#&gt; ```r
-#&gt; attributes(item) &lt;- item_attributes
-#&gt; df = data.frame(item, stringsAsFactors = FALSE)
-#&gt; names(df) = html_item_name
-#&gt; escaped_table(codebook_table(df))
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; |name        |label                                |type          |type_options |data_type      |value_labels                                                                                                                                |optional |item_order | n_missing| complete_rate|min |median |max |     mean|        sd| n_value_labels|hist     |
-#&gt; |:-----------|:------------------------------------|:-------------|:------------|:--------------|:-------------------------------------------------------------------------------------------------------------------------------------------|:--------|:----------|---------:|-------------:|:---|:------|:---|--------:|---------:|--------------:|:--------|
-#&gt; |BFIK_open_1 |__Ich bin vielseitig interessiert.__ |rating_button |5            |haven_labelled |1. 1: Trifft überhaupt nicht zu,&lt;br&gt;2. 2,&lt;br&gt;3. 3,&lt;br&gt;4. 4,&lt;br&gt;5. 5: Trifft voll und ganz zu,&lt;br&gt;NA. Item was never rendered for this user. |0        |8          |         0|             1|2   |5      |5   | 4.392857| 0.8317445|              6|▁▁▂▁▁▃▁▇ |
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ```r
-#&gt; if (show_missing_values) {
-#&gt;   plot_labelled(missing_values, item_name, wrap_at)
-#&gt; }
-#&gt; ```
-#&gt; 
-#&gt; ##### Item {#BFIK_open_1_item}
-#&gt; 
-#&gt; 
-#&gt; ```r
-#&gt; if (!is.null(item_info)) {
-#&gt;   # don't show choices again, if they're basically same thing as value labels
-#&gt;   if (!is.null(choices) &amp;&amp; !is.null(item_info$choices) &amp;&amp; 
-#&gt;     all(names(na.omit(choices)) == item_info$choices) &amp;&amp;
-#&gt;     all(na.omit(choices) == names(item_info$choices))) {
-#&gt;     item_info$choices &lt;- NULL
-#&gt;   }
-#&gt;   item_info$label_parsed &lt;- 
-#&gt;     item_info$choice_list &lt;- item_info$study_id &lt;- item_info$id &lt;- NULL
-#&gt;   pander::pander(item_info)
-#&gt; }
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt;   * **type**: rating_button
-#&gt;   * **type_options**: 5
-#&gt;   * **name**: BFIK_open_1
-#&gt;   * **label**: __Ich bin vielseitig interessiert.__
-#&gt;   * **optional**: _0_
-#&gt;   * **class**:
-#&gt;   * **showif**:
-#&gt;   * **value**:
-#&gt;   * **block_order**:
-#&gt;   * **item_order**: _8_
-#&gt; 
-#&gt; &lt;!-- end of list --&gt;
-#&gt; 
-#&gt; 
-#&gt; ##### Value labels {#BFIK_open_1_labels}
-#&gt; 
-#&gt; ```r
-#&gt; if (!is.null(choices) &amp;&amp; length(choices) &amp;&amp; length(choices) &lt; 30) {
-#&gt; 	pander::pander(as.list(choices))
-#&gt; }
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt;   * **1: Trifft überhaupt nicht zu**: _1_
-#&gt;   * **2**: _2_
-#&gt;   * **3**: _3_
-#&gt;   * **4**: _4_
-#&gt;   * **5: Trifft voll und ganz zu**: _5_
-#&gt;   * **Item was never rendered for this user.**: _NA_
-#&gt; 
-#&gt; &lt;!-- end of list --&gt;
-#&gt; </div></pre>
+<span class='fu'>codebook_component_single_item</span>(<span class='no'>bfi</span>$<span class='no'>BFIK_open_1</span>, <span class='st'>"BFIK_open_1"</span>)
+}</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -365,7 +197,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

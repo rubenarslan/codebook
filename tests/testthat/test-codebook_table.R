@@ -54,6 +54,8 @@ test_that("codebook table generation", {
                         -starts_with("BFIK_agree"),
                         -starts_with("BFIK_open"))
   bfi$age <- 1:nrow(bfi)
+  bfi$labelled_char <- haven::labelled(letters[1:nrow(bfi)], label = "Letters",
+                                      labels = c("A" = "a", "B" = "b"))
   expect_silent(cb <- codebook_table(bfi))
   expect_identical(names(cb),
                    c("name", "label", "type", "type_options", "data_type",
@@ -71,14 +73,15 @@ test_that("codebook table generation, no attributes", {
   bfi <- bfi %>% select(-starts_with("BFIK_extra"),
                         -starts_with("BFIK_agree"),
                         -starts_with("BFIK_open"))
-  bfi <- bfi %>% head() %>% haven::zap_label() %>% haven::zap_labels()
+  bfi <- bfi %>% head() %>% zap_attributes()
   # drops attributes
   bfi$age <- 1:nrow(bfi)
   expect_silent(cb <- codebook_table(bfi))
   expect_identical(names(cb),
                    c("name", "data_type", "n_missing", "complete_rate",
                      "n_unique", "empty", "count", "min", "median", "max",
-                     "mean", "sd", "whitespace", "hist"))
+                     "mean", "sd", "whitespace", "hist", "label"))
   expect_equal(nrow(cb), ncol(bfi))
   expect_identical(cb$name, names(bfi))
 })
+

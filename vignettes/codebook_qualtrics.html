@@ -8,11 +8,11 @@
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="author" content="Ruben Arslan" />
 
-<meta name="date" content="2020-01-08" />
+<meta name="date" content="2020-06-04" />
 
 <title>Codebook example with Qualtrics dataset</title>
 
@@ -20,9 +20,9 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -32,14 +32,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -48,9 +50,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -117,9 +119,6 @@ padding-right: 2em;
 font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 14px;
 line-height: 1.35;
-}
-#header {
-text-align: center;
 }
 #TOC {
 clear: both;
@@ -288,7 +287,8 @@ code > span.st { color: #d14; }
 code > span.co { color: #888888; font-style: italic; } 
 code > span.ot { color: #007020; } 
 code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
 
@@ -303,44 +303,43 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Codebook example with Qualtrics dataset</h1>
 <h4 class="author">Ruben Arslan</h4>
-<h4 class="date">2020-01-08</h4>
+<h4 class="date">2020-06-04</h4>
 
 
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">knit_by_pkgdown &lt;-<span class="st"> </span><span class="op">!</span><span class="kw">is.null</span>(knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">&quot;fig.retina&quot;</span>))</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">FALSE</span>, <span class="dt">message =</span> <span class="ot">FALSE</span>, <span class="dt">error =</span> <span class="ot">FALSE</span>, <span class="dt">echo =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">pander<span class="op">::</span><span class="kw">panderOptions</span>(<span class="st">&quot;table.split.table&quot;</span>, <span class="ot">Inf</span>)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">ggplot2<span class="op">::</span><span class="kw">theme_set</span>(ggplot2<span class="op">::</span><span class="kw">theme_bw</span>())</a>
-<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="kw">library</span>(codebook)</a>
-<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw">library</span>(dplyr)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>knit_by_pkgdown &lt;-<span class="st"> </span><span class="op">!</span><span class="kw">is.null</span>(knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">get</span>(<span class="st">&quot;fig.retina&quot;</span>))</span>
+<span id="cb1-2"><a href="#cb1-2"></a>knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">warning =</span> <span class="ot">FALSE</span>, <span class="dt">message =</span> <span class="ot">FALSE</span>, <span class="dt">error =</span> <span class="ot">FALSE</span>, <span class="dt">echo =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>ggplot2<span class="op">::</span><span class="kw">theme_set</span>(ggplot2<span class="op">::</span><span class="kw">theme_bw</span>())</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">library</span>(codebook)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">library</span>(dplyr)</span></code></pre></div>
 <p>Here, I try to demonstrate that we can also use the metadata generated by Qualtrics. Because I am not a Qualtrics user, the developer of the <code>qualtRics</code> R package sent me two example files, one of data and one for metadata, which I use here. Usually, you’d import these files directly via his package.</p>
 <div id="load" class="section level2">
 <h2>Load</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># library(qualtRics) # currently not on CRAN, so commented out</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">results &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;ryan.rds&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;codebook&quot;</span>))</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">metadata_ex &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;metadata.rds&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;codebook&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># library(qualtRics) # currently not on CRAN, so commented out</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>results &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;ryan.rds&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;codebook&quot;</span>))</span>
+<span id="cb2-3"><a href="#cb2-3"></a>metadata_ex &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;metadata.rds&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;codebook&quot;</span>))</span></code></pre></div>
 <p>Now, we want the metadata not to be just independent of the data frame. It’s easier to change metadata if it is in the form of a list at the dataset level, so let’s use <code>rio::gather_attrs</code> for that.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">results &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span><span class="st"> </span>rio<span class="op">::</span><span class="kw">gather_attrs</span>()</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">attributes</span>(results)<span class="op">$</span>label<span class="op">$</span>Q7</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>results &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span><span class="st"> </span>rio<span class="op">::</span><span class="kw">gather_attrs</span>()</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">attributes</span>(results)<span class="op">$</span>label<span class="op">$</span>Q7</span></code></pre></div>
 <pre><code>##                                                                                  Q7 
 ## &quot;How reasonable or unreasonable is the cost of courses/tuition at this university?&quot;</code></pre>
 <p>Now, we can loop over the metadata list and put it in the right shape to become attributes. This means given each element the name of the variable it refers to.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">names</span>(metadata_ex<span class="op">$</span>questions) &lt;-<span class="st"> </span><span class="kw">lapply</span>(metadata_ex<span class="op">$</span>questions, <span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">  x<span class="op">$</span>questionName</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">})</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">names</span>(metadata_ex<span class="op">$</span>questions) &lt;-<span class="st"> </span><span class="kw">lapply</span>(metadata_ex<span class="op">$</span>questions, <span class="cf">function</span>(x) {</span>
+<span id="cb5-2"><a href="#cb5-2"></a>  x<span class="op">$</span>questionName</span>
+<span id="cb5-3"><a href="#cb5-3"></a>})</span></code></pre></div>
 <p>We only want the questions that we have data for.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">qs &lt;-<span class="st"> </span><span class="kw">names</span>(metadata_ex<span class="op">$</span>questions)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">qs &lt;-<span class="st"> </span>qs[qs <span class="op">%in%</span><span class="st"> </span><span class="kw">names</span>(<span class="kw">attributes</span>(results)<span class="op">$</span>label)]</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>qs &lt;-<span class="st"> </span><span class="kw">names</span>(metadata_ex<span class="op">$</span>questions)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>qs &lt;-<span class="st"> </span>qs[qs <span class="op">%in%</span><span class="st"> </span><span class="kw">names</span>(<span class="kw">attributes</span>(results)<span class="op">$</span>label)]</span></code></pre></div>
 <p>Now, we assign our metadata list to the attributes of the data.frame.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">init &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, <span class="kw">ncol</span>(results)) </a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">names</span>(init) &lt;-<span class="st"> </span><span class="kw">names</span>(results)</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="kw">attributes</span>(results)<span class="op">$</span>item &lt;-<span class="st"> </span>init</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">attributes</span>(results)<span class="op">$</span>item[qs] &lt;-<span class="st"> </span>metadata_ex<span class="op">$</span>questions[qs]</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>init &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="st">&quot;list&quot;</span>, <span class="kw">ncol</span>(results)) </span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="kw">names</span>(init) &lt;-<span class="st"> </span><span class="kw">names</span>(results)</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="kw">attributes</span>(results)<span class="op">$</span>item &lt;-<span class="st"> </span>init</span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="kw">attributes</span>(results)<span class="op">$</span>item[qs] &lt;-<span class="st"> </span>metadata_ex<span class="op">$</span>questions[qs]</span></code></pre></div>
 <p>And use rio to put the attributes on the question level again.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">results &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span><span class="st"> </span>rio<span class="op">::</span><span class="kw">spread_attrs</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>results &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span><span class="st"> </span>rio<span class="op">::</span><span class="kw">spread_attrs</span>()</span></code></pre></div>
 <p>To keep this example, we select a subset of variables.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">results &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(ResponseSet, Q7, Q10)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="cf">if</span> (<span class="op">!</span>knit_by_pkgdown) knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>results &lt;-<span class="st"> </span>results <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(ResponseSet, Q7, Q10)</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="cf">if</span> (<span class="op">!</span>knit_by_pkgdown) knitr<span class="op">::</span>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>Please note, that we just reuse the metadata column names from Qualtrics. Standardising this across multiple survey providers would be great but requires more knowledge of Qualtrics than I have.</p>
 <p>Owing to a bug in pander, the deeply nested attribute structure is currently not shown as a nice list.</p>
 <pre><code>## No missing values.</code></pre>
@@ -353,29 +352,137 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <details>
 <p><summary title="Expand this section to see some additional metadata in a structured format that is useful for search engines">Metadata for search engines</summary></p>
 <ul>
-<li><strong>Temporal Coverage</strong>: 2018</li>
+<li><p><strong>Temporal Coverage</strong>: 2018</p></li>
 <li><p><strong>Spatial Coverage</strong>: Nowhere</p></li>
-<li><strong>URL</strong>: <a href="https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html">https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html</a></li>
-<li><strong>Identifier</strong>: <a href="https://dx.doi.org/10.5281/zenodo.1326520">doi:10.5281/zenodo.1326520</a></li>
+<li><p><strong>URL</strong>: <a href="https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html">https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html</a></p></li>
+<li><p><strong>Identifier</strong>: <a href="https://dx.doi.org/10.5281/zenodo.1326520">doi:10.5281/zenodo.1326520</a></p></li>
 <li><p><strong>Date published</strong>: 2018-08-01</p></li>
-<li><p><strong>Creator</strong>:</p>
-<ul>
-<li><strong><span class="citation">@type</span></strong>: Person</li>
-<li><strong>givenName</strong>: Ruben</li>
-<li><strong>familyName</strong>: Arslan</li>
-<li><strong>email</strong>: <a href="mailto:ruben.arslan@gmail.com" class="email">ruben.arslan@gmail.com</a></li>
-<li><p><strong>affiliation</strong>:</p>
-<ul>
-<li><strong><span class="citation">@type</span></strong>: Organization</li>
-<li><strong>name</strong>: MPI Human Development, Berlin</li>
-</ul></li>
-</ul></li>
+<li><p><strong>Creator</strong>:</p></li>
 </ul>
-<!-- end of list -->
-<ul>
-<li><strong>keywords</strong>: <em>ResponseSet</em>, <em>Q7</em> and <em>Q10</em></li>
-</ul>
-<!-- end of list -->
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Person</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Ruben</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Arslan</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="mailto:ruben.arslan@gmail.com" class="email">ruben.arslan@gmail.com</a></td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Organization</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">MPI Human Development, Berlin</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ResponseSet</td>
+</tr>
+<tr class="even">
+<td align="left">Q7</td>
+</tr>
+<tr class="odd">
+<td align="left">Q10</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
 </details>
 </div>
 </div>
@@ -477,74 +584,660 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="Q7_item" class="section level4">
 <h4>Item</h4>
-<ul>
-<li><p><strong>questionType</strong>:</p>
-<ul>
-<li><strong>type</strong>: MC</li>
-<li><strong>selector</strong>: SAVR</li>
-<li><strong>subSelector</strong>: TX</li>
-</ul></li>
-<li><strong>questionText</strong>: How reasonable or unreasonable is the cost of courses/tuition at this university?</li>
-<li><strong>questionLabel</strong>:</li>
-<li><p><strong>validation</strong>:</p>
-<ul>
-<li><strong>doesForceResponse</strong>: <em>FALSE</em></li>
-</ul></li>
-<li><strong>questionName</strong>: Q7</li>
-<li><p><strong>choices</strong>:</p>
-<ul>
-<li><p><strong>1</strong>:</p>
-<pre><code>  * **recode**: 1
-  * **description**: Extremely reasonable
-  * **choiceText**: Extremely reasonable
-  * **imageDescription**:
-  * **variableName**:
-  * **analyze**: _TRUE_</code></pre></li>
-<li><p><strong>2</strong>:</p>
-<pre><code>  * **recode**: 2
-  * **description**: Moderately reasonable
-  * **choiceText**: Moderately reasonable
-  * **imageDescription**:
-  * **variableName**:
-  * **analyze**: _TRUE_</code></pre></li>
-<li><p><strong>3</strong>:</p>
-<pre><code>  * **recode**: 3
-  * **description**: Slightly reasonable
-  * **choiceText**: Slightly reasonable
-  * **imageDescription**:
-  * **variableName**:
-  * **analyze**: _TRUE_</code></pre></li>
-<li><p><strong>4</strong>:</p>
-<pre><code>  * **recode**: 4
-  * **description**: Neither reasonable nor unreasonable
-  * **choiceText**: Neither reasonable nor unreasonable
-  * **imageDescription**:
-  * **variableName**:
-  * **analyze**: _TRUE_</code></pre></li>
-<li><p><strong>5</strong>:</p>
-<pre><code>  * **recode**: 5
-  * **description**: Slightly unreasonable
-  * **choiceText**: Slightly unreasonable
-  * **imageDescription**:
-  * **variableName**:
-  * **analyze**: _TRUE_</code></pre></li>
-<li><p><strong>6</strong>:</p>
-<pre><code>  * **recode**: 6
-  * **description**: Moderately unreasonable
-  * **choiceText**: Moderately unreasonable
-  * **imageDescription**:
-  * **variableName**:
-  * **analyze**: _TRUE_</code></pre></li>
-<li><p><strong>7</strong>:</p>
-<pre><code>  * **recode**: 7
-  * **description**: Extremely unreasonable
-  * **choiceText**: Extremely unreasonable
-  * **imageDescription**:
-  * **variableName**:
-  * **analyze**: _TRUE_</code></pre></li>
-</ul></li>
-</ul>
-<!-- end of list -->
+<pre><code>## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)</code></pre>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">MC</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">SAVR</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TX</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<colgroup>
+<col width="100%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">How reasonable or unreasonable is the cost of courses/tuition at this university?</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">FALSE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Q7</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Extremely reasonable</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Extremely reasonable</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Moderately reasonable</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Moderately reasonable</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">3</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Slightly reasonable</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Slightly reasonable</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">4</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Neither reasonable nor unreasonable</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Neither reasonable nor unreasonable</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">5</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Slightly unreasonable</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Slightly unreasonable</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">6</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Moderately unreasonable</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Moderately unreasonable</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">7</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Extremely unreasonable</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Extremely unreasonable</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="Q10" class="section level3 tabset">
@@ -600,74 +1293,657 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </div>
 <div id="Q10_item" class="section level4">
 <h4>Item</h4>
-<ul>
-<li><p><strong>questionType</strong>:</p>
-<ul>
-<li><strong>type</strong>: MC</li>
-<li><strong>selector</strong>: SAVR</li>
-<li><strong>subSelector</strong>: TX</li>
-</ul></li>
-<li><strong>questionText</strong>: How helpful or unhelpful is the staff at the on-campus health center?</li>
-<li><strong>questionLabel</strong>:</li>
-<li><p><strong>validation</strong>:</p>
-<ul>
-<li><strong>doesForceResponse</strong>: <em>FALSE</em></li>
-</ul></li>
-<li><strong>questionName</strong>: Q10</li>
-<li><p><strong>choices</strong>:</p>
-<ul>
-<li><p><strong>1</strong>:</p>
-<pre><code>  * **recode**: 1
-  * **description**: Extremely helpful
-  * **choiceText**: Extremely helpful
-  * **imageDescription**:
-  * **variableName**:
-  * **analyze**: _TRUE_</code></pre></li>
-<li><p><strong>2</strong>:</p>
-<pre><code>  * **recode**: 2
-  * **description**: Moderately helpful
-  * **choiceText**: Moderately helpful
-  * **imageDescription**:
-  * **variableName**:
-  * **analyze**: _TRUE_</code></pre></li>
-<li><p><strong>3</strong>:</p>
-<pre><code>  * **recode**: 3
-  * **description**: Slightly helpful
-  * **choiceText**: Slightly helpful
-  * **imageDescription**:
-  * **variableName**:
-  * **analyze**: _TRUE_</code></pre></li>
-<li><p><strong>4</strong>:</p>
-<pre><code>  * **recode**: 4
-  * **description**: Neither helpful nor unhelpful
-  * **choiceText**: Neither helpful nor unhelpful
-  * **imageDescription**:
-  * **variableName**:
-  * **analyze**: _TRUE_</code></pre></li>
-<li><p><strong>5</strong>:</p>
-<pre><code>  * **recode**: 5
-  * **description**: Slightly unhelpful
-  * **choiceText**: Slightly unhelpful
-  * **imageDescription**:
-  * **variableName**:
-  * **analyze**: _TRUE_</code></pre></li>
-<li><p><strong>6</strong>:</p>
-<pre><code>  * **recode**: 6
-  * **description**: Moderately unhelpful
-  * **choiceText**: Moderately unhelpful
-  * **imageDescription**:
-  * **variableName**:
-  * **analyze**: _TRUE_</code></pre></li>
-<li><p><strong>7</strong>:</p>
-<pre><code>  * **recode**: 7
-  * **description**: Extremely unhelpful
-  * **choiceText**: Extremely unhelpful
-  * **imageDescription**:
-  * **variableName**:
-  * **analyze**: _TRUE_</code></pre></li>
-</ul></li>
-</ul>
-<!-- end of list -->
+<pre><code>## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)
+
+## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)</code></pre>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">MC</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">SAVR</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TX</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">How helpful or unhelpful is the staff at the on-campus health center?</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">FALSE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Q10</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Extremely helpful</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Extremely helpful</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Moderately helpful</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Moderately helpful</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">3</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Slightly helpful</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Slightly helpful</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">4</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Neither helpful nor unhelpful</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Neither helpful nor unhelpful</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">5</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Slightly unhelpful</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Slightly unhelpful</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">6</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Moderately unhelpful</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Moderately unhelpful</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table class="kable_wrapper">
+<tbody>
+<tr>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">7</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Extremely unhelpful</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Extremely unhelpful</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<p>|| || || ||</p>
+</td>
+<td>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TRUE</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

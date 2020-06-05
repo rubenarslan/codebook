@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,7 +39,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -43,7 +47,6 @@
 
 <meta property="og:title" content="Codebook component for scales — codebook_component_scale" />
 <meta property="og:description" content="Codebook component for scales" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -61,7 +64,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -75,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
@@ -107,7 +110,7 @@
       <a href="../articles/codebook_sav.html">Codebook example with SPSS dataset</a>
     </li>
     <li>
-      <a href="../articles/codebook_tutorial.html">Codebook tutorial</a>
+      <a href="../articles/codebook_tutorial.html">Tutorial</a>
     </li>
   </ul>
 </li>
@@ -117,7 +120,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/rubenarslan/codebook">
+  <a href="https://github.com/rubenarslan/codebook/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -152,9 +155,9 @@
 
     <pre class="usage"><span class='fu'>codebook_component_scale</span>(
   <span class='no'>scale</span>,
-  <span class='no'>scale_name</span>,
+  <span class='kw'>scale_name</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/deparse.html'>deparse</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/substitute.html'>substitute</a></span>(<span class='no'>scale</span>)),
   <span class='no'>items</span>,
-  <span class='no'>reliabilities</span>,
+  <span class='kw'>reliabilities</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(),
   <span class='kw'>indent</span> <span class='kw'>=</span> <span class='st'>"##"</span>
 )</pre>
 
@@ -186,229 +189,17 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># will generate figures in a temporary directory</span>
-<span class='no'>old_base_dir</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/knitr/man/opts_knit.html'>opts_knit</a></span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"base.dir"</span>)
-<span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/knitr/man/opts_knit.html'>opts_knit</a></span>$<span class='fu'>set</span>(<span class='kw'>base.dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-<span class='fu'><a href='https://rdrr.io/r/base/on.exit.html'>on.exit</a></span>(<span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/knitr/man/opts_knit.html'>opts_knit</a></span>$<span class='fu'>set</span>(<span class='kw'>base.dir</span> <span class='kw'>=</span> <span class='no'>old_base_dir</span>))
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"bfi"</span>)
 <span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='no'>bfi</span>[,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"BFIK_open"</span>, <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='st'>"BFIK_open_"</span>, <span class='fl'>1</span>:<span class='fl'>4</span>))]
 <span class='fu'>codebook_component_scale</span>(<span class='no'>bfi</span>[,<span class='fl'>1</span>], <span class='st'>"BFIK_open"</span>, <span class='no'>bfi</span>[,-<span class='fl'>1</span>],
-   <span class='kw'>reliabilities</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>BFIK_open</span> <span class='kw'>=</span> <span class='kw pkg'>psych</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/psych/man/alpha.html'>alpha</a></span>(<span class='no'>bfi</span>[,-<span class='fl'>1</span>])))</div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; 
-#&gt; #### Scale: BFIK_open {#BFIK_open .tabset}
-#&gt; &lt;a name="BFIK_open_2"&gt;&lt;/a&gt;&lt;a name="BFIK_open_1"&gt;&lt;/a&gt;&lt;a name="BFIK_open_4"&gt;&lt;/a&gt;&lt;a name="BFIK_open_3"&gt;&lt;/a&gt;
-#&gt; 
-#&gt; ##### Overview {#BFIK_open_likert}
-#&gt; 
-#&gt; __Reliability__: Cronbach's α [95% CI] = 0.53 [0.25;0.81].
-#&gt; 
-#&gt; __Missing__: 0.
-#&gt; 
-#&gt; 
-#&gt; ```r
-#&gt; old_height &lt;- knitr::opts_chunk$get("fig.height")
-#&gt; new_height &lt;- length(scale_info$scale_item_names)
-#&gt; new_height &lt;- ifelse(new_height &gt; 20, 20, new_height)
-#&gt; new_height &lt;- ifelse(new_height &lt; 1, 1, new_height)
-#&gt; new_height &lt;- ifelse(is.na(new_height) | is.nan(new_height), 
-#&gt;                      old_height, new_height)
-#&gt; knitr::opts_chunk$set(fig.height = new_height)
-#&gt; ```
-#&gt; 
-#&gt; ```r
-#&gt; if (dplyr::n_distinct(na.omit(unlist(items))) &lt; 12) {
-#&gt;   likert_plot &lt;- likert_from_items(items)
-#&gt;   if (!is.null(likert_plot)) {
-#&gt;     graphics::plot(likert_plot)
-#&gt;   }
-#&gt; }
-#&gt; ```
-#&gt; 
-#&gt; ![plot of chunk likert](figure/cb_bfi_BFIK_open_likert-1.png)
-#&gt; 
-#&gt; ```r
-#&gt; knitr::opts_chunk$set(fig.height = old_height)
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; ```r
-#&gt; wrap_at &lt;- knitr::opts_chunk$get("fig.width") * 10
-#&gt; ```
-#&gt; 
-#&gt; ```r
-#&gt; dist_plot &lt;- plot_labelled(scale, scale_name, wrap_at)
-#&gt; 
-#&gt; choices &lt;- attributes(items[[1]])$item$choices
-#&gt; breaks &lt;- as.numeric(names(choices))
-#&gt; if (length(breaks)) {
-#&gt;   suppressMessages( # ignore message about overwriting x axis
-#&gt;   dist_plot &lt;- dist_plot +
-#&gt;     	ggplot2::scale_x_continuous("values", 
-#&gt; 	                            breaks = breaks, 
-#&gt; 	                            labels = stringr::str_wrap(unlist(choices), ceiling(wrap_at * 0.21))) +
-#&gt;       ggplot2::expand_limits(x = range(breaks)))
-#&gt;   
-#&gt; }
-#&gt; 
-#&gt; dist_plot
-#&gt; ```
-#&gt; 
-#&gt; ![plot of chunk distribution](figure/cb_bfi_BFIK_open_distribution-1.png)
-#&gt; 
-#&gt; ##### Reliability details {#BFIK_open_reliability}
-#&gt; 
-#&gt; ```r
-#&gt; for (i in seq_along(reliabilities)) {
-#&gt;   rel &lt;- reliabilities[[i]]
-#&gt;   cat(knitr::knit_print(rel, indent = paste0(indent, "####")))
-#&gt; }
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ###### Reliability
-#&gt; 
-#&gt; ###### 95% Confidence Interval
-#&gt; 
-#&gt; ```r
-#&gt; if (!is.null(x$total$ase)) {
-#&gt;   pander::pander(data.frame(lower = x$total$raw_alpha - 1.96 * x$total$ase, 
-#&gt;              estimate = x$total$raw_alpha, 
-#&gt;              upper = x$total$raw_alpha + 1.96 * 
-#&gt;   x$total$ase))
-#&gt; }
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; ----------------------------
-#&gt;  lower    estimate   upper  
-#&gt; -------- ---------- --------
-#&gt;  0.2473    0.5271    0.8068 
-#&gt; ----------------------------
-#&gt; 
-#&gt; ```r
-#&gt; pander::pander(x$total)
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; -------------------------------------------------------------------------------
-#&gt;  raw_alpha   std.alpha   G6(smc)   average_r    S/N     ase     mean      sd   
-#&gt; ----------- ----------- --------- ----------- ------- -------- ------- --------
-#&gt;   0.5271       0.513     0.5384     0.2085     1.054   0.1427   4.259   0.5631 
-#&gt; -------------------------------------------------------------------------------
-#&gt; 
-#&gt; Table: Table continues below
-#&gt; 
-#&gt;  
-#&gt; ----------
-#&gt;  median_r 
-#&gt; ----------
-#&gt;   0.1771  
-#&gt; ----------
-#&gt; 
-#&gt; ######  Reliability if an item is dropped:
-#&gt; 
-#&gt; ```r
-#&gt; rownames(x$alpha.drop) &lt;- recursive_escape(rownames(x$alpha.drop))
-#&gt; pander::pander(x$alpha.drop)
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; ------------------------------------------------------------------------
-#&gt;      &amp;nbsp;        raw_alpha   std.alpha   G6(smc)   average_r    S/N   
-#&gt; ----------------- ----------- ----------- --------- ----------- --------
-#&gt;  **BFIK_open_1**    0.5787      0.5594      0.513     0.2973     1.269  
-#&gt; 
-#&gt;  **BFIK_open_2**    0.5187      0.5019     0.5306     0.2515     1.008  
-#&gt; 
-#&gt;  **BFIK_open_3**    0.2202      0.2437     0.2042     0.09701    0.3223 
-#&gt; 
-#&gt;  **BFIK_open_4**    0.4119      0.4101     0.3218     0.1881     0.6952 
-#&gt; ------------------------------------------------------------------------
-#&gt; 
-#&gt; Table: Table continues below
-#&gt; 
-#&gt;  
-#&gt; ------------------------------------------------
-#&gt;      &amp;nbsp;        alpha se    var.r     med.r  
-#&gt; ----------------- ---------- ---------- --------
-#&gt;  **BFIK_open_1**    0.1308    0.05045    0.1948 
-#&gt; 
-#&gt;  **BFIK_open_2**    0.1551     0.0956    0.2626 
-#&gt; 
-#&gt;  **BFIK_open_3**    0.2572    0.01955    0.1594 
-#&gt; 
-#&gt;  **BFIK_open_4**    0.1885    0.004236   0.1594 
-#&gt; ------------------------------------------------
-#&gt; 
-#&gt; ###### Item statistics
-#&gt; 
-#&gt; ```r
-#&gt; rownames(x$item.stats) &lt;- recursive_escape(rownames(x$item.stats))
-#&gt; pander::pander(x$item.stats)
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; ---------------------------------------------------------------------------
-#&gt;      &amp;nbsp;        n    raw.r    std.r    r.cor    r.drop   mean      sd   
-#&gt; ----------------- ---- -------- -------- -------- -------- ------- --------
-#&gt;  **BFIK_open_1**   28   0.5063   0.5329   0.2761   0.1569   4.393   0.8317 
-#&gt; 
-#&gt;  **BFIK_open_2**   28   0.5298   0.5869   0.3017   0.2318   4.214   0.7382 
-#&gt; 
-#&gt;  **BFIK_open_3**   28   0.8041   0.7686   0.7253   0.538    4.214   0.9567 
-#&gt; 
-#&gt;  **BFIK_open_4**   28   0.701    0.6614   0.5679   0.3612   4.214   0.9567 
-#&gt; ---------------------------------------------------------------------------
-#&gt; 
-#&gt; ###### Non missing response frequency for each item
-#&gt; 
-#&gt; ```r
-#&gt; rownames(x$response.freq) &lt;- recursive_escape(rownames(x$response.freq))
-#&gt; pander::pander(x$response.freq)
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; ------------------------------------------------------------------------
-#&gt;      &amp;nbsp;           1         2         3        4        5      miss 
-#&gt; ----------------- --------- --------- --------- -------- -------- ------
-#&gt;  **BFIK_open_1**      0      0.03571   0.1071    0.2857   0.5714    0   
-#&gt; 
-#&gt;  **BFIK_open_2**      0      0.03571   0.07143   0.5357   0.3571    0   
-#&gt; 
-#&gt;  **BFIK_open_3**      0      0.07143   0.1429    0.2857    0.5      0   
-#&gt; 
-#&gt;  **BFIK_open_4**   0.03571      0      0.1429    0.3571   0.4643    0   
-#&gt; ------------------------------------------------------------------------
-#&gt; 
-#&gt; 
-#&gt; ##### Summary statistics {#BFIK_open_summary}
-#&gt; 
-#&gt; ```r
-#&gt; for (i in seq_along(names(items))) {
-#&gt;   attributes(items[[i]]) = recursive_escape(attributes(items[[i]]))
-#&gt; }
-#&gt; escaped_table(codebook_table(items))
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; |name        |label                                                          |type          |type_options |data_type      |value_labels                                                                                                                                |optional |item_order | n_missing| complete_rate|min |median |max |     mean|        sd| n_value_labels|hist     |
-#&gt; |:-----------|:--------------------------------------------------------------|:-------------|:------------|:--------------|:-------------------------------------------------------------------------------------------------------------------------------------------|:--------|:----------|---------:|-------------:|:---|:------|:---|--------:|---------:|--------------:|:--------|
-#&gt; |BFIK_open_1 |__Ich bin vielseitig interessiert.__                           |rating_button |5            |haven_labelled |1. 1: Trifft überhaupt nicht zu,&lt;br&gt;2. 2,&lt;br&gt;3. 3,&lt;br&gt;4. 4,&lt;br&gt;5. 5: Trifft voll und ganz zu,&lt;br&gt;NA. Item was never rendered for this user. |0        |8          |         0|             1|2   |5.0    |5   | 4.392857| 0.8317445|              6|▁▁▂▁▁▃▁▇ |
-#&gt; |BFIK_open_2 |__Ich bin tiefsinnig, denke gerne über Sachen nach.__          |rating_button |5            |haven_labelled |1. 1: Trifft überhaupt nicht zu,&lt;br&gt;2. 2,&lt;br&gt;3. 3,&lt;br&gt;4. 4,&lt;br&gt;5. 5: Trifft voll und ganz zu,&lt;br&gt;NA. Item was never rendered for this user. |0        |4          |         0|             1|2   |4.0    |5   | 4.214286| 0.7382232|              6|▁▁▁▁▁▇▁▅ |
-#&gt; |BFIK_open_3 |__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__ |rating_button |5            |haven_labelled |1. 1: Trifft überhaupt nicht zu,&lt;br&gt;2. 2,&lt;br&gt;3. 3,&lt;br&gt;4. 4,&lt;br&gt;5. 5: Trifft voll und ganz zu,&lt;br&gt;NA. Item was never rendered for this user. |0        |22         |         0|             1|2   |4.5    |5   | 4.214286| 0.9567361|              6|▁▁▂▁▁▅▁▇ |
-#&gt; |BFIK_open_4 |__Ich schätze künstlerische und ästhetische Eindrücke.__       |rating_button |5            |haven_labelled |1. 1: Trifft überhaupt nicht zu,&lt;br&gt;2. 2,&lt;br&gt;3. 3,&lt;br&gt;4. 4,&lt;br&gt;5. 5: Trifft voll und ganz zu,&lt;br&gt;NA. Item was never rendered for this user. |0        |19         |         0|             1|1   |4.0    |5   | 4.214286| 0.9567361|              6|▁▁▁▂▁▆▁▇ |</div></pre>
+   <span class='kw'>reliabilities</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>BFIK_open</span> <span class='kw'>=</span> <span class='kw pkg'>psych</span><span class='kw ns'>::</span><span class='fu'><a href='https://rdrr.io/pkg/psych/man/alpha.html'>alpha</a></span>(<span class='no'>bfi</span>[,-<span class='fl'>1</span>])))
+}</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -419,7 +210,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

@@ -15,7 +15,6 @@ vignette: >
 
 ```{r message = FALSE}
 knit_by_pkgdown <- !is.null(knitr::opts_chunk$get("fig.retina"))
-pander::panderOptions("table.split.table", Inf)
 ggplot2::theme_set(ggplot2::theme_bw())
 knitr::opts_chunk$set(warning = TRUE, message = TRUE, error = FALSE, echo = TRUE)
 library(dplyr)

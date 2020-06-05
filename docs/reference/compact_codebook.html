@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,7 +39,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -43,7 +47,6 @@
 
 <meta property="og:title" content="Compact Codebook — compact_codebook" />
 <meta property="og:description" content="Generate only the tabular codebook and the machine-readable JSON-LD metadata." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -61,7 +64,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -75,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
@@ -107,7 +110,7 @@
       <a href="../articles/codebook_sav.html">Codebook example with SPSS dataset</a>
     </li>
     <li>
-      <a href="../articles/codebook_tutorial.html">Codebook tutorial</a>
+      <a href="../articles/codebook_tutorial.html">Tutorial</a>
     </li>
   </ul>
 </li>
@@ -117,7 +120,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/rubenarslan/codebook">
+  <a href="https://github.com/rubenarslan/codebook/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -164,190 +167,16 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># will generate figures in a figure/ subdirectory</span>
-<span class='no'>old_base_dir</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/knitr/man/opts_knit.html'>opts_knit</a></span>$<span class='fu'><a href='https://rdrr.io/r/base/get.html'>get</a></span>(<span class='st'>"base.dir"</span>)
-<span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/knitr/man/opts_knit.html'>opts_knit</a></span>$<span class='fu'>set</span>(<span class='kw'>base.dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>())
-<span class='fu'><a href='https://rdrr.io/r/base/on.exit.html'>on.exit</a></span>(<span class='kw pkg'>knitr</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/knitr/man/opts_knit.html'>opts_knit</a></span>$<span class='fu'>set</span>(<span class='kw'>base.dir</span> <span class='kw'>=</span> <span class='no'>old_base_dir</span>))
+<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"bfi"</span>)
 <span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='no'>bfi</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"BFIK_open_1"</span>, <span class='st'>"BFIK_open_2"</span>)]
-<span class='fu'>compact_codebook</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ```r
-#&gt; knitr::asis_output(data_info)
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ### Metadata
-#&gt; 
-#&gt; #### Description
-#&gt; 
-#&gt; ```r
-#&gt; if (exists("name", meta)) {
-#&gt;   glue::glue(
-#&gt;     "__Dataset name__: {name}",
-#&gt;     .envir = meta)
-#&gt; }
-#&gt; ```
-#&gt; 
-#&gt; __Dataset name__: results
-#&gt; 
-#&gt; ```r
-#&gt; cat(description)
-#&gt; ```
-#&gt; 
-#&gt; The dataset has N=28 rows and 2 columns.
-#&gt; 28 rows have no missing values on any column.
-#&gt; 
-#&gt; &lt;details&gt;
-#&gt; &lt;summary title="Expand this section to see some additional metadata in a structured format that is useful for search engines"&gt;Metadata for search engines&lt;/summary&gt;
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; - __Date published__: 2020-01-08
-#&gt; 
-#&gt; ```r
-#&gt; meta &lt;- meta[setdiff(names(meta),
-#&gt;                      c("creator", "datePublished", "identifier",
-#&gt;                        "url", "citation", "spatialCoverage", 
-#&gt;                        "temporalCoverage", "description", "name"))]
-#&gt; pander::pander(meta)
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt;   * **keywords**: _BFIK_open_1_ and _BFIK_open_2_
-#&gt; 
-#&gt; &lt;!-- end of list --&gt;
-#&gt; 
-#&gt; &lt;/details&gt;
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ```r
-#&gt; knitr::asis_output(survey_overview)
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; ## Variables
-#&gt; 
-#&gt; 
-#&gt; ```r
-#&gt; if (detailed_variables || detailed_scales) {
-#&gt;   knitr::asis_output(paste0(scales_items, sep = "\n\n\n", collapse = "\n\n\n"))
-#&gt; }
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; ```r
-#&gt; missingness_report
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ```r
-#&gt; items
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; ## Codebook table
-#&gt; 
-#&gt; ```r
-#&gt; export_table(metadata_table)
-#&gt; ```
-#&gt; 
-#&gt; ![plot of chunk items](figure/cb_bfi_cb_results_items_items-1.png)
-#&gt; 
-#&gt; 
-#&gt; ```r
-#&gt; jsonld
-#&gt; ```
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; 
-#&gt; &lt;script type="application/ld+json"&gt;
-#&gt; {
-#&gt;   "name": "results",
-#&gt;   "datePublished": "2020-01-08",
-#&gt;   "description": "The dataset has N=28 rows and 2 columns.\n28 rows have no missing values on any column.\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name        |label                                                 | n_missing|\n|:-----------|:-----------------------------------------------------|---------:|\n|BFIK_open_1 |__Ich bin vielseitig interessiert.__                  |         0|\n|BFIK_open_2 |__Ich bin tiefsinnig, denke gerne über Sachen nach.__ |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.8.2).",
-#&gt;   "keywords": ["BFIK_open_1", "BFIK_open_2"],
-#&gt;   "@context": "http://schema.org/",
-#&gt;   "@type": "Dataset",
-#&gt;   "variableMeasured": [
-#&gt;     {
-#&gt;       "name": "BFIK_open_1",
-#&gt;       "description": "__Ich bin vielseitig interessiert.__",
-#&gt;       "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "name": "BFIK_open_2",
-#&gt;       "description": "__Ich bin tiefsinnig, denke gerne über Sachen nach.__",
-#&gt;       "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "@type": "propertyValue"
-#&gt;     }
-#&gt;   ]
-#&gt; }
-#&gt; &lt;/script&gt;
-#&gt; 
-#&gt; &lt;details&gt;&lt;summary&gt;JSON-LD metadata&lt;/summary&gt;
-#&gt; The following JSON-LD can be found by search engines, if you share this codebook
-#&gt; publicly on the web.
-#&gt; 
-#&gt; ```json
-#&gt; {
-#&gt;   "name": "results",
-#&gt;   "datePublished": "2020-01-08",
-#&gt;   "description": "The dataset has N=28 rows and 2 columns.\n28 rows have no missing values on any column.\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name        |label                                                 | n_missing|\n|:-----------|:-----------------------------------------------------|---------:|\n|BFIK_open_1 |__Ich bin vielseitig interessiert.__                  |         0|\n|BFIK_open_2 |__Ich bin tiefsinnig, denke gerne über Sachen nach.__ |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.8.2).",
-#&gt;   "keywords": ["BFIK_open_1", "BFIK_open_2"],
-#&gt;   "@context": "http://schema.org/",
-#&gt;   "@type": "Dataset",
-#&gt;   "variableMeasured": [
-#&gt;     {
-#&gt;       "name": "BFIK_open_1",
-#&gt;       "description": "__Ich bin vielseitig interessiert.__",
-#&gt;       "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "@type": "propertyValue"
-#&gt;     },
-#&gt;     {
-#&gt;       "name": "BFIK_open_2",
-#&gt;       "description": "__Ich bin tiefsinnig, denke gerne über Sachen nach.__",
-#&gt;       "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
-#&gt;       "maxValue": 5,
-#&gt;       "minValue": 1,
-#&gt;       "measurementTechnique": "self-report",
-#&gt;       "@type": "propertyValue"
-#&gt;     }
-#&gt;   ]
-#&gt; }`
-#&gt; ```
-#&gt; &lt;/details&gt;</div></pre>
+<span class='fu'>compact_codebook</span>(<span class='no'>bfi</span>)
+}</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -358,7 +187,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

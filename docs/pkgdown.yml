@@ -1,11 +1,12 @@
-pandoc: 2.3.1
-pkgdown: 1.4.1
+pandoc: 2.7.3
+pkgdown: 1.5.1
 pkgdown_sha: ~
 articles:
   codebook: codebook.html
   codebook_qualtrics: codebook_qualtrics.html
   codebook_sav: codebook_sav.html
   codebook_tutorial: codebook_tutorial.html
+last_built: 2020-06-05T15:06Z
 urls:
   reference: https://rubenarslan.github.io/codebook/reference
   article: https://rubenarslan.github.io/codebook/articles

@@ -23,9 +23,18 @@ find_dfs_in_environment <- function(env = .GlobalEnv) {
 #'
 label_browser_static <- function(data = NULL, viewer = rstudioapi::viewer) {
   # if data argument given, use it
+  if (!requireNamespace("DT", quietly = TRUE)) {
+    stop("Package \"DT\" needed to view labels.",
+         call. = FALSE)
+  }
+
     if (!is.null(data)) {
       df_name <- deparse(substitute(data))
   } else {
+    if (!requireNamespace("rstudioapi", quietly = TRUE)) {
+      stop("Package \"rstudioapi\" needed to view labels.",
+           call. = FALSE)
+    }
     if (rstudioapi::isAvailable()) {
       # if text is selected, use that
       context <- rstudioapi::getActiveDocumentContext()
@@ -96,7 +105,6 @@ label_browser <- function(data = NULL, viewer = rstudioapi::viewer) {
 #' [instructions](https://support.rstudio.com/hc/en-us/articles/206382178-Customizing-Keyboard-Shortcuts)
 #' by RStudio. How about Cmd+Ctrl+C?
 #'
-#' @import shiny miniUI rstudioapi
 #' @param data the dataset to display. If left empty will try to use selected text in RStudio or offer a dropdown
 #' @param labels_only defaults to false called with TRUE from [label_browser()]
 #' @param title title of the gadget
@@ -108,6 +116,13 @@ codebook_browser <- function(
                              viewer = rstudioapi::viewer) {
 
   # if data argument given, use it
+  if (!requireNamespace("rstudioapi", quietly = TRUE) ||
+      !requireNamespace("shiny", quietly = TRUE) ||
+      !requireNamespace("miniUI", quietly = TRUE)) {
+    stop("Packages \"rstudioapi\", \"shiny\", and \"miniUI\" needed to
+         view labels.",
+         call. = FALSE)
+  }
   if (!is.null(data)) {
     df_name <- deparse(substitute(data))
   } else {
@@ -135,15 +150,15 @@ codebook_browser <- function(
   defaultData <- df_name
 
   # Generate UI for the gadget.
-  ui <- miniPage(
-    gadgetTitleBar(title),
-    miniContentPanel(
+  ui <- miniUI::miniPage(
+    miniUI::gadgetTitleBar(title),
+    miniUI::miniContentPanel(
       stableColumnLayout(
-        selectInput("data", "Data", selected = defaultData, choices =
+        shiny::selectInput("data", "Data", selected = defaultData, choices =
                       find_dfs_in_environment())
       ),
-      uiOutput("pending"),
-      dataTableOutput("output")
+      shiny::uiOutput("pending"),
+      shiny::dataTableOutput("output")
     )
   )
 
@@ -151,7 +166,7 @@ codebook_browser <- function(
   # Server code for the gadget.
   server <- function(input, output, session) {
 
-    reactiveData <- reactive({
+    reactiveData <- shiny::reactive({
 
       # Collect inputs.
       dataString <- input$data
@@ -185,13 +200,13 @@ codebook_browser <- function(
       return(labels)
     })
 
-    output$pending <- renderUI({
+    output$pending <- shiny::renderUI({
       data <- reactiveData()
       if (isErrorMessage(data))
-        h4(style = "color: #AA7732;", data$message)
+        shiny::h4(style = "color: #AA7732;", data$message)
     })
 
-    output$output <- renderDataTable({
+    output$output <- shiny::renderDataTable({
       data <- reactiveData()
       data
     },
@@ -204,7 +219,7 @@ codebook_browser <- function(
     )
 
     # Listen for 'done'.
-    observeEvent(input$done, {
+    shiny::observeEvent(input$done, {
 
       # Pick variable
       # if (nzchar(input$data) && nzchar(input$search)) {
@@ -216,14 +231,14 @@ codebook_browser <- function(
       #   }
       # }
 
-      invisible(stopApp())
+      invisible(shiny::stopApp())
     })
   }
 
   if (isTRUE(getOption("shiny.testmode"))) {
-    shinyApp(ui, server)
+    shiny::shinyApp(ui, server)
   } else {
-    runGadget(ui, server, viewer = viewer)
+    shiny::runGadget(ui, server, viewer = viewer)
   }
 }
 
@@ -233,9 +248,9 @@ stableColumnLayout <- function(...) {
   n <- length(dots)
   width <- 12 / n
   class <- sprintf("col-xs-%s col-md-%s", width, width)
-  fluidRow(
+  shiny::fluidRow(
     lapply(dots, function(el) {
-      div(class = class, el)
+      shiny::div(class = class, el)
     })
   )
 }

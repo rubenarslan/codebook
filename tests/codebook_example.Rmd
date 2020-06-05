@@ -1,0 +1,47 @@
+---
+title: "Codebook example formr"
+author: "Ruben Arslan"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    code_folding: hide
+    self_contained: no
+    keep_md: yes
+    toc: yes
+    toc_depth: 4
+    toc_float: yes
+---
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+```{r}
+knitr::opts_chunk$set(warning = TRUE, message = TRUE, echo = FALSE, error = TRUE)
+
+library(codebook)
+library(dplyr)
+data("bfi", package = 'codebook')
+bfi <- bfi %>% select(-starts_with("BFIK_extra"),
+                       -starts_with("BFIK_agree"),
+                       -starts_with("BFIK_open"),
+                       -starts_with("BFIK_neuro"),
+                      BFIK_neuro_2R)
+
+ggplot2::theme_set(ggplot2::theme_bw())
+
+bfi$age <- rpois(nrow(bfi), 30)
+library(ggplot2)
+update_geom_defaults("bar", new = list(fill = "red"))
+options(ggplot2.continuous.colour="viridis")
+```
+
+```{r cb}
+codebook(bfi)
+```
+

@@ -29,12 +29,11 @@ no_md <- function() {
 #' @export
 #' @examples
 #' # will generate figures in a temporary directory
-#' old_base_dir <- knitr::opts_knit$get("base.dir")
-#' knitr::opts_knit$set(base.dir = tempdir())
-#' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
+#' \dontrun{
 #' data("bfi")
 #' bfi <- bfi[, c("BFIK_open_1", "BFIK_open_1")]
 #' md <- codebook(bfi, survey_repetition = "single", metadata_table = FALSE)
+#' }
 codebook <- function(results, reliabilities = NULL,
     survey_repetition = c('auto', 'single', 'repeated_once', 'repeated_many'),
     detailed_variables = TRUE,
@@ -131,7 +130,8 @@ codebook <- function(results, reliabilities = NULL,
                                        scale_info$scale_item_names, var)
         items <- dplyr::select(results,
                     !!!scale_info$scale_item_names)
-        scales_items[[var]] %<-% {tryCatch({
+        scales_items[[var]] %<-% {
+          tryCatch({
           codebook_component_scale(
             scale = scale, scale_name = var,
             items = items,
@@ -182,7 +182,7 @@ codebook <- function(results, reliabilities = NULL,
   }
 
 
-  asis_knit_child(require_file("_codebook.Rmd"), options = options)
+  rmdpartials::partial(require_file("inst/_codebook.Rmd"), options = options)
 }
 
 #' Compact Codebook
@@ -194,12 +194,11 @@ codebook <- function(results, reliabilities = NULL,
 #' @export
 #' @examples
 #' # will generate figures in a figure/ subdirectory
-#' old_base_dir <- knitr::opts_knit$get("base.dir")
-#' knitr::opts_knit$set(base.dir = tempdir())
-#' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
+#' \dontrun{
 #' data("bfi")
 #' bfi <- bfi[, c("BFIK_open_1", "BFIK_open_2")]
 #' compact_codebook(bfi)
+#' }
 compact_codebook <- function(results) {
   codebook(results, reliabilities = list(),
             survey_repetition = 'single',
@@ -222,12 +221,10 @@ compact_codebook <- function(results) {
 #'
 #' @export
 #' @examples
-#' # will generate figures in a figure/ subdirectory
-#' old_base_dir <- knitr::opts_knit$get("base.dir")
-#' knitr::opts_knit$set(base.dir = tempdir())
-#' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
+#' \dontrun{
 #' data("bfi")
 #' codebook_survey_overview(bfi)
+#' }
 codebook_survey_overview <- function(results, survey_repetition = "single",
                                      indent = "##") {
   stopifnot(exists("session", results))
@@ -263,12 +260,8 @@ codebook_survey_overview <- function(results, survey_repetition = "single",
   started <- sum(!is.na(results$modified))
   only_viewed <- sum(is.na(results$ended) & is.na(results$modified))
 
-  options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "overview_")
-  )
-  asis_knit_child(require_file("_codebook_survey_overview.Rmd"),
-                  options = options)
+  rmdpartials::partial(require_file("inst/_codebook_survey_overview.Rmd"),
+                  name = "overview_", render_preview = FALSE)
 }
 
 #' Codebook data info
@@ -289,12 +282,8 @@ codebook_survey_overview <- function(results, survey_repetition = "single",
 #'    "https://rubenarslan.github.io/codebook/articles/codebook.html"
 #' codebook_data_info(bfi)
 codebook_data_info <- function(results, indent = "##") {
-  options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "data_info_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "data_info_")
-  )
-  asis_knit_child(require_file("_codebook_data_info.Rmd"),
-                  options = options)
+  rmdpartials::partial(require_file("inst/_codebook_data_info.Rmd"),
+                  name = "data_info_", render_preview = FALSE)
 }
 
 
@@ -311,12 +300,9 @@ codebook_data_info <- function(results, indent = "##") {
 #' data("bfi")
 #' codebook_missingness(bfi)
 codebook_missingness <- function(results, indent = "##") {
-  options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "overview_")
-  )
   md_pattern <- md_pattern(results)
-  asis_knit_child(require_file("_codebook_missingness.Rmd"), options = options)
+  rmdpartials::partial(require_file("inst/_codebook_missingness.Rmd"),
+                       name = "missingness_", render_preview = FALSE)
 }
 
 
@@ -332,12 +318,9 @@ codebook_missingness <- function(results, indent = "##") {
 #' data("bfi")
 #' metadata_jsonld(bfi)
 metadata_jsonld <- function(results) {
-  options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "metadata_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "metadata_")
-  )
   jsonld_metadata <- metadata_list(results)
-  asis_knit_child(require_file("_metadata_jsonld.Rmd"), options = options)
+  rmdpartials::partial(require_file("inst/_metadata_jsonld.Rmd"),
+                       name = "metadata_", render_preview = FALSE)
 }
 
 
@@ -358,10 +341,6 @@ metadata_jsonld <- function(results) {
 #' codebook_items(bfi)
 #' }
 codebook_items <- function(results, indent = "##") {
-  options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "items_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "items_")
-  )
   metadata_table <- codebook_table(results)
   metadata_table <- dplyr::mutate(metadata_table,
          name = paste0('<a href="#', safe_name(.data$name), '">',
@@ -372,7 +351,7 @@ codebook_items <- function(results, indent = "##") {
   suppressWarnings(
     metadata_table <- dplyr::mutate_at(metadata_table, dplyr::vars(
     dplyr::one_of("label", "scale_item_names", "value_labels", "showif")),
-    dplyr::funs(recursive_escape)) )
+    recursive_escape) )
 
   if (exists("value_labels", metadata_table)) {
     metadata_table$value_labels <- stringr::str_replace_all(
@@ -383,7 +362,8 @@ codebook_items <- function(results, indent = "##") {
       metadata_table$label, "\n", "<br>")
   }
 
-  asis_knit_child(require_file("_codebook_items.Rmd"), options = options)
+  rmdpartials::partial(require_file("inst/_codebook_items.Rmd"),
+                       name = "items_", render_preview = FALSE)
 }
 
 escaped_table <- function(metadata_table) {
@@ -411,28 +391,29 @@ escaped_table <- function(metadata_table) {
 #' @export
 #' @examples
 #' # will generate figures in a temporary directory
-#' old_base_dir <- knitr::opts_knit$get("base.dir")
-#' knitr::opts_knit$set(base.dir = tempdir())
-#' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
+#' \dontrun{
 #' data("bfi")
 #' bfi <- bfi[,c("BFIK_open", paste0("BFIK_open_", 1:4))]
 #' codebook_component_scale(bfi[,1], "BFIK_open", bfi[,-1],
 #'    reliabilities = list(BFIK_open = psych::alpha(bfi[,-1])))
-codebook_component_scale <- function(scale, scale_name, items, reliabilities,
+#' }
+codebook_component_scale <- function(scale,
+                                     scale_name = deparse(substitute(scale)),
+                                     items, reliabilities = list(),
                                      indent = '##') {
   stopifnot( exists("scale_item_names", attributes(scale)))
   stopifnot( attributes(scale)$scale_item_names %in% names(items) )
+  items <- dplyr::select(items,
+                         !!!attributes(scale)$scale_item_names)
+
   safe_name <- safe_name(scale_name)
 
-  options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), safe_name, "_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), safe_name, "_")
-  )
   old_opt <- options('knitr.duplicate.label')$knitr.duplicate.label
-  options(knitr.duplicate.label = 'allow')
   on.exit(options(knitr.duplicate.label = old_opt))
+  options(knitr.duplicate.label = 'allow')
 
-  asis_knit_child(require_file("_codebook_scale.Rmd"), options = options)
+  rmdpartials::partial(require_file("inst/_codebook_scale.Rmd"),
+                       name = safe_name, render_preview = FALSE)
 }
 
 #' Codebook component for single items
@@ -444,199 +425,17 @@ codebook_component_scale <- function(scale, scale_name, items, reliabilities,
 #'
 #' @export
 #' @examples
-#' # will generate figure in a temporary directory
-#' old_base_dir <- knitr::opts_knit$get("base.dir")
-#' knitr::opts_knit$set(base.dir = tempdir())
-#' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
+#' \dontrun{
 #' data("bfi")
 #' codebook_component_single_item(bfi$BFIK_open_1, "BFIK_open_1")
-codebook_component_single_item <- function(item, item_name, indent = '##') {
+#' }
+codebook_component_single_item <- function(item,
+                                           item_name = deparse(substitute(item)), indent = '##') {
+  safe_name <- paste0(
+    knitr::opts_chunk$get("fig.path"),
+    safe_name(item_name), "_")
   safe_name <- safe_name(item_name)
-  options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), safe_name, "_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), safe_name, "_")
-  )
-  asis_knit_child(require_file("_codebook_item.Rmd"), options = options)
+
+  rmdpartials::partial(require_file("inst/_codebook_item.Rmd"),
+                       name = safe_name, render_preview = FALSE)
 }
-
-#' Metadata from dataframe
-#'
-#' Returns a list containing variable metadata (attributes) and data summaries.
-#'
-#' @param results a data frame, ideally with attributes set on variables
-#' @param only_existing whether to drop helpful metadata to comply with the list
-#' of currently defined schema.org properties
-#'
-#' @export
-#' @examples
-#' data("bfi")
-#' md_list <- metadata_list(bfi)
-#' md_list$variableMeasured[[20]]
-metadata_list <- function(results, only_existing = TRUE) {
-  metadata <- metadata(results)
-  if (is.null(metadata)) {
-    metadata <- list()
-  }
-
-  if (!exists("@context", metadata)) {
-    metadata[["@context"]] <- "http://schema.org/"
-  }
-
-  if (!exists("@type", metadata)) {
-    metadata[["@type"]] <- "Dataset"
-  }
-
-  if (!exists("variableMeasured", metadata)) {
-    metadata$variableMeasured <- lapply(names(results), function(var) {
-      x <- attributes(results[[var]])
-      x$name <- var
-
-      if (is.null(x)) {
-        x <- list()
-      } else {
-        if (exists("class", x)) {
-          x$class <- NULL
-        }
-        if (exists("tzone", x)) {
-          x$tzone <- NULL
-        }
-        if (exists("label", x)) {
-          x$description <- x$label
-          x$label <- NULL
-        }
-
-        if (exists("levels", x)) {
-          x$value <- paste(paste0(seq_len(length(x$levels)), ". ", x$levels),
-                                  collapse = ",\n")
-          x$levels <- NULL
-          # remove extremely deep qualtrics choices attributes
-          if (exists("item", x) && exists("choices", x$item)
-              && exists("variableName", x$item$choices[[1]])) {
-            x$item$choices <- NULL
-          }
-        } else if (exists("labels", x)) {
-          if (!is.null(names(x$labels))) {
-            x$value <- paste(paste0(x$labels, ". ", names(x$labels)),
-                                    collapse = ",\n")
-          } else {
-            x$value <- paste(x$labels, collapse = ",\n")
-          }
-          x$maxValue <- max(x$labels, na.rm = TRUE)
-          x$minValue <- min(x$labels, na.rm = TRUE)
-          x$labels <- NULL
-          if (exists("item", x) && exists("choices", x$item)) {
-            x$item$choices <- NULL
-          }
-        }
-        if (exists("item", x)) {
-          if (exists("type", x$item)) {
-            x$item$item_type <- x$item$type
-            x$item$type <- NULL
-          }
-          if (exists("choices", x$item)) {
-            x$item$choices[["@type"]] <-
-              "http://rubenarslan.github.io/codebook/ItemChoices"
-          }
-          x$measurementTechnique <- "self-report"
-          x$item[["@type"]] <- "http://rubenarslan.github.io/codebook/Item"
-        }
-      }
-      if (!only_existing) {
-
-        x$data_summary <- skim_to_wide_labelled(results[[var]])
-        x$data_summary$variable <- NULL
-        if (exists("type", x$data_summary)) {
-          if (!exists("value", x)) {
-            x$value <- switch(x$data_summary$type,
-                character = "text",
-                integer = "Number",
-                numeric = "Number",
-                factor = "StructuredValue",
-                labelled = "StructuredValue"
-            )
-          }
-          x$data_summary$type <- NULL
-        }
-        x$data_summary[["@type"]] <-
-          "http://rubenarslan.github.io/codebook/SummaryStatistics"
-      }
-
-      if (only_existing) {
-        x <- x[intersect(names(x), legal_property_value_properties)]
-      }
-
-      x[["@type"]] <- "propertyValue"
-      x
-    })
-  }
-
-
-  if (only_existing) {
-    dict <- codebook_table(results)[, c("name", "label", "n_missing")]
-    dict <- knitr::kable(dict, format = "markdown")
-    dict <- stringr::str_replace_all(dict, "\n", " - ")
-    dict <- paste0(as.character(dict), collapse = "\n")
-    if (stringr::str_length(dict) > 4000) {
-      dict <- "[truncated]"
-    }
-    version <- as.character(utils::packageVersion("codebook"))
-    template <- "
-    ## Table of variables
-    This table contains variable names, labels, and number of missing values.
-    See the complete codebook for more.
-
-    {dict}
-
-    ### Note
-    This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version {version}).
-    "
-
-    metadata$description <- stringr::str_sub(metadata$description,
-                                             1, 5000
-                                             - stringr::str_length(template)
-                                             - stringr::str_length(dict))
-    metadata$description <- paste0(metadata$description, "\n\n\n",
-      glue::glue(
-        template,
-      dict = dict,
-      version = version))
-    metadata <- metadata[intersect(names(metadata), legal_dataset_properties)]
-  }
-
-  metadata
-}
-
-legal_dataset_properties <-
-  c("@type", "@context",
-    "distribution", "includedInDataCatalog", "issn", "measurementTechnique",
-    "variableMeasured", "about", "accessMode", "accessModeSufficient",
-    "accessibilityAPI", "accessibilityControl", "accessibilityFeature",
-    "accessibilityHazard", "accessibilitySummary", "accountablePerson",
-    "aggregateRating", "alternativeHeadline", "associatedMedia", "audience",
-    "audio", "author", "award", "character", "citation", "comment",
-    "commentCount", "contentLocation", "contentRating", "contentReferenceTime",
-    "contributor", "copyrightHolder", "copyrightYear", "correction", "creator",
-    "dateCreated", "dateModified", "datePublished", "discussionUrl", "editor",
-    "educationalAlignment", "educationalUse", "encoding", "encodingFormat",
-    "exampleOfWork", "expires", "funder", "genre", "hasPart", "headline",
-    "inLanguage", "interactionStatistic", "interactivityType",
-    "isAccessibleForFree", "isBasedOn", "isFamilyFriendly", "isPartOf",
-    "keywords", "learningResourceType", "license", "locationCreated",
-    "mainEntity", "material", "mentions", "offers", "position", "producer",
-    "provider", "publication", "publisher", "publisherImprint",
-    "publishingPrinciples", "recordedAt", "releasedEvent", "review",
-    "schemaVersion", "sdDatePublished", "sdLicense", "sdPublisher",
-    "sourceOrganization", "spatialCoverage", "sponsor", "temporalCoverage",
-    "text", "thumbnailUrl", "timeRequired", "translationOfWork",
-    "translator", "typicalAgeRange", "version", "video", "workExample",
-    "workTranslation", "additionalType", "alternateName", "description",
-    "disambiguatingDescription", "identifier", "image", "mainEntityOfPage",
-    "name", "potentialAction", "sameAs", "subjectOf", "url")
-
-legal_property_value_properties <-
-  c("@type", "@context",
-    "maxValue", "measurementTechnique", "minValue", "propertyID", "unitCode",
-    "unitText", "value", "valueReference", "additionalType", "alternateName",
-    "description", "disambiguatingDescription", "identifier", "image",
-    "mainEntityOfPage", "name", "potentialAction", "sameAs", "subjectOf",
-    "url", "additionalProperty", "exifData", "identifier", "valueReference")

@@ -11,7 +11,7 @@ output:
 
 ```{r}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, error = TRUE)
-pander::panderOptions("table.split.table", Inf)
+
 ```
 
 
@@ -30,7 +30,7 @@ results <- results
 # dont cache this chunk
 library(ggplot2)
 theme_set(theme_bw())
-pander::panderOptions("table.split.table", Inf)
+
 options(device = function(file, width = 7, height = 7, ...) {
   cairo_pdf(tempfile(), width = width, height = height, ...)
 })

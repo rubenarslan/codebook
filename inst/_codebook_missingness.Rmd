@@ -15,7 +15,7 @@ if (exists("testing")) {
 
 ```{r missingness_all_setup}
 if (length(md_pattern)) {
-  if (knitr::is_html_output()) {
+  if (knitr::is_html_output() && requireNamespace("rmarkdown", quietly = TRUE)) {
     rmarkdown::paged_table(md_pattern, options = list(rows.print = 10))
   } else {
     knitr::kable(md_pattern)
