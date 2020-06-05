@@ -9,10 +9,6 @@ output:
     toc: yes
     toc_depth: 4
     toc_float: yes
-vignette: >
-  %\VignetteIndexEntry{Codebook example formr}
-  %\VignetteEncoding{UTF-8}
-  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 
