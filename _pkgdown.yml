@@ -22,6 +22,7 @@ reference:
   - '`metadata_jsonld`'
   - '`metadata_list`'
   - '`load_data_and_render_codebook`'
+  - '`skim_codebook`'
 - title: Prepare data for codebook
   desc: Functions to annotate data to be more interpretable by the codebook functions
   contents:
@@ -52,6 +53,8 @@ reference:
   - '`knit_print.multilevel`'
   - '`likert_from_items`'
   - '`plot_labelled`'
+  - '`get_skimmers.haven_labelled`'
+  - '`get_skimmers.haven_labelled_spss`'
 - title: formr-data specific helpers
   desc: ~
   contents:

@@ -10,9 +10,6 @@
     <loc>https://rubenarslan.github.io/codebook/reference/aggregate_and_document_scale.html</loc>
   </url>
   <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/asis_knit_child.html</loc>
-  </url>
-  <url>
     <loc>https://rubenarslan.github.io/codebook/reference/bfi.html</loc>
   </url>
   <url>
@@ -76,16 +73,10 @@
     <loc>https://rubenarslan.github.io/codebook/reference/has_labels.html</loc>
   </url>
   <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/knit_print.alpha.html</loc>
-  </url>
-  <url>
     <loc>https://rubenarslan.github.io/codebook/reference/knit_print.htest.html</loc>
   </url>
   <url>
     <loc>https://rubenarslan.github.io/codebook/reference/knit_print.multilevel.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/knit_print.scaleDiagnosis.html</loc>
   </url>
   <url>
     <loc>https://rubenarslan.github.io/codebook/reference/label_browser.html</loc>
@@ -121,13 +112,7 @@
     <loc>https://rubenarslan.github.io/codebook/reference/new_codebook_rmd.html</loc>
   </url>
   <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/paste.knit_asis.html</loc>
-  </url>
-  <url>
     <loc>https://rubenarslan.github.io/codebook/reference/plot_labelled.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/print.knit_asis.html</loc>
   </url>
   <url>
     <loc>https://rubenarslan.github.io/codebook/reference/reexports.html</loc>
@@ -139,10 +124,7 @@
     <loc>https://rubenarslan.github.io/codebook/reference/reverse_labelled_values.html</loc>
   </url>
   <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/summary.haven_labelled.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/summary.haven_labelled_spss.html</loc>
+    <loc>https://rubenarslan.github.io/codebook/reference/skim_codebook.html</loc>
   </url>
   <url>
     <loc>https://rubenarslan.github.io/codebook/reference/to_factor.html</loc>

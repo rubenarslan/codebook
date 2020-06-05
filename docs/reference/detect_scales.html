@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -35,7 +39,7 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
@@ -46,8 +50,12 @@
 scale &amp;lt;- scale_1 + scale_2R + scale_3R?
 If you run this function on a dataset, it will detect these
 relationships and set the appropriate attributes. Once they are set,
+the codebook package can perform reliability computations for you.
+Did you create aggregates of items like this
+scale &amp;lt;- scale_1 + scale_2R + scale_3R?
+If you run this function on a dataset, it will detect these
+relationships and set the appropriate attributes. Once they are set,
 the codebook package can perform reliability computations for you." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -65,7 +73,7 @@ the codebook package can perform reliability computations for you." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -79,7 +87,7 @@ the codebook package can perform reliability computations for you." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
       </span>
     </div>
 
@@ -111,7 +119,7 @@ the codebook package can perform reliability computations for you." />
       <a href="../articles/codebook_sav.html">Codebook example with SPSS dataset</a>
     </li>
     <li>
-      <a href="../articles/codebook_tutorial.html">Codebook tutorial</a>
+      <a href="../articles/codebook_tutorial.html">Tutorial</a>
     </li>
   </ul>
 </li>
@@ -121,7 +129,7 @@ the codebook package can perform reliability computations for you." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/rubenarslan/codebook">
+  <a href="https://github.com/rubenarslan/codebook/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -146,7 +154,7 @@ the codebook package can perform reliability computations for you." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Detect item scales</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/correct_attributes.R'><code>R/correct_attributes.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/rubenarslan/codebook/blob/master/R/correct_attributes.R'><code>R/correct_attributes.R</code></a>, <a href='https://github.com/rubenarslan/codebook/blob/master/R/detect_scales.R'><code>R/detect_scales.R</code></a></small>
     <div class="hidden name"><code>detect_scales.Rd</code></div>
     </div>
 
@@ -156,9 +164,16 @@ the codebook package can perform reliability computations for you." />
 If you run this function on a dataset, it will detect these
 relationships and set the appropriate attributes. Once they are set,
 the codebook package can perform reliability computations for you.</p>
+<p>Did you create aggregates of items like this
+<code>scale &lt;- scale_1 + scale_2R + scale_3R</code>?
+If you run this function on a dataset, it will detect these
+relationships and set the appropriate attributes. Once they are set,
+the codebook package can perform reliability computations for you.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>detect_scales</span>(<span class='no'>data</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>detect_scales</span>(<span class='no'>data</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='fu'>detect_scales</span>(<span class='no'>data</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -178,38 +193,61 @@ the codebook package can perform reliability computations for you.</p>
     <pre class="examples"><div class='input'><span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>500</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>5</span>))
 <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>bfi</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>, <span class='st'>"bfi_n1"</span>, <span class='st'>"bfi_n2"</span>)
 <span class='no'>bfi</span>$<span class='no'>bfi_e</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span>(<span class='no'>bfi</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>)])
-<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>detect_scales</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; <span class='message'>3 bfi_e items connected to scale</span></div><div class='output co'>#&gt; <span class='warning'>Warning: bfi_n items found, but no aggregate</span></div><div class='input'><span class='no'>bfi</span>$<span class='no'>bfi_e</span></div><div class='output co'>#&gt;   [1]  0.0379601509 -1.3348544542 -0.3418188349 -0.3469655384  0.2681050820
-#&gt;   [6]  0.0160450021  0.6795888007 -0.6340680673 -0.9698365999  0.5346686176
-#&gt;  [11] -1.1772199366  0.5013617944  0.7480301550  0.7210123466 -0.5085987698
-#&gt;  [16] -0.7530780276  0.7376071929  0.7836556475  0.2392642892  0.9698502499
-#&gt;  [21]  0.2076311038  0.4118653252 -0.0735040359  0.4506413326  0.2195415811
-#&gt;  [26]  0.1802557582 -0.2274196804  0.0477936993 -0.8153949023  0.6790446071
-#&gt;  [31] -1.0123051762 -0.1929429826  0.3603824703 -0.9452471654 -0.2475681063
-#&gt;  [36]  0.7194436012 -0.2554316310 -0.4332763827  0.8590040320  0.9552586648
-#&gt;  [41]  0.1924536606 -0.5312016165  1.4697668632 -0.3988861741 -0.0001894151
-#&gt;  [46] -0.3956289014  0.8160424138 -0.3266707117 -0.1756387935 -0.6017318640
-#&gt;  [51]  0.1412798858  1.3190123866  0.4557577536 -0.0185777490  0.3302301687
-#&gt;  [56] -0.1244923341  0.4662560852 -0.6980709833  0.1884465481  0.1645677940
-#&gt;  [61]  0.6181046675 -0.9340002428 -0.6359859871 -0.3176546090 -0.4788309317
-#&gt;  [66]  0.2373336437  0.1946028667  0.0456007471 -1.2833583570  0.0641209995
-#&gt;  [71]  0.0325788440  0.1460103547  1.3553405723  0.6966568876 -0.3455142832
-#&gt;  [76]  0.1093705621  1.0434134739  0.1010924876 -0.8042213045 -0.4034993055
-#&gt;  [81]  0.6277291548  0.4356623000  1.0479255488 -0.3626773462  1.2376966704
-#&gt;  [86]  0.5975538321  0.3654544478  0.1792049220  0.1051717067  0.0025089560
-#&gt;  [91] -0.2676596739  1.1255690061  0.2173858347 -0.7937368848  1.0581547208
-#&gt;  [96]  0.5540621767  0.7821132260  0.3168688466 -0.1830835659  0.0148958715
+<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>detect_scales</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; <span class='message'>3 bfi_e items connected to scale</span></div><div class='output co'>#&gt; <span class='warning'>Warning: bfi_n items found, but no aggregate</span></div><div class='input'><span class='no'>bfi</span>$<span class='no'>bfi_e</span></div><div class='output co'>#&gt;   [1] -0.473855267  0.482500228  0.166857181 -0.008017864  0.915787904
+#&gt;   [6] -0.125068949 -0.087616230 -0.472241205 -0.077564945 -1.102719518
+#&gt;  [11] -0.158560736  0.249159863  0.280625963 -0.734654087  0.422446337
+#&gt;  [16]  0.417764402  0.002103080  0.500359070 -0.562519552 -0.742863984
+#&gt;  [21]  0.148688835  0.070927867  0.057159185  0.904013781  0.005314785
+#&gt;  [26] -0.796203008 -0.298946608  0.232687271 -0.603997059 -0.286943893
+#&gt;  [31]  0.673019099  0.145978459  0.138952406 -0.237306607  0.466839608
+#&gt;  [36]  0.166072773  0.541234032 -0.457609879 -0.091591520  0.379251558
+#&gt;  [41]  0.745571991 -0.576949282  0.420456034  0.216251359  0.253592887
+#&gt;  [46]  0.820143049 -1.224739614 -0.108512474 -1.004722914 -0.551621811
+#&gt;  [51]  0.939387189  0.050295031 -0.430133081 -0.953697494 -0.879502453
+#&gt;  [56] -1.259687246 -0.299487863  0.320670103  0.543511927 -0.510726186
+#&gt;  [61]  0.102104633 -0.192630859 -0.151904753  0.070054310 -0.615020176
+#&gt;  [66]  0.366071854  0.741973276  0.265042919  0.436925586  0.948389256
+#&gt;  [71]  0.358207905 -0.745857085  0.390716878  0.113540683  0.446433568
+#&gt;  [76] -0.893015075 -0.413939178  0.551795466 -0.995890071  0.569713286
+#&gt;  [81]  0.069989947 -0.310254125  0.420227584  0.148628132 -0.084171865
+#&gt;  [86]  1.064069177 -1.068635382 -0.778201542  0.122837038  1.094454426
+#&gt;  [91] -0.139165563 -0.085354126 -0.823934152 -0.151751720 -0.771903815
+#&gt;  [96] -0.444742293  0.059505084 -0.126563482  0.918347900 -0.844027362
+#&gt; attr(,"scale_item_names")
+#&gt; [1] "bfi_e1"  "bfi_e2R" "bfi_e3" 
+#&gt; attr(,"label")
+#&gt; [1] "aggregate of 3 bfi_e items"</div><div class='input'><span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>500</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>5</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>bfi</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>, <span class='st'>"bfi_n1"</span>, <span class='st'>"bfi_n2"</span>)
+<span class='no'>bfi</span>$<span class='no'>bfi_e</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span>(<span class='no'>bfi</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>)])
+<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>detect_scales</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; <span class='message'>3 bfi_e items connected to scale</span></div><div class='output co'>#&gt; <span class='warning'>Warning: bfi_n items found, but no aggregate</span></div><div class='input'><span class='no'>bfi</span>$<span class='no'>bfi_e</span></div><div class='output co'>#&gt;   [1] -0.862348795 -0.441958456 -0.098820215  1.029248287  0.333520827
+#&gt;   [6]  0.297392542 -0.013263024 -0.015162981  0.816416636 -0.824109207
+#&gt;  [11] -2.406349241 -0.370507050  0.710565810  0.126637630  0.075879674
+#&gt;  [16] -0.531245677  0.654880654 -0.059518205 -0.362874388 -0.966231248
+#&gt;  [21]  1.082869428 -0.028413876 -0.530253846  0.352532703 -0.880816926
+#&gt;  [26] -0.886539691  0.260714039  0.497446961  0.694194273  0.575025759
+#&gt;  [31]  0.610322768 -0.613262832  0.114732612  0.480774652  0.185515733
+#&gt;  [36]  0.810648044 -0.180603392 -0.565328258  0.558055851  0.552547377
+#&gt;  [41] -0.306314684  0.120400028  0.057790434 -0.384631854  0.624227761
+#&gt;  [46] -0.015495209 -1.328397316 -0.837086561 -1.564642954 -0.317921492
+#&gt;  [51]  0.644098794  0.367069327  0.475661076  1.075360555 -0.485674730
+#&gt;  [56] -0.223394519 -0.392217305 -0.475803353 -1.077706642 -0.247338780
+#&gt;  [61]  0.235721917 -0.591103376 -0.076652704  0.530492153  0.142756071
+#&gt;  [66]  0.009528236  0.061424717 -0.469905510 -0.503736396 -0.072457627
+#&gt;  [71] -1.014298019  0.008394011 -0.472162377  1.430953625  0.076078732
+#&gt;  [76]  0.290532472 -0.263132105 -0.543854930 -0.357068289 -0.365335030
+#&gt;  [81]  0.148283195 -0.277657414 -0.220562434  0.201252538  0.551045763
+#&gt;  [86] -0.585790604 -0.550160236 -0.269903507 -0.738116969  0.138141096
+#&gt;  [91]  0.923443254  0.281379706 -0.007409903  0.258758137  0.534075760
+#&gt;  [96] -0.180270513  0.575500712 -0.286099326 -0.724729935  0.214260086
 #&gt; attr(,"scale_item_names")
 #&gt; [1] "bfi_e1"  "bfi_e2R" "bfi_e3" 
 #&gt; attr(,"label")
 #&gt; [1] "aggregate of 3 bfi_e items"</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -220,7 +258,7 @@ the codebook package can perform reliability computations for you.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
