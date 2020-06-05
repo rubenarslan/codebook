@@ -108,7 +108,11 @@ knitr::opts_chunk$set(fig.height = old_height)
 attributes(item) <- item_attributes
 df = data.frame(item, stringsAsFactors = FALSE)
 names(df) = html_item_name
-escaped_table(codebook_table(df))
+cb_table <- codebook_table(df)
+if(!is.null(choices)) {
+  cb_table$value_labels <- NULL
+}
+escaped_table(cb_table)
 ```
 
 `r ifelse(show_missing_values, paste0(indent, '### Missing value types {#', safe_name, '_missing_values}'), '')`
@@ -123,14 +127,13 @@ if (show_missing_values) {
 ```{r item_info}
 if (!is.null(item_info)) {
   # don't show choices again, if they're basically same thing as value labels
-  if (!is.null(choices) && !is.null(item_info$choices) && 
-    all(names(na.omit(choices)) == item_info$choices) &&
-    all(na.omit(choices) == names(item_info$choices))) {
-    item_info$choices <- NULL
+  if (is.null(choices)) {
+    choices <- tibble::enframe(item_info$choices)
   }
+  item_info$choices <- NULL
   item_info$label_parsed <- 
     item_info$choice_list <- item_info$study_id <- item_info$id <- NULL
-  knitr::kable(item_info)
+  knitr::kable(purrr::flatten_df(item_info), caption = "Item options")
 }
 ```
 
@@ -138,7 +141,8 @@ if (!is.null(item_info)) {
 `r ifelse(!is.null(choices) && length(choices) && length(choices) < 30, paste0(indent, '### Value labels {#', safe_name, '_labels}'), '')`
 ```{r choices}
 if (!is.null(choices) && length(choices) && length(choices) < 30) {
-	knitr::kable(as.list(choices))
+  try({choices <- tibble::enframe(choices)}, silent = TRUE)
+  knitr::kable(choices, caption = "Response choices")
 }
 ```
 

@@ -79,7 +79,7 @@ if (exists("datePublished", meta)) {
 ```{r results='asis', echo = FALSE}
 if (exists("creator", meta)) {
   cat("- __Creator__:")
-  knitr::kable(meta$creator)
+  knitr::kable(tibble::enframe(meta$creator))
 }
 ```
 
@@ -88,7 +88,9 @@ meta <- meta[setdiff(names(meta),
                      c("creator", "datePublished", "identifier",
                        "url", "citation", "spatialCoverage", 
                        "temporalCoverage", "description", "name"))]
-knitr::kable(meta)
+if(length(meta)) {
+  knitr::kable(meta)
+}
 ```
 
 </details>

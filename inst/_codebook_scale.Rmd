@@ -67,7 +67,7 @@ dist_plot
 ```{r reliability, results='asis'}
 for (i in seq_along(reliabilities)) {
   rel <- reliabilities[[i]]
-  cat(knitr::knit_print(rel, indent = paste0(indent, "####")))
+  print(knitr::knit_print(rel, indent = paste0(indent, "####")))
 }
 ```
 
