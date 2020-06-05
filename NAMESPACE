@@ -3,7 +3,6 @@
 S3method("metadata<-",data.frame)
 S3method(knitr::knit_print,htest)
 S3method(knitr::knit_print,multilevel)
-S3method(knitr::knit_print,scaleDiagnosis)
 S3method(metadata,data.frame)
 S3method(skimr::get_skimmers,haven_labelled)
 S3method(skimr::get_skimmers,haven_labelled_spss)

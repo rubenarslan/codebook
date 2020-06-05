@@ -85,14 +85,14 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
     }
   } else {
     if (!suppressMessages(
-      requireNamespace("userfriendlyscience", quietly = TRUE))) {
-      stop("Package \"userfriendlyscience\" needed to compute reliabilites.",
+      requireNamespace("ufs", quietly = TRUE))) {
+      stop("Package \"ufs\" needed to compute reliabilites.",
            call. = FALSE)
     }
 
     internal_consistency <- function(data, scale_name) {
       suppressWarnings(
-        userfriendlyscience::scaleDiagnosis(data,
+        ufs::scaleDiagnosis(data,
           scaleReliability.ci = ci))
     }
   }
