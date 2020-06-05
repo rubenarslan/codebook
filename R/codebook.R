@@ -131,7 +131,8 @@ codebook <- function(results, reliabilities = NULL,
                                        scale_info$scale_item_names, var)
         items <- dplyr::select(results,
                     !!!scale_info$scale_item_names)
-        scales_items[[var]] %<-% {tryCatch({
+        scales_items[[var]] %<-% {
+          tryCatch({
           codebook_component_scale(
             scale = scale, scale_name = var,
             items = items,
@@ -182,7 +183,7 @@ codebook <- function(results, reliabilities = NULL,
   }
 
 
-  rmdpartials::partial(require_file("_codebook.Rmd"), options = options)
+  rmdpartials::partial(require_file("inst/_codebook.Rmd"), options = options)
 }
 
 #' Compact Codebook
@@ -263,12 +264,8 @@ codebook_survey_overview <- function(results, survey_repetition = "single",
   started <- sum(!is.na(results$modified))
   only_viewed <- sum(is.na(results$ended) & is.na(results$modified))
 
-  options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "overview_")
-  )
   rmdpartials::partial(require_file("inst/_codebook_survey_overview.Rmd"),
-                  options = options)
+                  name = "overview_", render_preview = FALSE)
 }
 
 #' Codebook data info
@@ -289,12 +286,8 @@ codebook_survey_overview <- function(results, survey_repetition = "single",
 #'    "https://rubenarslan.github.io/codebook/articles/codebook.html"
 #' codebook_data_info(bfi)
 codebook_data_info <- function(results, indent = "##") {
-  options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "data_info_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "data_info_")
-  )
   rmdpartials::partial(require_file("inst/_codebook_data_info.Rmd"),
-                  options = options)
+                  name = "data_info_", render_preview = FALSE)
 }
 
 
@@ -311,12 +304,9 @@ codebook_data_info <- function(results, indent = "##") {
 #' data("bfi")
 #' codebook_missingness(bfi)
 codebook_missingness <- function(results, indent = "##") {
-  options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "overview_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "overview_")
-  )
   md_pattern <- md_pattern(results)
-  rmdpartials::partial(require_file("inst/_codebook_missingness.Rmd"), options = options)
+  rmdpartials::partial(require_file("inst/_codebook_missingness.Rmd"),
+                       name = "missingness_", render_preview = FALSE)
 }
 
 
@@ -332,12 +322,9 @@ codebook_missingness <- function(results, indent = "##") {
 #' data("bfi")
 #' metadata_jsonld(bfi)
 metadata_jsonld <- function(results) {
-  options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "metadata_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "metadata_")
-  )
   jsonld_metadata <- metadata_list(results)
-  rmdpartials::partial(require_file("inst/_metadata_jsonld.Rmd"), options = options)
+  rmdpartials::partial(require_file("inst/_metadata_jsonld.Rmd"),
+                       name = "metadata_", render_preview = FALSE)
 }
 
 
@@ -358,10 +345,6 @@ metadata_jsonld <- function(results) {
 #' codebook_items(bfi)
 #' }
 codebook_items <- function(results, indent = "##") {
-  options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), "items_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), "items_")
-  )
   metadata_table <- codebook_table(results)
   metadata_table <- dplyr::mutate(metadata_table,
          name = paste0('<a href="#', safe_name(.data$name), '">',
@@ -383,7 +366,8 @@ codebook_items <- function(results, indent = "##") {
       metadata_table$label, "\n", "<br>")
   }
 
-  rmdpartials::partial(require_file("inst/_codebook_items.Rmd"), options = options)
+  rmdpartials::partial(require_file("inst/_codebook_items.Rmd"),
+                       name = "items_", render_preview = FALSE)
 }
 
 escaped_table <- function(metadata_table) {
@@ -418,21 +402,23 @@ escaped_table <- function(metadata_table) {
 #' bfi <- bfi[,c("BFIK_open", paste0("BFIK_open_", 1:4))]
 #' codebook_component_scale(bfi[,1], "BFIK_open", bfi[,-1],
 #'    reliabilities = list(BFIK_open = psych::alpha(bfi[,-1])))
-codebook_component_scale <- function(scale, scale_name, items, reliabilities,
+codebook_component_scale <- function(scale,
+                                     scale_name = deparse(substitute(scale)),
+                                     items, reliabilities = list(),
                                      indent = '##') {
   stopifnot( exists("scale_item_names", attributes(scale)))
   stopifnot( attributes(scale)$scale_item_names %in% names(items) )
+  items <- dplyr::select(items,
+                         !!!attributes(scale)$scale_item_names)
+
   safe_name <- safe_name(scale_name)
 
-  options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), safe_name, "_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), safe_name, "_")
-  )
   old_opt <- options('knitr.duplicate.label')$knitr.duplicate.label
-  options(knitr.duplicate.label = 'allow')
   on.exit(options(knitr.duplicate.label = old_opt))
+  options(knitr.duplicate.label = 'allow')
 
-  rmdpartials::partial(require_file("inst/_codebook_scale.Rmd"), options = options)
+  rmdpartials::partial(require_file("inst/_codebook_scale.Rmd"),
+                       name = safe_name, render_preview = FALSE)
 }
 
 #' Codebook component for single items
@@ -450,13 +436,15 @@ codebook_component_scale <- function(scale, scale_name, items, reliabilities,
 #' on.exit(knitr::opts_knit$set(base.dir = old_base_dir))
 #' data("bfi")
 #' codebook_component_single_item(bfi$BFIK_open_1, "BFIK_open_1")
-codebook_component_single_item <- function(item, item_name, indent = '##') {
+codebook_component_single_item <- function(item,
+                                           item_name = deparse(substitute(item)), indent = '##') {
+  safe_name <- paste0(
+    knitr::opts_chunk$get("fig.path"),
+    safe_name(item_name), "_")
   safe_name <- safe_name(item_name)
-  options <- list(
-    fig.path = paste0(knitr::opts_chunk$get("fig.path"), safe_name, "_"),
-    cache.path = paste0(knitr::opts_chunk$get("cache.path"), safe_name, "_")
-  )
-  rmdpartials::partial(require_file("inst/_codebook_item.Rmd"), options = options)
+
+  rmdpartials::partial(require_file("inst/_codebook_item.Rmd"),
+                       name = safe_name, render_preview = FALSE)
 }
 
 #' Codebook metadata table
