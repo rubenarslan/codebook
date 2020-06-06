@@ -1,3 +1,15 @@
+# codebook 0.9.2
+## Changes
+- Moved a lot of dependencies to Suggests to make package leaner
+- Removed functions related to scaleDiagnosis, which are now implemented in `ufs`
+- Updated citation to published paper
+
+## Bugfixes
+- compatibility with skimr 2.1.0
+- compatibility with vctrs 0.3.0
+- compatibility with dplyr 1.0.0
+- several small issues closed
+
 # codebook 0.8.2
 ## Bugfixes
 - compatibility with skimr 2.0.0

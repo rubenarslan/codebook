@@ -1,7 +1,7 @@
 ## Submission
 * Compatibility with dplyr 1.0.0, vctrs 0.3.0
 * Moved a lot of dependencies to Suggests to make package leaner
-  * there are still many dependenices, but these are mainly tidyverse packages, so depending on one, there is little additional cost to depend also on others
+  * there are still many dependencies, but these are mainly tidyverse packages, so depending on one, there is little additional cost to depend also on others
   * there are other dependencies I hope to be able to remove soon (e.g., vctrs is only used in testing and for one edge case that a bugfix in haven can eliminate)
 * Removed functions related to scaleDiagnosis, which are now implemented in `ufs`
 * Updated citation to published paper
