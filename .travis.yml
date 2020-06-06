@@ -7,6 +7,7 @@ warnings_are_errors: false
 
 r_packages:
   - covr
+  - mnormt
 
 r_github_packages:
   - jimhester/covr
@@ -26,6 +27,7 @@ matrix:
         - bindrcpp
         - RcppEigen
         - rpf
+        - mnormt
         - openssl
         - rlang
         - igraph
