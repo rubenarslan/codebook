@@ -31,7 +31,7 @@ new_height <- ifelse(new_height < 1, 1, new_height)
 new_height <- ifelse(is.na(new_height) | is.nan(new_height), 
                      old_height, new_height)
 ```
-```{r likert,fig.height=new_height,fig.cap=paste("Likert plot of scale", scale_name, "items")}
+```{r likert,fig.height=new_height,fig.cap=paste("Likert plot of scale", html_scale_name, "items")}
 if (dplyr::n_distinct(na.omit(unlist(items))) < 12) {
   likert_plot <- likert_from_items(items)
   if (!is.null(likert_plot)) {
@@ -40,7 +40,7 @@ if (dplyr::n_distinct(na.omit(unlist(items))) < 12) {
 }
 ```
 
-```{r distribution,fig.cap=paste("Distribution of scale", scale_name)}
+```{r distribution,fig.cap=paste("Distribution of scale", html_scale_name)}
 wrap_at <- knitr::opts_chunk$get("fig.width") * 10
 dist_plot <- plot_labelled(scale, scale_name, wrap_at)
 

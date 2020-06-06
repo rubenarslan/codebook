@@ -77,7 +77,7 @@ if ( go_vertical ) {
 }
 
 ```
-```{r distribution,fig.height=fig_height_dist,fig.cap=paste("Distribution of values for", item_name)}
+```{r distribution,fig.height=fig_height_dist,fig.cap=paste("Distribution of values for", html_item_name)}
 wrap_at <- knitr::opts_chunk$get("fig.width") * 10
 # todo: if there are free-text choices mingled in with the pre-defined ones, don't show
 # todo: show rare items if they are pre-defined
@@ -113,7 +113,7 @@ escaped_table(cb_table)
 ```
 
 `r ifelse(show_missing_values, paste0(indent, '### Missing value types {#', safe_name, '_missing_values}'), '')`
-```{r missing_values,fig.cap=paste("Plot of missing values for", item_name)}
+```{r missing_values,fig.cap=paste("Plot of missing values for", html_item_name)}
 if (show_missing_values) {
   plot_labelled(missing_values, item_name, wrap_at)
 }

@@ -12,7 +12,7 @@ Description: Easily automate the following tasks to describe data frames:
 		Codebooks are also available as tables (CSV, Excel, etc.) and in JSON-LD, so
 		that search engines can find your data and index the metadata.
 		The metadata are also available at your fingertips via RStudio Addins.
-Version: 0.9.1
+Version: 0.9.2
 Authors@R: person("Ruben", "Arslan", email = "ruben.arslan@gmail.com", role = c("aut", "cre"))
 Depends: R (>= 3.2.0)
 Language: en_GB
