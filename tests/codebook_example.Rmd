@@ -6,7 +6,7 @@ output:
   html_document:
     code_folding: hide
     self_contained: yes
-    keep_md: yes
+    keep_md: no
     toc: yes
     toc_depth: 4
     toc_float: yes
