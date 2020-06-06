@@ -4,12 +4,10 @@
 \alias{knit_print.multilevel}
 \title{Print a \code{\link[psych:multilevel.reliability]{psych::multilevel.reliability()}} object for knitr}
 \usage{
-knit_print.multilevel(x, indent = "#####", ...)
+knit_print.multilevel(x, ...)
 }
 \arguments{
 \item{x}{a psych alpha object}
-
-\item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h5}
 
 \item{...}{ignored}
 }

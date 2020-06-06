@@ -4,12 +4,10 @@
 \alias{knit_print.htest}
 \title{Print a \code{\link[stats:cor.test]{stats::cor.test()}} object for knitr}
 \usage{
-knit_print.htest(x, indent = "#####", ...)
+knit_print.htest(x, ...)
 }
 \arguments{
 \item{x}{a psych alpha object}
-
-\item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h5}
 
 \item{...}{ignored}
 }

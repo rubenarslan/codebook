@@ -7,7 +7,7 @@
 codebook_survey_overview(results, survey_repetition = "single", indent = "##")
 }
 \arguments{
-\item{results}{a data frame which has the following columns: session, created, modified, expired, ended}
+\item{results}{a data frame which has all the following columns: session, created, modified, expired, ended}
 
 \item{survey_repetition}{defaults to single (other values: repeated_once, repeated_many). controls whether internal consistency, retest reliability or multilevel reliability is computed}
 
