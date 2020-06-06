@@ -33,7 +33,7 @@ test_that("Retest reliabilities can be computed", {
                         -starts_with("BFIK_open"),
                         -starts_with("BFIK_consc"))
   expect_silent(bfi2 <- bind_rows(bfi, bfi %>%
-                          mutate(created = created + lubridate::years(1))))
+                          mutate(created = created + 1e7)))
   bfi2 <- rescue_attributes(bfi2, bfi)
   expect_silent(rels <- compute_reliabilities(bfi2,
                                               survey_repetition = "repeated_once"))
@@ -67,11 +67,11 @@ test_that("Multilevel reliabilities can be computed", {
                         -starts_with("BFIK_consc"))
   fuzz <- function(x) { x + rnorm(length(x)) }
   expect_silent(bfi3 <- bind_rows(bfi,
-           bfi %>% mutate(created = created + lubridate::days(1)),
-           bfi %>% mutate(created = created + lubridate::days(2)),
-           bfi %>% mutate(created = created + lubridate::days(3)),
-           bfi %>% mutate(created = created + lubridate::days(4)),
-           bfi %>% mutate(created = created + lubridate::days(5))
+           bfi %>% mutate(created = created + 86400),
+           bfi %>% mutate(created = created + 86400 * 2),
+           bfi %>% mutate(created = created + 86400 * 3),
+           bfi %>% mutate(created = created + 86400 * 4),
+           bfi %>% mutate(created = created + 86400 * 5)
   ) %>% mutate_at(vars(dplyr::matches("_\\d")), fuzz))
   bfi3 <- rescue_attributes(bfi3, bfi)
   expect_warning(rels <- compute_reliabilities(bfi3,

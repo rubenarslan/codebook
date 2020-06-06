@@ -83,8 +83,8 @@ test_that("Codebook with retest reliabilities can be computed", {
                        -starts_with("BFIK_open"),
                        -starts_with("BFIK_consc"))
   expect_silent(bfi2 <- bind_rows(bfi, bfi %>%
-                         mutate(created = created + lubridate::years(1),
-                                ended = ended + lubridate::years(1))))
+                         mutate(created = created + 1e7,
+                                ended = ended + 1e7)))
 
 
   bfi2$age <- 1:nrow(bfi2)
@@ -235,16 +235,16 @@ test_that("Codebook with multilevel reliability", {
                        -starts_with("BFIK_consc"))
   fuzz <- function(x) { x + rnorm(length(x)) }
   expect_silent(bfi3 <- bind_rows(bfi,
-                 bfi %>% mutate(created = created + lubridate::days(1),
-                                ended = ended + lubridate::days(1)),
-                 bfi %>% mutate(created = created + lubridate::days(2),
-                                ended = ended + lubridate::days(2)),
-                 bfi %>% mutate(created = created + lubridate::days(3),
-                                ended = ended + lubridate::days(3)),
-                 bfi %>% mutate(created = created + lubridate::days(4),
-                                ended = ended + lubridate::days(4)),
-                 bfi %>% mutate(created = created + lubridate::days(5),
-                                ended = ended + lubridate::days(5))
+                 bfi %>% mutate(created = created + 86400 * 1,
+                                ended = ended + 86400 * 1),
+                 bfi %>% mutate(created = created + 86400 * 2,
+                                ended = ended + 86400 * 2),
+                 bfi %>% mutate(created = created + 86400 * 3,
+                                ended = ended + 86400 * 3),
+                 bfi %>% mutate(created = created + 86400 * 4,
+                                ended = ended + 86400 * 4),
+                 bfi %>% mutate(created = created + 86400 * 5,
+                                ended = ended + 86400 * 5)
   ) %>% mutate_at(vars(dplyr::matches("_\\d")), fuzz))
   bfi3 <- rescue_attributes(bfi3, bfi)
 
