@@ -170,7 +170,7 @@ get_skimmers.haven_labelled_spss <- function(column) {
 #' @export
 #' @examples
 #' skim_codebook(bfi)
-skim_codebook <- function(x) {
+skim_codebook <- function(data, ...) {
     skimr::skim_with(
     haven_labelled = haven_labelled_sfl,
     haven_labelled_spss = haven_labelled_sfl,
@@ -183,7 +183,7 @@ skim_codebook <- function(x) {
       hist = skimr::get_one_default_skimmer("numeric")$hist
     ),
     append = FALSE
-  )(x)
+  )(data, ...)
 }
 
 coerce_skimmed_summary_to_character <- function(df) {

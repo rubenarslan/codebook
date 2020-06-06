@@ -14,9 +14,11 @@
 #'
 #' @export
 #' @examples
+#' \dontrun{
 #' data("bfi", package = "codebook")
-#'   bfi <- bfi %>% dplyr::select(dplyr::starts_with("BFIK_agree"))
+#' bfi <- bfi %>% dplyr::select(dplyr::starts_with("BFIK_agree"))
 #' reliabilities <- compute_reliabilities(bfi)
+#' }
 
 compute_reliabilities <- function(results, survey_repetition = "single") {
   if (requireNamespace("future", quietly = TRUE)) {
