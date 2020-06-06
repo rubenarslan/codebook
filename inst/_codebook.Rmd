@@ -26,7 +26,7 @@ knitr::asis_output(survey_overview)
 ```
 
 
-`r indent`# Variables
+`r ifelse(detailed_variables || detailed_scales, paste0(indent, "Variables"),"") `
 
 ```{r scales}
 if (detailed_variables || detailed_scales) {
