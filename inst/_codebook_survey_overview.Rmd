@@ -18,7 +18,7 @@ There were `r users` unique participants, of which `r finished_users` finished f
 `r ifelse(survey_repetition != "single" && round(rows_per_user) == 1, "Oddly there seem to be almost no users with several rows. Maybe something went wrong and a few rows are duplicated by accident?", "")`
 
 
-```{r repeated}
+```{r repeated,fig.cap="Number of sessions"}
 if (survey_repetition != "single") {
 	overview = results %>% dplyr::group_by(session) %>% 
 		dplyr::summarise(
@@ -39,16 +39,13 @@ if (survey_repetition != "single") {
 The first session started on `r min(results$created)`, the last session on `r max(results$created)`. 
 
 
-```{r starting_time}
+```{r starting_time,fig.cap="Starting date times"}
 ggplot2::qplot(results$created) + ggplot2::scale_x_datetime("Date/time when survey was started")
 ```
 
 People took on average `r round(mean(duration$duration),2)` minutes (median `r round(median(duration$duration),2)`) to answer the survey.
 
-```{r duration}
-if (low_vals == 0) {
-  warning("Durations below 0 detected.")
-}
-ggplot2::qplot(duration$duration, binwidth = 0.5) + ggplot2::scale_x_continuous(paste("Duration (in minutes), excluding", high_vals, "values above median + 4*MAD"), limits = c(lower_limit, upper_limit))
+```{r duration,fig.cap="Duration people took for answering the survey"}
+ggplot2::qplot(duration$duration, binwidth = 0.5) + ggplot2::scale_x_continuous(paste("Duration (in minutes), excluding", high_vals, "values above median + 4*MAD and ", low_vals, "values below 0."), limits = c(lower_limit, upper_limit))
 ```
 

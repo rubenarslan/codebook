@@ -30,22 +30,18 @@ new_height <- ifelse(new_height > 20, 20, new_height)
 new_height <- ifelse(new_height < 1, 1, new_height)
 new_height <- ifelse(is.na(new_height) | is.nan(new_height), 
                      old_height, new_height)
-knitr::opts_chunk$set(fig.height = new_height)
 ```
-```{r likert}
+```{r likert,fig.height=new_height,fig.cap=paste("Likert plot of scale", scale_name, "items")}
 if (dplyr::n_distinct(na.omit(unlist(items))) < 12) {
   likert_plot <- likert_from_items(items)
   if (!is.null(likert_plot)) {
     graphics::plot(likert_plot)
   }
 }
-knitr::opts_chunk$set(fig.height = old_height)
 ```
 
-```{r setup_distribution}
+```{r distribution,fig.cap=paste("Distribution of scale", scale_name)}
 wrap_at <- knitr::opts_chunk$get("fig.width") * 10
-```
-```{r distribution}
 dist_plot <- plot_labelled(scale, scale_name, wrap_at)
 
 choices <- attributes(items[[1]])$item$choices
@@ -67,7 +63,8 @@ dist_plot
 ```{r reliability, results='asis'}
 for (i in seq_along(reliabilities)) {
   rel <- reliabilities[[i]]
-  print(knitr::knit_print(rel, indent = paste0(indent, "####")))
+  print(knitr::knit_print(rel, headingLevel = 5))
+  print(knitr::asis_output("\n\n\n"))
 }
 ```
 

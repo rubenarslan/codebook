@@ -54,7 +54,7 @@ if (
 }
 attributes(item_nomiss) <- attributes(item)
 
-old_height <- knitr::opts_chunk$get("fig.height")
+fig_height_dist <- knitr::opts_chunk$get("fig.height")
 non_missing_choices <- item_attributes[["labels"]]
 many_labels <- length(non_missing_choices) > 7
 go_vertical <- !is_numeric_or_time_var(item_nomiss) || many_labels
@@ -68,19 +68,17 @@ if ( go_vertical ) {
 		non_missing_choices <- unique(item_nomiss)
 		names(non_missing_choices) <- non_missing_choices
 	}
-  choice_multiplier <- old_height/6.5
-	new_height <- 2 + choice_multiplier * length(non_missing_choices)
-	new_height <- ifelse(new_height > 20, 20, new_height)
-	new_height <- ifelse(new_height < 1, 1, new_height)
-	if(could_disclose_unique_values(item_nomiss) && is.character(item_nomiss)) {
-	  new_height <- old_height
-	}
-	knitr::opts_chunk$set(fig.height = new_height)
+  if(!(could_disclose_unique_values(item_nomiss) && is.character(item_nomiss))) {
+    choice_multiplier <- fig_height_dist/6.5
+  	fig_height_dist <- 2 + choice_multiplier * length(non_missing_choices)
+  	fig_height_dist <- ifelse(fig_height_dist > 20, 20, fig_height_dist)
+  	fig_height_dist <- ifelse(fig_height_dist < 1, 1, fig_height_dist)
+  }
 }
 
-wrap_at <- knitr::opts_chunk$get("fig.width") * 10
 ```
-```{r distribution}
+```{r distribution,fig.height=fig_height_dist,fig.cap=paste("Distribution of values for", item_name)}
+wrap_at <- knitr::opts_chunk$get("fig.width") * 10
 # todo: if there are free-text choices mingled in with the pre-defined ones, don't show
 # todo: show rare items if they are pre-defined
 # todo: bin rare responses into "other category"
@@ -98,7 +96,6 @@ if (!length(item_nomiss)) {
 	  cat(dplyr::n_distinct(item_nomiss), " unique, categorical values, so not shown.")
   }
 }
-knitr::opts_chunk$set(fig.height = old_height)
 ```
 
 `r sum(is.na(item))` missing values.
@@ -116,7 +113,7 @@ escaped_table(cb_table)
 ```
 
 `r ifelse(show_missing_values, paste0(indent, '### Missing value types {#', safe_name, '_missing_values}'), '')`
-```{r missing_values}
+```{r missing_values,fig.cap=paste("Plot of missing values for", item_name)}
 if (show_missing_values) {
   plot_labelled(missing_values, item_name, wrap_at)
 }

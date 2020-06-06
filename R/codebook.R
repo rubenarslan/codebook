@@ -252,8 +252,8 @@ codebook_survey_overview <- function(results, survey_repetition = "single",
     upper_limit <- max(duration$duration)
   }
   lower_limit <- min(duration$duration)
-  low_vals <- sum(lower_limit < 0)
-  if (low_vals == 0) {
+  low_vals <- sum(duration$duration < 0)
+  if (low_vals != 0) {
     lower_limit <- 0
   }
 
