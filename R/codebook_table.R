@@ -170,19 +170,21 @@ get_skimmers.haven_labelled_spss <- function(column) {
 #' @export
 #' @examples
 #' skim_codebook(bfi)
-skim_codebook <-  skimr::skim_with(
-  haven_labelled = haven_labelled_sfl,
-  haven_labelled_spss = haven_labelled_sfl,
-  numeric = skimr::sfl(
-    mean = skimr::get_one_default_skimmer("numeric")$mean,
-    sd = skimr::get_one_default_skimmer("numeric")$sd,
-    min = skimr::get_one_default_skimmer("numeric")$p0,
-    median = skimr::get_one_default_skimmer("numeric")$p50,
-    max = skimr::get_one_default_skimmer("numeric")$p100,
-    hist = skimr::get_one_default_skimmer("numeric")$hist
-  ),
-  append = FALSE
-)
+skim_codebook <- function(x) {
+    skimr::skim_with(
+    haven_labelled = haven_labelled_sfl,
+    haven_labelled_spss = haven_labelled_sfl,
+    numeric = skimr::sfl(
+      mean = skimr::get_one_default_skimmer("numeric")$mean,
+      sd = skimr::get_one_default_skimmer("numeric")$sd,
+      min = skimr::get_one_default_skimmer("numeric")$p0,
+      median = skimr::get_one_default_skimmer("numeric")$p50,
+      max = skimr::get_one_default_skimmer("numeric")$p100,
+      hist = skimr::get_one_default_skimmer("numeric")$hist
+    ),
+    append = FALSE
+  )(x)
+}
 
 coerce_skimmed_summary_to_character <- function(df) {
   format_digits <- function(x) {
@@ -201,6 +203,18 @@ coerce_skimmed_summary_to_character <- function(df) {
   if (exists("Date", df)) {
     df$Date <-
       dplyr::mutate_at(df$Date,
+                       dplyr::vars(.data$min, .data$median, .data$max),
+                       as_character)
+  }
+  if (exists("difftime", df)) {
+    df$difftime <-
+      dplyr::mutate_at(df$difftime,
+                       dplyr::vars(.data$min, .data$median, .data$max),
+                       as_character)
+  }
+  if (exists("ts", df)) {
+    df$ts <-
+      dplyr::mutate_at(df$ts,
                        dplyr::vars(.data$min, .data$median, .data$max),
                        as_character)
   }
