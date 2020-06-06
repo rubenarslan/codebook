@@ -10,3 +10,4 @@ tests/*.md
 inst/doc
 figure/
 revdep
+docs/reference/Rplot*.pdf

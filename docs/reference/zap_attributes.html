@@ -85,7 +85,7 @@ display_width" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
       </span>
     </div>
 
@@ -203,27 +203,27 @@ display_width</p>
 <span class='no'>bfi</span>$<span class='no'>bfi_e</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span>(<span class='no'>bfi</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>)])
 <span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='detect_scales.html'>detect_scales</a></span>(<span class='no'>bfi</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># create attributes</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>, <span class='st'>"label"</span>))</div><div class='output co'>#&gt; 'data.frame':	100 obs. of  4 variables:
-#&gt;  $ bfi_e1 : num  0.3344 -0.0935 0.3041 -0.4765 -0.2413 ...
-#&gt;  $ bfi_e2R: num  0.0474 -0.2931 1.2076 0.032 0.1804 ...
-#&gt;  $ bfi_e3 : num  -0.156 0.1326 -0.9741 -1.2509 -0.0463 ...
-#&gt;  $ bfi_e  : num  0.0753 -0.0847 0.1792 -0.5652 -0.0358 ...
-#&gt;   ..- attr(*, "scale_item_names")= chr [1:3] "bfi_e1" "bfi_e2R" "bfi_e3"</div><div class='input'><span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>$<span class='no'>bfi_e</span>)</div><div class='output co'>#&gt;   [1]  0.07525824 -0.08467190  0.17920341 -0.56515194 -0.03575007  0.67956806
-#&gt;   [7]  0.08906709 -0.20736505  0.02915380 -0.27217204 -0.49861205  0.30144022
-#&gt;  [13] -0.18612561  0.23752950  0.33409137  0.50949940  0.58639856 -0.32443463
-#&gt;  [19] -0.70835558 -0.84769108  0.01095812 -0.40252494  1.25105729 -0.32445352
-#&gt;  [25]  0.35350786  0.52556235  0.11062672 -0.68219938 -0.05905051  0.57473227
-#&gt;  [31]  0.12002898 -0.78345151 -0.12808135  0.14255381  0.84025144  0.19959146
-#&gt;  [37]  0.28767763  0.33073081 -0.59459460  0.29721985 -0.75891379 -0.24025482
-#&gt;  [43] -0.07652361  0.36018250 -0.83832763  0.29193563  1.23445005  0.58765617
-#&gt;  [49]  0.07873832 -0.28023315  0.82365031  0.01398336  0.21833412 -0.88082873
-#&gt;  [55] -0.06152159  0.12961384 -0.03979823  0.43802249 -0.31334027  0.45064288
-#&gt;  [61]  0.24799972  0.42738769  0.44330623 -0.22424935  0.55473288  0.32161787
-#&gt;  [67]  0.26786411  1.21409288  1.80718065 -1.41483825 -0.52084690  0.42852874
-#&gt;  [73] -0.28885318 -0.13282287  0.26231051  0.33037732 -0.66239671 -0.41755859
-#&gt;  [79] -0.07060293  0.03819649 -0.01860240 -0.41380651  0.25683774  1.22431718
-#&gt;  [85]  0.65738486  0.34206506  0.53682910 -0.36566688  0.28020371 -0.05995920
-#&gt;  [91]  0.55770585  0.47785912 -0.52293270 -0.39808839  0.00767314  0.59391091
-#&gt;  [97]  1.43475255 -0.58553708 -0.28708600 -0.76909881</div><div class='input'><span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>300</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>3</span>))
+#&gt;  $ bfi_e1 : num  0.105 -0.254 -0.976 0.394 1.015 ...
+#&gt;  $ bfi_e2R: num  -0.5175 -0.2596 -0.3281 0.0734 -0.2479 ...
+#&gt;  $ bfi_e3 : num  -0.0946 -0.074 0.7145 0.1247 1.2966 ...
+#&gt;  $ bfi_e  : num  -0.169 -0.196 -0.197 0.197 0.688 ...
+#&gt;   ..- attr(*, "scale_item_names")= chr [1:3] "bfi_e1" "bfi_e2R" "bfi_e3"</div><div class='input'><span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>$<span class='no'>bfi_e</span>)</div><div class='output co'>#&gt;   [1] -0.16890812 -0.19578154 -0.19668841  0.19745618  0.68787811 -0.61897046
+#&gt;   [7] -0.45530096 -0.86969664  0.17813778 -0.14167868  0.26362477 -0.84599378
+#&gt;  [13]  0.46032436 -0.47602042  0.06687563 -0.44469117  1.00128606 -0.95524539
+#&gt;  [19] -0.24014184 -0.78531245 -0.47150749 -0.80184033  0.99727471 -0.03043471
+#&gt;  [25]  0.47689599 -0.61384304 -0.69128843 -0.13122497  0.24865902  0.33993063
+#&gt;  [31] -0.30801029  1.30520813 -0.31697139 -0.57792328 -0.36195160 -0.32719319
+#&gt;  [37]  0.13682951  0.05335115  0.50274183 -0.13673690 -0.02931476 -0.17125795
+#&gt;  [43] -0.72538076  0.12078085 -0.49113367  0.66298692  0.18046936  0.10825898
+#&gt;  [49] -0.09677067  0.33776731  1.08638577  0.45076696 -0.29749582  0.06707868
+#&gt;  [55] -0.41926556  0.32954947 -0.09538570  0.97246318  0.81898326 -0.39362951
+#&gt;  [61]  0.31227753  0.31005410 -0.20214129 -0.34713210  0.60629464 -0.57121456
+#&gt;  [67]  0.53569440 -0.45018676  0.19141873 -0.46629549 -0.21009392  0.70738451
+#&gt;  [73] -0.52281520  0.01417126 -0.15758700 -0.62898441 -0.40923643  0.70690023
+#&gt;  [79]  0.99421047 -0.25121701  0.51109272  1.16888779  1.00454045 -0.66665345
+#&gt;  [85] -0.13669536  0.18895865  0.08757627  1.06423954  0.66083123  0.84815936
+#&gt;  [91] -0.49123552  0.47051765  0.58646209 -0.70425772  0.95421308  0.86075540
+#&gt;  [97]  0.72797462  0.47609657 -0.34513801  0.02850471</div><div class='input'><span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>300</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>3</span>))
 <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>bfi</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span>(<span class='no'>bfi</span>$<span class='no'>bfi_e1</span>)$<span class='no'>label</span> <span class='kw'>&lt;-</span> <span class='st'>"I am outgoing."</span>
 <span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span>(<span class='no'>bfi</span>$<span class='no'>bfi_e2R</span>)$<span class='no'>label</span> <span class='kw'>&lt;-</span> <span class='st'>"I prefer books to people."</span>
@@ -231,30 +231,27 @@ display_width</p>
 <span class='no'>bfi</span>$<span class='no'>bfi_e</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span>(<span class='no'>bfi</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>)])
 <span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='detect_scales.html'>detect_scales</a></span>(<span class='no'>bfi</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='co'># create attributes</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>, <span class='st'>"label"</span>))</div><div class='output co'>#&gt; 'data.frame':	100 obs. of  4 variables:
-#&gt;  $ bfi_e1 : num  1.069 2.316 -1.683 0.136 0.498 ...
-#&gt;  $ bfi_e2R: num  0.7809 0.0962 -1.5614 0.6984 0.0382 ...
-#&gt;  $ bfi_e3 : num  -0.165 0.714 0.237 -2.323 0.079 ...
-#&gt;  $ bfi_e  : num  0.562 1.042 -1.002 -0.496 0.205 ...
-#&gt;   ..- attr(*, "scale_item_names")= chr [1:3] "bfi_e1" "bfi_e2R" "bfi_e3"</div><div class='input'><span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>$<span class='no'>bfi_e</span>)</div><div class='output co'>#&gt;   [1]  0.561580620  1.042034999 -1.002338207 -0.496145591  0.205225932
-#&gt;   [6]  0.379772426  0.208553173  0.412893906  0.304109916 -0.945650118
-#&gt;  [11] -0.008017924  0.651085619 -0.871711513 -0.294710475 -0.697823350
-#&gt;  [16] -0.529538628  0.211329401  0.487400277 -0.314838025  0.043526901
-#&gt;  [21] -1.152729065 -0.018194958 -0.063599457  0.013964309 -0.753551007
-#&gt;  [26] -0.655816532 -0.512022990 -0.190647851  0.277659564  0.378920837
-#&gt;  [31] -0.197824551  0.808342103  0.946493563  1.079606631  0.122178108
-#&gt;  [36]  0.430969787 -1.245165971  0.219441518  0.249417273 -0.329070082
-#&gt;  [41]  0.124963870  0.956830861 -0.136243717 -0.310654153  0.027371055
-#&gt;  [46]  0.261709126  0.827576593 -0.006432413  0.830315362  1.097397698
-#&gt;  [51] -0.293880595 -0.405263317 -0.575008734  0.170581565 -1.076531358
-#&gt;  [56]  0.146606480 -0.459283260  0.015341140  0.601841070 -0.670842765
-#&gt;  [61]  0.990539104  0.322262779  0.069754442 -0.218544754 -0.311502921
-#&gt;  [66]  0.653587398  1.000972493 -0.193253260  0.301875853 -0.485793315
-#&gt;  [71] -0.227019090 -0.113706885  0.029466458 -0.133654157 -0.196002017
-#&gt;  [76]  0.076258566  0.149638325 -0.915820773 -0.221288433 -0.095374432
-#&gt;  [81]  0.610568499 -1.101587413 -0.011994837  0.007218683 -0.624257324
-#&gt;  [86]  0.184673556 -0.632182462  0.120862818  0.328131876  0.099513615
-#&gt;  [91]  0.139191784  0.623465425  0.109674695 -0.434760432  0.205093195
-#&gt;  [96] -0.258997291  0.605928376 -0.310752242 -0.415358034 -0.787893075</div></pre>
+#&gt;  $ bfi_e1 : num  1.38 -0.7 1.86 1.8 -1.36 ...
+#&gt;  $ bfi_e2R: num  1.277 0.821 0.42 1.712 -2.216 ...
+#&gt;  $ bfi_e3 : num  -1.696 0.683 1.362 1.906 -0.673 ...
+#&gt;  $ bfi_e  : num  0.322 0.268 1.214 1.807 -1.415 ...
+#&gt;   ..- attr(*, "scale_item_names")= chr [1:3] "bfi_e1" "bfi_e2R" "bfi_e3"</div><div class='input'><span class='fu'>zap_attributes</span>(<span class='no'>bfi</span>$<span class='no'>bfi_e</span>)</div><div class='output co'>#&gt;   [1]  0.32161787  0.26786411  1.21409288  1.80718065 -1.41483825 -0.52084690
+#&gt;   [7]  0.42852874 -0.28885318 -0.13282287  0.26231051  0.33037732 -0.66239671
+#&gt;  [13] -0.41755859 -0.07060293  0.03819649 -0.01860240 -0.41380651  0.25683774
+#&gt;  [19]  1.22431718  0.65738486  0.34206506  0.53682910 -0.36566688  0.28020371
+#&gt;  [25] -0.05995920  0.55770585  0.47785912 -0.52293270 -0.39808839  0.00767314
+#&gt;  [31]  0.59391091  1.43475255 -0.58553708 -0.28708600 -0.76909881  0.31998228
+#&gt;  [37]  0.71857598 -0.48310841 -0.36102428  0.21083309  0.84933711  0.59996355
+#&gt;  [43] -0.30237323  0.00459864 -0.87617110 -0.16264165  0.69489642 -0.33928308
+#&gt;  [49]  0.27599683  0.16165674  0.21767609  0.47162477  0.20924933 -0.69340872
+#&gt;  [55] -0.32725773 -1.18627366 -0.34040522  1.13186682 -0.89911617 -0.06716810
+#&gt;  [61]  0.27562846 -0.39806501 -0.92354995 -0.04789468  0.60188788  0.12761961
+#&gt;  [67] -0.29388311 -0.26866617  0.88746566  0.20392017  0.03406801 -0.70086223
+#&gt;  [73]  0.24546147 -0.68881117  0.30372659 -0.77161868  0.36651513 -0.07598943
+#&gt;  [79] -0.41116337  0.08225432  0.63725203  1.26537240  0.20893318  0.62405874
+#&gt;  [85] -0.14711103  0.32219136 -0.32570856  0.23811886 -0.95617717 -0.96482800
+#&gt;  [91]  0.71592173 -0.22022941  0.43144485  0.29196733  0.46192271  0.06199001
+#&gt;  [97]  0.70562634 -0.25835902 -0.09774164  0.68020002</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

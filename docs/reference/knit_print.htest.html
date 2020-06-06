@@ -78,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
       </span>
     </div>
 
@@ -153,7 +153,7 @@
     <p>Just prints the normal output of <code><a href='https://rdrr.io/r/stats/cor.test.html'>stats::cor.test()</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>knit_print.htest</span>(<span class='no'>x</span>, <span class='kw'>indent</span> <span class='kw'>=</span> <span class='st'>"#####"</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>knit_print.htest</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,10 +161,6 @@
     <tr>
       <th>x</th>
       <td><p>a psych alpha object</p></td>
-    </tr>
-    <tr>
-      <th>indent</th>
-      <td><p>add # to this to make the headings in the components lower-level. defaults to beginning at h5</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -182,13 +178,13 @@
 #&gt; 	Pearson's product-moment correlation
 #&gt; 
 #&gt; data:  rnorm(100) and rnorm(100)
-#&gt; t = 2.2, df = 98, p-value = 0.03015
+#&gt; t = -1.5753, df = 98, p-value = 0.1184
 #&gt; alternative hypothesis: true correlation is not equal to 0
 #&gt; 95 percent confidence interval:
-#&gt;  0.02143938 0.39646787
+#&gt;  -0.34298568  0.04051384
 #&gt; sample estimates:
-#&gt;       cor 
-#&gt; 0.2169439 
+#&gt;        cor 
+#&gt; -0.1571549 
 #&gt; 
 #&gt; ```
 #&gt; 

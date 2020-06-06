@@ -85,7 +85,7 @@ If you do plan to do that, you can pass the results of this operation to the cod
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
       </span>
     </div>
 
@@ -184,11 +184,11 @@ If you do plan to do that, you can pass the results of this operation to the cod
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"bfi"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"codebook"</span>)
-  <span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='no'>bfi</span> <span class='kw'>%&gt;%</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>starts_with</a></span>(<span class='st'>"BFIK_agree"</span>))
-<span class='no'>reliabilities</span> <span class='kw'>&lt;-</span> <span class='fu'>compute_reliabilities</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; <span class='message'>Registered S3 method overwritten by 'GGally':</span>
-#&gt; <span class='message'>  method from   </span>
-#&gt; <span class='message'>  +.gg   ggplot2</span></div><div class='output co'>#&gt; <span class='message'>Loading required namespace: GPArotation</span></div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"bfi"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"codebook"</span>)
+<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='no'>bfi</span> <span class='kw'>%&gt;%</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>starts_with</a></span>(<span class='st'>"BFIK_agree"</span>))
+<span class='no'>reliabilities</span> <span class='kw'>&lt;-</span> <span class='fu'>compute_reliabilities</span>(<span class='no'>bfi</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

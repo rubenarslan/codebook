@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
       </span>
     </div>
 
@@ -110,7 +110,7 @@
       <h1 data-toc-skip>Codebook example with formr.org data</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2020-06-05</h4>
+            <h4 class="date">2020-06-06</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook.Rmd"><code>vignettes/codebook.Rmd</code></a></small>
       <div class="hidden name"><code>codebook.Rmd</code></div>
@@ -323,16 +323,21 @@
 <p>This survey was not repeated.</p>
 <p>The first session started on 2016-07-08 09:54:16, the last session on 2016-11-02 21:19:50.</p>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-<p><img src="codebook_files/figure-html/cb_bfi_overview__starting_time-1.png" width="700"></p>
+<div class="figure">
+<img src="codebook_files/figure-html/cb_bfi_overview__starting_time-1.png" alt="Starting date times" width="700"><p class="caption">
+Starting date times
+</p>
+</div>
 <p>People took on average 127.36 minutes (median 1.48) to answer the survey.</p>
-<pre><code>## Warning: Durations below 0 detected.</code></pre>
 <pre><code>## Warning: Removed 4 rows containing non-finite values (stat_bin).</code></pre>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_bar).</code></pre>
-<p><img src="codebook_files/figure-html/cb_bfi_overview__duration-1.png" width="700"></p>
+<div class="figure">
+<img src="codebook_files/figure-html/cb_bfi_overview__duration-1.png" alt="Duration people took for answering the survey" width="700"><p class="caption">
+Duration people took for answering the survey
+</p>
 </div>
-<div id="variables" class="section level2">
-<h2 class="hasAnchor">
-<a href="#variables" class="anchor"></a>Variables</h2>
+<p>#Variables</p>
+</div>
 <div id="BFIK_agree" class="section level3 tabset">
 <h3 class="hasAnchor">
 <a href="#BFIK_agree" class="anchor"></a>Scale: BFIK_agree</h3>
@@ -342,21 +347,28 @@
 <a href="#BFIK_agree_likert" class="anchor"></a>Overview</h4>
 <p><strong>Reliability</strong>: ω<sub>ordinal</sub> [95% CI] = 0.61 [0.37;0.84].</p>
 <p><strong>Missing</strong>: 0.</p>
-<p><img src="codebook_files/figure-html/cb_bfi_BFIK_agree_likert-1.png" width="700"></p>
-<p><img src="codebook_files/figure-html/cb_bfi_BFIK_agree_distribution-1.png" width="700"></p>
+<div class="figure">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_agree_likert-1.png" alt="Likert plot of scale BFIK_agree items" width="700"><p class="caption">
+Likert plot of scale BFIK_agree items
+</p>
+</div>
+<div class="figure">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_agree_distribution-1.png" alt="Distribution of scale BFIK_agree" width="700"><p class="caption">
+Distribution of scale BFIK_agree
+</p>
+</div>
 </div>
 <div id="BFIK_agree_reliability" class="section level4">
 <h4 class="hasAnchor">
 <a href="#BFIK_agree_reliability" class="anchor"></a>Reliability details</h4>
 <pre><code>## No viewer found, probably documenting or testing</code></pre>
+<div id="scale-diagnosis" class="section level5">
+<h5 class="hasAnchor">
+<a href="#scale-diagnosis" class="anchor"></a>Scale diagnosis</h5>
+<div id="reliability-internal-consistency-estimates" class="section level6">
+<h6>Reliability (internal consistency) estimates</h6>
 </div>
 </div>
-<div id="scale-diagnosis" class="section level3">
-<h3 class="hasAnchor">
-<a href="#scale-diagnosis" class="anchor"></a>Scale diagnosis</h3>
-<div id="reliability-internal-consistency-estimates" class="section level4">
-<h4 class="hasAnchor">
-<a href="#reliability-internal-consistency-estimates" class="anchor"></a>Reliability (internal consistency) estimates</h4>
 <div id="scale-structure" class="section level5">
 <h5 class="hasAnchor">
 <a href="#scale-structure" class="anchor"></a>Scale structure</h5>
@@ -462,16 +474,12 @@
 <p>Note: the normal point estimate and confidence interval for omega are based on the procedure suggested by Dunn, Baguley &amp; Brunsden (2013) using the MBESS function ci.reliability, whereas the psych package point estimate was suggested in Revelle &amp; Zinbarg (2008). See the help (‘?ufs::scaleStructure’) for more information.</p>
 </div>
 </div>
-</div>
-</div>
-<div id="eigen-values" class="section level4">
-<h4 class="hasAnchor">
-<a href="#eigen-values" class="anchor"></a>Eigen values</h4>
+<div id="eigen-values" class="section level6">
+<h6>Eigen values</h6>
 <p>2.539, 0.732, 0.54 &amp; 0.189</p>
 </div>
-<div id="factor-analysis-reproducing-only-shared-variance" class="section level4">
-<h4 class="hasAnchor">
-<a href="#factor-analysis-reproducing-only-shared-variance" class="anchor"></a>Factor analysis (reproducing only shared variance)</h4>
+<div id="factor-analysis-reproducing-only-shared-variance" class="section level6">
+<h6>Factor analysis (reproducing only shared variance)</h6>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -497,9 +505,8 @@
 </tbody>
 </table>
 </div>
-<div id="component-analysis-reproducing-full-covariance-matrix" class="section level4">
-<h4 class="hasAnchor">
-<a href="#component-analysis-reproducing-full-covariance-matrix" class="anchor"></a>Component analysis (reproducing full covariance matrix)</h4>
+<div id="component-analysis-reproducing-full-covariance-matrix" class="section level6">
+<h6>Component analysis (reproducing full covariance matrix)</h6>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -525,9 +532,8 @@
 </tbody>
 </table>
 </div>
-<div id="item-descriptives" class="section level4">
-<h4 class="hasAnchor">
-<a href="#item-descriptives" class="anchor"></a>Item descriptives</h4>
+<div id="item-descriptives" class="section level6">
+<h6>Item descriptives</h6>
 <table class="table">
 <thead><tr class="header">
 <th align="right">mea</th>
@@ -628,13 +634,15 @@
 </tbody>
 </table>
 </div>
-<div id="scattermatrix" class="section level4">
-<h4 class="hasAnchor">
-<a href="#scattermatrix" class="anchor"></a>Scattermatrix</h4>
+<div id="scattermatrix" class="section level6">
+<h6>Scattermatrix</h6>
 <div class="figure">
-<img src="codebook_files/figure-html/cb_bfi_BFIK_agree_3ecf42ecf51e6dcb8f3bc0b28b4dcc44_3a54e7ef5210abd8fa851392f4bf3905-1.png" alt="Scatterplot" width="604.724409448819"><p class="caption">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_agree_3ecf42ecf51e6dcb8f3bc0b28b4dcc44_f18c1d9e8f00f99fd88610ef4d90f31d-1.png" alt="Scatterplot" width="604.724409448819"><p class="caption">
 Scatterplot
 </p>
+</div>
+<pre><code>## No viewer found, probably documenting or testing</code></pre>
+</div>
 </div>
 </div>
 <div id="BFIK_agree_summary" class="section level4">
@@ -750,21 +758,28 @@ Scatterplot
 <a href="#BFIK_open_likert" class="anchor"></a>Overview</h4>
 <p><strong>Reliability</strong>: ω<sub>total</sub> [95% CI] = 166.85 [not computed].</p>
 <p><strong>Missing</strong>: 0.</p>
-<p><img src="codebook_files/figure-html/cb_bfi_BFIK_open_likert-23-1.png" width="700"></p>
-<p><img src="codebook_files/figure-html/cb_bfi_BFIK_open_distribution-25-1.png" width="700"></p>
+<div class="figure">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_open_likert-23-1.png" alt="Likert plot of scale BFIK_open items" width="700"><p class="caption">
+Likert plot of scale BFIK_open items
+</p>
+</div>
+<div class="figure">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_open_distribution-24-1.png" alt="Distribution of scale BFIK_open" width="700"><p class="caption">
+Distribution of scale BFIK_open
+</p>
+</div>
 </div>
 <div id="BFIK_open_reliability" class="section level4">
 <h4 class="hasAnchor">
 <a href="#BFIK_open_reliability" class="anchor"></a>Reliability details</h4>
 <pre><code>## No viewer found, probably documenting or testing</code></pre>
+<div id="scale-diagnosis-1" class="section level5">
+<h5 class="hasAnchor">
+<a href="#scale-diagnosis-1" class="anchor"></a>Scale diagnosis</h5>
+<div id="reliability-internal-consistency-estimates-1" class="section level6">
+<h6>Reliability (internal consistency) estimates</h6>
 </div>
 </div>
-<div id="scale-diagnosis-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#scale-diagnosis-1" class="anchor"></a>Scale diagnosis</h3>
-<div id="reliability-internal-consistency-estimates-1" class="section level4">
-<h4 class="hasAnchor">
-<a href="#reliability-internal-consistency-estimates-1" class="anchor"></a>Reliability (internal consistency) estimates</h4>
 <div id="scale-structure-1" class="section level5">
 <h5 class="hasAnchor">
 <a href="#scale-structure-1" class="anchor"></a>Scale structure</h5>
@@ -844,16 +859,12 @@ Scatterplot
 </tbody></table>
 <p>Note: the normal point estimate and confidence interval for omega are based on the procedure suggested by Dunn, Baguley &amp; Brunsden (2013) using the MBESS function ci.reliability, whereas the psych package point estimate was suggested in Revelle &amp; Zinbarg (2008). See the help (‘?ufs::scaleStructure’) for more information.</p>
 </div>
-</div>
-</div>
-<div id="eigen-values-1" class="section level4">
-<h4 class="hasAnchor">
-<a href="#eigen-values-1" class="anchor"></a>Eigen values</h4>
+<div id="eigen-values-1" class="section level6">
+<h6>Eigen values</h6>
 <p>1.697, 1.074, 0.881 &amp; 0.349</p>
 </div>
-<div id="factor-analysis-reproducing-only-shared-variance-1" class="section level4">
-<h4 class="hasAnchor">
-<a href="#factor-analysis-reproducing-only-shared-variance-1" class="anchor"></a>Factor analysis (reproducing only shared variance)</h4>
+<div id="factor-analysis-reproducing-only-shared-variance-1" class="section level6">
+<h6>Factor analysis (reproducing only shared variance)</h6>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -884,9 +895,8 @@ Scatterplot
 </tbody>
 </table>
 </div>
-<div id="component-analysis-reproducing-full-covariance-matrix-1" class="section level4">
-<h4 class="hasAnchor">
-<a href="#component-analysis-reproducing-full-covariance-matrix-1" class="anchor"></a>Component analysis (reproducing full covariance matrix)</h4>
+<div id="component-analysis-reproducing-full-covariance-matrix-1" class="section level6">
+<h6>Component analysis (reproducing full covariance matrix)</h6>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -917,9 +927,8 @@ Scatterplot
 </tbody>
 </table>
 </div>
-<div id="item-descriptives-1" class="section level4">
-<h4 class="hasAnchor">
-<a href="#item-descriptives-1" class="anchor"></a>Item descriptives</h4>
+<div id="item-descriptives-1" class="section level6">
+<h6>Item descriptives</h6>
 <table class="table">
 <thead><tr class="header">
 <th align="right">mea</th>
@@ -1020,13 +1029,15 @@ Scatterplot
 </tbody>
 </table>
 </div>
-<div id="scattermatrix-1" class="section level4">
-<h4 class="hasAnchor">
-<a href="#scattermatrix-1" class="anchor"></a>Scattermatrix</h4>
+<div id="scattermatrix-1" class="section level6">
+<h6>Scattermatrix</h6>
 <div class="figure">
-<img src="codebook_files/figure-html/cb_bfi_BFIK_open_425d87c52089e0fcb74b6d45c3ab1212_24409788a668c6f738593bb6fe841a89-1.png" alt="Scatterplot" width="604.724409448819"><p class="caption">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_open_425d87c52089e0fcb74b6d45c3ab1212_45fb35c3ff27d9a0276b97ebe49e92da-1.png" alt="Scatterplot" width="604.724409448819"><p class="caption">
 Scatterplot
 </p>
+</div>
+<pre><code>## No viewer found, probably documenting or testing</code></pre>
+</div>
 </div>
 </div>
 <div id="BFIK_open_summary" class="section level4">
@@ -1142,21 +1153,28 @@ Scatterplot
 <a href="#BFIK_consc_likert" class="anchor"></a>Overview</h4>
 <p><strong>Reliability</strong>: ω<sub>ordinal</sub> [95% CI] = 0.61 [0.38;0.84].</p>
 <p><strong>Missing</strong>: 0.</p>
-<p><img src="codebook_files/figure-html/cb_bfi_BFIK_consc_likert-34-1.png" width="700"></p>
-<p><img src="codebook_files/figure-html/cb_bfi_BFIK_consc_distribution-36-1.png" width="700"></p>
+<div class="figure">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_consc_likert-33-1.png" alt="Likert plot of scale BFIK_consc items" width="700"><p class="caption">
+Likert plot of scale BFIK_consc items
+</p>
+</div>
+<div class="figure">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_consc_distribution-34-1.png" alt="Distribution of scale BFIK_consc" width="700"><p class="caption">
+Distribution of scale BFIK_consc
+</p>
+</div>
 </div>
 <div id="BFIK_consc_reliability" class="section level4">
 <h4 class="hasAnchor">
 <a href="#BFIK_consc_reliability" class="anchor"></a>Reliability details</h4>
 <pre><code>## No viewer found, probably documenting or testing</code></pre>
+<div id="scale-diagnosis-2" class="section level5">
+<h5 class="hasAnchor">
+<a href="#scale-diagnosis-2" class="anchor"></a>Scale diagnosis</h5>
+<div id="reliability-internal-consistency-estimates-2" class="section level6">
+<h6>Reliability (internal consistency) estimates</h6>
 </div>
 </div>
-<div id="scale-diagnosis-2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#scale-diagnosis-2" class="anchor"></a>Scale diagnosis</h3>
-<div id="reliability-internal-consistency-estimates-2" class="section level4">
-<h4 class="hasAnchor">
-<a href="#reliability-internal-consistency-estimates-2" class="anchor"></a>Reliability (internal consistency) estimates</h4>
 <div id="scale-structure-2" class="section level5">
 <h5 class="hasAnchor">
 <a href="#scale-structure-2" class="anchor"></a>Scale structure</h5>
@@ -1262,16 +1280,12 @@ Scatterplot
 <p>Note: the normal point estimate and confidence interval for omega are based on the procedure suggested by Dunn, Baguley &amp; Brunsden (2013) using the MBESS function ci.reliability, whereas the psych package point estimate was suggested in Revelle &amp; Zinbarg (2008). See the help (‘?ufs::scaleStructure’) for more information.</p>
 </div>
 </div>
-</div>
-</div>
-<div id="eigen-values-2" class="section level4">
-<h4 class="hasAnchor">
-<a href="#eigen-values-2" class="anchor"></a>Eigen values</h4>
+<div id="eigen-values-2" class="section level6">
+<h6>Eigen values</h6>
 <p>2.473, 0.777, 0.539 &amp; 0.211</p>
 </div>
-<div id="factor-analysis-reproducing-only-shared-variance-2" class="section level4">
-<h4 class="hasAnchor">
-<a href="#factor-analysis-reproducing-only-shared-variance-2" class="anchor"></a>Factor analysis (reproducing only shared variance)</h4>
+<div id="factor-analysis-reproducing-only-shared-variance-2" class="section level6">
+<h6>Factor analysis (reproducing only shared variance)</h6>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -1297,9 +1311,8 @@ Scatterplot
 </tbody>
 </table>
 </div>
-<div id="component-analysis-reproducing-full-covariance-matrix-2" class="section level4">
-<h4 class="hasAnchor">
-<a href="#component-analysis-reproducing-full-covariance-matrix-2" class="anchor"></a>Component analysis (reproducing full covariance matrix)</h4>
+<div id="component-analysis-reproducing-full-covariance-matrix-2" class="section level6">
+<h6>Component analysis (reproducing full covariance matrix)</h6>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -1325,9 +1338,8 @@ Scatterplot
 </tbody>
 </table>
 </div>
-<div id="item-descriptives-2" class="section level4">
-<h4 class="hasAnchor">
-<a href="#item-descriptives-2" class="anchor"></a>Item descriptives</h4>
+<div id="item-descriptives-2" class="section level6">
+<h6>Item descriptives</h6>
 <table class="table">
 <thead><tr class="header">
 <th align="right">mea</th>
@@ -1428,13 +1440,15 @@ Scatterplot
 </tbody>
 </table>
 </div>
-<div id="scattermatrix-2" class="section level4">
-<h4 class="hasAnchor">
-<a href="#scattermatrix-2" class="anchor"></a>Scattermatrix</h4>
+<div id="scattermatrix-2" class="section level6">
+<h6>Scattermatrix</h6>
 <div class="figure">
-<img src="codebook_files/figure-html/cb_bfi_BFIK_consc_ca2f3e2dbabc8ed4f17ee39ada9da6e0_f423cc247ab2f0ecfd759367818998cc-1.png" alt="Scatterplot" width="604.724409448819"><p class="caption">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_consc_ca2f3e2dbabc8ed4f17ee39ada9da6e0_57b60d48ccd3627dbca16dbe8d435a28-1.png" alt="Scatterplot" width="604.724409448819"><p class="caption">
 Scatterplot
 </p>
+</div>
+<pre><code>## No viewer found, probably documenting or testing</code></pre>
+</div>
 </div>
 </div>
 <div id="BFIK_consc_summary" class="section level4">
@@ -1550,21 +1564,28 @@ Scatterplot
 <a href="#BFIK_extra_likert" class="anchor"></a>Overview</h4>
 <p><strong>Reliability</strong>: ω<sub>ordinal</sub> [95% CI] = 0.78 [0.64;0.91].</p>
 <p><strong>Missing</strong>: 0.</p>
-<p><img src="codebook_files/figure-html/cb_bfi_BFIK_extra_likert-45-1.png" width="700"></p>
-<p><img src="codebook_files/figure-html/cb_bfi_BFIK_extra_distribution-47-1.png" width="700"></p>
+<div class="figure">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_extra_likert-43-1.png" alt="Likert plot of scale BFIK_extra items" width="700"><p class="caption">
+Likert plot of scale BFIK_extra items
+</p>
+</div>
+<div class="figure">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_extra_distribution-44-1.png" alt="Distribution of scale BFIK_extra" width="700"><p class="caption">
+Distribution of scale BFIK_extra
+</p>
+</div>
 </div>
 <div id="BFIK_extra_reliability" class="section level4">
 <h4 class="hasAnchor">
 <a href="#BFIK_extra_reliability" class="anchor"></a>Reliability details</h4>
 <pre><code>## No viewer found, probably documenting or testing</code></pre>
+<div id="scale-diagnosis-3" class="section level5">
+<h5 class="hasAnchor">
+<a href="#scale-diagnosis-3" class="anchor"></a>Scale diagnosis</h5>
+<div id="reliability-internal-consistency-estimates-3" class="section level6">
+<h6>Reliability (internal consistency) estimates</h6>
 </div>
 </div>
-<div id="scale-diagnosis-3" class="section level3">
-<h3 class="hasAnchor">
-<a href="#scale-diagnosis-3" class="anchor"></a>Scale diagnosis</h3>
-<div id="reliability-internal-consistency-estimates-3" class="section level4">
-<h4 class="hasAnchor">
-<a href="#reliability-internal-consistency-estimates-3" class="anchor"></a>Reliability (internal consistency) estimates</h4>
 <div id="scale-structure-3" class="section level5">
 <h5 class="hasAnchor">
 <a href="#scale-structure-3" class="anchor"></a>Scale structure</h5>
@@ -1670,16 +1691,12 @@ Scatterplot
 <p>Note: the normal point estimate and confidence interval for omega are based on the procedure suggested by Dunn, Baguley &amp; Brunsden (2013) using the MBESS function ci.reliability, whereas the psych package point estimate was suggested in Revelle &amp; Zinbarg (2008). See the help (‘?ufs::scaleStructure’) for more information.</p>
 </div>
 </div>
-</div>
-</div>
-<div id="eigen-values-3" class="section level4">
-<h4 class="hasAnchor">
-<a href="#eigen-values-3" class="anchor"></a>Eigen values</h4>
+<div id="eigen-values-3" class="section level6">
+<h6>Eigen values</h6>
 <p>3.077, 0.527, 0.297 &amp; 0.099</p>
 </div>
-<div id="factor-analysis-reproducing-only-shared-variance-3" class="section level4">
-<h4 class="hasAnchor">
-<a href="#factor-analysis-reproducing-only-shared-variance-3" class="anchor"></a>Factor analysis (reproducing only shared variance)</h4>
+<div id="factor-analysis-reproducing-only-shared-variance-3" class="section level6">
+<h6>Factor analysis (reproducing only shared variance)</h6>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -1705,9 +1722,8 @@ Scatterplot
 </tbody>
 </table>
 </div>
-<div id="component-analysis-reproducing-full-covariance-matrix-3" class="section level4">
-<h4 class="hasAnchor">
-<a href="#component-analysis-reproducing-full-covariance-matrix-3" class="anchor"></a>Component analysis (reproducing full covariance matrix)</h4>
+<div id="component-analysis-reproducing-full-covariance-matrix-3" class="section level6">
+<h6>Component analysis (reproducing full covariance matrix)</h6>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -1733,9 +1749,8 @@ Scatterplot
 </tbody>
 </table>
 </div>
-<div id="item-descriptives-3" class="section level4">
-<h4 class="hasAnchor">
-<a href="#item-descriptives-3" class="anchor"></a>Item descriptives</h4>
+<div id="item-descriptives-3" class="section level6">
+<h6>Item descriptives</h6>
 <table class="table">
 <thead><tr class="header">
 <th align="right">mea</th>
@@ -1836,13 +1851,15 @@ Scatterplot
 </tbody>
 </table>
 </div>
-<div id="scattermatrix-3" class="section level4">
-<h4 class="hasAnchor">
-<a href="#scattermatrix-3" class="anchor"></a>Scattermatrix</h4>
+<div id="scattermatrix-3" class="section level6">
+<h6>Scattermatrix</h6>
 <div class="figure">
-<img src="codebook_files/figure-html/cb_bfi_BFIK_extra_dec380b9511e67ade57d70c05b652c73_25a2b1089f1768c4de3adbebe0c4a0f6-1.png" alt="Scatterplot" width="604.724409448819"><p class="caption">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_extra_dec380b9511e67ade57d70c05b652c73_8554900f3e754bfb31e0c4e782cef7e8-1.png" alt="Scatterplot" width="604.724409448819"><p class="caption">
 Scatterplot
 </p>
+</div>
+<pre><code>## No viewer found, probably documenting or testing</code></pre>
+</div>
 </div>
 </div>
 <div id="BFIK_extra_summary" class="section level4">
@@ -1958,21 +1975,28 @@ Scatterplot
 <a href="#BFIK_neuro_likert" class="anchor"></a>Overview</h4>
 <p><strong>Reliability</strong>: ω<sub>total</sub> [95% CI] = 0.82 [not computed].</p>
 <p><strong>Missing</strong>: 0.</p>
-<p><img src="codebook_files/figure-html/cb_bfi_BFIK_neuro_likert-56-1.png" width="700"></p>
-<p><img src="codebook_files/figure-html/cb_bfi_BFIK_neuro_distribution-58-1.png" width="700"></p>
+<div class="figure">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_neuro_likert-53-1.png" alt="Likert plot of scale BFIK_neuro items" width="700"><p class="caption">
+Likert plot of scale BFIK_neuro items
+</p>
+</div>
+<div class="figure">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_neuro_distribution-54-1.png" alt="Distribution of scale BFIK_neuro" width="700"><p class="caption">
+Distribution of scale BFIK_neuro
+</p>
+</div>
 </div>
 <div id="BFIK_neuro_reliability" class="section level4">
 <h4 class="hasAnchor">
 <a href="#BFIK_neuro_reliability" class="anchor"></a>Reliability details</h4>
 <pre><code>## No viewer found, probably documenting or testing</code></pre>
+<div id="scale-diagnosis-4" class="section level5">
+<h5 class="hasAnchor">
+<a href="#scale-diagnosis-4" class="anchor"></a>Scale diagnosis</h5>
+<div id="reliability-internal-consistency-estimates-4" class="section level6">
+<h6>Reliability (internal consistency) estimates</h6>
 </div>
 </div>
-<div id="scale-diagnosis-4" class="section level3">
-<h3 class="hasAnchor">
-<a href="#scale-diagnosis-4" class="anchor"></a>Scale diagnosis</h3>
-<div id="reliability-internal-consistency-estimates-4" class="section level4">
-<h4 class="hasAnchor">
-<a href="#reliability-internal-consistency-estimates-4" class="anchor"></a>Reliability (internal consistency) estimates</h4>
 <div id="scale-structure-4" class="section level5">
 <h5 class="hasAnchor">
 <a href="#scale-structure-4" class="anchor"></a>Scale structure</h5>
@@ -2052,16 +2076,12 @@ Scatterplot
 </tbody></table>
 <p>Note: the normal point estimate and confidence interval for omega are based on the procedure suggested by Dunn, Baguley &amp; Brunsden (2013) using the MBESS function ci.reliability, whereas the psych package point estimate was suggested in Revelle &amp; Zinbarg (2008). See the help (‘?ufs::scaleStructure’) for more information.</p>
 </div>
-</div>
-</div>
-<div id="eigen-values-4" class="section level4">
-<h4 class="hasAnchor">
-<a href="#eigen-values-4" class="anchor"></a>Eigen values</h4>
+<div id="eigen-values-4" class="section level6">
+<h6>Eigen values</h6>
 <p>2.015, 0.723 &amp; 0.262</p>
 </div>
-<div id="factor-analysis-reproducing-only-shared-variance-4" class="section level4">
-<h4 class="hasAnchor">
-<a href="#factor-analysis-reproducing-only-shared-variance-4" class="anchor"></a>Factor analysis (reproducing only shared variance)</h4>
+<div id="factor-analysis-reproducing-only-shared-variance-4" class="section level6">
+<h6>Factor analysis (reproducing only shared variance)</h6>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -2083,9 +2103,8 @@ Scatterplot
 </tbody>
 </table>
 </div>
-<div id="component-analysis-reproducing-full-covariance-matrix-4" class="section level4">
-<h4 class="hasAnchor">
-<a href="#component-analysis-reproducing-full-covariance-matrix-4" class="anchor"></a>Component analysis (reproducing full covariance matrix)</h4>
+<div id="component-analysis-reproducing-full-covariance-matrix-4" class="section level6">
+<h6>Component analysis (reproducing full covariance matrix)</h6>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -2107,9 +2126,8 @@ Scatterplot
 </tbody>
 </table>
 </div>
-<div id="item-descriptives-4" class="section level4">
-<h4 class="hasAnchor">
-<a href="#item-descriptives-4" class="anchor"></a>Item descriptives</h4>
+<div id="item-descriptives-4" class="section level6">
+<h6>Item descriptives</h6>
 <table class="table">
 <thead><tr class="header">
 <th align="right">mea</th>
@@ -2191,13 +2209,15 @@ Scatterplot
 </tbody>
 </table>
 </div>
-<div id="scattermatrix-4" class="section level4">
-<h4 class="hasAnchor">
-<a href="#scattermatrix-4" class="anchor"></a>Scattermatrix</h4>
+<div id="scattermatrix-4" class="section level6">
+<h6>Scattermatrix</h6>
 <div class="figure">
-<img src="codebook_files/figure-html/cb_bfi_BFIK_neuro_16bd692965e7fa4c268916ae678861ad_2c098d07245287f0b1b559fb45dbabcd-1.png" alt="Scatterplot" width="604.724409448819"><p class="caption">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_neuro_16bd692965e7fa4c268916ae678861ad_16e1b0e882e43dd32ecb98af0a20106e-1.png" alt="Scatterplot" width="604.724409448819"><p class="caption">
 Scatterplot
 </p>
+</div>
+<pre><code>## No viewer found, probably documenting or testing</code></pre>
+</div>
 </div>
 </div>
 <div id="BFIK_neuro_summary" class="section level4">
@@ -2292,7 +2312,11 @@ Scatterplot
 <div id="age_distribution" class="section level4">
 <h4 class="hasAnchor">
 <a href="#age_distribution" class="anchor"></a>Distribution</h4>
-<p><img src="codebook_files/figure-html/cb_bfi_age_distribution-66-1.png" width="700"></p>
+<div class="figure">
+<img src="codebook_files/figure-html/cb_bfi_age_distribution-62-1.png" alt="Distribution of values for age" width="700"><p class="caption">
+Distribution of values for age
+</p>
+</div>
 <p>0 missing values.</p>
 </div>
 <div id="age_summary" class="section level4">
@@ -2328,7 +2352,6 @@ Scatterplot
 </table>
 </div>
 </div>
-</div>
 <div id="missingness-report" class="section level2">
 <h2 class="hasAnchor">
 <a href="#missingness-report" class="anchor"></a>Missingness report</h2>
@@ -2345,7 +2368,7 @@ Scatterplot
 <script type="application/json" data-for="htmlwidget-8a33249b831edf871dbd">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0\" data-max=\"28\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0\" data-max=\"1\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"2.5\" data-max=\"30.5\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"number\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"0.563069229910459\" data-max=\"4.67063323488527\" data-scale=\"15\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#session\">session<\/a>","<a href=\"#created\">created<\/a>","<a href=\"#modified\">modified<\/a>","<a href=\"#ended\">ended<\/a>","<a href=\"#expired\">expired<\/a>","<a href=\"#BFIK_open_2\">BFIK_open_2<\/a>","<a href=\"#BFIK_agree_4R\">BFIK_agree_4R<\/a>","<a href=\"#BFIK_extra_2\">BFIK_extra_2<\/a>","<a href=\"#BFIK_agree_1R\">BFIK_agree_1R<\/a>","<a href=\"#BFIK_open_1\">BFIK_open_1<\/a>","<a href=\"#BFIK_neuro_2R\">BFIK_neuro_2R<\/a>","<a href=\"#BFIK_consc_3\">BFIK_consc_3<\/a>","<a href=\"#BFIK_consc_4\">BFIK_consc_4<\/a>","<a href=\"#BFIK_consc_2R\">BFIK_consc_2R<\/a>","<a href=\"#BFIK_agree_3R\">BFIK_agree_3R<\/a>","<a href=\"#BFIK_extra_3R\">BFIK_extra_3R<\/a>","<a href=\"#BFIK_neuro_3\">BFIK_neuro_3<\/a>","<a href=\"#BFIK_neuro_4\">BFIK_neuro_4<\/a>","<a href=\"#BFIK_agree_2\">BFIK_agree_2<\/a>","<a href=\"#BFIK_consc_1\">BFIK_consc_1<\/a>","<a href=\"#BFIK_open_4\">BFIK_open_4<\/a>","<a href=\"#BFIK_extra_4\">BFIK_extra_4<\/a>","<a href=\"#BFIK_extra_1R\">BFIK_extra_1R<\/a>","<a href=\"#BFIK_open_3\">BFIK_open_3<\/a>","<a href=\"#BFIK_agree\">BFIK_agree<\/a>","<a href=\"#BFIK_open\">BFIK_open<\/a>","<a href=\"#BFIK_consc\">BFIK_consc<\/a>","<a href=\"#BFIK_extra\">BFIK_extra<\/a>","<a href=\"#BFIK_neuro\">BFIK_neuro<\/a>","<a href=\"#age\">age<\/a>"],[null,"user first opened survey","user last edited survey","user finished survey",null,"__Ich bin tiefsinnig, denke gerne über Sachen nach.__","__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__","__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__","__Ich neige dazu, andere zu kritisieren.__","__Ich bin vielseitig interessiert.__","__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__","__Ich bin tüchtig und arbeite flott.__","__Ich mache Pläne und führe sie auch durch.__","__Ich bin bequem, neige zur Faulheit.__","__Ich kann mich kalt und distanziert verhalten.__","__Ich bin eher der \"stille Typ\", wortkarg.__","__Ich mache mir viele Sorgen.__","__Ich werde leicht nervös und unsicher.__","__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__","__Ich erledige Aufgaben gründlich.__","__Ich schätze künstlerische und ästhetische Eindrücke.__","__Ich gehe aus mir heraus, bin gesellig.__","__Ich bin eher zurückhaltend, reserviert.__","__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__","4 BFIK_agree items aggregated by aggregation_function","4 BFIK_open items aggregated by aggregation_function","4 BFIK_consc items aggregated by aggregation_function","4 BFIK_extra items aggregated by aggregation_function","3 BFIK_neuro items aggregated by aggregation_function","Alter"],[null,null,null,null,null,"rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button","rating_button",null,null,null,null,null,null],[null,null,null,null,null,"5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5","5",null,null,null,null,null,null],["character","POSIXct","POSIXct","POSIXct","logical","haven_labelled","haven_labelled","haven_labelled","haven_labelled","haven_labelled","haven_labelled","haven_labelled","haven_labelled","haven_labelled","haven_labelled","haven_labelled","haven_labelled","haven_labelled","haven_labelled","haven_labelled","haven_labelled","haven_labelled","haven_labelled","haven_labelled","numeric","numeric","numeric","numeric","numeric","numeric"],[null,null,null,null,null,"1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","5. 1: Trifft überhaupt nicht zu,<br>4. 2,<br>3. 3,<br>2. 4,<br>1. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.","1. 1: Trifft überhaupt nicht zu,<br>2. 2,<br>3. 3,<br>4. 4,<br>5. 5: Trifft voll und ganz zu,<br>NA. Item was never rendered for this user.",null,null,null,null,null,null],[null,null,null,null,null,"0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0",null,null,null,null,null,null],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,"BFIK_agree_4R, BFIK_agree_1R, BFIK_agree_3R, BFIK_agree_2","BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3","BFIK_consc_3, BFIK_consc_4, BFIK_consc_2R, BFIK_consc_1","BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R","BFIK_neuro_2R, BFIK_neuro_3, BFIK_neuro_4",null],[null,null,null,null,null,"4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22",null,null,null,null,null,null],[0,0,0,0,28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],[28,28,28,28,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[0,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,": ",null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],["64","2016-07-08 09:54:16","2016-07-08 09:55:43","2016-07-08 09:55:43",null,"2","1","1","2","2","2","1","2","1","1","1","1","1","1","2","1","1","1","2"," 1.5"," 3.0"," 2.0"," 1.5"," 1.3","19.0"],[null,"2016-07-08 12:47:07","2016-07-08 14:23:22","2016-07-08 14:23:22",null,"4.0","3.0","4.0","3.0","5.0","3.0","4.0","4.0","4.0","3.0","4.0","3.0","2.0","4.0","4.0","4.0","4.0","4.0","4.5"," 3.0"," 4.2"," 3.8"," 4.2"," 2.8","32.0"],["64","2016-11-02 21:19:50","2016-11-02 21:21:53","2016-11-02 21:21:53",null,"5","5","5","5","5","5","5","5","5","5","5","5","4","5","5","5","5","5","5"," 4.8"," 5.0"," 5.0"," 5.0"," 4.3","38.0"],[null,null,null,null,null,4.21428571428571,2.92857142857143,4.17857142857143,3,4.39285714285714,3.10714285714286,3.5,3.85714285714286,3.17857142857143,3.03571428571429,3.75,3.07142857142857,2.5,3.5,4.07142857142857,4.21428571428571,3.85714285714286,3.60714285714286,4.21428571428571,3.11607142857143,4.25892857142857,3.65178571428571,3.84821428571429,2.89285714285714,30.5],[null,null,null,null,null,0.738223235189428,1.1841099620037,1.09048312190214,0.942809041582063,0.831744517143901,0.875141711880434,1.0363754503432,0.755928946018454,1.30677923065526,1.29048204766433,1.20569635634504,1.27449543912037,1.20185042515466,1.26197963240006,0.899735410842437,0.956736074026644,1.11269728052837,1.19688749786255,0.956736074026644,0.931650623140394,0.563069229910459,0.791562232042287,1.00999469588423,0.925423143916816,4.67063323488527],[0,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],[null,null,null,null,null,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,6,null,null,null,null,null,null],[null,null,null,null,null,"▁▁▁▁▁▇▁▅","▂▇▁▃▁▅▁▂","▁▁▁▁▁▇▁▇","▇▁▅▁▁▆▁▁","▁▁▂▁▁▃▁▇","▆▁▇▁▁▇▁▁","▁▂▁▅▁▇▁▂","▁▁▃▁▁▇▁▂","▃▂▁▃▁▇▁▂","▂▇▁▃▁▇▁▃","▂▂▁▅▁▇▁▇","▃▇▁▇▁▅▁▅","▆▁▇▁▁▂▁▇","▂▅▁▅▁▇▁▆","▁▁▂▁▁▇▁▇","▁▁▁▂▁▆▁▇","▁▂▁▃▁▇▁▆","▁▅▁▆▁▇▁▇","▁▁▂▁▁▅▁▇","▂▇▅▅▃","▂▃▁▇▇","▂▃▇▇▃","▂▂▃▅▇","▅▇▇▆▇","▂▂▇▇▅"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>label<\/th>\n      <th>type<\/th>\n      <th>type_options<\/th>\n      <th>data_type<\/th>\n      <th>value_labels<\/th>\n      <th>optional<\/th>\n      <th>scale_item_names<\/th>\n      <th>item_order<\/th>\n      <th>n_missing<\/th>\n      <th>complete_rate<\/th>\n      <th>n_unique<\/th>\n      <th>empty<\/th>\n      <th>count<\/th>\n      <th>min<\/th>\n      <th>median<\/th>\n      <th>max<\/th>\n      <th>mean<\/th>\n      <th>sd<\/th>\n      <th>whitespace<\/th>\n      <th>n_value_labels<\/th>\n      <th>hist<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":[9,10,11,12,17,18,19,20]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
 {
   "name": "MOCK Big Five Inventory dataset (German metadata demo)",
-  "description": "a small mock Big Five Inventory dataset\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name          |label                                                                      | n_missing|\n|:-------------|:--------------------------------------------------------------------------|---------:|\n|session       |NA                                                                         |         0|\n|created       |user first opened survey                                                   |         0|\n|modified      |user last edited survey                                                    |         0|\n|ended         |user finished survey                                                       |         0|\n|expired       |NA                                                                         |        28|\n|BFIK_open_2   |__Ich bin tiefsinnig, denke gerne über Sachen nach.__                      |         0|\n|BFIK_agree_4R |__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__       |         0|\n|BFIK_extra_2  |__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__           |         0|\n|BFIK_agree_1R |__Ich neige dazu, andere zu kritisieren.__                                 |         0|\n|BFIK_open_1   |__Ich bin vielseitig interessiert.__                                       |         0|\n|BFIK_neuro_2R |__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__ |         0|\n|BFIK_consc_3  |__Ich bin tüchtig und arbeite flott.__                                     |         0|\n|BFIK_consc_4  |__Ich mache Pläne und führe sie auch durch.__                              |         0|\n|BFIK_consc_2R |__Ich bin bequem, neige zur Faulheit.__                                    |         0|\n|BFIK_agree_3R |__Ich kann mich kalt und distanziert verhalten.__                          |         0|\n|BFIK_extra_3R |__Ich bin eher der \"stille Typ\", wortkarg.__                               |         0|\n|BFIK_neuro_3  |__Ich mache mir viele Sorgen.__                                            |         0|\n|BFIK_neuro_4  |__Ich werde leicht nervös und unsicher.__                                  |         0|\n|BFIK_agree_2  |__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__  |         0|\n|BFIK_consc_1  |__Ich erledige Aufgaben gründlich.__                                       |         0|\n|BFIK_open_4   |__Ich schätze künstlerische und ästhetische Eindrücke.__                   |         0|\n|BFIK_extra_4  |__Ich gehe aus mir heraus, bin gesellig.__                                 |         0|\n|BFIK_extra_1R |__Ich bin eher zurückhaltend, reserviert.__                                |         0|\n|BFIK_open_3   |__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__             |         0|\n|BFIK_agree    |4 BFIK_agree items aggregated by aggregation_function                      |         0|\n|BFIK_open     |4 BFIK_open items aggregated by aggregation_function                       |         0|\n|BFIK_consc    |4 BFIK_consc items aggregated by aggregation_function                      |         0|\n|BFIK_extra    |4 BFIK_extra items aggregated by aggregation_function                      |         0|\n|BFIK_neuro    |3 BFIK_neuro items aggregated by aggregation_function                      |         0|\n|age           |Alter                                                                      |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.0).",
+  "description": "a small mock Big Five Inventory dataset\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name          |label                                                                      | n_missing|\n|:-------------|:--------------------------------------------------------------------------|---------:|\n|session       |NA                                                                         |         0|\n|created       |user first opened survey                                                   |         0|\n|modified      |user last edited survey                                                    |         0|\n|ended         |user finished survey                                                       |         0|\n|expired       |NA                                                                         |        28|\n|BFIK_open_2   |__Ich bin tiefsinnig, denke gerne über Sachen nach.__                      |         0|\n|BFIK_agree_4R |__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__       |         0|\n|BFIK_extra_2  |__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__           |         0|\n|BFIK_agree_1R |__Ich neige dazu, andere zu kritisieren.__                                 |         0|\n|BFIK_open_1   |__Ich bin vielseitig interessiert.__                                       |         0|\n|BFIK_neuro_2R |__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__ |         0|\n|BFIK_consc_3  |__Ich bin tüchtig und arbeite flott.__                                     |         0|\n|BFIK_consc_4  |__Ich mache Pläne und führe sie auch durch.__                              |         0|\n|BFIK_consc_2R |__Ich bin bequem, neige zur Faulheit.__                                    |         0|\n|BFIK_agree_3R |__Ich kann mich kalt und distanziert verhalten.__                          |         0|\n|BFIK_extra_3R |__Ich bin eher der \"stille Typ\", wortkarg.__                               |         0|\n|BFIK_neuro_3  |__Ich mache mir viele Sorgen.__                                            |         0|\n|BFIK_neuro_4  |__Ich werde leicht nervös und unsicher.__                                  |         0|\n|BFIK_agree_2  |__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__  |         0|\n|BFIK_consc_1  |__Ich erledige Aufgaben gründlich.__                                       |         0|\n|BFIK_open_4   |__Ich schätze künstlerische und ästhetische Eindrücke.__                   |         0|\n|BFIK_extra_4  |__Ich gehe aus mir heraus, bin gesellig.__                                 |         0|\n|BFIK_extra_1R |__Ich bin eher zurückhaltend, reserviert.__                                |         0|\n|BFIK_open_3   |__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__             |         0|\n|BFIK_agree    |4 BFIK_agree items aggregated by aggregation_function                      |         0|\n|BFIK_open     |4 BFIK_open items aggregated by aggregation_function                       |         0|\n|BFIK_consc    |4 BFIK_consc items aggregated by aggregation_function                      |         0|\n|BFIK_extra    |4 BFIK_extra items aggregated by aggregation_function                      |         0|\n|BFIK_neuro    |3 BFIK_neuro items aggregated by aggregation_function                      |         0|\n|age           |Alter                                                                      |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.2).",
   "identifier": "doi:10.5281/zenodo.1326520",
   "datePublished": "2016-06-01",
   "creator": {
@@ -2593,255 +2616,255 @@ Scatterplot
   ]
 }
 </script><details><p><summary>JSON-LD metadata</summary> The following JSON-LD can be found by search engines, if you share this codebook publicly on the web.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">{</span></span>
-<span id="cb19-2"><a href="#cb19-2"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MOCK Big Five Inventory dataset (German metadata demo)"</span><span class="fu">,</span></span>
-<span id="cb19-3"><a href="#cb19-3"></a>  <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"a small mock Big Five Inventory dataset</span><span class="ch">\n\n\n</span><span class="st">## Table of variables</span><span class="ch">\n</span><span class="st">This table contains variable names, labels, and number of missing values.</span><span class="ch">\n</span><span class="st">See the complete codebook for more.</span><span class="ch">\n\n</span><span class="st">|name          |label                                                                      | n_missing|</span><span class="ch">\n</span><span class="st">|:-------------|:--------------------------------------------------------------------------|---------:|</span><span class="ch">\n</span><span class="st">|session       |NA                                                                         |         0|</span><span class="ch">\n</span><span class="st">|created       |user first opened survey                                                   |         0|</span><span class="ch">\n</span><span class="st">|modified      |user last edited survey                                                    |         0|</span><span class="ch">\n</span><span class="st">|ended         |user finished survey                                                       |         0|</span><span class="ch">\n</span><span class="st">|expired       |NA                                                                         |        28|</span><span class="ch">\n</span><span class="st">|BFIK_open_2   |__Ich bin tiefsinnig, denke gerne über Sachen nach.__                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_4R |__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_2  |__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__           |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_1R |__Ich neige dazu, andere zu kritisieren.__                                 |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open_1   |__Ich bin vielseitig interessiert.__                                       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro_2R |__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__ |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_3  |__Ich bin tüchtig und arbeite flott.__                                     |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_4  |__Ich mache Pläne und führe sie auch durch.__                              |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_2R |__Ich bin bequem, neige zur Faulheit.__                                    |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_3R |__Ich kann mich kalt und distanziert verhalten.__                          |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_3R |__Ich bin eher der </span><span class="ch">\"</span><span class="st">stille Typ</span><span class="ch">\"</span><span class="st">, wortkarg.__                               |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro_3  |__Ich mache mir viele Sorgen.__                                            |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro_4  |__Ich werde leicht nervös und unsicher.__                                  |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_2  |__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__  |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_1  |__Ich erledige Aufgaben gründlich.__                                       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open_4   |__Ich schätze künstlerische und ästhetische Eindrücke.__                   |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_4  |__Ich gehe aus mir heraus, bin gesellig.__                                 |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_1R |__Ich bin eher zurückhaltend, reserviert.__                                |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open_3   |__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__             |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree    |4 BFIK_agree items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open     |4 BFIK_open items aggregated by aggregation_function                       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc    |4 BFIK_consc items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra    |4 BFIK_extra items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro    |3 BFIK_neuro items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|age           |Alter                                                                      |         0|</span><span class="ch">\n\n</span><span class="st">### Note</span><span class="ch">\n</span><span class="st">This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.0)."</span><span class="fu">,</span></span>
-<span id="cb19-4"><a href="#cb19-4"></a>  <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"doi:10.5281/zenodo.1326520"</span><span class="fu">,</span></span>
-<span id="cb19-5"><a href="#cb19-5"></a>  <span class="dt">"datePublished"</span><span class="fu">:</span> <span class="st">"2016-06-01"</span><span class="fu">,</span></span>
-<span id="cb19-6"><a href="#cb19-6"></a>  <span class="dt">"creator"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb19-7"><a href="#cb19-7"></a>    <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
-<span id="cb19-8"><a href="#cb19-8"></a>    <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Ruben"</span><span class="fu">,</span></span>
-<span id="cb19-9"><a href="#cb19-9"></a>    <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Arslan"</span><span class="fu">,</span></span>
-<span id="cb19-10"><a href="#cb19-10"></a>    <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"ruben.arslan@gmail.com"</span><span class="fu">,</span></span>
-<span id="cb19-11"><a href="#cb19-11"></a>    <span class="dt">"affiliation"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb19-12"><a href="#cb19-12"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
-<span id="cb19-13"><a href="#cb19-13"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MPI Human Development, Berlin"</span></span>
-<span id="cb19-14"><a href="#cb19-14"></a>    <span class="fu">}</span></span>
-<span id="cb19-15"><a href="#cb19-15"></a>  <span class="fu">},</span></span>
-<span id="cb19-16"><a href="#cb19-16"></a>  <span class="dt">"citation"</span><span class="fu">:</span> <span class="st">"Arslan (2016). Mock BFI data."</span><span class="fu">,</span></span>
-<span id="cb19-17"><a href="#cb19-17"></a>  <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://rubenarslan.github.io/codebook/articles/codebook.html"</span><span class="fu">,</span></span>
-<span id="cb19-18"><a href="#cb19-18"></a>  <span class="dt">"temporalCoverage"</span><span class="fu">:</span> <span class="st">"2016"</span><span class="fu">,</span></span>
-<span id="cb19-19"><a href="#cb19-19"></a>  <span class="dt">"spatialCoverage"</span><span class="fu">:</span> <span class="st">"Goettingen, Germany"</span><span class="fu">,</span></span>
-<span id="cb19-20"><a href="#cb19-20"></a>  <span class="dt">"keywords"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"session"</span><span class="ot">,</span> <span class="st">"created"</span><span class="ot">,</span> <span class="st">"modified"</span><span class="ot">,</span> <span class="st">"ended"</span><span class="ot">,</span> <span class="st">"expired"</span><span class="ot">,</span> <span class="st">"BFIK_open_2"</span><span class="ot">,</span> <span class="st">"BFIK_agree_4R"</span><span class="ot">,</span> <span class="st">"BFIK_extra_2"</span><span class="ot">,</span> <span class="st">"BFIK_agree_1R"</span><span class="ot">,</span> <span class="st">"BFIK_open_1"</span><span class="ot">,</span> <span class="st">"BFIK_neuro_2R"</span><span class="ot">,</span> <span class="st">"BFIK_consc_3"</span><span class="ot">,</span> <span class="st">"BFIK_consc_4"</span><span class="ot">,</span> <span class="st">"BFIK_consc_2R"</span><span class="ot">,</span> <span class="st">"BFIK_agree_3R"</span><span class="ot">,</span> <span class="st">"BFIK_extra_3R"</span><span class="ot">,</span> <span class="st">"BFIK_neuro_3"</span><span class="ot">,</span> <span class="st">"BFIK_neuro_4"</span><span class="ot">,</span> <span class="st">"BFIK_agree_2"</span><span class="ot">,</span> <span class="st">"BFIK_consc_1"</span><span class="ot">,</span> <span class="st">"BFIK_open_4"</span><span class="ot">,</span> <span class="st">"BFIK_extra_4"</span><span class="ot">,</span> <span class="st">"BFIK_extra_1R"</span><span class="ot">,</span> <span class="st">"BFIK_open_3"</span><span class="ot">,</span> <span class="st">"BFIK_agree"</span><span class="ot">,</span> <span class="st">"BFIK_open"</span><span class="ot">,</span> <span class="st">"BFIK_consc"</span><span class="ot">,</span> <span class="st">"BFIK_extra"</span><span class="ot">,</span> <span class="st">"BFIK_neuro"</span><span class="ot">,</span> <span class="st">"age"</span><span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb19-21"><a href="#cb19-21"></a>  <span class="dt">"@context"</span><span class="fu">:</span> <span class="st">"http://schema.org/"</span><span class="fu">,</span></span>
-<span id="cb19-22"><a href="#cb19-22"></a>  <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Dataset"</span><span class="fu">,</span></span>
-<span id="cb19-23"><a href="#cb19-23"></a>  <span class="dt">"variableMeasured"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb19-24"><a href="#cb19-24"></a>    <span class="fu">{</span></span>
-<span id="cb19-25"><a href="#cb19-25"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"session"</span><span class="fu">,</span></span>
-<span id="cb19-26"><a href="#cb19-26"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-27"><a href="#cb19-27"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-28"><a href="#cb19-28"></a>    <span class="fu">{</span></span>
-<span id="cb19-29"><a href="#cb19-29"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"created"</span><span class="fu">,</span></span>
-<span id="cb19-30"><a href="#cb19-30"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"user first opened survey"</span><span class="fu">,</span></span>
-<span id="cb19-31"><a href="#cb19-31"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-32"><a href="#cb19-32"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-33"><a href="#cb19-33"></a>    <span class="fu">{</span></span>
-<span id="cb19-34"><a href="#cb19-34"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"modified"</span><span class="fu">,</span></span>
-<span id="cb19-35"><a href="#cb19-35"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"user last edited survey"</span><span class="fu">,</span></span>
-<span id="cb19-36"><a href="#cb19-36"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-37"><a href="#cb19-37"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-38"><a href="#cb19-38"></a>    <span class="fu">{</span></span>
-<span id="cb19-39"><a href="#cb19-39"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"ended"</span><span class="fu">,</span></span>
-<span id="cb19-40"><a href="#cb19-40"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"user finished survey"</span><span class="fu">,</span></span>
-<span id="cb19-41"><a href="#cb19-41"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-42"><a href="#cb19-42"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-43"><a href="#cb19-43"></a>    <span class="fu">{</span></span>
-<span id="cb19-44"><a href="#cb19-44"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"expired"</span><span class="fu">,</span></span>
-<span id="cb19-45"><a href="#cb19-45"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-46"><a href="#cb19-46"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-47"><a href="#cb19-47"></a>    <span class="fu">{</span></span>
-<span id="cb19-48"><a href="#cb19-48"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_2"</span><span class="fu">,</span></span>
-<span id="cb19-49"><a href="#cb19-49"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin tiefsinnig, denke gerne über Sachen nach.__"</span><span class="fu">,</span></span>
-<span id="cb19-50"><a href="#cb19-50"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-51"><a href="#cb19-51"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-52"><a href="#cb19-52"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-53"><a href="#cb19-53"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-54"><a href="#cb19-54"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-55"><a href="#cb19-55"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-56"><a href="#cb19-56"></a>    <span class="fu">{</span></span>
-<span id="cb19-57"><a href="#cb19-57"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_4R"</span><span class="fu">,</span></span>
-<span id="cb19-58"><a href="#cb19-58"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__"</span><span class="fu">,</span></span>
-<span id="cb19-59"><a href="#cb19-59"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-60"><a href="#cb19-60"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-61"><a href="#cb19-61"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-62"><a href="#cb19-62"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-63"><a href="#cb19-63"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-64"><a href="#cb19-64"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-65"><a href="#cb19-65"></a>    <span class="fu">{</span></span>
-<span id="cb19-66"><a href="#cb19-66"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_2"</span><span class="fu">,</span></span>
-<span id="cb19-67"><a href="#cb19-67"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__"</span><span class="fu">,</span></span>
-<span id="cb19-68"><a href="#cb19-68"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-69"><a href="#cb19-69"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-70"><a href="#cb19-70"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-71"><a href="#cb19-71"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-72"><a href="#cb19-72"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-73"><a href="#cb19-73"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-74"><a href="#cb19-74"></a>    <span class="fu">{</span></span>
-<span id="cb19-75"><a href="#cb19-75"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_1R"</span><span class="fu">,</span></span>
-<span id="cb19-76"><a href="#cb19-76"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich neige dazu, andere zu kritisieren.__"</span><span class="fu">,</span></span>
-<span id="cb19-77"><a href="#cb19-77"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-78"><a href="#cb19-78"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-79"><a href="#cb19-79"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-80"><a href="#cb19-80"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-81"><a href="#cb19-81"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-82"><a href="#cb19-82"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-83"><a href="#cb19-83"></a>    <span class="fu">{</span></span>
-<span id="cb19-84"><a href="#cb19-84"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_1"</span><span class="fu">,</span></span>
-<span id="cb19-85"><a href="#cb19-85"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin vielseitig interessiert.__"</span><span class="fu">,</span></span>
-<span id="cb19-86"><a href="#cb19-86"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-87"><a href="#cb19-87"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-88"><a href="#cb19-88"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-89"><a href="#cb19-89"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-90"><a href="#cb19-90"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-91"><a href="#cb19-91"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-92"><a href="#cb19-92"></a>    <span class="fu">{</span></span>
-<span id="cb19-93"><a href="#cb19-93"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro_2R"</span><span class="fu">,</span></span>
-<span id="cb19-94"><a href="#cb19-94"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__"</span><span class="fu">,</span></span>
-<span id="cb19-95"><a href="#cb19-95"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-96"><a href="#cb19-96"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-97"><a href="#cb19-97"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-98"><a href="#cb19-98"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-99"><a href="#cb19-99"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-100"><a href="#cb19-100"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-101"><a href="#cb19-101"></a>    <span class="fu">{</span></span>
-<span id="cb19-102"><a href="#cb19-102"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_3"</span><span class="fu">,</span></span>
-<span id="cb19-103"><a href="#cb19-103"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin tüchtig und arbeite flott.__"</span><span class="fu">,</span></span>
-<span id="cb19-104"><a href="#cb19-104"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-105"><a href="#cb19-105"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-106"><a href="#cb19-106"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-107"><a href="#cb19-107"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-108"><a href="#cb19-108"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-109"><a href="#cb19-109"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-110"><a href="#cb19-110"></a>    <span class="fu">{</span></span>
-<span id="cb19-111"><a href="#cb19-111"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_4"</span><span class="fu">,</span></span>
-<span id="cb19-112"><a href="#cb19-112"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich mache Pläne und führe sie auch durch.__"</span><span class="fu">,</span></span>
-<span id="cb19-113"><a href="#cb19-113"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-114"><a href="#cb19-114"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-115"><a href="#cb19-115"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-116"><a href="#cb19-116"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-117"><a href="#cb19-117"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-118"><a href="#cb19-118"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-119"><a href="#cb19-119"></a>    <span class="fu">{</span></span>
-<span id="cb19-120"><a href="#cb19-120"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_2R"</span><span class="fu">,</span></span>
-<span id="cb19-121"><a href="#cb19-121"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin bequem, neige zur Faulheit.__"</span><span class="fu">,</span></span>
-<span id="cb19-122"><a href="#cb19-122"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-123"><a href="#cb19-123"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-124"><a href="#cb19-124"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-125"><a href="#cb19-125"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-126"><a href="#cb19-126"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-127"><a href="#cb19-127"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-128"><a href="#cb19-128"></a>    <span class="fu">{</span></span>
-<span id="cb19-129"><a href="#cb19-129"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_3R"</span><span class="fu">,</span></span>
-<span id="cb19-130"><a href="#cb19-130"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich kann mich kalt und distanziert verhalten.__"</span><span class="fu">,</span></span>
-<span id="cb19-131"><a href="#cb19-131"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-132"><a href="#cb19-132"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-133"><a href="#cb19-133"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-134"><a href="#cb19-134"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-135"><a href="#cb19-135"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-136"><a href="#cb19-136"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-137"><a href="#cb19-137"></a>    <span class="fu">{</span></span>
-<span id="cb19-138"><a href="#cb19-138"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_3R"</span><span class="fu">,</span></span>
-<span id="cb19-139"><a href="#cb19-139"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin eher der </span><span class="ch">\"</span><span class="st">stille Typ</span><span class="ch">\"</span><span class="st">, wortkarg.__"</span><span class="fu">,</span></span>
-<span id="cb19-140"><a href="#cb19-140"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-141"><a href="#cb19-141"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-142"><a href="#cb19-142"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-143"><a href="#cb19-143"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-144"><a href="#cb19-144"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-145"><a href="#cb19-145"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-146"><a href="#cb19-146"></a>    <span class="fu">{</span></span>
-<span id="cb19-147"><a href="#cb19-147"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro_3"</span><span class="fu">,</span></span>
-<span id="cb19-148"><a href="#cb19-148"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich mache mir viele Sorgen.__"</span><span class="fu">,</span></span>
-<span id="cb19-149"><a href="#cb19-149"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-150"><a href="#cb19-150"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-151"><a href="#cb19-151"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-152"><a href="#cb19-152"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-153"><a href="#cb19-153"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-154"><a href="#cb19-154"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-155"><a href="#cb19-155"></a>    <span class="fu">{</span></span>
-<span id="cb19-156"><a href="#cb19-156"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro_4"</span><span class="fu">,</span></span>
-<span id="cb19-157"><a href="#cb19-157"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich werde leicht nervös und unsicher.__"</span><span class="fu">,</span></span>
-<span id="cb19-158"><a href="#cb19-158"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-159"><a href="#cb19-159"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-160"><a href="#cb19-160"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-161"><a href="#cb19-161"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-162"><a href="#cb19-162"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-163"><a href="#cb19-163"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-164"><a href="#cb19-164"></a>    <span class="fu">{</span></span>
-<span id="cb19-165"><a href="#cb19-165"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_2"</span><span class="fu">,</span></span>
-<span id="cb19-166"><a href="#cb19-166"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__"</span><span class="fu">,</span></span>
-<span id="cb19-167"><a href="#cb19-167"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-168"><a href="#cb19-168"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-169"><a href="#cb19-169"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-170"><a href="#cb19-170"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-171"><a href="#cb19-171"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-172"><a href="#cb19-172"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-173"><a href="#cb19-173"></a>    <span class="fu">{</span></span>
-<span id="cb19-174"><a href="#cb19-174"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_1"</span><span class="fu">,</span></span>
-<span id="cb19-175"><a href="#cb19-175"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich erledige Aufgaben gründlich.__"</span><span class="fu">,</span></span>
-<span id="cb19-176"><a href="#cb19-176"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-177"><a href="#cb19-177"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-178"><a href="#cb19-178"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-179"><a href="#cb19-179"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-180"><a href="#cb19-180"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-181"><a href="#cb19-181"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-182"><a href="#cb19-182"></a>    <span class="fu">{</span></span>
-<span id="cb19-183"><a href="#cb19-183"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_4"</span><span class="fu">,</span></span>
-<span id="cb19-184"><a href="#cb19-184"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich schätze künstlerische und ästhetische Eindrücke.__"</span><span class="fu">,</span></span>
-<span id="cb19-185"><a href="#cb19-185"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-186"><a href="#cb19-186"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-187"><a href="#cb19-187"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-188"><a href="#cb19-188"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-189"><a href="#cb19-189"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-190"><a href="#cb19-190"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-191"><a href="#cb19-191"></a>    <span class="fu">{</span></span>
-<span id="cb19-192"><a href="#cb19-192"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_4"</span><span class="fu">,</span></span>
-<span id="cb19-193"><a href="#cb19-193"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich gehe aus mir heraus, bin gesellig.__"</span><span class="fu">,</span></span>
-<span id="cb19-194"><a href="#cb19-194"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-195"><a href="#cb19-195"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-196"><a href="#cb19-196"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-197"><a href="#cb19-197"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-198"><a href="#cb19-198"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-199"><a href="#cb19-199"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-200"><a href="#cb19-200"></a>    <span class="fu">{</span></span>
-<span id="cb19-201"><a href="#cb19-201"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_1R"</span><span class="fu">,</span></span>
-<span id="cb19-202"><a href="#cb19-202"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin eher zurückhaltend, reserviert.__"</span><span class="fu">,</span></span>
-<span id="cb19-203"><a href="#cb19-203"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-204"><a href="#cb19-204"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-205"><a href="#cb19-205"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-206"><a href="#cb19-206"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-207"><a href="#cb19-207"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-208"><a href="#cb19-208"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-209"><a href="#cb19-209"></a>    <span class="fu">{</span></span>
-<span id="cb19-210"><a href="#cb19-210"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_3"</span><span class="fu">,</span></span>
-<span id="cb19-211"><a href="#cb19-211"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__"</span><span class="fu">,</span></span>
-<span id="cb19-212"><a href="#cb19-212"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb19-213"><a href="#cb19-213"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb19-214"><a href="#cb19-214"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb19-215"><a href="#cb19-215"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb19-216"><a href="#cb19-216"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-217"><a href="#cb19-217"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-218"><a href="#cb19-218"></a>    <span class="fu">{</span></span>
-<span id="cb19-219"><a href="#cb19-219"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree"</span><span class="fu">,</span></span>
-<span id="cb19-220"><a href="#cb19-220"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_agree items aggregated by aggregation_function"</span><span class="fu">,</span></span>
-<span id="cb19-221"><a href="#cb19-221"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-222"><a href="#cb19-222"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-223"><a href="#cb19-223"></a>    <span class="fu">{</span></span>
-<span id="cb19-224"><a href="#cb19-224"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open"</span><span class="fu">,</span></span>
-<span id="cb19-225"><a href="#cb19-225"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_open items aggregated by aggregation_function"</span><span class="fu">,</span></span>
-<span id="cb19-226"><a href="#cb19-226"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-227"><a href="#cb19-227"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-228"><a href="#cb19-228"></a>    <span class="fu">{</span></span>
-<span id="cb19-229"><a href="#cb19-229"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc"</span><span class="fu">,</span></span>
-<span id="cb19-230"><a href="#cb19-230"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_consc items aggregated by aggregation_function"</span><span class="fu">,</span></span>
-<span id="cb19-231"><a href="#cb19-231"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-232"><a href="#cb19-232"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-233"><a href="#cb19-233"></a>    <span class="fu">{</span></span>
-<span id="cb19-234"><a href="#cb19-234"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra"</span><span class="fu">,</span></span>
-<span id="cb19-235"><a href="#cb19-235"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_extra items aggregated by aggregation_function"</span><span class="fu">,</span></span>
-<span id="cb19-236"><a href="#cb19-236"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-237"><a href="#cb19-237"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-238"><a href="#cb19-238"></a>    <span class="fu">{</span></span>
-<span id="cb19-239"><a href="#cb19-239"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro"</span><span class="fu">,</span></span>
-<span id="cb19-240"><a href="#cb19-240"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"3 BFIK_neuro items aggregated by aggregation_function"</span><span class="fu">,</span></span>
-<span id="cb19-241"><a href="#cb19-241"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-242"><a href="#cb19-242"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb19-243"><a href="#cb19-243"></a>    <span class="fu">{</span></span>
-<span id="cb19-244"><a href="#cb19-244"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"age"</span><span class="fu">,</span></span>
-<span id="cb19-245"><a href="#cb19-245"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Alter"</span><span class="fu">,</span></span>
-<span id="cb19-246"><a href="#cb19-246"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb19-247"><a href="#cb19-247"></a>    <span class="fu">}</span></span>
-<span id="cb19-248"><a href="#cb19-248"></a>  <span class="ot">]</span></span>
-<span id="cb19-249"><a href="#cb19-249"></a><span class="fu">}</span><span class="er">`</span></span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">{</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MOCK Big Five Inventory dataset (German metadata demo)"</span><span class="fu">,</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"a small mock Big Five Inventory dataset</span><span class="ch">\n\n\n</span><span class="st">## Table of variables</span><span class="ch">\n</span><span class="st">This table contains variable names, labels, and number of missing values.</span><span class="ch">\n</span><span class="st">See the complete codebook for more.</span><span class="ch">\n\n</span><span class="st">|name          |label                                                                      | n_missing|</span><span class="ch">\n</span><span class="st">|:-------------|:--------------------------------------------------------------------------|---------:|</span><span class="ch">\n</span><span class="st">|session       |NA                                                                         |         0|</span><span class="ch">\n</span><span class="st">|created       |user first opened survey                                                   |         0|</span><span class="ch">\n</span><span class="st">|modified      |user last edited survey                                                    |         0|</span><span class="ch">\n</span><span class="st">|ended         |user finished survey                                                       |         0|</span><span class="ch">\n</span><span class="st">|expired       |NA                                                                         |        28|</span><span class="ch">\n</span><span class="st">|BFIK_open_2   |__Ich bin tiefsinnig, denke gerne über Sachen nach.__                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_4R |__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_2  |__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__           |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_1R |__Ich neige dazu, andere zu kritisieren.__                                 |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open_1   |__Ich bin vielseitig interessiert.__                                       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro_2R |__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__ |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_3  |__Ich bin tüchtig und arbeite flott.__                                     |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_4  |__Ich mache Pläne und führe sie auch durch.__                              |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_2R |__Ich bin bequem, neige zur Faulheit.__                                    |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_3R |__Ich kann mich kalt und distanziert verhalten.__                          |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_3R |__Ich bin eher der </span><span class="ch">\"</span><span class="st">stille Typ</span><span class="ch">\"</span><span class="st">, wortkarg.__                               |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro_3  |__Ich mache mir viele Sorgen.__                                            |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro_4  |__Ich werde leicht nervös und unsicher.__                                  |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_2  |__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__  |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_1  |__Ich erledige Aufgaben gründlich.__                                       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open_4   |__Ich schätze künstlerische und ästhetische Eindrücke.__                   |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_4  |__Ich gehe aus mir heraus, bin gesellig.__                                 |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_1R |__Ich bin eher zurückhaltend, reserviert.__                                |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open_3   |__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__             |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree    |4 BFIK_agree items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open     |4 BFIK_open items aggregated by aggregation_function                       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc    |4 BFIK_consc items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra    |4 BFIK_extra items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro    |3 BFIK_neuro items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|age           |Alter                                                                      |         0|</span><span class="ch">\n\n</span><span class="st">### Note</span><span class="ch">\n</span><span class="st">This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.2)."</span><span class="fu">,</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>  <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"doi:10.5281/zenodo.1326520"</span><span class="fu">,</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>  <span class="dt">"datePublished"</span><span class="fu">:</span> <span class="st">"2016-06-01"</span><span class="fu">,</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>  <span class="dt">"creator"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a>    <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a>    <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Ruben"</span><span class="fu">,</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>    <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Arslan"</span><span class="fu">,</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a>    <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"ruben.arslan@gmail.com"</span><span class="fu">,</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a>    <span class="dt">"affiliation"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb23-12"><a href="#cb23-12"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb23-13"><a href="#cb23-13"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MPI Human Development, Berlin"</span></span>
+<span id="cb23-14"><a href="#cb23-14"></a>    <span class="fu">}</span></span>
+<span id="cb23-15"><a href="#cb23-15"></a>  <span class="fu">},</span></span>
+<span id="cb23-16"><a href="#cb23-16"></a>  <span class="dt">"citation"</span><span class="fu">:</span> <span class="st">"Arslan (2016). Mock BFI data."</span><span class="fu">,</span></span>
+<span id="cb23-17"><a href="#cb23-17"></a>  <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://rubenarslan.github.io/codebook/articles/codebook.html"</span><span class="fu">,</span></span>
+<span id="cb23-18"><a href="#cb23-18"></a>  <span class="dt">"temporalCoverage"</span><span class="fu">:</span> <span class="st">"2016"</span><span class="fu">,</span></span>
+<span id="cb23-19"><a href="#cb23-19"></a>  <span class="dt">"spatialCoverage"</span><span class="fu">:</span> <span class="st">"Goettingen, Germany"</span><span class="fu">,</span></span>
+<span id="cb23-20"><a href="#cb23-20"></a>  <span class="dt">"keywords"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"session"</span><span class="ot">,</span> <span class="st">"created"</span><span class="ot">,</span> <span class="st">"modified"</span><span class="ot">,</span> <span class="st">"ended"</span><span class="ot">,</span> <span class="st">"expired"</span><span class="ot">,</span> <span class="st">"BFIK_open_2"</span><span class="ot">,</span> <span class="st">"BFIK_agree_4R"</span><span class="ot">,</span> <span class="st">"BFIK_extra_2"</span><span class="ot">,</span> <span class="st">"BFIK_agree_1R"</span><span class="ot">,</span> <span class="st">"BFIK_open_1"</span><span class="ot">,</span> <span class="st">"BFIK_neuro_2R"</span><span class="ot">,</span> <span class="st">"BFIK_consc_3"</span><span class="ot">,</span> <span class="st">"BFIK_consc_4"</span><span class="ot">,</span> <span class="st">"BFIK_consc_2R"</span><span class="ot">,</span> <span class="st">"BFIK_agree_3R"</span><span class="ot">,</span> <span class="st">"BFIK_extra_3R"</span><span class="ot">,</span> <span class="st">"BFIK_neuro_3"</span><span class="ot">,</span> <span class="st">"BFIK_neuro_4"</span><span class="ot">,</span> <span class="st">"BFIK_agree_2"</span><span class="ot">,</span> <span class="st">"BFIK_consc_1"</span><span class="ot">,</span> <span class="st">"BFIK_open_4"</span><span class="ot">,</span> <span class="st">"BFIK_extra_4"</span><span class="ot">,</span> <span class="st">"BFIK_extra_1R"</span><span class="ot">,</span> <span class="st">"BFIK_open_3"</span><span class="ot">,</span> <span class="st">"BFIK_agree"</span><span class="ot">,</span> <span class="st">"BFIK_open"</span><span class="ot">,</span> <span class="st">"BFIK_consc"</span><span class="ot">,</span> <span class="st">"BFIK_extra"</span><span class="ot">,</span> <span class="st">"BFIK_neuro"</span><span class="ot">,</span> <span class="st">"age"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb23-21"><a href="#cb23-21"></a>  <span class="dt">"@context"</span><span class="fu">:</span> <span class="st">"http://schema.org/"</span><span class="fu">,</span></span>
+<span id="cb23-22"><a href="#cb23-22"></a>  <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Dataset"</span><span class="fu">,</span></span>
+<span id="cb23-23"><a href="#cb23-23"></a>  <span class="dt">"variableMeasured"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb23-24"><a href="#cb23-24"></a>    <span class="fu">{</span></span>
+<span id="cb23-25"><a href="#cb23-25"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"session"</span><span class="fu">,</span></span>
+<span id="cb23-26"><a href="#cb23-26"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-27"><a href="#cb23-27"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-28"><a href="#cb23-28"></a>    <span class="fu">{</span></span>
+<span id="cb23-29"><a href="#cb23-29"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"created"</span><span class="fu">,</span></span>
+<span id="cb23-30"><a href="#cb23-30"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"user first opened survey"</span><span class="fu">,</span></span>
+<span id="cb23-31"><a href="#cb23-31"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-32"><a href="#cb23-32"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-33"><a href="#cb23-33"></a>    <span class="fu">{</span></span>
+<span id="cb23-34"><a href="#cb23-34"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"modified"</span><span class="fu">,</span></span>
+<span id="cb23-35"><a href="#cb23-35"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"user last edited survey"</span><span class="fu">,</span></span>
+<span id="cb23-36"><a href="#cb23-36"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-37"><a href="#cb23-37"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-38"><a href="#cb23-38"></a>    <span class="fu">{</span></span>
+<span id="cb23-39"><a href="#cb23-39"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"ended"</span><span class="fu">,</span></span>
+<span id="cb23-40"><a href="#cb23-40"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"user finished survey"</span><span class="fu">,</span></span>
+<span id="cb23-41"><a href="#cb23-41"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-42"><a href="#cb23-42"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-43"><a href="#cb23-43"></a>    <span class="fu">{</span></span>
+<span id="cb23-44"><a href="#cb23-44"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"expired"</span><span class="fu">,</span></span>
+<span id="cb23-45"><a href="#cb23-45"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-46"><a href="#cb23-46"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-47"><a href="#cb23-47"></a>    <span class="fu">{</span></span>
+<span id="cb23-48"><a href="#cb23-48"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_2"</span><span class="fu">,</span></span>
+<span id="cb23-49"><a href="#cb23-49"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin tiefsinnig, denke gerne über Sachen nach.__"</span><span class="fu">,</span></span>
+<span id="cb23-50"><a href="#cb23-50"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-51"><a href="#cb23-51"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-52"><a href="#cb23-52"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-53"><a href="#cb23-53"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-54"><a href="#cb23-54"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-55"><a href="#cb23-55"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-56"><a href="#cb23-56"></a>    <span class="fu">{</span></span>
+<span id="cb23-57"><a href="#cb23-57"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_4R"</span><span class="fu">,</span></span>
+<span id="cb23-58"><a href="#cb23-58"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__"</span><span class="fu">,</span></span>
+<span id="cb23-59"><a href="#cb23-59"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-60"><a href="#cb23-60"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-61"><a href="#cb23-61"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-62"><a href="#cb23-62"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-63"><a href="#cb23-63"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-64"><a href="#cb23-64"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-65"><a href="#cb23-65"></a>    <span class="fu">{</span></span>
+<span id="cb23-66"><a href="#cb23-66"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_2"</span><span class="fu">,</span></span>
+<span id="cb23-67"><a href="#cb23-67"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__"</span><span class="fu">,</span></span>
+<span id="cb23-68"><a href="#cb23-68"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-69"><a href="#cb23-69"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-70"><a href="#cb23-70"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-71"><a href="#cb23-71"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-72"><a href="#cb23-72"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-73"><a href="#cb23-73"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-74"><a href="#cb23-74"></a>    <span class="fu">{</span></span>
+<span id="cb23-75"><a href="#cb23-75"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_1R"</span><span class="fu">,</span></span>
+<span id="cb23-76"><a href="#cb23-76"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich neige dazu, andere zu kritisieren.__"</span><span class="fu">,</span></span>
+<span id="cb23-77"><a href="#cb23-77"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-78"><a href="#cb23-78"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-79"><a href="#cb23-79"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-80"><a href="#cb23-80"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-81"><a href="#cb23-81"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-82"><a href="#cb23-82"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-83"><a href="#cb23-83"></a>    <span class="fu">{</span></span>
+<span id="cb23-84"><a href="#cb23-84"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_1"</span><span class="fu">,</span></span>
+<span id="cb23-85"><a href="#cb23-85"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin vielseitig interessiert.__"</span><span class="fu">,</span></span>
+<span id="cb23-86"><a href="#cb23-86"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-87"><a href="#cb23-87"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-88"><a href="#cb23-88"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-89"><a href="#cb23-89"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-90"><a href="#cb23-90"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-91"><a href="#cb23-91"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-92"><a href="#cb23-92"></a>    <span class="fu">{</span></span>
+<span id="cb23-93"><a href="#cb23-93"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro_2R"</span><span class="fu">,</span></span>
+<span id="cb23-94"><a href="#cb23-94"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__"</span><span class="fu">,</span></span>
+<span id="cb23-95"><a href="#cb23-95"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-96"><a href="#cb23-96"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-97"><a href="#cb23-97"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-98"><a href="#cb23-98"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-99"><a href="#cb23-99"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-100"><a href="#cb23-100"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-101"><a href="#cb23-101"></a>    <span class="fu">{</span></span>
+<span id="cb23-102"><a href="#cb23-102"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_3"</span><span class="fu">,</span></span>
+<span id="cb23-103"><a href="#cb23-103"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin tüchtig und arbeite flott.__"</span><span class="fu">,</span></span>
+<span id="cb23-104"><a href="#cb23-104"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-105"><a href="#cb23-105"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-106"><a href="#cb23-106"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-107"><a href="#cb23-107"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-108"><a href="#cb23-108"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-109"><a href="#cb23-109"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-110"><a href="#cb23-110"></a>    <span class="fu">{</span></span>
+<span id="cb23-111"><a href="#cb23-111"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_4"</span><span class="fu">,</span></span>
+<span id="cb23-112"><a href="#cb23-112"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich mache Pläne und führe sie auch durch.__"</span><span class="fu">,</span></span>
+<span id="cb23-113"><a href="#cb23-113"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-114"><a href="#cb23-114"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-115"><a href="#cb23-115"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-116"><a href="#cb23-116"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-117"><a href="#cb23-117"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-118"><a href="#cb23-118"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-119"><a href="#cb23-119"></a>    <span class="fu">{</span></span>
+<span id="cb23-120"><a href="#cb23-120"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_2R"</span><span class="fu">,</span></span>
+<span id="cb23-121"><a href="#cb23-121"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin bequem, neige zur Faulheit.__"</span><span class="fu">,</span></span>
+<span id="cb23-122"><a href="#cb23-122"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-123"><a href="#cb23-123"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-124"><a href="#cb23-124"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-125"><a href="#cb23-125"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-126"><a href="#cb23-126"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-127"><a href="#cb23-127"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-128"><a href="#cb23-128"></a>    <span class="fu">{</span></span>
+<span id="cb23-129"><a href="#cb23-129"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_3R"</span><span class="fu">,</span></span>
+<span id="cb23-130"><a href="#cb23-130"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich kann mich kalt und distanziert verhalten.__"</span><span class="fu">,</span></span>
+<span id="cb23-131"><a href="#cb23-131"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-132"><a href="#cb23-132"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-133"><a href="#cb23-133"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-134"><a href="#cb23-134"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-135"><a href="#cb23-135"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-136"><a href="#cb23-136"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-137"><a href="#cb23-137"></a>    <span class="fu">{</span></span>
+<span id="cb23-138"><a href="#cb23-138"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_3R"</span><span class="fu">,</span></span>
+<span id="cb23-139"><a href="#cb23-139"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin eher der </span><span class="ch">\"</span><span class="st">stille Typ</span><span class="ch">\"</span><span class="st">, wortkarg.__"</span><span class="fu">,</span></span>
+<span id="cb23-140"><a href="#cb23-140"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-141"><a href="#cb23-141"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-142"><a href="#cb23-142"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-143"><a href="#cb23-143"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-144"><a href="#cb23-144"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-145"><a href="#cb23-145"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-146"><a href="#cb23-146"></a>    <span class="fu">{</span></span>
+<span id="cb23-147"><a href="#cb23-147"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro_3"</span><span class="fu">,</span></span>
+<span id="cb23-148"><a href="#cb23-148"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich mache mir viele Sorgen.__"</span><span class="fu">,</span></span>
+<span id="cb23-149"><a href="#cb23-149"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-150"><a href="#cb23-150"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-151"><a href="#cb23-151"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-152"><a href="#cb23-152"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-153"><a href="#cb23-153"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-154"><a href="#cb23-154"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-155"><a href="#cb23-155"></a>    <span class="fu">{</span></span>
+<span id="cb23-156"><a href="#cb23-156"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro_4"</span><span class="fu">,</span></span>
+<span id="cb23-157"><a href="#cb23-157"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich werde leicht nervös und unsicher.__"</span><span class="fu">,</span></span>
+<span id="cb23-158"><a href="#cb23-158"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-159"><a href="#cb23-159"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-160"><a href="#cb23-160"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-161"><a href="#cb23-161"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-162"><a href="#cb23-162"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-163"><a href="#cb23-163"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-164"><a href="#cb23-164"></a>    <span class="fu">{</span></span>
+<span id="cb23-165"><a href="#cb23-165"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_2"</span><span class="fu">,</span></span>
+<span id="cb23-166"><a href="#cb23-166"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__"</span><span class="fu">,</span></span>
+<span id="cb23-167"><a href="#cb23-167"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-168"><a href="#cb23-168"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-169"><a href="#cb23-169"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-170"><a href="#cb23-170"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-171"><a href="#cb23-171"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-172"><a href="#cb23-172"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-173"><a href="#cb23-173"></a>    <span class="fu">{</span></span>
+<span id="cb23-174"><a href="#cb23-174"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_1"</span><span class="fu">,</span></span>
+<span id="cb23-175"><a href="#cb23-175"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich erledige Aufgaben gründlich.__"</span><span class="fu">,</span></span>
+<span id="cb23-176"><a href="#cb23-176"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-177"><a href="#cb23-177"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-178"><a href="#cb23-178"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-179"><a href="#cb23-179"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-180"><a href="#cb23-180"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-181"><a href="#cb23-181"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-182"><a href="#cb23-182"></a>    <span class="fu">{</span></span>
+<span id="cb23-183"><a href="#cb23-183"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_4"</span><span class="fu">,</span></span>
+<span id="cb23-184"><a href="#cb23-184"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich schätze künstlerische und ästhetische Eindrücke.__"</span><span class="fu">,</span></span>
+<span id="cb23-185"><a href="#cb23-185"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-186"><a href="#cb23-186"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-187"><a href="#cb23-187"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-188"><a href="#cb23-188"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-189"><a href="#cb23-189"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-190"><a href="#cb23-190"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-191"><a href="#cb23-191"></a>    <span class="fu">{</span></span>
+<span id="cb23-192"><a href="#cb23-192"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_4"</span><span class="fu">,</span></span>
+<span id="cb23-193"><a href="#cb23-193"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich gehe aus mir heraus, bin gesellig.__"</span><span class="fu">,</span></span>
+<span id="cb23-194"><a href="#cb23-194"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-195"><a href="#cb23-195"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-196"><a href="#cb23-196"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-197"><a href="#cb23-197"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-198"><a href="#cb23-198"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-199"><a href="#cb23-199"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-200"><a href="#cb23-200"></a>    <span class="fu">{</span></span>
+<span id="cb23-201"><a href="#cb23-201"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_1R"</span><span class="fu">,</span></span>
+<span id="cb23-202"><a href="#cb23-202"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin eher zurückhaltend, reserviert.__"</span><span class="fu">,</span></span>
+<span id="cb23-203"><a href="#cb23-203"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-204"><a href="#cb23-204"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-205"><a href="#cb23-205"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-206"><a href="#cb23-206"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-207"><a href="#cb23-207"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-208"><a href="#cb23-208"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-209"><a href="#cb23-209"></a>    <span class="fu">{</span></span>
+<span id="cb23-210"><a href="#cb23-210"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_3"</span><span class="fu">,</span></span>
+<span id="cb23-211"><a href="#cb23-211"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__"</span><span class="fu">,</span></span>
+<span id="cb23-212"><a href="#cb23-212"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb23-213"><a href="#cb23-213"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb23-214"><a href="#cb23-214"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb23-215"><a href="#cb23-215"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb23-216"><a href="#cb23-216"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-217"><a href="#cb23-217"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-218"><a href="#cb23-218"></a>    <span class="fu">{</span></span>
+<span id="cb23-219"><a href="#cb23-219"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree"</span><span class="fu">,</span></span>
+<span id="cb23-220"><a href="#cb23-220"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_agree items aggregated by aggregation_function"</span><span class="fu">,</span></span>
+<span id="cb23-221"><a href="#cb23-221"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-222"><a href="#cb23-222"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-223"><a href="#cb23-223"></a>    <span class="fu">{</span></span>
+<span id="cb23-224"><a href="#cb23-224"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open"</span><span class="fu">,</span></span>
+<span id="cb23-225"><a href="#cb23-225"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_open items aggregated by aggregation_function"</span><span class="fu">,</span></span>
+<span id="cb23-226"><a href="#cb23-226"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-227"><a href="#cb23-227"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-228"><a href="#cb23-228"></a>    <span class="fu">{</span></span>
+<span id="cb23-229"><a href="#cb23-229"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc"</span><span class="fu">,</span></span>
+<span id="cb23-230"><a href="#cb23-230"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_consc items aggregated by aggregation_function"</span><span class="fu">,</span></span>
+<span id="cb23-231"><a href="#cb23-231"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-232"><a href="#cb23-232"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-233"><a href="#cb23-233"></a>    <span class="fu">{</span></span>
+<span id="cb23-234"><a href="#cb23-234"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra"</span><span class="fu">,</span></span>
+<span id="cb23-235"><a href="#cb23-235"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_extra items aggregated by aggregation_function"</span><span class="fu">,</span></span>
+<span id="cb23-236"><a href="#cb23-236"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-237"><a href="#cb23-237"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-238"><a href="#cb23-238"></a>    <span class="fu">{</span></span>
+<span id="cb23-239"><a href="#cb23-239"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro"</span><span class="fu">,</span></span>
+<span id="cb23-240"><a href="#cb23-240"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"3 BFIK_neuro items aggregated by aggregation_function"</span><span class="fu">,</span></span>
+<span id="cb23-241"><a href="#cb23-241"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-242"><a href="#cb23-242"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb23-243"><a href="#cb23-243"></a>    <span class="fu">{</span></span>
+<span id="cb23-244"><a href="#cb23-244"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"age"</span><span class="fu">,</span></span>
+<span id="cb23-245"><a href="#cb23-245"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Alter"</span><span class="fu">,</span></span>
+<span id="cb23-246"><a href="#cb23-246"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb23-247"><a href="#cb23-247"></a>    <span class="fu">}</span></span>
+<span id="cb23-248"><a href="#cb23-248"></a>  <span class="ot">]</span></span>
+<span id="cb23-249"><a href="#cb23-249"></a><span class="fu">}</span><span class="er">`</span></span></code></pre></div>
 </details>
 </div>
   </div>

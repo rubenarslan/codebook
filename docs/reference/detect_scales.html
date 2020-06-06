@@ -87,7 +87,7 @@ the codebook package can perform reliability computations for you." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
       </span>
     </div>
 
@@ -193,52 +193,52 @@ the codebook package can perform reliability computations for you.</p>
     <pre class="examples"><div class='input'><span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>500</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>5</span>))
 <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>bfi</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>, <span class='st'>"bfi_n1"</span>, <span class='st'>"bfi_n2"</span>)
 <span class='no'>bfi</span>$<span class='no'>bfi_e</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span>(<span class='no'>bfi</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>)])
-<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>detect_scales</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; <span class='message'>3 bfi_e items connected to scale</span></div><div class='output co'>#&gt; <span class='warning'>Warning: bfi_n items found, but no aggregate</span></div><div class='input'><span class='no'>bfi</span>$<span class='no'>bfi_e</span></div><div class='output co'>#&gt;   [1] -0.473855267  0.482500228  0.166857181 -0.008017864  0.915787904
-#&gt;   [6] -0.125068949 -0.087616230 -0.472241205 -0.077564945 -1.102719518
-#&gt;  [11] -0.158560736  0.249159863  0.280625963 -0.734654087  0.422446337
-#&gt;  [16]  0.417764402  0.002103080  0.500359070 -0.562519552 -0.742863984
-#&gt;  [21]  0.148688835  0.070927867  0.057159185  0.904013781  0.005314785
-#&gt;  [26] -0.796203008 -0.298946608  0.232687271 -0.603997059 -0.286943893
-#&gt;  [31]  0.673019099  0.145978459  0.138952406 -0.237306607  0.466839608
-#&gt;  [36]  0.166072773  0.541234032 -0.457609879 -0.091591520  0.379251558
-#&gt;  [41]  0.745571991 -0.576949282  0.420456034  0.216251359  0.253592887
-#&gt;  [46]  0.820143049 -1.224739614 -0.108512474 -1.004722914 -0.551621811
-#&gt;  [51]  0.939387189  0.050295031 -0.430133081 -0.953697494 -0.879502453
-#&gt;  [56] -1.259687246 -0.299487863  0.320670103  0.543511927 -0.510726186
-#&gt;  [61]  0.102104633 -0.192630859 -0.151904753  0.070054310 -0.615020176
-#&gt;  [66]  0.366071854  0.741973276  0.265042919  0.436925586  0.948389256
-#&gt;  [71]  0.358207905 -0.745857085  0.390716878  0.113540683  0.446433568
-#&gt;  [76] -0.893015075 -0.413939178  0.551795466 -0.995890071  0.569713286
-#&gt;  [81]  0.069989947 -0.310254125  0.420227584  0.148628132 -0.084171865
-#&gt;  [86]  1.064069177 -1.068635382 -0.778201542  0.122837038  1.094454426
-#&gt;  [91] -0.139165563 -0.085354126 -0.823934152 -0.151751720 -0.771903815
-#&gt;  [96] -0.444742293  0.059505084 -0.126563482  0.918347900 -0.844027362
+<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>detect_scales</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; <span class='message'>3 bfi_e items connected to scale</span></div><div class='output co'>#&gt; <span class='warning'>Warning: bfi_n items found, but no aggregate</span></div><div class='input'><span class='no'>bfi</span>$<span class='no'>bfi_e</span></div><div class='output co'>#&gt;   [1]  0.8015485778  0.1242008715  1.4111601036 -1.2359843828  0.8755174016
+#&gt;   [6]  0.9704337425  0.1256702396  0.4579800147  0.1481186619 -0.2613590844
+#&gt;  [11] -0.0454207511  1.2847818751  0.0969500761 -0.4646285832  0.9872776221
+#&gt;  [16]  1.0607406147  0.8092427361 -0.3909060260 -0.1631451792 -0.0168259197
+#&gt;  [21]  0.0379601509 -1.3348544542 -0.3418188349 -0.3469655384  0.2681050820
+#&gt;  [26]  0.0160450021  0.6795888007 -0.6340680673 -0.9698365999  0.5346686176
+#&gt;  [31] -1.1772199366  0.5013617944  0.7480301550  0.7210123466 -0.5085987698
+#&gt;  [36] -0.7530780276  0.7376071929  0.7836556475  0.2392642892  0.9698502499
+#&gt;  [41]  0.2076311038  0.4118653252 -0.0735040359  0.4506413326  0.2195415811
+#&gt;  [46]  0.1802557582 -0.2274196804  0.0477936993 -0.8153949023  0.6790446071
+#&gt;  [51] -1.0123051762 -0.1929429826  0.3603824703 -0.9452471654 -0.2475681063
+#&gt;  [56]  0.7194436012 -0.2554316310 -0.4332763827  0.8590040320  0.9552586648
+#&gt;  [61]  0.1924536606 -0.5312016165  1.4697668632 -0.3988861741 -0.0001894151
+#&gt;  [66] -0.3956289014  0.8160424138 -0.3266707117 -0.1756387935 -0.6017318640
+#&gt;  [71]  0.1412798858  1.3190123866  0.4557577536 -0.0185777490  0.3302301687
+#&gt;  [76] -0.1244923341  0.4662560852 -0.6980709833  0.1884465481  0.1645677940
+#&gt;  [81]  0.6181046675 -0.9340002428 -0.6359859871 -0.3176546090 -0.4788309317
+#&gt;  [86]  0.2373336437  0.1946028667  0.0456007471 -1.2833583570  0.0641209995
+#&gt;  [91]  0.0325788440  0.1460103547  1.3553405723  0.6966568876 -0.3455142832
+#&gt;  [96]  0.1093705621  1.0434134739  0.1010924876 -0.8042213045 -0.4034993055
 #&gt; attr(,"scale_item_names")
 #&gt; [1] "bfi_e1"  "bfi_e2R" "bfi_e3" 
 #&gt; attr(,"label")
 #&gt; [1] "aggregate of 3 bfi_e items"</div><div class='input'><span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>500</span>), <span class='kw'>ncol</span> <span class='kw'>=</span> <span class='fl'>5</span>))
 <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>bfi</span>) <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>, <span class='st'>"bfi_n1"</span>, <span class='st'>"bfi_n2"</span>)
 <span class='no'>bfi</span>$<span class='no'>bfi_e</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/colSums.html'>rowMeans</a></span>(<span class='no'>bfi</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"bfi_e1"</span>, <span class='st'>"bfi_e2R"</span>, <span class='st'>"bfi_e3"</span>)])
-<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>detect_scales</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; <span class='message'>3 bfi_e items connected to scale</span></div><div class='output co'>#&gt; <span class='warning'>Warning: bfi_n items found, but no aggregate</span></div><div class='input'><span class='no'>bfi</span>$<span class='no'>bfi_e</span></div><div class='output co'>#&gt;   [1] -0.862348795 -0.441958456 -0.098820215  1.029248287  0.333520827
-#&gt;   [6]  0.297392542 -0.013263024 -0.015162981  0.816416636 -0.824109207
-#&gt;  [11] -2.406349241 -0.370507050  0.710565810  0.126637630  0.075879674
-#&gt;  [16] -0.531245677  0.654880654 -0.059518205 -0.362874388 -0.966231248
-#&gt;  [21]  1.082869428 -0.028413876 -0.530253846  0.352532703 -0.880816926
-#&gt;  [26] -0.886539691  0.260714039  0.497446961  0.694194273  0.575025759
-#&gt;  [31]  0.610322768 -0.613262832  0.114732612  0.480774652  0.185515733
-#&gt;  [36]  0.810648044 -0.180603392 -0.565328258  0.558055851  0.552547377
-#&gt;  [41] -0.306314684  0.120400028  0.057790434 -0.384631854  0.624227761
-#&gt;  [46] -0.015495209 -1.328397316 -0.837086561 -1.564642954 -0.317921492
-#&gt;  [51]  0.644098794  0.367069327  0.475661076  1.075360555 -0.485674730
-#&gt;  [56] -0.223394519 -0.392217305 -0.475803353 -1.077706642 -0.247338780
-#&gt;  [61]  0.235721917 -0.591103376 -0.076652704  0.530492153  0.142756071
-#&gt;  [66]  0.009528236  0.061424717 -0.469905510 -0.503736396 -0.072457627
-#&gt;  [71] -1.014298019  0.008394011 -0.472162377  1.430953625  0.076078732
-#&gt;  [76]  0.290532472 -0.263132105 -0.543854930 -0.357068289 -0.365335030
-#&gt;  [81]  0.148283195 -0.277657414 -0.220562434  0.201252538  0.551045763
-#&gt;  [86] -0.585790604 -0.550160236 -0.269903507 -0.738116969  0.138141096
-#&gt;  [91]  0.923443254  0.281379706 -0.007409903  0.258758137  0.534075760
-#&gt;  [96] -0.180270513  0.575500712 -0.286099326 -0.724729935  0.214260086
+<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='fu'>detect_scales</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; <span class='message'>3 bfi_e items connected to scale</span></div><div class='output co'>#&gt; <span class='warning'>Warning: bfi_n items found, but no aggregate</span></div><div class='input'><span class='no'>bfi</span>$<span class='no'>bfi_e</span></div><div class='output co'>#&gt;   [1] -0.194491951  0.599303261  1.361161754  1.210202575 -0.714562458
+#&gt;   [6]  0.074074287  0.039096102  0.703875680  0.001766981  0.420126472
+#&gt;  [11]  0.097186704 -0.299350416 -0.110115099 -0.138134406  0.243545579
+#&gt;  [16]  0.891731006 -0.793210394  0.888058876 -0.054600266  0.167755563
+#&gt;  [21]  0.940822540 -0.230862032 -0.859446408 -0.601098601 -0.320550995
+#&gt;  [26]  0.204980824  0.237595906  0.469456438 -0.236321642 -0.686148562
+#&gt;  [31] -0.600329415 -0.101751952  0.379019532 -0.649607631 -0.713580039
+#&gt;  [36]  0.139134092 -1.595526920  1.584097982 -0.498378003  0.969178199
+#&gt;  [41]  0.567448748 -0.584465676 -0.569081556  0.480772528  0.540286912
+#&gt;  [46] -0.925905068  0.513920167  0.163976300 -0.391761062 -0.676471023
+#&gt;  [51] -0.150523719  0.807791932 -0.044178093 -0.209198969 -0.642383154
+#&gt;  [56]  0.279816237 -0.155907350 -0.059505201 -0.109381977 -0.502682568
+#&gt;  [61] -0.356437722  0.125351971  0.211673668 -0.211059997 -0.257598539
+#&gt;  [66]  0.047509227 -0.275738223 -0.110972537 -0.183728282  0.314123494
+#&gt;  [71] -0.443647377  0.160335079 -0.084228446 -0.535079859 -0.195346962
+#&gt;  [76] -0.057451475  0.158969490 -0.302475088  0.579821667 -0.216988427
+#&gt;  [81] -0.389228199 -0.643880452 -0.151623621 -0.204034908  0.035256290
+#&gt;  [86]  0.390260787  1.185438234 -1.081983377 -0.025601498 -0.196204865
+#&gt;  [91] -0.193417478 -0.295844292  0.390382634 -0.476297982  0.225940071
+#&gt;  [96] -0.439571536 -0.437470518 -0.286314983 -0.771266013 -0.314513363
 #&gt; attr(,"scale_item_names")
 #&gt; [1] "bfi_e1"  "bfi_e2R" "bfi_e3" 
 #&gt; attr(,"label")
