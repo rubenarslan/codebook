@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output:
   html_document:
     code_folding: hide
-    self_contained: no
+    self_contained: yes
     keep_md: yes
     toc: yes
     toc_depth: 4
@@ -35,6 +35,7 @@ bfi <- bfi %>% select(-starts_with("BFIK_extra"),
 
 ggplot2::theme_set(ggplot2::theme_bw())
 
+set.seed(1)
 bfi$age <- rpois(nrow(bfi), 30)
 library(ggplot2)
 update_geom_defaults("bar", new = list(fill = "red"))

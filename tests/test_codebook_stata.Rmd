@@ -1,0 +1,32 @@
+---
+title: "Codebook example Stata"
+output:
+  html_document:
+    code_folding: hide
+    self_contained: no
+    toc: yes
+    toc_depth: 4
+    toc_float: yes
+  pdf_document:
+    toc: yes
+    toc_depth: '4'
+---
+
+```{r}
+knitr::opts_chunk$set(warning = T, message = T, error = F)
+```
+
+
+## Load
+```{r}
+library(codebook) 
+bioage17 <- haven::read_dta("~/research/data/SOEP/SOEP-CORE_v32.1_stata_bilingual/bioage17.dta")
+bioage17 <- detect_missing(bioage17, learn_from_labels = TRUE,
+                          ninety_nine_problems = FALSE, negative_values_are_missing = FALSE)
+```
+
+
+```{r cb}
+codebook(bioage17 %>% select(1:40))
+```
+

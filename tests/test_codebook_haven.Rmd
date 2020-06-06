@@ -1,0 +1,36 @@
+---
+title: "Codebook example diary"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    code_folding: 'hide'
+    self_contained: false
+---
+
+```{r}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+
+```
+
+
+## Load
+```{r echo=FALSE}
+```
+```{r}
+library(codebook)
+results = haven::read_sav("/Users/rubenarslan/Dropbox/Jork/Termin4/2_EidWohlbefinden.sav")
+```
+
+```{r}
+# dont cache this chunk
+library(ggplot2)
+theme_set(theme_bw())
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+```{r}
+codebook(results)
+```
+

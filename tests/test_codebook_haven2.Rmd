@@ -1,0 +1,37 @@
+---
+title: "Codebook example SPSS"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    code_folding: 'hide'
+    self_contained: true
+---
+
+```{r}
+knitr::opts_chunk$set(warning = T, message = T, error = TRUE)
+
+```
+
+
+## Load
+```{r}
+library(codebook)
+results = haven::read_dta("/Users/rubenarslan/research/data/SOEP/SOEP-CORE_v32.1_stata_bilingual/cognit.dta")
+
+results = detect_missing(results, only_labelled = FALSE)
+```
+
+```{r}
+# dont cache this chunk
+ggplot2::theme_set(ggplot2::theme_bw())
+
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(error = TRUE)
+```
+
+```{r cb}
+codebook(results)
+```
+

@@ -4,8 +4,8 @@ author: "Ruben Arslan"
 date: "`r Sys.Date()`"
 output:
   html_document:
-    self_contained: yes
     code_folding: hide
+    self_contained: yes
     keep_md: yes
     toc: yes
     toc_depth: 4
@@ -27,14 +27,19 @@ knitr::opts_chunk$set(warning = TRUE, message = TRUE, echo = FALSE, error = TRUE
 library(codebook)
 library(dplyr)
 data("bfi", package = 'codebook')
-bfi = bfi %>% haven::zap_missing() %>% haven::as_factor() %>% 
-  select(-BFIK_extra, -BFIK_neuro, -BFIK_agree, -BFIK_open, -BFIK_consc)
-ggplot2::theme_set(ggplot2::theme_bw())
+bfi <- bfi %>% select(-starts_with("BFIK_extra"),
+                       -starts_with("BFIK_agree"),
+                       -starts_with("BFIK_open"),
+                       -starts_with("BFIK_neuro"),
+                      BFIK_neuro_2R)
+bfi2 <- bind_rows(bfi, bfi %>% mutate(created = created + 1e7))
+bfi2 <- rescue_attributes(bfi2, bfi)
+bfi <- bfi2
 
+set.seed(1)
 bfi$age <- rpois(nrow(bfi), 30)
 library(ggplot2)
-update_geom_defaults("bar", new = list(fill = "blue"))
-options(ggplot2.continuous.colour="viridis")
+theme_set(theme_dark())
 ```
 
 ```{r cb}
