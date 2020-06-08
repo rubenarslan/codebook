@@ -83,6 +83,12 @@ codebook <- function(results, reliabilities = NULL,
     cache.path =
       paste0(knitr::opts_chunk$get("cache.path"), "cb_", df_name, "_")
   )
+  on.exit(options(knitr.duplicate.label = old_opt))
+  optc <- knitr::opts_chunk$get(names(options), drop = FALSE)
+  on.exit({
+    for (i in names(options)) if (identical(options[[i]],
+                    knitr::opts_chunk$get(i))) knitr::opts_chunk$set(optc[i])
+  }, add = TRUE)
   knitr::opts_chunk$set(fig.path = options$fig.path,
                         cache.path = options$cache.path)
 

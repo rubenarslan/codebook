@@ -1,3 +1,8 @@
+# codebook 0.9.3
+## Bugfixes
+- clean unloading/reset chunk labels (bug was probably only noticeable when embedding multiple
+codebooks in one page)
+
 # codebook 0.9.2
 ## Changes
 - Moved a lot of dependencies to Suggests to make package leaner

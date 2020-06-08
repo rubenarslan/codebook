@@ -3,7 +3,7 @@ context("Test codebook")
 knitr::opts_chunk$set(error = FALSE)
 
 setup_tmpdir <- function() {
-  test_dir <- tempfile("test_rmdpartials")
+  test_dir <- tempfile("test_codebook")
   stopifnot(dir.create(test_dir))
   setwd(test_dir)
   test_dir <- getwd() # dumb trick to get a proper path without double slashes
