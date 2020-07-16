@@ -5,6 +5,7 @@ haven_version = as.numeric(
 
 test_that("user-defined missing values read as normal missing by default", {
   num <- haven::read_spss(test_path("different-missings.sav"))
+  expect_false(is.na(attributes(num$val1)$labels[1]))
   expect_identical(vctrs::vec_data(num[2, 1][[1]]), NA_real_)
   expect_identical(vctrs::vec_data(num[3, 1][[1]]), NA_real_)
   expect_identical(vctrs::vec_data(num[5, 1][[1]]), NA_real_)
@@ -22,6 +23,10 @@ test_that("user-defined missing values read as normal missing by default", {
   expect_equal(vctrs::vec_data(num[5, 4][[1]]), 999)
 
   expect_silent(num <- detect_missing(num))
+
+  expect_identical(vctrs::vec_data(num[6, 1][[1]]), NA_real_)
+
+  expect_true(is.na(attributes(num$val1)$labels[1]))
 
   expect_identical(vctrs::vec_data(num[2, 4][[1]]), NA_real_)
   expect_identical(vctrs::vec_data(num[3, 4][[1]]), NA_real_)
@@ -180,4 +185,78 @@ test_that("don't accidentally zap variable labels", {
   bfi2 <- detect_missing(bfi, use_labelled_spss = TRUE)
   expect_identical(labels, var_label(bfi2))
   expect_failure(expect_identical(bfi, bfi2))
+})
+
+
+test_that("user-defined missing values work even without haven_labelled", {
+  num <- rio::import(test_path("different-missings.sav"))
+  expect_identical(vctrs::vec_data(num[2, 1][[1]]), NA_real_)
+  expect_identical(vctrs::vec_data(num[3, 1][[1]]), NA_real_)
+  expect_identical(vctrs::vec_data(num[5, 1][[1]]), NA_real_)
+
+  expect_equal(vctrs::vec_data(num[2, 2][[1]]), 99)
+  expect_identical(vctrs::vec_data(num[3, 2][[1]]), NA_real_)
+  expect_equal(vctrs::vec_data(num[5, 2][[1]]), 999)
+
+  expect_identical(vctrs::vec_data(num[2, 3][[1]]), NA_real_)
+  expect_identical(vctrs::vec_data(num[3, 3][[1]]), NA_real_)
+  expect_identical(vctrs::vec_data(num[5, 3][[1]]), NA_real_)
+
+  expect_equal(vctrs::vec_data(num[2, 4][[1]]), 99)
+  expect_identical(vctrs::vec_data(num[3, 4][[1]]), NA_real_)
+  expect_equal(vctrs::vec_data(num[5, 4][[1]]), 999)
+
+  expect_silent(num <- detect_missing(num))
+
+  expect_identical(vctrs::vec_data(num[2, 4][[1]]), NA_real_)
+  expect_identical(vctrs::vec_data(num[3, 4][[1]]), NA_real_)
+  expect_identical(vctrs::vec_data(num[5, 4][[1]]), NA_real_)
+
+  expect_equal(vctrs::vec_data(num[2, 2][[1]]), 99)
+  expect_identical(vctrs::vec_data(num[3, 2][[1]]), NA_real_)
+  expect_equal(vctrs::vec_data(num[5, 2][[1]]), 999)
+
+  expect_silent(num <- detect_missing(num, only_labelled = FALSE))
+  expect_equal(sum(num$val1, na.rm = TRUE), 19)
+  expect_equal(sum(num$val2, na.rm = TRUE), 19)
+  expect_equal(sum(num$val3, na.rm = TRUE), 19)
+  expect_equal(sum(num$val4, na.rm = TRUE), 19)
+
+  expect_equal(num[3, 2][[1]][[1]], NA_real_)
+  expect_equal(num[5, 2][[1]][[1]], NA_real_)
+
+  attributes(num[, 3][[1]])$na_values <- NULL
+  attributes(num[, 3][[1]])$label <- ""
+  attributes(num[, 4][[1]])$label <- ""
+
+  expect_identical(num[, 3][[1]], num[, 4][[1]])
+})
+
+
+
+test_that("can coerce integer to double to label missings", {
+  num <- rio::import(test_path("different-missings.sav"))
+  old_attr <- attributes(num$val1)
+  old_attr$labels <- as.integer(old_attr$labels)
+  names(old_attr$labels) <- names(attributes(num$val1)$labels)
+  num$val1 <- as.integer(num$val1)
+  attributes(num$val1) <- old_attr
+  expect_false(is.na(attributes(num$val1)$labels[1]))
+
+  expect_identical(typeof(num$val1), "integer")
+  expect_identical(typeof(attributes(num$val1)$labels), "integer")
+  expect_identical(vctrs::vec_data(num[2, 1][[1]]), NA_integer_)
+  expect_identical(vctrs::vec_data(num[3, 1][[1]]), NA_integer_)
+  expect_identical(vctrs::vec_data(num[5, 1][[1]]), NA_integer_)
+
+  expect_warning(num <- detect_missing(num, vars = "val1",
+                                       coerce_integer_to_double = FALSE))
+  expect_silent(num <- detect_missing(num, vars = "val1",
+                                       coerce_integer_to_double = TRUE))
+  expect_true(is.na(attributes(num$val1)$labels[1]))
+
+  expect_identical(vctrs::vec_data(num[2, 1][[1]]), NA_real_)
+  expect_identical(vctrs::vec_data(num[3, 1][[1]]), NA_real_)
+  expect_identical(vctrs::vec_data(num[5, 1][[1]]), NA_real_)
+  expect_identical(vctrs::vec_data(num[6, 1][[1]]), NA_real_)
 })

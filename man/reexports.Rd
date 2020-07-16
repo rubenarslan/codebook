@@ -19,12 +19,12 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{dplyr}{\code{\link[dplyr]{\%>\%}}}
+  \item{dplyr}{\code{\link[dplyr:reexports]{\%>\%}}}
 
   \item{forcats}{\code{\link[forcats]{as_factor}}}
 
   \item{haven}{\code{\link[haven]{zap_label}}}
 
-  \item{labelled}{\code{\link[labelled]{val_label}}, \code{\link[labelled]{val_label<-}}, \code{\link[labelled]{val_labels}}, \code{\link[labelled]{val_labels<-}}, \code{\link[labelled]{var_label}}, \code{\link[labelled]{var_label<-}}}
+  \item{labelled}{\code{\link[labelled:val_labels]{val_label}}, \code{\link[labelled:val_labels]{val_label<-}}, \code{\link[labelled]{val_labels}}, \code{\link[labelled:val_labels]{val_labels<-}}, \code{\link[labelled]{var_label}}, \code{\link[labelled:var_label]{var_label<-}}}
 }}
 

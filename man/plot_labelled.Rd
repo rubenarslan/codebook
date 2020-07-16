@@ -22,7 +22,7 @@ plot_labelled(
 
 \item{go_vertical}{defaults to FALSE. Whether to show choices on the Y axis instead.}
 
-\item{trans}{defaults to "identity" passed to \code{\link[ggplot2:scale_x_continuous]{ggplot2::scale_x_continuous()}}}
+\item{trans}{defaults to "identity" passed to \code{\link[ggplot2:scale_continuous]{ggplot2::scale_x_continuous()}}}
 
 \item{x_axis_label}{defaults to "values"}
 }
