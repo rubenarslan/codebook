@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -41,7 +41,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -76,7 +76,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/rubenarslan/codebook/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -96,8 +96,8 @@
 
       
 
-      </header><script src="codebook_qualtrics_files/htmlwidgets-1.5.1/htmlwidgets.js"></script><script src="codebook_qualtrics_files/jquery-1.12.4/jquery.min.js"></script><link href="codebook_qualtrics_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="codebook_qualtrics_files/datatables-binding-0.13/datatables.js"></script><link href="codebook_qualtrics_files/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+      </header><script src="codebook_qualtrics_files/header-attrs-2.6/header-attrs.js"></script><script src="codebook_qualtrics_files/htmlwidgets-1.5.2/htmlwidgets.js"></script><script src="codebook_qualtrics_files/jquery-1.12.4/jquery.min.js"></script><link href="codebook_qualtrics_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="codebook_qualtrics_files/datatables-binding-0.16/datatables.js"></script><link href="codebook_qualtrics_files/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="codebook_qualtrics_files/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="codebook_qualtrics_files/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><script src="codebook_qualtrics_files/jszip-1.10.20/jszip.min.js"></script><script src="codebook_qualtrics_files/pdfmake-1.10.20/pdfmake.js"></script><script src="codebook_qualtrics_files/pdfmake-1.10.20/vfs_fonts.js"></script><link href="codebook_qualtrics_files/dt-ext-buttons-1.10.20/css/buttons.dataTables.min.css" rel="stylesheet">
 <script src="codebook_qualtrics_files/dt-ext-buttons-1.10.20/js/dataTables.buttons.min.js"></script><script src="codebook_qualtrics_files/dt-ext-buttons-1.10.20/js/buttons.flash.min.js"></script><script src="codebook_qualtrics_files/dt-ext-buttons-1.10.20/js/buttons.html5.min.js"></script><script src="codebook_qualtrics_files/dt-ext-buttons-1.10.20/js/buttons.colVis.min.js"></script><script src="codebook_qualtrics_files/dt-ext-buttons-1.10.20/js/buttons.print.min.js"></script><link href="codebook_qualtrics_files/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
@@ -109,7 +109,7 @@
       <h1 data-toc-skip>Codebook example with Qualtrics dataset</h1>
                         <h4 class="author">Ruben Arslan</h4>
             
-            <h4 class="date">2020-06-06</h4>
+            <h4 class="date">2020-12-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/master/vignettes/codebook_qualtrics.Rmd"><code>vignettes/codebook_qualtrics.Rmd</code></a></small>
       <div class="hidden name"><code>codebook_qualtrics.Rmd</code></div>
@@ -118,56 +118,66 @@
 
     
     
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="no">knit_by_pkgdown</span> <span class="kw">&lt;-</span> !<span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span>(<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span>$<span class="fu"><a href="https://rdrr.io/r/base/get.html">get</a></span>(<span class="st">"fig.retina"</span>))
-<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span>$<span class="fu">set</span>(<span class="kw">warning</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">message</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">error</span> <span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">echo</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html">theme_set</a></span>(<span class="kw pkg">ggplot2</span><span class="kw ns">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span>())
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">codebook</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dplyr</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">knit_by_pkgdown</span> <span class="op">&lt;-</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">get</span><span class="op">(</span><span class="st">"fig.retina"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>warning <span class="op">=</span> <span class="cn">FALSE</span>, message <span class="op">=</span> <span class="cn">FALSE</span>, error <span class="op">=</span> <span class="cn">FALSE</span>, echo <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html">theme_set</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rubenarslan/codebook">codebook</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span></code></pre></div>
 <p>Here, I try to demonstrate that we can also use the metadata generated by Qualtrics. Because I am not a Qualtrics user, the developer of the <code>qualtRics</code> R package sent me two example files, one of data and one for metadata, which I use here. Usually, you’d import these files directly via his package.</p>
 <div id="load" class="section level2">
 <h2 class="hasAnchor">
 <a href="#load" class="anchor"></a>Load</h2>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="co"># library(qualtRics) # currently not on CRAN, so commented out</span>
-<span class="no">results</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"ryan.rds"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"codebook"</span>))
-<span class="no">metadata_ex</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"metadata.rds"</span>, <span class="kw">package</span> <span class="kw">=</span> <span class="st">"codebook"</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># library(qualtRics) # currently not on CRAN, so commented out</span>
+<span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"ryan.rds"</span>, package <span class="op">=</span> <span class="st">"codebook"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">metadata_ex</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, <span class="st">"metadata.rds"</span>, package <span class="op">=</span> <span class="st">"codebook"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Now, we want the metadata not to be just independent of the data frame. It’s easier to change metadata if it is in the form of a list at the dataset level, so let’s use <code><a href="https://rdrr.io/pkg/rio/man/gather_attrs.html">rio::gather_attrs</a></code> for that.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">results</span> <span class="kw">&lt;-</span> <span class="no">results</span> <span class="kw">%&gt;%</span> <span class="kw pkg">rio</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/rio/man/gather_attrs.html">gather_attrs</a></span>()
-<span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span>(<span class="no">results</span>)$<span class="no">label</span>$<span class="no">Q7</span></pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op">%&gt;%</span> <span class="fu">rio</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rio/man/gather_attrs.html">gather_attrs</a></span><span class="op">(</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span><span class="op">$</span><span class="va">label</span><span class="op">$</span><span class="va">Q7</span></code></pre></div>
 <pre><code>##                                                                                  Q7 
 ## "How reasonable or unreasonable is the cost of courses/tuition at this university?"</code></pre>
 <p>Now, we can loop over the metadata list and put it in the right shape to become attributes. This means given each element the name of the variable it refers to.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">metadata_ex</span>$<span class="no">questions</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span>(<span class="no">metadata_ex</span>$<span class="no">questions</span>, <span class="kw">function</span>(<span class="no">x</span>) {
-  <span class="no">x</span>$<span class="no">questionName</span>
-})</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">metadata_ex</span><span class="op">$</span><span class="va">questions</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">metadata_ex</span><span class="op">$</span><span class="va">questions</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">x</span><span class="op">$</span><span class="va">questionName</span>
+<span class="op">}</span><span class="op">)</span></code></pre></div>
 <p>We only want the questions that we have data for.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">qs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">metadata_ex</span>$<span class="no">questions</span>)
-<span class="no">qs</span> <span class="kw">&lt;-</span> <span class="no">qs</span>[<span class="no">qs</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span>(<span class="no">results</span>)$<span class="no">label</span>)]</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">qs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">metadata_ex</span><span class="op">$</span><span class="va">questions</span><span class="op">)</span>
+<span class="va">qs</span> <span class="op">&lt;-</span> <span class="va">qs</span><span class="op">[</span><span class="va">qs</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span><span class="op">$</span><span class="va">label</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <p>Now, we assign our metadata list to the attributes of the data.frame.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">init</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span>(<span class="st">"list"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span>(<span class="no">results</span>))
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">init</span>) <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="no">results</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span>(<span class="no">results</span>)$<span class="no">item</span> <span class="kw">&lt;-</span> <span class="no">init</span>
-<span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span>(<span class="no">results</span>)$<span class="no">item</span>[<span class="no">qs</span>] <span class="kw">&lt;-</span> <span class="no">metadata_ex</span>$<span class="no">questions</span>[<span class="no">qs</span>]</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">init</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html">vector</a></span><span class="op">(</span><span class="st">"list"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span><span class="op">)</span> 
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">init</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span><span class="op">$</span><span class="va">item</span> <span class="op">&lt;-</span> <span class="va">init</span>
+<span class="fu"><a href="https://rdrr.io/r/base/attributes.html">attributes</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span><span class="op">$</span><span class="va">item</span><span class="op">[</span><span class="va">qs</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">metadata_ex</span><span class="op">$</span><span class="va">questions</span><span class="op">[</span><span class="va">qs</span><span class="op">]</span></code></pre></div>
 <p>And use rio to put the attributes on the question level again.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">results</span> <span class="kw">&lt;-</span> <span class="no">results</span> <span class="kw">%&gt;%</span> <span class="kw pkg">rio</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/rio/man/gather_attrs.html">spread_attrs</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op">%&gt;%</span> <span class="fu">rio</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rio/man/gather_attrs.html">spread_attrs</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>To keep this example, we select a subset of variables.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">results</span> <span class="kw">&lt;-</span> <span class="no">results</span> <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">ResponseSet</span>, <span class="no">Q7</span>, <span class="no">Q10</span>)
-<span class="kw">if</span> (!<span class="no">knit_by_pkgdown</span>) <span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span>$<span class="fu">set</span>(<span class="kw">echo</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">ResponseSet</span>, <span class="va">Q7</span>, <span class="va">Q10</span><span class="op">)</span>
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="va">knit_by_pkgdown</span><span class="op">)</span> <span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>echo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>Please note, that we just reuse the metadata column names from Qualtrics. Standardising this across multiple survey providers would be great but requires more knowledge of Qualtrics than I have.</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="../reference/metadata.html">metadata</a></span>(<span class="no">results</span>)$<span class="no">name</span> <span class="kw">&lt;-</span> <span class="st">"MOCK Qualtrics dataset"</span>
-<span class="fu"><a href="../reference/metadata.html">metadata</a></span>(<span class="no">results</span>)$<span class="no">description</span> <span class="kw">&lt;-</span> <span class="st">"a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package"</span>
-<span class="fu"><a href="../reference/metadata.html">metadata</a></span>(<span class="no">results</span>)$<span class="no">identifier</span> <span class="kw">&lt;-</span> <span class="st">"doi:10.5281/zenodo.1326520"</span>
-<span class="fu"><a href="../reference/metadata.html">metadata</a></span>(<span class="no">results</span>)$<span class="no">datePublished</span> <span class="kw">&lt;-</span> <span class="st">"2018-08-01"</span>
-<span class="fu"><a href="../reference/metadata.html">metadata</a></span>(<span class="no">results</span>)$<span class="no">creator</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-      <span class="st">"@type"</span> <span class="kw">=</span> <span class="st">"Person"</span>,
-      <span class="kw">givenName</span> <span class="kw">=</span> <span class="st">"Ruben"</span>, <span class="kw">familyName</span> <span class="kw">=</span> <span class="st">"Arslan"</span>,
-      <span class="kw">email</span> <span class="kw">=</span> <span class="st">"ruben.arslan@gmail.com"</span>,
-      <span class="kw">affiliation</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="st">"@type"</span> <span class="kw">=</span> <span class="st">"Organization"</span>,
-        <span class="kw">name</span> <span class="kw">=</span> <span class="st">"MPI Human Development, Berlin"</span>))
-<span class="fu"><a href="../reference/metadata.html">metadata</a></span>(<span class="no">results</span>)$<span class="no">url</span> <span class="kw">&lt;-</span> <span class="st">"https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html"</span>
-<span class="fu"><a href="../reference/metadata.html">metadata</a></span>(<span class="no">results</span>)$<span class="no">temporalCoverage</span> <span class="kw">&lt;-</span> <span class="st">"2018"</span>
-<span class="fu"><a href="../reference/metadata.html">metadata</a></span>(<span class="no">results</span>)$<span class="no">spatialCoverage</span> <span class="kw">&lt;-</span> <span class="st">"Nowhere"</span></pre></body></html></div>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="co"># We don't want to look at the code in the codebook.</span>
-<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="no"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span>$<span class="fu">set</span>(<span class="kw">warning</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">message</span> <span class="kw">=</span> <span class="fl">TRUE</span>, <span class="kw">echo</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/metadata.html">metadata</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span><span class="op">$</span><span class="va">name</span> <span class="op">&lt;-</span> <span class="st">"MOCK Qualtrics dataset"</span>
+<span class="fu"><a href="../reference/metadata.html">metadata</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span><span class="op">$</span><span class="va">description</span> <span class="op">&lt;-</span> <span class="st">"a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package"</span>
+<span class="fu"><a href="../reference/metadata.html">metadata</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span><span class="op">$</span><span class="va">identifier</span> <span class="op">&lt;-</span> <span class="st">"doi:10.5281/zenodo.1326520"</span>
+<span class="fu"><a href="../reference/metadata.html">metadata</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span><span class="op">$</span><span class="va">datePublished</span> <span class="op">&lt;-</span> <span class="st">"2018-08-01"</span>
+<span class="fu"><a href="../reference/metadata.html">metadata</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span><span class="op">$</span><span class="va">creator</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+      <span class="st">"@type"</span> <span class="op">=</span> <span class="st">"Person"</span>,
+      givenName <span class="op">=</span> <span class="st">"Ruben"</span>, familyName <span class="op">=</span> <span class="st">"Arslan"</span>,
+      email <span class="op">=</span> <span class="st">"ruben.arslan@gmail.com"</span>, 
+      affiliation <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"@type"</span> <span class="op">=</span> <span class="st">"Organization"</span>,
+        name <span class="op">=</span> <span class="st">"MPI Human Development, Berlin"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/metadata.html">metadata</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span><span class="op">$</span><span class="va">url</span> <span class="op">&lt;-</span> <span class="st">"https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html"</span>
+<span class="fu"><a href="../reference/metadata.html">metadata</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span><span class="op">$</span><span class="va">temporalCoverage</span> <span class="op">&lt;-</span> <span class="st">"2018"</span> 
+<span class="fu"><a href="../reference/metadata.html">metadata</a></span><span class="op">(</span><span class="va">results</span><span class="op">)</span><span class="op">$</span><span class="va">spatialCoverage</span> <span class="op">&lt;-</span> <span class="st">"Nowhere"</span> </code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># We don't want to look at the code in the codebook.</span>
+<span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>warning <span class="op">=</span> <span class="cn">TRUE</span>, message <span class="op">=</span> <span class="cn">TRUE</span>, echo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <pre><code>## No missing values.</code></pre>
 <div id="metadata" class="section level3">
 <h3 class="hasAnchor">
@@ -177,8 +187,9 @@
 <a href="#description" class="anchor"></a>Description</h4>
 <p><strong>Dataset name</strong>: MOCK Qualtrics dataset</p>
 <p>a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package</p>
-<details><p><summary title="Expand this section to see some additional metadata in a structured format that is useful for search engines">Metadata for search engines</summary></p>
-<ul>
+<details><summary title="Expand this section to see some additional metadata in a structured format that is useful for search engines">
+Metadata for search engines
+</summary><ul>
 <li><p><strong>Temporal Coverage</strong>: 2018</p></li>
 <li><p><strong>Spatial Coverage</strong>: Nowhere</p></li>
 <li><p><strong>URL</strong>: <a href="https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html">https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html</a></p></li>
@@ -210,7 +221,7 @@
 </tr>
 <tr class="odd">
 <td align="left">affiliation</td>
-<td align="left">list(<code>@type</code> = “Organization”, name = “MPI Human Development, Berlin”)</td>
+<td align="left">Organization , MPI Human Development, Berlin</td>
 </tr>
 </tbody>
 </table>
@@ -233,9 +244,13 @@
 </tbody>
 </table>
 </td>
-</tr></tbody></table></details><p>#Variables</p>
+</tr></tbody></table></details>
 </div>
 </div>
+</div>
+<div id="variables" class="section level2">
+<h2 class="hasAnchor">
+<a href="#variables" class="anchor"></a>Variables</h2>
 <div id="ResponseSet" class="section level3 tabset">
 <h3 class="hasAnchor">
 <a href="#ResponseSet" class="anchor"></a>ResponseSet</h3>
@@ -299,6 +314,23 @@ Distribution of values for Q7
 <h4 class="hasAnchor">
 <a href="#Q7_summary" class="anchor"></a>Summary statistics</h4>
 <table class="table">
+<colgroup>
+<col width="0%">
+<col width="15%">
+<col width="0%">
+<col width="1%">
+<col width="1%">
+<col width="40%">
+<col width="1%">
+<col width="2%">
+<col width="1%">
+<col width="5%">
+<col width="1%">
+<col width="2%">
+<col width="15%">
+<col width="3%">
+<col width="2%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">name</th>
 <th align="left">label</th>
@@ -340,6 +372,14 @@ Distribution of values for Q7
 <a href="#Q7_item" class="anchor"></a>Item</h4>
 <table class="table">
 <caption>Item options</caption>
+<colgroup>
+<col width="3%">
+<col width="6%">
+<col width="8%">
+<col width="58%">
+<col width="12%">
+<col width="9%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">type</th>
 <th align="left">selector</th>
@@ -363,6 +403,10 @@ Distribution of values for Q7
 <a href="#Q7_labels" class="anchor"></a>Value labels</h4>
 <table class="table">
 <caption>Response choices</caption>
+<colgroup>
+<col width="4%">
+<col width="95%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">name</th>
 <th align="left">value</th>
@@ -370,31 +414,31 @@ Distribution of values for Q7
 <tbody>
 <tr class="odd">
 <td align="left">1</td>
-<td align="left">list(recode = “1”, description = “Extremely reasonable”, choiceText = “Extremely reasonable”, imageDescription = NULL, variableName = NULL, analyze = TRUE)</td>
+<td align="left">1 , Extremely reasonable, Extremely reasonable, TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">2</td>
-<td align="left">list(recode = “2”, description = “Moderately reasonable”, choiceText = “Moderately reasonable”, imageDescription = NULL, variableName = NULL, analyze = TRUE)</td>
+<td align="left">2 , Moderately reasonable, Moderately reasonable, TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">3</td>
-<td align="left">list(recode = “3”, description = “Slightly reasonable”, choiceText = “Slightly reasonable”, imageDescription = NULL, variableName = NULL, analyze = TRUE)</td>
+<td align="left">3 , Slightly reasonable, Slightly reasonable, TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">4</td>
-<td align="left">list(recode = “4”, description = “Neither reasonable nor unreasonable”, choiceText = “Neither reasonable nor unreasonable”, imageDescription = NULL, variableName = NULL, analyze = TRUE)</td>
+<td align="left">4 , Neither reasonable nor unreasonable, Neither reasonable nor unreasonable, TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">5</td>
-<td align="left">list(recode = “5”, description = “Slightly unreasonable”, choiceText = “Slightly unreasonable”, imageDescription = NULL, variableName = NULL, analyze = TRUE)</td>
+<td align="left">5 , Slightly unreasonable, Slightly unreasonable, TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">6</td>
-<td align="left">list(recode = “6”, description = “Moderately unreasonable”, choiceText = “Moderately unreasonable”, imageDescription = NULL, variableName = NULL, analyze = TRUE)</td>
+<td align="left">6 , Moderately unreasonable, Moderately unreasonable, TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">7</td>
-<td align="left">list(recode = “7”, description = “Extremely unreasonable”, choiceText = “Extremely unreasonable”, imageDescription = NULL, variableName = NULL, analyze = TRUE)</td>
+<td align="left">7 , Extremely unreasonable, Extremely unreasonable, TRUE</td>
 </tr>
 </tbody>
 </table>
@@ -418,6 +462,23 @@ Distribution of values for Q10
 <h4 class="hasAnchor">
 <a href="#Q10_summary" class="anchor"></a>Summary statistics</h4>
 <table class="table">
+<colgroup>
+<col width="1%">
+<col width="14%">
+<col width="1%">
+<col width="2%">
+<col width="1%">
+<col width="39%">
+<col width="2%">
+<col width="2%">
+<col width="1%">
+<col width="6%">
+<col width="1%">
+<col width="2%">
+<col width="14%">
+<col width="3%">
+<col width="2%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">name</th>
 <th align="left">label</th>
@@ -459,6 +520,14 @@ Distribution of values for Q10
 <a href="#Q10_item" class="anchor"></a>Item</h4>
 <table class="table">
 <caption>Item options</caption>
+<colgroup>
+<col width="3%">
+<col width="7%">
+<col width="9%">
+<col width="55%">
+<col width="14%">
+<col width="10%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">type</th>
 <th align="left">selector</th>
@@ -489,31 +558,31 @@ Distribution of values for Q10
 <tbody>
 <tr class="odd">
 <td align="left">1</td>
-<td align="left">list(recode = “1”, description = “Extremely helpful”, choiceText = “Extremely helpful”, imageDescription = NULL, variableName = NULL, analyze = TRUE)</td>
+<td align="left">1 , Extremely helpful, Extremely helpful, TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">2</td>
-<td align="left">list(recode = “2”, description = “Moderately helpful”, choiceText = “Moderately helpful”, imageDescription = NULL, variableName = NULL, analyze = TRUE)</td>
+<td align="left">2 , Moderately helpful, Moderately helpful, TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">3</td>
-<td align="left">list(recode = “3”, description = “Slightly helpful”, choiceText = “Slightly helpful”, imageDescription = NULL, variableName = NULL, analyze = TRUE)</td>
+<td align="left">3 , Slightly helpful, Slightly helpful, TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">4</td>
-<td align="left">list(recode = “4”, description = “Neither helpful nor unhelpful”, choiceText = “Neither helpful nor unhelpful”, imageDescription = NULL, variableName = NULL, analyze = TRUE)</td>
+<td align="left">4 , Neither helpful nor unhelpful, Neither helpful nor unhelpful, TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">5</td>
-<td align="left">list(recode = “5”, description = “Slightly unhelpful”, choiceText = “Slightly unhelpful”, imageDescription = NULL, variableName = NULL, analyze = TRUE)</td>
+<td align="left">5 , Slightly unhelpful, Slightly unhelpful, TRUE</td>
 </tr>
 <tr class="even">
 <td align="left">6</td>
-<td align="left">list(recode = “6”, description = “Moderately unhelpful”, choiceText = “Moderately unhelpful”, imageDescription = NULL, variableName = NULL, analyze = TRUE)</td>
+<td align="left">6 , Moderately unhelpful, Moderately unhelpful, TRUE</td>
 </tr>
 <tr class="odd">
 <td align="left">7</td>
-<td align="left">list(recode = “7”, description = “Extremely unhelpful”, choiceText = “Extremely unhelpful”, imageDescription = NULL, variableName = NULL, analyze = TRUE)</td>
+<td align="left">7 , Extremely unhelpful, Extremely unhelpful, TRUE</td>
 </tr>
 </tbody>
 </table>
@@ -527,11 +596,11 @@ Distribution of values for Q10
 <div id="codebook-table" class="section level2">
 <h2 class="hasAnchor">
 <a href="#codebook-table" class="anchor"></a>Codebook table</h2>
-<div id="htmlwidget-a5ee10d374b658586447" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a5ee10d374b658586447">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;,&quot;na&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"1\" data-max=\"2\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#ResponseSet\">ResponseSet<\/a>","<a href=\"#Q7\">Q7<\/a>","<a href=\"#Q10\">Q10<\/a>"],[null,"MC","MC"],["character","factor","factor"],[null,true,true],[null,"1. Extremely reasonable,<br>2. Moderately reasonable,<br>3. Slightly reasonable,<br>4. Neither reasonable nor unreasonable,<br>5. Slightly unreasonable,<br>6. Moderately unreasonable,<br>7. Extremely unreasonable","1. Extremely helpful,<br>2. Moderately helpful,<br>3. Slightly helpful,<br>4. Neither helpful nor unhelpful,<br>5. Slightly unhelpful,<br>6. Moderately unhelpful,<br>7. Extremely unhelpful"],[0,0,0],[1,1,1],[1,2,2],[0,null,null],[null,"Mod: 1, Sli: 1, Ext: 0, Nei: 0","Mod: 1, Ext: 1, Ext: 0, Sli: 0"],["20",null,null],["20",null,null],[0,null,null],["ResponseSet",null,null],[null,"How reasonable or unreasonable is the cost of courses/tuition at this university?",null],[null,"SAVR","SAVR"],[null,"TX","TX"],[null,"How reasonable or unreasonable is the cost of courses/tuition at this university?","How helpful or unhelpful is the staff at the on-campus health center?"],[null,"FALSE","FALSE"],[null,"Q7","Q10"],[null,null,"How helpful or unhelpful is the staff at the on-campus health center?"],[null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>type<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>n_missing<\/th>\n      <th>complete_rate<\/th>\n      <th>n_unique<\/th>\n      <th>empty<\/th>\n      <th>top_counts<\/th>\n      <th>min<\/th>\n      <th>max<\/th>\n      <th>whitespace<\/th>\n      <th>ResponseSet<\/th>\n      <th>Q7<\/th>\n      <th>selector<\/th>\n      <th>subSelector<\/th>\n      <th>questionText<\/th>\n      <th>doesForceResponse<\/th>\n      <th>questionName<\/th>\n      <th>Q10<\/th>\n      <th>label<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":[5,6,7,8,12]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
+<div id="htmlwidget-49a6613f647e308e61a5" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-49a6613f647e308e61a5">{"x":{"filter":"top","filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"logical\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"width: 100%; display: none;\">\n      <select multiple=\"multiple\" style=\"width: 100%;\" data-options=\"[&quot;true&quot;,&quot;false&quot;,&quot;na&quot;]\"><\/select>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"integer\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n    <div style=\"display: none; position: absolute; width: 200px;\">\n      <div data-min=\"1\" data-max=\"2\"><\/div>\n      <span style=\"float: left;\"><\/span>\n      <span style=\"float: right;\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"disabled\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","extensions":["Buttons"],"data":[["<a href=\"#ResponseSet\">ResponseSet<\/a>","<a href=\"#Q7\">Q7<\/a>","<a href=\"#Q10\">Q10<\/a>"],[null,"MC","MC"],["character","factor","factor"],[null,true,true],[null,"1. Extremely reasonable,<br>2. Moderately reasonable,<br>3. Slightly reasonable,<br>4. Neither reasonable nor unreasonable,<br>5. Slightly unreasonable,<br>6. Moderately unreasonable,<br>7. Extremely unreasonable","1. Extremely helpful,<br>2. Moderately helpful,<br>3. Slightly helpful,<br>4. Neither helpful nor unhelpful,<br>5. Slightly unhelpful,<br>6. Moderately unhelpful,<br>7. Extremely unhelpful"],[0,0,0],[1,1,1],[1,2,2],[0,null,null],[null,"Mod: 1, Sli: 1, Ext: 0, Nei: 0","Mod: 1, Ext: 1, Ext: 0, Sli: 0"],["20",null,null],["20",null,null],[0,null,null],["ResponseSet",null,null],[null,"How reasonable or unreasonable is the cost of courses/tuition at this university?",null],[null,"SAVR","SAVR"],[null,"TX","TX"],[null,"How reasonable or unreasonable is the cost of courses/tuition at this university?","How helpful or unhelpful is the staff at the on-campus health center?"],[null,"FALSE","FALSE"],[null,"Q7","Q10"],[null,null,"How helpful or unhelpful is the staff at the on-campus health center?"],[null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>name<\/th>\n      <th>type<\/th>\n      <th>data_type<\/th>\n      <th>ordered<\/th>\n      <th>value_labels<\/th>\n      <th>n_missing<\/th>\n      <th>complete_rate<\/th>\n      <th>n_unique<\/th>\n      <th>empty<\/th>\n      <th>top_counts<\/th>\n      <th>min<\/th>\n      <th>max<\/th>\n      <th>whitespace<\/th>\n      <th>ResponseSet<\/th>\n      <th>Q7<\/th>\n      <th>selector<\/th>\n      <th>subSelector<\/th>\n      <th>questionText<\/th>\n      <th>doesForceResponse<\/th>\n      <th>questionName<\/th>\n      <th>Q10<\/th>\n      <th>label<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"Bfrtip","buttons":["copy","csv","excel","pdf","print"],"pageLength":200,"columnDefs":[{"className":"dt-right","targets":[5,6,7,8,12]}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,25,50,100,200]}},"evals":[],"jsHooks":[]}</script><script type="application/ld+json">
 {
   "name": "MOCK Qualtrics dataset",
-  "description": "a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name        |label | n_missing|\n|:-----------|:-----|---------:|\n|ResponseSet |NA    |         0|\n|Q7          |NA    |         0|\n|Q10         |NA    |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.2).",
+  "description": "a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name        |label | n_missing|\n|:-----------|:-----|---------:|\n|ResponseSet |NA    |         0|\n|Q7          |NA    |         0|\n|Q10         |NA    |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.4).",
   "identifier": "doi:10.5281/zenodo.1326520",
   "datePublished": "2018-08-01",
   "creator": {
@@ -572,50 +641,52 @@ Distribution of values for Q10
     }
   ]
 }
-</script><details><p><summary>JSON-LD metadata</summary> The following JSON-LD can be found by search engines, if you share this codebook publicly on the web.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">{</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MOCK Qualtrics dataset"</span><span class="fu">,</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package</span><span class="ch">\n\n\n</span><span class="st">## Table of variables</span><span class="ch">\n</span><span class="st">This table contains variable names, labels, and number of missing values.</span><span class="ch">\n</span><span class="st">See the complete codebook for more.</span><span class="ch">\n\n</span><span class="st">|name        |label | n_missing|</span><span class="ch">\n</span><span class="st">|:-----------|:-----|---------:|</span><span class="ch">\n</span><span class="st">|ResponseSet |NA    |         0|</span><span class="ch">\n</span><span class="st">|Q7          |NA    |         0|</span><span class="ch">\n</span><span class="st">|Q10         |NA    |         0|</span><span class="ch">\n\n</span><span class="st">### Note</span><span class="ch">\n</span><span class="st">This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.2)."</span><span class="fu">,</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a>  <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"doi:10.5281/zenodo.1326520"</span><span class="fu">,</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>  <span class="dt">"datePublished"</span><span class="fu">:</span> <span class="st">"2018-08-01"</span><span class="fu">,</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a>  <span class="dt">"creator"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a>    <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a>    <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Ruben"</span><span class="fu">,</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a>    <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Arslan"</span><span class="fu">,</span></span>
-<span id="cb13-10"><a href="#cb13-10"></a>    <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"ruben.arslan@gmail.com"</span><span class="fu">,</span></span>
-<span id="cb13-11"><a href="#cb13-11"></a>    <span class="dt">"affiliation"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb13-12"><a href="#cb13-12"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
-<span id="cb13-13"><a href="#cb13-13"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MPI Human Development, Berlin"</span></span>
-<span id="cb13-14"><a href="#cb13-14"></a>    <span class="fu">}</span></span>
-<span id="cb13-15"><a href="#cb13-15"></a>  <span class="fu">},</span></span>
-<span id="cb13-16"><a href="#cb13-16"></a>  <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html"</span><span class="fu">,</span></span>
-<span id="cb13-17"><a href="#cb13-17"></a>  <span class="dt">"temporalCoverage"</span><span class="fu">:</span> <span class="st">"2018"</span><span class="fu">,</span></span>
-<span id="cb13-18"><a href="#cb13-18"></a>  <span class="dt">"spatialCoverage"</span><span class="fu">:</span> <span class="st">"Nowhere"</span><span class="fu">,</span></span>
-<span id="cb13-19"><a href="#cb13-19"></a>  <span class="dt">"keywords"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"ResponseSet"</span><span class="ot">,</span> <span class="st">"Q7"</span><span class="ot">,</span> <span class="st">"Q10"</span><span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb13-20"><a href="#cb13-20"></a>  <span class="dt">"@context"</span><span class="fu">:</span> <span class="st">"http://schema.org/"</span><span class="fu">,</span></span>
-<span id="cb13-21"><a href="#cb13-21"></a>  <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Dataset"</span><span class="fu">,</span></span>
-<span id="cb13-22"><a href="#cb13-22"></a>  <span class="dt">"variableMeasured"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb13-23"><a href="#cb13-23"></a>    <span class="fu">{</span></span>
-<span id="cb13-24"><a href="#cb13-24"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"ResponseSet"</span><span class="fu">,</span></span>
-<span id="cb13-25"><a href="#cb13-25"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"ResponseSet"</span><span class="fu">,</span></span>
-<span id="cb13-26"><a href="#cb13-26"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb13-27"><a href="#cb13-27"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb13-28"><a href="#cb13-28"></a>    <span class="fu">{</span></span>
-<span id="cb13-29"><a href="#cb13-29"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Q7"</span><span class="fu">,</span></span>
-<span id="cb13-30"><a href="#cb13-30"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"How reasonable or unreasonable is the cost of courses/tuition at this university?"</span><span class="fu">,</span></span>
-<span id="cb13-31"><a href="#cb13-31"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. Extremely reasonable,</span><span class="ch">\n</span><span class="st">2. Moderately reasonable,</span><span class="ch">\n</span><span class="st">3. Slightly reasonable,</span><span class="ch">\n</span><span class="st">4. Neither reasonable nor unreasonable,</span><span class="ch">\n</span><span class="st">5. Slightly unreasonable,</span><span class="ch">\n</span><span class="st">6. Moderately unreasonable,</span><span class="ch">\n</span><span class="st">7. Extremely unreasonable"</span><span class="fu">,</span></span>
-<span id="cb13-32"><a href="#cb13-32"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb13-33"><a href="#cb13-33"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb13-34"><a href="#cb13-34"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb13-35"><a href="#cb13-35"></a>    <span class="fu">{</span></span>
-<span id="cb13-36"><a href="#cb13-36"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Q10"</span><span class="fu">,</span></span>
-<span id="cb13-37"><a href="#cb13-37"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"How helpful or unhelpful is the staff at the on-campus health center?"</span><span class="fu">,</span></span>
-<span id="cb13-38"><a href="#cb13-38"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. Extremely helpful,</span><span class="ch">\n</span><span class="st">2. Moderately helpful,</span><span class="ch">\n</span><span class="st">3. Slightly helpful,</span><span class="ch">\n</span><span class="st">4. Neither helpful nor unhelpful,</span><span class="ch">\n</span><span class="st">5. Slightly unhelpful,</span><span class="ch">\n</span><span class="st">6. Moderately unhelpful,</span><span class="ch">\n</span><span class="st">7. Extremely unhelpful"</span><span class="fu">,</span></span>
-<span id="cb13-39"><a href="#cb13-39"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb13-40"><a href="#cb13-40"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb13-41"><a href="#cb13-41"></a>    <span class="fu">}</span></span>
-<span id="cb13-42"><a href="#cb13-42"></a>  <span class="ot">]</span></span>
-<span id="cb13-43"><a href="#cb13-43"></a><span class="fu">}</span><span class="er">`</span></span></code></pre></div>
+</script><details><summary>
+JSON-LD metadata
+</summary><p>The following JSON-LD can be found by search engines, if you share this codebook publicly on the web.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MOCK Qualtrics dataset"</span><span class="fu">,</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package</span><span class="ch">\n\n\n</span><span class="st">## Table of variables</span><span class="ch">\n</span><span class="st">This table contains variable names, labels, and number of missing values.</span><span class="ch">\n</span><span class="st">See the complete codebook for more.</span><span class="ch">\n\n</span><span class="st">|name        |label | n_missing|</span><span class="ch">\n</span><span class="st">|:-----------|:-----|---------:|</span><span class="ch">\n</span><span class="st">|ResponseSet |NA    |         0|</span><span class="ch">\n</span><span class="st">|Q7          |NA    |         0|</span><span class="ch">\n</span><span class="st">|Q10         |NA    |         0|</span><span class="ch">\n\n</span><span class="st">### Note</span><span class="ch">\n</span><span class="st">This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.4)."</span><span class="fu">,</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"doi:10.5281/zenodo.1326520"</span><span class="fu">,</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"datePublished"</span><span class="fu">:</span> <span class="st">"2018-08-01"</span><span class="fu">,</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"creator"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Ruben"</span><span class="fu">,</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Arslan"</span><span class="fu">,</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"ruben.arslan@gmail.com"</span><span class="fu">,</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"affiliation"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MPI Human Development, Berlin"</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html"</span><span class="fu">,</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"temporalCoverage"</span><span class="fu">:</span> <span class="st">"2018"</span><span class="fu">,</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"spatialCoverage"</span><span class="fu">:</span> <span class="st">"Nowhere"</span><span class="fu">,</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"keywords"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"ResponseSet"</span><span class="ot">,</span> <span class="st">"Q7"</span><span class="ot">,</span> <span class="st">"Q10"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"@context"</span><span class="fu">:</span> <span class="st">"http://schema.org/"</span><span class="fu">,</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Dataset"</span><span class="fu">,</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"variableMeasured"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"ResponseSet"</span><span class="fu">,</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"ResponseSet"</span><span class="fu">,</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Q7"</span><span class="fu">,</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"How reasonable or unreasonable is the cost of courses/tuition at this university?"</span><span class="fu">,</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. Extremely reasonable,</span><span class="ch">\n</span><span class="st">2. Moderately reasonable,</span><span class="ch">\n</span><span class="st">3. Slightly reasonable,</span><span class="ch">\n</span><span class="st">4. Neither reasonable nor unreasonable,</span><span class="ch">\n</span><span class="st">5. Slightly unreasonable,</span><span class="ch">\n</span><span class="st">6. Moderately unreasonable,</span><span class="ch">\n</span><span class="st">7. Extremely unreasonable"</span><span class="fu">,</span></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Q10"</span><span class="fu">,</span></span>
+<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"How helpful or unhelpful is the staff at the on-campus health center?"</span><span class="fu">,</span></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. Extremely helpful,</span><span class="ch">\n</span><span class="st">2. Moderately helpful,</span><span class="ch">\n</span><span class="st">3. Slightly helpful,</span><span class="ch">\n</span><span class="st">4. Neither helpful nor unhelpful,</span><span class="ch">\n</span><span class="st">5. Slightly unhelpful,</span><span class="ch">\n</span><span class="st">6. Moderately unhelpful,</span><span class="ch">\n</span><span class="st">7. Extremely unhelpful"</span><span class="fu">,</span></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span><span class="er">`</span></span></code></pre></div>
 </details>
 </div>
   </div>
@@ -635,7 +706,7 @@ Distribution of values for Q10
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

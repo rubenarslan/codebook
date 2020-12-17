@@ -85,7 +85,7 @@ codebook will become part of the document you are generating." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -93,7 +93,7 @@ codebook will become part of the document you are generating." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -128,7 +128,7 @@ codebook will become part of the document you are generating." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/rubenarslan/codebook/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -167,18 +167,18 @@ By calling this function inside a knitr code chunk, the
 codebook will become part of the document you are generating.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>codebook</span>(
-  <span class='no'>results</span>,
-  <span class='kw'>reliabilities</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>survey_repetition</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"auto"</span>, <span class='st'>"single"</span>, <span class='st'>"repeated_once"</span>, <span class='st'>"repeated_many"</span>),
-  <span class='kw'>detailed_variables</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>detailed_scales</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>survey_overview</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>missingness_report</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>metadata_table</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>metadata_json</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>indent</span> <span class='kw'>=</span> <span class='st'>"#"</span>
-)</pre>
+    <pre class="usage"><span class='fu'>codebook</span><span class='op'>(</span>
+  <span class='va'>results</span>,
+  reliabilities <span class='op'>=</span> <span class='cn'>NULL</span>,
+  survey_repetition <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"auto"</span>, <span class='st'>"single"</span>, <span class='st'>"repeated_once"</span>, <span class='st'>"repeated_many"</span><span class='op'>)</span>,
+  detailed_variables <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  detailed_scales <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  survey_overview <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  missingness_report <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  metadata_table <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  metadata_json <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  indent <span class='op'>=</span> <span class='st'>"#"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -228,11 +228,12 @@ codebook will become part of the document you are generating.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># will generate figures in a temporary directory</span>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"bfi"</span>)
-<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='no'>bfi</span>[, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"BFIK_open_1"</span>, <span class='st'>"BFIK_open_1"</span>)]
-<span class='no'>md</span> <span class='kw'>&lt;-</span> <span class='fu'>codebook</span>(<span class='no'>bfi</span>, <span class='kw'>survey_repetition</span> <span class='kw'>=</span> <span class='st'>"single"</span>, <span class='kw'>metadata_table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-}</div></pre>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"bfi"</span><span class='op'>)</span>
+<span class='va'>bfi</span> <span class='op'>&lt;-</span> <span class='va'>bfi</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"BFIK_open_1"</span>, <span class='st'>"BFIK_open_1"</span><span class='op'>)</span><span class='op'>]</span>
+<span class='va'>md</span> <span class='op'>&lt;-</span> <span class='fu'>codebook</span><span class='op'>(</span><span class='va'>bfi</span>, survey_repetition <span class='op'>=</span> <span class='st'>"single"</span>, metadata_table <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -248,7 +249,7 @@ codebook will become part of the document you are generating.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

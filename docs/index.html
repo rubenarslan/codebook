@@ -44,7 +44,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -52,7 +52,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -87,7 +87,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/rubenarslan/codebook/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -154,13 +154,16 @@
 <h3 class="hasAnchor">
 <a href="#install" class="anchor"></a>Install</h3>
 <p>Run the following in R.</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"codebook"</span>)</pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"codebook"</span><span class="op">)</span></code></pre></div>
 <p>Or to get the latest development version:</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"remotes"</span>)
-<span class="kw pkg">remotes</span><span class="kw ns">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span>(<span class="st">"rubenarslan/codebook"</span>)</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"rubenarslan/codebook"</span><span class="op">)</span></code></pre></div>
 <p>Then run the following to get started:</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">codebook</span>)
-<span class="fu"><a href="reference/new_codebook_rmd.html">new_codebook_rmd</a></span>()</pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rubenarslan/codebook">codebook</a></span><span class="op">)</span>
+<span class="fu"><a href="reference/new_codebook_rmd.html">new_codebook_rmd</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="citation" class="section level2">
@@ -185,78 +188,78 @@
 <h3 class="hasAnchor">
 <a href="#how-to-use" class="anchor"></a>How to use</h3>
 <p>Here’s a simple rmarkdown template, that you could use to get started. The resulting codebook will be an HTML file, but you can also choose to generate PDFs or Word files by fiddling with the <code>output</code> settings.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a>---</span>
-<span id="cb4-2"><a href="#cb4-2"></a>title: "Codebook"</span>
-<span id="cb4-3"><a href="#cb4-3"></a>output:</span>
-<span id="cb4-4"><a href="#cb4-4"></a>  html_document:</span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="bn">    toc: true</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="bn">    toc_depth: 4</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="bn">    toc_float: true</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="bn">    code_folding: 'hide'</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="bn">    self_contained: true</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>  pdf_document:</span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="bn">    toc: yes</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="bn">    toc_depth: 4</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="bn">    latex_engine: xelatex</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a>---</span>
-<span id="cb4-15"><a href="#cb4-15"></a></span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="bn">```{r setup}</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a><span class="bn">knitr::opts_chunk$set(</span></span>
-<span id="cb4-18"><a href="#cb4-18"></a><span class="bn">  warning = TRUE, # show warnings during codebook generation</span></span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="bn">  message = TRUE, # show messages during codebook generation</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="bn">  error = TRUE, # do not interrupt codebook generation in case of errors,</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="bn">                # usually makes debugging easier, and sometimes half a codebook</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a><span class="bn">                # is better than none</span></span>
-<span id="cb4-23"><a href="#cb4-23"></a><span class="bn">  echo = FALSE  # don't show the R code</span></span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="bn">)</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a><span class="bn">ggplot2::theme_set(ggplot2::theme_bw())</span></span>
-<span id="cb4-26"><a href="#cb4-26"></a><span class="bn">pander::panderOptions("table.split.table", Inf)</span></span>
-<span id="cb4-27"><a href="#cb4-27"></a><span class="bn">```</span></span>
-<span id="cb4-28"><a href="#cb4-28"></a></span>
-<span id="cb4-29"><a href="#cb4-29"></a>Here, we import data from formr</span>
-<span id="cb4-30"><a href="#cb4-30"></a></span>
-<span id="cb4-31"><a href="#cb4-31"></a><span class="bn">```{r}</span></span>
-<span id="cb4-32"><a href="#cb4-32"></a><span class="bn">library(formr)</span></span>
-<span id="cb4-33"><a href="#cb4-33"></a><span class="bn">source(".passwords.R")</span></span>
-<span id="cb4-34"><a href="#cb4-34"></a><span class="bn">formr_connect(email = credentials$email, password = credentials$password)</span></span>
-<span id="cb4-35"><a href="#cb4-35"></a><span class="bn">codebook_data &lt;- formr_results("s3_daily")</span></span>
-<span id="cb4-36"><a href="#cb4-36"></a><span class="bn">```</span></span>
-<span id="cb4-37"><a href="#cb4-37"></a></span>
-<span id="cb4-38"><a href="#cb4-38"></a>But we can also import data from e.g. an SPSS file.</span>
-<span id="cb4-39"><a href="#cb4-39"></a><span class="bn">```{r}</span></span>
-<span id="cb4-40"><a href="#cb4-40"></a><span class="bn">codebook_data &lt;- rio::import("s3_daily.sav")</span></span>
-<span id="cb4-41"><a href="#cb4-41"></a><span class="bn">```</span></span>
-<span id="cb4-42"><a href="#cb4-42"></a></span>
-<span id="cb4-43"><a href="#cb4-43"></a></span>
-<span id="cb4-44"><a href="#cb4-44"></a>Sometimes, the metadata is not set up in such a way that codebook</span>
-<span id="cb4-45"><a href="#cb4-45"></a>can leverage it fully. These functions help fix this.</span>
-<span id="cb4-46"><a href="#cb4-46"></a></span>
-<span id="cb4-47"><a href="#cb4-47"></a><span class="bn">```{r codebook}</span></span>
-<span id="cb4-48"><a href="#cb4-48"></a><span class="bn">library(codebook) # load the package</span></span>
-<span id="cb4-49"><a href="#cb4-49"></a><span class="bn"># omit the following lines, if your missing values are already properly labelled</span></span>
-<span id="cb4-50"><a href="#cb4-50"></a><span class="bn">codebook_data &lt;- detect_missing(codebook_data,</span></span>
-<span id="cb4-51"><a href="#cb4-51"></a><span class="bn">    only_labelled = TRUE, # only labelled values are autodetected as</span></span>
-<span id="cb4-52"><a href="#cb4-52"></a><span class="bn">                                   # missing</span></span>
-<span id="cb4-53"><a href="#cb4-53"></a><span class="bn">    negative_values_are_missing = FALSE, # negative values are NOT missing values</span></span>
-<span id="cb4-54"><a href="#cb4-54"></a><span class="bn">    ninety_nine_problems = TRUE,   # 99/999 are missing values, if they</span></span>
-<span id="cb4-55"><a href="#cb4-55"></a><span class="bn">                                   # are more than 5 MAD from the median</span></span>
-<span id="cb4-56"><a href="#cb4-56"></a><span class="bn">    )</span></span>
-<span id="cb4-57"><a href="#cb4-57"></a></span>
-<span id="cb4-58"><a href="#cb4-58"></a><span class="bn"># If you are not using formr, the codebook package needs to guess which items</span></span>
-<span id="cb4-59"><a href="#cb4-59"></a><span class="bn"># form a scale. The following line finds item aggregates with names like this:</span></span>
-<span id="cb4-60"><a href="#cb4-60"></a><span class="bn"># scale = scale_1 + scale_2R + scale_3R</span></span>
-<span id="cb4-61"><a href="#cb4-61"></a><span class="bn"># identifying these aggregates allows the codebook function to</span></span>
-<span id="cb4-62"><a href="#cb4-62"></a><span class="bn"># automatically compute reliabilities.</span></span>
-<span id="cb4-63"><a href="#cb4-63"></a><span class="bn"># However, it will not reverse items automatically.</span></span>
-<span id="cb4-64"><a href="#cb4-64"></a><span class="bn">codebook_data &lt;- detect_scales(codebook_data)</span></span>
-<span id="cb4-65"><a href="#cb4-65"></a><span class="bn">```</span></span>
-<span id="cb4-66"><a href="#cb4-66"></a></span>
-<span id="cb4-67"><a href="#cb4-67"></a>Now, generating a codebook is as simple as calling codebook from a chunk in an</span>
-<span id="cb4-68"><a href="#cb4-68"></a>rmarkdown document.</span>
-<span id="cb4-69"><a href="#cb4-69"></a></span>
-<span id="cb4-70"><a href="#cb4-70"></a><span class="bn">```{r}</span></span>
-<span id="cb4-71"><a href="#cb4-71"></a><span class="bn">codebook(codebook_data)</span></span>
-<span id="cb4-72"><a href="#cb4-72"></a><span class="bn">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Codebook"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html_document:</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">    toc_depth: 4</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc_float: true</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code_folding: 'hide'</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">    self_contained: true</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">  pdf_document:</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: yes</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">    toc_depth: 4</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">    latex_engine: xelatex</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup}</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="in">  warning = TRUE, # show warnings during codebook generation</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="in">  message = TRUE, # show messages during codebook generation</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="in">  error = TRUE, # do not interrupt codebook generation in case of errors,</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="in">                # usually makes debugging easier, and sometimes half a codebook</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="in">                # is better than none</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="in">  echo = FALSE  # don't show the R code</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="in">ggplot2::theme_set(ggplot2::theme_bw())</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="in">pander::panderOptions("table.split.table", Inf)</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>Here, we import data from formr</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="in">library(formr)</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="in">source(".passwords.R")</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="in">formr_connect(email = credentials$email, password = credentials$password)</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="in">codebook_data &lt;- formr_results("s3_daily")</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>But we can also import data from e.g. an SPSS file.</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="in">codebook_data &lt;- rio::import("s3_daily.sav")</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>Sometimes, the metadata is not set up in such a way that codebook</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>can leverage it fully. These functions help fix this.</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r codebook}</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="in">library(codebook) # load the package</span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="in"># omit the following lines, if your missing values are already properly labelled</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="in">codebook_data &lt;- detect_missing(codebook_data,</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="in">    only_labelled = TRUE, # only labelled values are autodetected as</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="in">                                   # missing</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="in">    negative_values_are_missing = FALSE, # negative values are NOT missing values</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="in">    ninety_nine_problems = TRUE,   # 99/999 are missing values, if they</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="in">                                   # are more than 5 MAD from the median</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="in">    )</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="in"># If you are not using formr, the codebook package needs to guess which items</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="in"># form a scale. The following line finds item aggregates with names like this:</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="in"># scale = scale_1 + scale_2R + scale_3R</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="in"># identifying these aggregates allows the codebook function to</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="in"># automatically compute reliabilities.</span></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="in"># However, it will not reverse items automatically.</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="in">codebook_data &lt;- detect_scales(codebook_data)</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>Now, generating a codebook is as simple as calling codebook from a chunk in an</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>rmarkdown document.</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="in">codebook(codebook_data)</span></span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </div>
 </div>
 <div id="code-of-conduct-for-contributing" class="section level2">
@@ -318,7 +321,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

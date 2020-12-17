@@ -83,7 +83,7 @@ Using different settings, you can also easily tag other missing values." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@ Using different settings, you can also easily tag other missing values." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -126,7 +126,7 @@ Using different settings, you can also easily tag other missing values." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/rubenarslan/codebook/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -163,31 +163,35 @@ This function will rectify that for negative values and for the values 99 and 99
 Using different settings, you can also easily tag other missing values.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>detect_missing</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>only_labelled</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>negative_values_are_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>ninety_nine_problems</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>learn_from_labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>missing</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(),
-  <span class='kw'>non_missing</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(),
-  <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>data</span>),
-  <span class='kw'>use_labelled_spss</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)
+    <pre class="usage"><span class='fu'>detect_missing</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  only_labelled <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  negative_values_are_missing <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  ninety_nine_problems <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  learn_from_labels <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  missing <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
+  non_missing <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
+  vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>,
+  use_labelled_spss <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  coerce_integer_to_double <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span>
 
-<span class='fu'>detect_missings</span>(<span class='no'>data</span>, <span class='kw'>only_labelled_missings</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)
+<span class='fu'>detect_missings</span><span class='op'>(</span><span class='va'>data</span>, only_labelled_missings <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='fu'>detect_missing</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>only_labelled</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>negative_values_are_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>ninety_nine_problems</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>learn_from_labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>missing</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(),
-  <span class='kw'>non_missing</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(),
-  <span class='kw'>vars</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span>(<span class='no'>data</span>),
-  <span class='kw'>use_labelled_spss</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+<span class='fu'>detect_missing</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  only_labelled <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  negative_values_are_missing <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  ninety_nine_problems <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  learn_from_labels <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  missing <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
+  non_missing <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>)</span>,
+  vars <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>,
+  use_labelled_spss <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  coerce_integer_to_double <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -229,6 +233,14 @@ Using different settings, you can also easily tag other missing values.</p>
       <td><p>the labelled_spss class has a few drawbacks. Since R can't store missing values like -1 and 99, we're replacing them with letters unless this option is enabled. If you prefer to keep your -1 etc, turn this on.</p></td>
     </tr>
     <tr>
+      <th>coerce_integer_to_double</th>
+      <td><p>By default, missing values in the columns of integers are not labelled, because it's not technically possible. Let this parameter be <code>TRUE</code> if you want to automatically coerce integer columns into double to be able to label the missing values.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>defaults to FALSE, if set to true, the function lets you know where and how it found potential missing values</p></td>
+    </tr>
+    <tr>
       <th>only_labelled_missings</th>
       <td><p>passed to <code>detect_missing()</code></p></td>
     </tr>
@@ -260,7 +272,7 @@ Using different settings, you can also easily tag other missing values.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

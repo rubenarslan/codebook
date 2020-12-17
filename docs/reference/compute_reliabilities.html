@@ -85,7 +85,7 @@ If you do plan to do that, you can pass the results of this operation to the cod
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -93,7 +93,7 @@ If you do plan to do that, you can pass the results of this operation to the cod
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -128,7 +128,7 @@ If you do plan to do that, you can pass the results of this operation to the cod
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/rubenarslan/codebook/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -167,7 +167,7 @@ called during codebook generation.
 If you do plan to do that, you can pass the results of this operation to the codebook function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>compute_reliabilities</span>(<span class='no'>results</span>, <span class='kw'>survey_repetition</span> <span class='kw'>=</span> <span class='st'>"single"</span>)</pre>
+    <pre class="usage"><span class='fu'>compute_reliabilities</span><span class='op'>(</span><span class='va'>results</span>, survey_repetition <span class='op'>=</span> <span class='st'>"single"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -184,11 +184,12 @@ If you do plan to do that, you can pass the results of this operation to the cod
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"bfi"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"codebook"</span>)
-<span class='no'>bfi</span> <span class='kw'>&lt;-</span> <span class='no'>bfi</span> <span class='kw'>%&gt;%</span> <span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='kw pkg'>dplyr</span><span class='kw ns'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/reexports.html'>starts_with</a></span>(<span class='st'>"BFIK_agree"</span>))
-<span class='no'>reliabilities</span> <span class='kw'>&lt;-</span> <span class='fu'>compute_reliabilities</span>(<span class='no'>bfi</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"bfi"</span>, package <span class='op'>=</span> <span class='st'>"codebook"</span><span class='op'>)</span>
+<span class='va'>bfi</span> <span class='op'>&lt;-</span> <span class='va'>bfi</span> <span class='op'>%&gt;%</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://tidyselect.r-lib.org/reference/starts_with.html'>starts_with</a></span><span class='op'>(</span><span class='st'>"BFIK_agree"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>reliabilities</span> <span class='op'>&lt;-</span> <span class='fu'>compute_reliabilities</span><span class='op'>(</span><span class='va'>bfi</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -204,7 +205,7 @@ If you do plan to do that, you can pass the results of this operation to the cod
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

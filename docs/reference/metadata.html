@@ -79,7 +79,7 @@ metadata generation using codebook() or metadata_list()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -87,7 +87,7 @@ metadata generation using codebook() or metadata_list()." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -122,7 +122,7 @@ metadata generation using codebook() or metadata_list()." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/rubenarslan/codebook/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -155,9 +155,9 @@ metadata generation using codebook() or metadata_list()." />
 metadata generation using <code><a href='codebook.html'>codebook()</a></code> or <code><a href='metadata_list.html'>metadata_list()</a></code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>metadata</span>(<span class='no'>data</span>)
+    <pre class="usage"><span class='fu'>metadata</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span>
 
-<span class='fu'>metadata</span>(<span class='no'>data</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -174,24 +174,25 @@ metadata generation using <code><a href='codebook.html'>codebook()</a></code> or
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>'bfi'</span>)
-<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>name</span> <span class='kw'>&lt;-</span> <span class='st'>"MOCK Big Five Inventory dataset (German metadata demo)"</span>
-<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>description</span> <span class='kw'>&lt;-</span> <span class='st'>"a small mock Big Five Inventory dataset"</span>
-<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>identifier</span> <span class='kw'>&lt;-</span> <span class='st'>"doi:10.5281/zenodo.1326520"</span>
-<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>datePublished</span> <span class='kw'>&lt;-</span> <span class='st'>"2016-06-01"</span>
-<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>creator</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-  <span class='st'>"@type"</span> <span class='kw'>=</span> <span class='st'>"Person"</span>,
-  <span class='kw'>givenName</span> <span class='kw'>=</span> <span class='st'>"Ruben"</span>, <span class='kw'>familyName</span> <span class='kw'>=</span> <span class='st'>"Arslan"</span>,
-  <span class='kw'>email</span> <span class='kw'>=</span> <span class='st'>"ruben.arslan@gmail.com"</span>,
-  <span class='kw'>affiliation</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='st'>"@type"</span> <span class='kw'>=</span> <span class='st'>"Organization"</span>,
-                     <span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"MPI Human Development, Berlin"</span>))
-<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>citation</span> <span class='kw'>&lt;-</span> <span class='st'>"Arslan (2016). Mock BFI data."</span>
-<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>url</span> <span class='kw'>&lt;-</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>'bfi'</span><span class='op'>)</span>
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>bfi</span><span class='op'>)</span><span class='op'>$</span><span class='va'>name</span> <span class='op'>&lt;-</span> <span class='st'>"MOCK Big Five Inventory dataset (German metadata demo)"</span>
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>bfi</span><span class='op'>)</span><span class='op'>$</span><span class='va'>description</span> <span class='op'>&lt;-</span> <span class='st'>"a small mock Big Five Inventory dataset"</span>
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>bfi</span><span class='op'>)</span><span class='op'>$</span><span class='va'>identifier</span> <span class='op'>&lt;-</span> <span class='st'>"doi:10.5281/zenodo.1326520"</span>
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>bfi</span><span class='op'>)</span><span class='op'>$</span><span class='va'>datePublished</span> <span class='op'>&lt;-</span> <span class='st'>"2016-06-01"</span>
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>bfi</span><span class='op'>)</span><span class='op'>$</span><span class='va'>creator</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+  <span class='st'>"@type"</span> <span class='op'>=</span> <span class='st'>"Person"</span>,
+  givenName <span class='op'>=</span> <span class='st'>"Ruben"</span>, familyName <span class='op'>=</span> <span class='st'>"Arslan"</span>,
+  email <span class='op'>=</span> <span class='st'>"ruben.arslan@gmail.com"</span>,
+  affiliation <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span><span class='st'>"@type"</span> <span class='op'>=</span> <span class='st'>"Organization"</span>,
+                     name <span class='op'>=</span> <span class='st'>"MPI Human Development, Berlin"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>bfi</span><span class='op'>)</span><span class='op'>$</span><span class='va'>citation</span> <span class='op'>&lt;-</span> <span class='st'>"Arslan (2016). Mock BFI data."</span>
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>bfi</span><span class='op'>)</span><span class='op'>$</span><span class='va'>url</span> <span class='op'>&lt;-</span>
   <span class='st'>"https://rubenarslan.github.io/codebook/articles/codebook.html"</span>
-<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>temporalCoverage</span> <span class='kw'>&lt;-</span> <span class='st'>"2016"</span>
-<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>spatialCoverage</span> <span class='kw'>&lt;-</span> <span class='st'>"Goettingen, Germany"</span>
-<span class='fu'>metadata</span>(<span class='no'>bfi</span>)$<span class='no'>keywords</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Personality"</span>, <span class='st'>"Psychology"</span>)
-<span class='fu'>metadata</span>(<span class='no'>bfi</span>)</div><div class='output co'>#&gt; $name
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>bfi</span><span class='op'>)</span><span class='op'>$</span><span class='va'>temporalCoverage</span> <span class='op'>&lt;-</span> <span class='st'>"2016"</span>
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>bfi</span><span class='op'>)</span><span class='op'>$</span><span class='va'>spatialCoverage</span> <span class='op'>&lt;-</span> <span class='st'>"Goettingen, Germany"</span>
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>bfi</span><span class='op'>)</span><span class='op'>$</span><span class='va'>keywords</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Personality"</span>, <span class='st'>"Psychology"</span><span class='op'>)</span>
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>bfi</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $name
 #&gt; [1] "MOCK Big Five Inventory dataset (German metadata demo)"
 #&gt; 
 #&gt; $description
@@ -256,7 +257,7 @@ metadata generation using <code><a href='codebook.html'>codebook()</a></code> or
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

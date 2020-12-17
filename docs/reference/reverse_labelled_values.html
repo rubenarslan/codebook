@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Reverse labelled values
-reverse the underlying values for a numeric <code><a href='https://haven.tidyverse.org/reference/labelled.html'>haven::labelled()</a></code> vector while keeping the labels correct — reverse_labelled_values • codebook</title>
+reverse the underlying values for a numeric haven::labelled() vector while keeping the labels correct — reverse_labelled_values • codebook</title>
 
 
 <!-- jquery -->
@@ -47,7 +47,7 @@ reverse the underlying values for a numeric <code><a href='https://haven.tidyver
 
 
 <meta property="og:title" content="Reverse labelled values
-reverse the underlying values for a numeric <code><a href='https://haven.tidyverse.org/reference/labelled.html'>haven::labelled()</a></code> vector while keeping the labels correct — reverse_labelled_values" />
+reverse the underlying values for a numeric haven::labelled() vector while keeping the labels correct — reverse_labelled_values" />
 <meta property="og:description" content="Reverse labelled values
 reverse the underlying values for a numeric haven::labelled() vector while keeping the labels correct
 Reverse labelled values
@@ -83,7 +83,7 @@ reverse the underlying values for a numeric haven::labelled() vector while keepi
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -91,7 +91,7 @@ reverse the underlying values for a numeric haven::labelled() vector while keepi
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -126,7 +126,7 @@ reverse the underlying values for a numeric haven::labelled() vector while keepi
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/rubenarslan/codebook/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -162,9 +162,9 @@ reverse the underlying values for a numeric <code><a href='https://haven.tidyver
 reverse the underlying values for a numeric <code><a href='https://haven.tidyverse.org/reference/labelled.html'>haven::labelled()</a></code> vector while keeping the labels correct</p>
     </div>
 
-    <pre class="usage"><span class='fu'>reverse_labelled_values</span>(<span class='no'>x</span>)
+    <pre class="usage"><span class='fu'>reverse_labelled_values</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
-<span class='fu'>reverse_labelled_values</span>(<span class='no'>x</span>)</pre>
+<span class='fu'>reverse_labelled_values</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,27 +181,31 @@ reverse the underlying values for a numeric <code><a href='https://haven.tidyver
 <p>return the labelled vector with the underlying values having been reversed</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>haven</span><span class='kw ns'>::</span><span class='fu'><a href='https://haven.tidyverse.org/reference/labelled.html'>labelled</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>each</span> <span class='kw'>=</span> <span class='fl'>3</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>Bad</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Good</span> <span class='kw'>=</span> <span class='fl'>5</span>))
-<span class='no'>x</span></div><div class='output co'>#&gt; &lt;labelled&lt;integer&gt;[9]&gt;
+    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>haven</span><span class='fu'>::</span><span class='fu'><a href='https://haven.tidyverse.org/reference/labelled.html'>labelled</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, each <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Bad <span class='op'>=</span> <span class='fl'>1</span>, Good <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>x</span>
+</div><div class='output co'>#&gt; &lt;labelled&lt;integer&gt;[9]&gt;
 #&gt; [1] 1 1 1 2 2 2 3 3 3
 #&gt; 
 #&gt; Labels:
 #&gt;  value label
 #&gt;      1   Bad
-#&gt;      5  Good</div><div class='input'><span class='fu'>reverse_labelled_values</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; &lt;labelled&lt;integer&gt;[9]&gt;
+#&gt;      5  Good</div><div class='input'><span class='fu'>reverse_labelled_values</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; &lt;labelled&lt;integer&gt;[9]&gt;
 #&gt; [1] 5 5 5 4 4 4 3 3 3
 #&gt; 
 #&gt; Labels:
 #&gt;  value label
 #&gt;      5   Bad
-#&gt;      1  Good</div><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>haven</span><span class='kw ns'>::</span><span class='fu'><a href='https://haven.tidyverse.org/reference/labelled.html'>labelled</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>:<span class='fl'>3</span>, <span class='kw'>each</span> <span class='kw'>=</span> <span class='fl'>3</span>), <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='kw'>Bad</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>Good</span> <span class='kw'>=</span> <span class='fl'>5</span>))
-<span class='no'>x</span></div><div class='output co'>#&gt; &lt;labelled&lt;integer&gt;[9]&gt;
+#&gt;      1  Good</div><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>haven</span><span class='fu'>::</span><span class='fu'><a href='https://haven.tidyverse.org/reference/labelled.html'>labelled</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>, each <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span>Bad <span class='op'>=</span> <span class='fl'>1</span>, Good <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>x</span>
+</div><div class='output co'>#&gt; &lt;labelled&lt;integer&gt;[9]&gt;
 #&gt; [1] 1 1 1 2 2 2 3 3 3
 #&gt; 
 #&gt; Labels:
 #&gt;  value label
 #&gt;      1   Bad
-#&gt;      5  Good</div><div class='input'><span class='fu'>reverse_labelled_values</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; &lt;labelled&lt;integer&gt;[9]&gt;
+#&gt;      5  Good</div><div class='input'><span class='fu'>reverse_labelled_values</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; &lt;labelled&lt;integer&gt;[9]&gt;
 #&gt; [1] 5 5 5 4 4 4 3 3 3
 #&gt; 
 #&gt; Labels:
@@ -223,7 +227,7 @@ reverse the underlying values for a numeric <code><a href='https://haven.tidyver
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

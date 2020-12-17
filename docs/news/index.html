@@ -77,7 +77,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">codebook</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.9.4</span>
       </span>
     </div>
 
@@ -85,7 +85,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -120,7 +120,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/rubenarslan/codebook/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -147,9 +147,21 @@
       <small>Source: <a href='https://github.com/rubenarslan/codebook/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="codebook-093" class="section level1">
+<h1 class="page-header" data-toc-text="0.9.3">
+<a href="#codebook-093" class="anchor"></a>codebook 0.9.3<small> Unreleased </small>
+</h1>
+<div id="bugfixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bugfixes" class="anchor"></a>Bugfixes</h2>
+<ul>
+<li>clean unloading/reset chunk labels (bug was probably only noticeable when embedding multiple codebooks in one page)</li>
+</ul>
+</div>
+</div>
     <div id="codebook-092" class="section level1">
 <h1 class="page-header" data-toc-text="0.9.2">
-<a href="#codebook-092" class="anchor"></a>codebook 0.9.2<small> Unreleased </small>
+<a href="#codebook-092" class="anchor"></a>codebook 0.9.2<small> 2020-06-06 </small>
 </h1>
 <div id="changes" class="section level2">
 <h2 class="hasAnchor">
@@ -161,9 +173,9 @@
 <li>Updated citation to published paper</li>
 </ul>
 </div>
-<div id="bugfixes" class="section level2">
+<div id="bugfixes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-1" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>compatibility with skimr 2.1.0</li>
 <li>compatibility with vctrs 0.3.0</li>
@@ -176,9 +188,9 @@
 <h1 class="page-header" data-toc-text="0.8.2">
 <a href="#codebook-082" class="anchor"></a>codebook 0.8.2<small> 2020-01-09 </small>
 </h1>
-<div id="bugfixes-1" class="section level2">
+<div id="bugfixes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-1" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-2" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>compatibility with skimr 2.0.0</li>
 <li>compatibility with forcats 0.4.0</li>
@@ -189,9 +201,9 @@
 <h1 class="page-header" data-toc-text="0.8.1">
 <a href="#codebook-081" class="anchor"></a>codebook 0.8.1<small> 2019-05-21 </small>
 </h1>
-<div id="bugfixes-2" class="section level2">
+<div id="bugfixes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-2" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-3" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>When errors occurred in the reliability computation, codebook would fail hard. It now fails with a warning and continues.</li>
 <li>When variables of the same name existed in two datasets described in the same document, figures were overwritten. This is no longer the case, paths are dataset-name-prefixed now. Datasets are made “safe” for paths.</li>
@@ -215,9 +227,9 @@
 <li>reduce survey-specific language</li>
 </ul>
 </div>
-<div id="bugfixes-3" class="section level2">
+<div id="bugfixes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-3" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-4" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>make it less likely that unique/private values are disclosed (e.g., free text)</li>
 </ul>
@@ -227,9 +239,9 @@
 <h1 class="page-header" data-toc-text="0.7.6">
 <a href="#codebook-076" class="anchor"></a>codebook 0.7.6<small> 2019-01-08 </small>
 </h1>
-<div id="bugfixes-4" class="section level2">
+<div id="bugfixes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-4" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-5" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>changed vignette titles (one was duplicated)</li>
 </ul>
@@ -239,9 +251,9 @@
 <h1 class="page-header" data-toc-text="0.7.5">
 <a href="#codebook-075" class="anchor"></a>codebook 0.7.5<small> 2018-12-04 </small>
 </h1>
-<div id="bugfixes-5" class="section level2">
+<div id="bugfixes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-5" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-6" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>import/export knit_print generic from knitr</li>
 </ul>
@@ -269,15 +281,15 @@
 <li>added several functions to add JSON-LD compliant metadata and to show it in the codebook</li>
 <li>removed some non-standard attributes from the JSON-LD metadata so that datasets will be indexed in Google Dataset Search</li>
 <li>work with haven 2.0.0’s changed class names</li>
-<li>play nice with <code><a href="https://rdrr.io/pkg/userfriendlyscience/man/scaleInspection.html">userfriendlyscience::makeScales</a></code> attributes</li>
+<li>play nice with <code>userfriendlyscience::makeScales</code> attributes</li>
 <li>improved binning and wrapping in <code>plot_labelled</code>
 </li>
 <li>removed the mice dependency to reduce the number of dependencies</li>
 </ul>
 </div>
-<div id="bugfixes-6" class="section level2">
+<div id="bugfixes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-6" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-7" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>
 <code>detect_missing</code> reset variable label with the new haven version (only between 0.6.3.9000 and 0.7.0, never on CRAN)</li>
@@ -313,9 +325,9 @@
 <li>removed unnecessary <code>readr</code> dependency.</li>
 </ul>
 </div>
-<div id="bugfixes-7" class="section level2">
+<div id="bugfixes-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bugfixes-7" class="anchor"></a>Bugfixes</h2>
+<a href="#bugfixes-8" class="anchor"></a>Bugfixes</h2>
 <ul>
 <li>summarising factors in a table</li>
 <li>turning off components of the codebook without empty strings being echoed</li>
@@ -430,7 +442,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
