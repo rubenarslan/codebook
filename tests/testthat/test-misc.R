@@ -60,6 +60,20 @@ test_that("Missing values are computed properly, degenerate cases", {
   expect_equal(nrow(mdp), 2)
   expect_equal(sum(mdp$n_miss), 3)
   expect_equal(ncol(mdp), 5)
+
+  expect_silent(mdp <- md_pattern(data.frame(x = c(NA_real_), y = c(NA_real_)),
+                                  omit_complete = TRUE,
+                                  min_freq = 0))
+  expect_equal(nrow(mdp), 2)
+  expect_equal(sum(mdp$n_miss), 3)
+  expect_equal(ncol(mdp), 5)
+
+  expect_silent(mdp <- md_pattern(data.frame(x = c(NaN), y = c(NaN)),
+                                  omit_complete = TRUE,
+                                  min_freq = 0))
+  expect_equal(nrow(mdp), 2)
+  expect_equal(sum(mdp$n_miss), 3)
+  expect_equal(ncol(mdp), 5)
 })
 
 

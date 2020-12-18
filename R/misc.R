@@ -66,13 +66,15 @@ md.pattern <- function(x, plot = FALSE)
 #' md_pattern(bfi)
 #' md_pattern(bfi, omit_complete = FALSE, min_freq = 0.2)
 md_pattern <- function(data, omit_complete = TRUE, min_freq = 0.01) {
+  for (i in seq_along(names(data))) {
+    # mice::md.pattern coerces character/factor to NA
+    if(!is.numeric(data[[i]])) {
+      data[[i]] <- as.numeric(as.factor(data[[i]]))
+    }
+  }
   if (sum(is.na(data)) == 0) {
     message("No missing values.")
   } else {
-    for (i in seq_along(names(data))) {
-      # mice::md.pattern coerces character/factor to NA
-      data[[i]] <- as.numeric(as.factor(data[[i]]))
-    }
     md_pattern <- suppressMessages(md.pattern(data, plot = FALSE))
     n_miss <- rownames(md_pattern)
     if (is.null(n_miss)) {
