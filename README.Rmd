@@ -53,7 +53,7 @@ See the [vignette](https://rubenarslan.github.io/codebook/articles/codebook.html
 
 ## Use as a webapp
 
-If you don't want to install the codebook package, you can just upload an annotated dataset in a variety of formats (R, SPSS, Stata, ...) here: https://rubenarslan.ocpu.io/codebook/
+If you don't want to install the codebook package, you can just upload an annotated dataset in a variety of formats (R, SPSS, Stata, ...) here: https://codebook.formr.org
 
 ## Use locally
 ### Install

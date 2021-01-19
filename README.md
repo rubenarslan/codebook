@@ -25,8 +25,7 @@ item labels and labelled values) that is derived from R attributes.
 To do so, the package relies on ‘rmarkdown’ partials, so you can
 generate HTML, PDF, and Word documents. Codebooks are also available as
 tables (CSV, Excel, etc.) and in JSON-LD, so that search engines can
-find your data and index the
-metadata.
+find your data and index the metadata.
 
 ## Generate markdown codebooks from the attributes of the variables in your data frame
 
@@ -40,8 +39,7 @@ to grab variable documentation from SPSS or Stata files.
 If the RStudio data viewer scrolls slow for your taste, or you’d like to
 keep the variable labels in view while working, use our RStudio Addins
 (ideally assigned to a keyboard shortcut) to see and search variable and
-value labels in the viewer
-pane.
+value labels in the viewer pane.
 
 ![](https://rubenarslan.github.io/codebook/reference/figures/codebook_addin.gif)
 
@@ -74,7 +72,7 @@ below for a copy-pastable rmarkdown document to get you started.
 
 If you don’t want to install the codebook package, you can just upload
 an annotated dataset in a variety of formats (R, SPSS, Stata, …) here:
-<https://rubenarslan.ocpu.io/codebook/>
+<https://codebook.formr.org>
 
 ## Use locally
 
@@ -153,7 +151,7 @@ knitr::opts_chunk$set(
   echo = FALSE  # don't show the R code
 )
 ggplot2::theme_set(ggplot2::theme_bw())
-pander::panderOptions("table.split.table", Inf)
+
 ```
 
 Here, we import data from formr
