@@ -153,7 +153,8 @@ detect_missing <- function(data, only_labelled = TRUE,
             }
             if (length(that_label)) {
               labels[that_label] <- haven::tagged_na(new_miss)
-              if (!stringr::str_detect(names(labels)[that_label],
+              if (!is.na(names(labels)[that_label]) &&
+                  !stringr::str_detect(names(labels)[that_label],
                                        "\\[?([0-9-]+)\\]?")) {
                 names(labels)[that_label] <- paste0("[",
                                       potential_missing_values[i],
