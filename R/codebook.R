@@ -52,7 +52,7 @@ codebook <- function(results, reliabilities = NULL,
       rows_per_user <- nrow(results)/users
 
       dupes <- sum(duplicated(
-        dplyr::select(results, .data$session, .data$created)))
+        dplyr::select(results, "session", "created")))
       if (dupes > 0) {
         stop("There seem to be ", dupes, " duplicated rows in this survey ",
              "(duplicate session-created combinations)")
@@ -136,7 +136,7 @@ codebook <- function(results, reliabilities = NULL,
         items_contained_in_scales <- c(items_contained_in_scales,
                                        scale_info$scale_item_names, var)
         items <- dplyr::select(results,
-                    !!!scale_info$scale_item_names)
+                    all_of(scale_info$scale_item_names))
         scales_items[[var]] %<-% {
           tryCatch({
           codebook_component_scale(
@@ -413,7 +413,7 @@ codebook_component_scale <- function(scale,
   stopifnot( exists("scale_item_names", attributes(scale)))
   stopifnot( attributes(scale)$scale_item_names %in% names(items) )
   items <- dplyr::select(items,
-                         !!!attributes(scale)$scale_item_names)
+                         all_of(attributes(scale)$scale_item_names))
 
   safe_name <- safe_name(scale_name)
 

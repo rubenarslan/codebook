@@ -131,9 +131,9 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
     long_rel <- tidyr::gather(dplyr::select(dplyr::mutate(
       dplyr::group_by(results, .data$session),
       day_number = as.numeric(.data$created - min(.data$created), unit = 'days')
-      ), .data$session, .data$day_number,
+      ), session, .data$day_number,
       !!!scale_item_names ),
-      "variable", "value", -.data$session, -.data$day_number)
+      "variable", "value", -"session", -"day_number")
 
     list(
       multilevel_reliability =

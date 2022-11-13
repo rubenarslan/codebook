@@ -2,6 +2,8 @@ context("Reliability computation")
 
 
 test_that("Internal consistencies can be computed", {
+  skip_if_not_installed("ufs")
+
   data("bfi", package = "codebook")
   library(dplyr)
   bfi <- bfi %>% select(-starts_with("BFIK_extra"),
@@ -26,6 +28,7 @@ test_that("Internal consistencies can be computed", {
 })
 
 test_that("Retest reliabilities can be computed", {
+  skip_if_not_installed("ufs")
   data("bfi", package = "codebook")
   library(dplyr)
   bfi <- bfi %>% select(-starts_with("BFIK_extra"),
@@ -59,6 +62,7 @@ test_that("Retest reliabilities can be computed", {
 
 
 test_that("Multilevel reliabilities can be computed", {
+  skip_if_not_installed("ufs")
   data("bfi", package = "codebook")
   library(dplyr)
   bfi <- bfi %>% select(-starts_with("BFIK_extra"),
@@ -86,6 +90,7 @@ test_that("Multilevel reliabilities can be computed", {
 })
 
 test_that("Nonconvergence warnings are caught", {
+  skip_if_not_installed("ufs")
   data("bfi", package = "codebook")
   library(dplyr)
   bfi <- bfi %>% select(starts_with("BFIK_open"))
