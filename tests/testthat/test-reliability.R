@@ -12,13 +12,13 @@ test_that("Internal consistencies can be computed", {
   expect_equal(length(rels), 2)
   expect_equal(length(rels$BFIK_agree), 1)
   expect_identical(names(rels$BFIK_agree), "internal_consistency")
-  agree_output <- rels$BFIK_agree$internal_consistency$scaleReliability$output
-  open_output <- rels$BFIK_open$internal_consistency$scaleReliability$output
+  agree_output <- rels$BFIK_agree$internal_consistency$scaleStructure$output
+  open_output <- rels$BFIK_open$internal_consistency$scaleStructure$output
   expect_equal(round(
     agree_output$dat$omega,3),
                0.819)
   expect_equal(codebook:::pull_reliability(rels$BFIK_agree),
-               "ω<sub>ordinal</sub> [95% CI] = 0.61 [0.37;0.84]")
+               "ω<sub>ordinal</sub> [95% CI] = 0.83 [0.73;0.93]")
   expect_equal(round(
     agree_output$dat$omega.ci.hi,3),
     0.930)
@@ -46,16 +46,15 @@ test_that("Retest reliabilities can be computed", {
                "See details tab")
 
   agree_output <-
-    rels$BFIK_agree$internal_consistency_T1$scaleReliability$output
+    rels$BFIK_agree$internal_consistency_T1$scaleStructure$output
   expect_equal(round(
     agree_output$dat$omega,3),
     0.819)
   expect_equal(round(
     agree_output$dat$omega.ci.hi,3),
     0.930)
-  agree_output <- rels$BFIK_agree$retest_reliability$output
-  expect_equivalent(round(agree_output$testRetestAlpha,3), 0.801)
-  expect_equivalent(round(agree_output$testRetestCES,3), 0.752)
+  agree_output <- rels$BFIK_agree$retest_reliability
+  expect_equivalent(round(agree_output$estimate,3), 1)
 })
 
 

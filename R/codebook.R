@@ -125,6 +125,7 @@ codebook <- function(results, reliabilities = NULL,
   vars <- names(results)
   items_contained_in_scales <- c()
   `%<-%` <- future::`%<-%`
+  `%seed%` <- future::`%seed%`
 
   if (detailed_scales) {
     for (i in seq_along(vars)) {
@@ -143,7 +144,7 @@ codebook <- function(results, reliabilities = NULL,
             items = items,
             reliabilities = reliabilities[[var]], indent = indent) },
         error = function(e) stop("Could not summarise scale ", var, ". ", e)) }
-      }
+      } %seed% TRUE
     }
   }
 
@@ -156,10 +157,12 @@ codebook <- function(results, reliabilities = NULL,
       if (var %in% dont_show_these) {
         next # don't do scales again
       } else {
-        scales_items[[var]] %<-% {tryCatch({
+        scales_items[[var]] %<-% {
+          tryCatch({
                         codebook_component_single_item( item = item,
                                 item_name = var, indent = indent ) },
-        error = function(e) stop("Could not summarise item ", var, ". ", e)) }
+        error = function(e) stop("Could not summarise item ", var, ". ", e))
+          }  %seed% TRUE
 
       }
     }

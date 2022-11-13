@@ -21,9 +21,8 @@
 #' }
 
 compute_reliabilities <- function(results, survey_repetition = "single") {
-  if (requireNamespace("future", quietly = TRUE)) {
-    `%<-%` <- future::`%<-%`
-  }
+  `%<-%` <- future::`%<-%`
+  `%seed%` <- future::`%seed%`
 
   vars <- names(results)
   reliabilities <- new.env()
@@ -32,11 +31,6 @@ compute_reliabilities <- function(results, survey_repetition = "single") {
     var <- vars[i]
     scale_info <- attributes(results[[var]])
     if (!is.null(scale_info) && exists("scale_item_names", scale_info)) {
-      if (!requireNamespace("future", quietly = TRUE)) {
-        stop("Package \"future\" needed to compute reliabilites.",
-             call. = FALSE)
-      }
-
       reliabilities[[ var ]] %<-% {
         id_vars <- c("session", "created")
         id_vars <- intersect(id_vars, vars)
@@ -64,7 +58,7 @@ compute_reliabilities <- function(results, survey_repetition = "single") {
           })
 
         })
-      }
+      } %seed% TRUE
     }
   }
   as.list(reliabilities)
@@ -87,15 +81,14 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
     }
   } else {
     if (!suppressMessages(
-      requireNamespace("ufs", quietly = TRUE))) {
-      stop("Package \"ufs\" needed to compute reliabilites.",
+      requireNamespace("rosetta", quietly = TRUE))) {
+      stop("Package \"rosetta\" needed to compute reliabilites.",
            call. = FALSE)
     }
 
     internal_consistency <- function(data, scale_name) {
       suppressWarnings(
-        ufs::scaleDiagnosis(data,
-          scaleReliability.ci = ci))
+        rel <- rosetta::reliability(data, itemLevel = TRUE, scatterMatrix = FALSE, ordinal = TRUE))
     }
   }
 
@@ -105,11 +98,6 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
           internal_consistency(results[, scale_item_names], scale_name)
       )
   } else if (survey_repetition == 'repeated_once') {
-    if (!suppressMessages(
-      requireNamespace("userfriendlyscience", quietly = TRUE))) {
-      stop("Package \"userfriendlyscience\" needed to compute reliabilites.",
-           call. = FALSE)
-    }
     id_vars <- c("session")
     if ( !all(id_vars %in% names(results))) {
       stop("For now, the variable session has to index the user ID and earlier ",
@@ -127,8 +115,8 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
         internal_consistency(t1_items, paste( scale_name, "Time 1")),
       internal_consistency_T2 =
         internal_consistency(t2_items, paste( scale_name, "Time 2")),
-      retest_reliability = userfriendlyscience::testRetestReliability(
-        testDat = t1_items, retestDat = t2_items)
+      retest_reliability = cor.test(
+        rowMeans(t1_items, na.rm = T), rowMeans(t2_items, na.rm = T))
     )
   } else if (survey_repetition == 'repeated_many') {
     if (!requireNamespace("psych", quietly = TRUE)) {
@@ -164,8 +152,8 @@ pull_reliability <- function(rels) {
     paste0("Cronbach's \u03B1 [95% CI] = ", round(x$total$raw_alpha, 2), " [",
            round(x$total$raw_alpha - 1.96 * x$total$ase, 2), ";",
            round(x$total$raw_alpha + 1.96 * x$total$ase, 2), "]")
-  } else if (length(rels) == 1 && "scaleDiagnosis" %in% class(rels[[1]])) {
-    coefs <- rels[[1]]$scaleReliability$output$dat
+  } else if (length(rels) == 1 && "rosettaReliability" %in% class(rels[[1]])) {
+    coefs <- rels[[1]]$scaleStructure$output$dat
     if (exists("omega.ordinal.ci.lo", coefs)) {
       paste0("\u03C9<sub>ordinal</sub> [95% CI] = ", round(coefs$omega.ordinal, 2), " [",
              round(coefs$omega.ordinal.ci.lo, 2), ";",
