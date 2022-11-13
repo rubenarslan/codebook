@@ -219,3 +219,19 @@ is_numeric_or_time_var <- function(x) {
     inherits(x, c("POSIXt", "POSIXct", "POSIXlt", "Date")) ||
     methods::is(x, "Timespan")
 }
+
+futureAssignToEnv <- function(name, value, env) {
+  expr <- substitute(value)
+  future::futureAssign(name, expr, envir = env, seed = TRUE, substitute = F)
+}
+# futureAssignOrFallback("blu", rnorm(1), x)
+# x$blu
+# futureAssignOrFallback("ble", rnorm(1), x)
+# x$ble
+
+
+library(future)
+e <- new.env()
+e$a %<-% rnorm(1) %seed% TRUE
+e$b %<-% rnorm(1) %seed% TRUE
+e$a==e$b
