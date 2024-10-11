@@ -73,6 +73,6 @@ Using different settings, you can also easily tag other missing values.
 }
 \section{Functions}{
 \itemize{
-\item \code{detect_missings}: Deprecated version
-}}
+\item \code{detect_missings()}: Deprecated version
 
+}}

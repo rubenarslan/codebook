@@ -39,6 +39,7 @@ reference:
   - '`metadata`'
   - '`data_description_default`'
   - '`list_to_dict`'
+  - '`bfi`'
 
 - title: Prepare data for non-codebook stuff
   desc: Functions to remove attributes that might confuse other packages
@@ -62,8 +63,5 @@ reference:
   - '`expired`'
   - '`modified`'
 template:
-  params:
-    docsearch:
-      api_key: 0849aaec03e613204f45e1d6da8cff64
-      index_name: rubenarslan
+  bootstrap: 5
 url: https://rubenarslan.github.io/codebook

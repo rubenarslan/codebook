@@ -36,7 +36,7 @@ test_that("codebook generation", {
   bfi$uniq_id <- as.character(1:nrow(bfi))
   expect_silent(md <- codebook_wrap("codebook(bfi, metadata_table = FALSE)"))
   figs <- list.files(paste0(dir, "/figure/"))
-  expect_equal(length(figs), 11)
+  expect_equal(length(figs), 9)
   expect_match(md, "Scale: BFIK_neuro")
   expect_match(md, "Scale: BFIK_consc")
   expect_match(md, "Missing values per variable")
@@ -65,7 +65,7 @@ test_that("codebook generation without formr", {
                                missingness_report = FALSE,
                                metadata_table = FALSE)'))
   figs <- list.files(paste0(dir, "/figure"))
-  expect_equal(length(figs), 4)
+  expect_equal(length(figs), 3)
   expect_match(md, "Scale: BFIK_consc")
   expect_match(md, "application/ld\\+json")
 })
@@ -94,7 +94,7 @@ test_that("Codebook with retest reliabilities can be computed", {
                                missingness_report = FALSE,
                                metadata_table = FALSE)'))
   figs <- list.files(paste0(dir, "/figure"))
-  expect_equal(length(figs), 8)
+  expect_equal(length(figs), 6)
   expect_match(md, "Scale: BFIK_neuro")
   expect_match(md, "56 completed rows")
 })

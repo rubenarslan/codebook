@@ -1,150 +1,83 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/index.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/add_R.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/aggregate_and_document_scale.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/bfi.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/codebook.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/codebook_browser.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/codebook_component_scale.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/codebook_component_single_item.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/codebook_data_info.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/codebook_items.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/codebook_missingness.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/codebook_survey_overview.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/codebook_table.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/compact_codebook.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/compute_reliabilities.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/data_description_default.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/detect_missing.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/detect_scales.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/ended.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/expired.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/get_skimmers.haven_labelled.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/get_skimmers.haven_labelled_spss.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/has_label.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/has_labels.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/knit_print.htest.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/knit_print.multilevel.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/label_browser.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/label_browser_static.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/likert_from_items.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/list_to_dict.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/load_data_and_render_codebook.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/md_pattern.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/metadata.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/metadata_jsonld.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/metadata_list.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/modified.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/new_codebook_rmd.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/plot_labelled.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/reexports.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/rescue_attributes.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/reverse_labelled_values.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/skim_codebook.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/to_factor.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/zap_attributes.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/reference/zap_labelled.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/articles/codebook.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/articles/codebook_sav.html</loc>
-  </url>
-  <url>
-    <loc>https://rubenarslan.github.io/codebook/articles/codebook_tutorial.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://rubenarslan.github.io/codebook/404.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/CONDUCT.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/LICENSE-text.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/LICENSE.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/articles/codebook.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/articles/codebook_labelled_manual.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/articles/codebook_nested_scale.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/articles/codebook_sav.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/articles/codebook_tutorial.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/articles/index.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/authors.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/index.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/news/index.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/add_R.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/aggregate_and_document_scale.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/asis_knit_child.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/bfi.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/codebook.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/codebook_browser.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/codebook_component_scale.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/codebook_component_single_item.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/codebook_data_info.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/codebook_items.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/codebook_jsonld.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/codebook_missingness.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/codebook_survey_overview.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/codebook_table.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/compact_codebook.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/compute_reliabilities.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/data_citation-set.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/data_creator-set.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/data_datePublished-set.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/data_description-set.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/data_description_default.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/data_identifier-set.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/data_keywords-set.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/data_name-set.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/data_spatialCoverage-set.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/data_temporalCoverage-set.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/data_url-set.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/detect_missing.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/detect_scales.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/ended.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/expired.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/get_skimmers.haven_labelled.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/get_skimmers.haven_labelled_spss.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/has_label.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/has_labels.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/index.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/knit_print.alpha.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/knit_print.htest.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/knit_print.multilevel.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/knit_print.scaleDiagnosis.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/label_browser.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/label_browser_static.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/likert_from_items.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/list_to_dict.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/load_data_and_render_codebook.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/md_pattern.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/metadata.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/metadata_jsonld.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/metadata_list.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/modified.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/new_codebook_rmd.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/paste.knit_asis.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/plot_labelled.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/print.knit_asis.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/pull_reliability.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/reexports.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/rescue_attributes.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/reverse_labelled_values.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/skim_codebook.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/summary.haven_labelled.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/summary.haven_labelled_spss.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/summary.labelled.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/summary.labelled_spss.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/to_factor.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/zap_attributes.html</loc></url>
+<url><loc>https://rubenarslan.github.io/codebook/reference/zap_labelled.html</loc></url>
 </urlset>
+

@@ -4,12 +4,14 @@
 \alias{compute_reliabilities}
 \title{Compute reliabilities}
 \usage{
-compute_reliabilities(results, survey_repetition = "single")
+compute_reliabilities(results, survey_repetition = "single", use_psych = TRUE)
 }
 \arguments{
 \item{results}{a formr results table with attributes set on items and scales}
 
 \item{survey_repetition}{defaults to "single". Can also be "repeated_once" or "repeated_many"}
+
+\item{use_psych}{compute reliabilities using the psych package, defaults to TRUE. if false, will use rosetta (computationally more expensive, more dependencies)}
 }
 \description{
 If you pass the object resulting from a call to formr_results to this function, it will compute reliabilities for each scale.

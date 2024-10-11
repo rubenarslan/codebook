@@ -126,3 +126,4 @@ test_that("to_factor", {
   expect_equal(as_factor(x, levels = "both"),
                to_factor(zap_labelled(x), levels = "both"))
 })
+

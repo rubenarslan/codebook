@@ -16,7 +16,6 @@ knitr::opts_chunk$set(warning = T, message = T)
 
 ## Load
 ```{r echo=FALSE}
-source("~/research/routine_and_sex/.passwords.R")
 ```
 ```{r}
 library(codebook)
@@ -24,8 +23,8 @@ library(dplyr)
 ```
 ```{r cache=T, warning = FALSE, message=F}
 library(formr)
-formr::formr_connect(email = credentials$email, password = credentials$password)
-results = formr::formr_results("s2_initial", compute_alphas = F, plot_likert = F, quiet = T)
+formr_connect(keyring = "formr_org_ruben")
+results = formr::formr_results("quiz_chapter_1", compute_alphas = F, plot_likert = F, quiet = T)
 
 results = results %>% filter(!duplicated(session)) # %>% filter(row_number() < 200) %>% select(1:50)
 rm(credentials)
@@ -42,8 +41,8 @@ theme_set(theme_bw())
 
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(error = TRUE, dev = "CairoPNG")
-library(future)
-plan(multicore(workers = 3))
+# library(future)
+# plan(multicore(workers = 3))
 # plan(sequential)
 ```
 
