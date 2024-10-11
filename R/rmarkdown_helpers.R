@@ -16,13 +16,14 @@ load_data_and_render_codebook <- function(file, text,
          call. = FALSE)
   }
   if (!requireNamespace("rmarkdown", quietly = TRUE)) {
-    stop("Package \"rio\" needed for this function to work. Please install it.",
+    stop("Package \"rmarkdown\" needed for this function to work. Please install it.",
          call. = FALSE)
   }
 
   codebook_data <- switch(tools::file_ext(file),
-                          "rdata" = rio::import_list(file)[[1]],
-                          "rda" = rio::import_list(file)[[1]],
+                          "rdata" = rio::import_list(file, trust = TRUE)[[1]],
+                          "rda" = rio::import_list(file, trust = TRUE)[[1]],
+                          "rds" = rio::import(file, trust = TRUE),
                           rio::import(file)
   )
   stopifnot(!is.null(codebook_data))
@@ -101,7 +102,7 @@ recursive_escape <- function(x, depth = 0, max_depth = 4,
     # escape any character vectors
     if (is.character(x)) {
       x <- escape_fun(x)
-    } else if (is.list(x) && class(x) == "list") {
+    } else if (is.list(x) && inherits(x, "list")) {
       # turtle down into lists
       x <- lapply(x, function(x) { recursive_escape(x, depth + 1) })
     }

@@ -1,3 +1,9 @@
+# codebook 0.9.5
+## Changes
+- default to psych for reliability because rosetta/ufs is hard to install
+## Bugfixes
+- compatibility with glue 1.8.0
+
 # codebook 0.9.3
 ## Bugfixes
 - clean unloading/reset chunk labels (bug was probably only noticeable when embedding multiple

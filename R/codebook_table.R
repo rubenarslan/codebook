@@ -30,7 +30,7 @@ codebook_table <- function(results) {
     setdiff(names(metadata), order)), # include other cols
     c("choice_list"))
 
-  metadata <- dplyr::select(metadata, all_of(cols))
+  metadata <- dplyr::select(metadata, dplyr::all_of(cols))
   metadata <- dplyr::select_if(metadata, not_all_na )
   if (!exists("label", metadata)) {
     metadata$label <- NA_character_
