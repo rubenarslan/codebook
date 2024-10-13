@@ -1,11 +1,13 @@
 ## Submission
 * Compatibility with glue 1.8.0
 * Reduced dependencies
+  * no longer suggests archived package userfriendlyscience
   * there are still many dependencies, but these are mainly tidyverse packages, so depending on one, there is little additional cost to depend also on others
   * there are other dependencies I hope to be able to remove soon (e.g., vctrs is only used in testing and for one edge case that a bugfix in haven can eliminate)
 * Updated citation to published paper
+* one declared import (graphics) is used only in one of the rmarkdown partials
+  - inst/codebook_scale.Rmd, line 38
 * Unfortunately, I have had to wrap some examples using the codebook function in dontrun, because I haven't yet figured out how to make rmdpartials switch to "interactive" mode when testing/checking. Once I fix this problem in rmdpartials, I will remove dontrun
-* I also had to wrap the example for `compute_reliabilities` in dontrun, because even a minimal example sometimes takes longer than 10s. I considered using donttest instead, but according to what I could find online donttest is also tested & timed.
 
 ## Test environments
 * local OS X install, R 4.4.1

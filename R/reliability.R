@@ -15,11 +15,9 @@
 #'
 #' @export
 #' @examples
-#' \dontrun{
 #' data("bfi", package = "codebook")
 #' bfi <- bfi %>% dplyr::select(dplyr::starts_with("BFIK_agree"))
 #' reliabilities <- compute_reliabilities(bfi)
-#' }
 
 compute_reliabilities <- function(results, survey_repetition = "single",
                                   use_psych = TRUE) {
@@ -109,10 +107,9 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
            "rows need to reflect the earlier measurement occasion, so that ",
            "retest statistics can be computed")
     }
-
-    t1_items <- results[!duplicated(results$session),
+    t1_items <- results[!duplicated(results[, id_vars]),
                         scale_item_names, drop = FALSE]
-    t2_items <- results[duplicated(results$session),
+    t2_items <- results[duplicated(results[, id_vars]),
                         scale_item_names, drop = FALSE]
 
     list(
@@ -137,7 +134,7 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
     long_rel <- tidyr::gather(dplyr::select(dplyr::mutate(
       dplyr::group_by(results, .data$session),
       day_number = as.numeric(.data$created - min(.data$created), unit = 'days')
-      ), session, .data$day_number,
+      ), .data$session, .data$day_number,
       !!!scale_item_names ),
       "variable", "value", -"session", -"day_number")
 

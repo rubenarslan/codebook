@@ -107,6 +107,7 @@ attribute_summary <- function(var) {
 #' because the underlying data can be numeric or character. This skimmers summarises
 #' both and leaves non-pertinent columns missings.
 #'
+#' @importFrom vctrs vec_data
 #' @param column the column to skim
 #'
 #' @exportS3Method skimr::get_skimmers haven_labelled

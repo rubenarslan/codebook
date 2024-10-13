@@ -1,14 +1,13 @@
 ```{r setup,eval=TRUE,echo=FALSE}
 if (exists("testing")) {
-	indent = '#' # ugly hack so _regression_summary can be "spun" (variables included via `r ` have to be available)
+	indent = '#' # ugly hack so _metadata_jsonld.Rmd can be "spun" (variables included via `r ` have to be available)
 	results = data.frame()
-	jsonld_metadata <- list(test = 1)
+	jsonld_metadata <- jsonlite::toJSON(list(test = 1), pretty = TRUE, auto_unbox = TRUE)
 }
-json <- jsonlite::toJSON(jsonld_metadata, pretty = TRUE, auto_unbox = TRUE)
 ```
 
 <script type="application/ld+json">
-`r json`
+`r jsonld_metadata`
 </script>
 
 <details><summary>JSON-LD metadata</summary>
@@ -16,6 +15,6 @@ The following JSON-LD can be found by search engines, if you share this codebook
 publicly on the web.
 
 ```json
-`r json``
+`r jsonld_metadata``
 ```
 </details>

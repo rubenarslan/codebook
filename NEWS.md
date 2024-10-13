@@ -1,6 +1,7 @@
 # codebook 0.9.5
 ## Changes
 - default to psych for reliability because rosetta/ufs is hard to install
+- no longer depends on archived package userfriendlyscience
 ## Bugfixes
 - compatibility with glue 1.8.0
 

@@ -25,3 +25,4 @@ revdep
 renv.lock
 ^renv\.lock$
 figure
+.github

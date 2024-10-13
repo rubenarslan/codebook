@@ -1,3 +1,4 @@
+#' @importFrom rlang .data
 .data <- rlang::.data
 
 no_md <- function() {
@@ -26,6 +27,7 @@ no_md <- function() {
 #' @param metadata_json whether to include machine-readable metadata as JSON-LD (not visible)
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
+#' @importFrom graphics plot
 #' @export
 #' @examples
 #' # will generate figures in a temporary directory
@@ -327,7 +329,8 @@ codebook_missingness <- function(results, indent = "##") {
 #' data("bfi")
 #' metadata_jsonld(bfi)
 metadata_jsonld <- function(results) {
-  jsonld_metadata <- metadata_list(results)
+  jsonld_metadata <- jsonlite::toJSON(metadata_list(results),
+                                      pretty = TRUE, auto_unbox = TRUE)
   rmdpartials::partial(require_file("inst/_metadata_jsonld.Rmd"),
                        name = "metadata_", render_preview = FALSE)
 }
