@@ -17,7 +17,7 @@ Did you create aggregates of items like this
 scale &amp;lt;- scale_1 + scale_2R + scale_3R?
 If you run this function on a dataset, it will detect these
 relationships and set the appropriate attributes. Once they are set,
-the codebook package can perform reliability computations for you."></head><body>
+the codebook package can perform reliability computations for you."><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@rubenarslan"><meta name="twitter:site" content="@rubenarslan"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -93,64 +93,59 @@ the codebook package can perform reliability computations for you.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">bfi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">500</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">bfi</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bfi_e1"</span>, <span class="st">"bfi_e2R"</span>, <span class="st">"bfi_e3"</span>, <span class="st">"bfi_n1"</span>, <span class="st">"bfi_n2"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">bfi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">300</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">bfi</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bfi_e1"</span>, <span class="st">"bfi_e2R"</span>, <span class="st">"bfi_e3"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">bfi</span><span class="op">$</span><span class="va">bfi_e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowMeans</a></span><span class="op">(</span><span class="va">bfi</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bfi_e1"</span>, <span class="st">"bfi_e2R"</span>, <span class="st">"bfi_e3"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">bfi</span> <span class="op">&lt;-</span> <span class="fu">detect_scales</span><span class="op">(</span><span class="va">bfi</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 3 bfi_e items connected to scale</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>bfi_n items found, but no aggregate</span>
 <span class="r-in"><span><span class="va">bfi</span><span class="op">$</span><span class="va">bfi_e</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [1]  0.8015485778  0.1242008715  1.4111601036 -1.2359843828  0.8755174016</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [6]  0.9704337425  0.1256702396  0.4579800147  0.1481186619 -0.2613590844</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [11] -0.0454207511  1.2847818751  0.0969500761 -0.4646285832  0.9872776221</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [16]  1.0607406147  0.8092427361 -0.3909060260 -0.1631451792 -0.0168259197</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [21]  0.0379601509 -1.3348544542 -0.3418188349 -0.3469655384  0.2681050820</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [26]  0.0160450021  0.6795888007 -0.6340680673 -0.9698365999  0.5346686176</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [31] -1.1772199366  0.5013617944  0.7480301550  0.7210123466 -0.5085987698</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [36] -0.7530780276  0.7376071929  0.7836556475  0.2392642892  0.9698502499</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [41]  0.2076311038  0.4118653252 -0.0735040359  0.4506413326  0.2195415811</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [46]  0.1802557582 -0.2274196804  0.0477936993 -0.8153949023  0.6790446071</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [51] -1.0123051762 -0.1929429826  0.3603824703 -0.9452471654 -0.2475681063</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [56]  0.7194436012 -0.2554316310 -0.4332763827  0.8590040320  0.9552586648</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [61]  0.1924536606 -0.5312016165  1.4697668632 -0.3988861741 -0.0001894151</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [66] -0.3956289014  0.8160424138 -0.3266707117 -0.1756387935 -0.6017318640</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [71]  0.1412798858  1.3190123866  0.4557577536 -0.0185777490  0.3302301687</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [76] -0.1244923341  0.4662560852 -0.6980709833  0.1884465481  0.1645677940</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [81]  0.6181046675 -0.9340002428 -0.6359859871 -0.3176546090 -0.4788309317</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [86]  0.2373336437  0.1946028667  0.0456007471 -1.2833583570  0.0641209995</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [91]  0.0325788440  0.1460103547  1.3553405723  0.6966568876 -0.3455142832</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [96]  0.1093705621  1.0434134739  0.1010924876 -0.8042213045 -0.4034993055</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [1]  0.68249929  0.77928889 -1.03398789  0.24238137  0.41108163  0.10804157</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [7] -0.56779166  0.09721003 -1.66922283 -0.45429517  0.17750418 -0.87430768</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [13] -0.17472868  0.23680844 -0.47623162  0.45740618  0.46387713  0.89456606</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [19] -0.73573798  0.58412309 -0.76562949  0.83910280  0.83225778  0.62808009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [25]  0.30561358 -0.09151848  0.74031423 -0.66943123  0.21972537  0.22164853</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [31]  1.35203360  0.34120713 -0.32233926  0.73158080  0.31688055  0.28018593</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [37] -0.27610186 -0.64574898 -0.90461595  0.24135359  0.10752722 -0.82755238</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [43]  0.25932466 -0.31279482  0.09607748 -1.59163543 -0.12815941  0.62063074</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [49]  0.74520853  0.04094594  0.59952548 -0.08642481  0.81854511  0.77670992</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [55] -0.06537362 -0.37510175  0.67992387  0.52871967 -1.03568875 -1.30363811</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [61]  0.19828320  0.42895503 -0.13062254 -0.32051806  0.43242926 -0.06552491</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [67] -0.85728745 -0.59051293  1.28965980 -0.51938666 -1.32629468  0.34616546</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [73] -0.07559116  0.58369035 -0.91976184 -0.13099517 -0.67531725  0.39364522</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [79] -0.04407500 -0.64801309 -0.15780638 -0.24514966 -1.12287812  0.46228456</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [85] -1.16745698 -0.18866174  1.34459574  0.30778443  0.73996007  0.72889848</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [91] -0.43522305 -0.02962567  0.12905313 -0.76422008  0.43919957 -0.23828486</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [97] -0.45097870  0.32985639  1.30993934 -1.31037685</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"scale_item_names")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "bfi_e1"  "bfi_e2R" "bfi_e3" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"label")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "aggregate of 3 bfi_e items"</span>
-<span class="r-in"><span><span class="va">bfi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">500</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">bfi</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bfi_e1"</span>, <span class="st">"bfi_e2R"</span>, <span class="st">"bfi_e3"</span>, <span class="st">"bfi_n1"</span>, <span class="st">"bfi_n2"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">bfi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">300</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">bfi</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bfi_e1"</span>, <span class="st">"bfi_e2R"</span>, <span class="st">"bfi_e3"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">bfi</span><span class="op">$</span><span class="va">bfi_e</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">rowMeans</a></span><span class="op">(</span><span class="va">bfi</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bfi_e1"</span>, <span class="st">"bfi_e2R"</span>, <span class="st">"bfi_e3"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">bfi</span> <span class="op">&lt;-</span> <span class="fu">detect_scales</span><span class="op">(</span><span class="va">bfi</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 3 bfi_e items connected to scale</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>bfi_n items found, but no aggregate</span>
 <span class="r-in"><span><span class="va">bfi</span><span class="op">$</span><span class="va">bfi_e</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] -0.194491951  0.599303261  1.361161754  1.210202575 -0.714562458</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [6]  0.074074287  0.039096102  0.703875680  0.001766981  0.420126472</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [11]  0.097186704 -0.299350416 -0.110115099 -0.138134406  0.243545579</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [16]  0.891731006 -0.793210394  0.888058876 -0.054600266  0.167755563</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [21]  0.940822540 -0.230862032 -0.859446408 -0.601098601 -0.320550995</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [26]  0.204980824  0.237595906  0.469456438 -0.236321642 -0.686148562</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [31] -0.600329415 -0.101751952  0.379019532 -0.649607631 -0.713580039</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [36]  0.139134092 -1.595526920  1.584097982 -0.498378003  0.969178199</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [41]  0.567448748 -0.584465676 -0.569081556  0.480772528  0.540286912</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [46] -0.925905068  0.513920167  0.163976300 -0.391761062 -0.676471023</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [51] -0.150523719  0.807791932 -0.044178093 -0.209198969 -0.642383154</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [56]  0.279816237 -0.155907350 -0.059505201 -0.109381977 -0.502682568</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [61] -0.356437722  0.125351971  0.211673668 -0.211059997 -0.257598539</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [66]  0.047509227 -0.275738223 -0.110972537 -0.183728282  0.314123494</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [71] -0.443647377  0.160335079 -0.084228446 -0.535079859 -0.195346962</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [76] -0.057451475  0.158969490 -0.302475088  0.579821667 -0.216988427</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [81] -0.389228199 -0.643880452 -0.151623621 -0.204034908  0.035256290</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [86]  0.390260787  1.185438234 -1.081983377 -0.025601498 -0.196204865</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [91] -0.193417478 -0.295844292  0.390382634 -0.476297982  0.225940071</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [96] -0.439571536 -0.437470518 -0.286314983 -0.771266013 -0.314513363</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] -0.502172218 -0.431879929 -0.495985363 -1.120832852  0.049686067</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [6] -0.563059761  1.105095369  0.371067763 -0.607880164 -0.301060799</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [11]  0.369429090 -0.138117669  0.541330714  0.256596110  0.661218543</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [16] -0.664322719  0.434891800 -0.031779575  0.365696596 -1.306240212</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [21] -0.623121950 -0.612711377 -1.106205100  0.614808891 -0.075827088</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [26]  0.182669487 -0.451533900 -0.454538313  0.910818570 -0.405420594</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [31]  0.233886875 -0.937625452 -0.193737168 -0.228149409  0.687654432</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [36]  0.395421746  0.599151407  1.174867760 -0.155523117  1.098220036</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [41] -0.456091906 -0.336469935  1.512587955  0.399805250 -0.396619665</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [46] -0.269658597 -0.214700479 -0.378173689  0.443365702  0.908733475</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [51]  0.052400284  0.242154948  0.149008884  0.209647490  0.356641492</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [56]  0.614080058 -0.274160930 -0.084715522 -0.531040879 -0.422708294</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [61] -0.470475155 -0.814858208 -0.588315100  1.091467536  0.320599935</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [66]  0.996773978 -0.200175736 -0.446062843  0.543623739 -0.167868130</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [71] -0.007257087  0.656378028  1.005426062 -0.560318383  0.133006507</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [76] -0.188995550 -1.334626037  1.470283416 -0.527778950  0.287272734</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [81] -0.306084078 -0.312422337 -0.129541534 -0.525578583 -0.759719946</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [86] -1.071909603  0.601158262 -0.297178907 -0.165597041  0.777162680</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [91]  1.383476210 -0.256776664  0.041581469 -0.822791525  0.586172987</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [96] -0.522463683  0.723380995 -0.679383729  0.379866122 -0.806330625</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"scale_item_names")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "bfi_e1"  "bfi_e2R" "bfi_e3" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"label")</span>

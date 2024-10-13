@@ -71,7 +71,7 @@
                         <h4 data-toc-skip class="author">Ruben
 Arslan</h4>
             
-            <h4 data-toc-skip class="date">2024-10-11</h4>
+            <h4 data-toc-skip class="date">2024-10-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenarslan/codebook/blob/HEAD/vignettes/codebook.Rmd" class="external-link"><code>vignettes/codebook.Rmd</code></a></small>
       <div class="d-none name"><code>codebook.Rmd</code></div>
@@ -102,7 +102,7 @@ what Google sees here</a>.</p>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html" class="external-link">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>warning <span class="op">=</span> <span class="cn">FALSE</span>, message <span class="op">=</span> <span class="cn">TRUE</span>, error <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme_get.html" class="external-link">theme_set</a></span><span class="op">(</span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rubenarslan/codebook" class="external-link">codebook</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rubenarslan.github.io/codebook">codebook</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"bfi"</span>, package <span class="op">=</span> <span class="st">'codebook'</span><span class="op">)</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="va">knit_by_pkgdown</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
@@ -357,30 +357,268 @@ Distribution of scale BFIK_agree
 </div>
 <div class="tab-pane" id="BFIK_agree_reliability" role="tabpanel" aria-labelledby="BFIK_agree_reliability-tab">
 
-<p>Reliability analysis BFIK_agree<br>
-Call: psych::alpha(x = as.data.frame(data), title = scale_name,
-check.keys = FALSE)</p>
-<p>raw_alpha std.alpha G6(smc) average_r S/N ase mean sd median_r 0.8
-0.8 0.8 0.51 4.1 0.061 3.1 0.93 0.5</p>
-<pre><code>95% confidence boundaries 
-     lower alpha upper</code></pre>
-<p>Feldt 0.64 0.8 0.90 Duhachek 0.68 0.8 0.92</p>
-<p>Reliability if an item is dropped: raw_alpha std.alpha G6(smc)
-average_r S/N alpha se var.r med.r BFIK_agree_4R 0.70 0.71 0.63 0.44 2.4
-0.092 0.0093 0.46 BFIK_agree_1R 0.78 0.78 0.76 0.54 3.6 0.073 0.0413
-0.53 BFIK_agree_3R 0.68 0.69 0.62 0.43 2.3 0.107 0.0213 0.35
-BFIK_agree_2 0.82 0.82 0.78 0.60 4.5 0.057 0.0220 0.60</p>
-<p>Item statistics n raw.r std.r r.cor r.drop mean sd BFIK_agree_4R 28
-0.85 0.85 0.83 0.71 2.9 1.18 BFIK_agree_1R 28 0.72 0.76 0.63 0.55 3.0
-0.94 BFIK_agree_3R 28 0.88 0.87 0.84 0.75 3.0 1.29 BFIK_agree_2 28 0.72
-0.70 0.54 0.48 3.5 1.26</p>
-<p>Non missing response frequency for each item 1 2 3 4 5 miss
-BFIK_agree_4R 0.07 0.39 0.18 0.25 0.11 0 BFIK_agree_1R 0.00 0.39 0.25
-0.32 0.04 0 BFIK_agree_3R 0.11 0.32 0.14 0.29 0.14 0 BFIK_agree_2 0.07
-0.18 0.18 0.32 0.25 0 1 2 3 4 5 miss BFIK_agree_4R 0.07 0.39 0.18 0.25
-0.11 0 BFIK_agree_1R 0.00 0.39 0.25 0.32 0.04 0 BFIK_agree_3R 0.11 0.32
-0.14 0.29 0.14 0 BFIK_agree_2 0.07 0.18 0.18 0.32 0.25 0</p>
-<pre><code><span><span class="co">## No viewer found, probably documenting or testing</span></span></code></pre>
+<div class="section level6">
+<h6 id="reliability">Reliability<a class="anchor" aria-label="anchor" href="#reliability"></a>
+</h6>
+</div>
+<div class="section level6">
+<h6 id="confidence-interval">95% Confidence Interval<a class="anchor" aria-label="anchor" href="#confidence-interval"></a>
+</h6>
+<table class="table">
+<thead><tr class="header">
+<th align="right">lower</th>
+<th align="right">estimate</th>
+<th align="right">upper</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="right">0.6815382</td>
+<td align="right">0.8005842</td>
+<td align="right">0.9196302</td>
+</tr></tbody>
+</table>
+<table class="table">
+<colgroup>
+<col width="3%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="9%">
+<col width="10%">
+<col width="9%">
+<col width="10%">
+<col width="10%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">raw_alpha</th>
+<th align="right">std.alpha</th>
+<th align="right">G6(smc)</th>
+<th align="right">average_r</th>
+<th align="right">S/N</th>
+<th align="right">ase</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">median_r</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left"></td>
+<td align="right">0.8005842</td>
+<td align="right">0.8032578</td>
+<td align="right">0.8025354</td>
+<td align="right">0.5051216</td>
+<td align="right">4.082794</td>
+<td align="right">0.0607377</td>
+<td align="right">3.116071</td>
+<td align="right">0.9316506</td>
+<td align="right">0.4955289</td>
+</tr></tbody>
+</table>
+</div>
+<div class="section level6">
+<h6 id="reliability-if-an-item-is-dropped">Reliability if an item is dropped:<a class="anchor" aria-label="anchor" href="#reliability-if-an-item-is-dropped"></a>
+</h6>
+<table class="table">
+<colgroup>
+<col width="15%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="9%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">raw_alpha</th>
+<th align="right">std.alpha</th>
+<th align="right">G6(smc)</th>
+<th align="right">average_r</th>
+<th align="right">S/N</th>
+<th align="right">alpha se</th>
+<th align="right">var.r</th>
+<th align="right">med.r</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">BFIK_agree_4R</td>
+<td align="right">0.7039106</td>
+<td align="right">0.7059214</td>
+<td align="right">0.6277253</td>
+<td align="right">0.4444909</td>
+<td align="right">2.400452</td>
+<td align="right">0.0922357</td>
+<td align="right">0.0093288</td>
+<td align="right">0.4566167</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_agree_1R</td>
+<td align="right">0.7822898</td>
+<td align="right">0.7821901</td>
+<td align="right">0.7633114</td>
+<td align="right">0.5448449</td>
+<td align="right">3.591160</td>
+<td align="right">0.0731005</td>
+<td align="right">0.0413123</td>
+<td align="right">0.5344410</td>
+</tr>
+<tr class="odd">
+<td align="left">BFIK_agree_3R</td>
+<td align="right">0.6758982</td>
+<td align="right">0.6925559</td>
+<td align="right">0.6242359</td>
+<td align="right">0.4288568</td>
+<td align="right">2.252623</td>
+<td align="right">0.1072194</td>
+<td align="right">0.0212505</td>
+<td align="right">0.3469923</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_agree_2</td>
+<td align="right">0.8180575</td>
+<td align="right">0.8196006</td>
+<td align="right">0.7841113</td>
+<td align="right">0.6022937</td>
+<td align="right">4.543256</td>
+<td align="right">0.0568475</td>
+<td align="right">0.0219955</td>
+<td align="right">0.5971631</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level6">
+<h6 id="item-statistics">Item statistics<a class="anchor" aria-label="anchor" href="#item-statistics"></a>
+</h6>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="18%">
+<col width="4%">
+<col width="13%">
+<col width="13%">
+<col width="13%">
+<col width="13%">
+<col width="12%">
+<col width="12%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">n</th>
+<th align="right">raw.r</th>
+<th align="right">std.r</th>
+<th align="right">r.cor</th>
+<th align="right">r.drop</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">BFIK_agree_4R</td>
+<td align="right">28</td>
+<td align="right">0.8471206</td>
+<td align="right">0.8503385</td>
+<td align="right">0.8291974</td>
+<td align="right">0.7057555</td>
+<td align="right">2.928571</td>
+<td align="right">1.184110</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_agree_1R</td>
+<td align="right">28</td>
+<td align="right">0.7168171</td>
+<td align="right">0.7554255</td>
+<td align="right">0.6253942</td>
+<td align="right">0.5538583</td>
+<td align="right">3.000000</td>
+<td align="right">0.942809</td>
+</tr>
+<tr class="odd">
+<td align="left">BFIK_agree_3R</td>
+<td align="right">28</td>
+<td align="right">0.8820884</td>
+<td align="right">0.8651249</td>
+<td align="right">0.8439281</td>
+<td align="right">0.7510051</td>
+<td align="right">3.035714</td>
+<td align="right">1.290482</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_agree_2</td>
+<td align="right">28</td>
+<td align="right">0.7205961</td>
+<td align="right">0.7010915</td>
+<td align="right">0.5430779</td>
+<td align="right">0.4825103</td>
+<td align="right">3.500000</td>
+<td align="right">1.261980</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level6">
+<h6 id="non-missing-response-frequency-for-each-item">Non missing response frequency for each item<a class="anchor" aria-label="anchor" href="#non-missing-response-frequency-for-each-item"></a>
+</h6>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="20%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">1</th>
+<th align="right">2</th>
+<th align="right">3</th>
+<th align="right">4</th>
+<th align="right">5</th>
+<th align="right">miss</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">BFIK_agree_4R</td>
+<td align="right">0.0714286</td>
+<td align="right">0.3928571</td>
+<td align="right">0.1785714</td>
+<td align="right">0.2500000</td>
+<td align="right">0.1071429</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_agree_1R</td>
+<td align="right">0.0000000</td>
+<td align="right">0.3928571</td>
+<td align="right">0.2500000</td>
+<td align="right">0.3214286</td>
+<td align="right">0.0357143</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">BFIK_agree_3R</td>
+<td align="right">0.1071429</td>
+<td align="right">0.3214286</td>
+<td align="right">0.1428571</td>
+<td align="right">0.2857143</td>
+<td align="right">0.1428571</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_agree_2</td>
+<td align="right">0.0714286</td>
+<td align="right">0.1785714</td>
+<td align="right">0.1785714</td>
+<td align="right">0.3214286</td>
+<td align="right">0.2500000</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="tab-pane" id="BFIK_agree_summary" role="tabpanel" aria-labelledby="BFIK_agree_summary-tab">
 
@@ -536,42 +774,280 @@ rendered for this user.</td>
 [0.25;0.81].</p>
 <p><strong>Missing</strong>: 0.</p>
 <div class="figure">
-<img src="codebook_files/figure-html/cb_bfi_BFIK_open_likert-37-1.png" alt="Likert plot of scale BFIK_open items" width="700"><p class="caption">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_open_likert-48-1.png" alt="Likert plot of scale BFIK_open items" width="700"><p class="caption">
 Likert plot of scale BFIK_open items
 </p>
 </div>
 <div class="figure">
-<img src="codebook_files/figure-html/cb_bfi_BFIK_open_distribution-38-1.png" alt="Distribution of scale BFIK_open" width="700"><p class="caption">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_open_distribution-49-1.png" alt="Distribution of scale BFIK_open" width="700"><p class="caption">
 Distribution of scale BFIK_open
 </p>
 </div>
 </div>
 <div class="tab-pane" id="BFIK_open_reliability" role="tabpanel" aria-labelledby="BFIK_open_reliability-tab">
 
-<p>Reliability analysis BFIK_open<br>
-Call: psych::alpha(x = as.data.frame(data), title = scale_name,
-check.keys = FALSE)</p>
-<p>raw_alpha std.alpha G6(smc) average_r S/N ase mean sd median_r 0.53
-0.51 0.54 0.21 1.1 0.14 4.3 0.56 0.18</p>
-<pre><code>95% confidence boundaries 
-     lower alpha upper</code></pre>
-<p>Feldt 0.16 0.53 0.76 Duhachek 0.25 0.53 0.81</p>
-<p>Reliability if an item is dropped: raw_alpha std.alpha G6(smc)
-average_r S/N alpha se var.r med.r BFIK_open_2 0.52 0.50 0.53 0.251 1.01
-0.16 0.0956 0.26 BFIK_open_1 0.58 0.56 0.51 0.297 1.27 0.13 0.0504 0.19
-BFIK_open_4 0.41 0.41 0.32 0.188 0.70 0.19 0.0042 0.16 BFIK_open_3 0.22
-0.24 0.20 0.097 0.32 0.26 0.0196 0.16</p>
-<p>Item statistics n raw.r std.r r.cor r.drop mean sd BFIK_open_2 28
-0.53 0.59 0.30 0.23 4.2 0.74 BFIK_open_1 28 0.51 0.53 0.28 0.16 4.4 0.83
-BFIK_open_4 28 0.70 0.66 0.57 0.36 4.2 0.96 BFIK_open_3 28 0.80 0.77
-0.73 0.54 4.2 0.96</p>
-<p>Non missing response frequency for each item 1 2 3 4 5 miss
-BFIK_open_2 0.00 0.04 0.07 0.54 0.36 0 BFIK_open_1 0.00 0.04 0.11 0.29
-0.57 0 BFIK_open_4 0.04 0.00 0.14 0.36 0.46 0 BFIK_open_3 0.00 0.07 0.14
-0.29 0.50 0 1 2 3 4 5 miss BFIK_open_2 0.00 0.04 0.07 0.54 0.36 0
-BFIK_open_1 0.00 0.04 0.11 0.29 0.57 0 BFIK_open_4 0.04 0.00 0.14 0.36
-0.46 0 BFIK_open_3 0.00 0.07 0.14 0.29 0.50 0</p>
-<pre><code><span><span class="co">## No viewer found, probably documenting or testing</span></span></code></pre>
+<div class="section level6">
+<h6 id="reliability-1">Reliability<a class="anchor" aria-label="anchor" href="#reliability-1"></a>
+</h6>
+</div>
+<div class="section level6">
+<h6 id="confidence-interval-1">95% Confidence Interval<a class="anchor" aria-label="anchor" href="#confidence-interval-1"></a>
+</h6>
+<table class="table">
+<thead><tr class="header">
+<th align="right">lower</th>
+<th align="right">estimate</th>
+<th align="right">upper</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="right">0.2473043</td>
+<td align="right">0.5270752</td>
+<td align="right">0.806846</td>
+</tr></tbody>
+</table>
+<table class="table">
+<colgroup>
+<col width="3%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="9%">
+<col width="10%">
+<col width="9%">
+<col width="10%">
+<col width="10%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">raw_alpha</th>
+<th align="right">std.alpha</th>
+<th align="right">G6(smc)</th>
+<th align="right">average_r</th>
+<th align="right">S/N</th>
+<th align="right">ase</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">median_r</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left"></td>
+<td align="right">0.5270752</td>
+<td align="right">0.5130499</td>
+<td align="right">0.5384384</td>
+<td align="right">0.2084848</td>
+<td align="right">1.053598</td>
+<td align="right">0.1427402</td>
+<td align="right">4.258929</td>
+<td align="right">0.5630692</td>
+<td align="right">0.1770952</td>
+</tr></tbody>
+</table>
+</div>
+<div class="section level6">
+<h6 id="reliability-if-an-item-is-dropped-1">Reliability if an item is dropped:<a class="anchor" aria-label="anchor" href="#reliability-if-an-item-is-dropped-1"></a>
+</h6>
+<table class="table">
+<colgroup>
+<col width="13%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">raw_alpha</th>
+<th align="right">std.alpha</th>
+<th align="right">G6(smc)</th>
+<th align="right">average_r</th>
+<th align="right">S/N</th>
+<th align="right">alpha se</th>
+<th align="right">var.r</th>
+<th align="right">med.r</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">BFIK_open_2</td>
+<td align="right">0.5186964</td>
+<td align="right">0.5019443</td>
+<td align="right">0.5306346</td>
+<td align="right">0.2514611</td>
+<td align="right">1.0078075</td>
+<td align="right">0.1551415</td>
+<td align="right">0.0955990</td>
+<td align="right">0.2626354</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_open_1</td>
+<td align="right">0.5786594</td>
+<td align="right">0.5593735</td>
+<td align="right">0.5130468</td>
+<td align="right">0.2973409</td>
+<td align="right">1.2694957</td>
+<td align="right">0.1307794</td>
+<td align="right">0.0504451</td>
+<td align="right">0.1947743</td>
+</tr>
+<tr class="odd">
+<td align="left">BFIK_open_4</td>
+<td align="right">0.4119483</td>
+<td align="right">0.4100879</td>
+<td align="right">0.3217759</td>
+<td align="right">0.1881289</td>
+<td align="right">0.6951677</td>
+<td align="right">0.1885214</td>
+<td align="right">0.0042364</td>
+<td align="right">0.1594161</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_open_3</td>
+<td align="right">0.2202412</td>
+<td align="right">0.2437361</td>
+<td align="right">0.2041506</td>
+<td align="right">0.0970083</td>
+<td align="right">0.3222898</td>
+<td align="right">0.2572230</td>
+<td align="right">0.0195543</td>
+<td align="right">0.1594161</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level6">
+<h6 id="item-statistics-1">Item statistics<a class="anchor" aria-label="anchor" href="#item-statistics-1"></a>
+</h6>
+<table class="table">
+<colgroup>
+<col width="16%">
+<col width="4%">
+<col width="13%">
+<col width="13%">
+<col width="13%">
+<col width="13%">
+<col width="12%">
+<col width="13%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">n</th>
+<th align="right">raw.r</th>
+<th align="right">std.r</th>
+<th align="right">r.cor</th>
+<th align="right">r.drop</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">BFIK_open_2</td>
+<td align="right">28</td>
+<td align="right">0.5298378</td>
+<td align="right">0.5869036</td>
+<td align="right">0.3017297</td>
+<td align="right">0.2317746</td>
+<td align="right">4.214286</td>
+<td align="right">0.7382232</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_open_1</td>
+<td align="right">28</td>
+<td align="right">0.5062740</td>
+<td align="right">0.5329245</td>
+<td align="right">0.2760932</td>
+<td align="right">0.1568781</td>
+<td align="right">4.392857</td>
+<td align="right">0.8317445</td>
+</tr>
+<tr class="odd">
+<td align="left">BFIK_open_4</td>
+<td align="right">28</td>
+<td align="right">0.7010199</td>
+<td align="right">0.6614159</td>
+<td align="right">0.5679139</td>
+<td align="right">0.3611976</td>
+<td align="right">4.214286</td>
+<td align="right">0.9567361</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_open_3</td>
+<td align="right">28</td>
+<td align="right">0.8041472</td>
+<td align="right">0.7686222</td>
+<td align="right">0.7253133</td>
+<td align="right">0.5379725</td>
+<td align="right">4.214286</td>
+<td align="right">0.9567361</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level6">
+<h6 id="non-missing-response-frequency-for-each-item-1">Non missing response frequency for each item<a class="anchor" aria-label="anchor" href="#non-missing-response-frequency-for-each-item-1"></a>
+</h6>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="17%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">1</th>
+<th align="right">2</th>
+<th align="right">3</th>
+<th align="right">4</th>
+<th align="right">5</th>
+<th align="right">miss</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">BFIK_open_2</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0357143</td>
+<td align="right">0.0714286</td>
+<td align="right">0.5357143</td>
+<td align="right">0.3571429</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_open_1</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0357143</td>
+<td align="right">0.1071429</td>
+<td align="right">0.2857143</td>
+<td align="right">0.5714286</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">BFIK_open_4</td>
+<td align="right">0.0357143</td>
+<td align="right">0.0000000</td>
+<td align="right">0.1428571</td>
+<td align="right">0.3571429</td>
+<td align="right">0.4642857</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_open_3</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0714286</td>
+<td align="right">0.1428571</td>
+<td align="right">0.2857143</td>
+<td align="right">0.5000000</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="tab-pane" id="BFIK_open_summary" role="tabpanel" aria-labelledby="BFIK_open_summary-tab">
 
@@ -726,42 +1202,280 @@ rendered for this user.</td>
 [0.66;0.9].</p>
 <p><strong>Missing</strong>: 0.</p>
 <div class="figure">
-<img src="codebook_files/figure-html/cb_bfi_BFIK_consc_likert-47-1.png" alt="Likert plot of scale BFIK_consc items" width="700"><p class="caption">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_consc_likert-69-1.png" alt="Likert plot of scale BFIK_consc items" width="700"><p class="caption">
 Likert plot of scale BFIK_consc items
 </p>
 </div>
 <div class="figure">
-<img src="codebook_files/figure-html/cb_bfi_BFIK_consc_distribution-48-1.png" alt="Distribution of scale BFIK_consc" width="700"><p class="caption">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_consc_distribution-70-1.png" alt="Distribution of scale BFIK_consc" width="700"><p class="caption">
 Distribution of scale BFIK_consc
 </p>
 </div>
 </div>
 <div class="tab-pane" id="BFIK_consc_reliability" role="tabpanel" aria-labelledby="BFIK_consc_reliability-tab">
 
-<p>Reliability analysis BFIK_consc<br>
-Call: psych::alpha(x = as.data.frame(data), title = scale_name,
-check.keys = FALSE)</p>
-<p>raw_alpha std.alpha G6(smc) average_r S/N ase mean sd median_r 0.78
-0.79 0.78 0.48 3.7 0.062 3.7 0.79 0.46</p>
-<pre><code>95% confidence boundaries 
-     lower alpha upper</code></pre>
-<p>Feldt 0.61 0.78 0.89 Duhachek 0.66 0.78 0.90</p>
-<p>Reliability if an item is dropped: raw_alpha std.alpha G6(smc)
-average_r S/N alpha se var.r med.r BFIK_consc_3 0.60 0.61 0.52 0.34 1.6
-0.118 0.0093 0.40 BFIK_consc_4 0.76 0.77 0.72 0.53 3.4 0.074 0.0186 0.52
-BFIK_consc_2R 0.73 0.73 0.71 0.47 2.7 0.085 0.0475 0.52 BFIK_consc_1
-0.78 0.80 0.77 0.58 4.1 0.066 0.0233 0.66</p>
-<p>Item statistics n raw.r std.r r.cor r.drop mean sd BFIK_consc_3 28
-0.91 0.91 0.92 0.81 3.5 1.04 BFIK_consc_4 28 0.69 0.74 0.63 0.53 3.9
-0.76 BFIK_consc_2R 28 0.84 0.79 0.70 0.62 3.2 1.31 BFIK_consc_1 28 0.67
-0.69 0.52 0.47 4.1 0.90</p>
-<p>Non missing response frequency for each item 1 2 3 4 5 miss
-BFIK_consc_3 0.04 0.14 0.25 0.43 0.14 0 BFIK_consc_4 0.00 0.04 0.25 0.54
-0.18 0 BFIK_consc_2R 0.18 0.11 0.18 0.43 0.11 0 BFIK_consc_1 0.00 0.07
-0.14 0.43 0.36 0 1 2 3 4 5 miss BFIK_consc_3 0.04 0.14 0.25 0.43 0.14 0
-BFIK_consc_4 0.00 0.04 0.25 0.54 0.18 0 BFIK_consc_2R 0.18 0.11 0.18
-0.43 0.11 0 BFIK_consc_1 0.00 0.07 0.14 0.43 0.36 0</p>
-<pre><code><span><span class="co">## No viewer found, probably documenting or testing</span></span></code></pre>
+<div class="section level6">
+<h6 id="reliability-2">Reliability<a class="anchor" aria-label="anchor" href="#reliability-2"></a>
+</h6>
+</div>
+<div class="section level6">
+<h6 id="confidence-interval-2">95% Confidence Interval<a class="anchor" aria-label="anchor" href="#confidence-interval-2"></a>
+</h6>
+<table class="table">
+<thead><tr class="header">
+<th align="right">lower</th>
+<th align="right">estimate</th>
+<th align="right">upper</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="right">0.6572704</td>
+<td align="right">0.7796983</td>
+<td align="right">0.9021261</td>
+</tr></tbody>
+</table>
+<table class="table">
+<colgroup>
+<col width="3%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="7%">
+<col width="11%">
+<col width="10%">
+<col width="11%">
+<col width="11%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">raw_alpha</th>
+<th align="right">std.alpha</th>
+<th align="right">G6(smc)</th>
+<th align="right">average_r</th>
+<th align="right">S/N</th>
+<th align="right">ase</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">median_r</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left"></td>
+<td align="right">0.7796983</td>
+<td align="right">0.7870619</td>
+<td align="right">0.7839117</td>
+<td align="right">0.480263</td>
+<td align="right">3.6962</td>
+<td align="right">0.0624632</td>
+<td align="right">3.651786</td>
+<td align="right">0.7915622</td>
+<td align="right">0.4590337</td>
+</tr></tbody>
+</table>
+</div>
+<div class="section level6">
+<h6 id="reliability-if-an-item-is-dropped-2">Reliability if an item is dropped:<a class="anchor" aria-label="anchor" href="#reliability-if-an-item-is-dropped-2"></a>
+</h6>
+<table class="table">
+<colgroup>
+<col width="15%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="9%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">raw_alpha</th>
+<th align="right">std.alpha</th>
+<th align="right">G6(smc)</th>
+<th align="right">average_r</th>
+<th align="right">S/N</th>
+<th align="right">alpha se</th>
+<th align="right">var.r</th>
+<th align="right">med.r</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">BFIK_consc_3</td>
+<td align="right">0.5979912</td>
+<td align="right">0.6118484</td>
+<td align="right">0.5247890</td>
+<td align="right">0.3444504</td>
+<td align="right">1.576313</td>
+<td align="right">0.1176371</td>
+<td align="right">0.0092555</td>
+<td align="right">0.3982579</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_consc_4</td>
+<td align="right">0.7626290</td>
+<td align="right">0.7705758</td>
+<td align="right">0.7158716</td>
+<td align="right">0.5282082</td>
+<td align="right">3.358737</td>
+<td align="right">0.0739794</td>
+<td align="right">0.0185680</td>
+<td align="right">0.5163541</td>
+</tr>
+<tr class="odd">
+<td align="left">BFIK_consc_2R</td>
+<td align="right">0.7283814</td>
+<td align="right">0.7272275</td>
+<td align="right">0.7111827</td>
+<td align="right">0.4705314</td>
+<td align="right">2.666058</td>
+<td align="right">0.0849270</td>
+<td align="right">0.0474736</td>
+<td align="right">0.5163541</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_consc_1</td>
+<td align="right">0.7813268</td>
+<td align="right">0.8041781</td>
+<td align="right">0.7720873</td>
+<td align="right">0.5778620</td>
+<td align="right">4.106681</td>
+<td align="right">0.0663018</td>
+<td align="right">0.0232879</td>
+<td align="right">0.6618601</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level6">
+<h6 id="item-statistics-2">Item statistics<a class="anchor" aria-label="anchor" href="#item-statistics-2"></a>
+</h6>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="18%">
+<col width="3%">
+<col width="13%">
+<col width="13%">
+<col width="13%">
+<col width="13%">
+<col width="11%">
+<col width="13%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">n</th>
+<th align="right">raw.r</th>
+<th align="right">std.r</th>
+<th align="right">r.cor</th>
+<th align="right">r.drop</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">BFIK_consc_3</td>
+<td align="right">28</td>
+<td align="right">0.9085942</td>
+<td align="right">0.9115478</td>
+<td align="right">0.9168579</td>
+<td align="right">0.8120889</td>
+<td align="right">3.500000</td>
+<td align="right">1.0363755</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_consc_4</td>
+<td align="right">28</td>
+<td align="right">0.6874998</td>
+<td align="right">0.7351180</td>
+<td align="right">0.6337064</td>
+<td align="right">0.5256863</td>
+<td align="right">3.857143</td>
+<td align="right">0.7559289</td>
+</tr>
+<tr class="odd">
+<td align="left">BFIK_consc_2R</td>
+<td align="right">28</td>
+<td align="right">0.8411080</td>
+<td align="right">0.7904948</td>
+<td align="right">0.6957375</td>
+<td align="right">0.6208811</td>
+<td align="right">3.178571</td>
+<td align="right">1.3067792</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_consc_1</td>
+<td align="right">28</td>
+<td align="right">0.6732655</td>
+<td align="right">0.6874444</td>
+<td align="right">0.5201855</td>
+<td align="right">0.4656927</td>
+<td align="right">4.071429</td>
+<td align="right">0.8997354</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level6">
+<h6 id="non-missing-response-frequency-for-each-item-2">Non missing response frequency for each item<a class="anchor" aria-label="anchor" href="#non-missing-response-frequency-for-each-item-2"></a>
+</h6>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="20%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">1</th>
+<th align="right">2</th>
+<th align="right">3</th>
+<th align="right">4</th>
+<th align="right">5</th>
+<th align="right">miss</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">BFIK_consc_3</td>
+<td align="right">0.0357143</td>
+<td align="right">0.1428571</td>
+<td align="right">0.2500000</td>
+<td align="right">0.4285714</td>
+<td align="right">0.1428571</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_consc_4</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0357143</td>
+<td align="right">0.2500000</td>
+<td align="right">0.5357143</td>
+<td align="right">0.1785714</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">BFIK_consc_2R</td>
+<td align="right">0.1785714</td>
+<td align="right">0.1071429</td>
+<td align="right">0.1785714</td>
+<td align="right">0.4285714</td>
+<td align="right">0.1071429</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_consc_1</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0714286</td>
+<td align="right">0.1428571</td>
+<td align="right">0.4285714</td>
+<td align="right">0.3571429</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="tab-pane" id="BFIK_consc_summary" role="tabpanel" aria-labelledby="BFIK_consc_summary-tab">
 
@@ -916,42 +1630,280 @@ rendered for this user.</td>
 [0.84;0.96].</p>
 <p><strong>Missing</strong>: 0.</p>
 <div class="figure">
-<img src="codebook_files/figure-html/cb_bfi_BFIK_extra_likert-57-1.png" alt="Likert plot of scale BFIK_extra items" width="700"><p class="caption">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_extra_likert-90-1.png" alt="Likert plot of scale BFIK_extra items" width="700"><p class="caption">
 Likert plot of scale BFIK_extra items
 </p>
 </div>
 <div class="figure">
-<img src="codebook_files/figure-html/cb_bfi_BFIK_extra_distribution-58-1.png" alt="Distribution of scale BFIK_extra" width="700"><p class="caption">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_extra_distribution-91-1.png" alt="Distribution of scale BFIK_extra" width="700"><p class="caption">
 Distribution of scale BFIK_extra
 </p>
 </div>
 </div>
 <div class="tab-pane" id="BFIK_extra_reliability" role="tabpanel" aria-labelledby="BFIK_extra_reliability-tab">
 
-<p>Reliability analysis BFIK_extra<br>
-Call: psych::alpha(x = as.data.frame(data), title = scale_name,
-check.keys = FALSE)</p>
-<p>raw_alpha std.alpha G6(smc) average_r S/N ase mean sd median_r 0.9
-0.9 0.91 0.69 8.9 0.032 3.8 1 0.69</p>
-<pre><code>95% confidence boundaries 
-     lower alpha upper</code></pre>
-<p>Feldt 0.82 0.9 0.95 Duhachek 0.84 0.9 0.96</p>
-<p>Reliability if an item is dropped: raw_alpha std.alpha G6(smc)
-average_r S/N alpha se var.r med.r BFIK_extra_2 0.90 0.90 0.88 0.76 9.5
-0.032 0.0075 0.79 BFIK_extra_3R 0.87 0.87 0.85 0.68 6.5 0.045 0.0171
-0.72 BFIK_extra_4 0.85 0.85 0.82 0.65 5.7 0.049 0.0233 0.60
-BFIK_extra_1R 0.85 0.85 0.80 0.66 5.9 0.049 0.0039 0.66</p>
-<p>Item statistics n raw.r std.r r.cor r.drop mean sd BFIK_extra_2 28
-0.81 0.82 0.73 0.67 4.2 1.1 BFIK_extra_3R 28 0.89 0.88 0.84 0.79 3.8 1.2
-BFIK_extra_4 28 0.90 0.91 0.88 0.82 3.9 1.1 BFIK_extra_1R 28 0.91 0.90
-0.89 0.82 3.6 1.2</p>
-<p>Non missing response frequency for each item 1 2 3 4 5 miss
-BFIK_extra_2 0.07 0.00 0.07 0.39 0.46 0 BFIK_extra_3R 0.07 0.07 0.21
-0.32 0.32 0 BFIK_extra_4 0.04 0.11 0.14 0.39 0.32 0 BFIK_extra_1R 0.04
-0.18 0.21 0.29 0.29 0 1 2 3 4 5 miss BFIK_extra_2 0.07 0.00 0.07 0.39
-0.46 0 BFIK_extra_3R 0.07 0.07 0.21 0.32 0.32 0 BFIK_extra_4 0.04 0.11
-0.14 0.39 0.32 0 BFIK_extra_1R 0.04 0.18 0.21 0.29 0.29 0</p>
-<pre><code><span><span class="co">## No viewer found, probably documenting or testing</span></span></code></pre>
+<div class="section level6">
+<h6 id="reliability-3">Reliability<a class="anchor" aria-label="anchor" href="#reliability-3"></a>
+</h6>
+</div>
+<div class="section level6">
+<h6 id="confidence-interval-3">95% Confidence Interval<a class="anchor" aria-label="anchor" href="#confidence-interval-3"></a>
+</h6>
+<table class="table">
+<thead><tr class="header">
+<th align="right">lower</th>
+<th align="right">estimate</th>
+<th align="right">upper</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="right">0.8368641</td>
+<td align="right">0.8992625</td>
+<td align="right">0.9616609</td>
+</tr></tbody>
+</table>
+<table class="table">
+<colgroup>
+<col width="3%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="10%">
+<col width="11%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">raw_alpha</th>
+<th align="right">std.alpha</th>
+<th align="right">G6(smc)</th>
+<th align="right">average_r</th>
+<th align="right">S/N</th>
+<th align="right">ase</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">median_r</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left"></td>
+<td align="right">0.8992625</td>
+<td align="right">0.8991277</td>
+<td align="right">0.9103612</td>
+<td align="right">0.6902472</td>
+<td align="right">8.913524</td>
+<td align="right">0.0318359</td>
+<td align="right">3.848214</td>
+<td align="right">1.009995</td>
+<td align="right">0.693212</td>
+</tr></tbody>
+</table>
+</div>
+<div class="section level6">
+<h6 id="reliability-if-an-item-is-dropped-3">Reliability if an item is dropped:<a class="anchor" aria-label="anchor" href="#reliability-if-an-item-is-dropped-3"></a>
+</h6>
+<table class="table">
+<colgroup>
+<col width="15%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+<col width="9%">
+<col width="10%">
+<col width="10%">
+<col width="10%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">raw_alpha</th>
+<th align="right">std.alpha</th>
+<th align="right">G6(smc)</th>
+<th align="right">average_r</th>
+<th align="right">S/N</th>
+<th align="right">alpha se</th>
+<th align="right">var.r</th>
+<th align="right">med.r</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">BFIK_extra_2</td>
+<td align="right">0.9049618</td>
+<td align="right">0.9049007</td>
+<td align="right">0.8810063</td>
+<td align="right">0.7602940</td>
+<td align="right">9.515329</td>
+<td align="right">0.0315012</td>
+<td align="right">0.0075063</td>
+<td align="right">0.7906075</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_extra_3R</td>
+<td align="right">0.8656522</td>
+<td align="right">0.8666622</td>
+<td align="right">0.8458840</td>
+<td align="right">0.6842023</td>
+<td align="right">6.499751</td>
+<td align="right">0.0453083</td>
+<td align="right">0.0171133</td>
+<td align="right">0.7238529</td>
+</tr>
+<tr class="odd">
+<td align="left">BFIK_extra_4</td>
+<td align="right">0.8526404</td>
+<td align="right">0.8505466</td>
+<td align="right">0.8225061</td>
+<td align="right">0.6548173</td>
+<td align="right">5.691049</td>
+<td align="right">0.0487973</td>
+<td align="right">0.0233309</td>
+<td align="right">0.5986022</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_extra_1R</td>
+<td align="right">0.8524132</td>
+<td align="right">0.8543807</td>
+<td align="right">0.8025601</td>
+<td align="right">0.6616754</td>
+<td align="right">5.867224</td>
+<td align="right">0.0487065</td>
+<td align="right">0.0039225</td>
+<td align="right">0.6625711</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level6">
+<h6 id="item-statistics-3">Item statistics<a class="anchor" aria-label="anchor" href="#item-statistics-3"></a>
+</h6>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="18%">
+<col width="4%">
+<col width="13%">
+<col width="13%">
+<col width="13%">
+<col width="13%">
+<col width="12%">
+<col width="12%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">n</th>
+<th align="right">raw.r</th>
+<th align="right">std.r</th>
+<th align="right">r.cor</th>
+<th align="right">r.drop</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">BFIK_extra_2</td>
+<td align="right">28</td>
+<td align="right">0.8073670</td>
+<td align="right">0.8162172</td>
+<td align="right">0.7344684</td>
+<td align="right">0.6733826</td>
+<td align="right">4.178571</td>
+<td align="right">1.090483</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_extra_3R</td>
+<td align="right">28</td>
+<td align="right">0.8877202</td>
+<td align="right">0.8813510</td>
+<td align="right">0.8432063</td>
+<td align="right">0.7880184</td>
+<td align="right">3.750000</td>
+<td align="right">1.205696</td>
+</tr>
+<tr class="odd">
+<td align="left">BFIK_extra_4</td>
+<td align="right">28</td>
+<td align="right">0.9027707</td>
+<td align="right">0.9065043</td>
+<td align="right">0.8787875</td>
+<td align="right">0.8247657</td>
+<td align="right">3.857143</td>
+<td align="right">1.112697</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_extra_1R</td>
+<td align="right">28</td>
+<td align="right">0.9062901</td>
+<td align="right">0.9006338</td>
+<td align="right">0.8874781</td>
+<td align="right">0.8219851</td>
+<td align="right">3.607143</td>
+<td align="right">1.196888</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level6">
+<h6 id="non-missing-response-frequency-for-each-item-3">Non missing response frequency for each item<a class="anchor" aria-label="anchor" href="#non-missing-response-frequency-for-each-item-3"></a>
+</h6>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="20%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">1</th>
+<th align="right">2</th>
+<th align="right">3</th>
+<th align="right">4</th>
+<th align="right">5</th>
+<th align="right">miss</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">BFIK_extra_2</td>
+<td align="right">0.0714286</td>
+<td align="right">0.0000000</td>
+<td align="right">0.0714286</td>
+<td align="right">0.3928571</td>
+<td align="right">0.4642857</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_extra_3R</td>
+<td align="right">0.0714286</td>
+<td align="right">0.0714286</td>
+<td align="right">0.2142857</td>
+<td align="right">0.3214286</td>
+<td align="right">0.3214286</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">BFIK_extra_4</td>
+<td align="right">0.0357143</td>
+<td align="right">0.1071429</td>
+<td align="right">0.1428571</td>
+<td align="right">0.3928571</td>
+<td align="right">0.3214286</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_extra_1R</td>
+<td align="right">0.0357143</td>
+<td align="right">0.1785714</td>
+<td align="right">0.2142857</td>
+<td align="right">0.2857143</td>
+<td align="right">0.2857143</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="tab-pane" id="BFIK_extra_summary" role="tabpanel" aria-labelledby="BFIK_extra_summary-tab">
 
@@ -1107,39 +2059,250 @@ rendered for this user.</td>
 [0.61;0.9].</p>
 <p><strong>Missing</strong>: 0.</p>
 <div class="figure">
-<img src="codebook_files/figure-html/cb_bfi_BFIK_neuro_likert-67-1.png" alt="Likert plot of scale BFIK_neuro items" width="700"><p class="caption">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_neuro_likert-111-1.png" alt="Likert plot of scale BFIK_neuro items" width="700"><p class="caption">
 Likert plot of scale BFIK_neuro items
 </p>
 </div>
 <div class="figure">
-<img src="codebook_files/figure-html/cb_bfi_BFIK_neuro_distribution-68-1.png" alt="Distribution of scale BFIK_neuro" width="700"><p class="caption">
+<img src="codebook_files/figure-html/cb_bfi_BFIK_neuro_distribution-112-1.png" alt="Distribution of scale BFIK_neuro" width="700"><p class="caption">
 Distribution of scale BFIK_neuro
 </p>
 </div>
 </div>
 <div class="tab-pane" id="BFIK_neuro_reliability" role="tabpanel" aria-labelledby="BFIK_neuro_reliability-tab">
 
-<p>Reliability analysis BFIK_neuro<br>
-Call: psych::alpha(x = as.data.frame(data), title = scale_name,
-check.keys = FALSE)</p>
-<p>raw_alpha std.alpha G6(smc) average_r S/N ase mean sd median_r 0.75
-0.75 0.71 0.5 3 0.074 2.9 0.93 0.44</p>
-<pre><code>95% confidence boundaries 
-     lower alpha upper</code></pre>
-<p>Feldt 0.54 0.75 0.88 Duhachek 0.61 0.75 0.90</p>
-<p>Reliability if an item is dropped: raw_alpha std.alpha G6(smc)
-average_r S/N alpha se var.r med.r BFIK_neuro_2R 0.84 0.84 0.73 0.73
-5.28 0.06 NA 0.73 BFIK_neuro_3 0.59 0.61 0.44 0.44 1.57 0.15 NA 0.44
-BFIK_neuro_4 0.47 0.49 0.32 0.32 0.96 0.19 NA 0.32</p>
-<p>Item statistics n raw.r std.r r.cor r.drop mean sd BFIK_neuro_2R 28
-0.65 0.72 0.46 0.41 3.1 0.88 BFIK_neuro_3 28 0.88 0.84 0.76 0.65 3.1
-1.27 BFIK_neuro_4 28 0.90 0.89 0.84 0.74 2.5 1.20</p>
-<p>Non missing response frequency for each item 1 2 3 4 5 miss
-BFIK_neuro_2R 0.00 0.29 0.36 0.32 0.04 0 BFIK_neuro_3 0.11 0.25 0.29
-0.18 0.18 0 BFIK_neuro_4 0.25 0.32 0.11 0.32 0.00 0 1 2 3 4 5 miss
-BFIK_neuro_2R 0.00 0.29 0.36 0.32 0.04 0 BFIK_neuro_3 0.11 0.25 0.29
-0.18 0.18 0 BFIK_neuro_4 0.25 0.32 0.11 0.32 0.00 0</p>
-<pre><code><span><span class="co">## No viewer found, probably documenting or testing</span></span></code></pre>
+<div class="section level6">
+<h6 id="reliability-4">Reliability<a class="anchor" aria-label="anchor" href="#reliability-4"></a>
+</h6>
+</div>
+<div class="section level6">
+<h6 id="confidence-interval-4">95% Confidence Interval<a class="anchor" aria-label="anchor" href="#confidence-interval-4"></a>
+</h6>
+<table class="table">
+<thead><tr class="header">
+<th align="right">lower</th>
+<th align="right">estimate</th>
+<th align="right">upper</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="right">0.6080638</td>
+<td align="right">0.7537326</td>
+<td align="right">0.8994015</td>
+</tr></tbody>
+</table>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="3%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="10%">
+<col width="11%">
+<col width="10%">
+<col width="11%">
+<col width="10%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">raw_alpha</th>
+<th align="right">std.alpha</th>
+<th align="right">G6(smc)</th>
+<th align="right">average_r</th>
+<th align="right">S/N</th>
+<th align="right">ase</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">median_r</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left"></td>
+<td align="right">0.7537326</td>
+<td align="right">0.7476172</td>
+<td align="right">0.7145893</td>
+<td align="right">0.496833</td>
+<td align="right">2.962235</td>
+<td align="right">0.0743208</td>
+<td align="right">2.892857</td>
+<td align="right">0.9254231</td>
+<td align="right">0.440167</td>
+</tr></tbody>
+</table>
+</div>
+<div class="section level6">
+<h6 id="reliability-if-an-item-is-dropped-4">Reliability if an item is dropped:<a class="anchor" aria-label="anchor" href="#reliability-if-an-item-is-dropped-4"></a>
+</h6>
+<table class="table">
+<colgroup>
+<col width="15%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="6%">
+<col width="11%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">raw_alpha</th>
+<th align="right">std.alpha</th>
+<th align="right">G6(smc)</th>
+<th align="right">average_r</th>
+<th align="right">S/N</th>
+<th align="right">alpha se</th>
+<th align="right">var.r</th>
+<th align="right">med.r</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">BFIK_neuro_2R</td>
+<td align="right">0.8400000</td>
+<td align="right">0.8408387</td>
+<td align="right">0.7253854</td>
+<td align="right">0.7253854</td>
+<td align="right">5.2829328</td>
+<td align="right">0.0602555</td>
+<td align="right">NA</td>
+<td align="right">0.7253854</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_neuro_3</td>
+<td align="right">0.5904682</td>
+<td align="right">0.6112721</td>
+<td align="right">0.4401670</td>
+<td align="right">0.4401670</td>
+<td align="right">1.5724937</td>
+<td align="right">0.1456732</td>
+<td align="right">NA</td>
+<td align="right">0.4401670</td>
+</tr>
+<tr class="odd">
+<td align="left">BFIK_neuro_4</td>
+<td align="right">0.4653928</td>
+<td align="right">0.4905053</td>
+<td align="right">0.3249467</td>
+<td align="right">0.3249467</td>
+<td align="right">0.9627289</td>
+<td align="right">0.1871605</td>
+<td align="right">NA</td>
+<td align="right">0.3249467</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level6">
+<h6 id="item-statistics-4">Item statistics<a class="anchor" aria-label="anchor" href="#item-statistics-4"></a>
+</h6>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="18%">
+<col width="3%">
+<col width="13%">
+<col width="13%">
+<col width="13%">
+<col width="13%">
+<col width="11%">
+<col width="13%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">n</th>
+<th align="right">raw.r</th>
+<th align="right">std.r</th>
+<th align="right">r.cor</th>
+<th align="right">r.drop</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">BFIK_neuro_2R</td>
+<td align="right">28</td>
+<td align="right">0.6549435</td>
+<td align="right">0.7217484</td>
+<td align="right">0.4638430</td>
+<td align="right">0.4100297</td>
+<td align="right">3.107143</td>
+<td align="right">0.8751417</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_neuro_3</td>
+<td align="right">28</td>
+<td align="right">0.8755182</td>
+<td align="right">0.8383732</td>
+<td align="right">0.7625955</td>
+<td align="right">0.6528603</td>
+<td align="right">3.071429</td>
+<td align="right">1.2744954</td>
+</tr>
+<tr class="odd">
+<td align="left">BFIK_neuro_4</td>
+<td align="right">28</td>
+<td align="right">0.9046526</td>
+<td align="right">0.8854863</td>
+<td align="right">0.8409166</td>
+<td align="right">0.7420620</td>
+<td align="right">2.500000</td>
+<td align="right">1.2018504</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level6">
+<h6 id="non-missing-response-frequency-for-each-item-4">Non missing response frequency for each item<a class="anchor" aria-label="anchor" href="#non-missing-response-frequency-for-each-item-4"></a>
+</h6>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="20%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">1</th>
+<th align="right">2</th>
+<th align="right">3</th>
+<th align="right">4</th>
+<th align="right">5</th>
+<th align="right">miss</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">BFIK_neuro_2R</td>
+<td align="right">0.0000000</td>
+<td align="right">0.2857143</td>
+<td align="right">0.3571429</td>
+<td align="right">0.3214286</td>
+<td align="right">0.0357143</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">BFIK_neuro_3</td>
+<td align="right">0.1071429</td>
+<td align="right">0.2500000</td>
+<td align="right">0.2857143</td>
+<td align="right">0.1785714</td>
+<td align="right">0.1785714</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">BFIK_neuro_4</td>
+<td align="right">0.2500000</td>
+<td align="right">0.3214286</td>
+<td align="right">0.1071429</td>
+<td align="right">0.3214286</td>
+<td align="right">0.0000000</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="tab-pane" id="BFIK_neuro_summary" role="tabpanel" aria-labelledby="BFIK_neuro_summary-tab">
 
@@ -1267,7 +2430,7 @@ rendered for this user.</td>
 <div class="active  tab-pane" id="age_distribution" role="tabpanel" aria-labelledby="age_distribution-tab">
 
 <div class="figure">
-<img src="codebook_files/figure-html/cb_bfi_age_distribution-76-1.png" alt="Distribution of values for age" width="700"><p class="caption">
+<img src="codebook_files/figure-html/cb_bfi_age_distribution-131-1.png" alt="Distribution of values for age" width="700"><p class="caption">
 Distribution of values for age
 </p>
 </div>
@@ -1587,255 +2750,255 @@ Distribution of values for age
 JSON-LD metadata
 </summary><p>The following JSON-LD can be found by search engines, if you share
 this codebook publicly on the web.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MOCK Big Five Inventory dataset (German metadata demo)"</span><span class="fu">,</span></span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"a small mock Big Five Inventory dataset</span><span class="ch">\n\n\n</span><span class="st">## Table of variables</span><span class="ch">\n</span><span class="st">This table contains variable names, labels, and number of missing values.</span><span class="ch">\n</span><span class="st">See the complete codebook for more.</span><span class="ch">\n\n</span><span class="st">|name          |label                                                                      | n_missing|</span><span class="ch">\n</span><span class="st">|:-------------|:--------------------------------------------------------------------------|---------:|</span><span class="ch">\n</span><span class="st">|session       |NA                                                                         |         0|</span><span class="ch">\n</span><span class="st">|created       |user first opened survey                                                   |         0|</span><span class="ch">\n</span><span class="st">|modified      |user last edited survey                                                    |         0|</span><span class="ch">\n</span><span class="st">|ended         |user finished survey                                                       |         0|</span><span class="ch">\n</span><span class="st">|expired       |NA                                                                         |        28|</span><span class="ch">\n</span><span class="st">|BFIK_open_2   |__Ich bin tiefsinnig, denke gerne über Sachen nach.__                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_4R |__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_2  |__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__           |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_1R |__Ich neige dazu, andere zu kritisieren.__                                 |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open_1   |__Ich bin vielseitig interessiert.__                                       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro_2R |__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__ |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_3  |__Ich bin tüchtig und arbeite flott.__                                     |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_4  |__Ich mache Pläne und führe sie auch durch.__                              |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_2R |__Ich bin bequem, neige zur Faulheit.__                                    |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_3R |__Ich kann mich kalt und distanziert verhalten.__                          |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_3R |__Ich bin eher der </span><span class="ch">\"</span><span class="st">stille Typ</span><span class="ch">\"</span><span class="st">, wortkarg.__                               |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro_3  |__Ich mache mir viele Sorgen.__                                            |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro_4  |__Ich werde leicht nervös und unsicher.__                                  |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_2  |__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__  |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_1  |__Ich erledige Aufgaben gründlich.__                                       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open_4   |__Ich schätze künstlerische und ästhetische Eindrücke.__                   |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_4  |__Ich gehe aus mir heraus, bin gesellig.__                                 |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_1R |__Ich bin eher zurückhaltend, reserviert.__                                |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open_3   |__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__             |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree    |4 BFIK_agree items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open     |4 BFIK_open items aggregated by aggregation_function                       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc    |4 BFIK_consc items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra    |4 BFIK_extra items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro    |3 BFIK_neuro items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|age           |Alter                                                                      |         0|</span><span class="ch">\n\n</span><span class="st">### Note</span><span class="ch">\n</span><span class="st">This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.5)."</span><span class="fu">,</span></span>
-<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"doi:10.5281/zenodo.1326520"</span><span class="fu">,</span></span>
-<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  <span class="dt">"datePublished"</span><span class="fu">:</span> <span class="st">"2016-06-01"</span><span class="fu">,</span></span>
-<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>  <span class="dt">"creator"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>    <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
-<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>    <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Ruben"</span><span class="fu">,</span></span>
-<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>    <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Arslan"</span><span class="fu">,</span></span>
-<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>    <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"ruben.arslan@gmail.com"</span><span class="fu">,</span></span>
-<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>    <span class="dt">"affiliation"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
-<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MPI Human Development, Berlin"</span></span>
-<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a>  <span class="fu">},</span></span>
-<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a>  <span class="dt">"citation"</span><span class="fu">:</span> <span class="st">"Arslan (2016). Mock BFI data."</span><span class="fu">,</span></span>
-<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a>  <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://rubenarslan.github.io/codebook/articles/codebook.html"</span><span class="fu">,</span></span>
-<span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a>  <span class="dt">"temporalCoverage"</span><span class="fu">:</span> <span class="st">"2016"</span><span class="fu">,</span></span>
-<span id="cb17-19"><a href="#cb17-19" tabindex="-1"></a>  <span class="dt">"spatialCoverage"</span><span class="fu">:</span> <span class="st">"Goettingen, Germany"</span><span class="fu">,</span></span>
-<span id="cb17-20"><a href="#cb17-20" tabindex="-1"></a>  <span class="dt">"keywords"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"session"</span><span class="ot">,</span> <span class="st">"created"</span><span class="ot">,</span> <span class="st">"modified"</span><span class="ot">,</span> <span class="st">"ended"</span><span class="ot">,</span> <span class="st">"expired"</span><span class="ot">,</span> <span class="st">"BFIK_open_2"</span><span class="ot">,</span> <span class="st">"BFIK_agree_4R"</span><span class="ot">,</span> <span class="st">"BFIK_extra_2"</span><span class="ot">,</span> <span class="st">"BFIK_agree_1R"</span><span class="ot">,</span> <span class="st">"BFIK_open_1"</span><span class="ot">,</span> <span class="st">"BFIK_neuro_2R"</span><span class="ot">,</span> <span class="st">"BFIK_consc_3"</span><span class="ot">,</span> <span class="st">"BFIK_consc_4"</span><span class="ot">,</span> <span class="st">"BFIK_consc_2R"</span><span class="ot">,</span> <span class="st">"BFIK_agree_3R"</span><span class="ot">,</span> <span class="st">"BFIK_extra_3R"</span><span class="ot">,</span> <span class="st">"BFIK_neuro_3"</span><span class="ot">,</span> <span class="st">"BFIK_neuro_4"</span><span class="ot">,</span> <span class="st">"BFIK_agree_2"</span><span class="ot">,</span> <span class="st">"BFIK_consc_1"</span><span class="ot">,</span> <span class="st">"BFIK_open_4"</span><span class="ot">,</span> <span class="st">"BFIK_extra_4"</span><span class="ot">,</span> <span class="st">"BFIK_extra_1R"</span><span class="ot">,</span> <span class="st">"BFIK_open_3"</span><span class="ot">,</span> <span class="st">"BFIK_agree"</span><span class="ot">,</span> <span class="st">"BFIK_open"</span><span class="ot">,</span> <span class="st">"BFIK_consc"</span><span class="ot">,</span> <span class="st">"BFIK_extra"</span><span class="ot">,</span> <span class="st">"BFIK_neuro"</span><span class="ot">,</span> <span class="st">"age"</span><span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb17-21"><a href="#cb17-21" tabindex="-1"></a>  <span class="dt">"@context"</span><span class="fu">:</span> <span class="st">"http://schema.org/"</span><span class="fu">,</span></span>
-<span id="cb17-22"><a href="#cb17-22" tabindex="-1"></a>  <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Dataset"</span><span class="fu">,</span></span>
-<span id="cb17-23"><a href="#cb17-23" tabindex="-1"></a>  <span class="dt">"variableMeasured"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb17-24"><a href="#cb17-24" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-25"><a href="#cb17-25" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"session"</span><span class="fu">,</span></span>
-<span id="cb17-26"><a href="#cb17-26" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-27"><a href="#cb17-27" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-28"><a href="#cb17-28" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-29"><a href="#cb17-29" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"created"</span><span class="fu">,</span></span>
-<span id="cb17-30"><a href="#cb17-30" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"user first opened survey"</span><span class="fu">,</span></span>
-<span id="cb17-31"><a href="#cb17-31" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-32"><a href="#cb17-32" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-33"><a href="#cb17-33" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-34"><a href="#cb17-34" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"modified"</span><span class="fu">,</span></span>
-<span id="cb17-35"><a href="#cb17-35" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"user last edited survey"</span><span class="fu">,</span></span>
-<span id="cb17-36"><a href="#cb17-36" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-37"><a href="#cb17-37" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-38"><a href="#cb17-38" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-39"><a href="#cb17-39" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"ended"</span><span class="fu">,</span></span>
-<span id="cb17-40"><a href="#cb17-40" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"user finished survey"</span><span class="fu">,</span></span>
-<span id="cb17-41"><a href="#cb17-41" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-42"><a href="#cb17-42" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-43"><a href="#cb17-43" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-44"><a href="#cb17-44" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"expired"</span><span class="fu">,</span></span>
-<span id="cb17-45"><a href="#cb17-45" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-46"><a href="#cb17-46" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-47"><a href="#cb17-47" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-48"><a href="#cb17-48" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_2"</span><span class="fu">,</span></span>
-<span id="cb17-49"><a href="#cb17-49" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin tiefsinnig, denke gerne über Sachen nach.__"</span><span class="fu">,</span></span>
-<span id="cb17-50"><a href="#cb17-50" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-51"><a href="#cb17-51" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-52"><a href="#cb17-52" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-53"><a href="#cb17-53" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-54"><a href="#cb17-54" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-55"><a href="#cb17-55" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-56"><a href="#cb17-56" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-57"><a href="#cb17-57" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_4R"</span><span class="fu">,</span></span>
-<span id="cb17-58"><a href="#cb17-58" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__"</span><span class="fu">,</span></span>
-<span id="cb17-59"><a href="#cb17-59" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-60"><a href="#cb17-60" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-61"><a href="#cb17-61" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-62"><a href="#cb17-62" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-63"><a href="#cb17-63" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-64"><a href="#cb17-64" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-65"><a href="#cb17-65" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-66"><a href="#cb17-66" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_2"</span><span class="fu">,</span></span>
-<span id="cb17-67"><a href="#cb17-67" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__"</span><span class="fu">,</span></span>
-<span id="cb17-68"><a href="#cb17-68" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-69"><a href="#cb17-69" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-70"><a href="#cb17-70" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-71"><a href="#cb17-71" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-72"><a href="#cb17-72" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-73"><a href="#cb17-73" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-74"><a href="#cb17-74" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-75"><a href="#cb17-75" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_1R"</span><span class="fu">,</span></span>
-<span id="cb17-76"><a href="#cb17-76" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich neige dazu, andere zu kritisieren.__"</span><span class="fu">,</span></span>
-<span id="cb17-77"><a href="#cb17-77" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-78"><a href="#cb17-78" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-79"><a href="#cb17-79" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-80"><a href="#cb17-80" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-81"><a href="#cb17-81" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-82"><a href="#cb17-82" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-83"><a href="#cb17-83" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-84"><a href="#cb17-84" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_1"</span><span class="fu">,</span></span>
-<span id="cb17-85"><a href="#cb17-85" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin vielseitig interessiert.__"</span><span class="fu">,</span></span>
-<span id="cb17-86"><a href="#cb17-86" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-87"><a href="#cb17-87" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-88"><a href="#cb17-88" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-89"><a href="#cb17-89" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-90"><a href="#cb17-90" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-91"><a href="#cb17-91" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-92"><a href="#cb17-92" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-93"><a href="#cb17-93" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro_2R"</span><span class="fu">,</span></span>
-<span id="cb17-94"><a href="#cb17-94" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__"</span><span class="fu">,</span></span>
-<span id="cb17-95"><a href="#cb17-95" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-96"><a href="#cb17-96" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-97"><a href="#cb17-97" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-98"><a href="#cb17-98" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-99"><a href="#cb17-99" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-100"><a href="#cb17-100" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-101"><a href="#cb17-101" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-102"><a href="#cb17-102" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_3"</span><span class="fu">,</span></span>
-<span id="cb17-103"><a href="#cb17-103" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin tüchtig und arbeite flott.__"</span><span class="fu">,</span></span>
-<span id="cb17-104"><a href="#cb17-104" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-105"><a href="#cb17-105" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-106"><a href="#cb17-106" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-107"><a href="#cb17-107" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-108"><a href="#cb17-108" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-109"><a href="#cb17-109" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-110"><a href="#cb17-110" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-111"><a href="#cb17-111" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_4"</span><span class="fu">,</span></span>
-<span id="cb17-112"><a href="#cb17-112" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich mache Pläne und führe sie auch durch.__"</span><span class="fu">,</span></span>
-<span id="cb17-113"><a href="#cb17-113" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-114"><a href="#cb17-114" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-115"><a href="#cb17-115" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-116"><a href="#cb17-116" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-117"><a href="#cb17-117" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-118"><a href="#cb17-118" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-119"><a href="#cb17-119" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-120"><a href="#cb17-120" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_2R"</span><span class="fu">,</span></span>
-<span id="cb17-121"><a href="#cb17-121" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin bequem, neige zur Faulheit.__"</span><span class="fu">,</span></span>
-<span id="cb17-122"><a href="#cb17-122" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-123"><a href="#cb17-123" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-124"><a href="#cb17-124" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-125"><a href="#cb17-125" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-126"><a href="#cb17-126" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-127"><a href="#cb17-127" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-128"><a href="#cb17-128" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-129"><a href="#cb17-129" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_3R"</span><span class="fu">,</span></span>
-<span id="cb17-130"><a href="#cb17-130" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich kann mich kalt und distanziert verhalten.__"</span><span class="fu">,</span></span>
-<span id="cb17-131"><a href="#cb17-131" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-132"><a href="#cb17-132" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-133"><a href="#cb17-133" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-134"><a href="#cb17-134" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-135"><a href="#cb17-135" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-136"><a href="#cb17-136" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-137"><a href="#cb17-137" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-138"><a href="#cb17-138" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_3R"</span><span class="fu">,</span></span>
-<span id="cb17-139"><a href="#cb17-139" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin eher der </span><span class="ch">\"</span><span class="st">stille Typ</span><span class="ch">\"</span><span class="st">, wortkarg.__"</span><span class="fu">,</span></span>
-<span id="cb17-140"><a href="#cb17-140" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-141"><a href="#cb17-141" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-142"><a href="#cb17-142" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-143"><a href="#cb17-143" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-144"><a href="#cb17-144" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-145"><a href="#cb17-145" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-146"><a href="#cb17-146" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-147"><a href="#cb17-147" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro_3"</span><span class="fu">,</span></span>
-<span id="cb17-148"><a href="#cb17-148" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich mache mir viele Sorgen.__"</span><span class="fu">,</span></span>
-<span id="cb17-149"><a href="#cb17-149" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-150"><a href="#cb17-150" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-151"><a href="#cb17-151" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-152"><a href="#cb17-152" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-153"><a href="#cb17-153" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-154"><a href="#cb17-154" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-155"><a href="#cb17-155" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-156"><a href="#cb17-156" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro_4"</span><span class="fu">,</span></span>
-<span id="cb17-157"><a href="#cb17-157" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich werde leicht nervös und unsicher.__"</span><span class="fu">,</span></span>
-<span id="cb17-158"><a href="#cb17-158" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-159"><a href="#cb17-159" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-160"><a href="#cb17-160" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-161"><a href="#cb17-161" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-162"><a href="#cb17-162" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-163"><a href="#cb17-163" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-164"><a href="#cb17-164" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-165"><a href="#cb17-165" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_2"</span><span class="fu">,</span></span>
-<span id="cb17-166"><a href="#cb17-166" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__"</span><span class="fu">,</span></span>
-<span id="cb17-167"><a href="#cb17-167" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-168"><a href="#cb17-168" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-169"><a href="#cb17-169" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-170"><a href="#cb17-170" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-171"><a href="#cb17-171" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-172"><a href="#cb17-172" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-173"><a href="#cb17-173" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-174"><a href="#cb17-174" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_1"</span><span class="fu">,</span></span>
-<span id="cb17-175"><a href="#cb17-175" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich erledige Aufgaben gründlich.__"</span><span class="fu">,</span></span>
-<span id="cb17-176"><a href="#cb17-176" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-177"><a href="#cb17-177" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-178"><a href="#cb17-178" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-179"><a href="#cb17-179" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-180"><a href="#cb17-180" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-181"><a href="#cb17-181" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-182"><a href="#cb17-182" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-183"><a href="#cb17-183" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_4"</span><span class="fu">,</span></span>
-<span id="cb17-184"><a href="#cb17-184" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich schätze künstlerische und ästhetische Eindrücke.__"</span><span class="fu">,</span></span>
-<span id="cb17-185"><a href="#cb17-185" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-186"><a href="#cb17-186" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-187"><a href="#cb17-187" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-188"><a href="#cb17-188" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-189"><a href="#cb17-189" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-190"><a href="#cb17-190" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-191"><a href="#cb17-191" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-192"><a href="#cb17-192" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_4"</span><span class="fu">,</span></span>
-<span id="cb17-193"><a href="#cb17-193" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich gehe aus mir heraus, bin gesellig.__"</span><span class="fu">,</span></span>
-<span id="cb17-194"><a href="#cb17-194" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-195"><a href="#cb17-195" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-196"><a href="#cb17-196" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-197"><a href="#cb17-197" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-198"><a href="#cb17-198" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-199"><a href="#cb17-199" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-200"><a href="#cb17-200" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-201"><a href="#cb17-201" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_1R"</span><span class="fu">,</span></span>
-<span id="cb17-202"><a href="#cb17-202" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin eher zurückhaltend, reserviert.__"</span><span class="fu">,</span></span>
-<span id="cb17-203"><a href="#cb17-203" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-204"><a href="#cb17-204" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-205"><a href="#cb17-205" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-206"><a href="#cb17-206" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-207"><a href="#cb17-207" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-208"><a href="#cb17-208" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-209"><a href="#cb17-209" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-210"><a href="#cb17-210" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_3"</span><span class="fu">,</span></span>
-<span id="cb17-211"><a href="#cb17-211" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__"</span><span class="fu">,</span></span>
-<span id="cb17-212"><a href="#cb17-212" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
-<span id="cb17-213"><a href="#cb17-213" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
-<span id="cb17-214"><a href="#cb17-214" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb17-215"><a href="#cb17-215" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
-<span id="cb17-216"><a href="#cb17-216" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-217"><a href="#cb17-217" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-218"><a href="#cb17-218" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-219"><a href="#cb17-219" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree"</span><span class="fu">,</span></span>
-<span id="cb17-220"><a href="#cb17-220" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_agree items aggregated by aggregation_function"</span><span class="fu">,</span></span>
-<span id="cb17-221"><a href="#cb17-221" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-222"><a href="#cb17-222" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-223"><a href="#cb17-223" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-224"><a href="#cb17-224" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open"</span><span class="fu">,</span></span>
-<span id="cb17-225"><a href="#cb17-225" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_open items aggregated by aggregation_function"</span><span class="fu">,</span></span>
-<span id="cb17-226"><a href="#cb17-226" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-227"><a href="#cb17-227" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-228"><a href="#cb17-228" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-229"><a href="#cb17-229" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc"</span><span class="fu">,</span></span>
-<span id="cb17-230"><a href="#cb17-230" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_consc items aggregated by aggregation_function"</span><span class="fu">,</span></span>
-<span id="cb17-231"><a href="#cb17-231" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-232"><a href="#cb17-232" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-233"><a href="#cb17-233" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-234"><a href="#cb17-234" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra"</span><span class="fu">,</span></span>
-<span id="cb17-235"><a href="#cb17-235" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_extra items aggregated by aggregation_function"</span><span class="fu">,</span></span>
-<span id="cb17-236"><a href="#cb17-236" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-237"><a href="#cb17-237" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-238"><a href="#cb17-238" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-239"><a href="#cb17-239" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro"</span><span class="fu">,</span></span>
-<span id="cb17-240"><a href="#cb17-240" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"3 BFIK_neuro items aggregated by aggregation_function"</span><span class="fu">,</span></span>
-<span id="cb17-241"><a href="#cb17-241" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-242"><a href="#cb17-242" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb17-243"><a href="#cb17-243" tabindex="-1"></a>    <span class="fu">{</span></span>
-<span id="cb17-244"><a href="#cb17-244" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"age"</span><span class="fu">,</span></span>
-<span id="cb17-245"><a href="#cb17-245" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Alter"</span><span class="fu">,</span></span>
-<span id="cb17-246"><a href="#cb17-246" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
-<span id="cb17-247"><a href="#cb17-247" tabindex="-1"></a>    <span class="fu">}</span></span>
-<span id="cb17-248"><a href="#cb17-248" tabindex="-1"></a>  <span class="ot">]</span></span>
-<span id="cb17-249"><a href="#cb17-249" tabindex="-1"></a><span class="fu">}</span><span class="er">`</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MOCK Big Five Inventory dataset (German metadata demo)"</span><span class="fu">,</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"a small mock Big Five Inventory dataset</span><span class="ch">\n\n\n</span><span class="st">## Table of variables</span><span class="ch">\n</span><span class="st">This table contains variable names, labels, and number of missing values.</span><span class="ch">\n</span><span class="st">See the complete codebook for more.</span><span class="ch">\n\n</span><span class="st">|name          |label                                                                      | n_missing|</span><span class="ch">\n</span><span class="st">|:-------------|:--------------------------------------------------------------------------|---------:|</span><span class="ch">\n</span><span class="st">|session       |NA                                                                         |         0|</span><span class="ch">\n</span><span class="st">|created       |user first opened survey                                                   |         0|</span><span class="ch">\n</span><span class="st">|modified      |user last edited survey                                                    |         0|</span><span class="ch">\n</span><span class="st">|ended         |user finished survey                                                       |         0|</span><span class="ch">\n</span><span class="st">|expired       |NA                                                                         |        28|</span><span class="ch">\n</span><span class="st">|BFIK_open_2   |__Ich bin tiefsinnig, denke gerne über Sachen nach.__                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_4R |__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_2  |__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__           |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_1R |__Ich neige dazu, andere zu kritisieren.__                                 |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open_1   |__Ich bin vielseitig interessiert.__                                       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro_2R |__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__ |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_3  |__Ich bin tüchtig und arbeite flott.__                                     |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_4  |__Ich mache Pläne und führe sie auch durch.__                              |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_2R |__Ich bin bequem, neige zur Faulheit.__                                    |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_3R |__Ich kann mich kalt und distanziert verhalten.__                          |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_3R |__Ich bin eher der </span><span class="ch">\"</span><span class="st">stille Typ</span><span class="ch">\"</span><span class="st">, wortkarg.__                               |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro_3  |__Ich mache mir viele Sorgen.__                                            |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro_4  |__Ich werde leicht nervös und unsicher.__                                  |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree_2  |__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__  |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc_1  |__Ich erledige Aufgaben gründlich.__                                       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open_4   |__Ich schätze künstlerische und ästhetische Eindrücke.__                   |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_4  |__Ich gehe aus mir heraus, bin gesellig.__                                 |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra_1R |__Ich bin eher zurückhaltend, reserviert.__                                |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open_3   |__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__             |         0|</span><span class="ch">\n</span><span class="st">|BFIK_agree    |4 BFIK_agree items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_open     |4 BFIK_open items aggregated by aggregation_function                       |         0|</span><span class="ch">\n</span><span class="st">|BFIK_consc    |4 BFIK_consc items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_extra    |4 BFIK_extra items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|BFIK_neuro    |3 BFIK_neuro items aggregated by aggregation_function                      |         0|</span><span class="ch">\n</span><span class="st">|age           |Alter                                                                      |         0|</span><span class="ch">\n\n</span><span class="st">### Note</span><span class="ch">\n</span><span class="st">This dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.5)."</span><span class="fu">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="dt">"identifier"</span><span class="fu">:</span> <span class="st">"doi:10.5281/zenodo.1326520"</span><span class="fu">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  <span class="dt">"datePublished"</span><span class="fu">:</span> <span class="st">"2016-06-01"</span><span class="fu">,</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  <span class="dt">"creator"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>    <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Person"</span><span class="fu">,</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>    <span class="dt">"givenName"</span><span class="fu">:</span> <span class="st">"Ruben"</span><span class="fu">,</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>    <span class="dt">"familyName"</span><span class="fu">:</span> <span class="st">"Arslan"</span><span class="fu">,</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>    <span class="dt">"email"</span><span class="fu">:</span> <span class="st">"ruben.arslan@gmail.com"</span><span class="fu">,</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>    <span class="dt">"affiliation"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Organization"</span><span class="fu">,</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"MPI Human Development, Berlin"</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>  <span class="fu">},</span></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>  <span class="dt">"citation"</span><span class="fu">:</span> <span class="st">"Arslan (2016). Mock BFI data."</span><span class="fu">,</span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>  <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://rubenarslan.github.io/codebook/articles/codebook.html"</span><span class="fu">,</span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a>  <span class="dt">"temporalCoverage"</span><span class="fu">:</span> <span class="st">"2016"</span><span class="fu">,</span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>  <span class="dt">"spatialCoverage"</span><span class="fu">:</span> <span class="st">"Goettingen, Germany"</span><span class="fu">,</span></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>  <span class="dt">"keywords"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"session"</span><span class="ot">,</span> <span class="st">"created"</span><span class="ot">,</span> <span class="st">"modified"</span><span class="ot">,</span> <span class="st">"ended"</span><span class="ot">,</span> <span class="st">"expired"</span><span class="ot">,</span> <span class="st">"BFIK_open_2"</span><span class="ot">,</span> <span class="st">"BFIK_agree_4R"</span><span class="ot">,</span> <span class="st">"BFIK_extra_2"</span><span class="ot">,</span> <span class="st">"BFIK_agree_1R"</span><span class="ot">,</span> <span class="st">"BFIK_open_1"</span><span class="ot">,</span> <span class="st">"BFIK_neuro_2R"</span><span class="ot">,</span> <span class="st">"BFIK_consc_3"</span><span class="ot">,</span> <span class="st">"BFIK_consc_4"</span><span class="ot">,</span> <span class="st">"BFIK_consc_2R"</span><span class="ot">,</span> <span class="st">"BFIK_agree_3R"</span><span class="ot">,</span> <span class="st">"BFIK_extra_3R"</span><span class="ot">,</span> <span class="st">"BFIK_neuro_3"</span><span class="ot">,</span> <span class="st">"BFIK_neuro_4"</span><span class="ot">,</span> <span class="st">"BFIK_agree_2"</span><span class="ot">,</span> <span class="st">"BFIK_consc_1"</span><span class="ot">,</span> <span class="st">"BFIK_open_4"</span><span class="ot">,</span> <span class="st">"BFIK_extra_4"</span><span class="ot">,</span> <span class="st">"BFIK_extra_1R"</span><span class="ot">,</span> <span class="st">"BFIK_open_3"</span><span class="ot">,</span> <span class="st">"BFIK_agree"</span><span class="ot">,</span> <span class="st">"BFIK_open"</span><span class="ot">,</span> <span class="st">"BFIK_consc"</span><span class="ot">,</span> <span class="st">"BFIK_extra"</span><span class="ot">,</span> <span class="st">"BFIK_neuro"</span><span class="ot">,</span> <span class="st">"age"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a>  <span class="dt">"@context"</span><span class="fu">:</span> <span class="st">"http://schema.org/"</span><span class="fu">,</span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a>  <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"Dataset"</span><span class="fu">,</span></span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a>  <span class="dt">"variableMeasured"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"session"</span><span class="fu">,</span></span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"created"</span><span class="fu">,</span></span>
+<span id="cb7-30"><a href="#cb7-30" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"user first opened survey"</span><span class="fu">,</span></span>
+<span id="cb7-31"><a href="#cb7-31" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-32"><a href="#cb7-32" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-33"><a href="#cb7-33" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"modified"</span><span class="fu">,</span></span>
+<span id="cb7-35"><a href="#cb7-35" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"user last edited survey"</span><span class="fu">,</span></span>
+<span id="cb7-36"><a href="#cb7-36" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-37"><a href="#cb7-37" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-38"><a href="#cb7-38" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-39"><a href="#cb7-39" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"ended"</span><span class="fu">,</span></span>
+<span id="cb7-40"><a href="#cb7-40" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"user finished survey"</span><span class="fu">,</span></span>
+<span id="cb7-41"><a href="#cb7-41" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-42"><a href="#cb7-42" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-43"><a href="#cb7-43" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-44"><a href="#cb7-44" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"expired"</span><span class="fu">,</span></span>
+<span id="cb7-45"><a href="#cb7-45" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-46"><a href="#cb7-46" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-47"><a href="#cb7-47" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-48"><a href="#cb7-48" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_2"</span><span class="fu">,</span></span>
+<span id="cb7-49"><a href="#cb7-49" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin tiefsinnig, denke gerne über Sachen nach.__"</span><span class="fu">,</span></span>
+<span id="cb7-50"><a href="#cb7-50" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-51"><a href="#cb7-51" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-52"><a href="#cb7-52" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-53"><a href="#cb7-53" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-54"><a href="#cb7-54" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-55"><a href="#cb7-55" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-56"><a href="#cb7-56" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-57"><a href="#cb7-57" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_4R"</span><span class="fu">,</span></span>
+<span id="cb7-58"><a href="#cb7-58" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__"</span><span class="fu">,</span></span>
+<span id="cb7-59"><a href="#cb7-59" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-60"><a href="#cb7-60" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-61"><a href="#cb7-61" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-62"><a href="#cb7-62" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-63"><a href="#cb7-63" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-64"><a href="#cb7-64" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-65"><a href="#cb7-65" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-66"><a href="#cb7-66" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_2"</span><span class="fu">,</span></span>
+<span id="cb7-67"><a href="#cb7-67" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__"</span><span class="fu">,</span></span>
+<span id="cb7-68"><a href="#cb7-68" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-69"><a href="#cb7-69" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-70"><a href="#cb7-70" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-71"><a href="#cb7-71" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-72"><a href="#cb7-72" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-73"><a href="#cb7-73" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-74"><a href="#cb7-74" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-75"><a href="#cb7-75" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_1R"</span><span class="fu">,</span></span>
+<span id="cb7-76"><a href="#cb7-76" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich neige dazu, andere zu kritisieren.__"</span><span class="fu">,</span></span>
+<span id="cb7-77"><a href="#cb7-77" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-78"><a href="#cb7-78" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-79"><a href="#cb7-79" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-80"><a href="#cb7-80" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-81"><a href="#cb7-81" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-82"><a href="#cb7-82" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-83"><a href="#cb7-83" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-84"><a href="#cb7-84" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_1"</span><span class="fu">,</span></span>
+<span id="cb7-85"><a href="#cb7-85" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin vielseitig interessiert.__"</span><span class="fu">,</span></span>
+<span id="cb7-86"><a href="#cb7-86" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-87"><a href="#cb7-87" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-88"><a href="#cb7-88" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-89"><a href="#cb7-89" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-90"><a href="#cb7-90" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-91"><a href="#cb7-91" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-92"><a href="#cb7-92" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-93"><a href="#cb7-93" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro_2R"</span><span class="fu">,</span></span>
+<span id="cb7-94"><a href="#cb7-94" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__"</span><span class="fu">,</span></span>
+<span id="cb7-95"><a href="#cb7-95" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-96"><a href="#cb7-96" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-97"><a href="#cb7-97" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-98"><a href="#cb7-98" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-99"><a href="#cb7-99" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-100"><a href="#cb7-100" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-101"><a href="#cb7-101" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-102"><a href="#cb7-102" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_3"</span><span class="fu">,</span></span>
+<span id="cb7-103"><a href="#cb7-103" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin tüchtig und arbeite flott.__"</span><span class="fu">,</span></span>
+<span id="cb7-104"><a href="#cb7-104" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-105"><a href="#cb7-105" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-106"><a href="#cb7-106" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-107"><a href="#cb7-107" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-108"><a href="#cb7-108" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-109"><a href="#cb7-109" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-110"><a href="#cb7-110" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-111"><a href="#cb7-111" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_4"</span><span class="fu">,</span></span>
+<span id="cb7-112"><a href="#cb7-112" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich mache Pläne und führe sie auch durch.__"</span><span class="fu">,</span></span>
+<span id="cb7-113"><a href="#cb7-113" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-114"><a href="#cb7-114" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-115"><a href="#cb7-115" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-116"><a href="#cb7-116" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-117"><a href="#cb7-117" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-118"><a href="#cb7-118" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-119"><a href="#cb7-119" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-120"><a href="#cb7-120" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_2R"</span><span class="fu">,</span></span>
+<span id="cb7-121"><a href="#cb7-121" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin bequem, neige zur Faulheit.__"</span><span class="fu">,</span></span>
+<span id="cb7-122"><a href="#cb7-122" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-123"><a href="#cb7-123" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-124"><a href="#cb7-124" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-125"><a href="#cb7-125" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-126"><a href="#cb7-126" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-127"><a href="#cb7-127" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-128"><a href="#cb7-128" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-129"><a href="#cb7-129" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_3R"</span><span class="fu">,</span></span>
+<span id="cb7-130"><a href="#cb7-130" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich kann mich kalt und distanziert verhalten.__"</span><span class="fu">,</span></span>
+<span id="cb7-131"><a href="#cb7-131" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-132"><a href="#cb7-132" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-133"><a href="#cb7-133" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-134"><a href="#cb7-134" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-135"><a href="#cb7-135" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-136"><a href="#cb7-136" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-137"><a href="#cb7-137" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-138"><a href="#cb7-138" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_3R"</span><span class="fu">,</span></span>
+<span id="cb7-139"><a href="#cb7-139" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin eher der </span><span class="ch">\"</span><span class="st">stille Typ</span><span class="ch">\"</span><span class="st">, wortkarg.__"</span><span class="fu">,</span></span>
+<span id="cb7-140"><a href="#cb7-140" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-141"><a href="#cb7-141" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-142"><a href="#cb7-142" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-143"><a href="#cb7-143" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-144"><a href="#cb7-144" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-145"><a href="#cb7-145" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-146"><a href="#cb7-146" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-147"><a href="#cb7-147" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro_3"</span><span class="fu">,</span></span>
+<span id="cb7-148"><a href="#cb7-148" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich mache mir viele Sorgen.__"</span><span class="fu">,</span></span>
+<span id="cb7-149"><a href="#cb7-149" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-150"><a href="#cb7-150" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-151"><a href="#cb7-151" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-152"><a href="#cb7-152" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-153"><a href="#cb7-153" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-154"><a href="#cb7-154" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-155"><a href="#cb7-155" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-156"><a href="#cb7-156" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro_4"</span><span class="fu">,</span></span>
+<span id="cb7-157"><a href="#cb7-157" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich werde leicht nervös und unsicher.__"</span><span class="fu">,</span></span>
+<span id="cb7-158"><a href="#cb7-158" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-159"><a href="#cb7-159" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-160"><a href="#cb7-160" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-161"><a href="#cb7-161" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-162"><a href="#cb7-162" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-163"><a href="#cb7-163" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-164"><a href="#cb7-164" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-165"><a href="#cb7-165" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree_2"</span><span class="fu">,</span></span>
+<span id="cb7-166"><a href="#cb7-166" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__"</span><span class="fu">,</span></span>
+<span id="cb7-167"><a href="#cb7-167" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-168"><a href="#cb7-168" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-169"><a href="#cb7-169" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-170"><a href="#cb7-170" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-171"><a href="#cb7-171" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-172"><a href="#cb7-172" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-173"><a href="#cb7-173" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-174"><a href="#cb7-174" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc_1"</span><span class="fu">,</span></span>
+<span id="cb7-175"><a href="#cb7-175" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich erledige Aufgaben gründlich.__"</span><span class="fu">,</span></span>
+<span id="cb7-176"><a href="#cb7-176" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-177"><a href="#cb7-177" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-178"><a href="#cb7-178" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-179"><a href="#cb7-179" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-180"><a href="#cb7-180" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-181"><a href="#cb7-181" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-182"><a href="#cb7-182" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-183"><a href="#cb7-183" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_4"</span><span class="fu">,</span></span>
+<span id="cb7-184"><a href="#cb7-184" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich schätze künstlerische und ästhetische Eindrücke.__"</span><span class="fu">,</span></span>
+<span id="cb7-185"><a href="#cb7-185" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-186"><a href="#cb7-186" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-187"><a href="#cb7-187" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-188"><a href="#cb7-188" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-189"><a href="#cb7-189" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-190"><a href="#cb7-190" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-191"><a href="#cb7-191" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-192"><a href="#cb7-192" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_4"</span><span class="fu">,</span></span>
+<span id="cb7-193"><a href="#cb7-193" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich gehe aus mir heraus, bin gesellig.__"</span><span class="fu">,</span></span>
+<span id="cb7-194"><a href="#cb7-194" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-195"><a href="#cb7-195" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-196"><a href="#cb7-196" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-197"><a href="#cb7-197" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-198"><a href="#cb7-198" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-199"><a href="#cb7-199" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-200"><a href="#cb7-200" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-201"><a href="#cb7-201" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra_1R"</span><span class="fu">,</span></span>
+<span id="cb7-202"><a href="#cb7-202" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich bin eher zurückhaltend, reserviert.__"</span><span class="fu">,</span></span>
+<span id="cb7-203"><a href="#cb7-203" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"5. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">4. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">2. 4,</span><span class="ch">\n</span><span class="st">1. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-204"><a href="#cb7-204" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-205"><a href="#cb7-205" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-206"><a href="#cb7-206" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-207"><a href="#cb7-207" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-208"><a href="#cb7-208" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-209"><a href="#cb7-209" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-210"><a href="#cb7-210" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open_3"</span><span class="fu">,</span></span>
+<span id="cb7-211"><a href="#cb7-211" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__"</span><span class="fu">,</span></span>
+<span id="cb7-212"><a href="#cb7-212" tabindex="-1"></a>      <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"1. 1: Trifft überhaupt nicht zu,</span><span class="ch">\n</span><span class="st">2. 2,</span><span class="ch">\n</span><span class="st">3. 3,</span><span class="ch">\n</span><span class="st">4. 4,</span><span class="ch">\n</span><span class="st">5. 5: Trifft voll und ganz zu,</span><span class="ch">\n</span><span class="st">NA. Item was never rendered for this user."</span><span class="fu">,</span></span>
+<span id="cb7-213"><a href="#cb7-213" tabindex="-1"></a>      <span class="dt">"maxValue"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb7-214"><a href="#cb7-214" tabindex="-1"></a>      <span class="dt">"minValue"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
+<span id="cb7-215"><a href="#cb7-215" tabindex="-1"></a>      <span class="dt">"measurementTechnique"</span><span class="fu">:</span> <span class="st">"self-report"</span><span class="fu">,</span></span>
+<span id="cb7-216"><a href="#cb7-216" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-217"><a href="#cb7-217" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-218"><a href="#cb7-218" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-219"><a href="#cb7-219" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_agree"</span><span class="fu">,</span></span>
+<span id="cb7-220"><a href="#cb7-220" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_agree items aggregated by aggregation_function"</span><span class="fu">,</span></span>
+<span id="cb7-221"><a href="#cb7-221" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-222"><a href="#cb7-222" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-223"><a href="#cb7-223" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-224"><a href="#cb7-224" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_open"</span><span class="fu">,</span></span>
+<span id="cb7-225"><a href="#cb7-225" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_open items aggregated by aggregation_function"</span><span class="fu">,</span></span>
+<span id="cb7-226"><a href="#cb7-226" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-227"><a href="#cb7-227" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-228"><a href="#cb7-228" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-229"><a href="#cb7-229" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_consc"</span><span class="fu">,</span></span>
+<span id="cb7-230"><a href="#cb7-230" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_consc items aggregated by aggregation_function"</span><span class="fu">,</span></span>
+<span id="cb7-231"><a href="#cb7-231" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-232"><a href="#cb7-232" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-233"><a href="#cb7-233" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-234"><a href="#cb7-234" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_extra"</span><span class="fu">,</span></span>
+<span id="cb7-235"><a href="#cb7-235" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"4 BFIK_extra items aggregated by aggregation_function"</span><span class="fu">,</span></span>
+<span id="cb7-236"><a href="#cb7-236" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-237"><a href="#cb7-237" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-238"><a href="#cb7-238" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-239"><a href="#cb7-239" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"BFIK_neuro"</span><span class="fu">,</span></span>
+<span id="cb7-240"><a href="#cb7-240" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"3 BFIK_neuro items aggregated by aggregation_function"</span><span class="fu">,</span></span>
+<span id="cb7-241"><a href="#cb7-241" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-242"><a href="#cb7-242" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-243"><a href="#cb7-243" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-244"><a href="#cb7-244" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"age"</span><span class="fu">,</span></span>
+<span id="cb7-245"><a href="#cb7-245" tabindex="-1"></a>      <span class="dt">"description"</span><span class="fu">:</span> <span class="st">"Alter"</span><span class="fu">,</span></span>
+<span id="cb7-246"><a href="#cb7-246" tabindex="-1"></a>      <span class="dt">"@type"</span><span class="fu">:</span> <span class="st">"propertyValue"</span></span>
+<span id="cb7-247"><a href="#cb7-247" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb7-248"><a href="#cb7-248" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb7-249"><a href="#cb7-249" tabindex="-1"></a><span class="fu">}</span><span class="er">`</span></span></code></pre></div>
 </details>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

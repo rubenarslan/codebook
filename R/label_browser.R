@@ -69,7 +69,7 @@ label_browser_static <- function(data = NULL, viewer = rstudioapi::viewer) {
                                                       "\n", "<br>")
     }
 
-    DT::datatable(labels,
+    DT::formatSignif(DT::datatable(labels,
                   caption = paste(df_name, " columns and labels"),
                   filter = 'top',
                   escape = FALSE,
@@ -80,7 +80,8 @@ label_browser_static <- function(data = NULL, viewer = rstudioapi::viewer) {
                     # dom = 't',
                     paging = FALSE
                     )
-                  )
+                  ), intersect(names(labels), c("complete_rate",
+                                                "mean", "sd")))
 }
 
 #' Browse and search variable and value labels

@@ -27,8 +27,8 @@ relationships and set the appropriate attributes. Once they are set,
 the codebook package can perform reliability computations for you.
 }
 \examples{
-bfi <- data.frame(matrix(data = rnorm(500), ncol = 5))
-names(bfi) <- c("bfi_e1", "bfi_e2R", "bfi_e3", "bfi_n1", "bfi_n2")
+bfi <- data.frame(matrix(data = rnorm(300), ncol = 3))
+names(bfi) <- c("bfi_e1", "bfi_e2R", "bfi_e3")
 bfi$bfi_e <- rowMeans(bfi[, c("bfi_e1", "bfi_e2R", "bfi_e3")])
 bfi <- detect_scales(bfi)
 bfi$bfi_e

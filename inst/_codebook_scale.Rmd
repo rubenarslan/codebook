@@ -60,13 +60,16 @@ dist_plot
 ```
 
 `r indent`### Reliability details {#`r safe_name`_reliability}
+
 ```{r reliability, results='asis'}
 for (i in seq_along(reliabilities)) {
   rel <- reliabilities[[i]]
-  print(knitr::knit_print(rel, headingLevel = 5))
-  print(knitr::asis_output("\n\n\n"))
+  suppressMessages(rel_output <- knitr::knit_print(rel))
+  cat(rel_output)
 }
 ```
+
+
 
 
 `r indent`### Summary statistics {#`r safe_name`_summary}

@@ -13,7 +13,7 @@ display_width
 Modelled on haven::zap_labels(), but more encompassing. By default removes
 the following attributes:
 format.spss, format.sas, format.stata, label, labels, na_values, na_range,
-display_width"></head><body>
+display_width"><meta name="twitter:card" content="summary"><meta name="twitter:creator" content="@rubenarslan"><meta name="twitter:site" content="@rubenarslan"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -105,29 +105,32 @@ display_width</p>
 <span class="r-in"><span><span class="va">bfi</span> <span class="op">&lt;-</span> <span class="fu"><a href="detect_scales.html">detect_scales</a></span><span class="op">(</span><span class="va">bfi</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># create attributes</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu">zap_attributes</span><span class="op">(</span><span class="va">bfi</span>, <span class="st">"label"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 'data.frame':	100 obs. of  4 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e1 : num  0.105 -0.254 -0.976 0.394 1.015 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e2R: num  -0.5175 -0.2596 -0.3281 0.0734 -0.2479 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e3 : num  -0.0946 -0.074 0.7145 0.1247 1.2966 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e  : num  -0.169 -0.196 -0.197 0.197 0.688 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e1 : num  0.2154 0.1924 -0.0188 1.0782 1.7582 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e2R: num  -0.5637 -1.4025 -2.3491 0.0793 1.2248 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e3 : num  0.449 -0.258 -0.717 -0.225 0.26 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e  : num  0.0335 -0.4892 -1.0282 0.3108 1.081 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "scale_item_names")= chr [1:3] "bfi_e1" "bfi_e2R" "bfi_e3"</span>
 <span class="r-in"><span><span class="fu">zap_attributes</span><span class="op">(</span><span class="va">bfi</span><span class="op">$</span><span class="va">bfi_e</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] -0.16890812 -0.19578154 -0.19668841  0.19745618  0.68787811 -0.61897046</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [7] -0.45530096 -0.86969664  0.17813778 -0.14167868  0.26362477 -0.84599378</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [13]  0.46032436 -0.47602042  0.06687563 -0.44469117  1.00128606 -0.95524539</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [19] -0.24014184 -0.78531245 -0.47150749 -0.80184033  0.99727471 -0.03043471</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [25]  0.47689599 -0.61384304 -0.69128843 -0.13122497  0.24865902  0.33993063</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [31] -0.30801029  1.30520813 -0.31697139 -0.57792328 -0.36195160 -0.32719319</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [37]  0.13682951  0.05335115  0.50274183 -0.13673690 -0.02931476 -0.17125795</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [43] -0.72538076  0.12078085 -0.49113367  0.66298692  0.18046936  0.10825898</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [49] -0.09677067  0.33776731  1.08638577  0.45076696 -0.29749582  0.06707868</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [55] -0.41926556  0.32954947 -0.09538570  0.97246318  0.81898326 -0.39362951</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [61]  0.31227753  0.31005410 -0.20214129 -0.34713210  0.60629464 -0.57121456</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [67]  0.53569440 -0.45018676  0.19141873 -0.46629549 -0.21009392  0.70738451</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [73] -0.52281520  0.01417126 -0.15758700 -0.62898441 -0.40923643  0.70690023</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [79]  0.99421047 -0.25121701  0.51109272  1.16888779  1.00454045 -0.66665345</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [85] -0.13669536  0.18895865  0.08757627  1.06423954  0.66083123  0.84815936</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [91] -0.49123552  0.47051765  0.58646209 -0.70425772  0.95421308  0.86075540</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [97]  0.72797462  0.47609657 -0.34513801  0.02850471</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [1]  0.033521830 -0.489214026 -1.028169437  0.310835809  1.080984008</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [6]  0.186740025 -0.004104253  1.019459431 -1.151478960 -0.009786653</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [11]  0.198577688  0.684540653 -0.081271361 -0.006924049 -0.270495940</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [16] -0.127314812 -0.450675910 -0.255239133  0.111597528 -0.351254628</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [21] -0.477726076 -0.585710943 -0.727025190 -0.096506554 -0.305682265</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [26] -0.561809361  0.857179159  0.194983468 -0.067084362  0.130067596</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [31] -0.213378743 -0.091963570  0.561315920 -0.111306149 -0.361031207</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [36] -0.242367684  1.274835781 -0.127851633 -0.263910556 -0.274003693</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [41] -0.927901284  1.017808455 -0.886265267 -0.162162492  0.587376565</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [46] -0.754100468  0.566094969 -0.220948596  1.028583311 -0.582840080</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [51]  0.165262071  0.228629128 -0.629373066 -0.832428417 -0.235853871</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [56]  0.606029106  0.804578053 -0.193818382  0.065907277 -0.457479365</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [61] -0.138117281  0.989167581  0.133539814  0.155028258  0.409615917</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [66] -0.162410026  0.574497417  0.164201118 -0.887644905  0.541568698</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [71]  0.492000032 -0.155672293  0.594756415  1.154984921  1.832769460</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [76] -0.518284857 -1.357618880  0.659036881  0.218730756  0.292376303</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [81]  0.863148324  0.345660349 -0.249865799  0.327621845 -0.591421719</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [86]  0.276967302  0.576863456  0.789108084 -0.302243166  0.194340764</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [91]  0.212521642 -0.581899587 -0.058666692  1.178802069  0.885454676</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [96]  0.297452459 -0.760231667  0.514904431 -0.254481278  0.145778019</span>
 <span class="r-in"><span><span class="va">bfi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">300</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">bfi</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"bfi_e1"</span>, <span class="st">"bfi_e2R"</span>, <span class="st">"bfi_e3"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">bfi</span><span class="op">$</span><span class="va">bfi_e1</span><span class="op">)</span><span class="op">$</span><span class="va">label</span> <span class="op">&lt;-</span> <span class="st">"I am outgoing."</span></span></span>
@@ -137,29 +140,29 @@ display_width</p>
 <span class="r-in"><span><span class="va">bfi</span> <span class="op">&lt;-</span> <span class="fu"><a href="detect_scales.html">detect_scales</a></span><span class="op">(</span><span class="va">bfi</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># create attributes</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu">zap_attributes</span><span class="op">(</span><span class="va">bfi</span>, <span class="st">"label"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 'data.frame':	100 obs. of  4 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e1 : num  1.38 -0.7 1.86 1.8 -1.36 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e2R: num  1.277 0.821 0.42 1.712 -2.216 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e3 : num  -1.696 0.683 1.362 1.906 -0.673 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e  : num  0.322 0.268 1.214 1.807 -1.415 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e1 : num  0.0773 -1.0804 1.1329 1.047 0.9049 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e2R: num  -1.4102 -0.0123 0.7944 0.3618 1.5585 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e3 : num  -0.381 -0.637 -1.465 -0.944 -1.519 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  $ bfi_e  : num  -0.571 -0.576 0.154 0.155 0.315 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "scale_item_names")= chr [1:3] "bfi_e1" "bfi_e2R" "bfi_e3"</span>
 <span class="r-in"><span><span class="fu">zap_attributes</span><span class="op">(</span><span class="va">bfi</span><span class="op">$</span><span class="va">bfi_e</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [1]  0.32161787  0.26786411  1.21409288  1.80718065 -1.41483825 -0.52084690</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [7]  0.42852874 -0.28885318 -0.13282287  0.26231051  0.33037732 -0.66239671</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [13] -0.41755859 -0.07060293  0.03819649 -0.01860240 -0.41380651  0.25683774</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [19]  1.22431718  0.65738486  0.34206506  0.53682910 -0.36566688  0.28020371</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [25] -0.05995920  0.55770585  0.47785912 -0.52293270 -0.39808839  0.00767314</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [31]  0.59391091  1.43475255 -0.58553708 -0.28708600 -0.76909881  0.31998228</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [37]  0.71857598 -0.48310841 -0.36102428  0.21083309  0.84933711  0.59996355</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [43] -0.30237323  0.00459864 -0.87617110 -0.16264165  0.69489642 -0.33928308</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [49]  0.27599683  0.16165674  0.21767609  0.47162477  0.20924933 -0.69340872</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [55] -0.32725773 -1.18627366 -0.34040522  1.13186682 -0.89911617 -0.06716810</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [61]  0.27562846 -0.39806501 -0.92354995 -0.04789468  0.60188788  0.12761961</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [67] -0.29388311 -0.26866617  0.88746566  0.20392017  0.03406801 -0.70086223</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [73]  0.24546147 -0.68881117  0.30372659 -0.77161868  0.36651513 -0.07598943</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [79] -0.41116337  0.08225432  0.63725203  1.26537240  0.20893318  0.62405874</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [85] -0.14711103  0.32219136 -0.32570856  0.23811886 -0.95617717 -0.96482800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [91]  0.71592173 -0.22022941  0.43144485  0.29196733  0.46192271  0.06199001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [97]  0.70562634 -0.25835902 -0.09774164  0.68020002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] -0.57130165 -0.57648396  0.15398894  0.15487921  0.31476927  0.77710333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [7] -0.51772833 -0.08662215  0.10998877  0.07820579  0.41982495  0.51196808</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [13]  0.01339699 -0.45671314  0.69847360 -0.73378599 -1.03688472  0.21361582</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [19]  0.04126257  0.49223886 -0.46067356  0.61906165  0.73262951 -0.21164239</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [25] -0.75676898  0.91920009  0.27443198 -0.02042341  0.10980058 -0.75121945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [31]  0.54658096  0.23548549  0.66664103  0.44861597  1.01109739  0.63343394</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [37] -1.23515016  0.36209288 -0.33516627  0.24801681  1.19470958  0.50257123</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [43] -0.41947774 -0.02503102  0.16204421 -0.11097418  0.25277643 -0.75868150</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [49] -1.27915782 -0.05982189  0.88571981  0.77558347  0.52929829  0.39176595</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [55] -0.62558657  0.74272472  0.23602041  0.48666970 -1.54324056  0.33296381</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [61]  0.83812541 -1.09021140 -0.22464109 -0.20917445  0.35482595 -0.12574700</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [67] -0.10971118  0.25483071 -0.57916056  0.53905494 -0.13410289 -0.07406088</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [73]  0.21712877  0.17208567  0.01295638  1.59417568 -0.78847861  0.17797955</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [79]  0.87017085 -0.33034736 -0.53173808  0.07450761 -0.05375663  0.47715852</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [85]  1.67225827 -0.86710195 -0.16050488 -0.40387020 -0.47791920 -0.91231069</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [91]  0.31339042 -1.35665593 -0.26473937 -0.40075686  0.38347550  0.37477234</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [97] -0.51348495 -1.66363840 -0.20473251  0.20372999</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
