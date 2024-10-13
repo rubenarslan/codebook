@@ -3,7 +3,6 @@
 * Reduced dependencies
   * no longer suggests archived package userfriendlyscience
   * there are still many dependencies, but these are mainly tidyverse packages, so depending on one, there is little additional cost to depend also on others
-  * there are other dependencies I hope to be able to remove soon (e.g., vctrs is only used in testing and for one edge case that a bugfix in haven can eliminate)
 * Updated citation to published paper
 * one declared import (graphics) is used only in one of the rmarkdown partials
   - inst/codebook_scale.Rmd, line 38

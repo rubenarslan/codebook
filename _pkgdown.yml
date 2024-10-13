@@ -52,6 +52,7 @@ reference:
   contents:
   - '`knit_print.htest`'
   - '`knit_print.multilevel`'
+  - '`knit_print.alpha`'
   - '`likert_from_items`'
   - '`plot_labelled`'
   - '`get_skimmers.haven_labelled`'
@@ -64,4 +65,7 @@ reference:
   - '`modified`'
 template:
   bootstrap: 5
+  opengraph:
+    twitter:
+      creator: "@rubenarslan"
 url: https://rubenarslan.github.io/codebook

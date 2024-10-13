@@ -84,7 +84,7 @@ compute_appropriate_reliability <- function(scale_name, scale_info,
   } else {
     if (!suppressMessages(
       requireNamespace("rosetta", quietly = TRUE))) {
-      warning("Package \"rosetta\" needed to compute reliabilites.",
+      warning("Package \"rosetta\" needed to compute reliabilites without psych.",
            call. = FALSE)
       return(NULL)
     } else {
