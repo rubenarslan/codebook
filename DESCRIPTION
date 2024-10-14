@@ -16,7 +16,7 @@ Version: 0.9.5
 Authors@R: person("Ruben", "Arslan", email = "ruben.arslan@gmail.com", role = c("aut", "cre"))
 Depends: R (>= 3.2.0)
 Language: en_GB
-URL: https://rubenarslan.github.io/codebook, https://github.com/rubenarslan/codebook
+URL: https://rubenarslan.github.io/codebook/, https://github.com/rubenarslan/codebook
 BugReports: https://github.com/rubenarslan/codebook/issues
 License: MIT + file LICENSE
 Imports:
