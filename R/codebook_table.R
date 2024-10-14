@@ -237,6 +237,12 @@ coerce_skimmed_summary_to_character <- function(df) {
                        dplyr::vars("min", "median", "max"),
                      format_digits)
   }
+  if (exists("haven_labelled_spss", df)) {
+    df$haven_labelled_spss <-
+      dplyr::mutate_at(df$haven_labelled_spss,
+                       dplyr::vars("min", "median", "max"),
+                       format_digits)
+  }
   class(df) <- "list"
   df
 }
