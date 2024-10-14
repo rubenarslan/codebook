@@ -136,7 +136,7 @@ aggregate_and_document_scale <- function(items, fun = rowMeans, stem = NULL) {
   }
 
   attributes(new_scale)$label <- paste(ncol(items), stem, "items aggregated by",
-                                       deparse(substitute(fun)))
+                                       deparse(substitute(fun)), collapse = "\n")
   new_scale
 }
 
