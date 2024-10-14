@@ -14,7 +14,7 @@ vignette: >
 ---
 
 This is the practical part of a tutorial manuscript for this package, which you 
-can find in full [on PsyArXiv](https://psyarxiv.com/5qc6h/) or if you prefer a copy-edited open access version it is published in [Advances in Methods and Practices in Psychological Science](https://doi.org/10.1177/2515245919838783).
+can find in full [on PsyArXiv](https://osf.io/preprints/psyarxiv/5qc6h/) or if you prefer a copy-edited open access version it is published in [Advances in Methods and Practices in Psychological Science](https://doi.org/10.1177/2515245919838783).
 
 You can cite it, if you use the package in a publication:
 

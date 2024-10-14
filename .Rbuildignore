@@ -26,3 +26,4 @@ renv.lock
 ^renv\.lock$
 figure
 .github
+^CRAN-SUBMISSION$

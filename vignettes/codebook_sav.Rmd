@@ -103,7 +103,7 @@ metadata(darktriad)$temporalCoverage <- "2015"
 metadata(darktriad)$spatialCoverage <- "Graz, Austria" 
 metadata(darktriad)$distribution = list(
   list("@type" = "DataDownload",
-       "requiresSubscription" = "http://schema.org/True",
+       "requiresSubscription" = "https://schema.org/True",
        "encodingFormat" = "https://www.loc.gov/preservation/digital/formats/fdd/fdd000469.shtml",
        contentUrl = "https://osf.io/j4fcb/download")
 )

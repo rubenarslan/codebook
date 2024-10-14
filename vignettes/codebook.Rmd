@@ -32,7 +32,7 @@ for multi-item inventories, generates nicely labelled plots and outputs summary 
 The same information is also stored in a table, which you can export to various formats.
 Additionally, `codebook` can show you different kinds of (labelled) missing values, and show you common 
 missingness patterns.
-As _you_ cannot see, but _[search engines](https://toolbox.google.com/datasetsearch)_
+As _you_ cannot see, but _[search engines](https://datasetsearch.research.google.com)_
 will, the `codebook` package also generates [JSON-LD](https://json-ld.org/) metadata for the [dataset](https://developers.google.com/search/docs/data-types/dataset). If you share your codebook as an HTML file online, this metadata should make it easier for others
 to find your data. [See what Google sees here](https://search.google.com/structured-data/testing-tool#url=https%3A%2F%2Frubenarslan.github.io%2Fcodebook%2Farticles%2Fcodebook.html).
 

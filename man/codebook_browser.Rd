@@ -26,6 +26,6 @@ when this package is installed. If you're currently selecting the name of a
 data frame in your source code, this will be the dataset shown by default.
 If you don't select text, you can pick a dataset from a dropdown.
 You can add a keyboard shortcut for this command by following the
-\href{https://support.rstudio.com/hc/en-us/articles/206382178-Customizing-Keyboard-Shortcuts}{instructions}
+\href{https://support.posit.co/hc/en-us/articles/206382178-Customizing-Keyboard-Shortcuts-in-the-RStudio-IDE}{instructions}
 by RStudio. How about Cmd+Ctrl+C?
 }

@@ -293,7 +293,7 @@ metadata_list <- function(results, only_existing = TRUE) {
   }
 
   if (!exists("@context", metadata)) {
-    metadata[["@context"]] <- "http://schema.org/"
+    metadata[["@context"]] <- "https://schema.org/"
   }
 
   if (!exists("@type", metadata)) {

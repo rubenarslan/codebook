@@ -4,7 +4,7 @@
 # codebook
 
 [![Travis-CI Build
-Status](https://travis-ci.org/rubenarslan/codebook.svg?branch=master)](https://travis-ci.org/rubenarslan/codebook)
+Status](https://travis-ci.org/rubenarslan/codebook.svg?branch=master)](https://app.travis-ci.com/rubenarslan/codebook)
 [![CRAN
 status](http://www.r-pkg.org/badges/version-ago/codebook)](https://cran.r-project.org/package=codebook)
 ![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/codebook)

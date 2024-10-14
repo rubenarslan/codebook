@@ -68,7 +68,7 @@ metadata(intergroup_dating)$temporalCoverage <- "2018"
 
 metadata(intergroup_dating)$distribution = list(
   list("@type" = "DataDownload",
-       "requiresSubscription" = "http://schema.org/True",
+       "requiresSubscription" = "https://schema.org/True",
        "encodingFormat" = "https://www.loc.gov/preservation/digital/formats/fdd/fdd000469.shtml",
        contentUrl = "https://osf.io/btzku/download")
 )
