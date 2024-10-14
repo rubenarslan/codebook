@@ -2,8 +2,10 @@
 ## Changes
 - default to psych for reliability because rosetta/ufs is hard to install
 - no longer depends on archived package userfriendlyscience
+- can now export PDF/XLSX from static label browser
 ## Bugfixes
 - compatibility with glue 1.8.0
+- fixed issues with number of digits in DT, labelled_spss, anonymous multiline aggregation functions
 
 # codebook 0.9.3
 ## Bugfixes
