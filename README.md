@@ -8,7 +8,7 @@ Status](https://travis-ci.org/rubenarslan/codebook.svg?branch=master)](https://a
 [![CRAN
 status](http://www.r-pkg.org/badges/version-ago/codebook)](https://cran.r-project.org/package=codebook)
 ![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/codebook)
-[![codecov](https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg)](https://codecov.io/gh/rubenarslan/codebook)
+[![codecov](https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg)](https://app.codecov.io/gh/rubenarslan/codebook)
 [![DOI](https://zenodo.org/badge/109252375.svg)](https://zenodo.org/badge/latestdoi/109252375)
 
 *Automatic Codebooks from Metadata Encoded in Dataset Attributes*
@@ -31,8 +31,8 @@ find your data and index the metadata.
 
 RStudio and a few of the tidyverse package already usefully display the
 information contained in the attributes of the variables in your data
-frame. The [haven](https://github.com/hadley/haven) package also manages
-to grab variable documentation from SPSS or Stata files.
+frame. The [haven](https://github.com/tidyverse/haven) package also
+manages to grab variable documentation from SPSS or Stata files.
 
 ## RStudio Addin
 
@@ -41,7 +41,12 @@ keep the variable labels in view while working, use our RStudio Addins
 (ideally assigned to a keyboard shortcut) to see and search variable and
 value labels in the viewer pane.
 
-![](https://rubenarslan.github.io/codebook/reference/figures/codebook_addin.gif)
+<figure>
+<img
+src="https://rubenarslan.github.io/codebook/reference/figures/codebook_addin.gif"
+alt="Gif of Addin" />
+<figcaption aria-hidden="true">Gif of Addin</figcaption>
+</figure>
 
 ## Codebook generation
 
@@ -63,7 +68,7 @@ completely independent of it.
 
 ## Documentation
 
-Confer the help or: <https://rubenarslan.github.io/codebook>. See the
+Confer the help or: <https://rubenarslan.github.io/codebook/>. See the
 [vignette](https://rubenarslan.github.io/codebook/articles/codebook.html)
 for a quick example of an HTML document generated using `codebook`, or
 below for a copy-pastable rmarkdown document to get you started.
@@ -100,22 +105,20 @@ new_codebook_rmd()
 
 ## Citation
 
-To cite the package, you can cite the paper (currently only the preprint
-is available to read), but to make your codebook traceable to the
-version of the package you used, you might also want to cite the
-archived package DOI.
+To cite the package, you can cite the open access paper, but to make
+your codebook traceable to the version of the package you used, you
+might also want to cite the archived package DOI.
 
 ### Paper
 
-> Arslan, R. C. (in press). How to automatically document data with the
+> Arslan, R. C. (2019). How to automatically document data with the
 > codebook package to facilitate data re-use. Advances in Methods and
 > Practices in Psychological Science.
 > [doi:10.1177/2515245919838783](https://doi.org/10.1177/2515245919838783)
-> [Open Access Preprint](https://doi.org/10.31234/osf.io/5qc6h)
 
 ### Zenodo
 
-> Arslan, R. C. (2018). Automatic codebooks from survey metadata (2018).
+> Arslan, R. C. (2024). Automatic codebooks from survey metadata (2018).
 > URL <https://github.com/rubenarslan/codebook>.
 > [![DOI](https://zenodo.org/badge/109252375.svg)](https://zenodo.org/badge/latestdoi/109252375)
 
