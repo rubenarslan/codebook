@@ -74,6 +74,8 @@ md_pattern <- function(data, omit_complete = TRUE, min_freq = 0.01) {
   }
   if (sum(is.na(data)) == 0) {
     message("No missing values.")
+  } else if (ncol(data) == 1) {
+    message("Only one column.")
   } else {
     md_pattern <- suppressMessages(md.pattern(data, plot = FALSE))
     n_miss <- rownames(md_pattern)
@@ -168,14 +170,16 @@ modified <- function(survey, variable = "modified") {
 
 export_table <- function(df) {
   if(requireNamespace("DT", quietly = TRUE)) {
-    DT::datatable(df, filter = "top", extensions = 'Buttons',
+    DT::formatSignif(DT::datatable(df,
+                  filter = "top", extensions = 'Buttons',
                   escape = FALSE,
                   rownames = FALSE,
                   options = list(
                     dom = 'Bfrtip',
                     buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
                     pageLength = 200
-                  ))
+                  )), intersect(names(df), c("complete_rate",
+                                                 "mean", "sd")))
   } else {
     knitr::kable(df)
   }
