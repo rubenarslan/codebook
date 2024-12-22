@@ -61,7 +61,7 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="codebook">codebook<a class="anchor" aria-label="anchor" href="#codebook"></a>
 </h1></div>
-<p><a href="https://app.travis-ci.com/rubenarslan/codebook" class="external-link"><img src="https://travis-ci.org/rubenarslan/codebook.svg?branch=master" alt="Travis-CI Build Status"></a> <a href="https://cran.r-project.org/package=codebook" class="external-link"><img src="http://www.r-pkg.org/badges/version-ago/codebook" alt="CRAN status"></a> <img src="https://cranlogs.r-pkg.org/badges/grand-total/codebook" alt="Downloads"><a href="https://codecov.io/gh/rubenarslan/codebook" class="external-link"><img src="https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://zenodo.org/badge/latestdoi/109252375" class="external-link"><img src="https://zenodo.org/badge/109252375.svg" alt="DOI"></a></p>
+<p><a href="https://app.travis-ci.com/rubenarslan/codebook" class="external-link"><img src="https://travis-ci.org/rubenarslan/codebook.svg?branch=master" alt="Travis-CI Build Status"></a> <a href="https://cran.r-project.org/package=codebook" class="external-link"><img src="http://www.r-pkg.org/badges/version-ago/codebook" alt="CRAN status"></a> <img src="https://cranlogs.r-pkg.org/badges/grand-total/codebook" alt="Downloads"><a href="https://app.codecov.io/gh/rubenarslan/codebook" class="external-link"><img src="https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://zenodo.org/badge/latestdoi/109252375" class="external-link"><img src="https://zenodo.org/badge/109252375.svg" alt="DOI"></a></p>
 <p><em>Automatic Codebooks from Metadata Encoded in Dataset Attributes</em></p>
 <div class="section level2">
 <h2 id="description">Description<a class="anchor" aria-label="anchor" href="#description"></a>
@@ -72,13 +72,15 @@
 <div class="section level2">
 <h2 id="generate-markdown-codebooks-from-the-attributes-of-the-variables-in-your-data-frame">Generate markdown codebooks from the attributes of the variables in your data frame<a class="anchor" aria-label="anchor" href="#generate-markdown-codebooks-from-the-attributes-of-the-variables-in-your-data-frame"></a>
 </h2>
-<p>RStudio and a few of the tidyverse package already usefully display the information contained in the attributes of the variables in your data frame. The <a href="https://github.com/hadley/haven" class="external-link">haven</a> package also manages to grab variable documentation from SPSS or Stata files.</p>
+<p>RStudio and a few of the tidyverse package already usefully display the information contained in the attributes of the variables in your data frame. The <a href="https://github.com/tidyverse/haven" class="external-link">haven</a> package also manages to grab variable documentation from SPSS or Stata files.</p>
 </div>
 <div class="section level2">
 <h2 id="rstudio-addin">RStudio Addin<a class="anchor" aria-label="anchor" href="#rstudio-addin"></a>
 </h2>
 <p>If the RStudio data viewer scrolls slow for your taste, or you’d like to keep the variable labels in view while working, use our RStudio Addins (ideally assigned to a keyboard shortcut) to see and search variable and value labels in the viewer pane.</p>
-<p><img src="https://rubenarslan.github.io/codebook/reference/figures/codebook_addin.gif"></p>
+<figure><img src="https://rubenarslan.github.io/codebook/reference/figures/codebook_addin.gif" alt="Gif of Addin"><figcaption aria-hidden="true">
+Gif of Addin
+</figcaption></figure>
 </div>
 <div class="section level2">
 <h2 id="codebook-generation">Codebook generation<a class="anchor" aria-label="anchor" href="#codebook-generation"></a>
@@ -89,7 +91,7 @@
 <div class="section level2">
 <h2 id="documentation">Documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
 </h2>
-<p>Confer the help or: <a href="https://rubenarslan.github.io/codebook" class="uri">https://rubenarslan.github.io/codebook</a>. See the <a href="https://rubenarslan.github.io/codebook/articles/codebook.html">vignette</a> for a quick example of an HTML document generated using <code>codebook</code>, or below for a copy-pastable rmarkdown document to get you started.</p>
+<p>Confer the help or: <a href="https://rubenarslan.github.io/codebook/" class="uri">https://rubenarslan.github.io/codebook/</a>. See the <a href="https://rubenarslan.github.io/codebook/articles/codebook.html">vignette</a> for a quick example of an HTML document generated using <code>codebook</code>, or below for a copy-pastable rmarkdown document to get you started.</p>
 </div>
 <div class="section level2">
 <h2 id="use-as-a-webapp">Use as a webapp<a class="anchor" aria-label="anchor" href="#use-as-a-webapp"></a>
@@ -111,26 +113,26 @@
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"rubenarslan/codebook"</span><span class="op">)</span></span></code></pre></div>
 <p>Then run the following to get started:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rubenarslan.github.io/codebook">codebook</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rubenarslan.github.io/codebook/">codebook</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/new_codebook_rmd.html">new_codebook_rmd</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
 </h2>
-<p>To cite the package, you can cite the paper (currently only the preprint is available to read), but to make your codebook traceable to the version of the package you used, you might also want to cite the archived package DOI.</p>
+<p>To cite the package, you can cite the open access paper, but to make your codebook traceable to the version of the package you used, you might also want to cite the archived package DOI.</p>
 <div class="section level3">
 <h3 id="paper">Paper<a class="anchor" aria-label="anchor" href="#paper"></a>
 </h3>
 <blockquote>
-<p>Arslan, R. C. (in press). How to automatically document data with the codebook package to facilitate data re-use. Advances in Methods and Practices in Psychological Science. <a href="https://doi.org/10.1177/2515245919838783" class="external-link">doi:10.1177/2515245919838783</a> <a href="https://doi.org/10.31234/osf.io/5qc6h" class="external-link">Open Access Preprint</a></p>
+<p>Arslan, R. C. (2019). How to automatically document data with the codebook package to facilitate data re-use. Advances in Methods and Practices in Psychological Science. <a href="https://doi.org/10.1177/2515245919838783" class="external-link">doi:10.1177/2515245919838783</a></p>
 </blockquote>
 </div>
 <div class="section level3">
 <h3 id="zenodo">Zenodo<a class="anchor" aria-label="anchor" href="#zenodo"></a>
 </h3>
 <blockquote>
-<p>Arslan, R. C. (2018). Automatic codebooks from survey metadata (2018). URL <a href="https://github.com/rubenarslan/codebook" class="external-link uri">https://github.com/rubenarslan/codebook</a>. <a href="https://zenodo.org/badge/latestdoi/109252375" class="external-link"><img src="https://zenodo.org/badge/109252375.svg" alt="DOI"></a></p>
+<p>Arslan, R. C. (2024). Automatic codebooks from survey metadata (2018). URL <a href="https://github.com/rubenarslan/codebook" class="external-link uri">https://github.com/rubenarslan/codebook</a>. <a href="https://zenodo.org/badge/latestdoi/109252375" class="external-link"><img src="https://zenodo.org/badge/109252375.svg" alt="DOI"></a></p>
 </blockquote>
 </div>
 <div class="section level3">
