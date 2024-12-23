@@ -1,12 +1,7 @@
 ## Submission
-* Compatibility with glue 1.8.0
-* Reduced dependencies
-  * no longer suggests archived package userfriendlyscience
-  * there are still many dependencies, but these are mainly tidyverse packages, so depending on one, there is little additional cost to depend also on others
-* Updated citation to published paper
-* one declared import (graphics) is used only in one of the rmarkdown partials
-  - inst/codebook_scale.Rmd, line 38
-* Unfortunately, I have had to wrap some examples using the codebook function in dontrun, because I haven't yet figured out how to make rmdpartials switch to "interactive" mode when testing/checking. Once I fix this problem in rmdpartials, I will remove dontrun
+* fix language not to use underscore
+* I got a warning about a dead link on win builder but the link works. false positive.
+  - https://support.posit.co/hc/en-us/articles/206382178-Customizing-Keyboard-Shortcuts-in-the-RStudio-IDE
 
 ## Test environments
 * local OS X install, R 4.4.1
