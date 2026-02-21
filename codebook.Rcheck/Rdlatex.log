@@ -1,0 +1,532 @@
+Hmm ... looks like a package
+Converting parsed Rd's to LaTeX ....
+Creating pdf output from LaTeX ...
+
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2016/03/31>
+Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+(./Rd2.tex
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/bk10.clo))
+(/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/share/texmf/tex/l
+atex/Rd.sty (/usr/local/texlive/2016/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/bm.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/alltt.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/verbatim.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/ts1enc.def))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/amssymb.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/jknapltx/mathrsfs.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1enc.def))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/inconsolata/zi4.sty
+`inconsolata-zi4' v1.10, 2016/02/22 Text macros for Inconsolata (msharpe)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/keyval.sty))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/color.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ltxcmds.sty)))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty))
+(/usr/local/texlive/2016/texmf-dist/tex/generic/ifxetex/ifxetex.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/auxhook.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/kvoptions.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/latexconfig/hyperref.cfg))
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty)))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/makeidx.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/utf8.def
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1enc.dfu)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/ot1enc.dfu)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/omsenc.dfu)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/ts1enc.dfu)))
+Writing index file Rd2.idx
+No file Rd2.aux.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/ts1cmr.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/jknapltx/ursfs.fd) [1{/usr/local/
+texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+(/usr/local/texlive/2016/texmf-dist/tex/latex/inconsolata/ts1zi4.fd) [2]
+Overfull \hbox (0.37573pt too wide) in paragraph at lines 119--121
+[]\T1/ptm/m/n/10 a small mock BFI dataset with re-al-is-tic val-ues, ex-ported 
+from formr. The dataset is self-documenting
+
+Overfull \hbox (5.67725pt too wide) in paragraph at lines 166--167
+\T1/ptm/m/n/10 pu-ta-tions for this scale. if NULL, com-puted on-the-fly us-ing
+ com-pute_reliabilities 
+[3] [4] [5] [6] [7]
+Overfull \hbox (5.90761pt too wide) in paragraph at lines 416--417
+[]\T1/ptm/m/n/10 defaults to sin-gle (other val-ues: re-peated_once, re-peated_
+many). con-trols whether
+[8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22]
+[23] [24] [25] [26] [27]
+No file Rd2.ind.
+[28]
+(/private/var/folders/tr/lgwjmdgd72bckr1hj5gd_7640000gq/T/RtmpiNzDQw/Rd2pdf245f
+226e20af/Rd2.aux)
+
+Package rerunfilecheck Warning: File `Rd2.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)pdfTeX warning (dest): name
+{Rfn.haven::zap.Rul.labels\(\)} has been referenced but does not exist, replace
+d by a fixed one
+
+pdfTeX warning (dest): name{Rfn.haven::as.Rul.factor\(\)} has been referenced b
+ut does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.rio::import\(\)} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.haven::labelled\(\)} has been referenced but do
+es not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.labelled::copy.Rul.labels\(\)} has been referen
+ced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.ggplot2::scale.Rul.x.Rul.continuous\(\)} has be
+en referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.rmarkdown::render\(\)} has been referenced but 
+does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.labelled::var.Rul.label\(\)} has been reference
+d but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.likert::likert\(\)} has been referenced but doe
+s not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.psych::multilevel.reliability\(\)} has been ref
+erenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.stats::cor.test\(\)} has been referenced but do
+es not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.psych::alpha\(\)} has been referenced but does 
+not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.future::plan\(\)} has been referenced but does 
+not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.future::future\(\)} has been referenced but doe
+s not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.skimr::skim\(\)} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.DT::datatable\(\)} has been referenced but does
+ not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.haven::read.Rul.sav\(\)} has been referenced bu
+t does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.haven::read.Rul.dta\(\)} has been referenced bu
+t does not exist, replaced by a fixed one
+
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc}{/us
+r/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive
+/2016/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}</usr/local/texlive/20
+16/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/t
+exlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/201
+6/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-di
+st/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/t
+ype1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (28 pages, 131199 bytes).
+Transcript written on Rd2.log.
+This is makeindex, version 2.15 [TeX Live 2016] (kpathsea + Thai support).
+Scanning input file Rd2.idx....done (104 entries accepted, 3 rejected).
+Sorting entries....done (732 comparisons).
+Generating output file Rd2.ind....done (171 lines written, 0 warnings).
+Output written in Rd2.ind.
+Transcript written in Rd2.ilg.
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2016/03/31>
+Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+(./Rd2.tex
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/bk10.clo))
+(/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/share/texmf/tex/l
+atex/Rd.sty (/usr/local/texlive/2016/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/bm.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/alltt.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/verbatim.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/ts1enc.def))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/amssymb.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/jknapltx/mathrsfs.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1enc.def))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/inconsolata/zi4.sty
+`inconsolata-zi4' v1.10, 2016/02/22 Text macros for Inconsolata (msharpe)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/keyval.sty))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/color.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ltxcmds.sty)))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty))
+(/usr/local/texlive/2016/texmf-dist/tex/generic/ifxetex/ifxetex.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/auxhook.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/kvoptions.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/latexconfig/hyperref.cfg))
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty)))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/makeidx.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/utf8.def
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1enc.dfu)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/ot1enc.dfu)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/omsenc.dfu)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/ts1enc.dfu)))
+Writing index file Rd2.idx
+
+(/private/var/folders/tr/lgwjmdgd72bckr1hj5gd_7640000gq/T/RtmpiNzDQw/Rd2pdf245f
+226e20af/Rd2.aux) (/usr/local/texlive/2016/texmf-dist/tex/latex/base/ts1cmr.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
+(/private/var/folders/tr/lgwjmdgd72bckr1hj5gd_7640000gq/T/RtmpiNzDQw/Rd2pdf245f
+226e20af/Rd2.out)
+(/private/var/folders/tr/lgwjmdgd72bckr1hj5gd_7640000gq/T/RtmpiNzDQw/Rd2pdf245f
+226e20af/Rd2.out)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/jknapltx/ursfs.fd)
+(/private/var/folders/tr/lgwjmdgd72bckr1hj5gd_7640000gq/T/RtmpiNzDQw/Rd2pdf245f
+226e20af/Rd2.toc [1{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/p
+dftex.map}]) [2]
+(/usr/local/texlive/2016/texmf-dist/tex/latex/inconsolata/ts1zi4.fd)
+Overfull \hbox (0.37573pt too wide) in paragraph at lines 119--121
+[]\T1/ptm/m/n/10 a small mock BFI dataset with re-al-is-tic val-ues, ex-ported 
+from formr. The dataset is self-documenting
+[3]
+Overfull \hbox (5.67725pt too wide) in paragraph at lines 166--167
+\T1/ptm/m/n/10 pu-ta-tions for this scale. if NULL, com-puted on-the-fly us-ing
+ com-pute_reliabilities 
+[4] [5] [6] [7] [8]
+Overfull \hbox (5.90761pt too wide) in paragraph at lines 416--417
+[]\T1/ptm/m/n/10 defaults to sin-gle (other val-ues: re-peated_once, re-peated_
+many). con-trols whether
+[9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23]
+[24] [25] [26] [27] [28]
+(/private/var/folders/tr/lgwjmdgd72bckr1hj5gd_7640000gq/T/RtmpiNzDQw/Rd2pdf245f
+226e20af/Rd2.ind [29]
+
+LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
+(Font)              using `T1/zi4/m/n' instead on input line 8.
+
+[30] [31])
+(/private/var/folders/tr/lgwjmdgd72bckr1hj5gd_7640000gq/T/RtmpiNzDQw/Rd2pdf245f
+226e20af/Rd2.aux)
+
+Package rerunfilecheck Warning: File `Rd2.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ )
+(see the transcript file for additional information)pdfTeX warning (dest): name
+{Rfn.haven::zap.Rul.labels\(\)} has been referenced but does not exist, replace
+d by a fixed one
+
+pdfTeX warning (dest): name{Rfn.haven::as.Rul.factor\(\)} has been referenced b
+ut does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.rio::import\(\)} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.haven::labelled\(\)} has been referenced but do
+es not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.labelled::copy.Rul.labels\(\)} has been referen
+ced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.ggplot2::scale.Rul.x.Rul.continuous\(\)} has be
+en referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.rmarkdown::render\(\)} has been referenced but 
+does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.labelled::var.Rul.label\(\)} has been reference
+d but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.likert::likert\(\)} has been referenced but doe
+s not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.psych::multilevel.reliability\(\)} has been ref
+erenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.stats::cor.test\(\)} has been referenced but do
+es not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.psych::alpha\(\)} has been referenced but does 
+not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.future::plan\(\)} has been referenced but does 
+not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.future::future\(\)} has been referenced but doe
+s not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.skimr::skim\(\)} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.DT::datatable\(\)} has been referenced but does
+ not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.haven::read.Rul.sav\(\)} has been referenced bu
+t does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.haven::read.Rul.dta\(\)} has been referenced bu
+t does not exist, replaced by a fixed one
+
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc}{/us
+r/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive
+/2016/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}</usr/local/texlive/20
+16/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/t
+exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
+xlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016
+/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dis
+t/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/ty
+pe1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (31 pages, 151708 bytes).
+Transcript written on Rd2.log.
+This is makeindex, version 2.15 [TeX Live 2016] (kpathsea + Thai support).
+Scanning input file Rd2.idx....done (104 entries accepted, 3 rejected).
+Sorting entries....done (732 comparisons).
+Generating output file Rd2.ind....done (171 lines written, 0 warnings).
+Output written in Rd2.ind.
+Transcript written in Rd2.ilg.
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+LaTeX2e <2016/03/31>
+Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+(./Rd2.tex
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/bk10.clo))
+(/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/share/texmf/tex/l
+atex/Rd.sty (/usr/local/texlive/2016/texmf-dist/tex/latex/base/ifthen.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/iftex/iftex.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/longtable.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/bm.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/alltt.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tools/verbatim.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/url/url.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/textcomp.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/ts1enc.def))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/amssymb.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/jknapltx/mathrsfs.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1enc.def))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/inconsolata/zi4.sty
+`inconsolata-zi4' v1.10, 2016/02/22 Text macros for Inconsolata (msharpe)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/keyval.sty))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/color.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/pdftex-def/pdftex.def
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/infwarerr.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/ltxcmds.sty)))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty))
+(/usr/local/texlive/2016/texmf-dist/tex/generic/ifxetex/ifxetex.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/auxhook.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/kvoptions.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/latexconfig/hyperref.cfg))
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty)))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/makeidx.sty)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/utf8.def
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/t1enc.dfu)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/ot1enc.dfu)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/omsenc.dfu)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/base/ts1enc.dfu)))
+Writing index file Rd2.idx
+
+(/private/var/folders/tr/lgwjmdgd72bckr1hj5gd_7640000gq/T/RtmpiNzDQw/Rd2pdf245f
+226e20af/Rd2.aux) (/usr/local/texlive/2016/texmf-dist/tex/latex/base/ts1cmr.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1ptm.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
+(/private/var/folders/tr/lgwjmdgd72bckr1hj5gd_7640000gq/T/RtmpiNzDQw/Rd2pdf245f
+226e20af/Rd2.out)
+(/private/var/folders/tr/lgwjmdgd72bckr1hj5gd_7640000gq/T/RtmpiNzDQw/Rd2pdf245f
+226e20af/Rd2.out)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/jknapltx/ursfs.fd)
+(/private/var/folders/tr/lgwjmdgd72bckr1hj5gd_7640000gq/T/RtmpiNzDQw/Rd2pdf245f
+226e20af/Rd2.toc [1{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/p
+dftex.map}]) [2]
+(/usr/local/texlive/2016/texmf-dist/tex/latex/inconsolata/ts1zi4.fd)
+Overfull \hbox (0.37573pt too wide) in paragraph at lines 119--121
+[]\T1/ptm/m/n/10 a small mock BFI dataset with re-al-is-tic val-ues, ex-ported 
+from formr. The dataset is self-documenting
+[3]
+Overfull \hbox (5.67725pt too wide) in paragraph at lines 166--167
+\T1/ptm/m/n/10 pu-ta-tions for this scale. if NULL, com-puted on-the-fly us-ing
+ com-pute_reliabilities 
+[4] [5] [6] [7] [8]
+Overfull \hbox (5.90761pt too wide) in paragraph at lines 416--417
+[]\T1/ptm/m/n/10 defaults to sin-gle (other val-ues: re-peated_once, re-peated_
+many). con-trols whether
+[9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23]
+[24] [25] [26] [27] [28]
+(/private/var/folders/tr/lgwjmdgd72bckr1hj5gd_7640000gq/T/RtmpiNzDQw/Rd2pdf245f
+226e20af/Rd2.ind [29]
+
+LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
+(Font)              using `T1/zi4/m/n' instead on input line 8.
+
+[30] [31])
+(/private/var/folders/tr/lgwjmdgd72bckr1hj5gd_7640000gq/T/RtmpiNzDQw/Rd2pdf245f
+226e20af/Rd2.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ )
+(see the transcript file for additional information)pdfTeX warning (dest): name
+{Rfn.haven::zap.Rul.labels\(\)} has been referenced but does not exist, replace
+d by a fixed one
+
+pdfTeX warning (dest): name{Rfn.haven::as.Rul.factor\(\)} has been referenced b
+ut does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.rio::import\(\)} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.haven::labelled\(\)} has been referenced but do
+es not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.labelled::copy.Rul.labels\(\)} has been referen
+ced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.ggplot2::scale.Rul.x.Rul.continuous\(\)} has be
+en referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.rmarkdown::render\(\)} has been referenced but 
+does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.labelled::var.Rul.label\(\)} has been reference
+d but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.likert::likert\(\)} has been referenced but doe
+s not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.psych::multilevel.reliability\(\)} has been ref
+erenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.stats::cor.test\(\)} has been referenced but do
+es not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.psych::alpha\(\)} has been referenced but does 
+not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.future::plan\(\)} has been referenced but does 
+not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.future::future\(\)} has been referenced but doe
+s not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.skimr::skim\(\)} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.DT::datatable\(\)} has been referenced but does
+ not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.haven::read.Rul.sav\(\)} has been referenced bu
+t does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Rfn.haven::read.Rul.dta\(\)} has been referenced bu
+t does not exist, replaced by a fixed one
+
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/inconsolata/i4-ts1.enc}{/us
+r/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive
+/2016/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}</usr/local/texlive/20
+16/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/t
+exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
+xlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016
+/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dis
+t/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/ty
+pe1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (31 pages, 152466 bytes).
+Transcript written on Rd2.log.
+Saving output to ‘codebook-manual.pdf’ ...
+Done
+You may want to clean up by 'rm -Rf /var/folders/tr/lgwjmdgd72bckr1hj5gd_7640000gq/T//RtmpiNzDQw/Rd2pdf245f226e20af'

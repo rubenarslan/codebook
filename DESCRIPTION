@@ -12,7 +12,7 @@ Description: Easily automate the following tasks to describe data frames:
 		Codebooks are also available as tables (CSV, Excel, etc.) and in JSON-LD, so
 		that search engines can find your data and index the metadata.
 		The metadata are also available at your fingertips via RStudio Addins.
-Version: 0.9.6
+Version: 0.9.7
 Authors@R: person("Ruben", "Arslan", email = "ruben.arslan@gmail.com", role = c("aut", "cre"))
 Depends: R (>= 3.2.0)
 Language: en-GB
@@ -47,7 +47,6 @@ Imports:
 Suggests:
     testthat,
     DT,
-    shinytest,
     lme4,
 		rmarkdown,
     rstudioapi (>= 0.5),
@@ -55,10 +54,7 @@ Suggests:
     miniUI (>= 0.1.1),
     roxygen2,
     rio,
-    psych,
-    ufs,
-    rosetta,
-    GGally
+    psych
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2

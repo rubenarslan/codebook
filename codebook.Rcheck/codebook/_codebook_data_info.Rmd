@@ -1,0 +1,96 @@
+```{r setup,eval=TRUE,echo=FALSE}
+if (exists("testing")) {
+	indent = '#' # ugly hack so _regression_summary can be "spun" (variables included via `r ` have to be available)
+	results = data("bfi")
+	metadata(results)$description <- data_description_default(bfi)
+}
+
+meta <- metadata(results)
+description <- meta$description
+meta <- recursive_escape(meta)
+```
+
+`r indent`# Metadata
+
+`r indent`## Description
+```{r results='asis'}
+if (exists("name", meta)) {
+  glue::glue_data(
+    "__Dataset name__: {name}",
+    .x = meta)
+}
+```
+
+```{r results='asis'}
+cat(description)
+```
+
+<details>
+<summary title="Expand this section to see some additional metadata in a structured format that is useful for search engines">Metadata for search engines</summary>
+
+```{r results='asis', echo = FALSE}
+if (exists("temporalCoverage", meta)) {
+  glue::glue_data(
+    "- __Temporal Coverage__: {temporalCoverage}",
+    .x = meta)
+}
+```
+```{r results='asis', echo = FALSE}
+if (exists("spatialCoverage", meta)) {
+  glue::glue_data(
+    "- __Spatial Coverage__: {spatialCoverage}",
+    .x = meta)
+}
+```
+```{r results='asis', echo = FALSE}
+if (exists("citation", meta)) {
+  glue::glue_data(
+    "- __Citation__: {citation}",
+    .x = meta)
+}
+```
+```{r results='asis', echo = FALSE}
+if (exists("url", meta)) {
+  glue::glue_data(
+    "- __URL__: [{url}]({url})",
+    .x = meta)
+}
+```
+```{r results='asis', echo = FALSE}
+if (exists("identifier", meta)) {
+  if (stringr::str_detect(meta$identifier, "^doi:")) {
+    meta$identifier <- paste0('<a href="https://dx.doi.org/', 
+      stringr::str_match(meta$identifier, "^doi:(.+)")[,2], '">', 
+      meta$identifier, '</a>')
+  }
+  glue::glue_data(
+    "- __Identifier__: {identifier}",
+    .x = meta)
+}
+```
+```{r results='asis', echo = FALSE}
+if (exists("datePublished", meta)) {
+  glue::glue_data(
+    "- __Date published__: {datePublished}",
+    .x = meta)
+}
+```
+
+```{r results='asis', echo = FALSE}
+if (exists("creator", meta)) {
+  cat("- __Creator__:")
+  knitr::kable(tibble::enframe(meta$creator))
+}
+```
+
+```{r}
+meta <- meta[setdiff(names(meta),
+                     c("creator", "datePublished", "identifier",
+                       "url", "citation", "spatialCoverage", 
+                       "temporalCoverage", "description", "name"))]
+if(length(meta)) {
+  knitr::kable(meta)
+}
+```
+
+</details>

@@ -1,0 +1,95 @@
+---
+title: "Codebook example with formr.org data"
+author: "Ruben Arslan"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    code_folding: 'hide'
+    self_contained: true
+    fig_width: 7
+    fig_height: 7
+    fig_retina: null
+vignette: >
+  %\VignetteIndexEntry{Using formr.org data and metadata}
+  \%VignetteKeyword{codebook}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+In this vignette, you can see what a codebook generated from a dataset with rich
+metadata looks like. This dataset includes mock data for a short German Big Five 
+personality inventory and an age variable. The dataset follows the format created
+when importing data from [formr.org](https://formr.org). However, data imported
+using the `haven` package uses similar metadata. You can also add such metadata
+yourself, or use the codebook package for unannotated datasets.
+
+As you can see below, the `codebook` package automatically computes reliabilities
+for multi-item inventories, generates nicely labelled plots and outputs summary statistics.
+The same information is also stored in a table, which you can export to various formats.
+Additionally, `codebook` can show you different kinds of (labelled) missing values, and show you common 
+missingness patterns.
+As _you_ cannot see, but _[search engines](https://datasetsearch.research.google.com)_
+will, the `codebook` package also generates [JSON-LD](https://json-ld.org/) metadata for the [dataset](https://developers.google.com/search/docs/data-types/dataset). If you share your codebook as an HTML file online, this metadata should make it easier for others
+to find your data. [See what Google sees here](https://search.google.com/structured-data/testing-tool#url=https%3A%2F%2Frubenarslan.github.io%2Fcodebook%2Farticles%2Fcodebook.html).
+
+```{r warning=FALSE,message=FALSE}
+knit_by_pkgdown <- !is.null(knitr::opts_chunk$get("fig.retina"))
+knitr::opts_chunk$set(warning = FALSE, message = TRUE, error = FALSE)
+ggplot2::theme_set(ggplot2::theme_bw())
+
+library(codebook)
+data("bfi", package = 'codebook')
+if (!knit_by_pkgdown) {
+  library(dplyr)
+    bfi <- bfi %>% select(-starts_with("BFIK_extra"),
+                        -starts_with("BFIK_open"),
+                        -starts_with("BFIK_consc"))
+}
+set.seed(1)
+bfi$age <- rpois(nrow(bfi), 30)
+library(labelled)
+var_label(bfi$age) <- "Alter"
+```
+
+By default, we only set the required metadata attributes `name` and `description`
+to sensible values. However, there is a number of attributes you can set to 
+describe the data better. [Find out more](https://developers.google.com/search/docs/data-types/dataset).
+
+```{r}
+metadata(bfi)$name <- "MOCK Big Five Inventory dataset (German metadata demo)"
+metadata(bfi)$description <- "a small mock Big Five Inventory dataset"
+metadata(bfi)$identifier <- "doi:10.5281/zenodo.1326520"
+metadata(bfi)$datePublished <- "2016-06-01"
+metadata(bfi)$creator <- list(
+      "@type" = "Person",
+      givenName = "Ruben", familyName = "Arslan",
+      email = "ruben.arslan@gmail.com", 
+      affiliation = list("@type" = "Organization",
+        name = "MPI Human Development, Berlin"))
+metadata(bfi)$citation <- "Arslan (2016). Mock BFI data."
+metadata(bfi)$url <- "https://rubenarslan.github.io/codebook/articles/codebook.html"
+metadata(bfi)$temporalCoverage <- "2016" 
+metadata(bfi)$spatialCoverage <- "Goettingen, Germany" 
+```
+
+```{r}
+# We don't want to look at the code in the codebook.
+knitr::opts_chunk$set(warning = TRUE, message = TRUE, echo = FALSE)
+```
+
+```{r cb}
+codebook(bfi, metadata_table = knit_by_pkgdown, metadata_json = TRUE)
+```
+
+
+`r ifelse(knit_by_pkgdown, '', '### Codebook table')`
+
+```{r}
+if (!knit_by_pkgdown) {
+  codebook:::escaped_table(codebook_table(bfi))
+}
+```

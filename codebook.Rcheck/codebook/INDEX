@@ -1,0 +1,62 @@
+add_R                   Append R to string, if it doesn't end in R
+                        already.
+aggregate_and_document_scale
+                        Aggregate variables and remember which
+                        variables this were
+bfi                     Mock BFI data
+codebook                Generate rmarkdown codebook
+codebook_browser        Browse and search codebook
+codebook_component_scale
+                        Codebook component for scales
+codebook_component_single_item
+                        Codebook component for single items
+codebook_data_info      Codebook data info
+codebook_items          Tabular codebook
+codebook_missingness    Codebook missingness
+codebook_survey_overview
+                        Codebook survey overview
+codebook_table          Codebook metadata table
+compact_codebook        Compact Codebook
+compute_reliabilities   Compute reliabilities
+data_description_default
+                        Data description default
+detect_missing          Detect missing values
+detect_scales           Detect item scales
+ended                   How many surveys were ended?
+expired                 How many surveys were expired?
+get_skimmers.haven_labelled
+                        Define skimmers for haven_labelled variables
+get_skimmers.haven_labelled_spss
+                        Define skimmers for haven_labelled_spss
+                        variables
+has_label               Has label
+has_labels              Has labels
+knit_print.alpha        Pretty-print a Cronbach's alpha object
+knit_print.htest        Print a 'stats::cor.test()' object for knitr
+knit_print.multilevel   Print a 'psych::multilevel.reliability()'
+                        object for knitr
+label_browser           Browse and search variable and value labels
+label_browser_static    Browse and search variable and value labels
+likert_from_items       Derive a likert object from items
+list_to_dict            Go from a named list to a key-value data frame
+                        or data dictionary and back
+load_data_and_render_codebook
+                        Submit a data file and an rmarkdown template as
+                        a file to generate a codebook. Used chiefly in
+                        the webapp.
+md_pattern              Missing data patterns
+metadata                Add metadata to a dataset
+metadata_jsonld         Metadata as JSON-LD
+metadata_list           Metadata from dataframe
+modified                How many surveys were modified?
+new_codebook_rmd        Create a codebook rmarkdown document
+plot_labelled           Plot labelled vector
+rescue_attributes       Rescue lost attributes
+reverse_labelled_values
+                        Reverse labelled values reverse the underlying
+                        values for a numeric 'haven::labelled()' vector
+                        while keeping the labels correct
+skim_codebook           Skim codebook
+to_factor               To factor
+zap_attributes          Zap attributes
+zap_labelled            Zap labelled class

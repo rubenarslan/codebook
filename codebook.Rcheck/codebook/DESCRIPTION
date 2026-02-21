@@ -1,0 +1,39 @@
+Package: codebook
+Title: Automatic Codebooks from Metadata Encoded in Dataset Attributes
+Description: Easily automate the following tasks to describe data frames:
+		Summarise the distributions, and labelled missings of variables graphically
+		and using descriptive statistics.
+		For surveys, compute and summarise reliabilities (internal consistencies, 
+		retest, multilevel) for psychological scales.
+		Combine this information with metadata (such as item labels and labelled 
+		values) that is derived from R attributes.
+		To do so, the package relies on 'rmarkdown' partials, so you can generate 
+		HTML, PDF, and Word documents. 
+		Codebooks are also available as tables (CSV, Excel, etc.) and in JSON-LD, so
+		that search engines can find your data and index the metadata.
+		The metadata are also available at your fingertips via RStudio Addins.
+Version: 0.9.7
+Authors@R: person("Ruben", "Arslan", email = "ruben.arslan@gmail.com", role = c("aut", "cre"))
+Depends: R (>= 3.2.0)
+Language: en-GB
+URL: https://rubenarslan.github.io/codebook/,
+        https://github.com/rubenarslan/codebook
+BugReports: https://github.com/rubenarslan/codebook/issues
+License: MIT + file LICENSE
+Imports: stats, methods, graphics, utils, rmdpartials, forcats (>=
+        0.4.0), vctrs (>= 0.3.0), ggplot2 (>= 2.0.0), stringr, rlang,
+        dplyr (>= 1.0.0), tidyr, jsonlite, haven (>= 2.3.0), purrr,
+        tibble, glue, likert, knitr, skimr (>= 2.1.0), htmltools,
+        labeling, labelled, future
+Suggests: testthat, DT, lme4, rmarkdown, rstudioapi (>= 0.5), shiny (>=
+        0.13), miniUI (>= 0.1.1), roxygen2, rio, psych
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
+Roxygen: list(markdown = TRUE)
+VignetteBuilder: knitr
+NeedsCompilation: no
+Packaged: 2026-02-21 19:16:17 UTC; rubenarslan
+Author: Ruben Arslan [aut, cre]
+Maintainer: Ruben Arslan <ruben.arslan@gmail.com>
+Built: R 4.5.1; ; 2026-02-21 19:17:31 UTC; unix

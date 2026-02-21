@@ -1,0 +1,24 @@
+```{r setup,eval=TRUE,echo=FALSE}
+if (!exists("indent")) {
+	indent <- '#' # ugly hack
+}
+if (exists("testing")) {
+	results <- data.frame()
+	survey_repetition <- 'single'
+	reliabilities <- list()
+	md_pattern <- data.frame()
+}
+```
+
+
+`r indent`# Missingness report
+
+```{r missingness_all_setup}
+if (length(md_pattern)) {
+  if (knitr::is_html_output() && requireNamespace("rmarkdown", quietly = TRUE)) {
+    rmarkdown::paged_table(md_pattern, options = list(rows.print = 10))
+  } else {
+    knitr::kable(md_pattern)
+  }
+}
+```

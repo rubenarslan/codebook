@@ -1,0 +1,48 @@
+```{r setup,eval=TRUE,echo=FALSE}
+if (!exists("indent")) {
+	indent <- '#' # ugly hack
+}
+if (exists("testing")) {
+	results <- data.frame()
+	survey_repetition <- 'single'
+	reliabilities <- list()
+	missingness_report <- ''
+	data_info <- '' 
+	survey_overview <- '' 
+	scales_items <- c()
+	detailed_items <- TRUE
+	detailed_scales <- TRUE
+}
+```
+
+
+```{r}
+knitr::asis_output(data_info)
+```
+
+
+```{r}
+knitr::asis_output(survey_overview)
+```
+
+
+`r ifelse(detailed_variables || detailed_scales, paste0(indent, "# Variables"),"") `
+
+```{r scales}
+if (detailed_variables || detailed_scales) {
+  knitr::asis_output(paste0(scales_items, sep = "\n\n\n", collapse = "\n\n\n"))
+}
+```
+
+```{r}
+missingness_report
+```
+
+
+```{r}
+items
+```
+
+```{r}
+jsonld
+```

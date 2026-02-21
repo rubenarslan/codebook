@@ -1,0 +1,30 @@
+body {
+  background-color: #EEE;
+}
+.all {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+
+}
+.header {
+  flex: 0 1 auto;
+}
+
+.rest_of_screen {
+  flex: 1 1 auto;
+}
+
+#editor, iframe {
+  min-height: 50vh;
+}
+
+iframe {
+  border: 0;
+  margin: 0;
+  background-color: #222;
+}
+
+#download_codebook, #download_codebook_pdf {
+  display: none;
+}

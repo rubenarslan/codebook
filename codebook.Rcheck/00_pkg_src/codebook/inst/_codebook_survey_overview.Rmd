@@ -1,0 +1,51 @@
+```{r setup,eval=TRUE,echo=FALSE}
+if (exists("testing")) {
+	indent = '#' # ugly hack so _regression_summary can be "spun" (variables included via `r ` have to be available)
+	results = data.frame()
+	survey_repetition = 'single'
+	reliabilities = list()
+}
+```
+`r indent`# Survey overview
+
+`r ended(results)` completed rows, `r started` who entered any information, `r only_viewed` only viewed the first page. There are `r expired(results)` expired rows (people who did not finish filling out in the requested time frame). In total, there are `r nrow(results)` rows including unfinished and expired rows. 
+
+
+There were `r users` unique participants, of which `r finished_users` finished filling out at least one survey.
+
+`r ifelse(survey_repetition == 'single', "This survey was not repeated.", ifelse(survey_repetition == 'repeated_once', paste0("This survey was repeated once by ", sum(rows_by_user == 2), " out of ", sum(rows_by_user <= 2), " users."), paste0("This survey was repeated many times, on average ", round(rows_per_user,2), " times per user.")))`
+
+`r ifelse(survey_repetition != "single" && round(rows_per_user) == 1, "Oddly there seem to be almost no users with several rows. Maybe something went wrong and a few rows are duplicated by accident?", "")`
+
+
+```{r repeated,fig.cap="Number of sessions"}
+if (survey_repetition != "single") {
+	overview = results %>% dplyr::group_by(session) %>% 
+		dplyr::summarise(
+			n = sum(!is.na(session)),
+			expired = sum(!is.na(expired)),
+			ended = sum(!is.na(ended))
+		) %>% 
+		tidyr::gather(key, value, -session)
+	if (length(unique(dplyr::filter(overview, key == "expired")$value)) == 1) {
+		overview = dplyr::filter(overview, key != "expired")
+	}
+	print(
+		ggplot2::ggplot(overview, ggplot2::aes(value, ..count..)) + ggplot2::geom_bar() + ggplot2::facet_wrap(~ key, nrow = 1)
+	)
+}
+```
+
+The first session started on `r min(results$created)`, the last session on `r max(results$created)`. 
+
+
+```{r starting_time,fig.cap="Starting date times"}
+ggplot2::qplot(results$created) + ggplot2::scale_x_datetime("Date/time when survey was started")
+```
+
+People took on average `r round(mean(duration$duration),2)` minutes (median `r round(median(duration$duration),2)`) to answer the survey.
+
+```{r duration,fig.cap="Duration people took for answering the survey"}
+ggplot2::qplot(duration$duration, binwidth = 0.5) + ggplot2::scale_x_continuous(paste("Duration (in minutes), excluding", high_vals, "values above median + 4*MAD and ", low_vals, "values below 0."), limits = c(lower_limit, upper_limit))
+```
+

@@ -1,12 +1,15 @@
 ## Submission
-* fix language not to use underscore
-* I got a warning about a dead link on win builder but the link works. false positive.
-  - https://support.posit.co/hc/en-us/articles/206382178-Customizing-Keyboard-Shortcuts-in-the-RStudio-IDE
+* Resubmission after archival for policy violation (internet resource access).
+* All vignette code that downloads from external URLs (OSF) is now wrapped 
+  in tryCatch with informative messages and graceful exits via knitr::knit_exit().
+* Updated moved OSF URLs to their new canonical format.
+* Fixed dead link to Posit keyboard shortcuts documentation.
+* Removed rosetta (archived from CRAN), ufs, shinytest, and GGally from 
+  Suggests. Deprecated the use_psych parameter in compute_reliabilities()
+  which previously allowed switching to rosetta.
 
 ## Test environments
-* local OS X install, R 4.4.1
-* Rhub
-  * Windows Server 2008 R2 SP1, R-devel, 32/64 bit
+* local macOS (aarch64-apple-darwin20), R 4.5.1
 
 ## R CMD check results
 
@@ -22,4 +25,3 @@
   only used inside the Rmds (namely graphics and jsonlite) and tests. 
   I tried to put nontrivial R code into functions, but some minor processing 
   happens in the Rmds.
-  

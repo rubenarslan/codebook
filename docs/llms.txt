@@ -1,0 +1,380 @@
+# codebook
+
+[![Travis-CI Build
+Status](https://travis-ci.org/rubenarslan/codebook.svg?branch=master)](https://app.travis-ci.com/rubenarslan/codebook)
+[![CRAN
+status](http://www.r-pkg.org/badges/version-ago/codebook)](https://cran.r-project.org/package=codebook)
+![Downloads](https://cranlogs.r-pkg.org/badges/grand-total/codebook)[![codecov](https://codecov.io/gh/rubenarslan/codebook/branch/master/graph/badge.svg)](https://app.codecov.io/gh/rubenarslan/codebook)
+[![DOI](https://zenodo.org/badge/109252375.svg)](https://zenodo.org/badge/latestdoi/109252375)
+
+*Automatic Codebooks from Metadata Encoded in Dataset Attributes*
+
+## Description
+
+Easily automate the following tasks to describe data frames: - summarise
+the distributions, and labelled missings of variables graphically and
+using descriptive statistics - for surveys, compute and summarise
+reliabilities (internal consistencies, retest, multilevel) for
+psychological scales, - combine this information with metadata (such as
+item labels and labelled values) that is derived from R attributes.
+
+To do so, the package relies on ‘rmarkdown’ partials, so you can
+generate HTML, PDF, and Word documents. Codebooks are also available as
+tables (CSV, Excel, etc.) and in JSON-LD, so that search engines can
+find your data and index the metadata.
+
+## Generate markdown codebooks from the attributes of the variables in your data frame
+
+RStudio and a few of the tidyverse package already usefully display the
+information contained in the attributes of the variables in your data
+frame. The [haven](https://github.com/tidyverse/haven) package also
+manages to grab variable documentation from SPSS or Stata files.
+
+## RStudio Addin
+
+If the RStudio data viewer scrolls slow for your taste, or you’d like to
+keep the variable labels in view while working, use our RStudio Addins
+(ideally assigned to a keyboard shortcut) to see and search variable and
+value labels in the viewer pane.
+
+![Gif of
+Addin](https://rubenarslan.github.io/codebook/reference/figures/codebook_addin.gif)
+
+Gif of Addin
+
+## Codebook generation
+
+The codebook package takes those attributes and the data and tries to
+produce a good-looking codebook, i.e. a place to get an overview of the
+variables in a dataset. The codebook processes single items, but also
+“scales”, i.e. psychological questionnaires that are aggregated to
+extract a construct. For scales, the appropriate reliability
+coefficients (internal consistencies for single measurements, retest
+reliabilities for repeated measurements, multilevel reliability for
+multilevel data) are computed. For items and scales, the distributions
+are summarised graphically and numerically.
+
+This package integrates tightly with formr
+([formr.org](https://formr.org)), an online survey framework and
+especially the data frames produced and marked up by the [formr R
+package](https://github.com/rubenarslan/formr). However, codebook is
+completely independent of it.
+
+## Documentation
+
+Confer the help or: <https://rubenarslan.github.io/codebook/>. See the
+[vignette](https://rubenarslan.github.io/codebook/articles/codebook.html)
+for a quick example of an HTML document generated using `codebook`, or
+below for a copy-pastable rmarkdown document to get you started.
+
+## Use as a webapp
+
+If you don’t want to install the codebook package, you can just upload
+an annotated dataset in a variety of formats (R, SPSS, Stata, …) here:
+<https://codebook.formr.org>
+
+## Use locally
+
+### Install
+
+Run the following in R.
+
+``` r
+
+install.packages("codebook")
+```
+
+Or to get the latest development version:
+
+``` r
+
+install.packages("remotes")
+remotes::install_github("rubenarslan/codebook")
+```
+
+Then run the following to get started:
+
+``` r
+
+library(codebook)
+new_codebook_rmd()
+```
+
+## Citation
+
+To cite the package, you can cite the open access paper, but to make
+your codebook traceable to the version of the package you used, you
+might also want to cite the archived package DOI.
+
+### Paper
+
+> Arslan, R. C. (2019). How to automatically document data with the
+> codebook package to facilitate data re-use. Advances in Methods and
+> Practices in Psychological Science.
+> [doi:10.1177/2515245919838783](https://doi.org/10.1177/2515245919838783)
+
+### Zenodo
+
+> Arslan, R. C. (2024). Automatic codebooks from survey metadata (2018).
+> URL <https://github.com/rubenarslan/codebook>.
+> [![DOI](https://zenodo.org/badge/109252375.svg)](https://zenodo.org/badge/latestdoi/109252375)
+
+### How to use
+
+Here’s a simple rmarkdown template, that you could use to get started.
+The resulting codebook will be an HTML file, but you can also choose to
+generate PDFs or Word files by fiddling with the `output` settings.
+
+```` markdown
+---
+title: "Codebook"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    code_folding: 'hide'
+    self_contained: true
+  pdf_document:
+    toc: yes
+    toc_depth: 4
+    latex_engine: xelatex
+---
+
+```{r setup}
+knitr::opts_chunk$set(
+  warning = TRUE, # show warnings during codebook generation
+  message = TRUE, # show messages during codebook generation
+  error = TRUE, # do not interrupt codebook generation in case of errors,
+                # usually makes debugging easier, and sometimes half a codebook
+                # is better than none
+  echo = FALSE  # don't show the R code
+)
+ggplot2::theme_set(ggplot2::theme_bw())
+
+```
+
+Here, we import data from formr
+
+```{r}
+library(formr)
+source(".passwords.R")
+formr_connect(email = credentials$email, password = credentials$password)
+codebook_data <- formr_results("s3_daily")
+```
+
+But we can also import data from e.g. an SPSS file.
+```{r}
+codebook_data <- rio::import("s3_daily.sav")
+```
+
+
+Sometimes, the metadata is not set up in such a way that codebook
+can leverage it fully. These functions help fix this.
+
+```{r codebook}
+library(codebook) # load the package
+# omit the following lines, if your missing values are already properly labelled
+codebook_data <- detect_missing(codebook_data,
+    only_labelled = TRUE, # only labelled values are autodetected as
+                                   # missing
+    negative_values_are_missing = FALSE, # negative values are NOT missing values
+    ninety_nine_problems = TRUE,   # 99/999 are missing values, if they
+                                   # are more than 5 MAD from the median
+    )
+
+# If you are not using formr, the codebook package needs to guess which items
+# form a scale. The following line finds item aggregates with names like this:
+# scale = scale_1 + scale_2R + scale_3R
+# identifying these aggregates allows the codebook function to
+# automatically compute reliabilities.
+# However, it will not reverse items automatically.
+codebook_data <- detect_scales(codebook_data)
+```
+
+Now, generating a codebook is as simple as calling codebook from a chunk in an
+rmarkdown document.
+
+```{r}
+codebook(codebook_data)
+```
+````
+
+## [Code of conduct for contributing](https://github.com/rubenarslan/codebook/blob/master/CONDUCT.md)
+
+# Package index
+
+## RStudio Addins
+
+Addins to help you browse the metadata within RStudio
+
+- [`codebook_browser()`](https://rubenarslan.github.io/codebook/reference/codebook_browser.md)
+  : Browse and search codebook
+- [`label_browser()`](https://rubenarslan.github.io/codebook/reference/label_browser.md)
+  : Browse and search variable and value labels
+- [`label_browser_static()`](https://rubenarslan.github.io/codebook/reference/label_browser_static.md)
+  : Browse and search variable and value labels
+
+## Codebook generators
+
+Functions to generate (parts of) the codebook
+
+- [`codebook()`](https://rubenarslan.github.io/codebook/reference/codebook.md)
+  : Generate rmarkdown codebook
+- [`compact_codebook()`](https://rubenarslan.github.io/codebook/reference/compact_codebook.md)
+  : Compact Codebook
+- [`new_codebook_rmd()`](https://rubenarslan.github.io/codebook/reference/new_codebook_rmd.md)
+  : Create a codebook rmarkdown document
+- [`codebook_table()`](https://rubenarslan.github.io/codebook/reference/codebook_table.md)
+  : Codebook metadata table
+- [`codebook_items()`](https://rubenarslan.github.io/codebook/reference/codebook_items.md)
+  : Tabular codebook
+- [`codebook_missingness()`](https://rubenarslan.github.io/codebook/reference/codebook_missingness.md)
+  : Codebook missingness
+- [`md_pattern()`](https://rubenarslan.github.io/codebook/reference/md_pattern.md)
+  : Missing data patterns
+- [`codebook_survey_overview()`](https://rubenarslan.github.io/codebook/reference/codebook_survey_overview.md)
+  : Codebook survey overview
+- [`codebook_data_info()`](https://rubenarslan.github.io/codebook/reference/codebook_data_info.md)
+  : Codebook data info
+- [`codebook_component_scale()`](https://rubenarslan.github.io/codebook/reference/codebook_component_scale.md)
+  : Codebook component for scales
+- [`codebook_component_single_item()`](https://rubenarslan.github.io/codebook/reference/codebook_component_single_item.md)
+  : Codebook component for single items
+- [`metadata_jsonld()`](https://rubenarslan.github.io/codebook/reference/metadata_jsonld.md)
+  : Metadata as JSON-LD
+- [`metadata_list()`](https://rubenarslan.github.io/codebook/reference/metadata_list.md)
+  : Metadata from dataframe
+- [`load_data_and_render_codebook()`](https://rubenarslan.github.io/codebook/reference/load_data_and_render_codebook.md)
+  : Submit a data file and an rmarkdown template as a file to generate a
+  codebook. Used chiefly in the webapp.
+- [`skim_codebook()`](https://rubenarslan.github.io/codebook/reference/skim_codebook.md)
+  : Skim codebook
+
+## Prepare data for codebook
+
+Functions to annotate data to be more interpretable by the codebook
+functions
+
+- [`detect_missing()`](https://rubenarslan.github.io/codebook/reference/detect_missing.md)
+  [`detect_missings()`](https://rubenarslan.github.io/codebook/reference/detect_missing.md)
+  : Detect missing values
+
+- [`detect_scales()`](https://rubenarslan.github.io/codebook/reference/detect_scales.md)
+  : Detect item scales
+
+- [`compute_reliabilities()`](https://rubenarslan.github.io/codebook/reference/compute_reliabilities.md)
+  : Compute reliabilities
+
+- [`rescue_attributes()`](https://rubenarslan.github.io/codebook/reference/rescue_attributes.md)
+  : Rescue lost attributes
+
+- [`aggregate_and_document_scale()`](https://rubenarslan.github.io/codebook/reference/aggregate_and_document_scale.md)
+  : Aggregate variables and remember which variables this were
+
+- [`add_R()`](https://rubenarslan.github.io/codebook/reference/add_R.md)
+  : Append R to string, if it doesn't end in R already.
+
+- [`reverse_labelled_values()`](https://rubenarslan.github.io/codebook/reference/reverse_labelled_values.md)
+  :
+
+  Reverse labelled values reverse the underlying values for a numeric
+  [`haven::labelled()`](https://haven.tidyverse.org/reference/labelled.html)
+  vector while keeping the labels correct
+
+- [`to_factor()`](https://rubenarslan.github.io/codebook/reference/to_factor.md)
+  : To factor
+
+- [`has_label()`](https://rubenarslan.github.io/codebook/reference/has_label.md)
+  : Has label
+
+- [`has_labels()`](https://rubenarslan.github.io/codebook/reference/has_labels.md)
+  : Has labels
+
+- [`metadata()`](https://rubenarslan.github.io/codebook/reference/metadata.md)
+  [`` `metadata<-`() ``](https://rubenarslan.github.io/codebook/reference/metadata.md)
+  : Add metadata to a dataset
+
+- [`data_description_default()`](https://rubenarslan.github.io/codebook/reference/data_description_default.md)
+  : Data description default
+
+- [`list_to_dict()`](https://rubenarslan.github.io/codebook/reference/list_to_dict.md)
+  [`dict_to_list()`](https://rubenarslan.github.io/codebook/reference/list_to_dict.md)
+  : Go from a named list to a key-value data frame or data dictionary
+  and back
+
+- [`bfi`](https://rubenarslan.github.io/codebook/reference/bfi.md) :
+  Mock BFI data
+
+## Prepare data for non-codebook stuff
+
+Functions to remove attributes that might confuse other packages
+
+- [`zap_attributes()`](https://rubenarslan.github.io/codebook/reference/zap_attributes.md)
+  : Zap attributes
+- [`reexports`](https://rubenarslan.github.io/codebook/reference/reexports.md)
+  [`as_factor`](https://rubenarslan.github.io/codebook/reference/reexports.md)
+  [`zap_label`](https://rubenarslan.github.io/codebook/reference/reexports.md)
+  [`var_label`](https://rubenarslan.github.io/codebook/reference/reexports.md)
+  [`var_label`](https://rubenarslan.github.io/codebook/reference/reexports.md)
+  [`val_label`](https://rubenarslan.github.io/codebook/reference/reexports.md)
+  [`val_label`](https://rubenarslan.github.io/codebook/reference/reexports.md)
+  [`val_labels`](https://rubenarslan.github.io/codebook/reference/reexports.md)
+  [`val_labels`](https://rubenarslan.github.io/codebook/reference/reexports.md)
+  [`%>%`](https://rubenarslan.github.io/codebook/reference/reexports.md)
+  : Objects exported from other packages
+- [`zap_labelled()`](https://rubenarslan.github.io/codebook/reference/zap_labelled.md)
+  : Zap labelled class
+
+## Methods
+
+Various methods to print and plot objects
+
+- [`knit_print.htest()`](https://rubenarslan.github.io/codebook/reference/knit_print.htest.md)
+  :
+
+  Print a [`stats::cor.test()`](https://rdrr.io/r/stats/cor.test.html)
+  object for knitr
+
+- [`knit_print.multilevel()`](https://rubenarslan.github.io/codebook/reference/knit_print.multilevel.md)
+  :
+
+  Print a
+  [`psych::multilevel.reliability()`](https://rdrr.io/pkg/psych/man/multilevel.reliability.html)
+  object for knitr
+
+- [`knit_print.alpha()`](https://rubenarslan.github.io/codebook/reference/knit_print.alpha.md)
+  : Pretty-print a Cronbach's alpha object
+
+- [`likert_from_items()`](https://rubenarslan.github.io/codebook/reference/likert_from_items.md)
+  : Derive a likert object from items
+
+- [`plot_labelled()`](https://rubenarslan.github.io/codebook/reference/plot_labelled.md)
+  : Plot labelled vector
+
+- [`get_skimmers.haven_labelled()`](https://rubenarslan.github.io/codebook/reference/get_skimmers.haven_labelled.md)
+  : Define skimmers for haven_labelled variables
+
+- [`get_skimmers.haven_labelled_spss()`](https://rubenarslan.github.io/codebook/reference/get_skimmers.haven_labelled_spss.md)
+  : Define skimmers for haven_labelled_spss variables
+
+## formr-data specific helpers
+
+- [`ended()`](https://rubenarslan.github.io/codebook/reference/ended.md)
+  : How many surveys were ended?
+- [`expired()`](https://rubenarslan.github.io/codebook/reference/expired.md)
+  : How many surveys were expired?
+- [`modified()`](https://rubenarslan.github.io/codebook/reference/modified.md)
+  : How many surveys were modified?
+
+# Articles
+
+### All vignettes
+
+- [Codebook example with Qualtrics
+  dataset](https://rubenarslan.github.io/codebook/articles/codebook_qualtrics.md):
+- [Codebook example with SPSS
+  dataset](https://rubenarslan.github.io/codebook/articles/codebook_sav.md):
+- [Tutorial](https://rubenarslan.github.io/codebook/articles/codebook_tutorial.md):
+- [Codebook example with formr.org
+  data](https://rubenarslan.github.io/codebook/articles/codebook.md):

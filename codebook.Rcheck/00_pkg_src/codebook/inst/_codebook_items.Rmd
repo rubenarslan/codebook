@@ -1,0 +1,15 @@
+```{r setup,eval=TRUE,echo=FALSE}
+if (!exists("indent")) {
+	indent <- '#' # ugly hack
+}
+if (exists("testing")) {
+	results <- data.frame()
+	metadata_table = data.frame()
+}
+```
+
+`r indent`# Codebook table
+
+```{r items, message=TRUE}
+export_table(metadata_table)
+```

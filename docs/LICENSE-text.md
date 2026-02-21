@@ -1,0 +1,4 @@
+# License
+
+    YEAR: 2017-2020
+    COPYRIGHT HOLDER: Ruben C. Arslan

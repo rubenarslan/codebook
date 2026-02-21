@@ -1,0 +1,2614 @@
+
+R version 4.5.1 (2025-06-13) -- "Great Square Root"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: aarch64-apple-darwin20
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "codebook"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> base::assign(".ExTimings", "codebook-Ex.timings", pos = 'CheckExEnv')
+> base::cat("name\tuser\tsystem\telapsed\n", file=base::get(".ExTimings", pos = 'CheckExEnv'))
+> base::assign(".format_ptime",
++ function(x) {
++   if(!is.na(x[4L])) x[1L] <- x[1L] + x[4L]
++   if(!is.na(x[5L])) x[2L] <- x[2L] + x[5L]
++   options(OutDec = '.')
++   format(x[1L:3L], digits = 7L)
++ },
++ pos = 'CheckExEnv')
+> 
+> ### * </HEADER>
+> library('codebook')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("add_R")
+> ### * add_R
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: add_R
+> ### Title: Append R to string, if it doesn't end in R already.
+> ### Aliases: add_R
+> 
+> ### ** Examples
+> 
+> data('bfi')
+> bfi %>% dplyr::select(BFIK_open_2,BFIK_agree_2) %>% dplyr::rename_at(1, add_R) %>% head()
+  BFIK_open_2R BFIK_agree_2
+1            5            5
+2            4            4
+3            5            5
+4            4            4
+5            4            4
+6            4            4
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("add_R", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("aggregate_and_document_scale")
+> ### * aggregate_and_document_scale
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: aggregate_and_document_scale
+> ### Title: Aggregate variables and remember which variables this were
+> ### Aliases: aggregate_and_document_scale
+> 
+> ### ** Examples
+> 
+> testdf <- data.frame(bfi_neuro_1 = rnorm(20), bfi_neuro_2 = rnorm(20),
++                     bfi_neuro_3R = rnorm(20), age = rpois(20, 30))
+> item_names <- c('bfi_neuro_1', 'bfi_neuro_2', 'bfi_neuro_3R')
+> testdf$bfi_neuro <- aggregate_and_document_scale(testdf[, item_names])
+> testdf$bfi_neuro
+ [1]  0.042666655  0.237472648 -0.021366751  0.054197435  0.086859275
+ [6] -0.528030760  0.232071836  0.012035082 -0.004904972  0.331220300
+[11]  1.089522200 -0.108323628  0.035850241 -1.132622675  0.393631688
+[16]  0.506823909 -0.259233898 -0.053203937  0.830322065  0.407340822
+attr(,"scale_item_names")
+[1] "bfi_neuro_1"  "bfi_neuro_2"  "bfi_neuro_3R"
+attr(,"label")
+[1] "3 bfi_neuro items aggregated by rowMeans"
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("aggregate_and_document_scale", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("codebook")
+> ### * codebook
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: codebook
+> ### Title: Generate rmarkdown codebook
+> ### Aliases: codebook
+> 
+> ### ** Examples
+> 
+> # will generate figures in a temporary directory
+> ## Not run: 
+> ##D data("bfi")
+> ##D bfi <- bfi[, c("BFIK_open_1", "BFIK_open_1")]
+> ##D md <- codebook(bfi, survey_repetition = "single", metadata_table = FALSE)
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("codebook", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("codebook_component_scale")
+> ### * codebook_component_scale
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: codebook_component_scale
+> ### Title: Codebook component for scales
+> ### Aliases: codebook_component_scale
+> 
+> ### ** Examples
+> 
+> # will generate figures in a temporary directory
+> ## Not run: 
+> ##D data("bfi")
+> ##D bfi <- bfi[,c("BFIK_open", paste0("BFIK_open_", 1:4))]
+> ##D codebook_component_scale(bfi[,1], "BFIK_open", bfi[,-1],
+> ##D    reliabilities = list(BFIK_open = psych::alpha(bfi[,-1])))
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("codebook_component_scale", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("codebook_component_single_item")
+> ### * codebook_component_single_item
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: codebook_component_single_item
+> ### Title: Codebook component for single items
+> ### Aliases: codebook_component_single_item
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D data("bfi")
+> ##D codebook_component_single_item(bfi$BFIK_open_1, "BFIK_open_1")
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("codebook_component_single_item", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("codebook_data_info")
+> ### * codebook_data_info
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: codebook_data_info
+> ### Title: Codebook data info
+> ### Aliases: codebook_data_info
+> 
+> ### ** Examples
+> 
+> # will generate figures in a figure/ subdirectory
+> data("bfi")
+> metadata(bfi)$name <- "MOCK Big Five Inventory dataset (German metadata demo)"
+> metadata(bfi)$description <- "a small mock Big Five Inventory dataset"
+> metadata(bfi)$citation <- "doi:10.5281/zenodo.1326520"
+> metadata(bfi)$url <-
++    "https://rubenarslan.github.io/codebook/articles/codebook.html"
+> codebook_data_info(bfi)
+dev.new(): using pdf(file="Rplots1.pdf")
+dev.new(): using pdf(file="Rplots2.pdf")
+dev.new(): using pdf(file="Rplots3.pdf")
+dev.new(): using pdf(file="Rplots4.pdf")
+dev.new(): using pdf(file="Rplots5.pdf")
+dev.new(): using pdf(file="Rplots6.pdf")
+dev.new(): using pdf(file="Rplots7.pdf")
+dev.new(): using pdf(file="Rplots8.pdf")
+dev.new(): using pdf(file="Rplots9.pdf")
+dev.new(): using pdf(file="Rplots10.pdf")
+No viewer found, probably documenting or testing
+
+
+
+### Metadata
+
+#### Description
+__Dataset name__: MOCK Big Five Inventory dataset (German metadata demo)
+
+
+a small mock Big Five Inventory dataset
+
+<details>
+<summary title="Expand this section to see some additional metadata in a structured format that is useful for search engines">Metadata for search engines</summary>
+
+
+
+- __Citation__: doi:10.5281/zenodo.1326520
+
+- __URL__: [https://rubenarslan.github.io/codebook/articles/codebook.html](https://rubenarslan.github.io/codebook/articles/codebook.html)
+
+
+
+
+
+
+
+
+</details>> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("codebook_data_info", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("codebook_items")
+> ### * codebook_items
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: codebook_items
+> ### Title: Tabular codebook
+> ### Aliases: codebook_items
+> 
+> ### ** Examples
+> 
+> data("bfi")
+> ## Not run: 
+> ##D # doesn't show interactively, because a html widget needs to be registered
+> ##D codebook_items(bfi)
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("codebook_items", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("codebook_missingness")
+> ### * codebook_missingness
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: codebook_missingness
+> ### Title: Codebook missingness
+> ### Aliases: codebook_missingness
+> 
+> ### ** Examples
+> 
+> data("bfi")
+> codebook_missingness(bfi)
+dev.new(): using pdf(file="Rplots11.pdf")
+dev.new(): using pdf(file="Rplots12.pdf")
+No viewer found, probably documenting or testing
+
+
+
+
+### Missingness report
+
+<div data-pagedtable="false">
+  <script data-pagedtable-source type="application/json">
+{"columns":[{"label":["description"],"name":[1],"type":["chr"],"align":["left"]},{"label":["expired"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["var_miss"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["n_miss"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Missing values in 1 variables","2":"0","3":"1","4":"28"},{"1":"Missing values per variable","2":"28","3":"28","4":"28"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("codebook_missingness", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("codebook_survey_overview")
+> ### * codebook_survey_overview
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: codebook_survey_overview
+> ### Title: Codebook survey overview
+> ### Aliases: codebook_survey_overview
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D data("bfi")
+> ##D codebook_survey_overview(bfi)
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("codebook_survey_overview", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("codebook_table")
+> ### * codebook_table
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: codebook_table
+> ### Title: Codebook metadata table
+> ### Aliases: codebook_table
+> 
+> ### ** Examples
+> 
+> data("bfi")
+> codebook_table(bfi)
+            name
+1        session
+2        created
+3       modified
+4          ended
+5        expired
+6    BFIK_open_2
+7  BFIK_agree_4R
+8   BFIK_extra_2
+9  BFIK_agree_1R
+10   BFIK_open_1
+11 BFIK_neuro_2R
+12  BFIK_consc_3
+13  BFIK_consc_4
+14 BFIK_consc_2R
+15 BFIK_agree_3R
+16 BFIK_extra_3R
+17  BFIK_neuro_3
+18  BFIK_neuro_4
+19  BFIK_agree_2
+20  BFIK_consc_1
+21   BFIK_open_4
+22  BFIK_extra_4
+23 BFIK_extra_1R
+24   BFIK_open_3
+25    BFIK_agree
+26     BFIK_open
+27    BFIK_consc
+28    BFIK_extra
+29    BFIK_neuro
+                                                                        label
+1                                                                        <NA>
+2                                                    user first opened survey
+3                                                     user last edited survey
+4                                                        user finished survey
+5                                                                        <NA>
+6                       __Ich bin tiefsinnig, denke gerne über Sachen nach.__
+7        __Ich kann mich schroff und abweisend anderen gegenüber verhalten.__
+8            __Ich bin begeisterungsfähig und kann andere leicht mitreißen.__
+9                                  __Ich neige dazu, andere zu kritisieren.__
+10                                       __Ich bin vielseitig interessiert.__
+11 __Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__
+12                                     __Ich bin tüchtig und arbeite flott.__
+13                              __Ich mache Pläne und führe sie auch durch.__
+14                                    __Ich bin bequem, neige zur Faulheit.__
+15                          __Ich kann mich kalt und distanziert verhalten.__
+16                               __Ich bin eher der "stille Typ", wortkarg.__
+17                                            __Ich mache mir viele Sorgen.__
+18                                  __Ich werde leicht nervös und unsicher.__
+19  __Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__
+20                                       __Ich erledige Aufgaben gründlich.__
+21                   __Ich schätze künstlerische und ästhetische Eindrücke.__
+22                                 __Ich gehe aus mir heraus, bin gesellig.__
+23                                __Ich bin eher zurückhaltend, reserviert.__
+24             __Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__
+25                      4 BFIK_agree items aggregated by aggregation_function
+26                       4 BFIK_open items aggregated by aggregation_function
+27                      4 BFIK_consc items aggregated by aggregation_function
+28                      4 BFIK_extra items aggregated by aggregation_function
+29                      3 BFIK_neuro items aggregated by aggregation_function
+            type type_options      data_type
+1           <NA>         <NA>      character
+2           <NA>         <NA>        POSIXct
+3           <NA>         <NA>        POSIXct
+4           <NA>         <NA>        POSIXct
+5           <NA>         <NA>        logical
+6  rating_button            5 haven_labelled
+7  rating_button            5 haven_labelled
+8  rating_button            5 haven_labelled
+9  rating_button            5 haven_labelled
+10 rating_button            5 haven_labelled
+11 rating_button            5 haven_labelled
+12 rating_button            5 haven_labelled
+13 rating_button            5 haven_labelled
+14 rating_button            5 haven_labelled
+15 rating_button            5 haven_labelled
+16 rating_button            5 haven_labelled
+17 rating_button            5 haven_labelled
+18 rating_button            5 haven_labelled
+19 rating_button            5 haven_labelled
+20 rating_button            5 haven_labelled
+21 rating_button            5 haven_labelled
+22 rating_button            5 haven_labelled
+23 rating_button            5 haven_labelled
+24 rating_button            5 haven_labelled
+25          <NA>         <NA>        numeric
+26          <NA>         <NA>        numeric
+27          <NA>         <NA>        numeric
+28          <NA>         <NA>        numeric
+29          <NA>         <NA>        numeric
+                                                                                                                        value_labels
+1                                                                                                                               <NA>
+2                                                                                                                               <NA>
+3                                                                                                                               <NA>
+4                                                                                                                               <NA>
+5                                                                                                                               <NA>
+6  1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+7  5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+8  1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+9  5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+10 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+11 5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+12 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+13 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+14 5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+15 5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+16 5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+17 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+18 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+19 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+20 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+21 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+22 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+23 5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+24 1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.
+25                                                                                                                              <NA>
+26                                                                                                                              <NA>
+27                                                                                                                              <NA>
+28                                                                                                                              <NA>
+29                                                                                                                              <NA>
+   optional                                          scale_item_names
+1      <NA>                                                      <NA>
+2      <NA>                                                      <NA>
+3      <NA>                                                      <NA>
+4      <NA>                                                      <NA>
+5      <NA>                                                      <NA>
+6         0                                                      <NA>
+7         0                                                      <NA>
+8         0                                                      <NA>
+9         0                                                      <NA>
+10        0                                                      <NA>
+11        0                                                      <NA>
+12        0                                                      <NA>
+13        0                                                      <NA>
+14        0                                                      <NA>
+15        0                                                      <NA>
+16        0                                                      <NA>
+17        0                                                      <NA>
+18        0                                                      <NA>
+19        0                                                      <NA>
+20        0                                                      <NA>
+21        0                                                      <NA>
+22        0                                                      <NA>
+23        0                                                      <NA>
+24        0                                                      <NA>
+25     <NA> BFIK_agree_4R, BFIK_agree_1R, BFIK_agree_3R, BFIK_agree_2
+26     <NA>        BFIK_open_2, BFIK_open_1, BFIK_open_4, BFIK_open_3
+27     <NA>   BFIK_consc_3, BFIK_consc_4, BFIK_consc_2R, BFIK_consc_1
+28     <NA>  BFIK_extra_2, BFIK_extra_3R, BFIK_extra_4, BFIK_extra_1R
+29     <NA>                 BFIK_neuro_2R, BFIK_neuro_3, BFIK_neuro_4
+   item_order n_missing complete_rate n_unique empty count                 min
+1        <NA>         0             1       28     0  <NA>                  64
+2        <NA>         0             1       28    NA  <NA> 2016-07-08 09:54:16
+3        <NA>         0             1       28    NA  <NA> 2016-07-08 09:55:43
+4        <NA>         0             1       28    NA  <NA> 2016-07-08 09:55:43
+5        <NA>        28             0       NA    NA    :                 <NA>
+6           4         0             1       NA    NA  <NA>                   2
+7           5         0             1       NA    NA  <NA>                   1
+8           6         0             1       NA    NA  <NA>                   1
+9           7         0             1       NA    NA  <NA>                   2
+10          8         0             1       NA    NA  <NA>                   2
+11          9         0             1       NA    NA  <NA>                   2
+12         10         0             1       NA    NA  <NA>                   1
+13         11         0             1       NA    NA  <NA>                   2
+14         12         0             1       NA    NA  <NA>                   1
+15         13         0             1       NA    NA  <NA>                   1
+16         14         0             1       NA    NA  <NA>                   1
+17         15         0             1       NA    NA  <NA>                   1
+18         16         0             1       NA    NA  <NA>                   1
+19         17         0             1       NA    NA  <NA>                   1
+20         18         0             1       NA    NA  <NA>                   2
+21         19         0             1       NA    NA  <NA>                   1
+22         20         0             1       NA    NA  <NA>                   1
+23         21         0             1       NA    NA  <NA>                   1
+24         22         0             1       NA    NA  <NA>                   2
+25       <NA>         0             1       NA    NA  <NA>                 1.5
+26       <NA>         0             1       NA    NA  <NA>                 3.0
+27       <NA>         0             1       NA    NA  <NA>                 2.0
+28       <NA>         0             1       NA    NA  <NA>                 1.5
+29       <NA>         0             1       NA    NA  <NA>                 1.3
+                  median                 max     mean        sd whitespace
+1                   <NA>                  64       NA        NA          0
+2  2016-07-08 12:47:07.5 2016-11-02 21:19:50       NA        NA         NA
+3  2016-07-08 14:23:22.5 2016-11-02 21:21:53       NA        NA         NA
+4  2016-07-08 14:23:22.5 2016-11-02 21:21:53       NA        NA         NA
+5                   <NA>                <NA>      NaN        NA         NA
+6                    4.0                   5 4.214286 0.7382232         NA
+7                    3.0                   5 2.928571 1.1841100         NA
+8                    4.0                   5 4.178571 1.0904831         NA
+9                    3.0                   5 3.000000 0.9428090         NA
+10                   5.0                   5 4.392857 0.8317445         NA
+11                   3.0                   5 3.107143 0.8751417         NA
+12                   4.0                   5 3.500000 1.0363755         NA
+13                   4.0                   5 3.857143 0.7559289         NA
+14                   4.0                   5 3.178571 1.3067792         NA
+15                   3.0                   5 3.035714 1.2904820         NA
+16                   4.0                   5 3.750000 1.2056964         NA
+17                   3.0                   5 3.071429 1.2744954         NA
+18                   2.0                   4 2.500000 1.2018504         NA
+19                   4.0                   5 3.500000 1.2619796         NA
+20                   4.0                   5 4.071429 0.8997354         NA
+21                   4.0                   5 4.214286 0.9567361         NA
+22                   4.0                   5 3.857143 1.1126973         NA
+23                   4.0                   5 3.607143 1.1968875         NA
+24                   4.5                   5 4.214286 0.9567361         NA
+25                   3.0                 4.8 3.116071 0.9316506         NA
+26                   4.2                 5.0 4.258929 0.5630692         NA
+27                   3.8                 5.0 3.651786 0.7915622         NA
+28                   4.2                 5.0 3.848214 1.0099947         NA
+29                   2.8                 4.3 2.892857 0.9254231         NA
+   n_value_labels     hist
+1              NA     <NA>
+2              NA     <NA>
+3              NA     <NA>
+4              NA     <NA>
+5              NA     <NA>
+6               6 ▁▁▁▁▁▇▁▅
+7               6 ▂▇▁▃▁▅▁▂
+8               6 ▁▁▁▁▁▇▁▇
+9               6 ▇▁▅▁▁▆▁▁
+10              6 ▁▁▂▁▁▃▁▇
+11              6 ▆▁▇▁▁▇▁▁
+12              6 ▁▂▁▅▁▇▁▂
+13              6 ▁▁▃▁▁▇▁▂
+14              6 ▃▂▁▃▁▇▁▂
+15              6 ▂▇▁▃▁▇▁▃
+16              6 ▂▂▁▅▁▇▁▇
+17              6 ▃▇▁▇▁▅▁▅
+18              6 ▆▁▇▁▁▂▁▇
+19              6 ▂▅▁▅▁▇▁▆
+20              6 ▁▁▂▁▁▇▁▇
+21              6 ▁▁▁▂▁▆▁▇
+22              6 ▁▂▁▃▁▇▁▆
+23              6 ▁▅▁▆▁▇▁▇
+24              6 ▁▁▂▁▁▅▁▇
+25             NA    ▂▇▅▅▃
+26             NA    ▂▃▁▇▇
+27             NA    ▂▃▇▇▃
+28             NA    ▂▂▃▅▇
+29             NA    ▅▇▇▆▇
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("codebook_table", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("compact_codebook")
+> ### * compact_codebook
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: compact_codebook
+> ### Title: Compact Codebook
+> ### Aliases: compact_codebook
+> 
+> ### ** Examples
+> 
+> # will generate figures in a figure/ subdirectory
+> ## Not run: 
+> ##D data("bfi")
+> ##D bfi <- bfi[, c("BFIK_open_1", "BFIK_open_2")]
+> ##D compact_codebook(bfi)
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("compact_codebook", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("compute_reliabilities")
+> ### * compute_reliabilities
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: compute_reliabilities
+> ### Title: Compute reliabilities
+> ### Aliases: compute_reliabilities
+> 
+> ### ** Examples
+> 
+> data("bfi", package = "codebook")
+> bfi <- bfi %>% dplyr::select(dplyr::starts_with("BFIK_agree"))
+> reliabilities <- compute_reliabilities(bfi)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("compute_reliabilities", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+
+detaching ‘package:future’
+
+> nameEx("data_description_default")
+> ### * data_description_default
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: data_description_default
+> ### Title: Data description default
+> ### Aliases: data_description_default
+> 
+> ### ** Examples
+> 
+> data('bfi')
+> data_description_default(bfi)
+The dataset has N=28 rows and 29 columns.
+0 rows have no missing values on any column.
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("data_description_default", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("detect_scales")
+> ### * detect_scales
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: detect_scales
+> ### Title: Detect item scales
+> ### Aliases: detect_scales
+> 
+> ### ** Examples
+> 
+> bfi <- data.frame(matrix(data = rnorm(300), ncol = 3))
+> names(bfi) <- c("bfi_e1", "bfi_e2R", "bfi_e3")
+> bfi$bfi_e <- rowMeans(bfi[, c("bfi_e1", "bfi_e2R", "bfi_e3")])
+> bfi <- detect_scales(bfi)
+3 bfi_e items connected to scale
+> bfi$bfi_e
+  [1] -0.27913955  0.63821083 -0.05332061  0.47413392 -0.87010414  1.14816016
+  [7]  0.62373423  0.72994209  0.31552240  0.62896537  0.23722296  0.11629772
+ [13]  0.13693164 -1.41186804  0.63512948  0.36066783 -0.21497457 -0.19618895
+ [19]  0.65255028  0.12395390 -0.44006617  0.70910233 -0.25677159 -0.83662560
+ [25] -0.21231245  0.81989316 -0.18683065 -1.03796666 -0.32087237  0.11894898
+ [31]  0.14433776 -1.19353430  0.09289537 -0.33389716 -0.37674166 -0.68320771
+ [37] -0.04481512 -0.59135065  0.51490255  0.23364498 -0.45719078  0.65244312
+ [43] -0.24817622 -0.26185827 -0.21390375 -1.15282637  0.63565259  0.17675261
+ [49] -0.52158926  0.08698870  0.32817162 -0.07447287 -0.01553450 -0.76879653
+ [55]  0.21370473  0.68381199 -0.59009630 -0.36422059 -0.14666094  0.43632277
+ [61]  1.25924365 -0.22237476  0.48796392  0.59061153  0.11903701  0.88831655
+ [67] -0.82738989 -0.38268436 -0.10739308  0.48010689  0.84151845 -0.06992163
+ [73]  0.07195602  0.54597210 -0.47720752  0.46230916 -0.64825875  0.93911717
+ [79] -0.07150380  0.51273038 -0.46728733  0.14706279  0.90742348 -1.23068283
+ [85]  0.17811821 -0.27562547  0.61983618 -0.04169366  0.12450307  0.11538284
+ [91] -0.36991422  0.66208329  0.22427312  0.03477649  0.71905999 -0.11835011
+ [97]  0.31005483 -0.21132540 -0.28773453 -0.38676404
+attr(,"scale_item_names")
+[1] "bfi_e1"  "bfi_e2R" "bfi_e3" 
+attr(,"label")
+[1] "aggregate of 3 bfi_e items"
+> bfi <- data.frame(matrix(data = rnorm(300), ncol = 3))
+> names(bfi) <- c("bfi_e1", "bfi_e2R", "bfi_e3")
+> bfi$bfi_e <- rowMeans(bfi[, c("bfi_e1", "bfi_e2R", "bfi_e3")])
+> bfi <- detect_scales(bfi)
+3 bfi_e items connected to scale
+> bfi$bfi_e
+  [1]  0.6818059278  0.1838293277  0.0616992807 -0.2544024129  0.7431747689
+  [6]  0.9101742417 -0.5521254943  0.0073108430  0.5255654858 -0.4962513789
+ [11] -0.6243519121 -0.0614292065 -0.0988679735 -0.4601346877 -0.3159151441
+ [16]  0.6080927265  0.0371356294  0.0006478984 -1.0300464087  1.1311784382
+ [21]  0.6685478557  0.3591121697 -0.0450714703 -1.1404170156  0.3346741012
+ [26]  0.1279872518 -0.7116358299  0.1903782077 -0.2746043216  0.0471156704
+ [31] -1.1842343513  0.0337033423 -0.6066823957  0.2958878457  0.6335771897
+ [36] -0.0783459003  0.7139849978  0.4201403515 -0.1325866537 -0.0634527862
+ [41] -0.0375538726  0.3547630998  0.2471440823  0.1939743425 -0.2470924937
+ [46] -1.4942436849 -0.3834628936 -0.0260183597 -0.3872318142 -0.0210916378
+ [51]  0.9775129223 -0.0506773190 -0.4966859194 -0.7144682074  0.5579427997
+ [56] -0.0303161781 -0.9986398840 -0.4804266842 -1.1415274856 -0.0567912299
+ [61] -1.4202429319  1.1522706802  0.4371476574 -0.1406542767 -0.2570539414
+ [66]  0.6627397237 -0.0916918750  0.3453558040  0.0939643685  0.2068577631
+ [71] -0.7320533768 -0.1639041103 -0.0423448440 -0.0318508332  0.3439173225
+ [76] -0.1133828784  0.3562867609  0.7041554173 -0.3107696289  0.1902403667
+ [81] -0.3237438519  0.0440989597  0.0480005476  0.4933690063  1.3312254038
+ [86]  1.0895610712 -0.8136462672 -0.0766166390 -1.1672183008 -0.3525129316
+ [91] -0.0199547321  0.9218183035  0.5332990664 -0.2064257995  0.5285942568
+ [96] -0.4216481843  0.3614399191 -0.4993302658  0.1790767598 -0.2570425666
+attr(,"scale_item_names")
+[1] "bfi_e1"  "bfi_e2R" "bfi_e3" 
+attr(,"label")
+[1] "aggregate of 3 bfi_e items"
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("detect_scales", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("ended")
+> ### * ended
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: ended
+> ### Title: How many surveys were ended?
+> ### Aliases: ended
+> 
+> ### ** Examples
+> 
+> survey <- data.frame(ended = c("2016-05-28 10:11:00", NA, "2016-05-30 11:18:28"))
+> ended(survey = survey)
+[1] 2
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("ended", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("expired")
+> ### * expired
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: expired
+> ### Title: How many surveys were expired?
+> ### Aliases: expired
+> 
+> ### ** Examples
+> 
+> survey <- data.frame(expired = c(NA, "2016-05-29 10:11:00", NA))
+> expired(survey = survey)
+[1] 1
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("expired", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("has_label")
+> ### * has_label
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: has_label
+> ### Title: Has label
+> ### Aliases: has_label
+> 
+> ### ** Examples
+> 
+> example("labelled", "haven")
+
+lablld> s1 <- labelled(c("M", "M", "F"), c(Male = "M", Female = "F"))
+
+lablld> s2 <- labelled(c(1, 1, 2), c(Male = 1, Female = 2))
+
+lablld> s3 <- labelled(
+lablld+   c(1, 1, 2),
+lablld+   c(Male = 1, Female = 2),
+lablld+   label = "Assigned sex at birth"
+lablld+ )
+
+lablld> # Unfortunately it's not possible to make as.factor work for labelled objects
+lablld> # so instead use as_factor. This works for all types of labelled vectors.
+lablld> as_factor(s1)
+[1] Male   Male   Female
+Levels: Female Male
+
+lablld> as_factor(s1, levels = "values")
+[1] M M F
+Levels: M F
+
+lablld> as_factor(s2)
+[1] Male   Male   Female
+Levels: Male Female
+
+lablld> # Other statistical software supports multiple types of missing values
+lablld> s3 <- labelled(
+lablld+   c("M", "M", "F", "X", "N/A"),
+lablld+   c(Male = "M", Female = "F", Refused = "X", "Not applicable" = "N/A")
+lablld+ )
+
+lablld> s3
+<labelled<character>[5]>
+[1] M   M   F   X   N/A
+
+Labels:
+ value          label
+     M           Male
+     F         Female
+     X        Refused
+   N/A Not applicable
+
+lablld> as_factor(s3)
+[1] Male           Male           Female         Refused        Not applicable
+Levels: Female Male Not applicable Refused
+
+lablld> # Often when you have a partially labelled numeric vector, labelled values
+lablld> # are special types of missing. Use zap_labels to replace labels with missing
+lablld> # values
+lablld> x <- labelled(c(1, 2, 1, 2, 10, 9), c(Unknown = 9, Refused = 10))
+
+lablld> zap_labels(x)
+[1]  1  2  1  2 10  9
+> has_label(x)
+[1] TRUE
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("has_label", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+
+detaching ‘package:haven’
+
+> nameEx("has_labels")
+> ### * has_labels
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: has_labels
+> ### Title: Has labels
+> ### Aliases: has_labels
+> 
+> ### ** Examples
+> 
+> example("labelled", "haven")
+
+lablld> s1 <- labelled(c("M", "M", "F"), c(Male = "M", Female = "F"))
+
+lablld> s2 <- labelled(c(1, 1, 2), c(Male = 1, Female = 2))
+
+lablld> s3 <- labelled(
+lablld+   c(1, 1, 2),
+lablld+   c(Male = 1, Female = 2),
+lablld+   label = "Assigned sex at birth"
+lablld+ )
+
+lablld> # Unfortunately it's not possible to make as.factor work for labelled objects
+lablld> # so instead use as_factor. This works for all types of labelled vectors.
+lablld> as_factor(s1)
+[1] Male   Male   Female
+Levels: Female Male
+
+lablld> as_factor(s1, levels = "values")
+[1] M M F
+Levels: M F
+
+lablld> as_factor(s2)
+[1] Male   Male   Female
+Levels: Male Female
+
+lablld> # Other statistical software supports multiple types of missing values
+lablld> s3 <- labelled(
+lablld+   c("M", "M", "F", "X", "N/A"),
+lablld+   c(Male = "M", Female = "F", Refused = "X", "Not applicable" = "N/A")
+lablld+ )
+
+lablld> s3
+<labelled<character>[5]>
+[1] M   M   F   X   N/A
+
+Labels:
+ value          label
+     M           Male
+     F         Female
+     X        Refused
+   N/A Not applicable
+
+lablld> as_factor(s3)
+[1] Male           Male           Female         Refused        Not applicable
+Levels: Female Male Not applicable Refused
+
+lablld> # Often when you have a partially labelled numeric vector, labelled values
+lablld> # are special types of missing. Use zap_labels to replace labels with missing
+lablld> # values
+lablld> x <- labelled(c(1, 2, 1, 2, 10, 9), c(Unknown = 9, Refused = 10))
+
+lablld> zap_labels(x)
+[1]  1  2  1  2 10  9
+> has_labels(x)
+[1] TRUE
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("has_labels", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+
+detaching ‘package:haven’
+
+> nameEx("knit_print.alpha")
+> ### * knit_print.alpha
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: knit_print.alpha
+> ### Title: Pretty-print a Cronbach's alpha object
+> ### Aliases: knit_print.alpha
+> 
+> ### ** Examples
+> 
+> example("alpha", "psych")
+
+Attaching package: ‘psych’
+
+The following object is masked from ‘package:codebook’:
+
+    bfi
+
+
+alpha> set.seed(42) #keep the same starting values
+
+alpha> #four congeneric measures
+alpha> r4 <- sim.congeneric()
+
+alpha> alpha(r4)
+
+Reliability analysis   
+Call: alpha(x = r4)
+
+  raw_alpha std.alpha G6(smc) average_r S/N median_r
+      0.74      0.74    0.69      0.42 2.9     0.41
+
+    95% confidence boundaries 
+      lower alpha upper
+Feldt -0.31  0.74  0.98
+
+ Reliability if an item is dropped:
+   raw_alpha std.alpha G6(smc) average_r S/N  var.r med.r
+V1      0.62      0.62    0.53      0.36 1.7 0.0036  0.35
+V2      0.66      0.66    0.57      0.39 1.9 0.0081  0.40
+V3      0.70      0.70    0.62      0.44 2.3 0.0120  0.40
+V4      0.74      0.74    0.66      0.49 2.8 0.0049  0.48
+
+ Item statistics 
+      r r.cor r.drop
+V1 0.81  0.74   0.64
+V2 0.78  0.67   0.57
+V3 0.73  0.59   0.51
+V4 0.68  0.50   0.43
+
+alpha> #nine hierarchical measures -- should actually use omega
+alpha> r9 <- sim.hierarchical()
+
+alpha> alpha(r9)
+
+Reliability analysis   
+Call: alpha(x = r9)
+
+  raw_alpha std.alpha G6(smc) average_r S/N median_r
+      0.76      0.76    0.76      0.26 3.2     0.25
+
+    95% confidence boundaries 
+      lower alpha upper
+Feldt  0.43  0.76  0.94
+
+ Reliability if an item is dropped:
+   raw_alpha std.alpha G6(smc) average_r S/N  var.r med.r
+V1      0.71      0.71    0.70      0.24 2.5 0.0067  0.22
+V2      0.72      0.72    0.71      0.25 2.6 0.0085  0.23
+V3      0.74      0.74    0.73      0.26 2.8 0.0101  0.25
+V4      0.73      0.73    0.72      0.25 2.7 0.0106  0.23
+V5      0.74      0.74    0.73      0.26 2.9 0.0112  0.24
+V6      0.75      0.75    0.74      0.27 3.0 0.0113  0.25
+V7      0.75      0.75    0.74      0.27 3.0 0.0129  0.25
+V8      0.76      0.76    0.75      0.28 3.1 0.0118  0.26
+V9      0.77      0.77    0.76      0.29 3.3 0.0099  0.28
+
+ Item statistics 
+      r r.cor r.drop
+V1 0.72  0.71   0.61
+V2 0.67  0.63   0.54
+V3 0.61  0.55   0.47
+V4 0.65  0.59   0.51
+V5 0.59  0.52   0.45
+V6 0.53  0.43   0.38
+V7 0.56  0.46   0.40
+V8 0.50  0.39   0.34
+V9 0.45  0.32   0.28
+
+alpha> # examples of two independent factors that produce reasonable alphas
+alpha> #this is a case where alpha is a poor indicator of unidimensionality
+alpha> 
+alpha> two.f <- sim.item(8)$item
+
+alpha> #specify which items to reverse key by name
+alpha>  alpha(two.f,keys=c("V3","V4","V5","V6"))
+Number of categories should be increased  in order to count frequencies. 
+
+Reliability analysis   
+Call: alpha(x = two.f, keys = c("V3", "V4", "V5", "V6"))
+
+  raw_alpha std.alpha G6(smc) average_r S/N   ase  mean   sd median_r
+      0.58      0.58    0.62      0.15 1.4 0.029 0.072 0.51    0.051
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.52  0.58  0.63
+Duhachek  0.53  0.58  0.64
+
+ Reliability if an item is dropped:
+    raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
+V1       0.55      0.55    0.58      0.15 1.2    0.031 0.032 0.056
+V2       0.53      0.53    0.57      0.14 1.1    0.033 0.034 0.029
+V3-      0.55      0.55    0.58      0.15 1.2    0.031 0.031 0.056
+V4-      0.55      0.54    0.58      0.15 1.2    0.032 0.032 0.056
+V5-      0.56      0.56    0.59      0.15 1.3    0.031 0.030 0.056
+V6-      0.56      0.56    0.59      0.15 1.3    0.031 0.030 0.056
+V7       0.53      0.53    0.56      0.14 1.1    0.033 0.031 0.041
+V8       0.56      0.57    0.59      0.16 1.3    0.030 0.030 0.047
+
+ Item statistics 
+      n raw.r std.r r.cor r.drop    mean   sd
+V1  500  0.50  0.50  0.38   0.28  0.0117 1.01
+V2  500  0.55  0.55  0.46   0.34 -0.0018 1.00
+V3- 500  0.50  0.50  0.39   0.27  0.1443 1.05
+V4- 500  0.51  0.51  0.41   0.30  0.1502 0.99
+V5- 500  0.48  0.48  0.36   0.26  0.1030 1.01
+V6- 500  0.48  0.48  0.36   0.26  0.1128 1.00
+V7  500  0.56  0.56  0.48   0.35  0.0222 1.00
+V8  500  0.45  0.46  0.33   0.23  0.0320 0.96
+
+alpha>  cov.two <- cov(two.f)
+
+alpha>  alpha(cov.two,check.keys=TRUE)
+Warning in alpha(cov.two, check.keys = TRUE) :
+  Some items were negatively correlated with the first principal component and were automatically reversed.
+ This is indicated by a negative sign for the variable name.
+
+Reliability analysis   
+Call: alpha(x = cov.two, check.keys = TRUE)
+
+  raw_alpha std.alpha G6(smc) average_r S/N median_r
+      0.58      0.58    0.62      0.15 1.4    0.051
+
+    95% confidence boundaries 
+      lower alpha upper
+Feldt -0.07  0.58   0.9
+
+ Reliability if an item is dropped:
+    raw_alpha std.alpha G6(smc) average_r S/N var.r med.r
+V1       0.55      0.55    0.58      0.15 1.2 0.032 0.056
+V2       0.53      0.53    0.57      0.14 1.1 0.034 0.029
+V3-      0.55      0.55    0.58      0.15 1.2 0.031 0.056
+V4-      0.55      0.54    0.58      0.15 1.2 0.032 0.056
+V5-      0.56      0.56    0.59      0.15 1.3 0.030 0.056
+V6-      0.56      0.56    0.59      0.15 1.3 0.030 0.056
+V7       0.53      0.53    0.56      0.14 1.1 0.031 0.041
+V8       0.56      0.57    0.59      0.16 1.3 0.030 0.047
+
+ Item statistics 
+       r r.cor r.drop
+V1  0.50  0.38   0.28
+V2  0.55  0.46   0.34
+V3- 0.50  0.39   0.27
+V4- 0.51  0.41   0.30
+V5- 0.48  0.36   0.26
+V6- 0.48  0.36   0.26
+V7  0.56  0.48   0.35
+V8  0.46  0.33   0.23
+
+alpha>  #automatic reversal base upon first component
+alpha> alpha(two.f,check.keys=TRUE)    #note that the median is much less than the average R
+Number of categories should be increased  in order to count frequencies. 
+Warning in alpha(two.f, check.keys = TRUE) :
+  Some items were negatively correlated with the first principal component and were automatically reversed.
+ This is indicated by a negative sign for the variable name.
+
+Reliability analysis   
+Call: alpha(x = two.f, check.keys = TRUE)
+
+  raw_alpha std.alpha G6(smc) average_r S/N   ase  mean   sd median_r
+      0.58      0.58    0.62      0.15 1.4 0.029 0.072 0.51    0.051
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.52  0.58  0.63
+Duhachek  0.53  0.58  0.64
+
+ Reliability if an item is dropped:
+    raw_alpha std.alpha G6(smc) average_r S/N alpha se var.r med.r
+V1       0.55      0.55    0.58      0.15 1.2    0.031 0.032 0.056
+V2       0.53      0.53    0.57      0.14 1.1    0.033 0.034 0.029
+V3-      0.55      0.55    0.58      0.15 1.2    0.031 0.031 0.056
+V4-      0.55      0.54    0.58      0.15 1.2    0.032 0.032 0.056
+V5-      0.56      0.56    0.59      0.15 1.3    0.031 0.030 0.056
+V6-      0.56      0.56    0.59      0.15 1.3    0.031 0.030 0.056
+V7       0.53      0.53    0.56      0.14 1.1    0.033 0.031 0.041
+V8       0.56      0.57    0.59      0.16 1.3    0.030 0.030 0.047
+
+ Item statistics 
+      n raw.r std.r r.cor r.drop    mean   sd
+V1  500  0.50  0.50  0.38   0.28  0.0117 1.01
+V2  500  0.55  0.55  0.46   0.34 -0.0018 1.00
+V3- 500  0.50  0.50  0.39   0.27  0.1443 1.05
+V4- 500  0.51  0.51  0.41   0.30  0.1502 0.99
+V5- 500  0.48  0.48  0.36   0.26  0.1030 1.01
+V6- 500  0.48  0.48  0.36   0.26  0.1128 1.00
+V7  500  0.56  0.56  0.48   0.35  0.0222 1.00
+V8  500  0.45  0.46  0.33   0.23  0.0320 0.96
+
+alpha> #this suggests (correctly) that the 1 factor model is probably wrong 
+alpha> #an example with discrete item responses  -- show the frequencies
+alpha> items <- sim.congeneric(N=500,short=FALSE,low=-2,high=2,
+alpha+         categorical=TRUE) #500 responses to 4 discrete items with 5 categories
+
+alpha> a4 <- alpha(items$observed)  #item response analysis of congeneric measures
+
+alpha> a4
+
+Reliability analysis   
+Call: alpha(x = items$observed)
+
+  raw_alpha std.alpha G6(smc) average_r S/N  ase   mean   sd median_r
+      0.73      0.73    0.68       0.4 2.7 0.02 -0.013 0.76      0.4
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.69  0.73  0.76
+Duhachek  0.69  0.73  0.77
+
+ Reliability if an item is dropped:
+   raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r med.r
+V1      0.61      0.61    0.52      0.34 1.6    0.031 0.0063  0.32
+V2      0.64      0.64    0.55      0.37 1.8    0.028 0.0097  0.37
+V3      0.68      0.68    0.60      0.41 2.1    0.025 0.0134  0.37
+V4      0.73      0.73    0.65      0.48 2.8    0.021 0.0036  0.47
+
+ Item statistics 
+     n raw.r std.r r.cor r.drop   mean   sd
+V1 500  0.80  0.80  0.73   0.62  0.050 1.00
+V2 500  0.77  0.77  0.67   0.57 -0.022 1.03
+V3 500  0.72  0.73  0.58   0.50 -0.028 0.99
+V4 500  0.67  0.66  0.46   0.40 -0.050 1.05
+
+Non missing response frequency for each item
+     -2   -1    0    1    2 miss
+V1 0.06 0.24 0.38 0.25 0.07    0
+V2 0.07 0.26 0.35 0.25 0.07    0
+V3 0.05 0.27 0.38 0.22 0.07    0
+V4 0.10 0.22 0.39 0.22 0.07    0
+
+alpha> #summary just gives Alpha
+alpha> summary(a4)
+
+Reliability analysis   
+ raw_alpha std.alpha G6(smc) average_r S/N  ase   mean   sd median_r
+      0.73      0.73    0.68       0.4 2.7 0.02 -0.013 0.76      0.4
+
+alpha> alpha2r(alpha = .74,n.var=4)
+[1] 0.4157303
+
+alpha> #because alpha.ci returns an invisible object, you need to print it
+alpha> print(alpha.ci(.74, 100,p.val=.05,n.var=4))
+
+   95% confidence boundaries (Feldt)
+ lower alpha upper
+  0.65  0.74  0.81
+> knitr::knit_print(a4)
+
+Reliability analysis   
+Call: alpha(x = items$observed)
+
+  raw_alpha std.alpha G6(smc) average_r S/N  ase   mean   sd median_r
+      0.73      0.73    0.68       0.4 2.7 0.02 -0.013 0.76      0.4
+
+    95% confidence boundaries 
+         lower alpha upper
+Feldt     0.69  0.73  0.76
+Duhachek  0.69  0.73  0.77
+
+ Reliability if an item is dropped:
+   raw_alpha std.alpha G6(smc) average_r S/N alpha se  var.r med.r
+V1      0.61      0.61    0.52      0.34 1.6    0.031 0.0063  0.32
+V2      0.64      0.64    0.55      0.37 1.8    0.028 0.0097  0.37
+V3      0.68      0.68    0.60      0.41 2.1    0.025 0.0134  0.37
+V4      0.73      0.73    0.65      0.48 2.8    0.021 0.0036  0.47
+
+ Item statistics 
+     n raw.r std.r r.cor r.drop   mean   sd
+V1 500  0.80  0.80  0.73   0.62  0.050 1.00
+V2 500  0.77  0.77  0.67   0.57 -0.022 1.03
+V3 500  0.72  0.73  0.58   0.50 -0.028 0.99
+V4 500  0.67  0.66  0.46   0.40 -0.050 1.05
+
+Non missing response frequency for each item
+     -2   -1    0    1    2 miss
+V1 0.06 0.24 0.38 0.25 0.07    0
+V2 0.07 0.26 0.35 0.25 0.07    0
+V3 0.05 0.27 0.38 0.22 0.07    0
+V4 0.10 0.22 0.39 0.22 0.07    0
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("knit_print.alpha", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+
+detaching ‘package:psych’
+
+> nameEx("knit_print.htest")
+> ### * knit_print.htest
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: knit_print.htest
+> ### Title: Print a 'stats::cor.test()' object for knitr
+> ### Aliases: knit_print.htest
+> 
+> ### ** Examples
+> 
+> knitr::knit_print(cor.test(rnorm(100), rnorm(100)))
+No viewer found, probably documenting or testing
+
+
+
+```
+
+	Pearson's product-moment correlation
+
+data:  rnorm(100) and rnorm(100)
+t = -0.0098433, df = 98, p-value = 0.9922
+alternative hypothesis: true correlation is not equal to 0
+95 percent confidence interval:
+ -0.1973739  0.1954620
+sample estimates:
+          cor 
+-0.0009943199 
+
+```
+
+
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("knit_print.htest", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("knit_print.multilevel")
+> ### * knit_print.multilevel
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: knit_print.multilevel
+> ### Title: Print a 'psych::multilevel.reliability()' object for knitr
+> ### Aliases: knit_print.multilevel
+> 
+> ### ** Examples
+> 
+> example("mlr", "psych")
+
+Attaching package: ‘psych’
+
+The following object is masked from ‘package:codebook’:
+
+    bfi
+
+
+mlr> #data from Shrout and Lane, 2012.
+mlr> 
+mlr> shrout <- structure(list(Person = c(1L, 2L, 3L, 4L, 5L, 1L, 2L, 3L, 4L, 
+mlr+ 5L, 1L, 2L, 3L, 4L, 5L, 1L, 2L, 3L, 4L, 5L), Time = c(1L, 1L, 
+mlr+ 1L, 1L, 1L, 2L, 2L, 2L, 2L, 2L, 3L, 3L, 3L, 3L, 3L, 4L, 4L, 4L, 
+mlr+ 4L, 4L), Item1 = c(2L, 3L, 6L, 3L, 7L, 3L, 5L, 6L, 3L, 8L, 4L, 
+mlr+ 4L, 7L, 5L, 6L, 1L, 5L, 8L, 8L, 6L), Item2 = c(3L, 4L, 6L, 4L, 
+mlr+ 8L, 3L, 7L, 7L, 5L, 8L, 2L, 6L, 8L, 6L, 7L, 3L, 9L, 9L, 7L, 8L
+mlr+ ), Item3 = c(6L, 4L, 5L, 3L, 7L, 4L, 7L, 8L, 9L, 9L, 5L, 7L, 
+mlr+ 9L, 7L, 8L, 4L, 7L, 9L, 9L, 6L)), .Names = c("Person", "Time", 
+mlr+ "Item1", "Item2", "Item3"), class = "data.frame", row.names = c(NA, 
+mlr+ -20L))
+
+mlr> #make shrout super wide
+mlr> #Xwide <- reshape(shrout,v.names=c("Item1","Item2","Item3"),timevar="Time", 
+mlr> #direction="wide",idvar="Person")
+mlr> #add more helpful Names
+mlr> #colnames(Xwide ) <- c("Person",c(paste0("Item",1:3,".T",1),paste0("Item",1:3,".T",2), 
+mlr> #paste0("Item",1:3,".T",3),paste0("Item",1:3,".T",4)))
+mlr> #make superwide into normal form  (i.e., just return it to the original shrout data
+mlr> #Xlong <-Xlong <- reshape(Xwide,idvar="Person",2:13)
+mlr> 
+mlr> #Now use these data for a multilevel repliability study, use the normal wide form output
+mlr> mg <- mlr(shrout,grp="Person",Time="Time",items=3:5) 
+
+mlr> #which is the same as 
+mlr> #mg <- multilevel.reliability(shrout,grp="Person",Time="Time",items=
+mlr> #         c("Item1","Item2","Item3"),plot=TRUE)
+mlr> #to show the lattice plot by subjects, set plot = TRUE
+mlr> 
+mlr> #Alternatively for long input (returned in this case from the prior run)
+mlr> mlr(mg$long,grp="id",Time ="time",items="items", values="values",long=TRUE)
+
+Multilevel Generalizability analysis   
+Call: mlr(x = mg$long, grp = "id", Time = "time", items = "items", 
+    long = TRUE, values = "values")
+
+The data had  5  observations taken over  4  time intervals for  3 items.
+
+ Alternative estimates of reliability based upon Generalizability theory
+
+RkF  =  0.97 Reliability of average of all ratings across all items and  times (Fixed time effects)
+R1R  =  0.6 Generalizability of a single time point across all items (Random time effects)
+RkR  =  0.85 Generalizability of average time points across all items (Random time effects)
+Rc   =  0.74 Generalizability of change (fixed time points, fixed items) 
+RkRn =  0.85 Generalizability of between person differences averaged over time (time nested within people)
+Rcn  =  0.65 Generalizability of within person variations averaged over items  (time nested within people)
+
+ These reliabilities are derived from the components of variance estimated by ANOVA 
+             variance Percent
+ID               2.34    0.44
+Time             0.38    0.07
+Items            0.61    0.11
+ID x time        0.92    0.17
+ID x items       0.12    0.02
+time x items     0.05    0.01
+Residual         0.96    0.18
+Total            5.38    1.00
+
+ The nested components of variance estimated from lme are:
+         variance Percent
+id            2.3    0.45
+id(time)      1.1    0.21
+residual      1.7    0.34
+total         5.1    1.00
+
+To see the ANOVA and alpha by subject, use the short = FALSE option.
+ To see the summaries of the ICCs by subject and time, use all=TRUE
+ To see specific objects select from the following list:
+ ANOVA s.lmer s.lme alpha summary.by.person summary.by.time ICC.by.person ICC.by.time lmer long Call
+mlr> #example of mlArrange
+mlr> #First, add two new columns to shrout and 
+mlr> #then convert to long output using mlArrange
+mlr> total <- rowSums(shrout[3:5])
+
+mlr> caseid <- rep(paste0("ID",1:5),4)
+
+mlr> new.shrout <- cbind(shrout,total=total,case=caseid)
+
+mlr> #now convert to long
+mlr> new.long <- mlArrange(new.shrout,grp="Person",Time="Time",items =3:5,extra=6:7)
+
+mlr> headTail(new.long,6,6)
+     id time values items total case
+1     1    1      2 Item1    11  ID1
+2     1    2      3 Item1    10  ID1
+3     1    3      4 Item1    11  ID1
+4     1    4      1 Item1     8  ID1
+5     1    1      3 Item2    11  ID1
+6     1    2      3 Item2    10  ID1
+... ...  ...    ...  <NA>   ... <NA>
+55    5    3      7 Item2    21  ID5
+56    5    4      8 Item2    20  ID5
+57    5    1      7 Item3    22  ID5
+58    5    2      9 Item3    25  ID5
+59    5    3      8 Item3    21  ID5
+60    5    4      6 Item3    20  ID5
+> knitr::knit_print(mg)
+No viewer found, probably documenting or testing
+
+
+
+```
+
+Multilevel Generalizability analysis   
+Call: mlr(x = shrout, grp = "Person", Time = "Time", items = 3:5)
+
+The data had  5  observations taken over  4  time intervals for  3 items.
+
+ Alternative estimates of reliability based upon Generalizability theory
+
+RkF  =  0.97 Reliability of average of all ratings across all items and  times (Fixed time effects)
+R1R  =  0.6 Generalizability of a single time point across all items (Random time effects)
+RkR  =  0.85 Generalizability of average time points across all items (Random time effects)
+Rc   =  0.74 Generalizability of change (fixed time points, fixed items) 
+RkRn =  0.85 Generalizability of between person differences averaged over time (time nested within people)
+Rcn  =  0.65 Generalizability of within person variations averaged over items  (time nested within people)
+
+ These reliabilities are derived from the components of variance estimated by ANOVA 
+             variance Percent
+ID               2.34    0.44
+Time             0.38    0.07
+Items            0.61    0.11
+ID x time        0.92    0.17
+ID x items       0.12    0.02
+time x items     0.05    0.01
+Residual         0.96    0.18
+Total            5.38    1.00
+
+ The nested components of variance estimated from lme are:
+         variance Percent
+id            2.3    0.45
+id(time)      1.1    0.21
+residual      1.7    0.34
+total         5.1    1.00
+
+To see the ANOVA and alpha by subject, use the short = FALSE option.
+ To see the summaries of the ICCs by subject and time, use all=TRUE
+ To see specific objects select from the following list:
+ ANOVA s.lmer s.lme alpha summary.by.person summary.by.time ICC.by.person ICC.by.time lmer long Call
+```
+
+
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("knit_print.multilevel", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+
+detaching ‘package:psych’
+
+> nameEx("label_browser_static")
+> ### * label_browser_static
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: label_browser_static
+> ### Title: Browse and search variable and value labels
+> ### Aliases: label_browser_static
+> 
+> ### ** Examples
+> 
+> label_browser_static(bfi)
+> 
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("label_browser_static", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("likert_from_items")
+> ### * likert_from_items
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: likert_from_items
+> ### Title: Derive a likert object from items
+> ### Aliases: likert_from_items
+> 
+> ### ** Examples
+> 
+> data("bfi", package = "codebook")
+> open_items <- paste0("BFIK_open_",1:4)
+> graphics::plot(likert_from_items(bfi[, open_items]))
+Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
+ℹ Please use the `linewidth` argument instead.
+ℹ The deprecated feature was likely used in the likert package.
+  Please report the issue at <https://github.com/jbryer/likert/issues>.
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("likert_from_items", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("list_to_dict")
+> ### * list_to_dict
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: list_to_dict
+> ### Title: Go from a named list to a key-value data frame or data
+> ###   dictionary and back
+> ### Aliases: list_to_dict dict_to_list
+> 
+> ### ** Examples
+> 
+> data('bfi')
+> labels <- var_label(bfi)
+> head(labels, 2)
+$session
+NULL
+
+$created
+[1] "user first opened survey"
+
+> dict <- list_to_dict(labels)
+> head(dict, 2)
+# A tibble: 2 × 2
+  variable label                   
+  <chr>    <chr>                   
+1 session  <NA>                    
+2 created  user first opened survey
+> head(dict_to_list(list_to_dict(labels)), 2)
+$session
+NULL
+
+$created
+[1] "user first opened survey"
+
+> 
+> 
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("list_to_dict", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("md_pattern")
+> ### * md_pattern
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: md_pattern
+> ### Title: Missing data patterns
+> ### Aliases: md_pattern
+> 
+> ### ** Examples
+> 
+> data("bfi", package = 'psych')
+> md_pattern(bfi)
+# A tibble: 4 × 28
+  description     E4    N3    O4    A1    A5    C5    E2    A4    C3    O5    C1
+  <chr>        <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+1 Missing val…     1     1     1     1     1     1     1     1     1     1     1
+2 Missing val…     9    11    14    16    16    16    16    19    20    20    21
+3 Missing val…     1     1     1     1     1     1     1     1     1     1     1
+4 99 other, l…    95    92    93    90    93    93    92    87    87    88    93
+# ℹ 16 more variables: E5 <dbl>, N2 <dbl>, N1 <dbl>, O1 <dbl>, E1 <dbl>,
+#   C2 <dbl>, E3 <dbl>, A3 <dbl>, C4 <dbl>, A2 <dbl>, O3 <dbl>, N5 <dbl>,
+#   N4 <dbl>, education <dbl>, var_miss <dbl>, n_miss <dbl>
+> md_pattern(bfi, omit_complete = FALSE, min_freq = 0.2)
+# A tibble: 3 × 31
+  description    O2 gender   age    E4    N3    O4    A1    A5    C5    E2    A4
+  <chr>       <dbl>  <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+1 Missing va…     1      1     1     1     1     1     1     1     1     1     1
+2 Missing va…     0      0     0     9    11    14    16    16    16    16    19
+3 100 other,…   100    100   100    96    93    94    91    94    94    93    88
+# ℹ 19 more variables: C3 <dbl>, O5 <dbl>, C1 <dbl>, E5 <dbl>, N2 <dbl>,
+#   N1 <dbl>, O1 <dbl>, E1 <dbl>, C2 <dbl>, E3 <dbl>, A3 <dbl>, C4 <dbl>,
+#   A2 <dbl>, O3 <dbl>, N5 <dbl>, N4 <dbl>, education <dbl>, var_miss <dbl>,
+#   n_miss <dbl>
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("md_pattern", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metadata")
+> ### * metadata
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metadata
+> ### Title: Add metadata to a dataset
+> ### Aliases: metadata metadata<-
+> 
+> ### ** Examples
+> 
+> data('bfi')
+> metadata(bfi)$name <- "MOCK Big Five Inventory dataset (German metadata demo)"
+> metadata(bfi)$description <- "a small mock Big Five Inventory dataset"
+> metadata(bfi)$identifier <- "doi:10.5281/zenodo.1326520"
+> metadata(bfi)$datePublished <- "2016-06-01"
+> metadata(bfi)$creator <- list(
++   "@type" = "Person",
++   givenName = "Ruben", familyName = "Arslan",
++   email = "ruben.arslan@gmail.com",
++   affiliation = list("@type" = "Organization",
++                      name = "MPI Human Development, Berlin"))
+> metadata(bfi)$citation <- "Arslan (2016). Mock BFI data."
+> metadata(bfi)$url <-
++   "https://rubenarslan.github.io/codebook/articles/codebook.html"
+> metadata(bfi)$temporalCoverage <- "2016"
+> metadata(bfi)$spatialCoverage <- "Goettingen, Germany"
+> metadata(bfi)$keywords <- c("Personality", "Psychology")
+> metadata(bfi)
+$name
+[1] "MOCK Big Five Inventory dataset (German metadata demo)"
+
+$description
+[1] "a small mock Big Five Inventory dataset"
+
+$identifier
+[1] "doi:10.5281/zenodo.1326520"
+
+$datePublished
+[1] "2016-06-01"
+
+$creator
+$creator$`@type`
+[1] "Person"
+
+$creator$givenName
+[1] "Ruben"
+
+$creator$familyName
+[1] "Arslan"
+
+$creator$email
+[1] "ruben.arslan@gmail.com"
+
+$creator$affiliation
+$creator$affiliation$`@type`
+[1] "Organization"
+
+$creator$affiliation$name
+[1] "MPI Human Development, Berlin"
+
+
+
+$citation
+[1] "Arslan (2016). Mock BFI data."
+
+$url
+[1] "https://rubenarslan.github.io/codebook/articles/codebook.html"
+
+$temporalCoverage
+[1] "2016"
+
+$spatialCoverage
+[1] "Goettingen, Germany"
+
+$keywords
+[1] "Personality" "Psychology" 
+
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metadata", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metadata_jsonld")
+> ### * metadata_jsonld
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metadata_jsonld
+> ### Title: Metadata as JSON-LD
+> ### Aliases: metadata_jsonld
+> 
+> ### ** Examples
+> 
+> data("bfi")
+> metadata_jsonld(bfi)
+dev.new(): using pdf(file="Rplots13.pdf")
+No viewer found, probably documenting or testing
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Dataset",
+  "variableMeasured": [
+    {
+      "name": "session",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "created",
+      "description": "user first opened survey",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "modified",
+      "description": "user last edited survey",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "ended",
+      "description": "user finished survey",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "expired",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_open_2",
+      "description": "__Ich bin tiefsinnig, denke gerne über Sachen nach.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_agree_4R",
+      "description": "__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_extra_2",
+      "description": "__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_agree_1R",
+      "description": "__Ich neige dazu, andere zu kritisieren.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_open_1",
+      "description": "__Ich bin vielseitig interessiert.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_neuro_2R",
+      "description": "__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_consc_3",
+      "description": "__Ich bin tüchtig und arbeite flott.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_consc_4",
+      "description": "__Ich mache Pläne und führe sie auch durch.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_consc_2R",
+      "description": "__Ich bin bequem, neige zur Faulheit.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_agree_3R",
+      "description": "__Ich kann mich kalt und distanziert verhalten.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_extra_3R",
+      "description": "__Ich bin eher der \"stille Typ\", wortkarg.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_neuro_3",
+      "description": "__Ich mache mir viele Sorgen.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_neuro_4",
+      "description": "__Ich werde leicht nervös und unsicher.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_agree_2",
+      "description": "__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_consc_1",
+      "description": "__Ich erledige Aufgaben gründlich.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_open_4",
+      "description": "__Ich schätze künstlerische und ästhetische Eindrücke.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_extra_4",
+      "description": "__Ich gehe aus mir heraus, bin gesellig.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_extra_1R",
+      "description": "__Ich bin eher zurückhaltend, reserviert.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_open_3",
+      "description": "__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_agree",
+      "description": "4 BFIK_agree items aggregated by aggregation_function",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_open",
+      "description": "4 BFIK_open items aggregated by aggregation_function",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_consc",
+      "description": "4 BFIK_consc items aggregated by aggregation_function",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_extra",
+      "description": "4 BFIK_extra items aggregated by aggregation_function",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_neuro",
+      "description": "3 BFIK_neuro items aggregated by aggregation_function",
+      "@type": "propertyValue"
+    }
+  ],
+  "description": "\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name          |label                                                                      | n_missing|\n|:-------------|:--------------------------------------------------------------------------|---------:|\n|session       |NA                                                                         |         0|\n|created       |user first opened survey                                                   |         0|\n|modified      |user last edited survey                                                    |         0|\n|ended         |user finished survey                                                       |         0|\n|expired       |NA                                                                         |        28|\n|BFIK_open_2   |__Ich bin tiefsinnig, denke gerne über Sachen nach.__                      |         0|\n|BFIK_agree_4R |__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__       |         0|\n|BFIK_extra_2  |__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__           |         0|\n|BFIK_agree_1R |__Ich neige dazu, andere zu kritisieren.__                                 |         0|\n|BFIK_open_1   |__Ich bin vielseitig interessiert.__                                       |         0|\n|BFIK_neuro_2R |__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__ |         0|\n|BFIK_consc_3  |__Ich bin tüchtig und arbeite flott.__                                     |         0|\n|BFIK_consc_4  |__Ich mache Pläne und führe sie auch durch.__                              |         0|\n|BFIK_consc_2R |__Ich bin bequem, neige zur Faulheit.__                                    |         0|\n|BFIK_agree_3R |__Ich kann mich kalt und distanziert verhalten.__                          |         0|\n|BFIK_extra_3R |__Ich bin eher der \"stille Typ\", wortkarg.__                               |         0|\n|BFIK_neuro_3  |__Ich mache mir viele Sorgen.__                                            |         0|\n|BFIK_neuro_4  |__Ich werde leicht nervös und unsicher.__                                  |         0|\n|BFIK_agree_2  |__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__  |         0|\n|BFIK_consc_1  |__Ich erledige Aufgaben gründlich.__                                       |         0|\n|BFIK_open_4   |__Ich schätze künstlerische und ästhetische Eindrücke.__                   |         0|\n|BFIK_extra_4  |__Ich gehe aus mir heraus, bin gesellig.__                                 |         0|\n|BFIK_extra_1R |__Ich bin eher zurückhaltend, reserviert.__                                |         0|\n|BFIK_open_3   |__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__             |         0|\n|BFIK_agree    |4 BFIK_agree items aggregated by aggregation_function                      |         0|\n|BFIK_open     |4 BFIK_open items aggregated by aggregation_function                       |         0|\n|BFIK_consc    |4 BFIK_consc items aggregated by aggregation_function                      |         0|\n|BFIK_extra    |4 BFIK_extra items aggregated by aggregation_function                      |         0|\n|BFIK_neuro    |3 BFIK_neuro items aggregated by aggregation_function                      |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.7)."
+}
+</script>
+
+<details><summary>JSON-LD metadata</summary>
+The following JSON-LD can be found by search engines, if you share this codebook
+publicly on the web.
+
+```json
+{
+  "@context": "https://schema.org/",
+  "@type": "Dataset",
+  "variableMeasured": [
+    {
+      "name": "session",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "created",
+      "description": "user first opened survey",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "modified",
+      "description": "user last edited survey",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "ended",
+      "description": "user finished survey",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "expired",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_open_2",
+      "description": "__Ich bin tiefsinnig, denke gerne über Sachen nach.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_agree_4R",
+      "description": "__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_extra_2",
+      "description": "__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_agree_1R",
+      "description": "__Ich neige dazu, andere zu kritisieren.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_open_1",
+      "description": "__Ich bin vielseitig interessiert.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_neuro_2R",
+      "description": "__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_consc_3",
+      "description": "__Ich bin tüchtig und arbeite flott.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_consc_4",
+      "description": "__Ich mache Pläne und führe sie auch durch.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_consc_2R",
+      "description": "__Ich bin bequem, neige zur Faulheit.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_agree_3R",
+      "description": "__Ich kann mich kalt und distanziert verhalten.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_extra_3R",
+      "description": "__Ich bin eher der \"stille Typ\", wortkarg.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_neuro_3",
+      "description": "__Ich mache mir viele Sorgen.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_neuro_4",
+      "description": "__Ich werde leicht nervös und unsicher.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_agree_2",
+      "description": "__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_consc_1",
+      "description": "__Ich erledige Aufgaben gründlich.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_open_4",
+      "description": "__Ich schätze künstlerische und ästhetische Eindrücke.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_extra_4",
+      "description": "__Ich gehe aus mir heraus, bin gesellig.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_extra_1R",
+      "description": "__Ich bin eher zurückhaltend, reserviert.__",
+      "value": "5. 1: Trifft überhaupt nicht zu,\n4. 2,\n3. 3,\n2. 4,\n1. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_open_3",
+      "description": "__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__",
+      "value": "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user.",
+      "maxValue": 5,
+      "minValue": 1,
+      "measurementTechnique": "self-report",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_agree",
+      "description": "4 BFIK_agree items aggregated by aggregation_function",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_open",
+      "description": "4 BFIK_open items aggregated by aggregation_function",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_consc",
+      "description": "4 BFIK_consc items aggregated by aggregation_function",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_extra",
+      "description": "4 BFIK_extra items aggregated by aggregation_function",
+      "@type": "propertyValue"
+    },
+    {
+      "name": "BFIK_neuro",
+      "description": "3 BFIK_neuro items aggregated by aggregation_function",
+      "@type": "propertyValue"
+    }
+  ],
+  "description": "\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name          |label                                                                      | n_missing|\n|:-------------|:--------------------------------------------------------------------------|---------:|\n|session       |NA                                                                         |         0|\n|created       |user first opened survey                                                   |         0|\n|modified      |user last edited survey                                                    |         0|\n|ended         |user finished survey                                                       |         0|\n|expired       |NA                                                                         |        28|\n|BFIK_open_2   |__Ich bin tiefsinnig, denke gerne über Sachen nach.__                      |         0|\n|BFIK_agree_4R |__Ich kann mich schroff und abweisend anderen gegenüber verhalten.__       |         0|\n|BFIK_extra_2  |__Ich bin begeisterungsfähig und kann andere leicht mitreißen.__           |         0|\n|BFIK_agree_1R |__Ich neige dazu, andere zu kritisieren.__                                 |         0|\n|BFIK_open_1   |__Ich bin vielseitig interessiert.__                                       |         0|\n|BFIK_neuro_2R |__Ich bin entspannt, lasse mich durch Stress nicht aus der Ruhe bringen.__ |         0|\n|BFIK_consc_3  |__Ich bin tüchtig und arbeite flott.__                                     |         0|\n|BFIK_consc_4  |__Ich mache Pläne und führe sie auch durch.__                              |         0|\n|BFIK_consc_2R |__Ich bin bequem, neige zur Faulheit.__                                    |         0|\n|BFIK_agree_3R |__Ich kann mich kalt und distanziert verhalten.__                          |         0|\n|BFIK_extra_3R |__Ich bin eher der \"stille Typ\", wortkarg.__                               |         0|\n|BFIK_neuro_3  |__Ich mache mir viele Sorgen.__                                            |         0|\n|BFIK_neuro_4  |__Ich werde leicht nervös und unsicher.__                                  |         0|\n|BFIK_agree_2  |__Ich schenke anderen leicht Vertrauen, glaube an das Gute im Menschen.__  |         0|\n|BFIK_consc_1  |__Ich erledige Aufgaben gründlich.__                                       |         0|\n|BFIK_open_4   |__Ich schätze künstlerische und ästhetische Eindrücke.__                   |         0|\n|BFIK_extra_4  |__Ich gehe aus mir heraus, bin gesellig.__                                 |         0|\n|BFIK_extra_1R |__Ich bin eher zurückhaltend, reserviert.__                                |         0|\n|BFIK_open_3   |__Ich habe eine aktive Vorstellungskraft, bin phantasievoll.__             |         0|\n|BFIK_agree    |4 BFIK_agree items aggregated by aggregation_function                      |         0|\n|BFIK_open     |4 BFIK_open items aggregated by aggregation_function                       |         0|\n|BFIK_consc    |4 BFIK_consc items aggregated by aggregation_function                      |         0|\n|BFIK_extra    |4 BFIK_extra items aggregated by aggregation_function                      |         0|\n|BFIK_neuro    |3 BFIK_neuro items aggregated by aggregation_function                      |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.7)."
+}`
+```
+</details>> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metadata_jsonld", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("metadata_list")
+> ### * metadata_list
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: metadata_list
+> ### Title: Metadata from dataframe
+> ### Aliases: metadata_list
+> 
+> ### ** Examples
+> 
+> data("bfi")
+> md_list <- metadata_list(bfi)
+> md_list$variableMeasured[[20]]
+$name
+[1] "BFIK_consc_1"
+
+$description
+[1] "__Ich erledige Aufgaben gründlich.__"
+
+$value
+[1] "1. 1: Trifft überhaupt nicht zu,\n2. 2,\n3. 3,\n4. 4,\n5. 5: Trifft voll und ganz zu,\nNA. Item was never rendered for this user."
+
+$maxValue
+[1] 5
+
+$minValue
+[1] 1
+
+$measurementTechnique
+[1] "self-report"
+
+$`@type`
+[1] "propertyValue"
+
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("metadata_list", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("modified")
+> ### * modified
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: modified
+> ### Title: How many surveys were modified?
+> ### Aliases: modified
+> 
+> ### ** Examples
+> 
+> survey <- data.frame(modified = c(NA, "2016-05-29 10:11:00", NA))
+> modified(survey = survey)
+[1] 1
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("modified", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("new_codebook_rmd")
+> ### * new_codebook_rmd
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: new_codebook_rmd
+> ### Title: Create a codebook rmarkdown document
+> ### Aliases: new_codebook_rmd
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D new_codebook_rmd()
+> ## End(Not run)
+> 
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("new_codebook_rmd", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("plot_labelled")
+> ### * plot_labelled
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_labelled
+> ### Title: Plot labelled vector
+> ### Aliases: plot_labelled
+> 
+> ### ** Examples
+> 
+> data("bfi", package = "codebook")
+> plot_labelled(bfi$BFIK_open_1)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("plot_labelled", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("pull_reliability")
+> ### * pull_reliability
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: pull_reliability
+> ### Title: Briefly summarise available reliability results
+> ### Aliases: pull_reliability
+> ### Keywords: internal
+> 
+> ### ** Examples
+> 
+> ## Not run: 
+> ##D data("bfi", package = "codebook")
+> ##D bfi <- bfi %>% dplyr::select(dplyr::starts_with("BFIK_agree"))
+> ##D reliabilities <- compute_reliabilities(bfi)
+> ##D pull_reliability(reliabilities$BFIK_agree)
+> ##D reliabilities <- compute_reliabilities(bfi, use_psych = FALSE)
+> ##D pull_reliability(reliabilities$BFIK_agree)
+> ## End(Not run)
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("pull_reliability", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("reverse_labelled_values")
+> ### * reverse_labelled_values
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: reverse_labelled_values
+> ### Title: Reverse labelled values reverse the underlying values for a
+> ###   numeric 'haven::labelled()' vector while keeping the labels correct
+> ### Aliases: reverse_labelled_values
+> 
+> ### ** Examples
+> 
+> x <- haven::labelled(rep(1:3, each = 3), c(Bad = 1, Good = 5))
+> x
+<labelled<integer>[9]>
+[1] 1 1 1 2 2 2 3 3 3
+
+Labels:
+ value label
+     1   Bad
+     5  Good
+> reverse_labelled_values(x)
+<labelled<integer>[9]>
+[1] 5 5 5 4 4 4 3 3 3
+
+Labels:
+ value label
+     5   Bad
+     1  Good
+> x <- haven::labelled(rep(1:3, each = 3), c(Bad = 1, Good = 5))
+> x
+<labelled<integer>[9]>
+[1] 1 1 1 2 2 2 3 3 3
+
+Labels:
+ value label
+     1   Bad
+     5  Good
+> reverse_labelled_values(x)
+<labelled<integer>[9]>
+[1] 5 5 5 4 4 4 3 3 3
+
+Labels:
+ value label
+     5   Bad
+     1  Good
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("reverse_labelled_values", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("skim_codebook")
+> ### * skim_codebook
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: skim_codebook
+> ### Title: Skim codebook
+> ### Aliases: skim_codebook
+> 
+> ### ** Examples
+> 
+> skim_codebook(bfi)
+── Data Summary ────────────────────────
+                           Values
+Name                       data  
+Number of rows             28    
+Number of columns          29    
+_______________________          
+Column type frequency:           
+  character                1     
+  haven_labelled           19    
+  logical                  1     
+  numeric                  5     
+  POSIXct                  3     
+________________________         
+Group variables            None  
+
+── Variable type: character ────────────────────────────────────────────────────
+  skim_variable n_missing complete_rate min max empty n_unique whitespace
+1 session               0             1  64  64     0       28          0
+
+── Variable type: haven_labelled ───────────────────────────────────────────────
+   skim_variable n_missing complete_rate mean    sd min median max empty
+ 1 BFIK_open_2           0             1 4.21 0.738   2    4     5    NA
+ 2 BFIK_agree_4R         0             1 2.93 1.18    1    3     5    NA
+ 3 BFIK_extra_2          0             1 4.18 1.09    1    4     5    NA
+ 4 BFIK_agree_1R         0             1 3    0.943   2    3     5    NA
+ 5 BFIK_open_1           0             1 4.39 0.832   2    5     5    NA
+ 6 BFIK_neuro_2R         0             1 3.11 0.875   2    3     5    NA
+ 7 BFIK_consc_3          0             1 3.5  1.04    1    4     5    NA
+ 8 BFIK_consc_4          0             1 3.86 0.756   2    4     5    NA
+ 9 BFIK_consc_2R         0             1 3.18 1.31    1    4     5    NA
+10 BFIK_agree_3R         0             1 3.04 1.29    1    3     5    NA
+11 BFIK_extra_3R         0             1 3.75 1.21    1    4     5    NA
+12 BFIK_neuro_3          0             1 3.07 1.27    1    3     5    NA
+13 BFIK_neuro_4          0             1 2.5  1.20    1    2     4    NA
+14 BFIK_agree_2          0             1 3.5  1.26    1    4     5    NA
+15 BFIK_consc_1          0             1 4.07 0.900   2    4     5    NA
+16 BFIK_open_4           0             1 4.21 0.957   1    4     5    NA
+17 BFIK_extra_4          0             1 3.86 1.11    1    4     5    NA
+18 BFIK_extra_1R         0             1 3.61 1.20    1    4     5    NA
+19 BFIK_open_3           0             1 4.21 0.957   2    4.5   5    NA
+   n_unique whitespace n_value_labels hist    
+ 1       NA         NA              6 ▁▁▁▁▁▇▁▅
+ 2       NA         NA              6 ▂▇▁▃▁▅▁▂
+ 3       NA         NA              6 ▁▁▁▁▁▇▁▇
+ 4       NA         NA              6 ▇▁▅▁▁▆▁▁
+ 5       NA         NA              6 ▁▁▂▁▁▃▁▇
+ 6       NA         NA              6 ▆▁▇▁▁▇▁▁
+ 7       NA         NA              6 ▁▂▁▅▁▇▁▂
+ 8       NA         NA              6 ▁▁▃▁▁▇▁▂
+ 9       NA         NA              6 ▃▂▁▃▁▇▁▂
+10       NA         NA              6 ▂▇▁▃▁▇▁▃
+11       NA         NA              6 ▂▂▁▅▁▇▁▇
+12       NA         NA              6 ▃▇▁▇▁▅▁▅
+13       NA         NA              6 ▆▁▇▁▁▂▁▇
+14       NA         NA              6 ▂▅▁▅▁▇▁▆
+15       NA         NA              6 ▁▁▂▁▁▇▁▇
+16       NA         NA              6 ▁▁▁▂▁▆▁▇
+17       NA         NA              6 ▁▂▁▃▁▇▁▆
+18       NA         NA              6 ▁▅▁▆▁▇▁▇
+19       NA         NA              6 ▁▁▂▁▁▅▁▇
+
+── Variable type: logical ──────────────────────────────────────────────────────
+  skim_variable n_missing complete_rate mean count
+1 expired              28             0  NaN ": " 
+
+── Variable type: numeric ──────────────────────────────────────────────────────
+  skim_variable n_missing complete_rate mean    sd  min median  max hist 
+1 BFIK_agree            0             1 3.12 0.932 1.5    3    4.75 ▂▇▅▅▃
+2 BFIK_open             0             1 4.26 0.563 3      4.25 5    ▂▃▁▇▇
+3 BFIK_consc            0             1 3.65 0.792 2      3.75 5    ▂▃▇▇▃
+4 BFIK_extra            0             1 3.85 1.01  1.5    4.25 5    ▂▂▃▅▇
+5 BFIK_neuro            0             1 2.89 0.925 1.33   2.83 4.33 ▅▇▇▆▇
+
+── Variable type: POSIXct ──────────────────────────────────────────────────────
+  skim_variable n_missing complete_rate min                 max                
+1 created               0             1 2016-07-08 09:54:16 2016-11-02 21:19:50
+2 modified              0             1 2016-07-08 09:55:43 2016-11-02 21:21:53
+3 ended                 0             1 2016-07-08 09:55:43 2016-11-02 21:21:53
+  median              n_unique
+1 2016-07-08 12:47:07       28
+2 2016-07-08 14:23:22       28
+3 2016-07-08 14:23:22       28
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("skim_codebook", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+> nameEx("to_factor")
+> ### * to_factor
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: to_factor
+> ### Title: To factor
+> ### Aliases: to_factor
+> 
+> ### ** Examples
+> 
+> example("labelled", "haven")
+
+lablld> s1 <- labelled(c("M", "M", "F"), c(Male = "M", Female = "F"))
+
+lablld> s2 <- labelled(c(1, 1, 2), c(Male = 1, Female = 2))
+
+lablld> s3 <- labelled(
+lablld+   c(1, 1, 2),
+lablld+   c(Male = 1, Female = 2),
+lablld+   label = "Assigned sex at birth"
+lablld+ )
+
+lablld> # Unfortunately it's not possible to make as.factor work for labelled objects
+lablld> # so instead use as_factor. This works for all types of labelled vectors.
+lablld> as_factor(s1)
+[1] Male   Male   Female
+Levels: Female Male
+
+lablld> as_factor(s1, levels = "values")
+[1] M M F
+Levels: M F
+
+lablld> as_factor(s2)
+[1] Male   Male   Female
+Levels: Male Female
+
+lablld> # Other statistical software supports multiple types of missing values
+lablld> s3 <- labelled(
+lablld+   c("M", "M", "F", "X", "N/A"),
+lablld+   c(Male = "M", Female = "F", Refused = "X", "Not applicable" = "N/A")
+lablld+ )
+
+lablld> s3
+<labelled<character>[5]>
+[1] M   M   F   X   N/A
+
+Labels:
+ value          label
+     M           Male
+     F         Female
+     X        Refused
+   N/A Not applicable
+
+lablld> as_factor(s3)
+[1] Male           Male           Female         Refused        Not applicable
+Levels: Female Male Not applicable Refused
+
+lablld> # Often when you have a partially labelled numeric vector, labelled values
+lablld> # are special types of missing. Use zap_labels to replace labels with missing
+lablld> # values
+lablld> x <- labelled(c(1, 2, 1, 2, 10, 9), c(Unknown = 9, Refused = 10))
+
+lablld> zap_labels(x)
+[1]  1  2  1  2 10  9
+> to_factor(x)
+[1] 1       2       1       2       Refused Unknown
+Levels: 1 2 Unknown Refused
+> to_factor(zap_labelled(x))
+[1] 1       2       1       2       Refused Unknown
+Levels: 1 2 Unknown Refused
+> to_factor(as_factor(x))
+[1] 1       2       1       2       Refused Unknown
+Levels: 1 2 Unknown Refused
+> to_factor(1:4)
+[1] 1 2 3 4
+Levels: 1 2 3 4
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("to_factor", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> cleanEx()
+
+detaching ‘package:haven’
+
+> nameEx("zap_attributes")
+> ### * zap_attributes
+> 
+> flush(stderr()); flush(stdout())
+> 
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: zap_attributes
+> ### Title: Zap attributes
+> ### Aliases: zap_attributes
+> 
+> ### ** Examples
+> 
+> bfi <- data.frame(matrix(data = rnorm(300), ncol = 3))
+> names(bfi) <- c("bfi_e1", "bfi_e2R", "bfi_e3")
+> attributes(bfi$bfi_e1)$label <- "I am outgoing."
+> attributes(bfi$bfi_e2R)$label <- "I prefer books to people."
+> attributes(bfi$bfi_e3)$label <- "I love to party."
+> bfi$bfi_e <- rowMeans(bfi[, c("bfi_e1", "bfi_e2R", "bfi_e3")])
+> bfi <- detect_scales(bfi, quiet = TRUE) # create attributes
+> str(zap_attributes(bfi, "label"))
+'data.frame':	100 obs. of  4 variables:
+ $ bfi_e1 : num  -0.626 0.184 -0.836 1.595 0.33 ...
+ $ bfi_e2R: num  -0.6204 0.0421 -0.9109 0.158 -0.6546 ...
+ $ bfi_e3 : num  0.409 1.689 1.587 -0.331 -2.285 ...
+ $ bfi_e  : num  -0.2791 0.6382 -0.0533 0.4741 -0.8701 ...
+  ..- attr(*, "scale_item_names")= chr [1:3] "bfi_e1" "bfi_e2R" "bfi_e3"
+> zap_attributes(bfi$bfi_e)
+  [1] -0.27913955  0.63821083 -0.05332061  0.47413392 -0.87010414  1.14816016
+  [7]  0.62373423  0.72994209  0.31552240  0.62896537  0.23722296  0.11629772
+ [13]  0.13693164 -1.41186804  0.63512948  0.36066783 -0.21497457 -0.19618895
+ [19]  0.65255028  0.12395390 -0.44006617  0.70910233 -0.25677159 -0.83662560
+ [25] -0.21231245  0.81989316 -0.18683065 -1.03796666 -0.32087237  0.11894898
+ [31]  0.14433776 -1.19353430  0.09289537 -0.33389716 -0.37674166 -0.68320771
+ [37] -0.04481512 -0.59135065  0.51490255  0.23364498 -0.45719078  0.65244312
+ [43] -0.24817622 -0.26185827 -0.21390375 -1.15282637  0.63565259  0.17675261
+ [49] -0.52158926  0.08698870  0.32817162 -0.07447287 -0.01553450 -0.76879653
+ [55]  0.21370473  0.68381199 -0.59009630 -0.36422059 -0.14666094  0.43632277
+ [61]  1.25924365 -0.22237476  0.48796392  0.59061153  0.11903701  0.88831655
+ [67] -0.82738989 -0.38268436 -0.10739308  0.48010689  0.84151845 -0.06992163
+ [73]  0.07195602  0.54597210 -0.47720752  0.46230916 -0.64825875  0.93911717
+ [79] -0.07150380  0.51273038 -0.46728733  0.14706279  0.90742348 -1.23068283
+ [85]  0.17811821 -0.27562547  0.61983618 -0.04169366  0.12450307  0.11538284
+ [91] -0.36991422  0.66208329  0.22427312  0.03477649  0.71905999 -0.11835011
+ [97]  0.31005483 -0.21132540 -0.28773453 -0.38676404
+> bfi <- data.frame(matrix(data = rnorm(300), ncol = 3))
+> names(bfi) <- c("bfi_e1", "bfi_e2R", "bfi_e3")
+> attributes(bfi$bfi_e1)$label <- "I am outgoing."
+> attributes(bfi$bfi_e2R)$label <- "I prefer books to people."
+> attributes(bfi$bfi_e3)$label <- "I love to party."
+> bfi$bfi_e <- rowMeans(bfi[, c("bfi_e1", "bfi_e2R", "bfi_e3")])
+> bfi <- detect_scales(bfi, quiet = TRUE) # create attributes
+> str(zap_attributes(bfi, "label"))
+'data.frame':	100 obs. of  4 variables:
+ $ bfi_e1 : num  0.894 -1.047 1.971 -0.384 1.654 ...
+ $ bfi_e2R: num  1.074 1.896 -0.603 -0.391 -0.416 ...
+ $ bfi_e3 : num  0.0773 -0.2969 -1.1832 0.0113 0.9916 ...
+ $ bfi_e  : num  0.6818 0.1838 0.0617 -0.2544 0.7432 ...
+  ..- attr(*, "scale_item_names")= chr [1:3] "bfi_e1" "bfi_e2R" "bfi_e3"
+> zap_attributes(bfi$bfi_e)
+  [1]  0.6818059278  0.1838293277  0.0616992807 -0.2544024129  0.7431747689
+  [6]  0.9101742417 -0.5521254943  0.0073108430  0.5255654858 -0.4962513789
+ [11] -0.6243519121 -0.0614292065 -0.0988679735 -0.4601346877 -0.3159151441
+ [16]  0.6080927265  0.0371356294  0.0006478984 -1.0300464087  1.1311784382
+ [21]  0.6685478557  0.3591121697 -0.0450714703 -1.1404170156  0.3346741012
+ [26]  0.1279872518 -0.7116358299  0.1903782077 -0.2746043216  0.0471156704
+ [31] -1.1842343513  0.0337033423 -0.6066823957  0.2958878457  0.6335771897
+ [36] -0.0783459003  0.7139849978  0.4201403515 -0.1325866537 -0.0634527862
+ [41] -0.0375538726  0.3547630998  0.2471440823  0.1939743425 -0.2470924937
+ [46] -1.4942436849 -0.3834628936 -0.0260183597 -0.3872318142 -0.0210916378
+ [51]  0.9775129223 -0.0506773190 -0.4966859194 -0.7144682074  0.5579427997
+ [56] -0.0303161781 -0.9986398840 -0.4804266842 -1.1415274856 -0.0567912299
+ [61] -1.4202429319  1.1522706802  0.4371476574 -0.1406542767 -0.2570539414
+ [66]  0.6627397237 -0.0916918750  0.3453558040  0.0939643685  0.2068577631
+ [71] -0.7320533768 -0.1639041103 -0.0423448440 -0.0318508332  0.3439173225
+ [76] -0.1133828784  0.3562867609  0.7041554173 -0.3107696289  0.1902403667
+ [81] -0.3237438519  0.0440989597  0.0480005476  0.4933690063  1.3312254038
+ [86]  1.0895610712 -0.8136462672 -0.0766166390 -1.1672183008 -0.3525129316
+ [91] -0.0199547321  0.9218183035  0.5332990664 -0.2064257995  0.5285942568
+ [96] -0.4216481843  0.3614399191 -0.4993302658  0.1790767598 -0.2570425666
+> 
+> 
+> 
+> base::assign(".dptime", (proc.time() - get(".ptime", pos = "CheckExEnv")), pos = "CheckExEnv")
+> base::cat("zap_attributes", base::get(".format_ptime", pos = 'CheckExEnv')(get(".dptime", pos = "CheckExEnv")), "\n", file=base::get(".ExTimings", pos = 'CheckExEnv'), append=TRUE, sep="\t")
+> ### * <FOOTER>
+> ###
+> cleanEx()
+> options(digits = 7L)
+> base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
+Time elapsed:  3.148 0.128 3.317 0 0 
+> grDevices::dev.off()
+null device 
+          1 
+> ###
+> ### Local variables: ***
+> ### mode: outline-minor ***
+> ### outline-regexp: "\\(> \\)?### [*]+" ***
+> ### End: ***
+> quit('no')

@@ -1,0 +1,81 @@
+```{r setup,eval=TRUE,echo=FALSE}
+if (!exists("indent")) {
+	indent <- '#'
+}
+if (exists("testing")) {
+  scale_name <- safe_name <- "bla"
+	scale <- 1:10
+	reliabilities <- list()
+	items <- data.frame(bla1 = 1:10, bla2 = 1:10, bla3R = 10:1)
+	scale_info <- list(scale_item_names = c("bla1", "bla2", "bla3R"))
+}
+html_scale_name <- recursive_escape(scale_name)
+names(items) <- recursive_escape(names(items))
+scale_info <- recursive_escape(attributes(scale))
+```
+
+`r indent`## Scale: `r html_scale_name` {#`r safe_name` .tabset}
+`r paste0('<a name="', scale_info$scale_item_names, '"></a>', collapse = '', sep = '')`
+
+`r indent`### Overview {#`r safe_name`_likert}
+
+__Reliability__: `r pull_reliability(reliabilities)`.
+
+__Missing__: `r sum(is.na(scale))`.
+
+```{r likert_setup}
+old_height <- knitr::opts_chunk$get("fig.height")
+new_height <- length(scale_info$scale_item_names)
+new_height <- ifelse(new_height > 20, 20, new_height)
+new_height <- ifelse(new_height < 1, 1, new_height)
+new_height <- ifelse(is.na(new_height) | is.nan(new_height), 
+                     old_height, new_height)
+```
+```{r likert,fig.height=new_height,fig.cap=paste("Likert plot of scale", html_scale_name, "items")}
+if (dplyr::n_distinct(na.omit(unlist(items))) < 12) {
+  likert_plot <- likert_from_items(items)
+  if (!is.null(likert_plot)) {
+    graphics::plot(likert_plot)
+  }
+}
+```
+
+```{r distribution,fig.cap=paste("Distribution of scale", html_scale_name)}
+wrap_at <- knitr::opts_chunk$get("fig.width") * 10
+dist_plot <- plot_labelled(scale, scale_name, wrap_at)
+
+choices <- attributes(items[[1]])$item$choices
+breaks <- as.numeric(names(choices))
+if (length(breaks)) {
+  suppressMessages( # ignore message about overwriting x axis
+  dist_plot <- dist_plot +
+    	ggplot2::scale_x_continuous("values", 
+	                            breaks = breaks, 
+	                            labels = stringr::str_wrap(unlist(choices), ceiling(wrap_at * 0.21))) +
+      ggplot2::expand_limits(x = range(breaks)))
+  
+}
+
+dist_plot
+```
+
+`r indent`### Reliability details {#`r safe_name`_reliability}
+
+```{r reliability, results='asis'}
+for (i in seq_along(reliabilities)) {
+  rel <- reliabilities[[i]]
+  suppressMessages(rel_output <- knitr::knit_print(rel))
+  cat(rel_output)
+}
+```
+
+
+
+
+`r indent`### Summary statistics {#`r safe_name`_summary}
+```{r summary}
+for (i in seq_along(names(items))) {
+  attributes(items[[i]]) = recursive_escape(attributes(items[[i]]))
+}
+escaped_table(codebook_table(items))
+```

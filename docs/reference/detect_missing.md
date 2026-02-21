@@ -1,0 +1,112 @@
+# Detect missing values
+
+SPSS users frequently label their missing values, but don't set them as
+missing. This function will rectify that for negative values and for the
+values 99 and 999 (only if they're 5\*MAD away from the median). Using
+different settings, you can also easily tag other missing values.
+
+SPSS users frequently label their missing values, but don't set them as
+missing. This function will rectify that for negative values and for the
+values 99 and 999 (only if they're 5\*MAD away from the median). Using
+different settings, you can also easily tag other missing values.
+
+## Usage
+
+``` r
+detect_missing(
+  data,
+  only_labelled = TRUE,
+  negative_values_are_missing = TRUE,
+  ninety_nine_problems = TRUE,
+  learn_from_labels = TRUE,
+  missing = c(),
+  non_missing = c(),
+  vars = names(data),
+  use_labelled_spss = FALSE,
+  coerce_integer_to_double = FALSE,
+  verbose = FALSE
+)
+
+detect_missings(data, only_labelled_missings = TRUE, ...)
+
+detect_missing(
+  data,
+  only_labelled = TRUE,
+  negative_values_are_missing = TRUE,
+  ninety_nine_problems = TRUE,
+  learn_from_labels = TRUE,
+  missing = c(),
+  non_missing = c(),
+  vars = names(data),
+  use_labelled_spss = FALSE,
+  coerce_integer_to_double = FALSE,
+  verbose = FALSE
+)
+```
+
+## Arguments
+
+- data:
+
+  the data frame with labelled missing values
+
+- only_labelled:
+
+  don't set values to missing if there's no label for them
+
+- negative_values_are_missing:
+
+  by default we label negative values as missing
+
+- ninety_nine_problems:
+
+  SPSS users often store values as 99/999, should we do this for values
+  with 5\*MAD of the median
+
+- learn_from_labels:
+
+  if there are labels for missing values of the form `[-1] no answer`,
+  set -1 in the data to the corresponding tagged missing
+
+- missing:
+
+  also set these values to missing (or enforce for 99/999 within 5\*MAD)
+
+- non_missing:
+
+  don't set these values to missing
+
+- vars:
+
+  only edit these variables
+
+- use_labelled_spss:
+
+  the labelled_spss class has a few drawbacks. Since R can't store
+  missing values like -1 and 99, we're replacing them with letters
+  unless this option is enabled. If you prefer to keep your -1 etc, turn
+  this on.
+
+- coerce_integer_to_double:
+
+  By default, missing values in the columns of integers are not
+  labelled, because it's not technically possible. Let this parameter be
+  `TRUE` if you want to automatically coerce integer columns into double
+  to be able to label the missing values.
+
+- verbose:
+
+  defaults to FALSE, if set to true, the function lets you know where
+  and how it found potential missing values
+
+- only_labelled_missings:
+
+  passed to `detect_missing()`
+
+- ...:
+
+  passed to `detect_missing()`
+
+## Functions
+
+- `detect_missings()`: Deprecated version

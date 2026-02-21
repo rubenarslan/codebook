@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Codebook generator</title>
+  <meta charset="UTF-8">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="codebook.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="opencpu/opencpu-0.4.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.3.0/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script src="codebook.js"></script>
+</head>
+
+<body>
+<div class="container-fluid all">
+<div class="row header">
+  <div class="col-md-3">
+    <h3>Codebook generator</h3>
+  </div>
+  <div class="col-md-4">
+    <label><abbr title="SPSS data format">.sav</abbr>/<abbr title="Stata data format">.dta</abbr>/<abbr title="R data structure">.rds</abbr>/<abbr title="Click more information to see other supported formats">other</abbr> data file: <input type="file" id="file"></label>
+  </div>
+  <div class="col-md-3">
+    <button id="make_codebook" type="button" class="btn btn-success">Generate codebook!</button>
+    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#moreInfo" aria-expanded="false" aria-controls="moreInfo">
+      More Information
+    </button>
+  </div>
+  <div class="col-sm-2">
+   <a href="#" id="download_codebook" download="codebook" class="btn btn-success">Download codebook</a>
+   <div class="progress invisible" id="working">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
+  </div>
+  </div>
+</div>
+<div class="row collapse" id="error">
+  <div class="col-md-12">
+    <div class="alert alert-danger" id="error_message">
+    </div>
+</div>
+</div>
+<div class="row collapse" id="moreInfo">
+  <div class="col-md-12">
+    <div class="card card-body">
+      <p>
+        The codebook generated here will be stored for 24 hours. Unless you share the link, others cannot easily discover it. The data you upload is not stored, but if you do not want to upload the data, you can also install the <a href="https://github.com/rubenarslan/codebook" target="_blank">codebook R package</a> on your computer using <code>install.packages("codebook")</code>. This will also make it easier to document multiple data files in the same document, should you want to.
+      </p>
+      <p>
+        The following <strong>file formats</strong> are supported, among others: .sav (SPSS), .dta (Stata), .rds (R), .rdata (R), .por, .xpt, .csv, .tsv, .csv2. All are read using <a href="https://github.com/leeper/rio">rio</a>, which means you can also upload zipped files, see rio docs for more information.
+      </p>
+      <p>
+        The codebook package uses variable and value labels, as well as labelled missing values to make sense of the data. You can upload files without such metadata (e.g., .csv), but the resulting codebook will be less useful. You'll get the most mileage out of this package by using data collected with <a href="https://formr.org">formr.org</a> and imported using the <a href="https://github.com/rubenarslan/formr">formr R package</a>.
+        </p>
+      <p>
+        If you prefer a PDF over HTML (but remember, PDFs are much less readable for machines and hard to read on mobile devices), just remove the html_document block below.
+      </p>
+      <p>
+        The webapp sets reasonable defaults and it is possible to edit the text and the R code to improve the resulting codebook. However, the webapp does not store edits, is not as interactive as working in R, and it requires the user to upload the dataset to a server. This is not permissible for certain restricted-use datasets. Moreover, for very large datasets, you may get an error message, because the server limits the resources you can use. If one wants to document large, private, or many datasets, or if you first need to add the metadata, it is easier to install the codebook package locally.
+      </p>
+      <p>
+        <a href="https://rubenarslan.github.io/codebook/">More documentation on the R package.</a>
+      </p>
+      <p>
+        <a href="https://github.com/rubenarslan/codebook/issues" target="_blank">Reports bugs on Github</a>
+      </p>
+    </div>
+</div>
+</div>
+<div class="row rest_of_screen">
+  <div id="editor" class="col-xl-6">---
+title: "Codebook"
+output:
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    code_folding: 'hide'
+    self_contained: true
+  pdf_document:
+    toc: yes
+    toc_depth: 4
+    latex_engine: xelatex
+---
+
+```{r setup}
+knitr::opts_chunk$set(
+  warning = TRUE, # show warnings during codebook generation
+  message = TRUE, # show messages during codebook generation
+  error = TRUE, # do not interrupt codebook generation in case of errors,
+                # usually better for debugging
+  echo = TRUE  # show R code
+)
+ggplot2::theme_set(ggplot2::theme_bw())
+pander::panderOptions("table.split.table", Inf)
+```
+
+We collected the following data.
+
+```{r codebook}
+# omit the following lines, if your missing values are already properly labelled
+codebook_data &lt;- detect_missing(codebook_data,
+    only_labelled = TRUE, # only labelled values are autodetected as
+                                   # missing
+    negative_values_are_missing = FALSE, # negative values are missing values
+    ninety_nine_problems = TRUE,   # 99/999 are missing values, if they
+                                   # are more than 5 MAD from the median
+    )
+
+# If you are not using formr, the codebook package needs to guess which items
+# form a scale. The following line finds item aggregates with names like this:
+# scale = scale_1 + scale_2R + scale_3R
+# identifying these aggregates allows the codebook function to
+# automatically compute reliabilities.
+# However, it will not reverse items automatically.
+codebook_data &lt;- detect_scales(codebook_data)
+
+
+# Does your dataset have a name that is not reflected in the file name?
+# Uncomment the line below and change the name
+# metadata(codebook_data)$name &lt;- "My Awesome Dataset"
+
+codebook(codebook_data)
+```
+</div>
+<iframe src="about:blank" class="col-xl-6"></iframe>
+</div>
+</div>
+</body>
+</html>

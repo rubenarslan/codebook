@@ -1,0 +1,14 @@
+Name: Label browser
+Description: Browse and search variable and value labels
+Binding: label_browser
+Interactive: true
+
+Name: Static Label browser
+Description: Browse and search variable and value labels without interrupting your coding
+Binding: label_browser_static
+Interactive: true
+
+Name: Codebook browser
+Description: Browse and search codebook columns
+Binding: codebook_browser
+Interactive: true

@@ -1,0 +1,47 @@
+```{r setup,eval=TRUE,echo=FALSE}
+if (!exists("indent")) {
+	indent = ''
+}
+if (exists("testing")) {
+	example("alpha", "psych")
+  x = a4
+}
+```
+
+
+`r indent` Reliability
+
+`r indent` 95% Confidence Interval
+```{r}
+if (!is.null(x$total$ase)) {
+  knitr::kable(data.frame(lower = x$total$raw_alpha - 1.96 * x$total$ase, 
+             estimate = x$total$raw_alpha, 
+             upper = x$total$raw_alpha + 1.96 * 
+  x$total$ase))
+}
+```
+
+```{r}
+knitr::kable(x$total)
+```
+
+`r indent`  Reliability if an item is dropped:
+
+```{r}
+rownames(x$alpha.drop) <- recursive_escape(rownames(x$alpha.drop))
+knitr::kable(x$alpha.drop)
+```
+
+`r indent` Item statistics
+
+```{r}
+rownames(x$item.stats) <- recursive_escape(rownames(x$item.stats))
+knitr::kable(x$item.stats)
+```
+
+`r indent` Non missing response frequency for each item
+
+```{r}
+rownames(x$response.freq) <- recursive_escape(rownames(x$response.freq))
+knitr::kable(x$response.freq)
+```
