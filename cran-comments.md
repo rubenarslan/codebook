@@ -11,8 +11,9 @@
 
 ## Test environments
 * local macOS (aarch64-apple-darwin20), R 4.5.1
-* win-release
-* rhub
+* win-release (via winbuilder)
+* windows R-devel via rhub
+* linux R-devel via rhub
 
 ## R CMD check results
 
