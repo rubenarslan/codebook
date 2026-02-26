@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">codebook</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.10.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,6 +39,25 @@
       <small>Source: <a href="https://github.com/rubenarslan/codebook/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.10.0" id="codebook-0100">codebook 0.10.0<a class="anchor" aria-label="anchor" href="#codebook-0100"></a></h2>
+<div class="section level3">
+<h3 id="changes-0-10-0">Changes<a class="anchor" aria-label="anchor" href="#changes-0-10-0"></a></h3>
+<ul><li>new <code>exclude_from_detailed_display</code> parameter for <code><a href="../reference/codebook.html">codebook()</a></code> lets you skip detailed graphs and summaries for selected variables while keeping them in the metadata table and JSON-LD (closes <a href="https://github.com/rubenarslan/codebook/issues/53" class="external-link">#53</a>)</li>
+<li>PDF/LaTeX output support: JSON-LD metadata is automatically disabled for PDF (uses HTML script tags), and the metadata table falls back from DT to <code><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">knitr::kable()</a></code> (closes <a href="https://github.com/rubenarslan/codebook/issues/78" class="external-link">#78</a>)</li>
+<li>horizontal scrolling (<code>scrollX</code>) for the DT metadata table (closes <a href="https://github.com/rubenarslan/codebook/issues/58" class="external-link">#58</a>)</li>
+<li>replaced deprecated <code><a href="https://ggplot2.tidyverse.org/reference/qplot.html" class="external-link">ggplot2::qplot()</a></code> with <code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot2::ggplot()</a></code>
+</li>
+<li>updated label browser to use <code><a href="https://rdrr.io/pkg/DT/man/dataTableOutput.html" class="external-link">DT::DTOutput()</a></code> / <code><a href="https://rdrr.io/pkg/DT/man/dataTableOutput.html" class="external-link">DT::renderDT()</a></code> instead of deprecated shiny equivalents</li>
+<li>bumped minimum versions for DT (&gt;= 0.33) and shiny (&gt;= 1.8.1)</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bugfixes-0-10-0">Bugfixes<a class="anchor" aria-label="anchor" href="#bugfixes-0-10-0"></a></h3>
+<ul><li>
+<code>recursive_escape()</code> no longer drops names from character vectors (closes <a href="https://github.com/rubenarslan/codebook/issues/62" class="external-link">#62</a>)</li>
+<li>nested list metadata (e.g. <code>creator</code>, <code>distribution</code>) is now displayed correctly in the data info section instead of erroring (closes <a href="https://github.com/rubenarslan/codebook/issues/59" class="external-link">#59</a> and <a href="https://github.com/rubenarslan/codebook/issues/60" class="external-link">#60</a>)</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.9.6" id="codebook-096">codebook 0.9.6<a class="anchor" aria-label="anchor" href="#codebook-096"></a></h2><p class="text-muted">CRAN release: 2025-01-08</p>
 <div class="section level3">

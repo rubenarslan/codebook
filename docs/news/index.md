@@ -1,5 +1,40 @@
 # Changelog
 
+## codebook 0.10.0
+
+### Changes
+
+- new `exclude_from_detailed_display` parameter for
+  [`codebook()`](https://rubenarslan.github.io/codebook/reference/codebook.md)
+  lets you skip detailed graphs and summaries for selected variables
+  while keeping them in the metadata table and JSON-LD (closes
+  [\#53](https://github.com/rubenarslan/codebook/issues/53))
+- PDF/LaTeX output support: JSON-LD metadata is automatically disabled
+  for PDF (uses HTML script tags), and the metadata table falls back
+  from DT to
+  [`knitr::kable()`](https://rdrr.io/pkg/knitr/man/kable.html) (closes
+  [\#78](https://github.com/rubenarslan/codebook/issues/78))
+- horizontal scrolling (`scrollX`) for the DT metadata table (closes
+  [\#58](https://github.com/rubenarslan/codebook/issues/58))
+- replaced deprecated
+  [`ggplot2::qplot()`](https://ggplot2.tidyverse.org/reference/qplot.html)
+  with
+  [`ggplot2::ggplot()`](https://ggplot2.tidyverse.org/reference/ggplot.html)
+- updated label browser to use
+  [`DT::DTOutput()`](https://rdrr.io/pkg/DT/man/dataTableOutput.html) /
+  [`DT::renderDT()`](https://rdrr.io/pkg/DT/man/dataTableOutput.html)
+  instead of deprecated shiny equivalents
+- bumped minimum versions for DT (\>= 0.33) and shiny (\>= 1.8.1)
+
+### Bugfixes
+
+- `recursive_escape()` no longer drops names from character vectors
+  (closes [\#62](https://github.com/rubenarslan/codebook/issues/62))
+- nested list metadata (e.g. `creator`, `distribution`) is now displayed
+  correctly in the data info section instead of erroring (closes
+  [\#59](https://github.com/rubenarslan/codebook/issues/59) and
+  [\#60](https://github.com/rubenarslan/codebook/issues/60))
+
 ## codebook 0.9.6
 
 CRAN release: 2025-01-08

@@ -137,15 +137,17 @@ Metadata for search engines
 
 - **Creator**:
 
-| name        | value                                        |
-|:------------|:---------------------------------------------|
-| @type       | Person                                       |
-| givenName   | Ruben                                        |
-| familyName  | Arslan                                       |
-| email       | <ruben.arslan@gmail.com>                     |
-| affiliation | Organization , MPI Human Development, Berlin |
+| name        | value                                                    |
+|:------------|:---------------------------------------------------------|
+| @type       | Person                                                   |
+| givenName   | Ruben                                                    |
+| familyName  | Arslan                                                   |
+| email       | <ruben.arslan@gmail.com>                                 |
+| affiliation | @type: Organization, name: MPI Human Development, Berlin |
 
-[TABLE]
+| name     | value                |
+|:---------|:---------------------|
+| keywords | ResponseSet, Q7, Q10 |
 
 ## Variables
 
@@ -163,9 +165,9 @@ Distribution of values for ResponseSet
 
 0 missing values.
 
-| name | label | data_type | n_missing | complete_rate | n_unique | empty | min | max | whitespace |
-|:---|:---|:---|---:|---:|---:|---:|:---|:---|---:|
-| ResponseSet | ResponseSet | character | 0 | 1 | 1 | 0 | 20 | 20 | 0 |
+| name | data_type | n_missing | complete_rate | n_unique | empty | min | max | whitespace | ResponseSet | label |
+|:---|:---|---:|---:|---:|---:|:---|:---|---:|:---|:---|
+| ResponseSet | character | 0 | 1 | 1 | 0 | 20 | 20 | 0 | ResponseSet | NA |
 
 ### Q7
 
@@ -252,7 +254,7 @@ codebook publicly on the web.
 ``` json
 {
   "name": "MOCK Qualtrics dataset",
-  "description": "a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name        |label | n_missing|\n|:-----------|:-----|---------:|\n|ResponseSet |NA    |         0|\n|Q7          |NA    |         0|\n|Q10         |NA    |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.9.7).",
+  "description": "a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name        |label | n_missing|\n|:-----------|:-----|---------:|\n|ResponseSet |NA    |         0|\n|Q7          |NA    |         0|\n|Q10         |NA    |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.10.0).",
   "identifier": "doi:10.5281/zenodo.1326520",
   "datePublished": "2018-08-01",
   "creator": {
