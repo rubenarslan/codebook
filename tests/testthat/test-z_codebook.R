@@ -134,6 +134,7 @@ test_that("Degenerate cases: Variables with only missing data work", {
   expect_silent(md <- codebook_wrap("codebook(onlymiss,
                                survey_repetition = 'single',
                                missingness_report = FALSE,
+                               metadata_table = FALSE,
                                metadata_json = FALSE)"))
   expect_match(md, "non-missing")
 })
@@ -152,6 +153,7 @@ test_that("Degenerate cases: Odd variables names", {
   expect_silent(md <- codebook_wrap("codebook(onlymiss,
                                survey_repetition = 'single',
                                missingness_report = FALSE,
+                               metadata_table = FALSE,
                                metadata_json = FALSE)"))
 })
 

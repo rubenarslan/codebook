@@ -46,8 +46,7 @@ if (is.null(darktriad)) {
     "The remote resource may be temporarily unavailable. Skipping this vignette."
   )
   knitr::knit_exit()
-}
-if (!knit_by_pkgdown) {
+} else if (!knit_by_pkgdown) {
   darktriad <- darktriad %>%
   select(DG, sex, relStat, education, NPI_avg)
 }

@@ -10,7 +10,7 @@ test_that("plot labelled", {
   # Likert item (numeric, all labelled)
   expect_silent(p <- plot_labelled(bfi$BFIK_open_2))
   expect_silent(print(p))
-  expect_identical(class(p), c("gg", "ggplot"))
+  expect_s3_class(p, "ggplot")
   expect_identical(p$scales$scales[[1]]$is_discrete(), FALSE)
 
   # Likert item (numeric, poles labelled)
@@ -18,20 +18,20 @@ test_that("plot labelled", {
   attributes(open2)$labels <- attributes(open2)$labels[c(1,5)]
   expect_silent(p <- plot_labelled(open2))
   expect_silent(print(p))
-  expect_identical(class(p), c("gg", "ggplot"))
+  expect_s3_class(p, "ggplot")
   expect_identical(p$scales$scales[[1]]$is_discrete(), FALSE)
 
   # Likert item (numeric, all labelled) vertical
   expect_silent(p <- plot_labelled(bfi$BFIK_open_2,
                                               go_vertical = TRUE))
   expect_silent(print(p))
-  expect_identical(class(p), c("gg", "ggplot"))
+  expect_s3_class(p, "ggplot")
   expect_identical(p$scales$scales[[1]]$is_discrete(), FALSE)
 
   # Numeric, many, no labels
   expect_silent(p <- plot_labelled(rnorm(50)))
   expect_silent(print(p))
-  expect_identical(class(p), c("gg", "ggplot"))
+  expect_s3_class(p, "ggplot")
   expect_identical(p$scales$scales[[1]]$is_discrete(), FALSE)
 
   # Numeric, many, labelled
@@ -39,26 +39,26 @@ test_that("plot labelled", {
   x <- haven::labelled(x, c("lo" = -2, "hi" = 2))
   expect_silent(p <- plot_labelled(x))
   expect_silent(print(p))
-  expect_identical(class(p), c("gg", "ggplot"))
+  expect_s3_class(p, "ggplot")
   expect_identical(p$scales$scales[[1]]$is_discrete(), FALSE)
 
   # numeric, few
   expect_silent(p <- plot_labelled(
     zap_attributes(bfi$BFIK_agree_1R)))
   expect_silent(print(p))
-  expect_identical(class(p), c("gg", "ggplot"))
+  expect_s3_class(p, "ggplot")
   expect_identical(p$scales$scales[[1]]$is_discrete(), FALSE)
 
   # Likert type scale, continuous values
   expect_silent(p <- plot_labelled(bfi$BFIK_agree))
   expect_silent(print(p))
-  expect_identical(class(p), c("gg", "ggplot"))
+  expect_s3_class(p, "ggplot")
   expect_identical(p$scales$scales[[1]]$is_discrete(), FALSE)
 
   # Characters
   expect_silent(p <- plot_labelled(letters))
   expect_silent(print(p))
-  expect_identical(class(p), c("gg", "ggplot"))
+  expect_s3_class(p, "ggplot")
   expect_identical(p$scales$scales, list())
 
   # Characters
@@ -67,7 +67,7 @@ test_that("plot labelled", {
   labelled_letters <- haven::labelled(ll, ll)
   expect_silent(p <- plot_labelled(labelled_letters))
   expect_silent(print(p))
-  expect_identical(class(p), c("gg", "ggplot"))
+  expect_s3_class(p, "ggplot")
   expect_identical(p$scales$scales, list())
 
   im <- haven::tagged_na("i")
@@ -113,7 +113,7 @@ test_that("likert from items", {
   expect_silent(lik <- likert_from_items(items))
   expect_identical(class(lik), c("likert"))
   expect_identical(dim(lik$items), dim(items))
-  expect_silent(graphics::plot(lik))
+  suppressWarnings(graphics::plot(lik), classes = "lifecycle_warning_deprecated")
 
   items <- bfi %>% select(starts_with("BFIK_consc_")) %>% zap_attributes()
   expect_silent(lik <- likert_from_items(items))

@@ -18,8 +18,6 @@ data("bfi", package = "codebook")
 bfi <- bfi \%>\% dplyr::select(dplyr::starts_with("BFIK_agree"))
 reliabilities <- compute_reliabilities(bfi)
 pull_reliability(reliabilities$BFIK_agree)
-reliabilities <- compute_reliabilities(bfi, use_psych = FALSE)
-pull_reliability(reliabilities$BFIK_agree)
 }
 }
 \keyword{internal}

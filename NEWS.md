@@ -1,3 +1,16 @@
+# codebook 0.10.0
+## Changes
+- new `exclude_from_detailed_display` parameter for `codebook()` lets you skip detailed graphs and summaries for selected variables while keeping them in the metadata table and JSON-LD (closes #53)
+- PDF/LaTeX output support: JSON-LD metadata is automatically disabled for PDF (uses HTML script tags), and the metadata table falls back from DT to `knitr::kable()` (closes #78)
+- horizontal scrolling (`scrollX`) for the DT metadata table (closes #58)
+- replaced deprecated `ggplot2::qplot()` with `ggplot2::ggplot()`
+- updated label browser to use `DT::DTOutput()` / `DT::renderDT()` instead of deprecated shiny equivalents
+- bumped minimum versions for DT (>= 0.33) and shiny (>= 1.8.1)
+
+## Bugfixes
+- `recursive_escape()` no longer drops names from character vectors (closes #62)
+- nested list metadata (e.g. `creator`, `distribution`) is now displayed correctly in the data info section instead of erroring (closes #59 and #60)
+
 # codebook 0.9.6
 ## Bugfixes
 - Language en_GB -> en-GB

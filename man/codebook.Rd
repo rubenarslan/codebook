@@ -14,6 +14,7 @@ codebook(
   missingness_report = TRUE,
   metadata_table = TRUE,
   metadata_json = TRUE,
+  exclude_from_detailed_display = c(),
   indent = "#"
 )
 }
@@ -36,6 +37,8 @@ codebook(
 
 \item{metadata_json}{whether to include machine-readable metadata as JSON-LD (not visible)}
 
+\item{exclude_from_detailed_display}{a character vector of variable names to exclude from the detailed graphical display. These variables will still appear in the metadata table and JSON-LD metadata, but no distribution plots or summary statistics will be generated for them.}
+
 \item{indent}{add # to this to make the headings in the components lower-level. defaults to beginning at h2}
 }
 \description{
@@ -47,6 +50,12 @@ Data frames imported via \code{\link[haven:read_dta]{haven::read_dta()}}, \code{
 \href{https://formr.org}{formr.org} will have these attributes in the right format.
 By calling this function inside a knitr code chunk, the
 codebook will become part of the document you are generating.
+}
+\note{
+When rendering to PDF/LaTeX, JSON-LD metadata (\code{metadata_json}) is
+automatically disabled because it relies on HTML \verb{<script>} tags. The
+metadata table (\code{metadata_table}) switches from an interactive HTML widget
+to a static table via \code{\link[knitr:kable]{knitr::kable()}}.
 }
 \examples{
 # will generate figures in a temporary directory
