@@ -46,11 +46,11 @@ Imports:
     future
 Suggests:
     testthat,
-    DT,
+    DT (>= 0.33),
     lme4,
 		rmarkdown,
     rstudioapi (>= 0.5),
-    shiny (>= 0.13),
+    shiny (>= 1.8.1),
     miniUI (>= 0.1.1),
     roxygen2,
     rio,

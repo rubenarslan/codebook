@@ -169,7 +169,9 @@ modified <- function(survey, variable = "modified") {
 
 
 export_table <- function(df) {
-  if(requireNamespace("DT", quietly = TRUE)) {
+  if (knitr::is_latex_output()) {
+    knitr::kable(df)
+  } else if(requireNamespace("DT", quietly = TRUE)) {
     DT::formatSignif(DT::datatable(df,
                   filter = "top", extensions = 'Buttons',
                   escape = FALSE,

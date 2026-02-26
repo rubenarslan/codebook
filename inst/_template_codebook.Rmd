@@ -61,5 +61,8 @@ codebook_data <- detect_scales(codebook_data)
 Create codebook
 
 ```{r codebook}
+# omit metadata_json (uses HTML) to avoid an error when knitting to PDF;
+# metadata_table and other components are automatically
+# rendered as static tables for PDF output
 codebook(codebook_data)
 ```

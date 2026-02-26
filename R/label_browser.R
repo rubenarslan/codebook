@@ -160,7 +160,7 @@ codebook_browser <- function(
                       find_dfs_in_environment())
       ),
       shiny::uiOutput("pending"),
-      shiny::dataTableOutput("output")
+      DT::DTOutput("output")
     )
   )
 
@@ -208,7 +208,7 @@ codebook_browser <- function(
         shiny::h4(style = "color: #AA7732;", data$message)
     })
 
-    output$output <- shiny::renderDataTable({
+    output$output <- DT::renderDT({
       data <- reactiveData()
       data
     },

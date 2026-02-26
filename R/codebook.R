@@ -28,6 +28,11 @@ no_md <- function() {
 #' @param exclude_from_detailed_display a character vector of variable names to exclude from the detailed graphical display. These variables will still appear in the metadata table and JSON-LD metadata, but no distribution plots or summary statistics will be generated for them.
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
+#' @note When rendering to PDF/LaTeX, JSON-LD metadata (`metadata_json`) is
+#'   automatically disabled because it relies on HTML `<script>` tags. The
+#'   metadata table (`metadata_table`) switches from an interactive HTML widget
+#'   to a static table via [knitr::kable()].
+#'
 #' @importFrom graphics plot
 #' @export
 #' @examples
@@ -49,6 +54,13 @@ codebook <- function(results, reliabilities = NULL,
   # todo: factor out the time stuff
   # todo: factor out the repetition detection stuff
   survey_repetition <- match.arg(survey_repetition)
+
+  if (knitr::is_latex_output() && metadata_json) {
+    message("PDF/LaTeX output detected: disabling JSON-LD metadata ",
+            "(uses HTML). Set metadata_json = FALSE to silence this message.")
+    metadata_json <- FALSE
+  }
+
   if (survey_repetition == "auto") {
     if (!is_formr_survey(results)) {
       survey_repetition <- 'single'
@@ -359,24 +371,29 @@ metadata_jsonld <- function(results) {
 #' }
 codebook_items <- function(results, indent = "##") {
   metadata_table <- codebook_table(results)
-  metadata_table <- dplyr::mutate(metadata_table,
-         name = paste0('<a href="#', safe_name(.data$name), '">',
-                       recursive_escape(.data$name), '</a>'))
 
-  # bit ugly to suppress warnings here, but necessary for escaping whatever
-  # columns there may be
-  suppressWarnings(
-    metadata_table <- dplyr::mutate_at(metadata_table, dplyr::vars(
-    dplyr::one_of("label", "scale_item_names", "value_labels", "showif")),
-    recursive_escape) )
+  if (knitr::is_latex_output()) {
+    # no HTML markup needed for PDF/LaTeX output
+  } else {
+    metadata_table <- dplyr::mutate(metadata_table,
+           name = paste0('<a href="#', safe_name(.data$name), '">',
+                         recursive_escape(.data$name), '</a>'))
 
-  if (exists("value_labels", metadata_table)) {
-    metadata_table$value_labels <- stringr::str_replace_all(
-      metadata_table$value_labels, "\n", "<br>")
-  }
-  if (exists("label", metadata_table)) {
-    metadata_table$label <- stringr::str_replace_all(
-      metadata_table$label, "\n", "<br>")
+    # bit ugly to suppress warnings here, but necessary for escaping whatever
+    # columns there may be
+    suppressWarnings(
+      metadata_table <- dplyr::mutate_at(metadata_table, dplyr::vars(
+      dplyr::one_of("label", "scale_item_names", "value_labels", "showif")),
+      recursive_escape) )
+
+    if (exists("value_labels", metadata_table)) {
+      metadata_table$value_labels <- stringr::str_replace_all(
+        metadata_table$value_labels, "\n", "<br>")
+    }
+    if (exists("label", metadata_table)) {
+      metadata_table$label <- stringr::str_replace_all(
+        metadata_table$label, "\n", "<br>")
+    }
   }
 
   rmdpartials::partial(require_file("inst/_codebook_items.Rmd"),
