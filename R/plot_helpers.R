@@ -180,7 +180,9 @@ plot_labelled <- function(item, item_name = NULL,
       bar_geom +
       ggplot2::scale_x_continuous(x_axis_label, trans = trans)
   } else {
-    dist_plot <- ggplot2::qplot(item) + ggplot2::xlab(x_axis_label)
+    dist_plot <- ggplot2::ggplot(mapping = ggplot2::aes(x = item)) +
+      ggplot2::geom_bar() +
+      ggplot2::xlab(x_axis_label)
   }
 
 
