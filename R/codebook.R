@@ -25,6 +25,7 @@ no_md <- function() {
 #' @param missingness_report whether to print a missingness report. Turn off if this gets too complicated and you need a custom solution (e.g. in case of random missings).
 #' @param metadata_table whether to print a metadata table/tabular codebook.
 #' @param metadata_json whether to include machine-readable metadata as JSON-LD (not visible)
+#' @param exclude_from_detailed_display a character vector of variable names to exclude from the detailed graphical display. These variables will still appear in the metadata table and JSON-LD metadata, but no distribution plots or summary statistics will be generated for them.
 #' @param indent add # to this to make the headings in the components lower-level. defaults to beginning at h2
 #'
 #' @importFrom graphics plot
@@ -42,7 +43,9 @@ codebook <- function(results, reliabilities = NULL,
     detailed_scales = TRUE,
     survey_overview = TRUE,
     missingness_report = TRUE, metadata_table = TRUE,
-    metadata_json = TRUE, indent = '#') {
+    metadata_json = TRUE,
+    exclude_from_detailed_display = c(),
+    indent = '#') {
   # todo: factor out the time stuff
   # todo: factor out the repetition detection stuff
   survey_repetition <- match.arg(survey_repetition)
@@ -137,6 +140,7 @@ codebook <- function(results, reliabilities = NULL,
       if ( !is.null(scale_info) && exists("scale_item_names", scale_info)) {
         items_contained_in_scales <- c(items_contained_in_scales,
                                        scale_info$scale_item_names, var)
+        if (var %in% exclude_from_detailed_display) next
         items <- dplyr::select(results,
                     dplyr::all_of(scale_info$scale_item_names))
         scales_items[[var]] %<-% {
@@ -156,8 +160,9 @@ codebook <- function(results, reliabilities = NULL,
     for (i in seq_along(vars)) {
       var <- vars[i]
       item <- results[[ var ]]
-      if (var %in% dont_show_these) {
-        next # don't do scales again
+      if (var %in% dont_show_these ||
+          var %in% exclude_from_detailed_display) {
+        next
       } else {
         scales_items[[var]] %<-% {
           tryCatch({
