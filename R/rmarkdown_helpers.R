@@ -101,7 +101,9 @@ recursive_escape <- function(x, depth = 0, max_depth = 4,
 
     # escape any character vectors
     if (is.character(x)) {
+      nms <- names(x)
       x <- escape_fun(x)
+      names(x) <- nms
     } else if (is.list(x) && inherits(x, "list")) {
       # turtle down into lists
       x <- lapply(x, function(x) { recursive_escape(x, depth + 1) })
