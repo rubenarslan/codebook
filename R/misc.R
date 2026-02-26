@@ -179,7 +179,8 @@ export_table <- function(df) {
                   options = list(
                     dom = 'Bfrtip',
                     buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
-                    pageLength = 200
+                    pageLength = 200,
+                    scrollX = TRUE
                   )), intersect(names(df), c("complete_rate",
                                                  "mean", "sd")))
   } else {
