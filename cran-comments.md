@@ -7,9 +7,12 @@
 * Removed rosetta (archived from CRAN), ufs, shinytest, and GGally from 
   Suggests. Deprecated the use_psych parameter in compute_reliabilities()
   which previously allowed switching to rosetta.
+* Fixed a few issues
 
 ## Test environments
 * local macOS (aarch64-apple-darwin20), R 4.5.1
+* win-release
+* rhub
 
 ## R CMD check results
 

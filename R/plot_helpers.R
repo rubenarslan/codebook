@@ -10,7 +10,7 @@
 #' @examples
 #' data("bfi", package = "codebook")
 #' open_items <- paste0("BFIK_open_",1:4)
-#' graphics::plot(likert_from_items(bfi[, open_items]))
+#' suppressWarnings(graphics::plot(likert_from_items(bfi[, open_items])))
 likert_from_items <- function(items) {
   if (!methods::is(items, "data.frame") || ncol(items) < 1) {
     stop("The items argument has to be a data frame.")

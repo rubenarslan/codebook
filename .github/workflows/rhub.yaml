@@ -15,7 +15,8 @@ on:
       config:
         description: 'A comma separated list of R-hub platforms to use.'
         type: string
-        default: 'linux,windows,macos'
+        # 'macos' maps to retired macos-13 runner (r-hub/rhub#669)
+        default: 'linux,windows,macos-arm64'
       name:
         description: 'Run name. You can leave this empty now.'
         type: string

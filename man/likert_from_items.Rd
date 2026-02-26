@@ -17,5 +17,5 @@ Intelligently makes use of labels and value labels if present.
 \examples{
 data("bfi", package = "codebook")
 open_items <- paste0("BFIK_open_",1:4)
-graphics::plot(likert_from_items(bfi[, open_items]))
+suppressWarnings(graphics::plot(likert_from_items(bfi[, open_items])))
 }
