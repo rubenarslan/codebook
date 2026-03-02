@@ -1,3 +1,7 @@
+# codebook 0.10.1
+## Changes
+- inlined previously external data so as not to break on CRAN with unreliable OSF
+
 # codebook 0.10.0
 ## Changes
 - new `exclude_from_detailed_display` parameter for `codebook()` lets you skip detailed graphs and summaries for selected variables while keeping them in the metadata table and JSON-LD (closes #53)

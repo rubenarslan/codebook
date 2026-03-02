@@ -22,9 +22,5 @@ likert_from_items(items)
 ``` r
 data("bfi", package = "codebook")
 open_items <- paste0("BFIK_open_",1:4)
-graphics::plot(likert_from_items(bfi[, open_items]))
-#> Warning: The `size` argument of `element_rect()` is deprecated as of ggplot2 3.4.0.
-#> ℹ Please use the `linewidth` argument instead.
-#> ℹ The deprecated feature was likely used in the likert package.
-#>   Please report the issue at <https://github.com/jbryer/likert/issues>.
+suppressWarnings(graphics::plot(likert_from_items(bfi[, open_items])))
 ```

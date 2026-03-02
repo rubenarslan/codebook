@@ -36,29 +36,20 @@ the `detect_missing` function makes it easy to recognise common ways to specify
 missing data (e.g. negative values, labelled values, 99/999).
 
 ```{r}
-darktriad <- tryCatch(
-  rio::import("https://osf.io/download/j4fcb", format = "sav"),
-  error = function(e) NULL
-)
-if (is.null(darktriad)) {
-  message(
-    "Could not download dataset from https://osf.io/download/j4fcb\n",
-    "The remote resource may be temporarily unavailable. Skipping this vignette."
-  )
-  knitr::knit_exit()
-} else if (!knit_by_pkgdown) {
+darktriad_path <- system.file("extdata", "darktriad.sav", package = "codebook")
+darktriad <- rio::import(darktriad_path, format = "sav")
+if (!knit_by_pkgdown) {
   darktriad <- darktriad %>%
   select(DG, sex, relStat, education, NPI_avg)
 }
 ```
 
-
 ```{r}
 metadata(darktriad)$name <- "How alluring are dark personalities? The Dark Triad and attractiveness in speed dating"
 metadata(darktriad)$description <- paste0("The data to this speed dating study comes in two different formats: Personwise (one record for each individual) and dyadic (pairwise; one record for each date). The respective SPSS files are named \"DarkTriadDate_person.sav\" and \"DarkTriadDate_dyad.sav\".
 
-### Download link
-[Open Science Framework](https://osf.io/download/j4fcb)
+### Original source
+[Open Science Framework](https://osf.io/j4fcb/)
 
 ### Personwise datafile 
 The personwise datafile contains individual differences variables and perceiver and target effects according to the social relations model. These are centered marginal means that were calculated according to the formulae provided by Kenny, Kashy, and Cook (2006). These effects are not (!) based on multilevel analyses.

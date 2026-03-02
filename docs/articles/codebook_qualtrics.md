@@ -254,7 +254,7 @@ codebook publicly on the web.
 ``` json
 {
   "name": "MOCK Qualtrics dataset",
-  "description": "a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name        |label | n_missing|\n|:-----------|:-----|---------:|\n|ResponseSet |NA    |         0|\n|Q7          |NA    |         0|\n|Q10         |NA    |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.10.0).",
+  "description": "a MOCK dataset used to show how to import Qualtrics metadata into the codebook R package\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name        |label | n_missing|\n|:-----------|:-----|---------:|\n|ResponseSet |NA    |         0|\n|Q7          |NA    |         0|\n|Q10         |NA    |         0|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.10.1).",
   "identifier": "doi:10.5281/zenodo.1326520",
   "datePublished": "2018-08-01",
   "creator": {

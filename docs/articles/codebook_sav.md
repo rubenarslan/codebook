@@ -30,17 +30,9 @@ values, labelled values, 99/999).
 
 ``` r
 
-darktriad <- tryCatch(
-  rio::import("https://osf.io/download/j4fcb", format = "sav"),
-  error = function(e) NULL
-)
-if (is.null(darktriad)) {
-  message(
-    "Could not download dataset from https://osf.io/download/j4fcb\n",
-    "The remote resource may be temporarily unavailable. Skipping this vignette."
-  )
-  knitr::knit_exit()
-} else if (!knit_by_pkgdown) {
+darktriad_path <- system.file("extdata", "darktriad.sav", package = "codebook")
+darktriad <- rio::import(darktriad_path, format = "sav")
+if (!knit_by_pkgdown) {
   darktriad <- darktriad %>%
   select(DG, sex, relStat, education, NPI_avg)
 }
@@ -51,8 +43,8 @@ if (is.null(darktriad)) {
 metadata(darktriad)$name <- "How alluring are dark personalities? The Dark Triad and attractiveness in speed dating"
 metadata(darktriad)$description <- paste0("The data to this speed dating study comes in two different formats: Personwise (one record for each individual) and dyadic (pairwise; one record for each date). The respective SPSS files are named \"DarkTriadDate_person.sav\" and \"DarkTriadDate_dyad.sav\".
 
-### Download link
-[Open Science Framework](https://osf.io/download/j4fcb)
+### Original source
+[Open Science Framework](https://osf.io/j4fcb/)
 
 ### Personwise datafile 
 The personwise datafile contains individual differences variables and perceiver and target effects according to the social relations model. These are centered marginal means that were calculated according to the formulae provided by Kenny, Kashy, and Cook (2006). These effects are not (!) based on multilevel analyses.
@@ -132,9 +124,9 @@ Personwise (one record for each individual) and dyadic (pairwise; one
 record for each date). The respective SPSS files are named
 “DarkTriadDate_person.sav” and “DarkTriadDate_dyad.sav”.
 
-### Download link
+### Original source
 
-[Open Science Framework](https://osf.io/download/j4fcb)
+[Open Science Framework](https://osf.io/j4fcb/)
 
 ### Personwise datafile
 
@@ -1382,7 +1374,7 @@ codebook publicly on the web.
 ``` json
 {
   "name": "How alluring are dark personalities? The Dark Triad and attractiveness in speed dating",
-  "description": "The data to this speed dating study comes in two different formats: Personwise (one record for each individual) and dyadic (pairwise; one record for each date). The respective SPSS files are named \"DarkTriadDate_person.sav\" and \"DarkTriadDate_dyad.sav\".\n\n### Download link\n[Open Science Framework](https://osf.io/download/j4fcb)\n\n### Personwise datafile \nThe personwise datafile contains individual differences variables and perceiver and target effects according to the social relations model. These are centered marginal means that were calculated according to the formulae provided by Kenny, Kashy, and Cook (2006). These effects are not (!) based on multilevel analyses.\n\n### Preprocessing\nAll rating variables (i.e., actual choice, friendship, short-term relationship etc.) were corrected for prior acquaintance, which means that dates wih prior acquaintance were excluded (set to missing) on a dyadic basis.\n\nVariables are labeled in SPSS. \n\n### A list of important abbreviations, prefixes and suffixes:\n\n* _acq = acquaintance (i.e., variables with this suffix are controlled for prior * acquaintance)\n* avg = average\n* _rat = rating variable\n* _z = z-standardized score\n* BC = booty call\n* DG = dating group (three groups in this study)\n* FIPI = five item personality inventory\n* FS = friendship\n* FWB = friends-with-benefits\n* Int = Intelligence\n* Like = Likeability\n* LTR = long-term relationship\n* MACHIV = mach-iv machiavellianism questionnaire\n* N, E, O, A, C = Big5\n* NPI = narcissistic personality inventory\n* ONS = one night stand\n* P = perceiver\n* PA = physical attractiveness\n* PercEff = perceiver effect\n* SD = speed dating\n* SRM = social relations model\n* SRP = self-report psychopathy scale\n* STR = short-term relationship\n* T = target\n* TargEff = target effect\n\n\n\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n[truncated]\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.10.0).",
+  "description": "The data to this speed dating study comes in two different formats: Personwise (one record for each individual) and dyadic (pairwise; one record for each date). The respective SPSS files are named \"DarkTriadDate_person.sav\" and \"DarkTriadDate_dyad.sav\".\n\n### Original source\n[Open Science Framework](https://osf.io/j4fcb/)\n\n### Personwise datafile \nThe personwise datafile contains individual differences variables and perceiver and target effects according to the social relations model. These are centered marginal means that were calculated according to the formulae provided by Kenny, Kashy, and Cook (2006). These effects are not (!) based on multilevel analyses.\n\n### Preprocessing\nAll rating variables (i.e., actual choice, friendship, short-term relationship etc.) were corrected for prior acquaintance, which means that dates wih prior acquaintance were excluded (set to missing) on a dyadic basis.\n\nVariables are labeled in SPSS. \n\n### A list of important abbreviations, prefixes and suffixes:\n\n* _acq = acquaintance (i.e., variables with this suffix are controlled for prior * acquaintance)\n* avg = average\n* _rat = rating variable\n* _z = z-standardized score\n* BC = booty call\n* DG = dating group (three groups in this study)\n* FIPI = five item personality inventory\n* FS = friendship\n* FWB = friends-with-benefits\n* Int = Intelligence\n* Like = Likeability\n* LTR = long-term relationship\n* MACHIV = mach-iv machiavellianism questionnaire\n* N, E, O, A, C = Big5\n* NPI = narcissistic personality inventory\n* ONS = one night stand\n* P = perceiver\n* PA = physical attractiveness\n* PercEff = perceiver effect\n* SD = speed dating\n* SRM = social relations model\n* SRP = self-report psychopathy scale\n* STR = short-term relationship\n* T = target\n* TargEff = target effect\n\n\n\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n[truncated]\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.10.1).",
   "identifier": "https://osf.io/jvk3u/",
   "datePublished": "2015-10-07",
   "creator": {

@@ -53,17 +53,14 @@ codebook_data <- codebook::bfi
 with
  
 ```{r}
-codebook_data <- tryCatch(
-  rio::import("https://osf.io/download/s87kd", "csv"),
-  error = function(e) {
-    message(
-      "Could not download dataset from https://osf.io/download/s87kd: ",
-      conditionMessage(e), "\nUsing bundled data instead."
-    )
-    codebook::bfi
-  }
-)
+if (knit_by_pkgdown) {
+  codebook_data <- rio::import("https://osf.io/download/s87kd", "csv")
+} else {
+  codebook_data_path <- system.file("extdata", "bfi_tutorial.rds", package = "codebook")
+  codebook_data <- readRDS(codebook_data_path)
+}
 ```
+Original source for the full dataset: [Open Science Framework](https://osf.io/download/s87kd)
 
 on line 34. R Markdown documents have to be reproducible and self-contained, so it is not enough for a dataset to be loaded locally; you must load the dataset at the beginning of the document. You can also use the document interactively, although this will not work seamlessly for the codebook package. To see how this works, execute the line you just added by pressing Command + Enter (for a Mac) or Ctrl + Enter (for other platforms).
 
@@ -100,18 +97,14 @@ val_labels(codebook_data$C1) <- c("Very Inaccurate" = 1, "Very Accurate" = 6)
 Write these labelling commands after loading the dataset and click "Knit" again. As you can see in the viewer pane, the graph for the C1 variable now has a label at the top and the lowest and highest values on the X axis are labelled. If the prospect of adding labels for every single variable seems tedious, do not fear. Many researchers already have a codebook in the form of a spreadsheet that they want to import in order to avoid entering labels one-by-one. The bfi dataset in the psych package is a good example of this, because it comes with a tabular dictionary. On the line after loading the bfi data, type the following to import this data dictionary:
 
 ```{r}
-dict <- tryCatch(
-  rio::import("https://osf.io/download/cs678", "csv"),
-  error = function(e) NULL
-)
-if (is.null(dict)) {
-  message(
-    "Could not download dictionary from https://osf.io/download/cs678\n",
-    "The remote resource may be temporarily unavailable. Skipping remainder of this vignette."
-  )
-  knitr::knit_exit()
+if (knit_by_pkgdown) {
+  dict <- rio::import("https://osf.io/download/cs678", "csv")
+} else {
+  dict_path <- system.file("extdata", "bfi_dict_tutorial.rds", package = "codebook")
+  dict <- readRDS(dict_path)
 }
 ```
+Original source for the full dictionary: [Open Science Framework](https://osf.io/download/cs678)
 
 To see what you just loaded, click the "dict" row in the environment tab in the top right panel. As you can see, the dictionary has information on the constructs on which this item loads and on the direction with which it should load on the construct. You can make these metadata usable through the codebook package. You will often need to work on the data frames to help you do this; to make this easier, use the dplyr package (Wickham, François, Henry, & Müller, 2018). Load it by typing the following
 

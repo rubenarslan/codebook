@@ -1,19 +1,10 @@
 ## Submission
 * Resubmission after archival for policy violation (internet resource access).
-* All vignette code that downloads from external URLs (OSF) is now wrapped 
-  in tryCatch with informative messages and graceful exits via knitr::knit_exit().
-* Updated moved OSF URLs to their new canonical format.
-* Fixed dead link to Posit keyboard shortcuts documentation.
-* Removed rosetta (archived from CRAN), ufs, shinytest, and GGally from 
-  Suggests. Deprecated the use_psych parameter in compute_reliabilities()
-  which previously allowed switching to rosetta.
-* Fixed a few issues
+* Vignette code no longer downloads external URLs (OSF) 
+  - Data has been subset, compressed, and included in `inst/extdata`. 
 
 ## Test environments
 * local macOS (aarch64-apple-darwin20), R 4.5.1
-* win-release (via winbuilder)
-* windows R-devel via rhub
-* linux R-devel via rhub
 
 ## R CMD check results
 

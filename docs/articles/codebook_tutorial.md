@@ -54,17 +54,16 @@ with
 
 ``` r
 
-codebook_data <- tryCatch(
-  rio::import("https://osf.io/download/s87kd", "csv"),
-  error = function(e) {
-    message(
-      "Could not download dataset from https://osf.io/download/s87kd: ",
-      conditionMessage(e), "\nUsing bundled data instead."
-    )
-    codebook::bfi
-  }
-)
+if (knit_by_pkgdown) {
+  codebook_data <- rio::import("https://osf.io/download/s87kd", "csv")
+} else {
+  codebook_data_path <- system.file("extdata", "bfi_tutorial.rds", package = "codebook")
+  codebook_data <- readRDS(codebook_data_path)
+}
 ```
+
+Original source for the full dataset: [Open Science
+Framework](https://osf.io/download/s87kd)
 
 on line 34. R Markdown documents have to be reproducible and
 self-contained, so it is not enough for a dataset to be loaded locally;
@@ -157,18 +156,16 @@ to import this data dictionary:
 
 ``` r
 
-dict <- tryCatch(
-  rio::import("https://osf.io/download/cs678", "csv"),
-  error = function(e) NULL
-)
-if (is.null(dict)) {
-  message(
-    "Could not download dictionary from https://osf.io/download/cs678\n",
-    "The remote resource may be temporarily unavailable. Skipping remainder of this vignette."
-  )
-  knitr::knit_exit()
+if (knit_by_pkgdown) {
+  dict <- rio::import("https://osf.io/download/cs678", "csv")
+} else {
+  dict_path <- system.file("extdata", "bfi_dict_tutorial.rds", package = "codebook")
+  dict <- readRDS(dict_path)
 }
 ```
+
+Original source for the full dictionary: [Open Science
+Framework](https://osf.io/download/cs678)
 
 To see what you just loaded, click the “dict” row in the environment tab
 in the top right panel. As you can see, the dictionary has information
@@ -1257,7 +1254,7 @@ codebook publicly on the web.
 ``` json
 {
   "name": "25 Personality items representing 5 factors",
-  "description": "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org)[...]\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name         |label                                     | n_missing|\n|:------------|:-----------------------------------------|---------:|\n|A1R          |Am indifferent to the feelings of others. |        16|\n|A2           |Inquire about others' well-being.         |        27|\n|A3           |Know how to comfort others.               |        26|\n|A4           |Love children.                            |        19|\n|A5           |Make people feel at ease.                 |        16|\n|C1           |Am exacting in my work.                   |        21|\n|C2           |Continue until everything is perfect.     |        24|\n|C3           |Do things according to a plan.            |        20|\n|C4R          |Do things in a half-way manner.           |        26|\n|C5R          |Waste my time.                            |        16|\n|E1R          |Don't talk a lot.                         |        23|\n|E2R          |Find it difficult to approach others.     |        16|\n|E3           |Know how to captivate people.             |        25|\n|E4           |Make friends easily.                      |         9|\n|E5           |Take charge.                              |        21|\n|N1R          |Get angry easily.                         |        22|\n|N2R          |Get irritated easily.                     |        21|\n|N3R          |Have frequent mood swings.                |        11|\n|N4R          |Often feel blue.                          |        36|\n|N5R          |Panic easily.                             |        29|\n|O1           |Am full of ideas.                         |        22|\n|O2R          |Avoid difficult reading material.         |         0|\n|O3           |Carry the conversation to a higher level. |        28|\n|O4           |Spend time reflecting on things.          |        14|\n|O5R          |Will not probe deeply into a subject.     |        20|\n|gender       |gender                                    |         0|\n|education    |education                                 |       223|\n|age          |age                                       |         0|\n|extraversion |5 E items aggregated by rowMeans          |        87|\n|plasticity   |10  items aggregated by rowMeans          |       149|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.10.0).",
+  "description": "25 personality self report items taken from the International Personality Item Pool (ipip.ori.org)[...]\n\n\n## Table of variables\nThis table contains variable names, labels, and number of missing values.\nSee the complete codebook for more.\n\n|name         |label                                     | n_missing|\n|:------------|:-----------------------------------------|---------:|\n|A1R          |Am indifferent to the feelings of others. |        16|\n|A2           |Inquire about others' well-being.         |        27|\n|A3           |Know how to comfort others.               |        26|\n|A4           |Love children.                            |        19|\n|A5           |Make people feel at ease.                 |        16|\n|C1           |Am exacting in my work.                   |        21|\n|C2           |Continue until everything is perfect.     |        24|\n|C3           |Do things according to a plan.            |        20|\n|C4R          |Do things in a half-way manner.           |        26|\n|C5R          |Waste my time.                            |        16|\n|E1R          |Don't talk a lot.                         |        23|\n|E2R          |Find it difficult to approach others.     |        16|\n|E3           |Know how to captivate people.             |        25|\n|E4           |Make friends easily.                      |         9|\n|E5           |Take charge.                              |        21|\n|N1R          |Get angry easily.                         |        22|\n|N2R          |Get irritated easily.                     |        21|\n|N3R          |Have frequent mood swings.                |        11|\n|N4R          |Often feel blue.                          |        36|\n|N5R          |Panic easily.                             |        29|\n|O1           |Am full of ideas.                         |        22|\n|O2R          |Avoid difficult reading material.         |         0|\n|O3           |Carry the conversation to a higher level. |        28|\n|O4           |Spend time reflecting on things.          |        14|\n|O5R          |Will not probe deeply into a subject.     |        20|\n|gender       |gender                                    |         0|\n|education    |education                                 |       223|\n|age          |age                                       |         0|\n|extraversion |5 E items aggregated by rowMeans          |        87|\n|plasticity   |10  items aggregated by rowMeans          |       149|\n\n### Note\nThis dataset was automatically described using the [codebook R package](https://rubenarslan.github.io/codebook/) (version 0.10.1).",
   "identifier": "https://dx.doi.org/10.17605/OSF.IO/K39BG",
   "creator": "William Revelle",
   "citation": "Revelle, W., Wilt, J., & Rosenthal, A. (2010). Individual differences in cognition: New methods for examining the personality-cognition link. In A. Gruszka, G. Matthews, & B. Szymura (Eds.), Handbook of individual differences in cognition: Attention, memory, and executive control (pp. 27–49). New York, NY: Springer.",

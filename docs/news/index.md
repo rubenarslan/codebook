@@ -1,6 +1,15 @@
 # Changelog
 
+## codebook 0.10.1
+
+### Changes
+
+- inlined previously external data so as not to break on CRAN with
+  unreliable OSF
+
 ## codebook 0.10.0
+
+CRAN release: 2026-02-26
 
 ### Changes
 
