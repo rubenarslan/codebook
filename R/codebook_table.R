@@ -56,6 +56,9 @@ attribute_summary <- function(var) {
   if (exists("tzone", x)) {
     x$tzone <- NULL
   }
+  if (exists("haven_meta", x)) {
+    x$haven_meta <- NULL
+  }
   if (exists("label", x)) {
     if (exists("item", x)) {
       if (exists("label", x$item)) {
